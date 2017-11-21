@@ -1,27 +1,27 @@
-# Occurrence
+# Pipeline
 
-Generate GBIF occurrence downloads of alien species.
+TrIAS data pipeline from a species checklist over occurrences to indicators.
 
 ## Repo structure
 
 The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files indicated with `GENERATED` should not be edited manually.
 
 ```
-├── README.md                  : Top-level description of the project and how to run it
-├── LICENSE                    : Project license
-├── .gitignore                 : Files and folders to be ignored by git
+├── README.md                       : Top-level description of the project and how to run it
+├── LICENSE                         : Project license
+├── .gitignore                      : Files and folders to be ignored by git
 │
 ├── data
 │   ├── input
-│   │   ├── modelling_species.csv : Species list for modelling
-|   │   └── unified_checklist.csv : List of alien species in Belgium
+│   │   ├── modelling_species.csv   : List of species for risk modelling
+|   │   └── belgian_species.csv     : List of alien species in Belgium
 │   │
 │   └── output
-|       └── gbif_downloads.csv : List of triggered GBIF occurrence downloads GENERATED
+|       └── gbif_downloads.csv      : List of triggered GBIF occurrence downloads GENERATED
 │
 └── src
-    ├── gbif_download.R        : Script to trigger a GBIF occurrence download
-    └── src.Rproj              : RStudio project file
+    ├── gbif_download.Rmd           : Script to trigger and verify a GBIF occurrence download
+    └── src.Rproj                   : RStudio project file
 ```
 
 ## Contributors
