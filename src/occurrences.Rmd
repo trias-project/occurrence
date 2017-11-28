@@ -1,0 +1,41 @@
+---
+title: "Process occurrences"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries
+
+```{r}
+library(rgbif)
+library(trias)
+```
+
+## Download GBIF occurrences
+
+### For species of EU concern
+
+```{r}
+eu_concern_species = read.table("../data/input/eu_concern_species.tsv")
+taxonKeys = eu_concern_species["taxonKey"]
+country = "BE"
+body <- trias::predicates(
+  taxonKey = taxonKeys, country = country, creator = creator, 
+  notification_address = otification_address)
+gbif_download_key <- rgbif::occ_download(body)
+```
+
+Check status of download:
+
+```{r}
+metadata <- occ_download_meta(key = gbif_download_key)
+```
+
+Write download to list of downloads
+
+```{r}
+trias::update_download_list(file="../data/output/gbif_downloads.csv", download_to_add = occ_download_key)
+```
