@@ -1,2 +1,0 @@
-gbif_download_key,input_checklist,input_country,gbif_download_created,gbif_download_status,gbif_download_doi
-0002455-171124123535762,../data/input/eu_concern_species.tsv,BE,2017-11-29T11:43:02.327+0000,SUCCEEDED,doi:10.15468/dl.iyhwjt
