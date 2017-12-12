@@ -1,0 +1,114 @@
+---
+title: "Get taxa from checklists"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    df_print: kable
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries
+
+```{r}
+library(rgbif)
+library(trias)
+```
+
+## Define checklist datasets
+
+```{r}
+checklist_datasets <- c(
+  "uuid", # A
+  "uuid"  # B
+)
+```
+
+```{r}
+# Call to GBIF /datasets api
+```
+
+Show dataset info:
+
+```{r}
+# Display table with:
+
+# key, title of dataset, last published, publisher, doi
+```
+
+## Get taxa from checklists
+
+```{r}
+# Call to GBIF /species/search API, using datasets as input
+
+# Consider paging!
+```
+
+```{r}
+# taxa <- dataframe with:
+
+# Should contain:
+# key
+# dataset_scientificName
+# datasetKey
+# nubKey
+```
+
+Show some stats:
+
+```{r}
+# Dataset 1: # taxa
+# Dataset 2: # taxa
+# Total taxa
+```
+
+Group by nubKey:
+
+```{r}
+# group by nubKey
+
+# taxa %>%
+#  group_by(nubkey) %>%
+#  summarize(
+#    key: list
+#  ) -> taxa_by_nubKey
+
+# list information for
+# key, key
+# dataset_scientificName, dataset_scientificName
+# datasetKey, datasetKey
+
+# result = taxa_by_nubKey
+```
+
+Number of nubKeys:
+
+## Get GBIF Backbone Taxonomy information:
+
+```{r}
+# Call to GBIF/species/nubKey, extend dataframe with
+
+# One call per line
+
+# scientificName
+# kingdom
+# taxonomicStatus
+# acceptedKey (if available)
+# accepted (if available)
+```
+
+Preview taxa:
+
+```{r}
+# head(taxa_by_nubKey)
+```
+
+```{r}
+# save to csv -> taxa_by_nubKey
+```

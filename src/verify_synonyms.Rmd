@@ -1,0 +1,129 @@
+---
+title: "Verify synonyms"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    df_print: kable
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load data
+
+Load taxa:
+
+```{r}
+# load from csv(taxa_by_nubKey)
+```
+
+Preview:
+
+```{r}
+# nubKey
+# key
+# dataset_scientificName
+# datasetKey
+# scientificName
+# kingdom
+# taxonomicStatus
+# acceptedKey
+# accepted
+```
+
+Load verified synonyms:
+
+```{r}
+# load from tsv(verified_synonyms)
+```
+
+Preview:
+
+```{r}
+# columns:
+# nubKey
+# scientificName
+# acceptedKey
+# accepted
+# kingdom
+# date_added
+# verified_key
+# remarks
+```
+
+## Find new synonym combinations
+
+For every key, acceptedKey combination, where acceptedKey is not NA, update verified synonyms:
+
+```{r}
+# For every key, acceptedKey -> check in file
+
+# If in file:
+# If scientificname + acceptedScientificName different -> update + store in updated_names
+# If same -> do nothing
+
+# If not in file -> add new line + store in new_synonyms
+
+# If in synonyms file but not found in grouped_taxa -> add " OUTDATED" to remarks + store in outdated_synonyms
+```
+
+## Results
+
+These names have been updated (but synonym relation stayed the same):
+
+```{r}
+# updated_names
+```
+
+These synonym relations are no longer used:
+
+```{r}
+# outdated_synonyms
+```
+
+These synonym relations were added and should be verified:
+
+```{r}
+# new_synonyms
+```
+
+## Update taxa
+
+Add `verified_key`
+
+```{r}
+# add column verified_key (is empty)
+```
+
+Accept all ACCEPTED and DOUBTFUL:
+
+```{r}
+# for taxonomicStatus = ACCEPTED or DOUBTFUL
+# verified_key = nubKey
+```
+
+Update taxa_by_nubKey with verified synonyms info:
+
+```{r}
+# for taxonomicStatus = SYNONYM
+# Look up nubKey + acceptedKey in verifiedSynonyms
+# populate verified_key
+```
+
+Shows some stats:
+
+```{r}
+# Number of accepted taxa
+# Number of doubtful taxa
+# Number of verified synonyms
+# Number of unverified synonyms
+```
+
+```{r}
+# save to csv -> taxa_by_nubKey_verified
+```
