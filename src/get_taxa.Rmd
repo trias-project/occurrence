@@ -19,96 +19,114 @@ Load libraries
 ```{r}
 library(rgbif)
 library(trias)
+library(purrr)
+library(dplyr)
+library(magrittr)
 ```
 
 ## Define checklist datasets
 
 ```{r}
 checklist_datasets <- c(
-  "uuid", # A
-  "uuid"  # B
-)
-```
-
-```{r}
-# Call to GBIF /datasets api
+  "9ff7d317-609b-4c08-bd86-3bc404b77c42", # uuid of first dataset
+  "87e99777-7f54-4209-9688-cbf7a9179ebe" # uuid of second dataset
+  )
 ```
 
 Show dataset info:
 
 ```{r}
-# Display table with:
+# Call to GBIF /datasets api
+datasets_info <- purrr::map(checklist_datasets, function (x) datasets(uuid = x))
 
-# key, title of dataset, last published, publisher, doi
+# Display table with:
+# datasetKey, title of dataset, last modified, publishingOrganizationKey, doi
+map_dfr(datasets_info, function(x) list(datasetKey = x$data$key, title = x$data$title, modified = x$data$modified, publisher = x$data$publishingOrganizationKey, doi = x$data$doi))
 ```
+
 
 ## Get taxa from checklists
 
 ```{r}
-# Call to GBIF /species/search API, using datasets as input
-
-# Consider paging!
+# Call to GBIF /species/search API, using datasets as input (paging implemented)
+dataframes_taxonKeys <- checklists_import(checklist_datasets, tot_limit = NULL, 
+                                          verbose = TRUE)
+taxa <- map_dfr(dataframes_taxonKeys, function(x) list(key = x$data$key, dataset_scientificname = x$data$scientificName, datasetKey = x$data$datasetKey, nubKey = x$data$nubKey))
 ```
 
-```{r}
-# taxa <- dataframe with:
-
-# Should contain:
-# key
-# dataset_scientificName
-# datasetKey
-# nubKey
-```
 
 Show some stats:
 
 ```{r}
-# Dataset 1: # taxa
-# Dataset 2: # taxa
-# Total taxa
+taxa %>%
+  group_by(datasetKey) %>%
+  summarize(
+    taxa = n(),
+    taxa_not_in_backbone = sum(is.na(nubKey))
+  )
 ```
 
-Group by nubKey:
+Total number of taxa:
 
 ```{r}
-# group by nubKey
+nrow(taxa)
+```
 
-# taxa %>%
-#  group_by(nubkey) %>%
-#  summarize(
-#    key: list
-#  ) -> taxa_by_nubKey
+Reorder by nubKey:
 
-# list information for
-# key, key
-# dataset_scientificName, dataset_scientificName
-# datasetKey, datasetKey
+```{r}
+taxa %<>% select(nubKey, key, dataset_scientificname, datasetKey) %>%
+  arrange(nubKey)
+```
 
-# result = taxa_by_nubKey
+Create vector of nubKeys:
+
+```{r}
+taxa %>%
+  select(nubKey) %>%
+  filter(!is.na(nubKey)) %>%
+  distinct(nubKey) %>%
+  pull(nubKey) -> nub_keys
 ```
 
 Number of nubKeys:
 
+```{r}
+length(nub_keys)
+```
+
 ## Get GBIF Backbone Taxonomy information:
 
 ```{r}
-# Call to GBIF/species/nubKey, extend dataframe with
-
-# One call per line
-
+# Call to GBIF/species/nubKey to retrieve:
 # scientificName
 # kingdom
 # taxonomicStatus
 # acceptedKey (if available)
 # accepted (if available)
+gbif_terms = c("nubKey", "scientificName", "kingdom", "taxonomicStatus", "acceptedKey", "accepted")
+taxa_backbone <- map_dfr(nub_keys, function(x) name_usage(key = x)$data) %>%
+        select(gbif_terms)
+```
+
+Add  GBIF Backbone Taxonomy information to taxa:
+
+```{r}
+# add GBIF Backbone information to taxa with valid nubKey.
+# bind rows if nubKey is NA ( that means NAs are added)
+left_join(taxa %>% filter(!is.na(nubKey)), taxa_backbone, by = "nubKey") %>%
+  bind_rows(taxa %>% filter(is.na(nubKey))) -> taxa
 ```
 
 Preview taxa:
 
 ```{r}
-# head(taxa_by_nubKey)
+head(taxa)
 ```
 
+Save taxa to tsv file:
+
 ```{r}
-# save to csv -> taxa_by_nubKey
+file <- "../data/output/taxa.tsv"
+write.table(taxa, file = file, append = FALSE, row.names = FALSE, col.names = TRUE, sep = "\t", quote = FALSE)
 ```
