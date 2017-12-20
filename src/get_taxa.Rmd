@@ -19,14 +19,17 @@ knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding =
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Load libraries
+Load libraries:
 
 ```{r}
-library(rgbif)
-library(trias)
-library(purrr)
+# Tidyverse packages
 library(dplyr)
 library(magrittr)
+library(purrr)
+
+# Other packages
+library(rgbif)
+library(trias)
 ```
 
 ## Define checklist datasets
