@@ -1,12 +1,17 @@
 ---
 title: "Get taxa from checklists"
+author:
+- Damiano Oldoni
+- Peter Desmet
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     toc_float: true
-    theme: flatly
-    df_print: kable
+    number_sections: true
+    theme: yeti
+    df_print: paged
 knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
 ---
 
