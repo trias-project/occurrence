@@ -45,8 +45,7 @@ These are alien species checklists we want to use and combine:
 ```{r}
 checklist_datasets <- c(
   "9ff7d317-609b-4c08-bd86-3bc404b77c42", # Manual of the Alien Plants of Belgium
-  "87e99777-7f54-4209-9688-cbf7a9179ebe"  # Checklist of Danish Vascular Plants (Tracheophyta)
-                                          # Just a test checklist to have some overlap in taxa
+  "e4746398-f7c4-47a1-a474-ae80a4f18e92"  # Invasive Alien Species in Belgium - HARMONIA database
 )
 ```
 
