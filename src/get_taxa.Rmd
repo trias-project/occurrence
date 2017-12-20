@@ -32,41 +32,81 @@ library(rgbif)
 library(trias)
 ```
 
-## Define checklist datasets
+Set file paths:
+
+```{r}
+taxa_output_file <- "../data/output/taxa.tsv"
+```
+
+## Select checklist datasets
+
+These are alien species checklists we want to use and combine:
 
 ```{r}
 checklist_datasets <- c(
-  "9ff7d317-609b-4c08-bd86-3bc404b77c42", # uuid of first dataset
-  "87e99777-7f54-4209-9688-cbf7a9179ebe" # uuid of second dataset
-  )
+  "9ff7d317-609b-4c08-bd86-3bc404b77c42", # Manual of the Alien Plants of Belgium
+  "87e99777-7f54-4209-9688-cbf7a9179ebe"  # Checklist of Danish Vascular Plants (Tracheophyta)
+                                          # Just a test checklist to have some overlap in taxa
+)
 ```
 
-Show dataset info:
+Call `http://api.gbif.org/v1/datasets/{uuid}` for each dataset to get dataset metadata:
+
+```{r get_dataset_metadata}
+checklist_datasets_info <- map(checklist_datasets, function (x) rgbif::datasets(uuid = x))
+```
+
+Show info about these datasets:
 
 ```{r}
-# Call to GBIF /datasets api
-datasets_info <- purrr::map(checklist_datasets, function (x) datasets(uuid = x))
-
-# Display table with:
-# datasetKey, title of dataset, last modified, publishingOrganizationKey, doi
-map_dfr(datasets_info, function(x) list(datasetKey = x$data$key, title = x$data$title, modified = x$data$modified, publisher = x$data$publishingOrganizationKey, doi = x$data$doi))
+map_dfr(checklist_datasets_info, function(x) list(
+  datasetKey = x$data$key,
+  title = x$data$title,
+  modified = x$data$modified,
+  publisher = x$data$publishingOrganizationKey,
+  doi = x$data$doi)
+)
 ```
-
 
 ## Get taxa from checklists
 
-```{r}
-# Call to GBIF /species/search API, using datasets as input (paging implemented)
-dataframes_taxonKeys <- checklists_import(checklist_datasets, tot_limit = NULL, 
-                                          verbose = TRUE)
-taxa <- map_dfr(dataframes_taxonKeys, function(x) list(key = x$data$key, dataset_scientificname = x$data$scientificName, datasetKey = x$data$datasetKey, nubKey = x$data$nubKey))
+Call `http://api.gbif.org/v1/species/search?datasetKey={uuid}` for each dataset to get taxon information. As no paging is yet implemented for this API in `rgbif`, we use a function from our `trias` package:
+
+```{r get_checklist_taxa}
+checklist_taxa_info <- trias::checklists_import(
+  checklist_datasets,
+  tot_limit = NULL, 
+  verbose = TRUE
+)
 ```
 
+Create df with the information we want for each taxon:
+
+```{r}
+checklist_taxa <- map_dfr(checklist_taxa_info, function(x) list(
+  key = x$data$key,
+  dataset_scientificname = x$data$scientificName,
+  datasetKey = x$data$datasetKey,
+  nubKey = x$data$nubKey
+))
+```
+
+Reorder columns:
+
+```{r}
+checklist_taxa %<>% select(nubKey, key, dataset_scientificname, datasetKey)
+```
+
+Sort by nubKey:
+
+```{r}
+checklist_taxa %<>% arrange(nubKey)
+```
 
 Show some stats:
 
 ```{r}
-taxa %>%
+checklist_taxa %>%
   group_by(datasetKey) %>%
   summarize(
     taxa = n(),
@@ -77,20 +117,13 @@ taxa %>%
 Total number of taxa:
 
 ```{r}
-nrow(taxa)
+nrow(checklist_taxa)
 ```
 
-Reorder by nubKey:
+Create vector of unique `nubKey`s (= the corresponding taxa in the GBIF Backbone Taxonomy, if found). We will use this list to retrieve information from GBIF (rather than doing it for each taxon, where some `nubKey`s will be repeated.
 
 ```{r}
-taxa %<>% select(nubKey, key, dataset_scientificname, datasetKey) %>%
-  arrange(nubKey)
-```
-
-Create vector of nubKeys:
-
-```{r}
-taxa %>%
+checklist_taxa %>%
   select(nubKey) %>%
   filter(!is.na(nubKey)) %>%
   distinct(nubKey) %>%
@@ -105,36 +138,46 @@ length(nub_keys)
 
 ## Get GBIF Backbone Taxonomy information:
 
+Select the taxon properties we want from the API:
+
 ```{r}
-# Call to GBIF/species/nubKey to retrieve:
-# scientificName
-# kingdom
-# taxonomicStatus
-# acceptedKey (if available)
-# accepted (if available)
-gbif_terms = c("nubKey", "scientificName", "kingdom", "taxonomicStatus", "acceptedKey", "accepted")
-taxa_backbone <- map_dfr(nub_keys, function(x) name_usage(key = x)$data) %>%
-        select(gbif_terms)
+taxon_properties = c(
+  "nubKey",
+  "scientificName",
+  "kingdom",
+  "taxonomicStatus",
+  "acceptedKey",
+  "accepted"
+)
 ```
 
-Add  GBIF Backbone Taxonomy information to taxa:
+Call `http://api.gbif.org/v1/species/{int}` for each `nubKey` to get taxon information:
+
+```{r get_backbone_taxa}
+backbone_taxa <- map_dfr(nub_keys, function(x) name_usage(key = x)$data) %>%
+  select(taxon_properties)
+```
+
+Join GBIF Backbone Taxonomy information with the original taxa. Some taxa will share a `nubKey` (same species appearing on different checklists) and some will have no `nubKey` (they were not found in the GBIF Backbone Taxonomy):
 
 ```{r}
-# add GBIF Backbone information to taxa with valid nubKey.
-# bind rows if nubKey is NA ( that means NAs are added)
-left_join(taxa %>% filter(!is.na(nubKey)), taxa_backbone, by = "nubKey") %>%
-  bind_rows(taxa %>% filter(is.na(nubKey))) -> taxa
+checklist_taxa_with_backbone <- left_join(checklist_taxa, backbone_taxa, by = "nubKey")
+```
+
+Number of taxa (should be the same as the original number of taxa = `r nrow(checklist_taxa)`):
+
+```{r}
+nrow(checklist_taxa_with_backbone)
 ```
 
 Preview taxa:
 
 ```{r}
-head(taxa)
+head(checklist_taxa_with_backbone)
 ```
 
-Save taxa to tsv file:
+Save taxa to a tsv file:
 
 ```{r}
-file <- "../data/output/taxa.tsv"
-write.table(taxa, file = file, append = FALSE, row.names = FALSE, col.names = TRUE, sep = "\t", quote = FALSE)
+write.table(checklist_taxa_with_backbone, file = taxa_output_file, row.names = FALSE, quote = FALSE)
 ```
