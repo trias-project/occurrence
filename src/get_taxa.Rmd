@@ -85,7 +85,7 @@ Create df with the information we want for each taxon:
 ```{r}
 checklist_taxa <- map_dfr(checklist_taxa_info, function(x) list(
   key = x$data$key,
-  dataset_scientificname = x$data$scientificName,
+  dataset_scientificName = x$data$scientificName,
   datasetKey = x$data$datasetKey,
   nubKey = x$data$nubKey
 ))
@@ -94,7 +94,7 @@ checklist_taxa <- map_dfr(checklist_taxa_info, function(x) list(
 Reorder columns:
 
 ```{r}
-checklist_taxa %<>% select(nubKey, key, dataset_scientificname, datasetKey)
+checklist_taxa %<>% select(nubKey, key, dataset_scientificName, datasetKey)
 ```
 
 Sort by nubKey:
