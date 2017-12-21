@@ -28,6 +28,7 @@ library(magrittr)
 library(purrr)
 
 # Other packages
+library(lazyeval)
 library(rgbif)
 library(trias)
 ```
@@ -119,14 +120,13 @@ Total number of taxa:
 nrow(checklist_taxa)
 ```
 
-Create vector of unique `nubKey`s (= the corresponding taxa in the GBIF Backbone Taxonomy, if found). We will use this list to retrieve information from GBIF (rather than doing it for each taxon, where some `nubKey`s will be repeated.
+Create df of unique `nubKey`s (= the corresponding taxa in the GBIF Backbone Taxonomy, if found). We will use this list to retrieve information from GBIF (rather than doing it for each taxon, where some `nubKey`s will be repeated.
 
 ```{r}
 checklist_taxa %>%
   select(nubKey) %>%
   filter(!is.na(nubKey)) %>%
-  distinct(nubKey) %>%
-  pull(nubKey) -> nub_keys
+  distinct(nubKey) -> nub_keys
 ```
 
 Number of nubKeys:
@@ -153,8 +153,9 @@ taxon_properties = c(
 Call `http://api.gbif.org/v1/species/{int}` for each `nubKey` to get taxon information:
 
 ```{r get_backbone_taxa}
-backbone_taxa <- map_dfr(nub_keys, function(x) name_usage(key = x)$data) %>%
-  select(taxon_properties)
+nub_keys %>% rowwise() %>% 
+  do_(interp(~ as.data.frame(name_usage(key = .$x)$data), 
+             x = as.name("nubKey"))) %>% select(taxon_properties) -> backbone_taxa
 ```
 
 Join GBIF Backbone Taxonomy information with the original taxa. Some taxa will share a `nubKey` (same species appearing on different checklists) and some will have no `nubKey` (they were not found in the GBIF Backbone Taxonomy):
