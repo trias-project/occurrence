@@ -195,5 +195,5 @@ checklist_taxa_with_backbone %<>%
 Save taxa to a tsv file:
 
 ```{r}
-write.table(checklist_taxa_with_backbone, file = taxa_output_file, row.names = FALSE, quote = FALSE)
+write.table(checklist_taxa_with_backbone, file = taxa_output_file, sep = "\t", row.names = FALSE, quote = FALSE)
 ```
