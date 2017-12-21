@@ -36,7 +36,7 @@ library(trias)
 Set file paths:
 
 ```{r}
-taxa_output_file <- "../data/output/taxa.tsv"
+taxa_output_file <- "../data/output/cheklist_taxa.tsv"
 ```
 
 ## Select checklist datasets
@@ -141,7 +141,7 @@ Select the taxon properties we want from the API:
 
 ```{r}
 taxon_properties = c(
-  "nubKey",
+  "key",
   "scientificName",
   "kingdom",
   "taxonomicStatus",
@@ -161,7 +161,7 @@ nub_keys %>% rowwise() %>%
 Join GBIF Backbone Taxonomy information with the original taxa. Some taxa will share a `nubKey` (same species appearing on different checklists) and some will have no `nubKey` (they were not found in the GBIF Backbone Taxonomy):
 
 ```{r}
-checklist_taxa_with_backbone <- left_join(checklist_taxa, backbone_taxa, by = "nubKey")
+checklist_taxa_with_backbone <- left_join(checklist_taxa, backbone_taxa, by = c("nubKey" ="key"))
 ```
 
 Number of taxa (should be the same as the original number of taxa = `r nrow(checklist_taxa)`):
