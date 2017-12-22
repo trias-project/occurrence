@@ -1,4 +1,4 @@
-scientific_name	english_name	entry_into_force	kingdom	gbif_taxonKey	gbif_species_status
+checklist_scientificName	english_name	entry_into_force	checklist_kingdom	backbone_taxonKey	backbone_taxonomicStatus
 Alternanthera philoxeroides	Alligator weed	2017-08-02	Plantae	3084923	ACCEPTED
 Asclepias syriaca	Common milkweed	2017-08-02	Plantae	3170247	ACCEPTED
 Baccharis halimifolia	Eastern baccharis	2016-08-03	Plantae	3129663	DOUBTFUL
