@@ -1,0 +1,40 @@
+---
+title: "Test UTF-8"
+author: "Peter Desmet"
+date: "r Sys.Date()`"
+output: md_document
+---
+
+A test document to figure out how to consistently read (and write) data as UTF-8. Use the "Knit" button to run.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries:
+
+```{r}
+library(rgbif)
+```
+
+# Don't set any locale
+
+Get taxon:
+
+```{r}
+taxon <- rgbif::name_usage(key = 134087647)
+taxon$data$scientificName
+```
+
+# Locale `en_US.UTF-8`
+
+```{r}
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Get taxon:
+
+```{r}
+taxon <- rgbif::name_usage(key = 134087647)
+taxon$data$scientificName
+```
