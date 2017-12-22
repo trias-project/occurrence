@@ -236,7 +236,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2685552	134089488	Abies nordmanniana (Steven) Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Abies nordmanniana (Steven) Spach	Plantae	ACCEPTED		
 2685796	134088592	Pseudotsuga menziesii (Mirb.) Franco	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pseudotsuga menziesii (Mirb.) Franco	Plantae	ACCEPTED		
 2686212	134089486	Larix decidua Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Larix decidua Mill.	Plantae	ACCEPTED		
-2687182	134088591	Tsuga canadensis (L.) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tsuga canadensis (L.) Carri<U+00E8>re	Plantae	ACCEPTED		
+2687182	134088591	Tsuga canadensis (L.) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tsuga canadensis (L.) Carrière	Plantae	ACCEPTED		
 2687210	134088590	Tsuga heterophylla (Rafin.) Sarg.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tsuga heterophylla (Raf.) Sarg.	Plantae	ACCEPTED		
 2687885	134089054	Ginkgo biloba L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ginkgo biloba L.	Plantae	ACCEPTED		
 2687948	134086870	Equisetum scirpoides Michaux	9ff7d317-609b-4c08-bd86-3bc404b77c42	Equisetum scirpoides Michx.	Plantae	ACCEPTED		
@@ -386,7 +386,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2715482	134086895	Cyperus eragrostis Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyperus eragrostis Lam.	Plantae	ACCEPTED		
 2715482	113794886	Cyperus eragrostis	e4746398-f7c4-47a1-a474-ae80a4f18e92	Cyperus eragrostis Lam.	Plantae	ACCEPTED		
 2716420	134086920	Cyperus virens Michaux	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyperus virens Michx.	Plantae	ACCEPTED		
-2716588	134086916	Cyperus longus L. subsp. tenuiflorus (Rottb.) K<U+00FC>k.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyperus longus subsp. tenuiflorus (Rottb.) K<U+00FC>k.	Plantae	SYNONYM	7070211	Cyperus longus subsp. longus
+2716588	134086916	Cyperus longus L. subsp. tenuiflorus (Rottb.) Kük.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyperus longus subsp. tenuiflorus (Rottb.) Kük.	Plantae	SYNONYM	7070211	Cyperus longus subsp. longus
 2716838	134086922	Eleocharis engelmannii Steud.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eleocharis engelmannii Steud.	Plantae	ACCEPTED		
 2717405	134086921	Eleocharis austriaca Hayek	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eleocharis austriaca Hayek	Plantae	SYNONYM	2717402	Eleocharis mamillata subsp. austriaca (Hayek) Strandh.
 2717467	134086908	Eleocharis obtusa (Willd.) Schultes	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eleocharis obtusa (Willd.) Schult.	Plantae	ACCEPTED		
@@ -401,7 +401,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2726539	134086891	Carex scoparia Schkuhr ex Willdenow	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex scoparia Willd.	Plantae	ACCEPTED		
 2727875	134086901	Carex secalina Willd. ex Wahlenb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex secalina Willd. ex Wahlenb.	Plantae	ACCEPTED		
 2728060	134086903	Carex vulpinoidea Michaux	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex vulpinoidea Michx.	Plantae	ACCEPTED		
-2728287	134086890	Carex praecox Schreb. subsp. intermedia (<U+010C>elak.) W. Schultze-Motel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex praecox subsp. intermedia (Celak.) W.Schultze-Motel	Plantae	SYNONYM	2724120	Carex praecox Schreb.
+2728287	134086890	Carex praecox Schreb. subsp. intermedia (Čelak.) W. Schultze-Motel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex praecox subsp. intermedia (Celak.) W.Schultze-Motel	Plantae	SYNONYM	2724120	Carex praecox Schreb.
 2739071	134087883	Trachycarpus fortunei (Hook.) H. Wendl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Trachycarpus fortunei (Hook.) H.Wendl.	Plantae	ACCEPTED		
 2742119	134089288	Veratrum album L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Veratrum album L.	Plantae	ACCEPTED		
 2747489	134089167	Crocus chrysanthus Herb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crocus chrysanthus (Herb.) Herb.	Plantae	ACCEPTED		
@@ -431,7 +431,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2772082	134087654	Muscari latifolium Kirk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Muscari latifolium J.Kirk	Plantae	ACCEPTED		
 2772174	134087652	Muscari armeniacum Leichtlin ex Baker	9ff7d317-609b-4c08-bd86-3bc404b77c42	Muscari armeniacum Leichtlin ex Baker	Plantae	DOUBTFUL		
 2772666	134087643	Hyacinthus orientalis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hyacinthus orientalis L.	Plantae	ACCEPTED		
-2772890	134087647	Loncomelos brevistylus (Wolfner ) Dost<U+00E1>l	9ff7d317-609b-4c08-bd86-3bc404b77c42	Loncomelos brevistylum (Wolfner) Dost<U+00E1>l	Plantae	SYNONYM	2772885	Ornithogalum pyramidale L.
+2772890	134087647	Loncomelos brevistylus (Wolfner ) Dostál	9ff7d317-609b-4c08-bd86-3bc404b77c42	Loncomelos brevistylum (Wolfner) Dostál	Plantae	SYNONYM	2772885	Ornithogalum pyramidale L.
 2772978	134087646	Loncomelos narbonense (L.) Raf.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Loncomelos narbonense (L.) Raf.	Plantae	SYNONYM	2772958	Ornithogalum narbonense L.
 2773290	134087641	Honorius nutans (L.) Gray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Honorius nutans (L.) Gray	Plantae	SYNONYM	2773281	Ornithogalum nutans L.
 2773453	134087653	Ornithogalum divergens Boreau	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ornithogalum divergens Boreau	Plantae	ACCEPTED		
@@ -469,7 +469,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2867614	113794917	Lemna minuta	e4746398-f7c4-47a1-a474-ae80a4f18e92	Lemna minuta Kunth	Plantae	ACCEPTED		
 2867631	134087910	Lemna turionifera Landolt	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lemna turionifera Landolt	Plantae	ACCEPTED		
 2868796	134088123	Zantedeschia albomaculata (Hook.) Baill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Zantedeschia albomaculata (Hook.) Baill.	Plantae	ACCEPTED		
-2869311	113794840	Lysichiton americanus	e4746398-f7c4-47a1-a474-ae80a4f18e92	Lysichiton americanus Hult<U+00E9>n & H.St.John	Plantae	ACCEPTED		
+2869311	113794840	Lysichiton americanus	e4746398-f7c4-47a1-a474-ae80a4f18e92	Lysichiton americanus Hultén & H.St.John	Plantae	ACCEPTED		
 2869586	134088122	Typhonium venosum (Ait.) Hett. & Boyce	9ff7d317-609b-4c08-bd86-3bc404b77c42	Typhonium venosum (Dryand. ex Aiton) Hett. & P.C.Boyce	Plantae	SYNONYM	2869597	Sauromatum venosum (Dryand. ex Aiton) Kunth
 2870583	134088126	Pistia stratiotes L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pistia stratiotes L.	Plantae	ACCEPTED		
 2873769	134087632	Acorus calamus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acorus calamus L.	Plantae	ACCEPTED		
@@ -547,7 +547,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2888987	134088160	Rumex obovatus Danser	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex obovatus Danser	Plantae	ACCEPTED		
 2888990	134088167	Rumex salicifolius Weinm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex salicifolius Weinm.	Plantae	ACCEPTED		
 2888993	134088154	Rumex bucephalophorus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex bucephalophorus L.	Plantae	ACCEPTED		
-2889005	134088162	Rumex kerneri  Borb<U+00E1>s	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex kerneri Borb<U+00E1>s	Plantae	SYNONYM	4034971	Rumex cristatus subsp. kerneri (Borb<U+00E1>s) J.R. Akeroyd & D.A. Webb
+2889005	134088162	Rumex kerneri  Borbás	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex kerneri Borbás	Plantae	SYNONYM	4034971	Rumex cristatus subsp. kerneri (Borbás) J.R. Akeroyd & D.A. Webb
 2889010	134088151	Rumex cristatus DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex cristatus DC.	Plantae	ACCEPTED		
 2889019	134088158	Rumex patientia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex patientia L.	Plantae	ACCEPTED		
 2889023	134088168	Rumex stenophyllus Ledeb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex stenophyllus Ledeb.	Plantae	ACCEPTED		
@@ -557,7 +557,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2889038	134088164	Rumex dentatus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex dentatus L.	Plantae	ACCEPTED		
 2889088	134088144	Reynoutria sachalinensis (F. Schmidt Petrop.) Nakai	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reynoutria sachalinensis (F.Schmidt) Nakai	Plantae	SYNONYM	8981557	Reynoutria sachalinensis (Friedrich Schmidt Petrop.) Nakai
 2889173	134088150	Reynoutria japonica Houtt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reynoutria japonica Houtt.	Plantae	ACCEPTED		
-2889198	134088201	Persicaria pensylvanica (L.) G<U+00F3>mez de la Maza	9ff7d317-609b-4c08-bd86-3bc404b77c42	Persicaria pensylvanica	Plantae	DOUBTFUL		
+2889198	134088201	Persicaria pensylvanica (L.) Gómez de la Maza	9ff7d317-609b-4c08-bd86-3bc404b77c42	Persicaria pensylvanica	Plantae	DOUBTFUL		
 2889229	134088200	Persicaria orientalis (L.) Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Persicaria orientalis (L.) Spach	Plantae	ACCEPTED		
 2889304	134088197	Persicaria capitata (Buch.-Hamilt. ex D. Don) H. Gross	9ff7d317-609b-4c08-bd86-3bc404b77c42	Persicaria capitata (Buch.-Ham. ex D. Don) H. Gross	Plantae	ACCEPTED		
 2889373	134088203	Fagopyrum esculentum Moench	9ff7d317-609b-4c08-bd86-3bc404b77c42	Fagopyrum esculentum Moench	Plantae	ACCEPTED		
@@ -577,8 +577,8 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2891390	134089065	Geranium phaeum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Geranium phaeum L.	Plantae	ACCEPTED		
 2891613	134089055	Pelargonium capitatum (L.) Ait.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pelargonium capitatum	Plantae	ACCEPTED		
 2891617	134089078	Erodium brachycarpum (Godr.) Thell.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium brachycarpum (Godr.) Thellung	Plantae	ACCEPTED		
-2891621	134089089	Erodium malacoides (L.) L'H<U+00E9>rit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium malacoides (L.) Willd.	Plantae	ACCEPTED		
-2891622	134089080	Erodium ciconium (L.) L'H<U+00E9>rit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium ciconium Janka ex Nym.	Plantae	SYNONYM	2891628	Erodium botrys (Cav.) Bertol.
+2891621	134089089	Erodium malacoides (L.) L'Hérit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium malacoides (L.) Willd.	Plantae	ACCEPTED		
+2891622	134089080	Erodium ciconium (L.) L'Hérit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium ciconium Janka ex Nym.	Plantae	SYNONYM	2891628	Erodium botrys (Cav.) Bertol.
 2891628	134089079	Erodium botrys (Cav.) Bertol.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium botrys (Cav.) Bertol.	Plantae	ACCEPTED		
 2891664	134088687	Oxalis articulata Savigny	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis articulata Savigny	Plantae	ACCEPTED		
 2891666	134088685	Oxalis stricta L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis stricta L.	Plantae	SYNONYM	2891677	Oxalis dillenii Jacq.
@@ -595,7 +595,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2903387	134088067	Phuopsis stylosa (Trin.) Benth. & Hook. f. ex B.D. Jackson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phuopsis stylosa (Trin.) Hook.f. ex B.D.Jacks.	Plantae	SYNONYM	7671397	Phuopsis stylosa (Trin.) G.Nicholson
 2908428	134088047	Galium divaricatum Pourr. ex Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium divaricatum Pourr. ex Lam.	Plantae	ACCEPTED		
 2913315	134088063	Galium rubioides L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium rubioides L.	Plantae	ACCEPTED		
-2914404	134088060	Galium verum L. subsp. wirtgenii (F. W. Schultz) Oborn<U+00FD>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium verum subsp. wirtgenii (F.W.Schultz) Oborny	Plantae	ACCEPTED		
+2914404	134088060	Galium verum L. subsp. wirtgenii (F. W. Schultz) Oborný	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium verum subsp. wirtgenii (F.W.Schultz) Oborny	Plantae	ACCEPTED		
 2914501	134088062	Galium tenuissimum Bieb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium tenuissimum M.Bieb.	Plantae	ACCEPTED		
 2914590	134088051	Galium murale (L.) All.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium murale (L.) All.	Plantae	ACCEPTED		
 2914754	134088061	Galium verrucosum Huds.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium verrucosum Huds.	Plantae	ACCEPTED		
@@ -614,7 +614,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2925527	134087687	Verbena hastata L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Verbena hastata L.	Plantae	ACCEPTED		
 2925530	134087683	Verbena urticifolia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Verbena urticifolia L.	Plantae	ACCEPTED		
 2925532	134087691	Verbena bracteata Lag. & Rodr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Verbena bracteata Cav. ex Lag. & Rodr.	Plantae	ACCEPTED		
-2925754	134087156	Lappula marginata (Bieb.) G<U+00FC>rke	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lappula marginata (Lehm.) G<U+00FC>rke	Plantae	SYNONYM	5341217	Mertensia oblongifolia (Nutt.) G. Don
+2925754	134087156	Lappula marginata (Bieb.) Gürke	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lappula marginata (Lehm.) Gürke	Plantae	SYNONYM	5341217	Mertensia oblongifolia (Nutt.) G. Don
 2925756	134087169	Lappula squarrosa (Retz.) Dum.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lappula squarrosa (Retz.) Dumort.	Plantae	ACCEPTED		
 2925767	134087158	Heliotropium europaeum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Heliotropium europaeum L.	Plantae	ACCEPTED		
 2925790	134087157	Heliotropium amplexicaule Vahl	9ff7d317-609b-4c08-bd86-3bc404b77c42	Heliotropium amplexicaule Vahl	Plantae	ACCEPTED		
@@ -710,7 +710,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2932184	134087825	Solanum sisymbriifolium Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Solanum sisymbriifolium Lam.	Plantae	ACCEPTED		
 2932501	134087821	Solanum pygmaeum Cav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Solanum pygmaeum Cav.	Plantae	ACCEPTED		
 2932877	134087867	Solanum nigrum L. subsp. schultesii (Opiz) Wessely	9ff7d317-609b-4c08-bd86-3bc404b77c42	Solanum nigrum subsp. schultesii (Opiz) Wessely	Plantae	SYNONYM	9150405	Solanum nigrum L.
-2932905	134087861	Salpiglossis sinuata Ruiz & Pav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Salpiglossis sinuata Ruiz & Pav<U+00F3>n	Plantae	ACCEPTED		
+2932905	134087861	Salpiglossis sinuata Ruiz & Pav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Salpiglossis sinuata Ruiz & Pavón	Plantae	ACCEPTED		
 2932944	134087779	Capsicum annuum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Capsicum annuum L.	Plantae	ACCEPTED		
 2938473	134089003	Biserrula pelecinus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Biserrula pelecinus L.	Plantae	SYNONYM	7068263	Astragalus pelecinus subsp. pelecinus
 2947311	134089001	Cicer arietinum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cicer arietinum L.	Plantae	ACCEPTED		
@@ -811,7 +811,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 2996525	134088105	Rubus armeniacus Focke	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rubus armeniacus Focke	Plantae	ACCEPTED		
 3000406	134088059	Stranvaesia davidiana Decaisne	9ff7d317-609b-4c08-bd86-3bc404b77c42	Stranvaesia davidiana Decne.	Plantae	ACCEPTED		
 3000610	134088130	Chaenomeles japonica (Thundb.) Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chaenomeles japonica (Thunb.) Lindl. ex Spach	Plantae	ACCEPTED		
-3001270	134088039	Malus x purpurea (Barbier) Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malus <U+00D7>purpurea (Barbey) Rehder	Plantae	ACCEPTED		
+3001270	134088039	Malus x purpurea (Barbier) Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malus ×purpurea (Barbey) Rehder	Plantae	ACCEPTED		
 3001362	134088045	Malus baccata (L.) Borkh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malus baccata (L.) Borkh.	Plantae	ACCEPTED		
 3001381	134088040	Malus sylvestris (L.) Mill. subsp. mitis (Wallr.) Mansf.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malus sylvestris subsp. mitis (Wallr.) Mansf.	Plantae	SYNONYM	3001093	Malus pumila Mill.
 3001650	134088044	Malus sieboldii (Regel) Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malus sieboldii (Regel) Rehder	Plantae	ACCEPTED		
@@ -845,28 +845,28 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3024109	134087954	Amelanchier lamarckii F.G. Schroeder	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amelanchier lamarckii F. G. Schroed.	Plantae	ACCEPTED		
 3024109	113794921	Amelanchier lamarckii	e4746398-f7c4-47a1-a474-ae80a4f18e92	Amelanchier lamarckii F. G. Schroed.	Plantae	ACCEPTED		
 3024146	134088022	Eriobotrya japonica (Thunb.) Lindl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eriobotrya japonica (Thunb.) Lindl.	Plantae	ACCEPTED		
-3025564	134088027	Cotoneaster villosulus (Rehd. & E.H. Wilson) Flinck & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster villosulus (Rehder & E. H. Wilson) Flinck & B. Hylm<U+00F6>	Plantae	SYNONYM	3025858	Cotoneaster ambiguus Rehd. & E.H. Wilson
+3025564	134088027	Cotoneaster villosulus (Rehd. & E.H. Wilson) Flinck & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster villosulus (Rehder & E. H. Wilson) Flinck & B. Hylmö	Plantae	SYNONYM	3025858	Cotoneaster ambiguus Rehd. & E.H. Wilson
 3025605	134088030	Cotoneaster zabelii C.K. Schneider	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster zabelii C.K. Schneid.	Plantae	ACCEPTED		
 3025617	134088081	Cotoneaster horizontalis Decaisne	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster horizontalis Decne	Plantae	ACCEPTED		
 3025617	113794922	Cotoneaster horizontalis	e4746398-f7c4-47a1-a474-ae80a4f18e92	Cotoneaster horizontalis Decne	Plantae	ACCEPTED		
 3025731	134088072	Cotoneaster moupinensis Franch.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster moupinensis Franch.	Plantae	ACCEPTED		
-3025758	134088080	Cotoneaster hylmoei Flinck & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster hylmoei K.E. Flinck & J. Fryer	Plantae	SYNONYM	3026074	Cotoneaster salicifolius Franch.
+3025758	134088080	Cotoneaster hylmoei Flinck & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster hylmoei K.E. Flinck & J. Fryer	Plantae	SYNONYM	3026074	Cotoneaster salicifolius Franch.
 3025769	134088077	Cotoneaster lucidus Schltdl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster lucidus Schltdl.	Plantae	SYNONYM	3025770	Cotoneaster acutifolius Turcz.
 3025858	134088129	Cotoneaster ambiguus Rehd. & E.H. Wilson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ambiguus Rehd. & E.H. Wilson	Plantae	ACCEPTED		
 3025875	134087985	Cotoneaster conspicuus C. Marquand	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster conspicuus Comber ex Marquand, Klotz	Plantae	HETEROTYPIC_SYNONYM	3026105	Cotoneaster integrifolius (Roxb.) Klotz
 3025896	134088082	Cotoneaster dielsianus Pritzel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster dielsianus E. Pritz.	Plantae	ACCEPTED		
-3025907	134088074	Cotoneaster qungbixiensis Fryer & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster qungbixiensis J.Fryer & B.Hylm<U+00F6>	Plantae	ACCEPTED		
+3025907	134088074	Cotoneaster qungbixiensis Fryer & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster qungbixiensis J.Fryer & B.Hylmö	Plantae	ACCEPTED		
 3025932	134088084	Cotoneaster fangianus T.T. Yu	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster fangianus T.T. Yu	Plantae	SYNONYM	3025896	Cotoneaster dielsianus E. Pritz.
 3025935	134088071	Cotoneaster nanshan M. Vilm. ex Mottet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster nanshan Mottet	Plantae	SYNONYM	3025764	Cotoneaster adpressus Bois
-3025944	134088076	Cotoneaster mairei H. L<U+00E9>veill<U+00E9>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster mairei	Plantae	ACCEPTED		
-3025989	134088079	Cotoneaster ganghobaensis Fryer & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ganghobaensis J. Fryer & B. Hylm<U+00F6>	Plantae	SYNONYM	3026007	Cotoneaster lambertii G. Klotz
-3026004	134088029	Cotoneaster x watereri Exell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster <U+00D7>watereri Exell	Plantae	ACCEPTED		
-3026024	134088128	Cotoneaster ascendens Flinck & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ascendens Flinck & B. Hylm<U+00F6>	Plantae	SYNONYM	3025617	Cotoneaster horizontalis Decne
+3025944	134088076	Cotoneaster mairei H. Léveillé	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster mairei	Plantae	ACCEPTED		
+3025989	134088079	Cotoneaster ganghobaensis Fryer & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ganghobaensis J. Fryer & B. Hylmö	Plantae	SYNONYM	3026007	Cotoneaster lambertii G. Klotz
+3026004	134088029	Cotoneaster x watereri Exell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ×watereri Exell	Plantae	ACCEPTED		
+3026024	134088128	Cotoneaster ascendens Flinck & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster ascendens Flinck & B. Hylmö	Plantae	SYNONYM	3025617	Cotoneaster horizontalis Decne
 3026035	134088086	Cotoneaster coriaceus Franch. (incl. C. lacteus W.W. Smith)	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster coriaceus Franch.	Plantae	ACCEPTED		
 3026040	134088028	Cotoneaster x suecicus G. Klotz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster suecicus G. Klotz	Plantae	ACCEPTED		
 3026049	134088087	Cotoneaster dammeri C.K. Schneider	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster dammeri C.K. Schneid.	Plantae	ACCEPTED		
 3026074	134088069	Cotoneaster salicifolius Franch.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster salicifolius Franch.	Plantae	ACCEPTED		
-3026092	134088078	Cotoneaster hjelmqvistii Flinck & B. Hylm<U+00F6>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster hjelmqvistii K.E. Flinck & B. Hylm<U+00F6>	Plantae	SYNONYM	3025857	Cotoneaster apiculatus Rehd. & E.H. Wilson
+3026092	134088078	Cotoneaster hjelmqvistii Flinck & B. Hylmö	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster hjelmqvistii K.E. Flinck & B. Hylmö	Plantae	SYNONYM	3025857	Cotoneaster apiculatus Rehd. & E.H. Wilson
 3026105	134088075	Cotoneaster integrifolius (Roxb.) G. Klotz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster integrifolius (Roxb.) Klotz	Plantae	ACCEPTED		
 3026107	134088068	Cotoneaster simonsii Baker	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster simonsii Baker	Plantae	SYNONYM	4938576	Cotoneaster symondsii T. Moore
 3026154	134088070	Cotoneaster sternianus (Turrill) Boom	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cotoneaster sternianus (Turrill) Boom	Plantae	SYNONYM	3026162	Cotoneaster franchetii Boiss.
@@ -884,15 +884,15 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3027138	134088089	Spiraea canescens D. Don	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea canescens D. Don	Plantae	ACCEPTED		
 3027159	134088100	Spiraea douglasii Hook.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea douglasii Hook.	Plantae	ACCEPTED		
 3027159	113794959	Spiraea douglasii	e4746398-f7c4-47a1-a474-ae80a4f18e92	Spiraea douglasii Hook.	Plantae	ACCEPTED		
-3027332	134088053	Spiraea x rosalba Dippel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea <U+00D7>rosalba Dippel	Plantae	ACCEPTED		
+3027332	134088053	Spiraea x rosalba Dippel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea ×rosalba Dippel	Plantae	ACCEPTED		
 3027341	134088099	Spiraea nipponica Maxim.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea nipponica Maxim.	Plantae	ACCEPTED		
-3027355	134088056	Spiraea x macrothyrsa (Zabel) Dipp.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea <U+00D7>macrothyrsa Dippel	Plantae	ACCEPTED		
+3027355	134088056	Spiraea x macrothyrsa (Zabel) Dipp.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea ×macrothyrsa Dippel	Plantae	ACCEPTED		
 3027791	134087951	Alchemilla micans Buser	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alchemilla micans Buser	Plantae	ACCEPTED		
 3028431	134087950	Alchemilla conjuncta Bab.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alchemilla conjuncta Bab.	Plantae	ACCEPTED		
 3028528	134087952	Alchemilla mollis (Buser) Rothm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alchemilla mollis (Buser) Rothm.	Plantae	ACCEPTED		
 3028586	134087953	Alchemilla tytthantha Juzepcz.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alchemilla tytthantha Juz.	Plantae	ACCEPTED		
-3029431	134088111	Sanguisorba minor Scop. subsp. balearica (Bourgeau ex Nyman) Mu<U+00F1>oz Garmendia & C. Navarro	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sanguisorba minor subsp. balearica (Nyman) Mu<U+00F1>oz Garm. & C.Navarro	Plantae	HETEROTYPIC_SYNONYM	7925720	Poterium sanguisorba subsp. polygamum (Waldst. & Kit.) Asch. & Graebn.
-3029912	134088018	Fragaria x ananassa (Weston) Rozier	9ff7d317-609b-4c08-bd86-3bc404b77c42	Fragaria <U+00D7>ananassa (Weston) Duchesne ex Rozier	Plantae	SYNONYM	6550282	Fragaria ananassa subsp. ananassa
+3029431	134088111	Sanguisorba minor Scop. subsp. balearica (Bourgeau ex Nyman) Muñoz Garmendia & C. Navarro	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sanguisorba minor subsp. balearica (Nyman) Muñoz Garm. & C.Navarro	Plantae	HETEROTYPIC_SYNONYM	7925720	Poterium sanguisorba subsp. polygamum (Waldst. & Kit.) Asch. & Graebn.
+3029912	134088018	Fragaria x ananassa (Weston) Rozier	9ff7d317-609b-4c08-bd86-3bc404b77c42	Fragaria ×ananassa (Weston) Duchesne ex Rozier	Plantae	SYNONYM	6550282	Fragaria ananassa subsp. ananassa
 3031774	134088041	Mespilus germanica L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Mespilus germanica L.	Plantae	ACCEPTED		
 3031919	113794954	Duchesnea indica	e4746398-f7c4-47a1-a474-ae80a4f18e92	Duchesnea indica (Jacks.) Focke	Plantae	ACCEPTED		
 3032442	134088010	Rhodotypos scandens (Thunb.) Makino	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rhodotypos scandens (Thunb.) Makino	Plantae	ACCEPTED		
@@ -914,9 +914,9 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3033518	134087917	Clematis viticella L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis viticella L.	Plantae	ACCEPTED		
 3033535	134087916	Clematis tangutica (Maxim.) Korsh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis tangutica (Maxim.) Korsh.	Plantae	ACCEPTED		
 3033543	134087919	Clematis recta L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis recta L.	Plantae	ACCEPTED		
-3033584	134087923	Clematis x jackmanii	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis <U+00D7>jackmanii T. Moore	Plantae	ACCEPTED		
+3033584	134087923	Clematis x jackmanii	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis ×jackmanii T. Moore	Plantae	ACCEPTED		
 3033757	134087922	Delphinium elatum-Group	9ff7d317-609b-4c08-bd86-3bc404b77c42	Delphinium elatum L.	Plantae	ACCEPTED		
-3033829	134087930	Delphinium orientale J. Gay	9ff7d317-609b-4c08-bd86-3bc404b77c42	Delphinium orientale Gay	Plantae	SYNONYM	3033828	Consolida orientalis (Gay) Schr<U+00F6>d.
+3033829	134087930	Delphinium orientale J. Gay	9ff7d317-609b-4c08-bd86-3bc404b77c42	Delphinium orientale Gay	Plantae	SYNONYM	3033828	Consolida orientalis (Gay) Schröd.
 3033833	134087921	Delphinium ajacis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Delphinium ajacis L.	Plantae	SYNONYM	3033830	Consolida ajacis (L.) Schur
 3033865	113794860	Mahonia aquifolium	e4746398-f7c4-47a1-a474-ae80a4f18e92	Mahonia aquifolium (Pursh) Nutt.	Plantae	SYNONYM	3033868	Berberis aquifolium Pursh
 3033868	134087201	Berberis aquifolium Pursh	9ff7d317-609b-4c08-bd86-3bc404b77c42	Berberis aquifolium Pursh	Plantae	ACCEPTED		
@@ -960,7 +960,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3040185	134087898	Populus x canescens (Ait.) Smith	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus canescens (Aiton) Sm.	Plantae	ACCEPTED		
 3040232	134087904	Populus deltoides Bartr. ex Marshall	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus deltoides Bartram ex Marshall	Plantae	ACCEPTED		
 3040233	134087906	Populus alba L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus alba L.	Plantae	ACCEPTED		
-3040238	134087893	Populus <U+00D7> berolinensis Dippel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus berolinensis Dippel	Plantae	HETEROTYPIC_SYNONYM	8016281	Populus berolinensis C. Koch
+3040238	134087893	Populus × berolinensis Dippel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus berolinensis Dippel	Plantae	HETEROTYPIC_SYNONYM	8016281	Populus berolinensis C. Koch
 3040245	134087897	Populus x generosa A. Henry	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus generosa A.Henry	Plantae	SYNONYM	3040241	Populus jackii Sarg.
 3040253	134087945	Reseda phyteuma L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reseda phyteuma L.	Plantae	ACCEPTED		
 3040254	134087943	Reseda alba L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reseda alba L.	Plantae	ACCEPTED		
@@ -1016,7 +1016,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3050357	134087314	Bunias erucago L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bunias erucago L.	Plantae	ACCEPTED		
 3050364	134087310	Bunias orientalis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bunias orientalis L.	Plantae	ACCEPTED		
 3051213	134087320	Boreava orientalis Jaub. & Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Boreava orientalis Jaub. & Spach	Plantae	ACCEPTED		
-3052450	134087289	Arabidopsis halleri (L.) O<U+2019>Kane & Al-Shehbaz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Arabidopsis halleri (L.) O'Kane & Al-Shehbaz	Plantae	ACCEPTED		
+3052450	134087289	Arabidopsis halleri (L.) O’Kane & Al-Shehbaz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Arabidopsis halleri (L.) O'Kane & Al-Shehbaz	Plantae	ACCEPTED		
 3052738	134087217	Thlaspi alliaceum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Thlaspi alliaceum L.	Plantae	ACCEPTED		
 3053252	134087233	Rorippa stylosa (Pers.) Mansf. & Rothm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rorippa stylosa (Pers.) Mansf. & Rothm.	Plantae	SYNONYM	9223629	Rorippa pyrenaica (L.) Rchb.
 3053406	134087232	Rorippa austriaca (Crantz) Besser	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rorippa austriaca (Crantz) Besser	Plantae	ACCEPTED		
@@ -1108,7 +1108,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3085623	134087100	Petrorhagia saxifraga (L.) Link	9ff7d317-609b-4c08-bd86-3bc404b77c42	Petrorhagia saxifraga (L.) Link	Plantae	ACCEPTED		
 3086240	134089343	Mirabilis jalapa L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Mirabilis jalapa L.	Plantae	ACCEPTED		
 3086784	134087495	Parthenium hysterophorus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Parthenium hysterophorus L.	Plantae	DOUBTFUL		
-3088282	134087521	Petasites pyrenaicus (L.) G. L<U+00F3>pez	9ff7d317-609b-4c08-bd86-3bc404b77c42	Petasites pyrenaicus (L.) G.L<U+00F3>pez	Plantae	DOUBTFUL		
+3088282	134087521	Petasites pyrenaicus (L.) G. López	9ff7d317-609b-4c08-bd86-3bc404b77c42	Petasites pyrenaicus (L.) G.López	Plantae	DOUBTFUL		
 3088310	134087522	Petasites japonicus (Siebold & Zucc.) Maxim.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Petasites japonicus (Siebold & Zucc.) Maxim.	Plantae	DOUBTFUL		
 3088405	134087480	Leucanthemella serotina (L.) Tzvelev	9ff7d317-609b-4c08-bd86-3bc404b77c42	Leucanthemella serotina (L.) Tzvelev	Plantae	DOUBTFUL		
 3088481	134087377	Tagetes minuta L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tagetes minuta L.	Plantae	DOUBTFUL		
@@ -1212,7 +1212,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3122323	134087498	Notobasis syriaca (L.) Cass.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Notobasis syriaca (L.) Cass.	Plantae	DOUBTFUL		
 3122897	134087515	Pilosella x brachiata (Bertol. ex DC.) F.W. Schultz & Schultz-Bip.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella brachiata (DC.) F.W.Schultz & Sch.Bip.	Plantae	DOUBTFUL		
 3122924	134087520	Pilosella aurantiaca (L.) F.W. Schultz & Schultz-Bip.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella aurantiaca (L.) F.W.Schultz & Sch.Bip.	Plantae	DOUBTFUL		
-3123636	134087512	Pilosella x prussica (Naeg. & Peter) Soj<U+00E1>k	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella prussica (N<U+00E4>geli & Peter) Soj<U+00E1>k	Plantae	DOUBTFUL		
+3123636	134087512	Pilosella x prussica (Naeg. & Peter) Soják	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella prussica (Nägeli & Peter) Soják	Plantae	DOUBTFUL		
 3123658	134087513	Pilosella x florentoides (Arv.-Touv.) P.D. Sell & C. West	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella florentoides (Arv.-Touv.) P.D.Sell & C.West	Plantae	HETEROTYPIC_SYNONYM	3123683	Pilosella visianii F.W.Schultz & Sch.Bip.
 3123663	134087518	Pilosella caespitosa (Dum.) P.D. Sell & C. West	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella caespitosa (Dumort.) P.D.Sell & C.West	Plantae	DOUBTFUL		
 3125765	134087357	Stuartina muelleri Sond.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Stuartina muelleri Sond.	Plantae	DOUBTFUL		
@@ -1278,7 +1278,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3148560	134087536	Anacyclus radiatus Loisel.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anacyclus radiatus Loisel.	Plantae	SYNONYM	4221876	Porophyllum ruderale subsp. macrocephalum (DC.) R.R.Johnson
 3148589	134087535	Anacyclus clavatus (Desf.) Pers.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anacyclus clavatus (Desf.) Pers.	Plantae	DOUBTFUL		
 3151397	134087354	Symphyotrichum lanceolatum (Willd.) Nesom (incl. S. tradescantii (L.) Nesom)	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum lanceolatum	Plantae	ACCEPTED		
-3151522	134087353	Symphyotrichum lateriflorum (L.) <U+00C1>. & D. L<U+00F6>ve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum lateriflorum	Plantae	ACCEPTED		
+3151522	134087353	Symphyotrichum lateriflorum (L.) Á. & D. Löve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum lateriflorum	Plantae	ACCEPTED		
 3151558	134087355	Symphyotrichum novi-belgii (L.) Nesom	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum novi-belgii (L.) G.L.Nesom	Plantae	DOUBTFUL		
 3151618	134087356	Symphyotrichum novae-angliae (L.) Nesom	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum novae-angliae (L.) G.L.Nesom	Plantae	DOUBTFUL		
 3151666	134087380	Symphyotrichum racemosum (S. Elliott) Nesom	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphyotrichum racemosum (Elliott) G.L.Nesom	Plantae	DOUBTFUL		
@@ -1363,7 +1363,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3189073	134089356	Epilobium brachycarpum C. Presl	9ff7d317-609b-4c08-bd86-3bc404b77c42	Epilobium brachycarpum Presl	Plantae	ACCEPTED		
 3189096	134089355	Epilobium ciliatum Rafin.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Epilobium ciliatum	Plantae	SYNONYM	7095758	Epilobium ciliatum subsp. ciliatum
 3189096	113794933	Epilobium ciliatum	e4746398-f7c4-47a1-a474-ae80a4f18e92	Epilobium ciliatum	Plantae	SYNONYM	7095758	Epilobium ciliatum subsp. ciliatum
-3189474	134089166	Hypericum x moserianum Andr<U+00E9>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum <U+00D7>moserianum Andre	Plantae	SYNONYM	3189468	Hypericum moseranum Ed. Andre
+3189474	134089166	Hypericum x moserianum André	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum ×moserianum Andre	Plantae	SYNONYM	3189468	Hypericum moseranum Ed. Andre
 3189497	134089161	Hypericum calycinum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum calycinum L.	Plantae	ACCEPTED		
 3189723	134088632	Plantago ovata Forssk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Plantago ovata Forsskal	Plantae	ACCEPTED		
 3189760	134088663	Plantago heterophylla Nutt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Plantago heterophylla Nutt.	Plantae	ACCEPTED		
@@ -1389,15 +1389,15 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3229275	134839954	Onocleaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Onocleaceae	Plantae	ACCEPTED		
 3230358	134839848	Taxodiaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Taxodiaceae	Plantae	SYNONYM	8144	Cupressaceae
 3233525	134839948	Martyniaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Martyniaceae	Plantae	ACCEPTED		
-3586046	134089135	Gladiolus x hortulanus Bailey	9ff7d317-609b-4c08-bd86-3bc404b77c42	Gladiolus <U+00D7>hortulanus L. H. Bailey	Plantae	ACCEPTED		
-3586380	134089133	Crocus x stellaris Haw.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crocus <U+00D7>stellaris Haw.	Plantae	ACCEPTED		
+3586046	134089135	Gladiolus x hortulanus Bailey	9ff7d317-609b-4c08-bd86-3bc404b77c42	Gladiolus ×hortulanus L. H. Bailey	Plantae	ACCEPTED		
+3586380	134089133	Crocus x stellaris Haw.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crocus ×stellaris Haw.	Plantae	ACCEPTED		
 3593883	134839816	Calceolariaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Calceolariaceae	Plantae	ACCEPTED		
 3593900	134087115	Herniaria cinerea DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Herniaria cinerea DC.	Plantae	ACCEPTED		
 3601091	134088694	Meconopsis cambrica (L.) Vig.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Meconopsis cambrica (L.) Vig.	Plantae	SYNONYM	3602683	Papaver cambricum L.
 3610757	134087058	Cuscuta campestris Yunck.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cuscuta campestris Yunck.	Plantae	SYNONYM	2927490	Cuscuta pentagona Engelm.
 3611735	134087167	Nemophila menziesii Hook. & Arnott var. integrifolia Parish	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nemophila menziesii var. integrifolia Parish	Plantae	SYNONYM	7536406	Nemophila menziesii var. integrifolia Brand
 3612876	134087840	Myricaria germanica (L.) Desv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Myricaria germanica (L.) Desv.	Plantae	ACCEPTED		
-3627235	134088673	Oxalis x uittienii J. Jansen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis <U+00D7>uittienii J.T.Jansen	Plantae	DOUBTFUL		
+3627235	134088673	Oxalis x uittienii J. Jansen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis ×uittienii J.T.Jansen	Plantae	DOUBTFUL		
 3631129	134089404	Eryngium giganteum Bieb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eryngium giganteum M. Bieb.	Plantae	ACCEPTED		
 3633319	134089423	Tordylium maximum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tordylium maximum L.	Plantae	ACCEPTED		
 3636471	134087888	Hydrocotyle novae-zelandiae DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hydrocotyle novae-zeelandiae DC.	Plantae	ACCEPTED		
@@ -1410,29 +1410,29 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3641853	134089394	Daucus durieua Lange	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus durieua Lange	Plantae	ACCEPTED		
 3642339	134089389	Chaerophyllum byzantinum Boiss.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chaerophyllum byzantinum Boiss.	Plantae	ACCEPTED		
 3642531	134089392	Chaerophyllum aureum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chaerophyllum aureum L.	Plantae	ACCEPTED		
-3645346	134089097	Philadelphus x virginalis aggr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Philadelphus <U+00D7>virginalis Rehder	Plantae	ACCEPTED		
+3645346	134089097	Philadelphus x virginalis aggr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Philadelphus ×virginalis Rehder	Plantae	ACCEPTED		
 3646556	134087841	Pterostyrax hispidus Siebold & Zucc.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pterostyrax hispidus Sieb. & Zucc.	Plantae	ACCEPTED		
 3664589	134089432	Oenothera lindheimeri (Engelmann & A. Gray) W.L. Wagner & Hoch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera lindheimeri (Engelm. & A.Gray) W.L.Wagner & Hoch	Plantae	ACCEPTED		
 3664677	134089453	Oenothera subterminalis R.R. Gates	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera subterminalis R.R.Gates	Plantae	ACCEPTED		
 3665061	134089352	Epilobium x interjectum Smejkal	9ff7d317-609b-4c08-bd86-3bc404b77c42	Epilobium interjectum M. Smejkal	Plantae	ACCEPTED		
-3665817	134089449	Oenothera rubricauloides Rosta<U+0144>ski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera rubricauloides Rostanski	Plantae	ACCEPTED		
+3665817	134089449	Oenothera rubricauloides Rostański	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera rubricauloides Rostanski	Plantae	ACCEPTED		
 3665866	134089444	Oenothera rubricalyx R.R. Gates	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera rubricalyx R.R.Gates	Plantae	SYNONYM	7322738	Oenothera perangusta Gates
 3665940	134089446	Oenothera royfraseri R.R. Gates	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera royfraseri R.R.Gates	Plantae	ACCEPTED		
 3665966	134089353	Epilobium x floridulum Smejkal	9ff7d317-609b-4c08-bd86-3bc404b77c42	Epilobium floridulum M. Smejkal	Plantae	ACCEPTED		
 3666449	134089474	Oenothera fruticosa L. subsp. glauca (Michaux) Straley	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera fruticosa subsp. glauca (Minchx.) Straley	Plantae	DOUBTFUL		
 3667238	134089436	Oenothera paradoxa Hudziok	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera paradoxa Hudziok	Plantae	ACCEPTED		
 3667406	134089468	Oenothera curtiflora W.L. Wagner & Hoch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera curtiflora W.L.Wagner & Hoch	Plantae	ACCEPTED		
-3667628	134089433	Oenothera nuda Renner ex Rosta<U+0144>ski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera nuda Renner ex Rostanski	Plantae	ACCEPTED		
-3667721	134089451	Oenothera wratislaviensis K. Rosta<U+0144>ski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera wratislaviensis Rostanski	Plantae	ACCEPTED		
+3667628	134089433	Oenothera nuda Renner ex Rostański	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera nuda Renner ex Rostanski	Plantae	ACCEPTED		
+3667721	134089451	Oenothera wratislaviensis K. Rostański	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera wratislaviensis Rostanski	Plantae	ACCEPTED		
 3678060	134087063	Convolvulus silvaticus Kit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Convolvulus silvaticus Kit.	Plantae	SYNONYM	7225712	Calystegia silvatica subsp. silvatica
 3678256	134087062	Cuscuta lupuliformis Krock.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cuscuta lupuliformis Krock.	Plantae	ACCEPTED		
 3679953	134087056	Convolvulus dubius J. Gilbert	9ff7d317-609b-4c08-bd86-3bc404b77c42	Convolvulus dubius J. L. Gilbert	Plantae	SYNONYM	3678949	Calystegia pulchra Brumm. & Heywood
-3685073	134089363	Ligustrum x vicaryi Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ligustrum <U+00D7>vicaryi Rehder	Plantae	DOUBTFUL		
+3685073	134089363	Ligustrum x vicaryi Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ligustrum ×vicaryi Rehder	Plantae	DOUBTFUL		
 3686235	134087827	Staphylea pinnata L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Staphylea pinnata L.	Plantae	ACCEPTED		
 3692264	134087307	Cardamine hamiltonii G. Don	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cardamine hamiltonii G.Don	Plantae	SYNONYM	3046076	Cardamine flexuosa With.
 3693306	134087231	Rorippa x armoracioides (Tausch) Fuss	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rorippa armoracioides (Tausch) Fuss	Plantae	SYNONYM	3693336	Rorippa anceps (Wahlenb.) Rchb.
 3711564	134089164	Hypericum x inodorum Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum inodorum Miller	Plantae	ACCEPTED		
-3711846	134089165	Hypericum x hidcoteense D. Geerinck	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum <U+00D7>hidcoteense Geerinck	Plantae	DOUBTFUL		
+3711846	134089165	Hypericum x hidcoteense D. Geerinck	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum ×hidcoteense Geerinck	Plantae	DOUBTFUL		
 3725805	134087816	Hebenstretia integrifolia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hebenstretia integrifolia L.	Plantae	ACCEPTED		
 3728894	134088679	Phelipanche ramosa (L.) Pomel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phelipanche ramosa (L.) Pomel	Plantae	ACCEPTED		
 3729273	134088601	Asarina procumbens Miller	9ff7d317-609b-4c08-bd86-3bc404b77c42	Asarina procumbens Mill.	Plantae	ACCEPTED		
@@ -1454,7 +1454,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3768287	134087725	Acer cissifolium (Siebold & Zucc.) K. Koch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acer cissifolium (Siebold & Zucc.) K. Koch	Plantae	SYNONYM	7877018	Acer cissifolium (Sieb. & Zucc.) C. Koch
 3792460	134087073	Euonymus hederaceus Champ. ex Benth.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Euonymus hederaceus Champ. ex Benth.	Plantae	SYNONYM	3169137	Euonymus fortunei (Turcz.) Hand.-Mazz.
 3798835	134087876	Nicotiana velutina H. Wheeler	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nicotiana velutina Wheeler	Plantae	ACCEPTED		
-3799170	134087878	Nicotiana x sanderae Sander ex Will. Watson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nicotiana <U+00D7>sanderae Sander ex W. Watson	Plantae	ACCEPTED		
+3799170	134087878	Nicotiana x sanderae Sander ex Will. Watson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nicotiana ×sanderae Sander ex W. Watson	Plantae	ACCEPTED		
 3802845	134087855	Petunia x punctata Paxt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Petunia punctata J. Paxton	Plantae	DOUBTFUL		
 3827934	134089090	Erodium cygnorum Nees subsp. glandulosum Carol.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium cygnorum subsp. glandulosum Carolin	Plantae	SYNONYM	3828342	Erodium carolinianum J.J. Aldasoro, C. Aedo, C. Navarro & L. Saez
 3827967	134089056	Monsonia brevirostrata R. Knuth	9ff7d317-609b-4c08-bd86-3bc404b77c42	Monsonia brevirostrata Knuth	Plantae	ACCEPTED		
@@ -1463,9 +1463,9 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3829143	134089072	Erodium stephanianum Willd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium stephanianum Willd.	Plantae	ACCEPTED		
 3845332	134839831	Cleomaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cleomaceae	Plantae	ACCEPTED		
 3853033	134088036	Neillia incisa (Thunb.) S.H. Oh	9ff7d317-609b-4c08-bd86-3bc404b77c42	Neillia incisa (Thunb.) S.H.Oh	Plantae	ACCEPTED		
-3855595	134086939	Symphoricarpos x chenaultii Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphoricarpos <U+00D7>chenaultii Rehder	Plantae	ACCEPTED		
+3855595	134086939	Symphoricarpos x chenaultii Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphoricarpos ×chenaultii Rehder	Plantae	ACCEPTED		
 3872463	134087070	Tarenaya hassleriana (Chodat) Iltis	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tarenaya hassleriana (Chodat) Iltis	Plantae	ACCEPTED		
-3875113	134087946	Ceanothus x delilianus Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ceanothus <U+00D7>delilianus Spach	Plantae	DOUBTFUL		
+3875113	134087946	Ceanothus x delilianus Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ceanothus ×delilianus Spach	Plantae	DOUBTFUL		
 3881468	134089192	Stachys macrantha (C. Koch) Stearn	9ff7d317-609b-4c08-bd86-3bc404b77c42	Stachys macrantha (K.Koch) Stearn	Plantae	ACCEPTED		
 3883897	134089174	Clinopodium menthifolium (Host) Stace	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clinopodium menthifolium (Host) Stace	Plantae	ACCEPTED		
 3883959	134089252	Salvia viridis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Salvia viridis L.	Plantae	ACCEPTED		
@@ -1477,7 +1477,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3892732	134089222	Lamium orvala L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lamium orvala L.	Plantae	ACCEPTED		
 3895556	134089218	Mentha spicata L. subsp. glabrata (Lej. & Court.) Lebeau	9ff7d317-609b-4c08-bd86-3bc404b77c42	Mentha spicata subsp. glabrata (Lej. & Courtois) Lebeau	Plantae	SYNONYM	7308335	Mentha spicata subsp. spicata
 3896282	134089193	Teucrium hircanicum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Teucrium hircanicum L.	Plantae	ACCEPTED		
-3898065	134089258	Salvia lavandulifolia Vahl subsp. gallica Lippert	9ff7d317-609b-4c08-bd86-3bc404b77c42	Salvia lavandulifolia subsp. gallica W.Lippert	Plantae	SYNONYM	6411218	Salvia officinalis subsp. gallica (W.Lippert) Reales, D.Rivera & Ob<U+00F3>n
+3898065	134089258	Salvia lavandulifolia Vahl subsp. gallica Lippert	9ff7d317-609b-4c08-bd86-3bc404b77c42	Salvia lavandulifolia subsp. gallica W.Lippert	Plantae	SYNONYM	6411218	Salvia officinalis subsp. gallica (W.Lippert) Reales, D.Rivera & Obón
 3902360	134089213	Mentha cervina L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Mentha cervina L.	Plantae	ACCEPTED		
 3905970	134089215	Marrubium peregrinum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Marrubium peregrinum L.	Plantae	ACCEPTED		
 3916499	134087940	Caylusea abyssinica (Fresen.) Fisch. & C.A. Mey.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Caylusea abyssinica (Fres.) Fisch. & Mey.	Plantae	ACCEPTED		
@@ -1485,12 +1485,12 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 3921611	134087913	Clematis flammula L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clematis flammula L.	Plantae	ACCEPTED		
 3922770	134087978	Aconitum napellus  L. subsp. napellus var. giganteum (Dum. ex Thielens) J. Duvigneaud	9ff7d317-609b-4c08-bd86-3bc404b77c42	Aconitum napellus var. giganteum (Dumort. ex Thielens) J. Duvigneaud	Plantae	SYNONYM	7707872	Aconitum napellus subsp. lusitanicum Rouy
 3922888	134087914	Anemone sylvestris L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anemone sylvestris L.	Plantae	ACCEPTED		
-3925834	134087915	Anemone x hybrida Paxt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anemone <U+00D7>hybrida Paxton	Plantae	ACCEPTED		
+3925834	134087915	Anemone x hybrida Paxt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anemone ×hybrida Paxton	Plantae	ACCEPTED		
 3927746	134087974	Anemone apennina L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anemone apennina L.	Plantae	ACCEPTED		
 3927790	134087932	Ranunculus gramineus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ranunculus gramineus L.	Plantae	ACCEPTED		
 3931399	134839817	Caesalpiniaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Caesalpiniaceae	Plantae	SYNONYM	5386	Fabaceae
 3935421	134089308	Malope trifida Cav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malope trifida Cav.	Plantae	ACCEPTED		
-3935725	134089320	Abutilon x suntense C.D. Brickell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Abutilon <U+00D7>suntense C. D. Brickell	Plantae	SYNONYM	3937506	Corynabutilon <U+00D7>suntense (C. D. Brickell) Fryxell
+3935725	134089320	Abutilon x suntense C.D. Brickell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Abutilon ×suntense C. D. Brickell	Plantae	SYNONYM	3937506	Corynabutilon ×suntense (C. D. Brickell) Fryxell
 3940423	134089298	Malva thuringiaca (L.) Vis.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva thuringiaca (L.) Vis.	Plantae	ACCEPTED		
 3940638	134089299	Malva setigera F.K. Schimp. & Spenn.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva setigera K.F.Schimp. & Spenn.	Plantae	SYNONYM	7944532	Malva hirsuta (L.) E. H. L. Krause
 3940960	134089309	Malva punctata (L.) Alef.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva punctata (All.) Alef.	Plantae	ACCEPTED		
@@ -1507,7 +1507,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4005004	134088181	Lysimachia fortunei Maxim.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lysimachia fortunei Maxim.	Plantae	ACCEPTED		
 4007682	134087958	Lysimachia linum-stellatum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lysimachia linum-stellatum L.	Plantae	SYNONYM	4007104	Asterolinon linum-stellatum (L.) Duby
 4008528	135377169	Malaceae	e4746398-f7c4-47a1-a474-ae80a4f18e92	Malaceae	Plantae	SYNONYM	5015	Rosaceae
-4013762	134089113	Narcissus x cyclazetta Chater & Stace	9ff7d317-609b-4c08-bd86-3bc404b77c42	Narcissus <U+00D7>cyclazetta Chater & Stace	Plantae	ACCEPTED		
+4013762	134089113	Narcissus x cyclazetta Chater & Stace	9ff7d317-609b-4c08-bd86-3bc404b77c42	Narcissus ×cyclazetta Chater & Stace	Plantae	ACCEPTED		
 4021919	134088134	Portulaca sativa Haw.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Portulaca sativa Haw.	Plantae	ACCEPTED		
 4021920	134088173	Portulaca cypria Danin	9ff7d317-609b-4c08-bd86-3bc404b77c42	Portulaca cypria Danin	Plantae	ACCEPTED		
 4022175	134089282	Calandrinia compressa Schrad. ex DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Calandrinia compressa Schrad. ex DC.	Plantae	ACCEPTED		
@@ -1520,41 +1520,41 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4035024	134088152	Rumex crispus L. subsp. robustus (Rech.) Pestova	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex crispus subsp. robustus (Rech.) L.O. Pestova	Plantae	ACCEPTED		
 4035232	134088266	Aconogonon x fennicum Reiersen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Aconogonon fennicum Reiersen	Plantae	SYNONYM	8773480	Koenigia fennica (Reiersen) T.M.Schust. & Reveal
 4036957	134088172	Rumex pulcher L. subsp. pulcher	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex pulcher subsp. pulcher	Plantae	ACCEPTED		
-4037343	134088147	Rubrivena polystachya (Wall. ex Meisn.) M. Kr<U+00E1>l	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rubrivena polystachya (Wall.) M. Kr<U+00E1>l	Plantae	SYNONYM	8848208	Koenigia polystachya (Wall. ex Meisn.) T.M.Schust. & Reveal
-4038485	134088145	Reynoutria x bohemica Chrtek & Chrtkov<U+00E1>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reynoutria bohemica J. Chrtek & A. Chrtkov<U+00E1>	Plantae	ACCEPTED		
-4038524	134088148	x Reyllopia conollyana (J.P. Bailey) Galasso	9ff7d317-609b-4c08-bd86-3bc404b77c42	<U+00D7>Reyllopia conollyana (J.P.Bailey) Galasso	Plantae	HOMOTYPIC_SYNONYM	5652288	Fallopia <U+00D7>conollyana J.P.Bailey
+4037343	134088147	Rubrivena polystachya (Wall. ex Meisn.) M. Král	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rubrivena polystachya (Wall.) M. Král	Plantae	SYNONYM	8848208	Koenigia polystachya (Wall. ex Meisn.) T.M.Schust. & Reveal
+4038485	134088145	Reynoutria x bohemica Chrtek & Chrtková	9ff7d317-609b-4c08-bd86-3bc404b77c42	Reynoutria bohemica J. Chrtek & A. Chrtková	Plantae	ACCEPTED		
+4038524	134088148	x Reyllopia conollyana (J.P. Bailey) Galasso	9ff7d317-609b-4c08-bd86-3bc404b77c42	×Reyllopia conollyana (J.P.Bailey) Galasso	Plantae	HOMOTYPIC_SYNONYM	5652288	Fallopia ×conollyana J.P.Bailey
 4048052	134086856	Hippophae rhamnoides L. subsp. caucasica Rousi	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hippophae rhamnoides subsp. caucasica Rousi	Plantae	ACCEPTED		
 4048240	134086857	Elaeagnus x submacrophylla Servettaz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Elaeagnus submacrophylla Serv.	Plantae	ACCEPTED		
 4055853	134087796	Buddleja albiflora Hemsl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Buddleja albiflora Hemsl.	Plantae	ACCEPTED		
 4058401	134087181	Amsinckia micrantha Suksd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amsinckia micrantha Suksdorf	Plantae	SYNONYM	2925870	Amsinckia menziesii (Lehm.) A. Nels. Macbr.
 4063372	134087146	Trachystemon orientalis (L.) G. Don f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Trachystemon orientalis (L.) G. Don	Plantae	ACCEPTED		
 4064572	134087159	Cynoglossum clandestinum Desf.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cynoglossum clandestinum Desf.	Plantae	ACCEPTED		
-4067281	134087145	Symphytum x hidcotense P.D. Sell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphytum <U+00D7>hidcotense P.D.Sell	Plantae	DOUBTFUL		
+4067281	134087145	Symphytum x hidcotense P.D. Sell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphytum ×hidcotense P.D.Sell	Plantae	DOUBTFUL		
 4067302	134087136	Symphytum grandiflorum DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphytum grandiflorum DC.	Plantae	ACCEPTED		
 4067952	134087178	Amsinckia retrorsa Suksd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amsinckia retrorsa Suksd.	Plantae	SYNONYM	2925870	Amsinckia menziesii (Lehm.) A. Nels. Macbr.
 4090836	134088650	Armeria maritima Willd. subsp. elongata (Hoffmann) Bonnier	9ff7d317-609b-4c08-bd86-3bc404b77c42	Armeria maritima subsp. elongata (Hoffm.) Bonnier	Plantae	ACCEPTED		
 4095186	134086943	Valeriana pyrenaica L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Valeriana pyrenaica L.	Plantae	ACCEPTED		
 4095244	134086936	Valerianella vesicaria (L.) Moench	9ff7d317-609b-4c08-bd86-3bc404b77c42	Valerianella vesicaria (L.) Moench	Plantae	ACCEPTED		
-4097656	134087186	Alnus x spaethii Callier	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alnus <U+00D7>spaethii Callier	Plantae	ACCEPTED		
+4097656	134087186	Alnus x spaethii Callier	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alnus ×spaethii Callier	Plantae	ACCEPTED		
 4102952	134086960	Knautia macedonica Griseb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Knautia macedonica Griseb.	Plantae	ACCEPTED		
 4104284	134086929	Dipsacus strigosus Willd. ex Roem. & Schult.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dipsacus strigosus Roem. & Schult.	Plantae	SYNONYM	7443846	Dipsacus strigosus Willd.
 4104718	134088536	Austrostipa verticillata (Nees ex Spreng.) S.W.L. Jacobs & J. Everett	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrostipa verticillata (Nees ex Spreng.) S.W.L.Jacobs & J.Everett	Plantae	ACCEPTED		
 4104890	134088534	Austrostipa scabra (Lindl.) S.W.L. Jacobs & J. Everett subsp. falcata (Hughes) S.W.L. Jacobs & J. Everett	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrostipa scabra subsp. falcata (Hughes) S.W.L.Jacobs & J.Everett	Plantae	ACCEPTED		
 4105208	134088538	Austrostipa nitida (Summerh. & C.E. Hubbard) S.W.L. Jacobs & J. Everett	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrostipa nitida (Summerh. & C.E.Hubb.) S.W.L.Jacobs & J.Everett	Plantae	ACCEPTED		
 4105652	134088540	Amphibromus recurvatus Swallen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amphibromus recurvatus Swallen	Plantae	SYNONYM	4152236	Helictotrichon recurvatum (Swallen) Cope & Ryves
-4106609	134088278	Paspalum notatum Fluegg<U+00E9> var. saurae (Parodi) Parodi	9ff7d317-609b-4c08-bd86-3bc404b77c42	Paspalum notatum var. saurae Parodi	Plantae	SYNONYM	4154259	Paspalum saurae (Parodi) Parodi
+4106609	134088278	Paspalum notatum Flueggé var. saurae (Parodi) Parodi	9ff7d317-609b-4c08-bd86-3bc404b77c42	Paspalum notatum var. saurae Parodi	Plantae	SYNONYM	4154259	Paspalum saurae (Parodi) Parodi
 4107552	134088575	Alopecurus magellanicus Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Alopecurus magellanicus Lam.	Plantae	ACCEPTED		
 4107725	134088539	Austrodanthonia tenuior (Steud.) H.P. Linder	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrodanthonia tenuior (Steud.) H.P.Linder	Plantae	SYNONYM	4135606	Rytidosperma tenuius (Steud.) O.E.Erikss., A.Hansen & Sunding
 4107735	134088537	Austrodanthonia setacea (R. Brown) H.P. Linder	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrodanthonia setacea (R.Br.) H.P.Linder	Plantae	SYNONYM	4135683	Rytidosperma setaceum (R.Br.) Connor & Edgar
 4108297	134088286	Oxychloris scariosa (F. Muell.) Lazarides	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxychloris scariosa (F.Muell.) Lazarides	Plantae	ACCEPTED		
-4110334	134088558	Bromus diandrus Roth subsp. maximus (Desf.) So<U+00F3>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus diandrus subsp. maximus (Desf.) So<U+00F3>	Plantae	SYNONYM	2703663	Bromus rigidus Roth
+4110334	134088558	Bromus diandrus Roth subsp. maximus (Desf.) Soó	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus diandrus subsp. maximus (Desf.) Soó	Plantae	SYNONYM	2703663	Bromus rigidus Roth
 4110879	134088368	Poa sieberiana Spreng.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Poa sieberiana Spreng.	Plantae	ACCEPTED		
 4111606	134088409	Eragrostis rotifer Rendle	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis rotifer Rendle	Plantae	ACCEPTED		
 4113402	134088273	Panicum decompositum R. Brown	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum decompositum R.Br.	Plantae	ACCEPTED		
 4113766	134088397	Eragrostis dielsii Pilger	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis dielsii Pilg.	Plantae	ACCEPTED		
 4114539	134088245	Trisetaria michelii (Savi) D. Heller	9ff7d317-609b-4c08-bd86-3bc404b77c42	Trisetaria michelii (Savi) D.Heller	Plantae	SYNONYM	5678081	Rostraria festucoides (Link) Romero Zarco
 4115652	134088312	Hordeum leporinum Link	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hordeum leporinum Link	Plantae	SYNONYM	4270548	Hordeum murinum subsp. leporinum (Link) Arcang.
-4115907	134088487	Eleusine coracana subsp. africana (Kennedy-O<U+2019>Byrne) Hilu & de Wet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eleusine coracana subsp. africana	Plantae	DOUBTFUL		
+4115907	134088487	Eleusine coracana subsp. africana (Kennedy-O’Byrne) Hilu & de Wet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eleusine coracana subsp. africana	Plantae	DOUBTFUL		
 4116483	134088314	Hordeum glaucum Steud.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hordeum glaucum Steud.	Plantae	SYNONYM	4115425	Hordeum murinum subsp. glaucum (Steud.) Tzvelev
 4116522	134088315	Hordeum geniculatum All.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hordeum geniculatum All.	Plantae	SYNONYM	8338571	Hordeum marinum subsp. gussoneanum (Parl.) Thell.
 4116709	134088276	Panicum laevinode Lindl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum laevinode Lindl.	Plantae	ACCEPTED		
@@ -1566,7 +1566,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4118773	134088480	Echinochloa inundata Michael & Vickery	9ff7d317-609b-4c08-bd86-3bc404b77c42	Echinochloa inundata Michael & Vickery	Plantae	ACCEPTED		
 4120602	134088326	Semiarundinaria fastuosa (Mitford) Makino	9ff7d317-609b-4c08-bd86-3bc404b77c42	Semiarundinaria fastuosa (Lat.-Marl. ex Mitford) Makino	Plantae	ACCEPTED		
 4121049	134088354	Secale strictum (C. Presl) C. Presl	9ff7d317-609b-4c08-bd86-3bc404b77c42	Secale strictum (C.Presl) C.Presl	Plantae	SYNONYM	2705967	Secale montanum Guss.
-4121178	134088653	Agrostis lachnantha Nees	9ff7d317-609b-4c08-bd86-3bc404b77c42	Agrostis lachnantha Nees	Plantae	SYNONYM	4135892	Lachnagrostis lachnantha (Nees) R<U+00FA>golo & A.M.Molina
+4121178	134088653	Agrostis lachnantha Nees	9ff7d317-609b-4c08-bd86-3bc404b77c42	Agrostis lachnantha Nees	Plantae	SYNONYM	4135892	Lachnagrostis lachnantha (Nees) Rúgolo & A.M.Molina
 4121201	134088348	Rytidosperma thomsonii (Buchanan) Connor & Edgar	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rytidosperma thomsonii (Buchanan) Connor & Edgar	Plantae	ACCEPTED		
 4122609	134088568	Bromus pectinatus Thunb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus pectinatus Thunb.	Plantae	ACCEPTED		
 4122787	134088474	Diplachne parviflora (R. Brown) Benth.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Diplachne parviflora (R.Br.) Benth.	Plantae	SYNONYM	7998563	Diplachne fusca subsp. fusca
@@ -1591,7 +1591,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4134508	134088415	Eriochloa cf. crebra S.T. Blake	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eriochloa crebra S.T.Blake	Plantae	ACCEPTED		
 4134633	134088414	Eriochloa australiensis Stapf ex Thell.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eriochloa australiensis Stapf & Thell.	Plantae	ACCEPTED		
 4134741	134088271	Panicum miliaceum L. subsp. ruderale (Kitagawa) Tzvelev	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum miliaceum subsp. ruderale (Kitag.) Tzvelev	Plantae	SYNONYM	2705090	Panicum miliaceum L.
-4134826	134088269	Panicum miliaceum L. subsp. agricola H. Scholz & Mikol<U+00E1><U+0161>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum miliaceum subsp. agricola H.Scholz & Mikol<U+00E1><U+0161>	Plantae	SYNONYM	2705090	Panicum miliaceum L.
+4134826	134088269	Panicum miliaceum L. subsp. agricola H. Scholz & Mikoláš	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum miliaceum subsp. agricola H.Scholz & Mikoláš	Plantae	SYNONYM	2705090	Panicum miliaceum L.
 4134872	134088360	Piptatherum miliaceum (L.) Coss. subsp. thomasii (Duby) Freitag	9ff7d317-609b-4c08-bd86-3bc404b77c42	Piptatherum miliaceum subsp. thomasii (Duby) Freitag	Plantae	SYNONYM	4141737	Achnatherum miliaceum (L.) P.Beauv.
 4135963	134088319	Lachnagrostis filiformis (G. Forst.) Trin.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lachnagrostis filiformis (J.R.Forst.) Trin.	Plantae	SYNONYM	9195041	Lachnagrostis filiformis (G.Forst.) Trin.
 4136060	134088321	Lachnagrostis billardieri (R. Brown) Trin.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lachnagrostis billardierei (R.Br.) Trin.	Plantae	ACCEPTED		
@@ -1612,7 +1612,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4143386	134088400	Eragrostis papposa (Duf.) Steud.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis papposa (Roem. & Schult.) Steud.	Plantae	ACCEPTED		
 4143702	134088401	Eragrostis obtusa (Munro ex Ficalho) Hiern	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis obtusa Munro ex Ficalho & Hiern	Plantae	ACCEPTED		
 4143852	134088399	Eragrostis nigra Nees ex Steud.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis nigra Nees ex Steud.	Plantae	ACCEPTED		
-4143865	134088255	Stipa bromoides (L.) D<U+00F6>rfl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Stipa bromoides (L.) D<U+00F6>rfl.	Plantae	SYNONYM	4142335	Achnatherum bromoides (L.) P.Beauv.
+4143865	134088255	Stipa bromoides (L.) Dörfl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Stipa bromoides (L.) Dörfl.	Plantae	SYNONYM	4142335	Achnatherum bromoides (L.) P.Beauv.
 4143912	134088405	Eragrostis neesii Trin.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis neesii Trin.	Plantae	ACCEPTED		
 4145354	134088393	Eragrostis leptocarpa Benth.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis leptocarpa Benth.	Plantae	ACCEPTED		
 4146338	134088284	Notodanthonia gracilis (Hook. f.) Zotov	9ff7d317-609b-4c08-bd86-3bc404b77c42	Notodanthonia gracilis (Hook.f.) Zotov	Plantae	SYNONYM	4145948	Stenostachys gracilis (Hook.f.) Connor
@@ -1635,11 +1635,11 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4154800	134088511	Avena brevis Roth	9ff7d317-609b-4c08-bd86-3bc404b77c42	Avena brevis Roth	Plantae	ACCEPTED		
 4155246	134088307	Moorochloa eruciformis (Smith) Veldkamp	9ff7d317-609b-4c08-bd86-3bc404b77c42	Moorochloa eruciformis (Sm.) Veldkamp	Plantae	SYNONYM	2704068	Brachiaria eruciformis (Sm.) Griseb.
 4160847	134839931	Linderniaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linderniaceae	Plantae	ACCEPTED		
-4194699	134089063	Ribes x nidigrolaria R. & A. Bauer	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ribes <U+00D7>nidigrolaria Rud. Bauer & A. Bauer	Plantae	ACCEPTED		
+4194699	134089063	Ribes x nidigrolaria R. & A. Bauer	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ribes ×nidigrolaria Rud. Bauer & A. Bauer	Plantae	ACCEPTED		
 4194986	134839905	Phrymaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phrymaceae	Plantae	ACCEPTED		
 4207003	134087580	Centaurea algeriensis Coss. & Durieu	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea algeriensis Durieu & Coss.	Plantae	SYNONYM	7399679	Centaurea diluta subsp. algeriensis (Coss. & Durieu) Marie
 4210773	134087575	Carduus vivariensis Jord.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carduus vivariensis Jord.	Plantae	SYNONYM	6076849	Carduus nigrescens subsp. vivariensis (Jord.) Bonnier & Layens
-4211074	134087626	Carduus x theriotii Rouy	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carduus <U+00D7>theriotii Rouy	Plantae	DOUBTFUL		
+4211074	134087626	Carduus x theriotii Rouy	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carduus ×theriotii Rouy	Plantae	DOUBTFUL		
 4217250	134087450	Erigeron x flahaultianus Thell.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erigeron flahaultianus Thell.	Plantae	SYNONYM	3146683	Erigeron sumatrensis Retz.
 4219118	134087491	Hieracium glaucinum Jord. subsp. recensitum (Jord. ex Boreau) Gottschlich	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hieracium glaucinum subsp. recensitum (Jord. ex Boreau) Gottschl.	Plantae	HOMOTYPIC_SYNONYM	4247311	Hieracium recensitum Jord. ex Boreau
 4227439	134087595	Cicerbita macrophylla (Willd.) Wallr. subsp. uralensis (Rouy) P.D. Sell	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cicerbita macrophylla subsp. uralensis (Rouy) P.D.Sell	Plantae	HOMOTYPIC_SYNONYM	4211590	Lactuca macrophylla subsp. uralensis (Rouy) N.Kilian & Greuter
@@ -1653,7 +1653,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4264680	113794892	Myocastor coypus	e4746398-f7c4-47a1-a474-ae80a4f18e92	Myocastor coypus (Molina, 1782)	Animalia	ACCEPTED		
 4270510	134088644	Agropyron cristatum (L.) Gaertn. subsp. pectinatum (Bieb.) Tzvelev	9ff7d317-609b-4c08-bd86-3bc404b77c42	Agropyron cristatum subsp. pectinatum (M.Bieb.) Tzvelev	Plantae	SYNONYM	2705196	Agropyron cristatum (L.) Gaertn.
 4270675	134088486	Echinochloa muricata (Beauv.) Fernald var. muricata	9ff7d317-609b-4c08-bd86-3bc404b77c42	Echinochloa muricata var. muricata	Plantae	ACCEPTED		
-4271342	134089396	Daucus carota L. subsp. sativus (Hoffmann) Arcang.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus carota subsp. sativus (Hoffm.) Arcangeli	Plantae	HETEROTYPIC_SYNONYM	7350944	Daucus carota subsp. sativus (Hoffm.) Sch<U+00FC>bl. & Martens
+4271342	134089396	Daucus carota L. subsp. sativus (Hoffmann) Arcang.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus carota subsp. sativus (Hoffm.) Arcangeli	Plantae	HETEROTYPIC_SYNONYM	7350944	Daucus carota subsp. sativus (Hoffm.) Schübl. & Martens
 4896863	134839903	Paulowniaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Paulowniaceae	Plantae	ACCEPTED		
 4898338	134839941	Montiaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Montiaceae	Plantae	ACCEPTED		
 4900406	134839925	Hypericaceae	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericaceae	Plantae	ACCEPTED		
@@ -1669,10 +1669,10 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 4933624	134087489	Inula racemosa Hook.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Inula racemosa Hook.f.	Plantae	DOUBTFUL		
 4934102	134089071	Erodium salzmannii Delile	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium salzmannii Del.	Plantae	SYNONYM	7258886	Erodium cicutarium subsp. cicutarium
 4934105	134089091	Erodium manescavi Coss.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium manescavii Cosson	Plantae	ACCEPTED		
-4938153	134087188	Berberis x hybrido-gagnepainii J.V. Suringar	9ff7d317-609b-4c08-bd86-3bc404b77c42	Berberis <U+00D7>hybridogagnepainii Suringar	Plantae	DOUBTFUL		
+4938153	134087188	Berberis x hybrido-gagnepainii J.V. Suringar	9ff7d317-609b-4c08-bd86-3bc404b77c42	Berberis ×hybridogagnepainii Suringar	Plantae	DOUBTFUL		
 4938160	134087200	Berberis gagnepainii C.K. Schneider	9ff7d317-609b-4c08-bd86-3bc404b77c42	Berberis gagnepainii C. K. Schneid.	Plantae	ACCEPTED		
 4938461	135377135	Amygdalaceae	e4746398-f7c4-47a1-a474-ae80a4f18e92	Amygdalaceae	Plantae	SYNONYM	5015	Rosaceae
-4938682	134088612	Larix x marschlinsii Coaz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Larix <U+00D7>marschlinsii Coaz	Plantae	ACCEPTED		
+4938682	134088612	Larix x marschlinsii Coaz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Larix ×marschlinsii Coaz	Plantae	ACCEPTED		
 4939668	134089315	Kitaibela vitifolia Willd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Kitaibela vitifolia Willd.	Plantae	ACCEPTED		
 4989904	113794878	Harmonia axyridis	e4746398-f7c4-47a1-a474-ae80a4f18e92	Harmonia axyridis (Pallas, 1773)	Animalia	ACCEPTED		
 5203111	113794973	Umbra pygmaea	e4746398-f7c4-47a1-a474-ae80a4f18e92	Umbra pygmaea (DeKay, 1842)	Animalia	ACCEPTED		
@@ -1689,9 +1689,9 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5275404	134087970	Pteris cretica L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pteris cretica L.	Plantae	ACCEPTED		
 5275415	134087980	Pteris multifida Poiret	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pteris multifida Poir.	Plantae	ACCEPTED		
 5284237	134087836	Cryptomeria japonica (L.f.) D. Don	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cryptomeria japonica (Thunb. ex L. f.) D. Don	Plantae	ACCEPTED		
-5284827	134088616	Picea sitchensis (Bong.) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Picea sitchensis (Bong.) Carri<U+00E8>re	Plantae	ACCEPTED		
+5284827	134088616	Picea sitchensis (Bong.) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Picea sitchensis (Bong.) Carrière	Plantae	ACCEPTED		
 5284884	134088621	Picea abies (L.) Karst.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Picea abies (L.) H. Karst.	Plantae	ACCEPTED		
-5284950	134088619	Picea omorika (Pan<U+010D>i<U+0107>) Purk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Picea omorika (Pancic) Purk.	Plantae	ACCEPTED		
+5284950	134088619	Picea omorika (Pančić) Purk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Picea omorika (Pancic) Purk.	Plantae	ACCEPTED		
 5284982	134088583	Pinus strobus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pinus strobus L.	Plantae	ACCEPTED		
 5285053	134088586	Pinus ponderosa Douglas ex P. Lawson & C. Lawson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pinus ponderosa Douglas ex C. Lawson	Plantae	ACCEPTED		
 5285074	134088593	Pinus wallichiana A.B. Jacks	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pinus wallichiana A.B. Jacks.	Plantae	ACCEPTED		
@@ -1711,7 +1711,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5289643	134088529	Apera interrupta (L.) Beauv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Apera interrupta (L.) P.Beauv.	Plantae	ACCEPTED		
 5289666	134088329	Setaria faberi R.A.W. Herrmann s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria faberi R.A.W.Herrm.	Plantae	ACCEPTED		
 5289670	134088327	Setaria adhaerens (Forssk.) Chiov.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria adhaerens (Forssk.) Chiov.	Plantae	SYNONYM	5289686	Setaria verticillata (L.) P.Beauv.
-5289679	134088331	Setaria parviflora (Poiret) Kergu<U+00E9>len	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria parviflora	Plantae	DOUBTFUL		
+5289679	134088331	Setaria parviflora (Poiret) Kerguélen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria parviflora	Plantae	DOUBTFUL		
 5289684	134088336	Setaria viridis (L.) Beauv. s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria viridis (L.) P.Beauv.	Plantae	ACCEPTED		
 5289693	134088332	Setaria pumila (Poiret) Roem. & Schult.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria pumila (Poir.) Roem. & Schult.	Plantae	SYNONYM	5673972	Setaria helvola (L.f.) Roem. & Schult.
 5289698	134088330	Setaria italica (L.) Beauv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria italica (L.) P.Beauv.	Plantae	ACCEPTED		
@@ -1817,7 +1817,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5334439	134088140	Polygonum patulum Bieb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Polygonum patulum M. Bieb.	Plantae	ACCEPTED		
 5334527	134089274	Limnanthes douglasii R. Brown	9ff7d317-609b-4c08-bd86-3bc404b77c42	Limnanthes douglasii R. Br.	Plantae	ACCEPTED		
 5336632	134088046	Crucianella angustifolia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crucianella angustifolia L.	Plantae	ACCEPTED		
-5341154	134087695	Glandularia x hybrida (Gr<U+00F6>nland & R<U+00FC>mpler) Nesom & Pruski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Glandularia <U+00D7>hybrida (Groenl. & R<U+00FC>mpler) G. L. Nesom & Pruski	Plantae	ACCEPTED		
+5341154	134087695	Glandularia x hybrida (Grönland & Rümpler) Nesom & Pruski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Glandularia ×hybrida (Groenl. & Rümpler) G. L. Nesom & Pruski	Plantae	ACCEPTED		
 5341187	134087168	Myosotis alpestris F.W. Schmidt	9ff7d317-609b-4c08-bd86-3bc404b77c42	Myosotis alpestris F. W. Schmidt	Plantae	SYNONYM	7295191	Myosotis alpestris subsp. alpestris
 5341198	134087130	Anchusa azurea Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anchusa azurea Mill.	Plantae	ACCEPTED		
 5341203	134087140	Pulmonaria saccharata Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pulmonaria saccharata Miller	Plantae	ACCEPTED		
@@ -1827,7 +1827,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5341387	134089233	Hyssopus officinalis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hyssopus officinalis L.	Plantae	ACCEPTED		
 5341394	134089210	Perilla frutescens (L.) Britton	9ff7d317-609b-4c08-bd86-3bc404b77c42	Perilla frutescens (L.) Britton	Plantae	ACCEPTED		
 5341442	134089196	Thymus vulgaris L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Thymus vulgaris L.	Plantae	ACCEPTED		
-5341447	134089195	Thymus pannonicus All.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Thymus pannonicus All.	Plantae	SYNONYM	5605749	Thymus pulegioides subsp. pannonicus (All.) Kergu<U+00E9>len
+5341447	134089195	Thymus pannonicus All.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Thymus pannonicus All.	Plantae	SYNONYM	5605749	Thymus pulegioides subsp. pannonicus (All.) Kerguélen
 5341497	134089260	Nepeta racemosa Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nepeta racemosa Lam.	Plantae	ACCEPTED		
 5341498	134089261	Nepeta grandiflora Bieb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nepeta grandiflora M.Bieb.	Plantae	ACCEPTED		
 5341501	134089216	Melissa officinalis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Melissa officinalis L.	Plantae	ACCEPTED		
@@ -1838,7 +1838,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5341772	134087865	Physalis minima L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis minima L.	Plantae	SYNONYM	5341775	Physalis lagascae Roem. & Schult.
 5341784	134087864	Physalis peruviana L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis peruviana L.	Plantae	ACCEPTED		
 5341795	134087856	Physalis angulata L. var. pendula (Rydberg) Waterfall	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis angulata var. pendula (Rydb.) Waterf.	Plantae	SYNONYM	5341792	Physalis angulata L.
-5341797	134087853	Physalis grisea (Waterfall) M. Mart<U+00ED>nez	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis grisea	Plantae	DOUBTFUL		
+5341797	134087853	Physalis grisea (Waterfall) M. Martínez	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis grisea	Plantae	DOUBTFUL		
 5341819	134087858	Physalis pubescens L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis pubescens L.	Plantae	ACCEPTED		
 5342618	134088999	Astragalus onobrychis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Astragalus onobrychis L.	Plantae	ACCEPTED		
 5342681	134089000	Astragalus hamosus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Astragalus hamosus L.	Plantae	ACCEPTED		
@@ -1850,7 +1850,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5347854	134088967	Pisum sativum L. var. sativum	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pisum sativum var. sativum	Plantae	ACCEPTED		
 5347864	134089016	Cytisus sessilifolius L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cytisus sessilifolius L.	Plantae	SYNONYM	2940408	Cytisophyllum sessilifolium (L.) O.Lang
 5348644	134089011	Coronilla scorpioides (L.) Koch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Coronilla scorpioides (L.) Koch	Plantae	ACCEPTED		
-5349989	134088942	Securigera securidaca (L.) Degen & D<U+00F6>rfl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Securigera securidaca (L.) Degen & Dorfl.	Plantae	ACCEPTED		
+5349989	134088942	Securigera securidaca (L.) Degen & Dörfl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Securigera securidaca (L.) Degen & Dorfl.	Plantae	ACCEPTED		
 5350000	134088943	Securigera varia (L.) Lassen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Securigera varia (L.) Lassen	Plantae	ACCEPTED		
 5350010	134089038	Lens culinaris Med.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lens culinaris Medik.	Plantae	ACCEPTED		
 5350015	134089036	Lens nigricans (Bieb.) Godr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lens nigricans (M.Bieb.) Godr.	Plantae	ACCEPTED		
@@ -1962,7 +1962,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5366327	134088002	Potentilla montana Brot.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Potentilla montana Brot.	Plantae	ACCEPTED		
 5367186	134087996	Potentilla rivalis Nutt. ex Torr. & A. Gray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Potentilla rivalis Nutt. ex Torr. & Gray	Plantae	ACCEPTED		
 5367214	134088000	Potentilla nepalensis Hooker	9ff7d317-609b-4c08-bd86-3bc404b77c42	Potentilla nepalensis Hook.	Plantae	ACCEPTED		
-5368010	134087997	Potentilla x semiargentea Borb<U+00E1>s	9ff7d317-609b-4c08-bd86-3bc404b77c42	Potentilla <U+00D7>semiargentea	Plantae	DOUBTFUL		
+5368010	134087997	Potentilla x semiargentea Borbás	9ff7d317-609b-4c08-bd86-3bc404b77c42	Potentilla ×semiargentea	Plantae	DOUBTFUL		
 5369784	134088019	Geum macrophyllum Willd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Geum macrophyllum Willd.	Plantae	ACCEPTED		
 5370006	134088043	Geum ternatum (Stephan) Smedmark	9ff7d317-609b-4c08-bd86-3bc404b77c42	Geum ternatum (Stephan) Smedmark	Plantae	ACCEPTED		
 5370043	134088020	Geum quellyon Sweet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Geum quellyon Sweet	Plantae	ACCEPTED		
@@ -2042,7 +2042,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5384332	134088818	Amaranthus muricatus (Moq.) Hieron.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus muricatus (Moq.) Hieron.	Plantae	ACCEPTED		
 5384333	134088814	Amaranthus acutilobus Uline & Bray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus acutilobus Uline & W. L. Bray	Plantae	SYNONYM	5384334	Amaranthus viridis L.
 5384334	134088745	Amaranthus viridis L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus viridis L.	Plantae	ACCEPTED		
-5384341	134088806	Amaranthus crispus (Lesp. & Th<U+00E9>v.) N. Terrac.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus crispus (Lesp. & Th<U+00E9>venau) N. Terracc.	Plantae	ACCEPTED		
+5384341	134088806	Amaranthus crispus (Lesp. & Thév.) N. Terrac.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus crispus (Lesp. & Thévenau) N. Terracc.	Plantae	ACCEPTED		
 5384342	134088817	Amaranthus polygonoides L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus polygonoides L.	Plantae	ACCEPTED		
 5384347	134088747	Amaranthus tuberculatus (Moq.) Sauer	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus tuberculatus (Moq. ex DC.) J.D.Sauer	Plantae	DOUBTFUL		
 5384370	134088751	Amaranthus scleropoides Uline & Bray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus scleropoides Uline & W. L. Bray	Plantae	ACCEPTED		
@@ -2067,7 +2067,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5384931	134087744	Houttuynia cordata Thunb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Houttuynia cordata Thunb.	Plantae	ACCEPTED		
 5384932	134087745	Saururus cernuus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Saururus cernuus L.	Plantae	ACCEPTED		
 5384950	134087436	Eclipta prostrata (L.) L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eclipta prostrata (L.) L.	Plantae	DOUBTFUL		
-5386028	134087422	Cyanus triumfettii (All.) <U+00C1>. L<U+00F6>ve & D. L<U+00F6>ve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyanus triumfettii (All.) Dost<U+00E1>l ex <U+00C1>.L<U+00F6>ve & D.L<U+00F6>ve	Plantae	DOUBTFUL		
+5386028	134087422	Cyanus triumfettii (All.) Á. Löve & D. Löve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyanus triumfettii (All.) Dostál ex Á.Löve & D.Löve	Plantae	DOUBTFUL		
 5386764	134087527	Acmella oleracea (L.) R.K.Jansen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acmella oleracea (L.) R.K.Jansen	Plantae	DOUBTFUL		
 5386938	134087343	Tragopogon porrifolius L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tragopogon porrifolius L.	Plantae	DOUBTFUL		
 5387098	134087411	Dahlia coccinea Cav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dahlia coccinea Cav.	Plantae	DOUBTFUL		
@@ -2105,7 +2105,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5397564	134087346	Vernonia fasciculata Michx.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Vernonia fasciculata Michx.	Plantae	DOUBTFUL		
 5399550	134087392	Rhagadiolus stellatus (L.) Gaertn.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rhagadiolus stellatus (L.) Gaertn.	Plantae	DOUBTFUL		
 5400552	134087529	Ageratina altissima (L.) King & Robinson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ageratina altissima (L.) R.M.King & H.Rob.	Plantae	DOUBTFUL		
-5401007	134087483	Leucanthemum x superbum (Bergm. ex J. Ingram) D.H. Kent	9ff7d317-609b-4c08-bd86-3bc404b77c42	Leucanthemum superbum (Bergmans ex J.W.Ingram) D.H.Kent	Plantae	SYNONYM	7378144	Leucanthemum <U+00D7>superbum (Bergmans ex J.Ingram) Soreng & E.A.Cope
+5401007	134087483	Leucanthemum x superbum (Bergm. ex J. Ingram) D.H. Kent	9ff7d317-609b-4c08-bd86-3bc404b77c42	Leucanthemum superbum (Bergmans ex J.W.Ingram) D.H.Kent	Plantae	SYNONYM	7378144	Leucanthemum ×superbum (Bergmans ex J.Ingram) Soreng & E.A.Cope
 5401239	134087443	Felicia tenella (L.) Nees	9ff7d317-609b-4c08-bd86-3bc404b77c42	Felicia tenella (L.) Nees	Plantae	DOUBTFUL		
 5401508	134087425	Emilia fosbergii Nicolson	9ff7d317-609b-4c08-bd86-3bc404b77c42	Emilia fosbergii Nicolson	Plantae	DOUBTFUL		
 5401760	134087528	Ageratum houstonianum Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ageratum houstonianum Mill.	Plantae	DOUBTFUL		
@@ -2146,12 +2146,12 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5415009	134088664	Linaria supina (L.) Chazelles	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria supina (L.) Chaz.	Plantae	ACCEPTED		
 5415012	134088658	Linaria purpurea (L.) Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria purpurea (L.) Mill.	Plantae	ACCEPTED		
 5415013	134088660	Linaria genistifolia (L.) Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria genistifolia (L.) Mill.	Plantae	ACCEPTED		
-5415014	134088604	Linaria angustissima (Loisel.) Borb<U+00E1>s	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria angustissima (Loisel.) Borb<U+00E1>s	Plantae	ACCEPTED		
+5415014	134088604	Linaria angustissima (Loisel.) Borbás	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria angustissima (Loisel.) Borbás	Plantae	ACCEPTED		
 5415016	134088659	Linaria maroccana Hook. f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria maroccana Hook. fil.	Plantae	ACCEPTED		
 5415018	134088656	Linaria incarnata (Vent.) Spreng.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria incarnata (Vent.) Sprengel	Plantae	ACCEPTED		
 5415039	134089362	Syringa vulgaris L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Syringa vulgaris L.	Plantae	ACCEPTED		
 5415053	134089337	Forsythia viridissima Lindl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Forsythia viridissima Lindl.	Plantae	ACCEPTED		
-5415054	134089338	Forsythia x intermedia Zabel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Forsythia <U+00D7>intermedia Zabel	Plantae	ACCEPTED		
+5415054	134089338	Forsythia x intermedia Zabel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Forsythia ×intermedia Zabel	Plantae	ACCEPTED		
 5415056	134089339	Forsythia suspensa (Thunb.) Vahl	9ff7d317-609b-4c08-bd86-3bc404b77c42	Forsythia suspensa (Thunb.) Vahl	Plantae	ACCEPTED		
 5415100	134089289	Proboscidea louisianica (Mill.) Thell.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Proboscidea louisianica Thell.	Plantae	SYNONYM	7226243	Proboscidea louisianica subsp. louisianica
 5415453	134088702	Acanthus spinosus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acanthus spinosus L.	Plantae	ACCEPTED		
@@ -2166,8 +2166,8 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5421389	134087766	Sarracenia purpurea L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sarracenia purpurea L.	Plantae	ACCEPTED		
 5528747	134087099	Paronychia argentea Lam.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Paronychia argentea Lam.	Plantae	ACCEPTED		
 5530829	134088675	Corydalis cheilanthifolia Hemsl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Corydalis cheilanthifolia Hemsl.	Plantae	ACCEPTED		
-5530881	134088676	Corydalis cava (L.) Schweigg. & K<U+00F6>rte	9ff7d317-609b-4c08-bd86-3bc404b77c42	Corydalis cava (L.) Schweigger & Koerte	Plantae	ACCEPTED		
-5533814	134088189	Ilex x meserveae S.Y. Hu	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ilex <U+00D7>meserveae S. Y. Hu	Plantae	ACCEPTED		
+5530881	134088676	Corydalis cava (L.) Schweigg. & Körte	9ff7d317-609b-4c08-bd86-3bc404b77c42	Corydalis cava (L.) Schweigger & Koerte	Plantae	ACCEPTED		
+5533814	134088189	Ilex x meserveae S.Y. Hu	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ilex ×meserveae S. Y. Hu	Plantae	ACCEPTED		
 5538108	134089400	Imperatoria ostruthium L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Imperatoria ostruthium L.	Plantae	ACCEPTED		
 5538946	134089421	Pimpinella peregrina L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pimpinella peregrina L.	Plantae	ACCEPTED		
 5544928	134089357	Clarkia purpurea (Curtis) A. Nelson & Macbr. subsp. quadrivulnera (Douglas) H. Lewis & M.E. Lewis	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clarkia purpurea subsp. quadrivulnera (Douglas ex Lindl.) H.F.Lewis & M.R.Lewis	Plantae	SYNONYM	8541537	Clarkia purpurea subsp. quadrivulnera (Dougl.) Lewis & Lewis
@@ -2204,10 +2204,10 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5585762	134087114	Gypsophila viscosa Murray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Gypsophila viscosa Murray	Plantae	ACCEPTED		
 5585975	134087097	Silene muscipula L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Silene muscipula L.	Plantae	ACCEPTED		
 5598598	134086954	Lonicera acuminata Wall.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera acuminata Wall.	Plantae	ACCEPTED		
-5598839	134086950	Lonicera x purpusii Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera <U+00D7>purpusii Rehder	Plantae	ACCEPTED		
+5598839	134086950	Lonicera x purpusii Rehd.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera ×purpusii Rehder	Plantae	ACCEPTED		
 5598915	134086948	Lonicera pileata Oliv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera pileata Oliv.	Plantae	ACCEPTED		
 5599249	134086949	Lonicera nitida Wils.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera nitida E.H. Wilson	Plantae	SYNONYM	7764700	Lonicera pileata var. yunnanensis (Franch.) Bernd Schulz
-5602664	134086975	Canna x generalis L.H. Bailey	9ff7d317-609b-4c08-bd86-3bc404b77c42	Canna <U+00D7>generalis L. H. Bailey	Plantae	ACCEPTED		
+5602664	134086975	Canna x generalis L.H. Bailey	9ff7d317-609b-4c08-bd86-3bc404b77c42	Canna ×generalis L. H. Bailey	Plantae	ACCEPTED		
 5605751	134089225	Lycopus exaltatus L. f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lycopus exaltatus L.f.	Plantae	ACCEPTED		
 5607452	134089197	Thymus x citriodorus (Pers.) Schreb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Thymus citriodorus (Pers.) Schreb.	Plantae	ACCEPTED		
 5608183	134089232	Lallemantia iberica (Bieb.) Fisch. & C.A. Mey.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lallemantia iberica (M.Bieb.) Fisch. & C.A.Mey.	Plantae	ACCEPTED		
@@ -2219,7 +2219,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5646136	134086855	Elatine alsinastrum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Elatine alsinastrum L.	Plantae	ACCEPTED		
 5646410	134089267	Blumenbachia hieronymi Urban	9ff7d317-609b-4c08-bd86-3bc404b77c42	Blumenbachia hieronymi Urb.	Plantae	ACCEPTED		
 5652131	134088138	Polygonum aviculare subsp. rurivagum (Jord. ex Boreau) Berher	9ff7d317-609b-4c08-bd86-3bc404b77c42	Polygonum aviculare subsp. rurivagum (Boreau) Berher	Plantae	ACCEPTED		
-5652296	113794942	Fallopia x bohemica	e4746398-f7c4-47a1-a474-ae80a4f18e92	Fallopia bohemica (Chrtek & Chrtkov<U+00E1>) J.P. Bailey	Plantae	SYNONYM	4038485	Reynoutria bohemica J. Chrtek & A. Chrtkov<U+00E1>
+5652296	113794942	Fallopia x bohemica	e4746398-f7c4-47a1-a474-ae80a4f18e92	Fallopia bohemica (Chrtek & Chrtková) J.P. Bailey	Plantae	SYNONYM	4038485	Reynoutria bohemica J. Chrtek & A. Chrtková
 5659657	134088215	Gilia capitata Sims cf. subsp. mediomontana V. Grant	9ff7d317-609b-4c08-bd86-3bc404b77c42	Gilia capitata subsp. mediomontana V. Grant	Plantae	ACCEPTED		
 5660450	134087139	Pulmonaria rubra Schott.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pulmonaria rubra Schott	Plantae	ACCEPTED		
 5662067	134087133	Anchusa ovata Lehm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anchusa ovata Lehm.	Plantae	ACCEPTED		
@@ -2251,21 +2251,21 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 5690287	134087015	Sedum cepaea L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sedum cepaea L.	Plantae	ACCEPTED		
 5690854	134087034	Crassula peduncularis (Smith) F. Meigen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crassula peduncularis (Sm.) Meigen	Plantae	ACCEPTED		
 5700912	134087561	Bidens frondosa L. var. anomala Porter ex Fernald	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bidens frondosa var. anomala Porter ex Fernald	Plantae	SYNONYM	5392174	Bidens frondosa L.
-5704991	134087456	Helenium x clementii Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Helenium <U+00D7>clementii Verloove & Lambinon	Plantae	DOUBTFUL		
+5704991	134087456	Helenium x clementii Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Helenium ×clementii Verloove & Lambinon	Plantae	DOUBTFUL		
 5709400	134087342	Tragopogon x mirabilis Rouy	9ff7d317-609b-4c08-bd86-3bc404b77c42	Tragopogon mirabilis Rouy	Plantae	DOUBTFUL		
 5825913	134088615	Pinus nigra Arnold. subsp. laricio Maire	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pinus nigra subsp. laricio (Poir.) Maire	Plantae	ACCEPTED		
 5829065	134087854	Physalis alkekengi L. var. franchetii (Masters) Makino	9ff7d317-609b-4c08-bd86-3bc404b77c42	Physalis alkekengi var. franchetii (Masters) Makino	Plantae	ACCEPTED		
-5831060	134087587	Crepis foetida L. subsp. rhoeadifolia (Bieb.) <U+010C>elak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crepis foetida subsp. rhoeadifolia (M.Bieb.) Celak.	Plantae	DOUBTFUL		
+5831060	134087587	Crepis foetida L. subsp. rhoeadifolia (Bieb.) Čelak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crepis foetida subsp. rhoeadifolia (M.Bieb.) Celak.	Plantae	DOUBTFUL		
 5831068	134087418	Crepis sancta (L.) Bornm. subsp. nemausensis (Vill.) Babc.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Crepis sancta subsp. nemausensis (Gouan) Babc.	Plantae	ACCEPTED		
 5831906	134089386	Bupleurum gerardi All.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bupleurum gerardii All.	Plantae	ACCEPTED		
 5914287	134089281	Melia azedarach L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Melia azedarach L.	Plantae	ACCEPTED		
-5930559	134088188	Ilex x altaclerensis	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ilex <U+00D7>altaclerensis (Loudon) Dallim.	Plantae	ACCEPTED		
+5930559	134088188	Ilex x altaclerensis	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ilex ×altaclerensis (Loudon) Dallim.	Plantae	ACCEPTED		
 6026420	134089414	Seseli montanum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Seseli montanum L.	Plantae	SYNONYM	8046546	Hippomarathrum montanum subsp. montanum
 6026665	134089424	Torilis africana Spreng.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Torilis africana Spreng.	Plantae	ACCEPTED		
 6026954	134089413	Scandix stellata Banks & Sol.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Scandix stellata Banks & Solander	Plantae	ACCEPTED		
 6026972	134089393	Bupleurum praealtum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bupleurum praealtum L.	Plantae	ACCEPTED		
 6027089	134089415	Smyrnium perfoliatum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Smyrnium perfoliatum L.	Plantae	ACCEPTED		
-6027313	134089395	Daucus glochidiatus (Labill.) Fisch., C.A. Mey. & Av<U+00E9>-Lall.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus glochidiatus (Labill.) Fischer, C. Meyer & Ave Lall.	Plantae	ACCEPTED		
+6027313	134089395	Daucus glochidiatus (Labill.) Fisch., C.A. Mey. & Avé-Lall.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus glochidiatus (Labill.) Fischer, C. Meyer & Ave Lall.	Plantae	ACCEPTED		
 6027382	134089398	Daucus aureus Desf.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daucus aureus Desf.	Plantae	ACCEPTED		
 6035549	134088712	Chenopodium striatiforme J. Murr	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chenopodium striatiforme Murr	Plantae	ACCEPTED		
 6063730	134087400	Senecio vernalis Waldst. & Kit.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Senecio vernalis Waldst. & Kit.	Plantae	SYNONYM	4228701	Senecio leucanthemifolius subsp. vernalis (Waldst. & Kit.) Greuter
@@ -2284,10 +2284,10 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 6109637	134088447	Cynodon dactylon (L.) Pers.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cynodon dactylon (L.) Pers.	Plantae	ACCEPTED		
 6109699	134087887	Phoenix dactylifera L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phoenix dactylifera L.	Plantae	ACCEPTED		
 6290046	134087829	Solanum villosum Mill. subsp. miniatum (Bernh. ex Willd.) Edmonds	9ff7d317-609b-4c08-bd86-3bc404b77c42	Solanum villosum subsp. miniatum (Bernh. ex Willd.) Edmonds	Plantae	SYNONYM	2929505	Solanum villosum Mill.
-6300805	134087519	Pilosella bauhinii (Schult. ex Besser) Arv.-Touv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella bauhini Arv.-Touv.	Plantae	HETEROTYPIC_SYNONYM	8111836	Pilosella piloselloides subsp. bauhini (Schult.) S.Br<U+00E4>ut. & Greuter
+6300805	134087519	Pilosella bauhinii (Schult. ex Besser) Arv.-Touv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella bauhini Arv.-Touv.	Plantae	HETEROTYPIC_SYNONYM	8111836	Pilosella piloselloides subsp. bauhini (Schult.) S.Bräut. & Greuter
 6304873	134087609	Cicerbita macrophylla (Willd.) Wallr. subsp. macrophylla	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cicerbita macrophylla subsp. macrophylla	Plantae	SYNONYM	3140436	Lactuca macrophylla (Willd.) A.Gray
 6308164	134089422	Scandix australis L. subsp. grandiflora (L.) Thell.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Scandix australis subsp. grandiflora (L.) Thell.	Plantae	ACCEPTED		
-6312441	134088560	Bromus hordeaceus L. subsp. molliformis (Lloyd) Maire & Weiller	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus hordeaceus subsp. molliformis (J.Lloyd ex Billot) Maire & Weiller	Plantae	SYNONYM	8918909	Bromus hordeaceus subsp. divaricatus (Bonnier & Layens) Kergu<U+00E9>len
+6312441	134088560	Bromus hordeaceus L. subsp. molliformis (Lloyd) Maire & Weiller	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus hordeaceus subsp. molliformis (J.Lloyd ex Billot) Maire & Weiller	Plantae	SYNONYM	8918909	Bromus hordeaceus subsp. divaricatus (Bonnier & Layens) Kerguélen
 6313647	134088293	Panicum capillare L. subsp. barbipulvinatum (Nash) Tzvelev	9ff7d317-609b-4c08-bd86-3bc404b77c42	Panicum capillare subsp. barbipulvinatum (Nash) Tzvelev	Plantae	SYNONYM	2705162	Panicum capillare L.
 6362904	134087894	Populus trichocarpa Torr. & A. Gray ex Hook.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus trichocarpa Torr. & Gray ex Hooker	Plantae	SYNONYM	3806052	Populus balsamifera subsp. trichocarpa (Torr. & Gray) Brayshaw
 6363496	134087117	Dianthus superbus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dianthus superbus L.	Plantae	ACCEPTED		
@@ -2324,7 +2324,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 6710856	134088533	Austrostipa scabra (Lindl.) S.W.L. Jacobs & J. Everett subsp. scabra	9ff7d317-609b-4c08-bd86-3bc404b77c42	Austrostipa scabra subsp. scabra	Plantae	ACCEPTED		
 7066596	134087339	Zinnia angustifolia Humb., Bonpl. & Kunth var. angustifolia	9ff7d317-609b-4c08-bd86-3bc404b77c42	Zinnia angustifolia var. angustifolia	Plantae	DOUBTFUL		
 7068379	134088894	Vicia sativa L. subsp. sativa	9ff7d317-609b-4c08-bd86-3bc404b77c42	Vicia sativa subsp. sativa	Plantae	ACCEPTED		
-7068732	134087290	Arabidopsis arenosa (L.) Lawalr<U+00E9>e subsp. arenosa	9ff7d317-609b-4c08-bd86-3bc404b77c42	Arabidopsis arenosa subsp. arenosa	Plantae	ACCEPTED		
+7068732	134087290	Arabidopsis arenosa (L.) Lawalrée subsp. arenosa	9ff7d317-609b-4c08-bd86-3bc404b77c42	Arabidopsis arenosa subsp. arenosa	Plantae	ACCEPTED		
 7068845	134088720	Beta vulgaris L. subsp. vulgaris	9ff7d317-609b-4c08-bd86-3bc404b77c42	Beta vulgaris subsp. vulgaris	Plantae	ACCEPTED		
 7070211	134086899	Cyperus longus L. subsp. longus	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyperus longus subsp. longus	Plantae	ACCEPTED		
 7096205	134089237	Clinopodium nepeta Kuntze subsp. nepeta	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clinopodium nepeta subsp. nepeta	Plantae	ACCEPTED		
@@ -2350,7 +2350,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7226804	134088503	Avena sterilis L. subsp. sterilis	9ff7d317-609b-4c08-bd86-3bc404b77c42	Avena sterilis subsp. sterilis	Plantae	ACCEPTED		
 7227181	134086892	Carex muricata L. subsp. muricata	9ff7d317-609b-4c08-bd86-3bc404b77c42	Carex muricata subsp. muricata	Plantae	ACCEPTED		
 7230699	134088617	Pinus nigra Arnold subsp. nigra	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pinus nigra subsp. nigra	Plantae	ACCEPTED		
-7258888	134089076	Erodium moschatum (L.) L'H<U+00E9>rit. var. moschatum	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium moschatum var. moschatum	Plantae	SYNONYM	9115258	Erodium moschatum
+7258888	134089076	Erodium moschatum (L.) L'Hérit. var. moschatum	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium moschatum var. moschatum	Plantae	SYNONYM	9115258	Erodium moschatum
 7262908	134087721	Acer cappadocicum Gled.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acer cappadocicum Gled.	Plantae	ACCEPTED		
 7262958	134087724	Acer monspessulanum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acer monspessulanum L.	Plantae	ACCEPTED		
 7263145	134087729	Acer rufinerve Siebold & Zucc.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Acer rufinerve Sieb. & Zucc.	Plantae	ACCEPTED		
@@ -2385,18 +2385,18 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7307492	134089226	Leonurus quinquelobatus Gilib.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Leonurus quinquelobatus Gilib.	Plantae	ACCEPTED		
 7307829	134089220	Lavandula dentata L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lavandula dentata L.	Plantae	ACCEPTED		
 7308043	134089230	Lamium garganicum L. subsp. garganicum	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lamium garganicum subsp. garganicum	Plantae	ACCEPTED		
-7309012	134089181	Callicarpa bodinieri H. L<U+00E9>v.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Callicarpa bodinieri H.L<U+00E9>v.	Plantae	ACCEPTED		
+7309012	134089181	Callicarpa bodinieri H. Lév.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Callicarpa bodinieri H.Lév.	Plantae	ACCEPTED		
 7313595	134087763	Asarum europaeum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Asarum europaeum L.	Plantae	ACCEPTED		
 7314281	134087098	Paronychia brasiliana DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Paronychia brasiliana DC.	Plantae	ACCEPTED		
 7315023	134089493	Roemeria hybrida (L.) DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Roemeria hybrida (L.) DC.	Plantae	ACCEPTED		
 7315030	134088690	Glaucium grandiflorum Boiss. & A. Huet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Glaucium grandiflorum Boiss. & Huet	Plantae	ACCEPTED		
-7315063	134089492	Pseudofumaria alba (Mill.) Lid<U+00E9>n	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pseudofumaria alba (Mill.) Lid<U+00E9>n	Plantae	ACCEPTED		
+7315063	134089492	Pseudofumaria alba (Mill.) Lidén	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pseudofumaria alba (Mill.) Lidén	Plantae	ACCEPTED		
 7315072	134088695	Papaver atlanticum (Ball) Coss.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Papaver atlanticum (Ball) Coss.	Plantae	ACCEPTED		
 7318448	134089405	Eryngium bourgatii Gouan	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eryngium bourgatii Gouan	Plantae	ACCEPTED		
 7319302	134086915	Dryopteris cycadina (Franch. & Sav.) C. Christens.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dryopteris cycadina (Franch. & Sav.) C. Chr.	Plantae	ACCEPTED		
 7322143	134089452	Oenothera victorini R.R. Gates & Catcheside	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera victorinii Gates & Catcheside	Plantae	ACCEPTED		
-7322292	134089466	Oenothera cambrica Rosta<U+0144>ski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera cambrica K. Rostanski	Plantae	ACCEPTED		
-7322373	134089457	Oenothera x issleri Renner ex Rosta<U+0144>ski	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera issleri Renn. ex Rostanski	Plantae	ACCEPTED		
+7322292	134089466	Oenothera cambrica Rostański	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera cambrica K. Rostanski	Plantae	ACCEPTED		
+7322373	134089457	Oenothera x issleri Renner ex Rostański	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera issleri Renn. ex Rostanski	Plantae	ACCEPTED		
 7322393	134089434	Oenothera indecora Cambess.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera indecora Camb.	Plantae	ACCEPTED		
 7322529	134089443	Oenothera rubricaulis Kleb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera rubricaulis Klebahn	Plantae	ACCEPTED		
 7322738	134089442	Oenothera perangusta R.R. Gates	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera perangusta Gates	Plantae	ACCEPTED		
@@ -2408,7 +2408,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7323834	134088767	Amaranthus macrocarpus Benth. var. macrocarpus	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus macrocarpus var. macrocarpus	Plantae	ACCEPTED		
 7323906	134087059	Convolvulus tricolor L. subsp. tricolor	9ff7d317-609b-4c08-bd86-3bc404b77c42	Convolvulus tricolor subsp. tricolor	Plantae	ACCEPTED		
 7324046	134087042	Ipomoea hederacea (L.) Jacq. var. hederacea	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ipomoea hederacea var. hederacea	Plantae	ACCEPTED		
-7324613	134088490	Elymus scaber (R. Brown) A. L<U+00F6>ve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Elymus scaber (R. Br.) A. Love	Plantae	SYNONYM	9108110	Anthosachne scabra (R.Br.) Nevski
+7324613	134088490	Elymus scaber (R. Brown) A. Löve	9ff7d317-609b-4c08-bd86-3bc404b77c42	Elymus scaber (R. Br.) A. Love	Plantae	SYNONYM	9108110	Anthosachne scabra (R.Br.) Nevski
 7327990	134088837	Rhododendron ponticum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rhododendron ponticum L.	Plantae	ACCEPTED		
 7327990	113794896	Rhododendron ponticum	e4746398-f7c4-47a1-a474-ae80a4f18e92	Rhododendron ponticum L.	Plantae	ACCEPTED		
 7331240	134087080	Halimium alyssoides (Lam.) K. Koch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Halimium alyssoides (Lam.) K. Koch	Plantae	SYNONYM	3596131	Halimium lasianthum subsp. alyssoides (Lam.) Greuter
@@ -2424,7 +2424,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7339492	134087750	Rodgersia aesculifolia Batalin	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rodgersia aesculifolia Batalin	Plantae	ACCEPTED		
 7346090	134089500	Erythranthe moschata ( Douglas ex Lindl. ) G.L. Nesom	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erythranthe moschata (Douglas ex Lindl.) G.L.Nesom	Plantae	ACCEPTED		
 7346102	134089498	Erythranthe guttata (DC.) G.L. Nesom (incl. hybrids)	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erythranthe guttata (DC.) G.L.Nesom	Plantae	ACCEPTED		
-7350989	134089211	Nepeta x faassenii Bergm. ex Stearn	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nepeta <U+00D7>faassenii Bergmans ex Stearn	Plantae	ACCEPTED		
+7350989	134089211	Nepeta x faassenii Bergm. ex Stearn	9ff7d317-609b-4c08-bd86-3bc404b77c42	Nepeta ×faassenii Bergmans ex Stearn	Plantae	ACCEPTED		
 7351929	134088595	Chaenorhinum origanifolium (L.) Kostel.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chaenorhinum origanifolium (L.) Kostel.	Plantae	ACCEPTED		
 7353862	134087808	Verbascum x divaricatum Kittel	9ff7d317-609b-4c08-bd86-3bc404b77c42	Verbascum divaricatum Kitt.	Plantae	ACCEPTED		
 7361239	134088246	Triraphis mollis R. Brown	9ff7d317-609b-4c08-bd86-3bc404b77c42	Triraphis mollis R.Br.	Plantae	ACCEPTED		
@@ -2443,8 +2443,8 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7437438	134089173	Clinopodium grandiflorum (L.) O. Kuntze	9ff7d317-609b-4c08-bd86-3bc404b77c42	Clinopodium grandiflorum (L.) Kuntze	Plantae	ACCEPTED		
 7437751	134087658	Urtica membranacea Poiret ex Savigny	9ff7d317-609b-4c08-bd86-3bc404b77c42	Urtica membranacea Poir. ex Savigny	Plantae	DOUBTFUL		
 7437845	134087630	Centaurea alba L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea alba L.	Plantae	DOUBTFUL		
-7455425	134087696	Phyla nodiflora (L.) var. minor (Hook.) N. O'Leary & M<U+00FA>lgura	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phyla nodiflora var. minor (Gillies & Hook.) N.O'Leary & M<U+00FA>lgura	Plantae	ACCEPTED		
-7466434	134089418	Pastinaca sativa L. subsp. urens (Req. ex Godr.) <U+010C>elak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pastinaca sativa subsp. urens (Req. ex Godr.) Celak.	Plantae	SYNONYM	7224157	Pastinaca sativa subsp. sativa
+7455425	134087696	Phyla nodiflora (L.) var. minor (Hook.) N. O'Leary & Múlgura	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phyla nodiflora var. minor (Gillies & Hook.) N.O'Leary & Múlgura	Plantae	ACCEPTED		
+7466434	134089418	Pastinaca sativa L. subsp. urens (Req. ex Godr.) Čelak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pastinaca sativa subsp. urens (Req. ex Godr.) Celak.	Plantae	SYNONYM	7224157	Pastinaca sativa subsp. sativa
 7477038	134087805	Scrophularia scorodonia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Scrophularia scorodonia L.	Plantae	ACCEPTED		
 7477513	134088230	Vulpia alopecuros (Schousb.) Dum.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Vulpia alopecuros (Schousb.) Dumort.	Plantae	SYNONYM	5827791	Vulpia alopecuros (Schousb.) Link
 7482178	134088603	Kickxia elatine (L.) Dum. subsp. crinita (Mabille) Greuter	9ff7d317-609b-4c08-bd86-3bc404b77c42	Kickxia elatine subsp. crinita (Mabille) W. Greuter	Plantae	ACCEPTED		
@@ -2460,14 +2460,14 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7534154	134086934	Agrostemma gracile Boiss.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Agrostemma gracile Boiss.	Plantae	SYNONYM	3085366	Agrostemma brachyloba (Fenzl) K. Hammer
 7535300	134088624	Veronica glauca Smith	9ff7d317-609b-4c08-bd86-3bc404b77c42	Veronica glauca Sm.	Plantae	ACCEPTED		
 7538678	134088710	Delosperma cooperi (Hook.f.) L. Bolus	9ff7d317-609b-4c08-bd86-3bc404b77c42	Delosperma cooperi (Hook. f.) L. Bolus	Plantae	SYNONYM	8078333	Delosperma cooperi (Hook. fil.) L. Bol.
-7544073	134087755	Saxifraga x arendsii Engl. s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Saxifraga <U+00D7>arendsii Engl.	Plantae	ACCEPTED		
+7544073	134087755	Saxifraga x arendsii Engl. s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Saxifraga ×arendsii Engl.	Plantae	ACCEPTED		
 7549853	134088472	Disakisperma dubia (Kunth) P.M. Peterson & N. Snow	9ff7d317-609b-4c08-bd86-3bc404b77c42	Disakisperma dubium (Kunth) P.M.Peterson & N.Snow	Plantae	ACCEPTED		
 7556596	134089114	Galanthus x warei J. Allen	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galanthus warei J.Allen	Plantae	SYNONYM	2855356	Galanthus nivalis L.
 7560578	134087288	Barbarea stricta Andrz.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Barbarea stricta Andrz.	Plantae	SYNONYM	5374614	Barbarea stricta Andrz. ex Besser
 7560711	134088670	Oxalis tetraphylla Cav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis tetraphylla Cav.	Plantae	ACCEPTED		
 7564934	134089478	Odontites jaubertianus (Boreau) D. Dietrich ex Walp.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Odontites jaubertiana (Boreau) D. Dietr. ex Walpers	Plantae	ACCEPTED		
 7569785	134087494	Hieracium pilosum Schleich. ex Froel.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hieracium pilosum Froel.	Plantae	DOUBTFUL		
-7576335	134088742	Amaranthus x ozanonii	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus <U+00D7>ozanonii Piszter	Plantae	DOUBTFUL		
+7576335	134088742	Amaranthus x ozanonii	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus ×ozanonii Piszter	Plantae	DOUBTFUL		
 7587923	134087448	Euchiton sphaericus (Willd.) Holub	9ff7d317-609b-4c08-bd86-3bc404b77c42	Euchiton sphaericus (Willd.) Holub	Plantae	DOUBTFUL		
 7593922	113794843	Aster lanceolatus	e4746398-f7c4-47a1-a474-ae80a4f18e92	Aster lanceolatus	Plantae	ACCEPTED		
 7595738	134089460	Epilobium x novae-civitatis Smejkal	9ff7d317-609b-4c08-bd86-3bc404b77c42	Epilobium novae-civitatis Smejkal	Plantae	ACCEPTED		
@@ -2528,29 +2528,29 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 7872129	134087564	Bidens frondosa L. var. frondosa	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bidens frondosa var. frondosa	Plantae	SYNONYM	5392174	Bidens frondosa L.
 7877091	134088783	Dysphania pseudomultiflora (J. Murr) Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dysphania pseudomultiflora (Murr) Verloove & Lambinon	Plantae	ACCEPTED		
 7878507	134089499	Erythranthe cuprea (Dombrain) G.L. Nesom (incl. hybrids)	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erythranthe cuprea (Dombrain) G.L.Nesom	Plantae	ACCEPTED		
-7881150	134087649	Polygonatum x hybridum Br<U+00FC>gger	9ff7d317-609b-4c08-bd86-3bc404b77c42	Polygonatum hybridum Br<U+00FC>gger	Plantae	ACCEPTED		
+7881150	134087649	Polygonatum x hybridum Brügger	9ff7d317-609b-4c08-bd86-3bc404b77c42	Polygonatum hybridum Brügger	Plantae	ACCEPTED		
 7882646	134088106	Rosa virginiana J. Herrmann	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rosa virginiana J. Herrmann	Plantae	ACCEPTED		
 7883427	134088239	Triticum monococcum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Triticum monococcum L.	Plantae	ACCEPTED		
-7889822	134088097	Spiraea x billardii H<U+00E9>rincq	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea <U+00D7>billardii H<U+00E9>rincq	Plantae	DOUBTFUL		
+7889822	134088097	Spiraea x billardii Hérincq	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea ×billardii Hérincq	Plantae	DOUBTFUL		
 7894250	134087782	Datura ferox L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Datura ferox L.	Plantae	ACCEPTED		
-7895013	134087103	Minuartia mediterranea (Link) K. Mal<U+00FD>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Minuartia mediterranea (Link) K. Maly	Plantae	HETEROTYPIC_SYNONYM	5587011	Sabulina mediterranea (Link) Rchb.
-7901652	134087680	Viola x wittrockiana Gams ex Kappert	9ff7d317-609b-4c08-bd86-3bc404b77c42	Viola <U+00D7>wittrockiana Gams ex Kappert	Plantae	DOUBTFUL		
+7895013	134087103	Minuartia mediterranea (Link) K. Malý	9ff7d317-609b-4c08-bd86-3bc404b77c42	Minuartia mediterranea (Link) K. Maly	Plantae	HETEROTYPIC_SYNONYM	5587011	Sabulina mediterranea (Link) Rchb.
+7901652	134087680	Viola x wittrockiana Gams ex Kappert	9ff7d317-609b-4c08-bd86-3bc404b77c42	Viola ×wittrockiana Gams ex Kappert	Plantae	DOUBTFUL		
 7902463	134086956	Lonicera maackii (Rupr.) Maxim.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera maackii (Rupr.) Maxim.	Plantae	ACCEPTED		
 7903057	134087313	Brassica rapa L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Brassica rapa L.	Plantae	ACCEPTED		
 7903764	134087402	Senecio sarracenicus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Senecio sarracenicus L.	Plantae	DOUBTFUL		
 7905507	134088813	Amaranthus albus L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus albus L.	Plantae	ACCEPTED		
 7908347	134088334	Setaria verticillata (L.) Beauv. var. ambigua (Guss.) Parl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Setaria verticillata var. ambigua (Guss.) Parl.	Plantae	SYNONYM	5289686	Setaria verticillata (L.) P.Beauv.
-7911993	134088171	Rumex pseudonatronatus (Borb<U+00E1>s) Murb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex pseudonatronatus (Borb.) Borb. ex Murb.	Plantae	ACCEPTED		
+7911993	134088171	Rumex pseudonatronatus (Borbás) Murb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex pseudonatronatus (Borb.) Borb. ex Murb.	Plantae	ACCEPTED		
 7915783	134089450	Oenothera x fallax Renner	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera fallax Renner	Plantae	ACCEPTED		
-7924168	134089153	Iris x hollandica Hort.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Iris <U+00D7>hollandica Bermans	Plantae	ACCEPTED		
-7925372	134086966	Cerastium x maureri M. Schulze	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cerastium <U+00D7>maureri M.Schulze	Plantae	DOUBTFUL		
+7924168	134089153	Iris x hollandica Hort.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Iris ×hollandica Bermans	Plantae	ACCEPTED		
+7925372	134086966	Cerastium x maureri M. Schulze	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cerastium ×maureri M.Schulze	Plantae	DOUBTFUL		
 7926755	134089469	Oenothera cruciata Nutt. ex G. Don	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera cruciata Nutt. ex G. Don	Plantae	SYNONYM	8994150	Oenothera parviflora L.
 7926816	134089057	Monsonia angustifolia E. Mey. ex A. Rich.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Monsonia angustifolia E. Mey. ex A. Rich.	Plantae	DOUBTFUL		
 7933495	134088792	Sclerolaena muricata (Moq.) Domin	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sclerolaena muricata (Moq.) Domin	Plantae	ACCEPTED		
 7958783	134087137	Pulmonaria mollis Wulfen ex Hornem.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pulmonaria mollis Wulfen ex Hornem.	Plantae	ACCEPTED		
 7961815	134086910	Schoenoplectiella bucharica (Roshev.) Hayasaka	9ff7d317-609b-4c08-bd86-3bc404b77c42	Schoenoplectiella bucharica (Roshev.) Hayas.	Plantae	ACCEPTED		
 7963687	134088594	Linaria chalepensis (L.) Mill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria chalepensis (L.) Mill.	Plantae	ACCEPTED		
-7975549	134088741	Amaranthus x ralletii Contr<U+00E9>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus ralletii Contr<U+00E9>	Plantae	ACCEPTED		
+7975549	134088741	Amaranthus x ralletii Contré	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus ralletii Contré	Plantae	ACCEPTED		
 7978544	134087890	Hydrocotyle ranunculoides L. f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hydrocotyle ranunculoides L. fil.	Plantae	ACCEPTED		
 7988337	134086932	Valerianella locusta (L.) Laterr. var. oleracea (Schlecht.) Breistr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Valerianella locusta var. oleracea (Schltdl.) Breistr.	Plantae	ACCEPTED		
 7989836	134087135	Symphytum caucasicum M. Bieb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphytum caucasicum M. Bieb.	Plantae	ACCEPTED		
@@ -2559,7 +2559,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 8002952	134087531	Ambrosia artemisiifolia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ambrosia artemisiifolia L.	Plantae	ACCEPTED		
 8008561	134088383	Phalaris paradoxa L. var. praemorsa (Lam.) Coss. & Durieu	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phalaris paradoxa var. praemorsa (Lam.) Coss. & Durieu	Plantae	SYNONYM	5289758	Phalaris paradoxa L.
 8012084	134087116	Dianthus subacaulis Vill.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dianthus subacaulis Vill.	Plantae	ACCEPTED		
-8012649	134088177	Rumex x hybridus Kindb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex <U+00D7>hybridus Kindb.	Plantae	ACCEPTED		
+8012649	134088177	Rumex x hybridus Kindb.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex ×hybridus Kindb.	Plantae	ACCEPTED		
 8018277	134087610	Centaurea pectinata L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea pectinata L.	Plantae	DOUBTFUL		
 8018483	134088404	Eragrostis neomexicana Vasey	9ff7d317-609b-4c08-bd86-3bc404b77c42	Eragrostis neomexicana Vasey	Plantae	ACCEPTED		
 8021567	134089157	Hypericum olympicum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hypericum olympicum L.	Plantae	ACCEPTED		
@@ -2585,9 +2585,9 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 8144599	134088697	Papaver nudicaule L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Papaver nudicaule L.	Plantae	ACCEPTED		
 8150863	134087087	Silene cretica L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Silene cretica L.	Plantae	ACCEPTED		
 8153538	134089439	Oenothera oehlkersii Kappus	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oenothera oehlkersii A. Kappus	Plantae	ACCEPTED		
-8154049	134087895	Populus nigra L. var. italica Muenchh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus nigra var. italica M<U+00FC>nchh.	Plantae	HETEROTYPIC_SYNONYM	7358677	Populus nigra var. italica (Moench.) Koehne
+8154049	134087895	Populus nigra L. var. italica Muenchh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Populus nigra var. italica Münchh.	Plantae	HETEROTYPIC_SYNONYM	7358677	Populus nigra var. italica (Moench.) Koehne
 8157769	134088772	Chenopodium x preissmannii J. Murr	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chenopodium preissmannii Murr	Plantae	ACCEPTED		
-8168170	134088241	Triticum dicoccon (Schrank) Sch<U+00FC>bl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Triticum dicoccum Schrank ex Sch<U+00FC>bl.	Plantae	SYNONYM	8389446	Triticum turgidum subsp. dicoccum (Schrank ex Sch<U+00FC>bl.) Thell.
+8168170	134088241	Triticum dicoccon (Schrank) Schübl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Triticum dicoccum Schrank ex Schübl.	Plantae	SYNONYM	8389446	Triticum turgidum subsp. dicoccum (Schrank ex Schübl.) Thell.
 8170635	134088098	Spiraea japonica L. f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea japonica L. fil.	Plantae	ACCEPTED		
 8173637	134087603	Centaurea x extranea Beck	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea extranea Beck	Plantae	HOMOTYPIC_SYNONYM	4253832	Centaurea extranea Beck ex Gugler
 8174035	134088507	Avena nuda L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Avena nuda L.	Plantae	ACCEPTED		
@@ -2605,16 +2605,16 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 8195160	134087552	Artemisia pontica L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Artemisia pontica L.	Plantae	SYNONYM	3121213	Artemisia afra Jacq. ex Willd.
 8199647	134087596	Cichorium calvum Schultz-Bip.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cichorium calvum Sch.Bip.	Plantae	HETEROTYPIC_SYNONYM	5392271	Cichorium calvum Sch.Bip. ex Asch.
 8201823	134086942	Valeriana phu L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Valeriana phu L.	Plantae	ACCEPTED		
-8207659	134087029	Cornus sanguinea L. subsp. australis (C.A. Mey.) J<U+00E1>v. ex So<U+00F3> in So<U+00F3> & J<U+00E1>v.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cornus sanguinea subsp. australis (C.A.Mey.) So<U+00F3>	Plantae	SYNONYM	3663237	Cornus sanguinea subsp. australis (C.A.Mey.) J<U+00E1>v.
+8207659	134087029	Cornus sanguinea L. subsp. australis (C.A. Mey.) Jáv. ex Soó in Soó & Jáv.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cornus sanguinea subsp. australis (C.A.Mey.) Soó	Plantae	SYNONYM	3663237	Cornus sanguinea subsp. australis (C.A.Mey.) Jáv.
 8207952	134087242	Matthiola incana (L.) R. Brown	9ff7d317-609b-4c08-bd86-3bc404b77c42	Matthiola incana (Linnaeus) R. Brown	Plantae	DOUBTFUL		
 8211936	134087484	Inula spiraeifolia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Inula spiraeifolia L.	Plantae	DOUBTFUL		
-8212772	134086944	Symphoricarpos x doorenbosii Kr<U+00FC>ssm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphoricarpos <U+00D7>doorenbosii Krussm.	Plantae	ACCEPTED		
-8221404	134088648	Platanus x hispanica Mill. ex M<U+00FC>nchh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Platanus hispanicus Muenchh.	Plantae	SYNONYM	3152814	Platanus hybrida Brot.
+8212772	134086944	Symphoricarpos x doorenbosii Krüssm.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Symphoricarpos ×doorenbosii Krussm.	Plantae	ACCEPTED		
+8221404	134088648	Platanus x hispanica Mill. ex Münchh.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Platanus hispanicus Muenchh.	Plantae	SYNONYM	3152814	Platanus hybrida Brot.
 8223023	134087758	Saxifraga x geum L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Saxifraga geum L.	Plantae	ACCEPTED		
 8227753	134087153	Anchusa procera Besser	9ff7d317-609b-4c08-bd86-3bc404b77c42	Anchusa procera Bessey	Plantae	DOUBTFUL		
-8236373	134088054	Spiraea x vanhouttei (Briot) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea <U+00D7>vanhouttei (Briot) Carri<U+00E8>re	Plantae	SYNONYM	3026622	Spiraea vanhouttei (Briot) Zabel
+8236373	134088054	Spiraea x vanhouttei (Briot) Carr.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea ×vanhouttei (Briot) Carrière	Plantae	SYNONYM	3026622	Spiraea vanhouttei (Briot) Zabel
 8242032	134088700	Papaver somniferum L. subsp. setigerum (DC.) Arcang.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Papaver somniferum subsp. setigerum (DC.) Arcangeli	Plantae	SYNONYM	3602227	Papaver setigerum DC.
-8242651	134088179	Rumex x erubescens Simonk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex <U+00D7>erubescens Simonk.	Plantae	DOUBTFUL		
+8242651	134088179	Rumex x erubescens Simonk.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex ×erubescens Simonk.	Plantae	DOUBTFUL		
 8243150	134088794	Spirobassia hirsuta (L.) Freitag & G. Kadereit	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spirobassia hirsuta (L.) Freitag & G. Kadereit	Plantae	SYNONYM	5568298	Bassia crassifolia (Pall.) Soldano
 8244019	134089426	Trachyspermum ammi (L.) Sprague ex Turrill	9ff7d317-609b-4c08-bd86-3bc404b77c42	Trachyspermum ammi (L.) Sprague ex Turrill	Plantae	HETEROTYPIC_SYNONYM	3034241	Trachyspermum ammi (L.) Sprague
 8246651	134087975	Adonis flammea Jacq.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Adonis flammea Jacq.	Plantae	ACCEPTED		
@@ -2627,21 +2627,21 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 8279669	134087078	Silene viscosa (L.) Pers.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Silene viscosa (L.) Pers.	Plantae	ACCEPTED		
 8287616	134088665	Linaria simplex (Willd.) DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Linaria simplex (Willd.) DC.	Plantae	ACCEPTED		
 8288647	134089148	Pterocarya fraxinifolia (Lam.) Spach	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pterocarya fraxinifolia (Poir.) Spach	Plantae	SYNONYM	4205311	Pterocarya pterocarpa (Michx.) Kunth ex I. Iljinsk.
-8288930	134087516	Pilosella piloselloides (Vill.) Soj<U+00E1>k	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella piloselloides (Vill.) Soj<U+00E1>k	Plantae	DOUBTFUL		
+8288930	134087516	Pilosella piloselloides (Vill.) Soják	9ff7d317-609b-4c08-bd86-3bc404b77c42	Pilosella piloselloides (Vill.) Soják	Plantae	DOUBTFUL		
 8298495	134087465	Galinsoga quadriradiata Ruiz & Pav.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galinsoga quadriradiata Ruiz & Pav.	Plantae	SYNONYM	3132567	Galinsoga quadriradiata Cav.
-8300984	134089304	Malva trimestris (L.) Salisb. var. brachypoda (P<U+00E9>rez Lara) Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva trimestris var. brachypoda (P<U+00E9>rez Lara) Verloove & Lambinon	Plantae	SYNONYM	3940326	Malva trimestris (L.) Salisb.
+8300984	134089304	Malva trimestris (L.) Salisb. var. brachypoda (Pérez Lara) Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva trimestris var. brachypoda (Pérez Lara) Verloove & Lambinon	Plantae	SYNONYM	3940326	Malva trimestris (L.) Salisb.
 8305028	134087616	Centaurea phrygia L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea phrygia L.	Plantae	DOUBTFUL		
 8306067	134088467	Dinebra panicea (Retz.) P.M. Peterson & N. Snow var. brachiata (Steud.) P.M. Peterson & N. Snow	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dinebra panicea var. brachiata (Steud.) P.M.Peterson & N.Snow	Plantae	SYNONYM	4132112	Leptochloa panicea subsp. brachiata (Steud.) N.Snow
-8313153	134088877	Quercus palustris Muencch.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Quercus palustris M<U+00FC>nchh.	Plantae	ACCEPTED		
-8320041	134089015	Cytisus multiflorus (L'H<U+00E9>rit.) Sweet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cytisus multiflorus	Plantae	ACCEPTED		
+8313153	134088877	Quercus palustris Muencch.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Quercus palustris Münchh.	Plantae	ACCEPTED		
+8320041	134089015	Cytisus multiflorus (L'Hérit.) Sweet	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cytisus multiflorus	Plantae	ACCEPTED		
 8323119	134087568	Bidens triplinervia Humb., Bonpl. & Kunth var. macrantha (Wedd.) Sherff	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bidens triplinervia var. macrantha (Wedd.) Sherff	Plantae	SYNONYM	5391928	Bidens triplinervia Kunth
 8324534	134088102	Spiraea chamaedryfolia L. subsp. ulmifolia (Scop.) J. Duvigneaud	9ff7d317-609b-4c08-bd86-3bc404b77c42	Spiraea chamaedrifolia subsp. ulmifolia (Scop.) J. Duvigneaud	Plantae	SYNONYM	3026406	Spiraea chamaedryfolia L.
-8325800	134086951	Lonicera x italica Tausch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera <U+00D7>italica Tausch	Plantae	ACCEPTED		
+8325800	134086951	Lonicera x italica Tausch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lonicera ×italica Tausch	Plantae	ACCEPTED		
 8326007	134088892	Vicia pannonica Crantz subsp. striata (Bieb.) Nyman	9ff7d317-609b-4c08-bd86-3bc404b77c42	Vicia pannonica subsp. striata (M. Bieb.) Nyman	Plantae	ACCEPTED		
 8328801	134088465	Dinebra decipiens var. peacockii (Maiden & Betche) P.M. Peterson & N. Snow	9ff7d317-609b-4c08-bd86-3bc404b77c42	Dinebra decipiens var. peacockii (Maiden & Betche) P.M.Peterson & N.Snow	Plantae	SYNONYM	4132902	Leptochloa decipiens subsp. peacockii (Maiden & Betche) N.Snow
 8332019	134088318	Hordeum distichon L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hordeum distichon L.	Plantae	ACCEPTED		
-8334968	134087421	Cyanus depressa (Bieb.) Soj<U+00E1>k	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyanus depressus (M.Bieb.) Soj<U+00E1>k	Plantae	DOUBTFUL		
-8335765	134087451	Guizotia scabra (Vis,) Chiov. subsp. schimperi (Sch. Bip.) J. Baag<U+00F8>e	9ff7d317-609b-4c08-bd86-3bc404b77c42	Guizotia scabra subsp. schimperi (Sch.Bip.) J.Baag<U+00F8>e	Plantae	HETEROTYPIC_SYNONYM	7682613	Guizotia schimperi Sch.Bip. ex Walp.
+8334968	134087421	Cyanus depressa (Bieb.) Soják	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyanus depressus (M.Bieb.) Soják	Plantae	DOUBTFUL		
+8335765	134087451	Guizotia scabra (Vis,) Chiov. subsp. schimperi (Sch. Bip.) J. Baagøe	9ff7d317-609b-4c08-bd86-3bc404b77c42	Guizotia scabra subsp. schimperi (Sch.Bip.) J.Baagøe	Plantae	HETEROTYPIC_SYNONYM	7682613	Guizotia schimperi Sch.Bip. ex Walp.
 8338793	134089292	Modiola caroliniana (L.) G. Don f.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Modiola caroliniana (L.) G. Don fil.	Plantae	ACCEPTED		
 8341222	134088885	Vicia loiseaui (d'Alleizette) Fridlender	9ff7d317-609b-4c08-bd86-3bc404b77c42	Vicia loiseaui (Alleiz.) Fridl.	Plantae	HOMOTYPIC_SYNONYM	2974823	Vicia melanops var. loiseaui Alleiz.
 8342911	134088699	Papaver setiferum Goldblatt	9ff7d317-609b-4c08-bd86-3bc404b77c42	Papaver setiferum Goldblatt	Plantae	ACCEPTED		
@@ -2658,31 +2658,31 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 8390304	134086911	Scirpus atrovirens Willd. subsp. georgianus (R.M. Harper) Verloove & Lambinon	9ff7d317-609b-4c08-bd86-3bc404b77c42	Scirpus atrovirens subsp. georgianus (R.M.Harper) Verloove & Lambinon	Plantae	SYNONYM	2720269	Scirpus georgianus R.M.Harper
 8392258	134087424	Erigeron annuus (L.) Desf. s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erigeron annuus (L.) Desf.	Plantae	DOUBTFUL		
 8400045	134086868	Daboecia cantabrica (Huds.) K.Koch	9ff7d317-609b-4c08-bd86-3bc404b77c42	Daboecia cantabrica (Huds.) K. Koch	Plantae	ACCEPTED		
-8402586	134089301	Malva x clementii (Cheek) Stace	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva <U+00D7>clementii (Cheek) Stace	Plantae	DOUBTFUL		
+8402586	134089301	Malva x clementii (Cheek) Stace	9ff7d317-609b-4c08-bd86-3bc404b77c42	Malva ×clementii (Cheek) Stace	Plantae	DOUBTFUL		
 8410115	134087884	Hedera hibernica (Kirchner) Bean	9ff7d317-609b-4c08-bd86-3bc404b77c42	Hedera hibernica (G. Kirchn.) Bean	Plantae	DOUBTFUL		
 8410425	134088308	Miscanthus sacchariflorus (Maxim.) Benth.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Miscanthus sacchariflorus (Maxim.) Benth. & Hook. f.	Plantae	HOMOTYPIC_SYNONYM	2706023	Miscanthus sacchariflorus (Maxim.) Hack.
 8419625	134087093	Silene scabriflora Brot.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Silene scabriflora Brot.	Plantae	SYNONYM	5384773	Silene pendula L.
 8420312	134088382	Phalaris platensis Henrard ex Heukels	9ff7d317-609b-4c08-bd86-3bc404b77c42	Phalaris platensis Henrard ex Heukels	Plantae	DOUBTFUL		
-8421432	134087032	Cornus sanguinea L. subsp. hungarica (K<U+00E1>rp<U+00E1>ti) So<U+00F3>	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cornus sanguinea subsp. hungarica (Karpati) Soo	Plantae	ACCEPTED		
+8421432	134087032	Cornus sanguinea L. subsp. hungarica (Kárpáti) Soó	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cornus sanguinea subsp. hungarica (Karpati) Soo	Plantae	ACCEPTED		
 8427624	134088684	Oxalis corniculata L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Oxalis corniculata L.	Plantae	ACCEPTED		
 8428499	134089295	Sidalcea oregana (Nutt.) A. Gray	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sidalcea oregana A. Gray	Plantae	SYNONYM	7226545	Sidalcea malviflora subsp. malviflora
 8440418	113794848	Gaillardia x grandiflora	e4746398-f7c4-47a1-a474-ae80a4f18e92	Gaillardia grandiflora Hort.	Plantae	HOMOTYPIC_SYNONYM	5387817	Gaillardia grandiflora Hort. ex Van Houtte
 8536465	134088607	Cymbalaria muralis P. Gaertn., B. Mey. & Scherb. subsp. pubescens (C. Presl) D.A. Webb	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cymbalaria muralis subsp. pubescens (C. Presl) D. A. Webb	Plantae	ACCEPTED		
 8537667	134087608	Chondrilla juncea L.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Chondrilla juncea L.	Plantae	DOUBTFUL		
 8566446	134087733	Aesculus indica (Wallich ex Cambess.) Hook.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Aesculus indica (Colebr. ex Cambess.) Hook.	Plantae	ACCEPTED		
-8575360	134088159	Rumex obtusifolius L. subsp. sylvestris (Wallr.) <U+010C>elak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex obtusifolius subsp. sylvestris (J. Becker) <U+010C>elak.	Plantae	DOUBTFUL		
+8575360	134088159	Rumex obtusifolius L. subsp. sylvestris (Wallr.) Čelak.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Rumex obtusifolius subsp. sylvestris (J. Becker) Čelak.	Plantae	DOUBTFUL		
 8576221	134088091	Sorbus latifolia (Lam.) Pers.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Sorbus latifolia (Lam.) Pers.	Plantae	ACCEPTED		
 8584304	134087452	Guizotia abyssinica (L. f.) Cass.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Guizotia abyssinica (L.f.) Cass.	Plantae	DOUBTFUL		
-8602699	134089268	Lindernia procumbens (Krocker) Borb<U+00E1>s	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lindernia procumbens (Krock.) Borb<U+00E1>s	Plantae	HETEROTYPIC_SYNONYM	3171882	Lindernia procumbens (Krocker) Philcox
-8605414	134089075	Erodium moschatum (L.) L' H<U+00E9>rit. var. cicutarioides Delile	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium moschatum var. cicutarioides Delile	Plantae	HOMOTYPIC_SYNONYM	3826756	Erodium meynieri Maire
+8602699	134089268	Lindernia procumbens (Krocker) Borbás	9ff7d317-609b-4c08-bd86-3bc404b77c42	Lindernia procumbens (Krock.) Borbás	Plantae	HETEROTYPIC_SYNONYM	3171882	Lindernia procumbens (Krocker) Philcox
+8605414	134089075	Erodium moschatum (L.) L' Hérit. var. cicutarioides Delile	9ff7d317-609b-4c08-bd86-3bc404b77c42	Erodium moschatum var. cicutarioides Delile	Plantae	HOMOTYPIC_SYNONYM	3826756	Erodium meynieri Maire
 8621680	134087190	Berberis x wagneri (Jouin) Rehder	9ff7d317-609b-4c08-bd86-3bc404b77c42	Berberis wagneri Hort.	Plantae	HOMOTYPIC_SYNONYM	6403380	Berberis pinnata subsp. pinnata
 8636885	113794958	Spiraea x billardii	e4746398-f7c4-47a1-a474-ae80a4f18e92	Spiraea billardii Hort.	Plantae	HOMOTYPIC_SYNONYM	3026454	Spiraea salicifolia L.
 8656764	134086913	Cyrtomium falcatum (L. f.) C. Presl	9ff7d317-609b-4c08-bd86-3bc404b77c42	Cyrtomium falcatum (L. fil.) Presl	Plantae	ACCEPTED		
 8666785	134088476	Echinochloa esculenta (A. Braun) H. Scholz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Echinochloa esculenta (A. Br.) H. Scholz	Plantae	DOUBTFUL		
 8690876	134089342	Abronia fragrans Nutt.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Abronia fragrans Nutt.	Plantae	DOUBTFUL		
 8691721	134087348	Verbesina alternifolia (L.) Britton	9ff7d317-609b-4c08-bd86-3bc404b77c42	Verbesina alternifolia (L.) Britton	Plantae	HOMOTYPIC_SYNONYM	3147815	Verbesina alternifolia (L.) Britton ex Kearney
-8706035	134088561	Bromus hordeaceus L. subsp. pseudothominei (P.M. Smith) H. Scholz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus hordeaceus nothosubsp. pseudothominei (P.M. Smith) H. Scholz	Plantae	SYNONYM	7398575	Bromus <U+00D7>pseudothominii P.M. Smith
-8708866	134087605	Centaurea x psammogena G<U+00E1>yer	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea psammogena G<U+00E1>yer	Plantae	SYNONYM	3128725	Centaurea varnensis Velen.
+8706035	134088561	Bromus hordeaceus L. subsp. pseudothominei (P.M. Smith) H. Scholz	9ff7d317-609b-4c08-bd86-3bc404b77c42	Bromus hordeaceus nothosubsp. pseudothominei (P.M. Smith) H. Scholz	Plantae	SYNONYM	7398575	Bromus ×pseudothominii P.M. Smith
+8708866	134087605	Centaurea x psammogena Gáyer	9ff7d317-609b-4c08-bd86-3bc404b77c42	Centaurea psammogena Gáyer	Plantae	SYNONYM	3128725	Centaurea varnensis Velen.
 8713925	134089050	Ribes odoratum H.L. Wendl.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Ribes odoratum H.L. Wendl.	Plantae	PROPARTE_SYNONYM	4194303	Ribes aureum var. villosum DC.
 8911082	134088811	Amaranthus blitum L. s.l.	9ff7d317-609b-4c08-bd86-3bc404b77c42	Amaranthus blitum L.	Plantae	ACCEPTED		
 8925248	134088050	Galium parisiense L. var. parisiense	9ff7d317-609b-4c08-bd86-3bc404b77c42	Galium parisiense var. parisiense	Plantae	ACCEPTED		
@@ -2717,7 +2717,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 	134087412	Dahlia x cultorum hort.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134087524	Acmella spec.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134087566	Brachycome heterodonta DC.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
-	134087574	Carduus nutans L. subsp. leiophyllus (Petrovi<U+010D>) Ar<U+00E8>nes	9ff7d317-609b-4c08-bd86-3bc404b77c42					
+	134087574	Carduus nutans L. subsp. leiophyllus (Petrovič) Arènes	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134087640	Hosta spec.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134087719	Salix purpurea L. var. purpurea	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134087735	Aesculus pavia L. (incl. var. discolor (Pursh) Torr. & A. Gray)	9ff7d317-609b-4c08-bd86-3bc404b77c42					
@@ -2735,7 +2735,7 @@ backbone_taxonKey	checklist_taxonKey	checklist_scientificName	checklist_datasetK
 	134088007	Rosa 'Dorothy Perkins'	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134088008	Rosa chinensis group	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134088012	Pyracantha coccinea Roem.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
-	134088125	Lysichiton americanus Hult<U+00E9>n & St John x L. camtschatcensis (L.) Schott	9ff7d317-609b-4c08-bd86-3bc404b77c42					
+	134088125	Lysichiton americanus Hultén & St John x L. camtschatcensis (L.) Schott	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134088221	x Festulolium braunii (K. Richt.) A. Camus (Festuca pratensis Huds. x Lolium perenne L.)	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134088244	Trisetaria panicea (Lam.) Maire	9ff7d317-609b-4c08-bd86-3bc404b77c42					
 	134088320	Lachnagrostis eriantha (Hack.) A.J. Br.	9ff7d317-609b-4c08-bd86-3bc404b77c42					
