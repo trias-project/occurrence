@@ -36,7 +36,7 @@ library(trias)
 Set file paths:
 
 ```{r}
-taxa_output_file <- "../data/output/cheklist_taxa.tsv"
+taxa_output_file <- "../data/output/checklist_taxa.tsv"
 ```
 
 ## Select checklist datasets
