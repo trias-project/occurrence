@@ -33,6 +33,7 @@ eu_concern_species <- read.table(text = getURL(input_checklist),
 ```
 
 Select countries where searching for occurrences
+
 ```{r}
 countries <- list(country = c("BE", "LU"))
 ```
