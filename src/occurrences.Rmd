@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Load libraries
 
 ```{r}
+library(RCurl)
 library(rgbif)
 library(trias)
 ```
@@ -18,6 +19,20 @@ library(trias)
 
 ### For species of EU concern
 
+Set file paths. For supporting versioning, it is reccomended to use always the raw version of a permalink:
+
+```{r}
+input_checklist = "https://raw.githubusercontent.com/trias-project/pipeline/967de37326425fb55446dc573c9e6e01451d857e/data/input/eu_concern_species.tsv"
+```
+
+Import file in a df
+
+```{r}
+eu_concern_species <- read.table(text = getURL(input_checklist), 
+  sep = "\t", header = TRUE)
+```
+
+Select countries where searching for occurrences
 ```{r}
 input_checklist <- "../data/input/eu_concern_species.tsv"
 eu_concern_species <- read.table(file = input_checklist, header = TRUE, sep = "\t")
