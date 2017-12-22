@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Load libraries
 
 ```{r}
+library(RCurl)
 library(rgbif)
 library(trias)
 ```
@@ -18,25 +19,50 @@ library(trias)
 
 ### For species of EU concern
 
+Set file paths. For supporting versioning, it is reccomended to use always the raw version of a permalink:
+
 ```{r}
-input_checklist <- "../data/input/eu_concern_species.tsv"
-eu_concern_species <- read.table(file = input_checklist, header = TRUE, sep = "\t")
-taxonKeys <- eu_concern_species["gbif_taxonKey"]
+input_checklist = "https://raw.githubusercontent.com/trias-project/pipeline/967de37326425fb55446dc573c9e6e01451d857e/data/input/eu_concern_species.tsv"
+```
+
+Import file in a df
+
+```{r}
+eu_concern_species <- read.table(text = getURL(input_checklist), 
+  sep = "\t", header = TRUE)
+```
+
+Select countries where searching for occurrences
+
+```{r}
 countries <- list(country = c("BE", "LU"))
+```
+
+Extract a vector of `taxonKey`s from df
+
+```{r}
+eu_concern_species %>% select(gbif_taxonKey) -> taxonKeys 
+```
+
+
+## Get occurrences for `taxonKey`s in specified `country`
+
+Call `http://api.gbif.org/v1/occurrence/search?taxonkey={}&country={}` to get taxon information.
+
+```{r}
 gbif_download_key <- rgbif::occ_download(
   paste("taxonKey = ", paste(unlist(taxonKeys), collapse = ",")), 
   paste("country = ", paste(unlist(countries), collapse = ",")), 
   curlopts = list(verbose = TRUE))
 ```
 
-
 Check status of download:
 
 ```{r}
-metadata <- occ_download_meta(key = gbif_download_key)
+metadata <- rgbif::occ_download_meta(key = gbif_download_key)
 ```
 
-Write download to list of downloads and check pending downloads
+Write download info to list of downloads and check pending downloads
 
 ```{r}
 trias::update_download_list(file = "../data/output/gbif_downloads.tsv", 
