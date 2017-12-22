@@ -14,12 +14,42 @@ knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding =
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Load data
-
-Load taxa:
+Set locale (so we use UTF-8 character encoding):
 
 ```{r}
-# load from csv(taxa_by_nubKey)
+# This works on Mac OS X, might not work on other OS
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
+```
+
+Load libraries:
+
+```{r}
+# Tidyverse packages
+library(dplyr)
+library(magrittr)
+library(purrr)
+
+# Other packages
+library(RCurl)
+library(lazyeval)
+library(rgbif)
+library(trias)
+```
+
+## Load data
+
+Set file paths. For supporting versioning, it is reccomended to use always the raw version of a permalink:
+
+```{r}
+input_checklist_taxa <- "https://raw.githubusercontent.com/trias-project/pipeline/967de37326425fb55446dc573c9e6e01451d857e/data/output/checklist_taxa.tsv"
+input_verified_taxa <- "https://raw.githubusercontent.com/trias-project/pipeline/verify_synonyms_pipeline/data/output/verified_synonims.tsv"
+```
+
+Load taxa in a df from file:
+
+```{r}
+checklist_taxa <- read.table(text = getURL(input_checklist_taxa), 
+                             sep = "\t", header = TRUE, quote = "")
 ```
 
 Preview:
@@ -39,7 +69,8 @@ Preview:
 Load verified synonyms:
 
 ```{r}
-# load from tsv(verified_synonyms)
+verified_synonyms <- read.table(text = getURL(input_verified_taxa), 
+                             sep = "\t", header = TRUE, quote = "")
 ```
 
 Preview:
