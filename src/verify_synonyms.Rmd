@@ -55,15 +55,16 @@ checklist_taxa <- read.table(text = getURL(input_checklist_taxa),
 Preview:
 
 ```{r}
-# nubKey
-# key
-# dataset_scientificName
-# datasetKey
-# scientificName
-# kingdom
-# taxonomicStatus
-# acceptedKey
-# accepted
+# backbone_taxonKey
+# checklist_taxonKey
+# checklist_scientificName
+# checklist_datasetKey
+# backbone_scientificName
+# backbone_kingdom
+# backbone_taxonomicStatus
+# backbone_acceptedKey
+# backbone_accepted
+head(checklist_taxa)
 ```
 
 Load verified synonyms:
@@ -77,30 +78,51 @@ Preview:
 
 ```{r}
 # columns:
-# nubKey
-# scientificName
-# acceptedKey
-# accepted
-# kingdom
+# backbone_taxonKey
+# backbone_scientificName
+# backbone_accepted
+# backbone_acceptedKey
+# backbone_kingdom
 # date_added
 # verified_key
 # remarks
+head(verified_synonyms)
 ```
 
 ## Find new synonym combinations
 
-For every key, acceptedKey combination, where acceptedKey is not NA, update verified synonyms:
+Select taxa where `backbone_acceptedKey` is not `NA`:
 
 ```{r}
-# For every key, acceptedKey -> check in file
+checklist_taxa %>% filter(!is.na(backbone_acceptedKey)) -> backbone_synonyms
+```
+
+Number of taxa with synonym in backbone:
+
+```{r}
+nrow(backbone_synonyms)
+```
+
+Preview:
+
+```{r}
+head(backbone_synonyms)
+```
+
+For every `backbone_taxonKey` - `backbone_acceptedKey` combination, where `backbone_acceptedKey` is not NA, update verified synonyms:
+
+```{r}
+# For every backbone_taxonKey, backbone_acceptedKey -> check in file
 
 # If in file:
-# If scientificname + acceptedScientificName different -> update + store in updated_names
+# If backbone_scientificName + backbone_accepted different -> update + store in updated_names
 # If same -> do nothing
+
 
 # If not in file -> add new line + store in new_synonyms
 
 # If in synonyms file but not found in grouped_taxa -> add " OUTDATED" to remarks + store in outdated_synonyms
+
 ```
 
 ## Results
@@ -134,15 +156,15 @@ Add `verified_key`
 Accept all ACCEPTED and DOUBTFUL:
 
 ```{r}
-# for taxonomicStatus = ACCEPTED or DOUBTFUL
-# verified_key = nubKey
+# for backbone_taxonomicStatus = ACCEPTED or DOUBTFUL
+# verified_key = backbone_taxonKey
 ```
 
-Update taxa_by_nubKey with verified synonyms info:
+Update taxa with verified synonyms info:
 
 ```{r}
 # for taxonomicStatus = SYNONYM
-# Look up nubKey + acceptedKey in verifiedSynonyms
+# Look up backbone_nubKey + backbone_acceptedKey in verified_synonyms
 # populate verified_key
 ```
 
@@ -156,5 +178,5 @@ Shows some stats:
 ```
 
 ```{r}
-# save to csv -> taxa_by_nubKey_verified
+# save to tsv -> checklist_taxa_verified
 ```
