@@ -41,7 +41,7 @@ taxa_output_file <- "../data/output/checklist_taxa.tsv"
 
 ## Select checklist datasets
 
-These are alien species checklists we want to use and combine:
+These are the alien species checklists we want to use and combine:
 
 ```{r}
 checklist_datasets <- c(
@@ -120,7 +120,7 @@ Total number of taxa:
 nrow(checklist_taxa)
 ```
 
-Create df of unique `nubKey`s (= the corresponding taxa in the GBIF Backbone Taxonomy, if found). We will use this list to retrieve information from GBIF (rather than doing it for each taxon, where some `nubKey`s will be repeated.
+Create a vector of unique `nubKey`s (= the corresponding taxon in the GBIF Backbone Taxonomy, if found). This list will be used to retrieve GBIF Backbone Taxonomy information. Having a list with unique keys avoids multiple calls for the same `nubKey`.
 
 ```{r}
 checklist_taxa %>%
@@ -129,7 +129,7 @@ checklist_taxa %>%
   distinct(nubKey) -> nub_keys
 ```
 
-Number of nubKeys:
+Number of `nubKey`s:
 
 ```{r}
 length(nub_keys)
@@ -179,17 +179,17 @@ head(checklist_taxa_with_backbone)
 Rename column names in order to distinguish info from checklist and GBIF Backbone Taxonomy:
 
 ```{r}
-checklist_taxa_with_backbone %<>%
-  rename("checklist_taxonKey" = "key",
-         "checklist_scientificName" = "dataset_scientificName",
-         "checklist_datasetKey" = "datasetKey",
-         "backbone_taxonKey" = "nubKey",
-         "backbone_scientificName" = "scientificName",
-         "backbone_kingdom" = "kingdom",
-         "backbone_status" = "taxonomicStatus",
-         "backbone_acceptedKey" = "acceptedKey",
-         "backbone_accepted" = "accepted"
-         )
+checklist_taxa_with_backbone %<>% rename(
+  "checklist_taxonKey" = "key",
+  "checklist_scientificName" = "dataset_scientificName",
+  "checklist_datasetKey" = "datasetKey",
+  "backbone_taxonKey" = "nubKey",
+  "backbone_scientificName" = "scientificName",
+  "backbone_kingdom" = "kingdom",
+  "backbone_status" = "taxonomicStatus",
+  "backbone_acceptedKey" = "acceptedKey",
+  "backbone_accepted" = "accepted"
+)
 ```
 
 Save taxa to a tsv file:
