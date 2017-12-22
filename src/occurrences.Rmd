@@ -21,7 +21,7 @@ library(trias)
 ```{r}
 input_checklist <- "../data/input/eu_concern_species.tsv"
 eu_concern_species <- read.table(file = input_checklist, header = TRUE, sep = "\t")
-taxonKeys <- eu_concern_species["gbif_taxonKey"]
+taxonKeys <- eu_concern_species["backbone_taxonKey"]
 countries <- list(country = c("BE", "LU"))
 gbif_download_key <- rgbif::occ_download(
   paste("taxonKey = ", paste(unlist(taxonKeys), collapse = ",")), 
