@@ -186,7 +186,7 @@ checklist_taxa_with_backbone %<>% rename(
   "backbone_taxonKey" = "nubKey",
   "backbone_scientificName" = "scientificName",
   "backbone_kingdom" = "kingdom",
-  "backbone_status" = "taxonomicStatus",
+  "backbone_taxonomicStatus" = "taxonomicStatus",
   "backbone_acceptedKey" = "acceptedKey",
   "backbone_accepted" = "accepted"
 )
@@ -195,5 +195,5 @@ checklist_taxa_with_backbone %<>% rename(
 Save taxa to a tsv file:
 
 ```{r}
-write.table(checklist_taxa_with_backbone, file = taxa_output_file, sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(checklist_taxa_with_backbone, file = taxa_output_file, quote = FALSE, sep = "\t", na = "",  row.names = FALSE)
 ```
