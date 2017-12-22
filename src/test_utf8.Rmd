@@ -15,15 +15,35 @@ Load libraries:
 
 ```{r}
 library(rgbif)
+library(jsonlite)
 ```
 
-# Don't set any locale
-
-Get taxon:
+Set taxonKey:
 
 ```{r}
-taxon <- rgbif::name_usage(key = 134087647)
-taxon$data$scientificName
+taxon_key <- "134087647"
+```
+
+Get locale:
+
+```{r}
+Sys.getenv("LC_CTYPE")
+```
+
+# Default
+
+Get taxon with rgbif:
+
+```{r}
+rgbif_taxon <- rgbif::name_usage(key = taxon_key)
+rgbif_taxon$data$scientificName
+```
+
+Get taxon with jsonlite:
+
+```{r}
+jsonlite_taxon <- jsonlite::read_json(paste0("http://api.gbif.org/v1/species/", taxon_key))
+jsonlite_taxon$scientificName
 ```
 
 # Locale `en_US.UTF-8`
@@ -35,6 +55,6 @@ Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
 Get taxon:
 
 ```{r}
-taxon <- rgbif::name_usage(key = 134087647)
-taxon$data$scientificName
+rgbif_taxon <- rgbif::name_usage(key = taxon_key)
+rgbif_taxon$data$scientificName
 ```
