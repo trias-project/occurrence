@@ -28,10 +28,11 @@ Load libraries:
 library(dplyr)
 library(magrittr)
 library(purrr)
+library(readr)
 
 # Other packages
 library(RCurl)
-library(lazyeval)
+# library(lazyeval)
 library(rgbif)
 library(trias)
 ```
@@ -48,8 +49,9 @@ input_verified_taxa <- "https://raw.githubusercontent.com/trias-project/pipeline
 Load taxa in a df from file:
 
 ```{r}
-checklist_taxa <- read.table(text = getURL(input_checklist_taxa), 
-                             sep = "\t", header = TRUE, quote = "")
+checklist_taxa <- read_delim(file = getURL(input_checklist_taxa), 
+                             delim = "\t", escape_double = FALSE, 
+                             trim_ws = TRUE)
 ```
 
 Preview:
@@ -70,8 +72,8 @@ head(checklist_taxa)
 Load verified synonyms:
 
 ```{r}
-verified_synonyms <- read.table(text = getURL(input_verified_taxa), 
-                             sep = "\t", header = TRUE, quote = "")
+# use text = getURL(input_verified_taxa) after local testing
+verified_synonyms <- read_delim("../data/output/verified_synonims.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
 
 Preview:
@@ -113,15 +115,42 @@ For every `backbone_taxonKey` - `backbone_acceptedKey` combination, where `backb
 
 ```{r}
 # For every backbone_taxonKey, backbone_acceptedKey -> check in file
-
 # If in file:
-# If backbone_scientificName + backbone_accepted different -> update + store in updated_names
-# If same -> do nothing
+# If backbone_scientificName + backbone_accepted different -> store in updated_names + update
 
+verified_synonyms %>% 
+  inner_join(backbone_synonyms, 
+         by = c("backbone_taxonKey", "backbone_acceptedKey")) %>% 
+  filter(backbone_scientificName.x != backbone_scientificName.y | 
+           backbone_accepted.x != backbone_accepted.y) %>% 
+  select(backbone_scientificName.x, backbone_scientificName.y,
+         backbone_accepted.x, backbone_accepted.y) %>% 
+  rename(backbone_scientificName = backbone_scientificName.x,
+         new_backbone_scientificName = backbone_scientificName.y,
+         backbone_accepted = backbone_accepted.x,
+         new_backbone_accepted = backbone_accepted.y) -> updated_names
+
+changes <- updated_names %>% 
+  left_join(verified_synonyms,
+            by = c("backbone_scientificName", "backbone_accepted")) %>%
+  select(-c(backbone_scientificName, backbone_accepted)) %>%
+  rename(backbone_scientificName = new_backbone_scientificName,
+         backbone_accepted = new_backbone_accepted)
+
+verified_synonyms <- verified_synonyms %>% 
+  filter(backbone_taxonKey != changes$backbone_taxonKey) %>%
+  union(changes)
+
+# If same -> do nothing
 
 # If not in file -> add new line + store in new_synonyms
 
-# If in synonyms file but not found in grouped_taxa -> add " OUTDATED" to remarks + store in outdated_synonyms
+backbone_synonyms %>% 
+  filter(!(backbone_taxonKey %in% verified_synonyms$backbone_taxonKey) |
+           !(backbone_acceptedKey %in% verified_synonyms$backbone_acceptedKey)) -> new_synonyms
+
+
+# If in synonyms file but not in input taxa -> store in unused_synonyms
 
 ```
 
@@ -130,13 +159,13 @@ For every `backbone_taxonKey` - `backbone_acceptedKey` combination, where `backb
 These names have been updated (but synonym relation stayed the same):
 
 ```{r}
-# updated_names
+updated_names
 ```
 
 These synonym relations are no longer used:
 
 ```{r}
-# outdated_synonyms
+# unused_synonyms
 ```
 
 These synonym relations were added and should be verified:
