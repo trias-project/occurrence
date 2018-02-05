@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Load libraries
 
 ```{r}
+library(readr)
 library(rgbif)
 library(trias)
 ```
@@ -20,9 +21,15 @@ library(trias)
 
 ```{r}
 input_checklist <- "../data/input/eu_concern_species.tsv"
-eu_concern_species <- read.table(file = input_checklist, header = TRUE, sep = "\t")
+eu_concern_species <- 
+  read_delim(file = input_checklist, 
+             "\t", escape_double = FALSE, 
+             col_types = cols(
+               entry_into_force = col_date(
+                 format = "%Y-%m-%d")), 
+             trim_ws = TRUE)
 taxonKeys <- eu_concern_species["backbone_taxonKey"]
-countries <- list(country = c("BE"))
+countries <- list(country = c("LU"))
 gbif_download_key <- rgbif::occ_download(
   paste("taxonKey = ", paste(unlist(taxonKeys), collapse = ",")), 
   paste("country = ", paste(unlist(countries), collapse = ",")), 
@@ -33,6 +40,8 @@ Check status of download:
 
 ```{r}
 metadata <- occ_download_meta(key = gbif_download_key)
+metadata$key
+metadata$status
 ```
 
 Write download to list of downloads and check pending downloads
@@ -40,5 +49,6 @@ Write download to list of downloads and check pending downloads
 ```{r}
 trias::update_download_list(file = "../data/output/gbif_downloads.tsv", 
                             download_to_add = gbif_download_key, 
-                            input_checklist = input_checklist, countries = countries)
+                            input_checklist = input_checklist, 
+                            countries = countries)
 ```
