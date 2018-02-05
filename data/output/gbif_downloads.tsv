@@ -6,3 +6,4 @@ gbif_download_key	input_checklist	input_country	gbif_download_created	gbif_downl
 0003024-171124123535762	../data/input/eu_concern_species.tsv	BE, LU	2017-11-30 11:00:49	SUCCEEDED	doi:10.15468/dl.9unif7
 0001588-180131172636756	../data/input/eu_concern_species.tsv	BE, IT	2018-02-05 12:16:20	SUCCEEDED	doi:10.15468/dl.tkwwwh
 0001636-180131172636756	../data/input/eu_concern_species.tsv	BE	2018-02-05 13:49:10	SUCCEEDED	doi:10.15468/dl.m2mjuj
+0001676-180131172636756	../data/input/eu_concern_species.tsv	LU	2018-02-05T15:10:08.078+0000	SUCCEEDED	doi:10.15468/dl.1vwwfw
