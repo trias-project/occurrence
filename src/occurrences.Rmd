@@ -29,10 +29,11 @@ eu_concern_species <-
                  format = "%Y-%m-%d")), 
              trim_ws = TRUE)
 taxonKeys <- eu_concern_species["backbone_taxonKey"]
-countries <- list(country = c("LU"))
+countries <- list(country = c("IT"))
 gbif_download_key <- rgbif::occ_download(
-  paste("taxonKey = ", paste(unlist(taxonKeys), collapse = ",")), 
-  paste("country = ", paste(unlist(countries), collapse = ",")), 
+  paste("taxonKey = ", paste(taxonKeys$backbone_taxonKey, 
+                             collapse = ",")), 
+  paste("country = ", paste(countries$country, collapse = ",")), 
   curlopts = list(verbose = TRUE))
 ```
 
