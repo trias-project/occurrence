@@ -50,6 +50,46 @@ Set file paths:
 downloads_output_file <- "data/output/gbif_downloads.tsv"
 ```
 
+# Define taxa
+
+The list of taxa we want to get occurrences for is maintained in a tsv file. To allow better tracking, the path to the file will be added to the `download_output_file`. Ideally we don't use a local file path, but the URL of a specific commit:
+
+```{r define_taxa}
+taxa_input_file <- "../data/input/eu_concern_species.tsv"
+```
+
+Read file:
+
+```{r read_taxa_file}
+taxa <- read_delim(
+  file = taxa_input_file, 
+  "\t",
+  escape_double = FALSE, 
+  col_types = cols(entry_into_force = col_date(format = "%Y-%m-%d")), 
+  trim_ws = TRUE
+)
+```
+
+Preview file:
+
+```{r preview taxa}
+head(taxa)
+```
+
+Retrieve the `taxonKey`s we want to use to download occurrences:
+
+```{r get_taxonkeys}
+taxon_keys <- taxa[["backbone_taxonKey"]] # Column with taxonKeys
+```
+
+# Define countries
+
+We will limit our occurrences search for specific countries. To allow better tracking, this filter will also be added to `download_output_file`:
+
+```{r define_countries}
+countries <- c("BE")
+```
+
 # Download GBIF occurrences
 
 ## For species of EU concern
