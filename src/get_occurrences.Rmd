@@ -1,6 +1,18 @@
 ---
-title: "Process occurrences"
-output: html_document
+title: "Get occurrences for list of species"
+author:
+- Peter Desmet
+- Damiano Oldoni
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: yeti
+    df_print: paged
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +25,13 @@ Load libraries
 library(readr)
 library(rgbif)
 library(trias)
+```
+
+Set file paths:
+
+```{r set_file_paths}
+# All downloads we've triggered are added to this file:
+downloads_output_file <- "data/output/gbif_downloads.tsv"
 ```
 
 # Download GBIF occurrences
