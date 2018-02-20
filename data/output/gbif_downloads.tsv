@@ -1,6 +1,10 @@
 gbif_download_key	input_checklist	input_country	gbif_download_created	gbif_download_status	gbif_download_doi
-0002455-171124123535762	../data/input/eu_concern_species.tsv	BE	2017-11-29T11:43:02.327+0000	SUCCEEDED	doi:10.15468/dl.iyhwjt
-0003004-171124123535762	../data/input/eu_concern_species.tsv	BE, US	2017-11-30T08:56:33.123+0000	SUCCEEDED	doi:10.15468/dl.fvlr7g
-0003007-171124123535762	../data/input/eu_concern_species.tsv	BE, FR	2017-11-30T09:24:39.750+0000	SUCCEEDED	doi:10.15468/dl.ru5rqz
-0003008-171124123535762	../data/input/eu_concern_species.tsv	BE, IT	2017-11-30T09:28:44.899+0000	SUCCEEDED	doi:10.15468/dl.tla3ir
-0003024-171124123535762	../data/input/eu_concern_species.tsv	BE, LU	2017-11-30T11:00:49.097+0000	SUCCEEDED	doi:10.15468/dl.9unif7
+0002455-171124123535762	../data/input/eu_concern_species.tsv	BE	2017-11-29 11:43:02	SUCCEEDED	doi:10.15468/dl.iyhwjt
+0003004-171124123535762	../data/input/eu_concern_species.tsv	BE, US	2017-11-30 08:56:33	SUCCEEDED	doi:10.15468/dl.fvlr7g
+0003007-171124123535762	../data/input/eu_concern_species.tsv	BE, FR	2017-11-30 09:24:39	SUCCEEDED	doi:10.15468/dl.ru5rqz
+0003008-171124123535762	../data/input/eu_concern_species.tsv	BE, IT	2017-11-30 09:28:44	SUCCEEDED	doi:10.15468/dl.tla3ir
+0003024-171124123535762	../data/input/eu_concern_species.tsv	BE, LU	2017-11-30 11:00:49	SUCCEEDED	doi:10.15468/dl.9unif7
+0001588-180131172636756	../data/input/eu_concern_species.tsv	BE, IT	2018-02-05 12:16:20	SUCCEEDED	doi:10.15468/dl.tkwwwh
+0001636-180131172636756	../data/input/eu_concern_species.tsv	BE	2018-02-05 13:49:10	SUCCEEDED	doi:10.15468/dl.m2mjuj
+0001676-180131172636756	../data/input/eu_concern_species.tsv	LU	2018-02-05T15:10:08.078+0000	SUCCEEDED	doi:10.15468/dl.1vwwfw
+0007989-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	BE	2018-02-20T15:53:37.371+0000	SUCCEEDED	10.15468/dl.6cljf9
