@@ -15,14 +15,30 @@ output:
 knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
 ---
 
+This document describes how to retrieve occurrences for a list of species.
+
+# Setup
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Load libraries
+Install packages:
 
-```{r}
+```{r install_packages}
+devtools::install_github("trias-project/trias")
+devtools::install_github("ropensci/rgbif")
+```
+
+Load libraries:
+
+```{r load_libraries}
+# Tidyverse packages
+library(dplyr)
+library(magrittr)
 library(readr)
+
+# Other packages
 library(rgbif)
 library(trias)
 ```
