@@ -92,24 +92,20 @@ countries <- c("BE")
 
 # Download GBIF occurrences
 
-## For species of EU concern
+**Note**: GBIF credentials are required in the next step.
 
-```{r}
-input_checklist <- "../data/input/eu_concern_species.tsv"
-eu_concern_species <- 
-  read_delim(file = input_checklist, 
-             "\t", escape_double = FALSE, 
-             col_types = cols(
-               entry_into_force = col_date(
-                 format = "%Y-%m-%d")), 
-             trim_ws = TRUE)
-taxonKeys <- eu_concern_species["backbone_taxonKey"]
-countries <- list(country = c("IT"))
-gbif_download_key <- rgbif::occ_download(
-  paste("taxonKey = ", paste(taxonKeys$backbone_taxonKey, 
-                             collapse = ",")), 
-  paste("country = ", paste(countries$country, collapse = ",")), 
-  curlopts = list(verbose = TRUE))
+Trigger download:
+
+```{r trigger_gbif_download}
+# Important: query arguments need to be pasts as strings of format "key = value""
+gbif_download_key <- occ_download(
+  paste0("taxonKey = ", paste(taxon_keys, collapse = ",")), 
+  paste0("country = ", paste(countries, collapse = ",")),
+  curlopts = list(verbose = TRUE),
+  user = rstudioapi::askForPassword("GBIF username"),
+  pwd = rstudioapi::askForPassword("GBIF password"),
+  email = rstudioapi::askForPassword("Email address for notification")
+)
 ```
 
 Check status of download:
@@ -120,11 +116,13 @@ metadata$key
 metadata$status
 ```
 
-Write download to list of downloads and check pending downloads
+Write download to list of downloads and check pending downloads:
 
 ```{r}
-trias::update_download_list(file = "../data/output/gbif_downloads.tsv", 
-                            download_to_add = gbif_download_key, 
-                            input_checklist = input_checklist, 
-                            countries = countries)
+update_download_list(
+  file = downloads_output_file, 
+  download_to_add = gbif_download_key, 
+  input_checklist = taxa_input_file, 
+  countries = list(country = countries) # A bit weird to pass as such
+)
 ```
