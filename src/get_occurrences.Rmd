@@ -48,7 +48,7 @@ Set file paths:
 
 ```{r set_file_paths}
 # All downloads we've triggered are added to this file:
-downloads_output_file <- "data/output/gbif_downloads.tsv"
+downloads_output_file <- "../data/output/gbif_downloads.tsv"
 ```
 
 # Define taxa
@@ -98,7 +98,7 @@ countries <- c("BE")
 Trigger download:
 
 ```{r trigger_gbif_download}
-# Important: query arguments need to be pasts as strings of format "key = value""
+# Important: query arguments need to be pasts as strings of format "key = value"
 gbif_download_key <- occ_download(
   paste0("taxonKey = ", paste(taxon_keys, collapse = ",")), 
   paste0("country = ", paste(countries, collapse = ",")),
