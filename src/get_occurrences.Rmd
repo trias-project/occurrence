@@ -47,7 +47,7 @@ Set file paths:
 
 ```{r set_file_paths}
 # All downloads we've triggered are added to this file:
-downloads_output_file <- "data/output/gbif_downloads.tsv"
+downloads_output_file <- "../data/output/gbif_downloads.tsv"
 ```
 
 # Define taxa
