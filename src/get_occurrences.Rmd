@@ -122,7 +122,7 @@ Write download to list of downloads and check pending downloads:
 update_download_list(
   file = downloads_output_file, 
   download_to_add = gbif_download_key, 
-  input_checklist = taxa_input_file, 
-  countries = list(country = countries) # A bit weird to pass as such
-)
+  input_checklist = taxa_input_file)
+```
+
 ```
