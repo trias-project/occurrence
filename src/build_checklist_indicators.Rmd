@@ -149,7 +149,7 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 
 ## Number of new introductions of alien species per year
 
-See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17)
+See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
 
 ## Pathways associated with alien species introductions
 
