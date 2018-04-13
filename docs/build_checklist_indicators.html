@@ -2799,20 +2799,91 @@ div.tocify {
 <pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
 <p>Load libraries:</p>
 <pre class="r"><code># Tidyverse packages
+library(tidyr)
 library(dplyr)
 library(magrittr)
+library(stringr)
 library(readr)
+# GBIF related packages
+library(rgbif)
+# project package
 library(trias)
-library(rgbif)</code></pre>
+#other pckages
+library(lazyeval)</code></pre>
 </section>
 <section id="get-data" class="level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
-<p>One of the TrIAS goals is to unify seven authoritative checklists. Such unified cheklist, public on GBIF (Global Biodiversity Information Facility) would be the start point of this workflow. However, we still don’t have such checklist. We can still further work based on data of three different checklists:</p>
+<p>One of the TrIAS goals is to unify seven authoritative checklists. Such unified cheklist, public on GBIF (Global Biodiversity Information Facility) would be the start point of this workflow. However, we still don’t have such checklist. We can still further work based on data of three different checklists</p>
 <ol type="1">
 <li><a href="https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42">Manual of the Alien Plants of Belgium</a></li>
 <li><a href="https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265">Inventory of alien macroinvertebrates in Flanders, Belgium</a></li>
 <li><a href="https://www.gbif.org/dataset/98940a79-2bf1-46e6-afd6-ba2e85a26f9f">Checklist of non-native freshwater fishes in Flanders, Belgium</a></li>
 </ol>
+<section id="retrieve-data-in-checklists-from-gbif" class="level2">
+<h2><span class="header-section-number">2.1</span> Retrieve data in checklist(s) from GBIF</h2>
+<p>First step is importing checklists data from GBIF. We do it via <code>trias</code> function <code>gbif_get_taxa</code></p>
+<pre class="r"><code>checklist_info &lt;- c(&quot;key&quot;, &quot;nubKey&quot;, &quot;scientificName&quot;, &quot;datasetKey&quot;)
+taxon &lt;- trias::gbif_get_taxa(
+  checklist_keys = c(&quot;9ff7d317-609b-4c08-bd86-3bc404b77c42&quot;,
+                     &quot;289244ee-e1c1-49aa-b2d7-d379391ce265&quot;,
+                     &quot;98940a79-2bf1-46e6-afd6-ba2e85a26f9f&quot;),
+  origin = &quot;SOURCE&quot;, 
+  limit = 99999) %&gt;%
+  select(one_of(checklist_info))</code></pre>
+<p>Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>)</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<p>Extract distribution information</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<p>Extract description information</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<p>Merge all retrieved informations</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+</section>
+<section id="filter-invasive-alien-species" class="level2">
+<h2><span class="header-section-number">2.2</span> Filter invasive alien species</h2>
+<p>Filter species by:</p>
+<ol type="1">
+<li>invasion stage (<code>establishmentMeans</code> equal to <code>INTRODUCED</code>)</li>
+<li>presence status (<code>satus</code> equal to <code>PRESENT</code>)</li>
+<li>presence in Belgium (<code>country</code> equal to <code>BE</code>)</li>
+</ol>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+</section>
+<section id="tidy-data" class="level2">
+<h2><span class="header-section-number">2.3</span> Tidy data</h2>
+<p>Split <code>temporal</code> in <code>first_observed</code> and <code>last_observed</code>:</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<p>Divide pathway in <code>pathway_level1</code> and <code>pathway_level2</code>. Notice that pathway is not a column but a subset of values of column <code>type</code>:</p>
+<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
+<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<p>Save final data.frame</p>
+<pre class="r"><code>write_tsv(x = merged_info, 
+          path = &quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+</section>
+</section>
+<section id="build-indicators" class="level1">
+<h1><span class="header-section-number">3</span> Build indicators</h1>
+<p>You can start from this point and not repeat previous steps by loading the tsv file saved at the end of previous section:</p>
+<pre class="r"><code>data_output &lt;- read_tsv(
+  file = &quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+<section id="number-of-new-introductions-of-alien-species-per-year" class="level2">
+<h2><span class="header-section-number">3.1</span> Number of new introductions of alien species per year</h2>
+<p>See GitHub issue <a href="https://github.com/trias-project/pipeline/issues/17">#17</a></p>
+</section>
+<section id="pathways-associated-with-alien-species-introductions" class="level2">
+<h2><span class="header-section-number">3.2</span> Pathways associated with alien species introductions</h2>
+<p>see GitHub isue <a href="https://github.com/trias-project/pipeline/issues/19">#19</a></p>
+</section>
+<section id="cumulative-number-of-alien-species" class="level2">
+<h2><span class="header-section-number">3.3</span> Cumulative number of alien species</h2>
+<p>see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/20">#20</a></p>
+</section>
 </section>
 
 
