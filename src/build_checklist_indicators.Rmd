@@ -145,6 +145,8 @@ New functions should be written in `trias` official project package.
 
 In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
 
+About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
+
 ## Number of new introductions of alien species per year
 
 See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17)
