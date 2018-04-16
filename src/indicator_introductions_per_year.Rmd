@@ -83,6 +83,7 @@ Create function to visualize yearly introduction evolution
 #' mostly irrelevant
 #' @param smooth_span Parameter for the applied Loess smoother, for  more 
 #' information on the appropriate value, see...
+#' @param x_scale_stepsize Parameter that indicates the stepsize of the x axis
 #'
 #' @return ggplot
 #' @export
@@ -127,4 +128,3 @@ indicator_introduction_year(data, start_year_plot = start_year_plot,
                             smooth_span = loess_span,
                             x_scale_stepsize = x_scale_stepsize)
 ```
-
