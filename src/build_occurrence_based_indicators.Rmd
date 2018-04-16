@@ -66,8 +66,10 @@ occ <- occ_download_get(key = gbif_download_key,
 fn <- "occurrence.txt"
 unzip(zipfile = occ, files = fn, 
       exdir = "../data/interim")
+file.rename(from = "../data/interim/occurrence.txt", 
+            to = "../data/interim/occurrence_species_test_invasion_curve.txt")
 occ_df <- read_delim(
-  file = "../data/interim/occurrence.txt", "\t",
+  file = "../data/interim/occurrence_species_test_invasion_curve.txt", "\t",
   escape_double = FALSE, trim_ws = TRUE)
 ```
 
