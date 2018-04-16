@@ -95,12 +95,15 @@ counts_ias %<>%
 ```
 
 ```{r calculate_time_sections}
-
 counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
-
-
 ```
 
+```{r calculate_min_max_date}
+#calculate the minimum and maximum date
+#mindate is calculated to the decade
+minDate <- min(counts_ias$year) - min(counts_ias$year) %% 10
+maxDate <- max(counts_ias$year)
+```
 
 
 ```{r basic_english_line_graphs, fig.width=8, fig.height=8}
@@ -111,8 +114,8 @@ counts_ias %>% ggplot(aes(x = year,
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
                 theme(strip.text.y = element_text(size = 16)) +
-                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
+                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
                 theme_inbo(base_size = 14)
 
 ```
@@ -124,8 +127,8 @@ counts_ias %>% ggplot(aes(x = year,
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
                 theme(strip.text.y = element_text(size = 16)) +
-                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
+                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
                 theme_inbo(base_size = 14)
 ```
 
@@ -136,8 +139,8 @@ counts_ias %>% ggplot( aes(x = year,
                 xlab("Jaar") +
                 ylab("Aantal uitheemse soorten (cumulatieve som)") +
                 theme(strip.text.y = element_text(size = 16)) +
-                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
+                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
                 theme_inbo(base_size = 14)
 ```
 
@@ -148,8 +151,8 @@ counts_ias %>% ggplot(aes(x = year,
                 xlab("Jaar") +
                 ylab("Aantal uitheemse soorten (cumulatieve som)") +
                 theme(strip.text.y = element_text(size = 16)) +
-                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
+                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
                 theme_inbo(base_size = 14)
 ```
 
