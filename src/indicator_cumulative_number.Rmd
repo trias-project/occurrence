@@ -109,6 +109,7 @@ if (numPlots==1) {
 }
 ```
 
+
 ```{r determine_presence_per_specieskey_per_year}
 
 count_presence <- function(year, df) {
@@ -121,9 +122,16 @@ count_presence <- function(year, df) {
 
 indicator_total_year <- function(data, start_year_plot = 1940, 
                                  x_scale_stepsize = 10, facet_column = NULL) {
+    
+    # initial input checks
+    assert_that(is.data.frame(data))
+    valid_facet_options <- c("family", "order", "class", "phylum", "kingdom",
+                             "pathway_level1", "locality", "native_range")
+    facet_column <- match.arg(facet_column, valid_facet_options)    
+    
     unique_df <- data %>%
         filter(!is.na(startDate)) %>%
-        distinct(key, startDate, endDate, facet_column)
+        distinct(key, startDate, endDate, kingdom)
 
     # Create yearslist using startDate and endDate 
     counts_ias <- data.frame(year = c(min(unique_df$startDate, 
