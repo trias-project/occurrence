@@ -72,7 +72,7 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
-```{r Determine presence per species(key) per year}
+```{r determine_presence_per_specieskey_per_year}
 
 unique_df <- data %>%
  filter(!is.na(startDate)) %>%
@@ -94,7 +94,7 @@ counts_ias %<>%
  bind_cols(counts_ias) %>% select(year, everything())
 ```
 
-```{r Calculate time sections}
+```{r calculate_time_sections}
 
 counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 
@@ -103,10 +103,10 @@ counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 
 
 
-```{r Basic english Graphs}
+```{r basic_english_line_graphs}
 
-counts_ias %>% ggplot( aes(x = year, 
-                            y = counts)) +
+counts_ias %>% ggplot(aes(x = year, 
+                          y = counts)) +
                 geom_line() +
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
@@ -115,8 +115,11 @@ counts_ias %>% ggplot( aes(x = year,
                 scale_x_continuous(breaks = seq(1200, 2010, 50)) +
                 theme_inbo(base_size = 14)
 
-counts_ias %>% ggplot( aes(x = year, 
-                            y = counts)) +
+```
+
+```{r basic_english_bar_graphs}
+counts_ias %>% ggplot(aes(x = year, 
+                          y = counts)) +
                 geom_bar(stat = "identity") +
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
@@ -126,8 +129,7 @@ counts_ias %>% ggplot( aes(x = year,
                 theme_inbo(base_size = 14)
 ```
 
-```{r Basic dutch Graph}
-
+```{r basic_dutch_line_graph}
 counts_ias %>% ggplot( aes(x = year, 
                             y = counts)) +
                 geom_line() +
@@ -135,7 +137,19 @@ counts_ias %>% ggplot( aes(x = year,
                 ylab("Aantal uitheemse soorten (cumulatieve som)") +
                 theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50))
+                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                theme_inbo(base_size = 14)
+```
 
+```{r basic_dutch_bar_graph}
+counts_ias %>% ggplot(aes(x = year, 
+                          y = counts)) +
+                geom_line() +
+                xlab("Jaar") +
+                ylab("Aantal uitheemse soorten (cumulatieve som)") +
+                theme(strip.text.y = element_text(size = 16)) +
+                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
+                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                theme_inbo(base_size = 14)
 ```
 
