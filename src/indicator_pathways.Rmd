@@ -2,7 +2,7 @@
 title: "Indicator: Pathways associated with alien species introductions"
 author:
 - Damiano Oldoni
-- Add your name
+- Stijn Van Hoey
 date: "`r Sys.Date()`"
 output:
   html_document:
