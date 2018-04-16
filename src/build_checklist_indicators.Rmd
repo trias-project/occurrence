@@ -53,15 +53,16 @@ library(lazyeval)
 
 # Get data
 
-One of the TrIAS goals is to unify seven authoritative checklists. Such unified cheklist, public on GBIF (Global Biodiversity Information Facility) would be the start point of this workflow. However, we still don't have such checklist. We can still further work based on data of three different checklists
+One of the TrIAS goals is to unify seven authoritative checklists. Such unified checklist, public on GBIF (Global Biodiversity Information Facility) will be the start point of this workflow. At the moment, we don't have such checklist. For the moment, the analysis is based on the data of the following checklists:
 
 1. [Manual of the Alien Plants of Belgium](https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42)
 2. [Inventory of alien macroinvertebrates in Flanders, Belgium](https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265)
 3. [Checklist of non-native freshwater fishes in Flanders, Belgium](https://www.gbif.org/dataset/98940a79-2bf1-46e6-afd6-ba2e85a26f9f)
+*(add more lists when available)*
 
 ## Retrieve data in checklist(s) from GBIF
 
-First step is importing checklists data from GBIF. We do it via  `trias` function `gbif_get_taxa`
+First step is importing checklists data from GBIF. We do it via `trias` function `gbif_get_taxa`
 
 ```r
 checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
@@ -138,7 +139,7 @@ You can start from this point and not repeat previous steps by loading the tsv f
 
 ```{r read_data_output, eval=FALSE}
 data_output <- read_tsv(
-  file = "../data/interim/test_data_output_checklist_indicators.tsv")
+file = "../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
 New functions should be written in `trias` official project package.
