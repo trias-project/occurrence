@@ -103,7 +103,7 @@ counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 
 
 
-```{r basic_english_line_graphs}
+```{r basic_english_line_graphs, fig.width=8, fig.height=8}
 
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
@@ -117,7 +117,7 @@ counts_ias %>% ggplot(aes(x = year,
 
 ```
 
-```{r basic_english_bar_graphs}
+```{r basic_english_bar_graphs, fig.width=8, fig.height=8}
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_bar(stat = "identity") +
@@ -129,7 +129,7 @@ counts_ias %>% ggplot(aes(x = year,
                 theme_inbo(base_size = 14)
 ```
 
-```{r basic_dutch_line_graph}
+```{r basic_dutch_line_graph, fig.width=8, fig.height=8}
 counts_ias %>% ggplot( aes(x = year, 
                             y = counts)) +
                 geom_line() +
@@ -141,7 +141,7 @@ counts_ias %>% ggplot( aes(x = year,
                 theme_inbo(base_size = 14)
 ```
 
-```{r basic_dutch_bar_graph}
+```{r basic_dutch_bar_graph, fig.width=8, fig.height=8}
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_line() +
