@@ -113,9 +113,9 @@ counts_ias %>% ggplot(aes(x = year,
                 geom_line() +
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
-                theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
                 scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
+                theme(strip.text.y = element_text(size = 16)) +
                 theme_inbo(base_size = 14)
 
 ```
@@ -126,9 +126,9 @@ counts_ias %>% ggplot(aes(x = year,
                 geom_bar(stat = "identity") +
                 xlab("Year") +
                 ylab("Number of alien species (cumulative sum)") +
-                theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
                 scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
+                theme(strip.text.y = element_text(size = 16)) +
                 theme_inbo(base_size = 14)
 ```
 
@@ -138,9 +138,9 @@ counts_ias %>% ggplot( aes(x = year,
                 geom_line() +
                 xlab("Jaar") +
                 ylab("Aantal uitheemse soorten (cumulatieve som)") +
-                theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
                 scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
+                theme(strip.text.y = element_text(size = 16)) +
                 theme_inbo(base_size = 14)
 ```
 
@@ -150,9 +150,9 @@ counts_ias %>% ggplot(aes(x = year,
                 geom_line() +
                 xlab("Jaar") +
                 ylab("Aantal uitheemse soorten (cumulatieve som)") +
-                theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
                 scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
+                theme(strip.text.y = element_text(size = 16)) +
                 theme_inbo(base_size = 14)
 ```
 
