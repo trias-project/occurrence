@@ -79,8 +79,9 @@ unique_df <- data %>%
                   distinct(key, startDate, endDate)
 
 # Create yearslist using startDate and endDate 
-counts_ias <- data.frame(year = c(min(unique_df$startDate, na.rm = TRUE):
-                                  max(unique_df$endDate, na.rm = TRUE))) %>%
+counts_ias <- data.frame(year = c(min(unique_df$startDate, 
+                                      na.rm = TRUE):max(unique_df$endDate, 
+                                                        na.rm = TRUE))) %>%
                                   as_tibble()
 
 count_presence <- function(year, df) {
@@ -112,7 +113,8 @@ counts_ias %>% ggplot(aes(x = year,
                 geom_line() +
                 xlab("Year") +
                 ylab("Number of alien species") +
-                scale_x_continuous(breaks = seq(start_year_plot, maxDate, x_scale_stepsize))+
+                scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                                x_scale_stepsize)) +
                 xlim(start_year_plot, maxDate) +
                 theme_inbo()
 
@@ -124,7 +126,8 @@ counts_ias %>% ggplot(aes(x = year,
                 geom_bar(stat = "identity") +
                 xlab("Year") +
                 ylab("Number of alien species") +
-                scale_x_continuous(breaks = seq(start_year_plot, maxDate, x_scale_stepsize))+
+                scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                                x_scale_stepsize)) +
                 xlim(start_year_plot, maxDate) +
                 theme_inbo()
 ```
