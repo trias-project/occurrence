@@ -68,7 +68,7 @@ In order to not consider subspecies, please take care of grouping by `species` (
 
 About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
 
-## Cumulative number of alien species
+## Number of alien species
 
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
