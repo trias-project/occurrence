@@ -75,6 +75,8 @@ occ_df <- read_delim(
 
 # Generalized Additive Model
 
-
+Put your workflow here.
 
 # Downscaling
+
+Put your workflow here.
