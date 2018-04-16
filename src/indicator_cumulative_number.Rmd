@@ -125,29 +125,3 @@ indicator_total_year(data, start_year_plot, x_scale_stepsize)
 ```
 
 
-```{r basic_english_line_graphs, fig.width=8, fig.height=8}
-counts_ias %>% ggplot(aes(x = year, 
-                          y = counts)) +
-                geom_line() +
-                xlab("Year") +
-                ylab("Number of alien species") +
-                scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                                x_scale_stepsize)) +
-                xlim(start_year_plot, maxDate) +
-                theme_inbo()
-
-```
-
-```{r basic_english_bar_graphs, fig.width=8, fig.height=8}
-counts_ias %>% ggplot(aes(x = year, 
-                          y = counts)) +
-                geom_bar(stat = "identity") +
-                xlab("Year") +
-                ylab("Number of alien species") +
-                scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                                x_scale_stepsize)) +
-                xlim(start_year_plot, maxDate) +
-                theme_inbo()
-```
-
-
