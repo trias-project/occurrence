@@ -117,3 +117,19 @@ ggplot(df_pathway, aes(x = reorder(pathway_level2, -n),
     )
 ```
 
+Only focusing on the main category:
+
+```{r}
+ggplot(df_pathway,  aes(x = reorder(pathway_level1, n, function(x){sum(x)}),
+                    y = n, fill = kingdom)) +
+    geom_bar(stat = "summary", fun.y = sum,
+             width = .65) + 
+    xlab("Pathway") +
+    ylab("Number of species") + 
+    coord_flip() +
+    theme(legend.position = "top",
+          legend.title = element_blank()
+          )
+```
+
+
