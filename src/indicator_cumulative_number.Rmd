@@ -99,38 +99,35 @@ counts_ias %<>%
 counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 ```
 
-```{r calculate_min_max_date}
-#calculate the minimum and maximum date
-#mindate is calculated to the decade
-minDate <- min(counts_ias$year) - min(counts_ias$year) %% 10
-maxDate <- max(counts_ias$year)
-```
-
-
 ```{r basic_english_line_graphs, fig.width=8, fig.height=8}
+start_year_plot <- 1800
+maxDate <- max(counts_ias$year)
+x_scale_stepsize <- 10
 
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_line() +
                 xlab("Year") +
                 ylab("Number of alien species") +
-                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
-                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
-                theme(strip.text.y = element_text(size = 16)) +
-                theme_inbo(base_size = 14)
+                scale_x_continuous(breaks = seq(start_year_plot, maxDate, x_scale_stepsize))+
+                xlim(start_year_plot, maxDate) +
+                theme_inbo()
 
 ```
 
 ```{r basic_english_bar_graphs, fig.width=8, fig.height=8}
+start_year_plot <- 1800
+maxDate <- max(counts_ias$year)
+x_scale_stepsize <- 10
+
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_bar(stat = "identity") +
                 xlab("Year") +
                 ylab("Number of alien species") +
-                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
-                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
-                theme(strip.text.y = element_text(size = 16)) +
-                theme_inbo(base_size = 14)
+                scale_x_continuous(breaks = seq(start_year_plot, maxDate, x_scale_stepsize))+
+                xlim(start_year_plot, maxDate) +
+                theme_inbo()
 ```
 
 
