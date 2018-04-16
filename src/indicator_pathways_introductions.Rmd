@@ -100,7 +100,7 @@ ggplot(df_pathway, aes(x = reorder(pathway_level2, -n),
     ylab("Number of species") +
     facet_grid(. ~ pathway_level1, scales = "free_x",
                space = "free_x") +
-    theme_inbo(base_size = 11) +
+    theme_inbo() +
     theme(
         axis.text.x = element_text(angle = 90, hjust = 1,
                                    vjust = 0.2, size = 15),
