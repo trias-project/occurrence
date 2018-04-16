@@ -56,15 +56,18 @@ We can import data based on a previous download (see `./get_occurrences.Rmd` pip
 So, we can load data related to taxa in `../data/input/species_test_invasion_curve.tsv`, by using the `gbif_download_key`, `0020843-180131172636756` (first column of `gbif_downloads.tsv`) in `rgbif` function `occ_download_get()`:
 
 ```{r load_occ_data}
-gbif_download_key <- "0020843-180131172636756"
-occ <- occ_download_get(key = gbif_download_key, 
+if (!file.exists("../data/interim/0020843-180131172636756.zip")) {
+  gbif_download_key <- "0020843-180131172636756"
+  occ <- occ_download_get(key = gbif_download_key, 
                         overwrite = T, 
                         path = "../data/interim/")
-fn <- "occurrence.txt"
-unzip(zipfile = occ, files = fn, 
+  fn <- "occurrence.txt"
+  unzip(zipfile = occ, files = fn, 
       exdir = "../data/interim")
-file.rename(from = "../data/interim/occurrence.txt", 
-            to = "../data/interim/occurrence_species_test_invasion_curve.txt")
+  file.rename(from = "../data/interim/occurrence.txt", 
+              to = "../data/interim/occurrence_species_test_invasion_curve.txt")
+}
+
 occ_df <- read_delim(
   file = "../data/interim/occurrence_species_test_invasion_curve.txt", "\t",
   escape_double = FALSE, trim_ws = TRUE)
