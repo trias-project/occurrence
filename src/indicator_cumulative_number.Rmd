@@ -133,27 +133,4 @@ counts_ias %>% ggplot(aes(x = year,
                 theme_inbo(base_size = 14)
 ```
 
-```{r basic_dutch_line_graph, fig.width=8, fig.height=8}
-counts_ias %>% ggplot( aes(x = year, 
-                            y = counts)) +
-                geom_line() +
-                xlab("Jaar") +
-                ylab("Aantal uitheemse soorten") +
-                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
-                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
-                theme(strip.text.y = element_text(size = 16)) +
-                theme_inbo(base_size = 14)
-```
-
-```{r basic_dutch_bar_graph, fig.width=8, fig.height=8}
-counts_ias %>% ggplot(aes(x = year, 
-                          y = counts)) +
-                geom_line() +
-                xlab("Jaar") +
-                ylab("Aantal uitheemse soorten") +
-                scale_x_discrete(labels = seq(minDate, maxDate, 15)) + 
-                scale_x_continuous(breaks = seq(minDate, maxDate, 50)) +
-                theme(strip.text.y = element_text(size = 16)) +
-                theme_inbo(base_size = 14)
-```
 
