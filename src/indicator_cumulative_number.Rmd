@@ -47,6 +47,7 @@ library(rgbif)
 library(trias)
 #other pckages
 library(lazyeval)
+library(INBOtheme)
 
 ```
 
@@ -91,12 +92,18 @@ counts_ias %<>%
  rowwise() %>%
  do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
  bind_cols(counts_ias) %>% select(year, everything())
+```
+
+```{r Calculate time sections}
+
+counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 
 
 ```
 
 
-```{r English Graph}
+
+```{r Basic english Graphs}
 
 counts_ias %>% ggplot( aes(x = year, 
                             y = counts)) +
@@ -105,10 +112,21 @@ counts_ias %>% ggplot( aes(x = year,
                 ylab("Number of alien species (cumulative sum)") +
                 theme(strip.text.y = element_text(size = 16)) +
                 scale_x_discrete(labels = seq(1200, 2030, 15)) + 
-                scale_x_continuous(breaks = seq(1200, 2010, 50))
+                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                theme_inbo(base_size = 14)
+
+counts_ias %>% ggplot( aes(x = year, 
+                            y = counts)) +
+                geom_bar(stat = "identity") +
+                xlab("Year") +
+                ylab("Number of alien species (cumulative sum)") +
+                theme(strip.text.y = element_text(size = 16)) +
+                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
+                scale_x_continuous(breaks = seq(1200, 2010, 50)) +
+                theme_inbo(base_size = 14)
 ```
 
-```{r Dutch Graph}
+```{r Basic dutch Graph}
 
 counts_ias %>% ggplot( aes(x = year, 
                             y = counts)) +
