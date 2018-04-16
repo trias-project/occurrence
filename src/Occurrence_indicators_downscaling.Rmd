@@ -15,13 +15,7 @@ output:
 knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
 ---
 
-This document describes how to build indicators of Invasive Alien Species based on occurrence data.
-The following indicators will be built:
-
-1.
-2.
-
-
+This document describes how to apply downscaling method on GBIF occurrence data of Invasive Alien Species.
 
 # Setup
 
@@ -53,12 +47,11 @@ library(trias)
 library(lazyeval)
 ```
 
-# Load data
+# Get data
 
-We can import data based on a previous download (see `./get_occurrences.Rmd` pipeline for getting occurrences data from GBIF). The download keys and DOIs are saved in file `../data/output/gbif_downloads.tsv`. A reference to input taxa is present as well.
-So, we can load data related to taxa in `../data/input/species_test_invasion_curve.tsv`, by using the `gbif_download_key`, `0020843-180131172636756` (first column of `gbif_downloads.tsv`) in `rgbif` function `occ_download_get()`:
+We can import test data based on a previous download related to taxa in `../data/input/species_test_invasion_curve.tsv`:
 
-```{r load_occ_data}
+```{r load_occ_data} 
 gbif_download_key <- "0020843-180131172636756"
 occ <- occ_download_get(key = gbif_download_key, 
                         overwrite = T, 
@@ -75,4 +68,4 @@ occ_df <- read_delim(
 
 # Downscaling
 
-Put your workflow here.
+New functions should be written in `trias` official project package.
