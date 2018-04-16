@@ -63,7 +63,7 @@ One of the TrIAS goals is to unify seven authoritative checklists. Such unified 
 
 First step is importing checklists data from GBIF. We do it via  `trias` function `gbif_get_taxa`
 
-```r
+```{r get_taxa}
 checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
 taxon <- trias::gbif_get_taxa(
   checklist_keys = c("9ff7d317-609b-4c08-bd86-3bc404b77c42",
@@ -77,7 +77,18 @@ taxon <- trias::gbif_get_taxa(
 Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue [#21](https://github.com/trias-project/pipeline/issues/21))
 
 ```{r retrieve_taxonomic_info_backbone}
-print("write here your code, Damiano!")
+taxon_keys <- taxon %>% select(key) %>% pull(key)
+taxon_info <- c("key", "species", "genus", "family", "order",
+                 "class", "phylum", "kingdom",
+                 "rank", "taxonomicStatus", "acceptedKey", "accepted")
+
+nub_keys <- taxon %>% select(nubKey) %>% filter(is.finite(nubKey))
+taxon_backbone_info <-  nub_keys %>%
+  rowwise() %>%
+  do_(interp(~ name_usage(key = .$nubKey,
+                         return = "data"))) %>%
+  select(key,one_of(taxon_info))
+
 ```
 
 Extract distribution information
