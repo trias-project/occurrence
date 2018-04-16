@@ -36,6 +36,7 @@ Load libraries:
 ```{r load_libraries}
 # Tidyverse packages
 library(tidyr)
+library(tidyverse)
 library(dplyr)
 library(magrittr)
 library(stringr)
@@ -46,13 +47,14 @@ library(rgbif)
 library(trias)
 #other pckages
 library(lazyeval)
+library(INBOtheme)
 ```
 
 # Get data
 
 ```{r save_data_output}
+# Get data
 data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
-
 ```
 
 # Build indicators
@@ -61,11 +63,68 @@ data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 
 New functions should be written in `trias` official project package.
 
-In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
+In order to not consider subspecies, please take care of grouping by `species` 
+(see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
 
-About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
+About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), 
+please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
 
 ## Number of new introductions of alien species per year
 
 See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
+
+Create function to visualize yearly introduction evolution
+```{r}
+# Create function
+#' Create year of introduction based Trias indicator
+#'
+#' @param data df, as created by preprocessing...
+#' @param start_year_plot Start year to show the plot, as initial years are 
+#' mostly irrelevant
+#' @param smooth_span Parameter for the applied Loess smoother, for  more 
+#' information on the appropriate value, see...
+#'
+#' @return ggplot
+#' @export
+#'
+#' @examples
+#' indicator_introduction_year(data)
+#' indicator_introduction_year(data, start_year_plot = 1940, 
+#'                             smooth_span = 0.6)
+indicator_introduction_year <- function(data, start_year_plot = 1940,
+                                       smooth_span = 1.,
+                                       x_scale_stepsize = 10) {
+ data_plot <- data %>% 
+     filter(!is.na(.data$startDate)) %>%
+     filter(.data$type == "pathway") %>%
+     filter("startDate" > start_year_plot) %>%
+     group_by(.data$startDate) %>%
+     count() %>%
+     ungroup()
+     
+ggplot(data_plot, aes(x=startDate, y=n)) +
+     geom_point(stat = 'identity') +
+     geom_smooth(span = smooth_span) +
+     scale_x_continuous(breaks = seq(start_year_plot, 
+                                     max(data_plot$startDate), 
+                                     x_scale_stepsize), 
+                       limits = c(start_year_plot, 
+                                  max(data_plot$startDate))) +
+     theme_inbo()
+ }
+```
+
+Set start_year and loess_span if you want
+Specify this in the function so the function knows that it shouldn't use the 
+default settings (that were specified above)
+```{r}
+# Example
+start_year_plot <- 1960
+loess_span <- 3.
+x_scale_stepsize <- 15
+
+indicator_introduction_year(data, start_year_plot = start_year_plot, 
+                            smooth_span = loess_span,
+                            x_scale_stepsize = x_scale_stepsize)
+```
 
