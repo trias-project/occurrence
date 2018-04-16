@@ -74,36 +74,54 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
 ```{r determine_presence_per_specieskey_per_year}
 
-unique_df <- data %>%
-                  filter(!is.na(startDate)) %>%
-                  distinct(key, startDate, endDate)
-
-# Create yearslist using startDate and endDate 
-counts_ias <- data.frame(year = c(min(unique_df$startDate, 
-                                      na.rm = TRUE):max(unique_df$endDate, 
-                                                        na.rm = TRUE))) %>%
-                                  as_tibble()
-
 count_presence <- function(year, df) {
-                  df %>% filter(startDate <= year & endDate >= year) %>%
-                  nrow() %>% as_tibble() %>% rename(counts = value)
-                  }
+    df %>% 
+        filter(startDate <= year & endDate >= year) %>%
+        nrow() %>% 
+        as_tibble() %>% 
+        rename(counts = value)
+}
 
-counts_ias %<>%
-           rowwise() %>%
-           do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
-           bind_cols(counts_ias) %>% select(year, everything())
+indicator_total_year <- function(data, start_year_plot = 1940, 
+                                 x_scale_stepsize = 10) {
+    unique_df <- data %>%
+        filter(!is.na(startDate)) %>%
+        distinct(key, startDate, endDate)
+
+    # Create yearslist using startDate and endDate 
+    counts_ias <- data.frame(year = c(min(unique_df$startDate, 
+                                          na.rm = TRUE):max(unique_df$endDate, 
+                                                            na.rm = TRUE))) %>%
+        as_tibble()
+
+    counts_ias <- counts_ias %>%
+        rowwise() %>%
+        do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
+        bind_cols(counts_ias) %>% 
+        select(year, everything()) %>%
+        mutate(decade = year - year %% 10)
+    
+    maxDate <- max(counts_ias$year)
+    
+    ggplot(counts_ias, aes(x = year, y = counts)) +
+        geom_line() +
+        xlab("Year") +
+        ylab("Number of alien species") +
+        scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                        x_scale_stepsize)) +
+        xlim(start_year_plot, maxDate) +
+        theme_inbo()
+}
+
+
 ```
 
-```{r calculate_time_sections}
-#calculate the decade 
-counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
-```
 
 ```{r set_graph_parameters}
-start_year_plot <- 1800
-maxDate <- max(counts_ias$year)
+start_year_plot <- 1940
 x_scale_stepsize <- 10
+
+indicator_total_year(data, start_year_plot, x_scale_stepsize)
 ```
 
 
