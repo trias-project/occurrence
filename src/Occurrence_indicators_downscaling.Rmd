@@ -52,7 +52,7 @@ library(lazyeval)
 We can import test data based on a previous download related to taxa in `../data/input/species_test_invasion_curve.tsv`:
 
 ```{r load_occ_data}
-if (!file.exists("../data/interim/0020843-180131172636756.zip")) {
+if (!file.exists("../data/interim/occurrence_species_test_invasion_curve.txt")) {
   gbif_download_key <- "0020843-180131172636756"
   occ <- occ_download_get(key = gbif_download_key, 
                         overwrite = T, 
