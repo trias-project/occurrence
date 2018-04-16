@@ -95,6 +95,7 @@ counts_ias %<>%
 ```
 
 ```{r calculate_time_sections}
+#calculate the decade 
 counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 ```
 
