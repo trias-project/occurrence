@@ -1,5 +1,5 @@
 ---
-title: "Cheklist-based indicators of Invasive Alien Species"
+title: "Checklist-based indicators of Invasive Alien Species"
 author:
 - Damiano Oldoni
 - Add your name
@@ -150,12 +150,18 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 
 ## Number of new introductions of alien species per year
 
+For information and development, see file [Number of new introductions of alien species per year](indicator_introductions_per_year.Rmd)
+
 See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
 
 ## Pathways associated with alien species introductions
 
+For information and development, see file [Pathways associated with alien species introductions](indicator_pathways_introductions.Rmd)
+
 see GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19)
 
 ## Cumulative number of alien species
+
+For information and development, see file [Cumulative number of alien species](indicator_cumulative_number.Rmd)
 
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
