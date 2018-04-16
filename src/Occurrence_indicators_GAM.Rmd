@@ -1,0 +1,78 @@
+---
+title: "Occurrence indicators: Generalized Additive Model"
+author:
+- Damiano Oldoni
+- Add your name
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: yeti
+    df_print: paged
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
+---
+
+This document describes how to build indicators of Invasive Alien Species based on occurrence data.
+The following indicators will be built:
+
+1.
+2.
+
+
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Install `trias` package:
+
+```{r install_packages}
+devtools::install_github("trias-project/trias")
+```
+
+
+Load libraries:
+
+```{r load_libraries}
+# Tidyverse packages
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(stringr)
+library(readr)
+# GBIF related packages
+library(rgbif)
+# project package
+library(trias)
+#other pckages
+library(lazyeval)
+```
+
+# Load data
+
+We can import data based on a previous download (see `./get_occurrences.Rmd` pipeline for getting occurrences data from GBIF). The download keys and DOIs are saved in file `../data/output/gbif_downloads.tsv`. A reference to input taxa is present as well.
+So, we can load data related to taxa in `../data/input/species_test_invasion_curve.tsv`, by using the `gbif_download_key`, `0020843-180131172636756` (first column of `gbif_downloads.tsv`) in `rgbif` function `occ_download_get()`:
+
+```{r load_occ_data}
+gbif_download_key <- "0020843-180131172636756"
+occ <- occ_download_get(key = gbif_download_key, 
+                        overwrite = T, 
+                        path = "../data/interim/")
+fn <- "occurrence.txt"
+unzip(zipfile = occ, files = fn, 
+      exdir = "../data/interim")
+file.rename(from = "../data/interim/occurrence.txt", 
+            to = "../data/interim/occurrence_species_test_invasion_curve.txt")
+occ_df <- read_delim(
+  file = "../data/interim/occurrence_species_test_invasion_curve.txt", "\t",
+  escape_double = FALSE, trim_ws = TRUE)
+```
+
+# Generalized Additive Model
+
+Put your workflow here.
