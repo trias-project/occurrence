@@ -75,23 +75,23 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 ```{r determine_presence_per_specieskey_per_year}
 
 unique_df <- data %>%
- filter(!is.na(startDate)) %>%
- distinct(key, startDate, endDate)
+                  filter(!is.na(startDate)) %>%
+                  distinct(key, startDate, endDate)
 
 # Create yearslist using startDate and endDate 
 counts_ias <- data.frame(year = c(min(unique_df$startDate, na.rm = TRUE):
-                                 max(unique_df$endDate, na.rm = TRUE))) %>%
- as_tibble()
+                                  max(unique_df$endDate, na.rm = TRUE))) %>%
+                                  as_tibble()
 
 count_presence <- function(year, df) {
- df %>% filter(startDate <= year & endDate >= year) %>%
-   nrow() %>% as_tibble() %>% rename(counts = value)
-}
+                  df %>% filter(startDate <= year & endDate >= year) %>%
+                  nrow() %>% as_tibble() %>% rename(counts = value)
+                  }
 
 counts_ias %<>%
- rowwise() %>%
- do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
- bind_cols(counts_ias) %>% select(year, everything())
+           rowwise() %>%
+           do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
+           bind_cols(counts_ias) %>% select(year, everything())
 ```
 
 ```{r calculate_time_sections}
