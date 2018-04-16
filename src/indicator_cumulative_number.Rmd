@@ -72,6 +72,43 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
+```{r}
+multiplot <- function(..., plotlist=NULL, file, cols=2, layout=NULL) {
+ library(grid)
+
+ # Make a list from the ... arguments and plotlist
+ plots <- c(list(...), plotlist)
+
+ numPlots = length(plots)
+
+ # If layout is NULL, then use 'cols' to determine layout
+ if (is.null(layout)) {
+   # Make the panel
+   # ncol: Number of columns of plots
+   # nrow: Number of rows needed, calculated from # of cols
+   layout <- matrix(c(1,1,2,2))
+ }
+
+if (numPlots==1) {
+   print(plots[[1]])
+
+ } else {
+   # Set up the page
+   grid.newpage()
+   pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+   # Make each plot, in the correct location
+   for (i in 1:numPlots) {
+     # Get the i,j matrix positions of the regions that contain this subplot
+     matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+     print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                     layout.pos.col = matchidx$col))
+   }
+ }
+}
+```
+
 ```{r determine_presence_per_specieskey_per_year}
 
 count_presence <- function(year, df) {
@@ -83,10 +120,10 @@ count_presence <- function(year, df) {
 }
 
 indicator_total_year <- function(data, start_year_plot = 1940, 
-                                 x_scale_stepsize = 10) {
+                                 x_scale_stepsize = 10, facet_column = NULL) {
     unique_df <- data %>%
         filter(!is.na(startDate)) %>%
-        distinct(key, startDate, endDate)
+        distinct(key, startDate, endDate, facet_column)
 
     # Create yearslist using startDate and endDate 
     counts_ias <- data.frame(year = c(min(unique_df$startDate, 
@@ -103,7 +140,7 @@ indicator_total_year <- function(data, start_year_plot = 1940,
     
     maxDate <- max(counts_ias$year)
     
-    ggplot(counts_ias, aes(x = year, y = counts)) +
+    top_graph <- ggplot(counts_ias, aes(x = year, y = counts)) +
         geom_line() +
         xlab("Year") +
         ylab("Number of alien species") +
@@ -111,6 +148,16 @@ indicator_total_year <- function(data, start_year_plot = 1940,
                                         x_scale_stepsize)) +
         xlim(start_year_plot, maxDate) +
         theme_inbo()
+    
+    
+    if (is.null(facet_column)) {
+      return(top_graph)
+    } else {
+      wrap_graph <- top_graph + 
+        facet_wrap(facet_column)
+      combined_graph <- multiplot(top_graph, wrap_graph)
+      return(combined_graph)
+    }
 }
 
 
@@ -121,7 +168,7 @@ indicator_total_year <- function(data, start_year_plot = 1940,
 start_year_plot <- 1940
 x_scale_stepsize <- 10
 
-indicator_total_year(data, start_year_plot, x_scale_stepsize)
+indicator_total_year(data, start_year_plot, x_scale_stepsize, facet_column = "kingdom")
 ```
 
 
