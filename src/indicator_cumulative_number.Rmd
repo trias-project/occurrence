@@ -99,11 +99,14 @@ counts_ias %<>%
 counts_ias$decade <- counts_ias$year - counts_ias$year %% 10
 ```
 
-```{r basic_english_line_graphs, fig.width=8, fig.height=8}
+```{r set_graph_parameters}
 start_year_plot <- 1800
 maxDate <- max(counts_ias$year)
 x_scale_stepsize <- 10
+```
 
+
+```{r basic_english_line_graphs, fig.width=8, fig.height=8}
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_line() +
@@ -116,10 +119,6 @@ counts_ias %>% ggplot(aes(x = year,
 ```
 
 ```{r basic_english_bar_graphs, fig.width=8, fig.height=8}
-start_year_plot <- 1800
-maxDate <- max(counts_ias$year)
-x_scale_stepsize <- 10
-
 counts_ias %>% ggplot(aes(x = year, 
                           y = counts)) +
                 geom_bar(stat = "identity") +
