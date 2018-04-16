@@ -2,7 +2,7 @@
 title: "Indicator: Cumulative number of alien species"
 author:
 - Damiano Oldoni
-- Add your name
+- Sander Devisscher
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -40,12 +40,14 @@ library(dplyr)
 library(magrittr)
 library(stringr)
 library(readr)
+library(ggplot2)
 # GBIF related packages
 library(rgbif)
 # project package
 library(trias)
 #other pckages
 library(lazyeval)
+
 ```
 
 # Get data
@@ -68,4 +70,54 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 ## Cumulative number of alien species
 
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
+
+```{r Determine presence per species(key) per year}
+
+unique_df <- data %>%
+ filter(!is.na(startDate)) %>%
+ distinct(key, startDate, endDate)
+
+# Create yearslist using startDate and endDate 
+counts_ias <- data.frame(year = c(min(unique_df$startDate, na.rm = TRUE):
+                                 max(unique_df$endDate, na.rm = TRUE))) %>%
+ as_tibble()
+
+count_presence <- function(year, df) {
+ df %>% filter(startDate <= year & endDate >= year) %>%
+   nrow() %>% as_tibble() %>% rename(counts = value)
+}
+
+counts_ias %<>%
+ rowwise() %>%
+ do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
+ bind_cols(counts_ias) %>% select(year, everything())
+
+
+```
+
+
+```{r English Graph}
+
+counts_ias %>% ggplot( aes(x = year, 
+                            y = counts)) +
+                geom_line() +
+                xlab("Year") +
+                ylab("Number of alien species (cumulative sum)") +
+                theme(strip.text.y = element_text(size = 16)) +
+                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
+                scale_x_continuous(breaks = seq(1200, 2010, 50))
+```
+
+```{r Dutch Graph}
+
+counts_ias %>% ggplot( aes(x = year, 
+                            y = counts)) +
+                geom_line() +
+                xlab("Jaar") +
+                ylab("Aantal uitheemse soorten (cumulatieve som)") +
+                theme(strip.text.y = element_text(size = 16)) +
+                scale_x_discrete(labels = seq(1200, 2030, 15)) + 
+                scale_x_continuous(breaks = seq(1200, 2010, 50))
+
+```
 
