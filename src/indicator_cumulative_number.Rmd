@@ -145,10 +145,20 @@ indicator_total_year <- function(df, start_year_plot = 1940,
 }
 ```
 
+So, the figure can be created without using facets (default):
+
+```{r fig.width=10, fig.height=5}
+start_year_plot <- 1900
+x_scale_stepsize <- 25
+indicator_total_year(data, start_year_plot, x_scale_stepsize)
+```
+
+or with the facet usage:
+
 ```{r fig.width=8, fig.height=8}
 start_year_plot <- 1900
 x_scale_stepsize <- 25
 
 indicator_total_year(data, start_year_plot, x_scale_stepsize, 
-                     facet_column = "pathway_level1")
+                     facet_column = "kingdom")
 ```
