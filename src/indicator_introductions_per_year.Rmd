@@ -119,6 +119,8 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
     top_graph <- ggplot(data_top_graph, aes(x = startDate, y = n)) +
         geom_point(stat = 'identity') +
     geom_smooth(span = smooth_span) +
+    xlab("Year") +
+    ylab("Number of introduced alien species") +         
     scale_x_continuous(breaks = seq(start_year_plot, 
                                  max(data_plot$startDate), 
                                  x_scale_stepsize), 
@@ -144,6 +146,8 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
             geom_point(stat = 'identity') +
             geom_smooth(span = smooth_span) +
             facet_wrap(facet_column) +
+            xlab("Year") +
+            ylab("Number of introduced alien species") + 
             scale_x_continuous(breaks = seq(start_year_plot, 
                                             max(data_plot$startDate), 
                                             x_scale_stepsize), 
@@ -168,7 +172,7 @@ x_scale_stepsize <- 15
 indicator_introduction_year(data, start_year_plot = start_year_plot, 
                             smooth_span = loess_span,
                             x_scale_stepsize = x_scale_stepsize,
-                            facet_column = "locality")
+                            facet_column = "kingdom")
 ```
 
 
