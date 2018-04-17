@@ -125,9 +125,19 @@ indicator_total_year <- function(df, start_year_plot = 1940,
         df_cleaned <- df %>%
             distinct_("key", "startDate", "endDate", facet_column)
     }
+
+    # Provide warning messages for endDate/startDate NA values
+    if (nrow(filter(df, is.na(startDate), is.na(endDate))) > 0) {
+        warning("Some records have no startDate or endDate defines, ",
+                "these are currently not taken into account")
+    }        
+    if (nrow(filter(df, !is.na(startDate), is.na(endDate))) > 0) {
+        warning("Some records have a startDate, but no endDate defines, ",
+                "using same year as startYear to replace NA")
+    }
     df_cleaned <- df_cleaned %>%
         filter(!is.na(startDate)) %>%  # ignore information without startDate
-        replace_na(list(endDate = lubridate::year(lubridate::now()))) # replace NA with current year    
+        mutate(endDate = if_else(is.na(endDate), startDate, endDate)) # replace NA with startDate
     
     # Make individual records for each year within the range    
     df_extended <- df_cleaned %>%
