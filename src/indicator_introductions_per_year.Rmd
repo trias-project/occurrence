@@ -2,7 +2,8 @@
 title: "Indicator: Number of new introductions of alien species per year"
 author:
 - Damiano Oldoni
-- Yasmine verzelen
+- Yasmine Verzelen
+- Stijn Van Hoey
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -12,12 +13,16 @@ output:
     number_sections: true
     theme: yeti
     df_print: paged
-knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding 
+= encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", 
+basename(input_file))))})
 ---
 
-This document describes how to build indicators of Invasive Alien Species based on checklist data. In particular, this document takes into account:
+This document describes how to build indicators of Invasive Alien Species based 
+on checklist data. In particular, this document takes into account:
 
-1. number of new introductions of alien species per year in Belgium (see GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17))
+1. number of new introductions of alien species per year in Belgium (see GitHub 
+issue [#17](https://github.com/trias-project/pipeline/issues/17))
 
 # Setup
 
@@ -45,9 +50,11 @@ library(readr)
 library(rgbif)
 # project package
 library(trias)
-#other pckages
-library(lazyeval)
+# INBO theme package
 library(INBOtheme)
+# other packages
+library(lazyeval)
+
 ```
 
 # Get data
@@ -67,7 +74,8 @@ In order to not consider subspecies, please take care of grouping by `species`
 (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
 
 About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), 
-please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
+please see this [comment](https://github.com/trias-project/pipeline/issues/
+21#issuecomment-381164874).
 
 ## Number of new introductions of alien species per year
 
@@ -79,7 +87,7 @@ Create function to visualize yearly introduction evolution
 # Create function
 #' Create year of introduction based Trias indicator
 #'
-#' @param data df, as created by preprocessing...
+#' @param data df, as created by preprocessing
 #' @param start_year_plot Start year to show the plot, as initial years are 
 #' mostly irrelevant
 #' @param smooth_span Parameter for the applied Loess smoother, for  more 
