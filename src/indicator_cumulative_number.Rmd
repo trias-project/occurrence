@@ -29,6 +29,7 @@ Install `trias` package:
 
 ```{r install_packages}
 devtools::install_github("trias-project/trias")
+devtools::install_github("thomasp85/patchwork")
 ```
 
 Load libraries:
@@ -48,7 +49,7 @@ library(trias)
 #other pckages
 library(lazyeval)
 library(INBOtheme)
-
+library(assertthat)
 ```
 
 # Get data
@@ -109,74 +110,82 @@ if (numPlots==1) {
 }
 ```
 
-
 ```{r determine_presence_per_specieskey_per_year}
 
-count_presence <- function(year, df) {
-    df %>% 
-        filter(startDate <= year & endDate >= year) %>%
-        nrow() %>% 
-        as_tibble() %>% 
-        rename(counts = value)
-}
-
-indicator_total_year <- function(data, start_year_plot = 1940, 
-                                 x_scale_stepsize = 10, facet_column = NULL) {
+indicator_total_year <- function(df, start_year_plot = 1940, 
+                                 x_scale_stepsize = 10, 
+                                 facet_column = NULL) {
     
     # initial input checks
-    assert_that(is.data.frame(data))
-    valid_facet_options <- c("family", "order", "class", "phylum", "kingdom",
-                             "pathway_level1", "locality", "native_range")
-    facet_column <- match.arg(facet_column, valid_facet_options)    
+    assert_that(is.data.frame(df))
     
-    unique_df <- data %>%
-        filter(!is.na(startDate)) %>%
-        distinct(key, startDate, endDate, kingdom)
-
-    # Create yearslist using startDate and endDate 
-    counts_ias <- data.frame(year = c(min(unique_df$startDate, 
-                                          na.rm = TRUE):max(unique_df$endDate, 
-                                                            na.rm = TRUE))) %>%
-        as_tibble()
-
-    counts_ias <- counts_ias %>%
+    # prepare the data set, !recheck when issue #30 cleared out
+    if (is.null(facet_column)) {
+        df_cleaned <- df %>%
+            distinct_("key", "startDate", "endDate")
+    } else {
+        # check for valid facet options
+        valid_facet_options <- c("family", "order", "class", "phylum", 
+                                 "kingdom", "pathway_level1", "locality", 
+                                 "native_range")
+        facet_column <- match.arg(facet_column, valid_facet_options) 
+        
+        df_cleaned <- df %>%
+            distinct_("key", "startDate", "endDate", facet_column)
+    }
+    df_cleaned <- df_cleaned %>%
+        filter(!is.na(startDate)) %>%  # ignore information without startDate
+        replace_na(list(endDate = lubridate::year(lubridate::now()))) # replace NA with current year    
+    
+    # Make individual records for each year within the range    
+    df_extended <- df_cleaned %>%
         rowwise() %>%
-        do_(interp(~ count_presence(year = .$year, df = unique_df))) %>%
-        bind_cols(counts_ias) %>% 
-        select(year, everything()) %>%
-        mutate(decade = year - year %% 10)
+        do(year = .data$startDate:.data$endDate) %>%
+        bind_cols(df_cleaned) %>% 
+        unnest(year)
     
-    maxDate <- max(counts_ias$year)
-    
-    top_graph <- ggplot(counts_ias, aes(x = year, y = counts)) +
-        geom_line() +
+    maxDate <- max(df_extended$year)
+    top_graph <- ggplot(df_extended, aes(x = year)) +
+        geom_line(stat = "count") +
         xlab("Year") +
         ylab("Number of alien species") +
         scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                        x_scale_stepsize)) +
-        xlim(start_year_plot, maxDate) +
+                                        x_scale_stepsize),
+                           limits = c(start_year_plot, maxDate)) +
         theme_inbo()
     
-    
     if (is.null(facet_column)) {
-      return(top_graph)
+        return(top_graph)
     } else {
-      wrap_graph <- top_graph + 
-        facet_wrap(facet_column)
-      combined_graph <- multiplot(top_graph, wrap_graph)
-      return(combined_graph)
-    }
+        # calculate numbers
+        counts_ias_grouped <- df_extended %>%
+            group_by_("year", facet_column)  %>%
+            count() %>%
+            ungroup()
+
+        # ISSUE starts here...
+        facet_graph <- ggplot(counts_ias_grouped, 
+                              aes(x = year, y = n)) + 
+            geom_line() +
+            xlab("Year") +
+            ylab("Number of alien species") +
+            facet_wrap(facet_column) + 
+            scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                        x_scale_stepsize),
+                               limits = c(start_year_plot, maxDate)) +
+            theme_inbo()
+        
+        top_graph + facet_graph + plot_layout(ncol = 1, heights = c(1, 4))
+    }    
+            
+    
 }
-
-
 ```
 
+```{r}
+start_year_plot <- 1900
+x_scale_stepsize <- 25
 
-```{r set_graph_parameters}
-start_year_plot <- 1940
-x_scale_stepsize <- 10
-
-indicator_total_year(data, start_year_plot, x_scale_stepsize, facet_column = "kingdom")
+indicator_total_year(data, start_year_plot, x_scale_stepsize, 
+                     facet_column = "kingdom")
 ```
-
-
