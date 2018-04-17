@@ -92,6 +92,14 @@ Create function to visualize yearly introduction evolution
 #' @return ggplot
 #' @export
 #'
+#' @importFrom assertthat assert_that
+#' @importFrom assertable assert_colnames
+#' @importFrom dplyr %>% filter group_by group_by_ count ungroup
+#' @importFrom ggplot2 geom_point aes xlab ylab scale_x_continuous facet_wrap
+#' geom_smooth
+#' @importFrom INBOtheme theme_inbo
+#' @importFrom egg ggarrange
+#'
 #' @examples
 #' indicator_introduction_year(data)
 #' indicator_introduction_year(data, start_year_plot = 1940, 
@@ -118,15 +126,15 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
     # top graph with all counts
     top_graph <- ggplot(data_top_graph, aes(x = startDate, y = n)) +
         geom_point(stat = 'identity') +
-    geom_smooth(span = smooth_span) +
-    xlab("Year") +
-    ylab("Number of introduced alien species") +         
-    scale_x_continuous(breaks = seq(start_year_plot, 
-                                 max(data_plot$startDate), 
-                                 x_scale_stepsize), 
-                   limits = c(start_year_plot, 
-                              max(data_plot$startDate))) +
-    theme_inbo()
+        geom_smooth(span = smooth_span) +
+        xlab("Year") +
+        ylab("Number of introduced alien species") +         
+        scale_x_continuous(breaks = seq(start_year_plot, 
+                                     max(data_plot$startDate), 
+                                     x_scale_stepsize), 
+                       limits = c(start_year_plot, 
+                                  max(data_plot$startDate))) +
+        theme_inbo()
     
     if (is.null(facet_column)) {
       return(top_graph)
