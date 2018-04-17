@@ -76,6 +76,32 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
 ```{r determine_presence_per_specieskey_per_year}
 
+#' Create total invasive species indicator plot (Trias)
+#'
+#' @param df data.frame Contains the data as produced by the Trias pipeline,
+#' with minimal colums.
+#' @param start_year_plot int Limit to use as start year of the plot. For scientific
+#' usage, the entire period could be relevant, but for policy purpose, focusing
+#' on a more recent period could be required.
+#' @param x_scale_stepsize int On which year interval labels are placed 
+#' on the x axis.
+#' @param facet_column NULL | char The column to use to create additional
+#' facet wrap plots underneath the main graph. When NULL, no facet graph is
+#' included.
+#'
+#' @return ggplot2 object
+#' @export
+#' @importFrom assertthat assert_that
+#' @importFrom assertable assert_colnames
+#' @importFrom dplyr distinct_ %>% filter rowwise do bind_cols 
+#' @importFrom tidyr replace_na unnest
+#' @importFrom lubridate year now
+#' @importFrom ggplot2 geom_line aes xlab ylab scale_x_continuous facet_wrap
+#' group_by_ count ungroup
+#' @importFrom INBOtheme theme_inbo
+#' @importFrom egg ggarrange
+#'
+#' @examples
 indicator_total_year <- function(df, start_year_plot = 1940, 
                                  x_scale_stepsize = 10, 
                                  facet_column = NULL) {
