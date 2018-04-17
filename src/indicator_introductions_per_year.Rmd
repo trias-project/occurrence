@@ -54,7 +54,9 @@ library(trias)
 library(INBOtheme)
 # other packages
 library(lazyeval)
-
+library(assertthat)
+library(assertable)
+library(egg)
 ```
 
 # Get data
@@ -112,9 +114,9 @@ Create function to visualize yearly introduction evolution
 #' indicator_introduction_year(data)
 #' indicator_introduction_year(data, start_year_plot = 1940, 
 #'                             smooth_span = 0.6)
-indicator_introduction_year <- function(df, start_year_plot = 1940,
-                                       smooth_span = 1.,
-                                       x_scale_stepsize = 10,
+indicator_introduction_year <- function(df, start_year_plot = 1920,
+                                       smooth_span = .85,
+                                       x_scale_stepsize = 5,
                                        facet_column = NULL) {
     # initial input checks 
     assert_that(is.data.frame(df))
@@ -138,10 +140,10 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
         xlab("Year") +
         ylab("Number of introduced alien species") +         
         scale_x_continuous(breaks = seq(start_year_plot, 
-                                     max(data_plot$startDate), 
+                                     max(data_top_graph$startDate), 
                                      x_scale_stepsize), 
                        limits = c(start_year_plot, 
-                                  max(data_plot$startDate))) +
+                                  max(data_top_graph$startDate))) +
         theme_inbo()
     
     if (is.null(facet_column)) {
@@ -165,10 +167,10 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
             xlab("Year") +
             ylab("Number of introduced alien species") + 
             scale_x_continuous(breaks = seq(start_year_plot, 
-                                            max(data_plot$startDate), 
+                                            max(data_facet_graph$startDate), 
                                             x_scale_stepsize), 
                                limits = c(start_year_plot, 
-                                          max(data_plot$startDate))) +
+                                          max(data_facet_graph$startDate))) +
             theme_inbo()
          
         ggarrange(top_graph, facet_graph)
@@ -181,9 +183,9 @@ Specify this in the function so the function knows that it shouldn't use the
 default settings (that were specified above)
 ```{r, fig.width=10, fig.height=10}
 # Example
-start_year_plot <- 1960
-loess_span <- 3.
-x_scale_stepsize <- 15
+start_year_plot <- 1920
+loess_span <- .85
+x_scale_stepsize <- 5
 
 indicator_introduction_year(data, start_year_plot = start_year_plot, 
                             smooth_span = loess_span,
