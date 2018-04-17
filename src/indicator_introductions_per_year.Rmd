@@ -74,6 +74,7 @@ please see this [comment](https://github.com/trias-project/pipeline/issues/21#is
 See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
 
 Create function to visualize yearly introduction evolution
+
 ```{r}
 # Create function
 #' Create year of introduction based Trias indicator
@@ -104,42 +105,42 @@ indicator_introduction_year <- function(data, start_year_plot = 1940,
      count() %>%
      ungroup()
      
-top_graph <- ggplot(data_plot, aes(x=startDate, y=n)) +
-     geom_point(stat = 'identity') +
-     geom_smooth(span = smooth_span) +
-     scale_x_continuous(breaks = seq(start_year_plot, 
-                                     max(data_plot$startDate), 
-                                     x_scale_stepsize), 
-                       limits = c(start_year_plot, 
-                                  max(data_plot$startDate))) +
-     theme_inbo()
-
-if(is.null(facet_column)) {
-  return(top_graph)
-} else {
+    top_graph <- ggplot(data_plot, aes(x = startDate, y = n)) +
+         geom_point(stat = 'identity') +
+         geom_smooth(span = smooth_span) +
+         scale_x_continuous(breaks = seq(start_year_plot, 
+                                         max(data_plot$startDate), 
+                                         x_scale_stepsize), 
+                           limits = c(start_year_plot, 
+                                      max(data_plot$startDate))) +
+         theme_inbo()
     
-    data_plot <- data %>% 
-     filter(!is.na(.data$startDate)) %>%
-     filter(.data$type == "pathway") %>%
-     filter(.data$startDate > start_year_plot) %>%
-     group_by(.data$startDate, facet_column) %>% # ISSUE!
-     count() %>%
-     ungroup()
-    
-    wrap_graph <- ggplot(data_plot, aes(x=startDate, y=n)) +
-     geom_point(stat = 'identity') +
-     geom_smooth(span = smooth_span) +
-     scale_x_continuous(breaks = seq(start_year_plot, 
-                                     max(data_plot$startDate), 
-                                     x_scale_stepsize), 
-                       limits = c(start_year_plot, 
-                                  max(data_plot$startDate))) +
-     theme_inbo() + 
-     facet_wrap(facet_column)
-    
-    return(multiplot(top_graph, wrap_graph))
-    
-    return(wrap_graph)
+    if (is.null(facet_column)) {
+      return(top_graph)
+    } else {
+        
+        data_plot <- data %>% 
+         filter(!is.na(.data$startDate)) %>%
+         filter(.data$type == "pathway") %>%
+         filter(.data$startDate > start_year_plot) %>%
+         group_by(.data$startDate, facet_column) %>% # ISSUE!
+         count() %>%
+         ungroup()
+        
+        wrap_graph <- ggplot(data_plot, aes(x = startDate, y = n)) +
+         geom_point(stat = 'identity') +
+         geom_smooth(span = smooth_span) +
+         scale_x_continuous(breaks = seq(start_year_plot, 
+                                         max(data_plot$startDate), 
+                                         x_scale_stepsize), 
+                           limits = c(start_year_plot, 
+                                      max(data_plot$startDate))) +
+         theme_inbo() + 
+         facet_wrap(facet_column)
+        
+        return(multiplot(top_graph, wrap_graph))
+        
+        return(wrap_graph)
 }
 
 
