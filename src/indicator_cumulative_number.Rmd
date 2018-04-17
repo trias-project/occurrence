@@ -3,6 +3,7 @@ title: "Indicator: Cumulative number of alien species"
 author:
 - Damiano Oldoni
 - Sander Devisscher
+- Stijn Vanhoey
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -22,7 +23,7 @@ This document describes how to build indicators of Invasive Alien Species based 
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = FALSE)
 ```
 
 Install `trias` package:
