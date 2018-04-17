@@ -50,10 +50,7 @@ library(trias)
 library(lazyeval)
 library(INBOtheme)
 library(assertthat)
-#temp
-#library(grid)
-#library(gridExtra)
-#library(gtable)
+library(gridExtra)
 ```
 
 # Get data
