@@ -93,13 +93,13 @@ Create function to visualize yearly introduction evolution
 #' indicator_introduction_year(data)
 #' indicator_introduction_year(data, start_year_plot = 1940, 
 #'                             smooth_span = 0.6)
-indicator_introduction_year <- function(data, start_year_plot = 1940,
+indicator_introduction_year <- function(df, start_year_plot = 1940,
                                        smooth_span = 1.,
                                        x_scale_stepsize = 10,
                                        facet_column = NULL) {
     
     # first filtering of the incoming data
-    data <- data %>%
+    data <- df %>%
         filter(!is.na(.data$startDate)) %>%
         filter(.data$type == "pathway") %>% # to recheck after issue #30
         filter(.data$startDate > start_year_plot)
@@ -108,12 +108,6 @@ indicator_introduction_year <- function(data, start_year_plot = 1940,
         group_by(.data$startDate) %>%
         count() %>%
         ungroup()
-    
-    if (not.null(facet_column)) {
-        data_facet_graph <- data %>% 
-            group_by_("startDate", facet_column) %>%
-            ungroup()    
-    }
     
     # top graph with all counts
     top_graph <- ggplot(data_top_graph, aes(x = startDate, y = n)) +
@@ -130,38 +124,31 @@ indicator_introduction_year <- function(data, start_year_plot = 1940,
       return(top_graph)
     } else {
         
-        data_plot <- data %>% 
-         filter(!is.na(.data$startDate)) %>%
-         filter(.data$type == "pathway") %>%
-         filter(.data$startDate > start_year_plot) %>%
-         group_by(.data$startDate, facet_column) %>% # ISSUE!
-         count() %>%
-         ungroup()
+        data_facet_graph <- data %>% 
+            group_by_("startDate", facet_column) %>%
+            count() %>%
+            ungroup()
         
-        wrap_graph <- ggplot(data_plot, aes(x = startDate, y = n)) +
-         geom_point(stat = 'identity') +
-         geom_smooth(span = smooth_span) +
-         scale_x_continuous(breaks = seq(start_year_plot, 
-                                         max(data_plot$startDate), 
-                                         x_scale_stepsize), 
-                           limits = c(start_year_plot, 
-                                      max(data_plot$startDate))) +
-         theme_inbo() + 
-         facet_wrap(facet_column)
-        
-        return(multiplot(top_graph, wrap_graph))
-        
-        return(wrap_graph)
-}
-
-
+        facet_graph <- ggplot(data_facet_graph, aes(x = startDate, y = n)) +
+            geom_point(stat = 'identity') +
+            geom_smooth(span = smooth_span) +
+            facet_wrap(facet_column) +
+            scale_x_continuous(breaks = seq(start_year_plot, 
+                                            max(data_plot$startDate), 
+                                            x_scale_stepsize), 
+                               limits = c(start_year_plot, 
+                                          max(data_plot$startDate))) +
+            theme_inbo()
+         
+        ggarrange(top_graph, facet_graph)
+    }
  }
 ```
 
 Set start_year and loess_span if you want
 Specify this in the function so the function knows that it shouldn't use the 
 default settings (that were specified above)
-```{r}
+```{r, fig.width=10, fig.height=10}
 # Example
 start_year_plot <- 1960
 loess_span <- 3.
@@ -170,7 +157,7 @@ x_scale_stepsize <- 15
 indicator_introduction_year(data, start_year_plot = start_year_plot, 
                             smooth_span = loess_span,
                             x_scale_stepsize = x_scale_stepsize,
-                            facet_column = "kingdom")
+                            facet_column = "locality")
 ```
 
 
