@@ -102,8 +102,7 @@ indicator_introduction_year <- function(df, start_year_plot = 1940,
                                        facet_column = NULL) {
     # initial input checks 
     assert_that(is.data.frame(df))
-    assert_colnames(df, c("type", "startDate"), 
-                    only_colnames = TRUE)    
+    assert_colnames(df, c("type", "startDate"), only_colnames = FALSE)
     
     # first filtering of the incoming data
     data <- df %>%
