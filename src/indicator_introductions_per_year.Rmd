@@ -104,11 +104,6 @@ indicator_introduction_year <- function(data, start_year_plot = 1940,
         filter(.data$type == "pathway") %>% # to recheck after issue #30
         filter(.data$startDate > start_year_plot)
         
-    data_top_graph <- data %>% 
-        group_by(.data$startDate) %>%
-        count() %>%
-        ungroup()
-    
     if (not.null(facet_column)) {
         data_facet_graph <- data %>% 
             group_by_("startDate", facet_column) %>%
@@ -116,8 +111,8 @@ indicator_introduction_year <- function(data, start_year_plot = 1940,
     }
     
     # top graph with all counts
-    top_graph <- ggplot(data_plot, aes(x = startDate, y = n)) +
-        geom_point(stat = 'identity') +
+    top_graph <- ggplot(data, aes(x = startDate)) +
+        geom_point(stat = 'count') +
     geom_smooth(span = smooth_span) +
     scale_x_continuous(breaks = seq(start_year_plot, 
                                  max(data_plot$startDate), 
