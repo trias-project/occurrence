@@ -128,11 +128,11 @@ indicator_total_year <- function(df, start_year_plot = 1940,
 
     # Provide warning messages for endDate/startDate NA values
     if (nrow(filter(df, is.na(startDate), is.na(endDate))) > 0) {
-        warning("Some records have no startDate or endDate defines, ",
+        warning("Some records have no startDate or endDate defined, ",
                 "these are currently not taken into account")
     }        
     if (nrow(filter(df, !is.na(startDate), is.na(endDate))) > 0) {
-        warning("Some records have a startDate, but no endDate defines, ",
+        warning("Some records have a startDate, but endDate is not defined, ",
                 "using same year as startYear to replace NA")
     }
     df_cleaned <- df_cleaned %>%
