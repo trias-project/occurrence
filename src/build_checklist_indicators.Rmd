@@ -49,6 +49,7 @@ library(rgbif)
 library(trias)
 #other pckages
 library(lazyeval)
+library(janitor)
 ```
 
 # Get data
@@ -82,14 +83,18 @@ taxon_info <- c("key", "species", "genus", "family", "order",
                  "class", "phylum", "kingdom",
                  "rank", "taxonomicStatus", "acceptedKey", "accepted")
 
-nub_keys <- taxon %>% select(nubKey) %>% filter(is.finite(nubKey))
+taxon %<>% filter(is.finite(nubKey))
+
+nub_keys <- taxon %>% distinct(nubKey)
+
 taxon_backbone_info <-  nub_keys %>%
   rowwise() %>%
   do_(interp(~ name_usage(key = .$nubKey,
-                         return = "data"))) %>%
+                         return = "data")))
+taxon_backbone_info %<>%
   select(key,one_of(taxon_info))
 
-combined_taxon_info <- taxon %>% inner_join(taxon_backbone_info,
+combined_taxon_info <- taxon %>% left_join(taxon_backbone_info,
                                            by = c("nubKey" = "key"))
 ```
 
@@ -110,8 +115,17 @@ description <- data.frame(key = taxon_keys) %>%
   rowwise() %>%
   do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
                                                return = "data",
-                                               data = "description")))) %>%
-  select(-c(key, language))
+                                               data = "description"))))
+description %<>% select(-c(key, language, source))
+
+
+test <- description %>%
+   group_by(type, taxonKey) %>%
+   mutate(ind = row_number()) %>%
+   spread(key = type, value = description) %>% 
+   select(-ind) %>% janitor::clean_names()
+
+test <- description %>% spread(key = type, value = description)
 ```
 
 Extract species profile
@@ -141,11 +155,15 @@ merged_info <- full_join(combined_taxon_info, merged_extensions,
 Filter species by:
 
 1. invasion stage (`establishmentMeans` equal to `INTRODUCED`)
-2. presence status (`satus` equal to `PRESENT`)
+2. presence status (`status` not equal to `ABSENT`, `EXCLUDED` or `EXTINCT`)
 3. presence in Belgium (`country` equal to `BE`)
 
 ```{r filter_by_establishmentMeans}
-print("write here your code, Damiano!")
+merged_info %<>%
+  filter(establishmentMeans %in% c("INTRODUCED", "NATURALISED", "INVASIVE",
+                                   "ASSISTED COLONISATION"),
+         !status %in% c("ABSENT", "EXCLUDED", "EXTINCT"),
+         country == "BE")
 ```
 
 ## Tidy data
@@ -153,13 +171,31 @@ print("write here your code, Damiano!")
 Split `temporal` in `first_observed` and `last_observed`:
 
 ```{r split_temporal}
-print("write here your code, Damiano!")
+merged_info %<>% separate(col = temporal,
+                          sep = "/",
+                          into = c("startDate", "endDate"),
+                          convert = TRUE,
+                          fill = "right",
+                          remove = TRUE) %>%
+  mutate(endDate = ifelse(is.na(endDate),
+                          startDate,
+                          endDate))
 ```
 
 Divide pathway in `pathway_level1` and `pathway_level2`. Notice that pathway is not a column but a subset of values of column `type`:
 
 ```{r split_pathway}
-print("write here your code, Damiano!")
+merged_info %<>% rowwise() %>%
+  mutate(pathway_level1 = ifelse(type == "pathway",
+                                 str_split_fixed(str_split(description,
+                                                           pattern = "pathway:")[[1]][2],
+                                                 pattern = "_", n = 2)[[1]][1],
+                                 NA),
+         pathway_level2 = ifelse(type == "pathway",
+                                 str_split_fixed(str_split(description,
+                                                           pattern = "pathway:")[[1]][2],
+                                                 pattern = "_", n = 2)[[2]][1],
+                                 NA))
 ```
 
 Save final data.frame
