@@ -29,7 +29,7 @@ Install `trias` package:
 
 ```{r install_packages}
 devtools::install_github("trias-project/trias")
-devtools::install_github("thomasp85/patchwork")
+#devtools::install_github("thomasp85/patchwork")
 ```
 
 Load libraries:
@@ -50,6 +50,10 @@ library(trias)
 library(lazyeval)
 library(INBOtheme)
 library(assertthat)
+#temp
+#library(grid)
+#library(gridExtra)
+#library(gtable)
 ```
 
 # Get data
@@ -138,7 +142,8 @@ indicator_total_year <- function(df, start_year_plot = 1940,
                                limits = c(start_year_plot, maxDate)) +
             theme_inbo()
         
-        top_graph + facet_graph + plot_layout(ncol = 1, heights = c(1, 4))
+        #top_graph + facet_graph + plot_layout(ncol = 1, heights = c(1, 4))
+        grid.arrange(top_graph, facet_graph)
     }    
             
     
