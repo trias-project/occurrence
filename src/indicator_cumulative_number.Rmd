@@ -49,6 +49,7 @@ library(trias)
 library(lazyeval)
 library(INBOtheme)
 library(assertthat)
+library(assertable)
 library(egg)
 ```
 
@@ -81,6 +82,8 @@ indicator_total_year <- function(df, start_year_plot = 1940,
     
     # initial input checks
     assert_that(is.data.frame(df))
+    assert_colnames(df, c("key", "startDate", "endDate"), 
+                    only_colnames = TRUE)
     
     # prepare the data set, !recheck when issue #30 cleared out
     if (is.null(facet_column)) {
