@@ -152,7 +152,7 @@ description_tidy <-
 head(description_tidy)
 ```
 
-The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#]
+The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16)
 
 ### Species profile
 
