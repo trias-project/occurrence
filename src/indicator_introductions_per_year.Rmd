@@ -1,0 +1,71 @@
+---
+title: "Indicator: Number of new introductions of alien species per year"
+author:
+- Damiano Oldoni
+- Add your name
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: yeti
+    df_print: paged
+knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
+---
+
+This document describes how to build indicators of Invasive Alien Species based on checklist data. In particular, this document takes into account:
+
+1. number of new introductions of alien species per year in Belgium (see GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17))
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Install `trias` package:
+
+```{r install_packages}
+devtools::install_github("trias-project/trias")
+```
+
+Load libraries:
+
+```{r load_libraries}
+# Tidyverse packages
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(stringr)
+library(readr)
+# GBIF related packages
+library(rgbif)
+# project package
+library(trias)
+#other pckages
+library(lazyeval)
+```
+
+# Get data
+
+```{r save_data_output}
+data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
+
+```
+
+# Build indicators
+
+## Introduction
+
+New functions should be written in `trias` official project package.
+
+In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
+
+About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
+
+## Number of new introductions of alien species per year
+
+See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
+
