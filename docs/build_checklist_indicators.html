@@ -12,7 +12,7 @@
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Add your name" />
 
-<meta name="date" content="2018-04-13" />
+<meta name="date" content="2018-04-18" />
 
 <title>Cheklist-based indicators of Invasive Alien Species</title>
 
@@ -2782,7 +2782,7 @@ div.tocify {
 <h1 class="title toc-ignore">Cheklist-based indicators of Invasive Alien Species</h1>
 <h4 class="author"><em>Damiano Oldoni</em></h4>
 <h4 class="author"><em>Add your name</em></h4>
-<h4 class="date"><em>2018-04-13</em></h4>
+<h4 class="date"><em>2018-04-18</em></h4>
 
 </div>
 
@@ -2830,39 +2830,197 @@ taxon &lt;- trias::gbif_get_taxa(
   origin = &quot;SOURCE&quot;, 
   limit = 99999) %&gt;%
   select(one_of(checklist_info))</code></pre>
-<p>Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>)</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<pre><code>## [1] &quot;2620 taxa found of which 69 could not be matched to GBIF Backbone.&quot;</code></pre>
+<p>Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>), so only taxa with a <code>nubKey</code></p>
+<pre class="r"><code>taxon %&lt;&gt;% filter(is.finite(nubKey))
+taxon_keys &lt;- taxon %&gt;% select(key) %&gt;% pull(key)
+nub_keys &lt;- taxon %&gt;% distinct(nubKey)
+taxon_backbone_info &lt;-  nub_keys %&gt;%
+  rowwise() %&gt;%
+  do_(interp(~ name_usage(key = .$nubKey,
+                         return = &quot;data&quot;)))
+taxon_info &lt;- c(&quot;key&quot;, &quot;species&quot;, &quot;genus&quot;, &quot;family&quot;, &quot;order&quot;,
+                &quot;class&quot;, &quot;phylum&quot;, &quot;kingdom&quot;,
+                &quot;rank&quot;, &quot;speciesKey&quot;, &quot;taxonomicStatus&quot;, 
+                &quot;acceptedKey&quot;, &quot;accepted&quot;)
+taxon_backbone_info %&lt;&gt;%
+  select(key,one_of(taxon_info))
+combined_taxon_info &lt;- taxon %&gt;% left_join(taxon_backbone_info,
+                                           by = c(&quot;nubKey&quot; = &quot;key&quot;))
+head(combined_taxon_info)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["nubKey"],"name":[2],"type":["int"],"align":["right"]},{"label":["scientificName"],"name":[3],"type":["chr"],"align":["left"]},{"label":["datasetKey"],"name":[4],"type":["chr"],"align":["left"]},{"label":["species"],"name":[5],"type":["chr"],"align":["left"]},{"label":["genus"],"name":[6],"type":["chr"],"align":["left"]},{"label":["family"],"name":[7],"type":["chr"],"align":["left"]},{"label":["order"],"name":[8],"type":["chr"],"align":["left"]},{"label":["class"],"name":[9],"type":["chr"],"align":["left"]},{"label":["phylum"],"name":[10],"type":["chr"],"align":["left"]},{"label":["kingdom"],"name":[11],"type":["chr"],"align":["left"]},{"label":["rank"],"name":[12],"type":["chr"],"align":["left"]},{"label":["speciesKey"],"name":[13],"type":["int"],"align":["right"]},{"label":["taxonomicStatus"],"name":[14],"type":["chr"],"align":["left"]},{"label":["acceptedKey"],"name":[15],"type":["int"],"align":["right"]},{"label":["accepted"],"name":[16],"type":["chr"],"align":["left"]}],"data":[{"1":"141264581","2":"7802465","3":"Nymphaea x marliacea Marliac","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Nymphaea marliacea","6":"Nymphaea","7":"Nymphaeaceae","8":"Nymphaeales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"7802465","14":"ACCEPTED","15":"NA","16":"NA"},{"1":"141264583","2":"3033077","3":"Aucuba japonica Thunb.","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Aucuba japonica","6":"Aucuba","7":"Garryaceae","8":"Garryales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"3033077","14":"ACCEPTED","15":"NA","16":"NA"},{"1":"141264585","2":"5914287","3":"Melia azedarach L.","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Melia azedarach","6":"Melia","7":"Meliaceae","8":"Sapindales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"5914287","14":"ACCEPTED","15":"NA","16":"NA"},{"1":"141264587","2":"3172622","3":"Sesamum indicum L.","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Sesamum indicum","6":"Sesamum","7":"Pedaliaceae","8":"Lamiales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"3172622","14":"ACCEPTED","15":"NA","16":"NA"},{"1":"141264589","2":"2889934","3":"Tropaeolum majus L.","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Tropaeolum majus","6":"Tropaeolum","7":"Tropaeolaceae","8":"Brassicales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"2889934","14":"ACCEPTED","15":"NA","16":"NA"},{"1":"141264591","2":"5646410","3":"Blumenbachia hieronymi Urban","4":"9ff7d317-609b-4c08-bd86-3bc404b77c42","5":"Blumenbachia hieronymi","6":"Blumenbachia","7":"Loasaceae","8":"Cornales","9":"Magnoliopsida","10":"Tracheophyta","11":"Plantae","12":"SPECIES","13":"5646410","14":"ACCEPTED","15":"NA","16":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<section id="distribution" class="level3">
+<h3><span class="header-section-number">2.1.1</span> Distribution</h3>
 <p>Extract distribution information</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<pre class="r"><code>distribution &lt;- data.frame(key = taxon_keys) %&gt;%
+  rowwise() %&gt;%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = &quot;data&quot;,
+                                               data = &quot;distribution&quot;))))
+distribution %&lt;&gt;% select(-source)
+head(distribution)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["locationId"],"name":[2],"type":["chr"],"align":["left"]},{"label":["locality"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["temporal"],"name":[6],"type":["chr"],"align":["left"]},{"label":["establishmentMeans"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"141264581","2":"ISO_3166-2:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018","7":"INTRODUCED"},{"1":"141264581","2":"ISO_3166-2:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018","7":"INTRODUCED"},{"1":"141264583","2":"ISO_3166-2:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1997/2018","7":"INTRODUCED"},{"1":"141264583","2":"ISO_3166-2:BE-BRU","3":"Brussels-Capital Region","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED"},{"1":"141264583","2":"ISO_3166-2:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED"},{"1":"141264583","2":"ISO_3166-2:BE-WAL","3":"Walloon Region","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</section>
+<section id="description" class="level3">
+<h3><span class="header-section-number">2.1.2</span> Description</h3>
 <p>Extract description information</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<pre class="r"><code>description &lt;- data.frame(key = taxon_keys) %&gt;%
+  rowwise() %&gt;%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = &quot;data&quot;,
+                                               data = &quot;description&quot;))))
+description %&lt;&gt;% select(-c(key, language, source))
+description %&lt;&gt;% ungroup()
+head(description, n = 10)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["description"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"141264581","2":"pathway","3":"cbd_2014_pathway:escape_horticulture"},{"1":"141264581","2":"native range","3":"cultivated origin"},{"1":"141264581","2":"origin","3":"introduced"},{"1":"141264583","2":"pathway","3":"cbd_2014_pathway:escape_horticulture"},{"1":"141264583","2":"native range","3":"temperate Asia (WGSRPD:3)"},{"1":"141264583","2":"origin","3":"vagrant"},{"1":"141264585","2":"native range","3":"Asia"},{"1":"141264585","2":"native range","3":"Australasia (WGSRPD:5)"},{"1":"141264585","2":"pathway","3":"cbd_2014_pathway:escape_horticulture"},{"1":"141264585","2":"origin","3":"vagrant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Contrarily to distribution information, description contains a column <code>type</code> with the following descriptors:</p>
+<pre class="r"><code>description %&gt;% distinct(type)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["type"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"pathway"},{"1":"native range"},{"1":"origin"},{"1":"invasion stage"},{"1":"habitat"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>descriptors &lt;- description %&gt;% distinct(type) %&gt;% pull()</code></pre>
+<p>We would like to <em>tidy</em> this data.frame, thus having different descriptors as different columns. Unfortunately <code>dplyr::spread(key, value)</code> doesn’t work due to <em>duplicates</em>, i.e. keys with more than one value, for example</p>
+<pre class="r"><code>description %&gt;% filter(taxonKey == 141264585 &amp; type == &quot;native range&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["description"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"141264585","2":"native range","3":"Asia"},{"1":"141264585","2":"native range","3":"Australasia (WGSRPD:5)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>A more complex strategy has been found:</p>
+<pre class="r"><code>change_colname &lt;- function(df, new_colname){
+  df %&gt;% 
+    rename(!!new_colname := description) %&gt;%
+    select(-type)
+}
+
+description_tidy &lt;- 
+  purrr::map(descriptors, function(x) description %&gt;% filter(type == x)) %&gt;%
+  purrr::map2(descriptors, ~ change_colname(.x, .y)) %&gt;%
+  purrr::reduce(dplyr::full_join, by = &quot;taxonKey&quot;)
+head(description_tidy)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["pathway"],"name":[2],"type":["chr"],"align":["left"]},{"label":["native range"],"name":[3],"type":["chr"],"align":["left"]},{"label":["origin"],"name":[4],"type":["chr"],"align":["left"]},{"label":["invasion stage"],"name":[5],"type":["chr"],"align":["left"]},{"label":["habitat"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"141264581","2":"cbd_2014_pathway:escape_horticulture","3":"cultivated origin","4":"introduced","5":"NA","6":"NA"},{"1":"141264583","2":"cbd_2014_pathway:escape_horticulture","3":"temperate Asia (WGSRPD:3)","4":"vagrant","5":"NA","6":"NA"},{"1":"141264585","2":"cbd_2014_pathway:escape_horticulture","3":"Asia","4":"vagrant","5":"NA","6":"NA"},{"1":"141264585","2":"cbd_2014_pathway:escape_horticulture","3":"Australasia (WGSRPD:5)","4":"vagrant","5":"NA","6":"NA"},{"1":"141264587","2":"cbd_2014_pathway:contaminant_seed","3":"Pantropical","4":"vagrant","5":"NA","6":"NA"},{"1":"141264589","2":"cbd_2014_pathway:escape_horticulture","3":"Southern America (WGSRPD:8)","4":"vagrant","5":"NA","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The chunk code above should be wrapped in a function: Peter Desmet proposed the name <code>spread_with_duplicates</code>. It could be put in project package, <code>trias</code>, or be part of <code>dplyr</code> package eventually. See GitHub issue <a href="https://github.com/trias-project/trias/issues/16">#16</a>.</p>
+</section>
+<section id="species-profile" class="level3">
+<h3><span class="header-section-number">2.1.3</span> Species profile</h3>
+<p>Extract species profile</p>
+<pre class="r"><code>speciesProfiles &lt;- data.frame(key = taxon_keys) %&gt;%
+  rowwise() %&gt;%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = &quot;data&quot;,
+                                               data = &quot;speciesProfiles&quot;))))
+head(speciesProfiles)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>At the moment is <code>speciesProfiles</code> empty.</p>
+</section>
+<section id="merge-data" class="level3">
+<h3><span class="header-section-number">2.1.4</span> Merge data</h3>
 <p>Merge all retrieved informations</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<pre class="r"><code>merged_extensions &lt;- full_join(distribution,
+                               description_tidy,
+                               speciesProfiles,
+                               by = &quot;taxonKey&quot;)
+
+merged_info &lt;- left_join(combined_taxon_info, merged_extensions,
+                         by = c(&quot;key&quot; = &quot;taxonKey&quot;))</code></pre>
+</section>
 </section>
 <section id="filter-invasive-alien-species" class="level2">
 <h2><span class="header-section-number">2.2</span> Filter invasive alien species</h2>
 <p>Filter species by:</p>
 <ol type="1">
-<li>invasion stage (<code>establishmentMeans</code> equal to <code>INTRODUCED</code>)</li>
-<li>presence status (<code>satus</code> equal to <code>PRESENT</code>)</li>
+<li>invasion stage (<code>establishmentMeans</code> equal to one of <code>INTRODUCED</code>, <code>NATURALISED</code>, <code>INVASIVE</code>, <code>ASSISTED COLONISATION</code>) see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/28#issuecomment-382036510">#28</a></li>
+<li>presence status (<code>status</code> not equal to <code>DOUBTFUL</code>, <code>ABSENT</code>, <code>EXCLUDED</code> or <code>EXTINCT</code>) see GitHugb issue <a href="https://github.com/trias-project/pipeline/issues/26#issuecomment-382036007">#26</a></li>
 <li>presence in Belgium (<code>country</code> equal to <code>BE</code>)</li>
 </ol>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
+<pre class="r"><code>merged_info %&lt;&gt;%
+  filter(establishmentMeans %in% c(&quot;INTRODUCED&quot;, &quot;NATURALISED&quot;, &quot;INVASIVE&quot;,
+                                   &quot;ASSISTED COLONISATION&quot;),
+         !status %in% c(&quot;DOUBTFUL&quot;, &quot;ABSENT&quot;, &quot;EXCLUDED&quot;, &quot;EXTINCT&quot;),
+         country == &quot;BE&quot;)</code></pre>
 </section>
 <section id="tidy-data" class="level2">
 <h2><span class="header-section-number">2.3</span> Tidy data</h2>
-<p>Split <code>temporal</code> in <code>first_observed</code> and <code>last_observed</code>:</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
-<p>Divide pathway in <code>pathway_level1</code> and <code>pathway_level2</code>. Notice that pathway is not a column but a subset of values of column <code>type</code>:</p>
-<pre class="r"><code>print(&quot;write here your code, Damiano!&quot;)</code></pre>
-<pre><code>## [1] &quot;write here your code, Damiano!&quot;</code></pre>
-<p>Save final data.frame</p>
+<p>Some columns should be splitted in order to make the data.frame completely tidy: <code>temporal</code> and <code>pathway</code>.</p>
+<section id="split-column-temporal" class="level3">
+<h3><span class="header-section-number">2.3.1</span> Split column <code>temporal</code></h3>
+<p>The column <code>temporal</code> contains one or two datums</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["temporal"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"141264581","2":"2018"},{"1":"141264583","2":"1997/2018"},{"1":"141264585","2":"2006"},{"1":"141264587","2":"2004"},{"1":"141264589","2":"1953/2017"},{"1":"141264591","2":"1974/1981"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>In case there are two datums, we split them in <code>first_observed</code> and <code>last_observed</code>. If only a datum is present, then it is used for both <code>first_observed</code>and <code>last_observed</code> as suggested <a href>here</a>.</p>
+<pre class="r"><code>merged_info %&lt;&gt;% separate(col = temporal,
+                          sep = &quot;/&quot;,
+                          into = c(&quot;first_observed&quot;, &quot;last_observed&quot;),
+                          convert = TRUE,
+                          fill = &quot;right&quot;,
+                          remove = TRUE) %&gt;%
+  mutate(last_observed = ifelse(is.na(last_observed),
+                          first_observed,
+                          last_observed))</code></pre>
+<p>As example</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["first_observed"],"name":[2],"type":["int"],"align":["right"]},{"label":["last_observed"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"141264581","2":"2018","3":"2018"},{"1":"141264583","2":"1997","3":"2018"},{"1":"141264585","2":"2006","3":"2006"},{"1":"141264587","2":"2004","3":"2004"},{"1":"141264589","2":"1953","3":"2017"},{"1":"141264591","2":"1974","3":"1981"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</section>
+<section id="split-column-pathway" class="level3">
+<h3><span class="header-section-number">2.3.2</span> Split column <code>pathway</code></h3>
+<p>The column <code>pathway</code> contains a prefix, <code>cbd_2014_pathway:</code> and two different pathway levels divided by symbol <code>_</code></p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pathway"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"cbd_2014_pathway:escape_horticulture"},{"1":"cbd_2014_pathway:contaminant_seed"},{"1":"cbd_2014_pathway:escape_food_bait"},{"1":"cbd_2014_pathway:contaminant_on_animals"},{"1":"cbd_2014_pathway:contaminant_nursery"},{"1":"cbd_2014_pathway:contaminant_habitat_material"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We split this column in <code>pathway_level1</code> and <code>pathway_level2</code></p>
+<pre class="r"><code>merged_info %&lt;&gt;% rowwise() %&gt;%
+  mutate(pathway_level1 = 
+           str_split_fixed(
+             str_split(pathway,
+                       pattern = &quot;pathway:&quot;)[[1]][2],
+             pattern = &quot;_&quot;, n = 2)[[1]][1],
+         pathway_level2 = 
+           str_split_fixed(
+             str_split(pathway,pattern = &quot;pathway:&quot;)[[1]][2],
+             pattern = &quot;_&quot;, n = 2)[[2]][1]) %&gt;%
+  ungroup() %&gt;%
+  select(-pathway) </code></pre>
+<p>As example:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pathway_level1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pathway_level2"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"escape","2":"horticulture"},{"1":"contaminant","2":"seed"},{"1":"","2":""},{"1":"escape","2":"food_bait"},{"1":"contaminant","2":"on_animals"},{"1":"contaminant","2":"nursery"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</section>
+</section>
+<section id="save-data-ouput" class="level2">
+<h2><span class="header-section-number">2.4</span> Save data ouput</h2>
+<p>The information in <code>merged_info</code> is ready to be saved in folder <code>\data\interim</code></p>
 <pre class="r"><code>write_tsv(x = merged_info, 
           path = &quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
 </section>
@@ -2870,11 +3028,14 @@ taxon &lt;- trias::gbif_get_taxa(
 <section id="build-indicators" class="level1">
 <h1><span class="header-section-number">3</span> Build indicators</h1>
 <p>You can start from this point and not repeat previous steps by loading the tsv file saved at the end of previous section:</p>
-<pre class="r"><code>data_output &lt;- read_tsv(
+<pre class="r"><code>checklist_data &lt;- read_tsv(
   file = &quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+<p>New functions should be written in <code>trias</code> official project package.</p>
+<p>In order to not consider subspecies, please take care of grouping by <code>species</code> (see point 8 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>).</p>
+<p>About point 7 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>, please see this <a href="https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874">comment</a>.</p>
 <section id="number-of-new-introductions-of-alien-species-per-year" class="level2">
 <h2><span class="header-section-number">3.1</span> Number of new introductions of alien species per year</h2>
-<p>See GitHub issue <a href="https://github.com/trias-project/pipeline/issues/17">#17</a></p>
+<p>See GitHub issue <a href="https://github.com/trias-project/pipeline/issues/17">#17</a>.</p>
 </section>
 <section id="pathways-associated-with-alien-species-introductions" class="level2">
 <h2><span class="header-section-number">3.2</span> Pathways associated with alien species introductions</h2>

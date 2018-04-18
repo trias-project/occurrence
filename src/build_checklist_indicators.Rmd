@@ -147,12 +147,12 @@ change_colname <- function(df, new_colname){
 
 description_tidy <- 
   purrr::map(descriptors, function(x) description %>% filter(type == x)) %>%
-  purrr::map2(types, ~ change_colname(.x, .y)) %>%
+  purrr::map2(descriptors, ~ change_colname(.x, .y)) %>%
   purrr::reduce(dplyr::full_join, by = "taxonKey")
 head(description_tidy)
 ```
 
-The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16)
+The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
 
 ### Species profile
 
@@ -244,7 +244,7 @@ merged_info %>%
 
 The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_`
 
-```{r pathway_levels_example, echo = FASLE}
+```{r pathway_levels_example, echo = FALSE}
 merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
 ```
 
