@@ -53,7 +53,7 @@ library(lazyeval)
 
 # Get data
 
-One of the TrIAS goals is to unify seven authoritative checklists. Such unified checklist, public on GBIF (Global Biodiversity Information Facility) will be the start point of this workflow. At the moment, we don't have such checklist. For the moment, the analysis is based on the data of the following checklists:
+One of the TrIAS goals is to unify seven authoritative checklists. Such unified checklist, public on GBIF (Global Biodiversity Information Facility) will be the start point of this workflow. At the moment, we don't have such checklist. The analysis is based on the data of the following checklists:
 
 1. [Manual of the Alien Plants of Belgium](https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42)
 2. [Inventory of alien macroinvertebrates in Flanders, Belgium](https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265)
