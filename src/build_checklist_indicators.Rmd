@@ -53,7 +53,7 @@ library(lazyeval)
 
 # Get data
 
-One of the TrIAS goals is to unify seven authoritative checklists. Such unified checklist, public on GBIF (Global Biodiversity Information Facility) will be the start point of this workflow. At the moment, we don't have such checklist. For the moment, the analysis is based on the data of the following checklists:
+One of the TrIAS goals is to unify seven authoritative checklists. Such unified checklist, public on GBIF (Global Biodiversity Information Facility) will be the start point of this workflow. At the moment, we don't have such checklist. The analysis is based on the data of the following checklists:
 
 1. [Manual of the Alien Plants of Belgium](https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42)
 2. [Inventory of alien macroinvertebrates in Flanders, Belgium](https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265)
@@ -64,7 +64,7 @@ One of the TrIAS goals is to unify seven authoritative checklists. Such unified 
 
 First step is importing checklists data from GBIF. We do it via `trias` function `gbif_get_taxa`
 
-```r
+```{r get_taxa}
 checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
 taxon <- trias::gbif_get_taxa(
   checklist_keys = c("9ff7d317-609b-4c08-bd86-3bc404b77c42",
@@ -75,57 +75,209 @@ taxon <- trias::gbif_get_taxa(
   select(one_of(checklist_info))
 ```
 
-Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue [#21](https://github.com/trias-project/pipeline/issues/21))
+Extract taxonomic information from GBIF taxonomic backbone checklist. Only taxa found in GBIF backbone will be taken into account (see GitHub issue [#21](https://github.com/trias-project/pipeline/issues/21)), so only taxa with a `nubKey`
 
 ```{r retrieve_taxonomic_info_backbone}
-print("write here your code, Damiano!")
+taxon %<>% filter(is.finite(nubKey))
+taxon_keys <- taxon %>% select(key) %>% pull(key)
+nub_keys <- taxon %>% distinct(nubKey)
+taxon_backbone_info <-  nub_keys %>%
+  rowwise() %>%
+  do_(interp(~ rgbif::name_usage(key = .$nubKey,
+                         return = "data")))
+taxon_info <- c("key", "species", "genus", "family", "order",
+                "class", "phylum", "kingdom",
+                "rank", "speciesKey", "taxonomicStatus", 
+                "acceptedKey", "accepted")
+taxon_backbone_info %<>%
+  select(key,one_of(taxon_info))
+combined_taxon_info <- taxon %>% left_join(taxon_backbone_info,
+                                           by = c("nubKey" = "key"))
+head(combined_taxon_info)
 ```
+
+### Distribution
 
 Extract distribution information
 
 ```{r retrieve_distribution_information}
-print("write here your code, Damiano!")
+distribution <- data.frame(key = taxon_keys) %>%
+  rowwise() %>%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = "data",
+                                               data = "distribution")))) %>% 
+  select(-source)
+head(distribution)
 ```
+
+### Description
 
 Extract description information
 
 ```{r retrieve_description_information}
-print("write here your code, Damiano!")
+description <- data.frame(key = taxon_keys) %>%
+  rowwise() %>%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = "data",
+                                               data = "description"))))
+description %<>% select(-c(key, language, source))
+description %<>% ungroup()
+head(description, n = 10)
 ```
+
+Contrarily to distribution information, description contains a column  `type` with the following descriptors: 
+
+```{r}
+description %>% distinct(type)
+descriptors <- description %>% distinct(type) %>% pull()
+```
+We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example
+
+```{r duplicates_issue_spread}
+description %>% filter(taxonKey == 141264585 & type == "native range")
+```
+
+A more complex strategy has been found:
+
+```{r tidy_description}
+change_colname <- function(df, new_colname){
+  df %>% 
+    rename(!!new_colname := description) %>%
+    select(-type)
+}
+
+description_tidy <- 
+  purrr::map(descriptors, function(x) description %>% filter(type == x)) %>%
+  purrr::map2(descriptors, ~ change_colname(.x, .y)) %>%
+  purrr::reduce(dplyr::full_join, by = "taxonKey")
+head(description_tidy)
+```
+
+The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
+
+### Species profile
+
+Extract species profile
+
+```{r retrieve_species_profile_information}
+speciesProfiles <- data.frame(key = taxon_keys) %>%
+  rowwise() %>%
+  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
+                                               return = "data",
+                                               data = "speciesProfiles"))))
+head(speciesProfiles)
+```
+
+At the moment is `speciesProfiles` empty.
+
+### Merge data
 
 Merge all retrieved informations
 
 ```{r merge_extensions_information}
-print("write here your code, Damiano!")
+merged_extensions <- full_join(distribution,
+                               description_tidy,
+                               speciesProfiles,
+                               by = "taxonKey")
+
+merged_info <- left_join(combined_taxon_info, merged_extensions,
+                         by = c("key" = "taxonKey"))
 ```
 
 ## Filter invasive alien species
 
 Filter species by:
 
-1. invasion stage (`establishmentMeans` equal to `INTRODUCED`)
-2. presence status (`satus` equal to `PRESENT`)
+1. invasion stage (`establishmentMeans` equal to one of `INTRODUCED`,  `NATURALISED`, `INVASIVE`, `ASSISTED COLONISATION`) see GitHub issue [#28](https://github.com/trias-project/pipeline/issues/28#issuecomment-382036510)
+2. presence status (`status` not equal to `DOUBTFUL`, `ABSENT`, `EXCLUDED` or `EXTINCT`) see GitHugb issue [#26](https://github.com/trias-project/pipeline/issues/26#issuecomment-382036007)
 3. presence in Belgium (`country` equal to `BE`)
 
 ```{r filter_by_establishmentMeans}
-print("write here your code, Damiano!")
+merged_info %<>%
+  filter(establishmentMeans %in% c("INTRODUCED", "NATURALISED", "INVASIVE",
+                                   "ASSISTED COLONISATION"),
+         !status %in% c("DOUBTFUL", "ABSENT", "EXCLUDED", "EXTINCT"),
+         country == "BE")
 ```
 
 ## Tidy data
 
-Split `temporal` in `first_observed` and `last_observed`:
+Some columns should be splitted in order to make the data.frame completely tidy: `temporal` and `pathway`.
+
+### Split column `temporal`
+
+The column `temporal` contains one or two datums
+
+```{r example_temporal, echo = FALSE}
+merged_info %>% 
+  select(key, temporal) %>% 
+  distinct() %>% 
+  filter(!is.na(temporal)) %>%
+  head()
+```
+
+In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed` as suggested [here]().
 
 ```{r split_temporal}
-print("write here your code, Damiano!")
+merged_info %<>% separate(col = temporal,
+                          sep = "/",
+                          into = c("first_observed", "last_observed"),
+                          convert = TRUE,
+                          fill = "right",
+                          remove = TRUE) %>%
+  mutate(last_observed = ifelse(is.na(last_observed),
+                          first_observed,
+                          last_observed))
 ```
 
-Divide pathway in `pathway_level1` and `pathway_level2`. Notice that pathway is not a column but a subset of values of column `type`:
+As example
+
+```{r example_split_temporal, echo = FALSE}
+merged_info %>% 
+  filter(locality == "Belgium") %>% 
+  select(key, first_observed, last_observed) %>%
+  distinct() %>%
+  filter(!is.na(first_observed) & !is.na(last_observed)) %>%
+  head()
+```
+
+### Split column `pathway`
+
+The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_`
+
+```{r pathway_levels_example, echo = FALSE}
+merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
+```
+
+We split this column in `pathway_level1` and `pathway_level2`
 
 ```{r split_pathway}
-print("write here your code, Damiano!")
+merged_info %<>% rowwise() %>%
+  mutate(pathway_level1 = 
+           str_split_fixed(
+             str_split(pathway,
+                       pattern = "pathway:")[[1]][2],
+             pattern = "_", n = 2)[[1]][1],
+         pathway_level2 = 
+           str_split_fixed(
+             str_split(pathway,pattern = "pathway:")[[1]][2],
+             pattern = "_", n = 2)[[2]][1]) %>%
+  ungroup() %>%
+  select(-pathway) 
 ```
 
-Save final data.frame
+As example:
+
+```{r example_split_pathway, echo = FALSE}
+merged_info %>% 
+  distinct(pathway_level1, pathway_level2) %>%
+  filter(!is.na(pathway_level1) & !is.na(pathway_level2)) %>%
+  head()
+```
+
+## Save data ouput
+
+The information in `merged_info` is ready to be saved in folder `\data\interim`
 
 ```{r save_data_output, eval=FALSE}
 write_tsv(x = merged_info, 
@@ -138,8 +290,7 @@ write_tsv(x = merged_info,
 You can start from this point and not repeat previous steps by loading the tsv file saved at the end of previous section:
 
 ```{r read_data_output, eval=FALSE}
-data_output <- read_tsv(
-file = "../data/interim/test_data_output_checklist_indicators.tsv")
+checklist_data <- read_tsv(file = "../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
 New functions should be written in `trias` official project package.
