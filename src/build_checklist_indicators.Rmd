@@ -83,7 +83,7 @@ taxon_keys <- taxon %>% select(key) %>% pull(key)
 nub_keys <- taxon %>% distinct(nubKey)
 taxon_backbone_info <-  nub_keys %>%
   rowwise() %>%
-  do_(interp(~ name_usage(key = .$nubKey,
+  do_(interp(~ rgbif::name_usage(key = .$nubKey,
                          return = "data")))
 taxon_info <- c("key", "species", "genus", "family", "order",
                 "class", "phylum", "kingdom",
