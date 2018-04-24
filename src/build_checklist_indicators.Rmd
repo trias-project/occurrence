@@ -105,8 +105,8 @@ distribution <- data.frame(key = taxon_keys) %>%
   rowwise() %>%
   do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
                                                return = "data",
-                                               data = "distribution"))))
-distribution %<>% select(-source)
+                                               data = "distribution")))) %>% 
+  select(-source)
 head(distribution)
 ```
 
