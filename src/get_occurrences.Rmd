@@ -130,11 +130,15 @@ update_download_list(
 Tt can be useful to import occurrence data directly in R. 
 You can do it by GBIF download key, which you can find in the column `gbif_download_key` (1st column of `gbif_downloads.tsv`). For example:
 
-```{r}
-gbifkey <- "0002455-171124123535762"
-occ <- occ_download_get(key = gbifkey, overwrite = T)
-fn <- "occurrence.txt"
-unzip(zipfile = occ, files = fn)
-occurrence <- read_delim("occurrence.txt", 
+```{r import_ocurrence_from_gbif_key, evaluate = FALSE}
+gbif_key <- "0002455-171124123535762"
+file_path <- "../data/output/"
+occ <- occ_download_get(key = gbifkey, overwrite = TRUE, path = file_path)
+file_to_extract <- "occurrence.txt"
+unzip(zipfile = occ, files = file_to_extract)
+file_name <- paste0(file_path, gbif_key, "_", file_to_extract)
+file.rename(file_to_extract,
+            file_name)
+occurrence <- read_delim(file_name, 
                          "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
