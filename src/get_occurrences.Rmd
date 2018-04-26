@@ -26,7 +26,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Install packages:
 
 ```{r install_packages}
-devtools::install_github("trias-project/trias")
+devtools::install_github("trias-project/trias",
+                         ref = "remove_country_from_tsv") # remove it after merging to master
 devtools::install_github("ropensci/rgbif")
 ```
 
@@ -97,7 +98,7 @@ countries <- c("BE")
 Trigger download:
 
 ```{r trigger_gbif_download}
-# Important: query arguments need to be pasts as strings of format "key = value""
+# Important: query arguments need to be pasts as strings of format "key = value"
 gbif_download_key <- occ_download(
   paste0("taxonKey = ", paste(taxon_keys, collapse = ",")), 
   paste0("country = ", paste(countries, collapse = ",")),
