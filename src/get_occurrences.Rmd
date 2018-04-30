@@ -134,7 +134,7 @@ You can do it by GBIF download key, which you can find in the column `gbif_downl
 ```{r import_ocurrence_from_gbif_key, evaluate = FALSE}
 gbif_key <- "0002455-171124123535762"
 file_path <- "../data/output/"
-occ <- occ_download_get(key = gbifkey, overwrite = TRUE, path = file_path)
+occ <- occ_download_get(key = gbif_key, overwrite = TRUE, path = file_path)
 file_to_extract <- "occurrence.txt"
 unzip(zipfile = occ, files = file_to_extract)
 file_name <- paste0(file_path, gbif_key, "_", file_to_extract)
