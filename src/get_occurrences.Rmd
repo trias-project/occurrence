@@ -126,10 +126,9 @@ update_download_list(
   input_checklist = taxa_input_file)
 ```
 
-# Import downloads to R
+# Import occurrences from an existing GBIF download
 
-Tt can be useful to import occurrence data directly in R. 
-You can do it by GBIF download key, which you can find in the column `gbif_download_key` (1st column of `gbif_downloads.tsv`). For example:
+To import occurrences from an existing GBIF download, you will need the `gbif_download_key`. This key can be found in the 1st column of [gbif_download.tsv](../data/output/gbif_downloads.tsv), which lists all GBIF downloads triggered for TrIAS. For example:
 
 ```{r import_ocurrence_from_gbif_key, evaluate = FALSE}
 gbif_key <- "0002455-171124123535762"
@@ -138,8 +137,6 @@ occ <- occ_download_get(key = gbif_key, overwrite = TRUE, path = file_path)
 file_to_extract <- "occurrence.txt"
 unzip(zipfile = occ, files = file_to_extract)
 file_name <- paste0(file_path, gbif_key, "_", file_to_extract)
-file.rename(file_to_extract,
-            file_name)
-occurrence <- read_delim(file_name, 
-                         "\t", escape_double = FALSE, trim_ws = TRUE)
+file.rename(file_to_extract, file_name)
+occurrence <- read_delim(file_name, "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
