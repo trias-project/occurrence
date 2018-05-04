@@ -46,3 +46,5 @@ vignettes/*.pdf
 *.tar
 *.zip
 
+# all files extracted from compressed files (GBIF downloads)
+data/output/*/*
