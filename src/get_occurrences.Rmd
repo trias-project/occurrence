@@ -123,7 +123,8 @@ Write download to list of downloads and check pending downloads:
 update_download_list(
   file = downloads_output_file, 
   download_to_add = gbif_download_key, 
-  input_checklist = taxa_input_file)
+  input_checklist = taxa_input_file
+)
 ```
 
 # Import occurrences from an existing GBIF download
