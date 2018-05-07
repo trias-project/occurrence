@@ -118,8 +118,8 @@ indicator_total_year <- function(df, start_year_plot = 1940,
     } else {
         # check for valid facet options
         valid_facet_options <- c("family", "order", "class", "phylum", 
-                                 "kingdom", "pathway_level1", "locality", 
-                                 "native_range")
+                                 "kingdom", "pathway_level1", "pathway_level2", "locality", 
+                                 "`native range`")
         facet_column <- match.arg(facet_column, valid_facet_options) 
         
         df_cleaned <- df %>%
@@ -199,5 +199,5 @@ start_year_plot <- 1900
 x_scale_stepsize <- 25
 
 indicator_total_year(data, start_year_plot, x_scale_stepsize, 
-                     facet_column = "kingdom")
+                     facet_column = "`native range`")
 ```
