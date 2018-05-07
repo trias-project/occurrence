@@ -108,13 +108,13 @@ indicator_total_year <- function(df, start_year_plot = 1940,
     
     # initial input checks
     assert_that(is.data.frame(df))
-    assert_colnames(df, c("key", "first_observed", "endDate"), 
+    assert_colnames(df, c("key", "first_observed", "last_observed"), 
                     only_colnames = FALSE)
     
     # prepare the data set, !recheck when issue #30 cleared out
     if (is.null(facet_column)) {
         df_cleaned <- df %>%
-            distinct_("key", "first_observed", "endDate")
+            distinct_("key", "first_observed", "last_observed")
     } else {
         # check for valid facet options
         valid_facet_options <- c("family", "order", "class", "phylum", 
@@ -123,26 +123,26 @@ indicator_total_year <- function(df, start_year_plot = 1940,
         facet_column <- match.arg(facet_column, valid_facet_options) 
         
         df_cleaned <- df %>%
-            distinct_("key", "first_observed", "endDate", facet_column)
+            distinct_("key", "first_observed", "last_observed", facet_column)
     }
 
-    # Provide warning messages for endDate/first_observed NA values
-    if (nrow(filter(df, is.na(first_observed), is.na(endDate))) > 0) {
-        warning("Some records have no first_observed or endDate defined, ",
+    # Provide warning messages for last_observed/first_observed NA values
+    if (nrow(filter(df, is.na(first_observed), is.na(last_observed))) > 0) {
+        warning("Some records have no first_observed or last_observed defined, ",
                 "these are currently not taken into account")
     }        
-    if (nrow(filter(df, !is.na(first_observed), is.na(endDate))) > 0) {
-        warning("Some records have a first_observed, but endDate is not defined, ",
+    if (nrow(filter(df, !is.na(first_observed), is.na(last_observed))) > 0) {
+        warning("Some records have a first_observed, but last_observed is not defined, ",
                 "using same year as startYear to replace NA")
     }
     df_cleaned <- df_cleaned %>%
         filter(!is.na(first_observed)) %>%  # ignore information without first_observed
-        mutate(endDate = if_else(is.na(endDate), first_observed, endDate)) # replace NA with first_observed
+        mutate(last_observed = if_else(is.na(last_observed), first_observed, last_observed)) # replace NA with first_observed
     
     # Make individual records for each year within the range    
     df_extended <- df_cleaned %>%
         rowwise() %>%
-        do(year = .data$first_observed:.data$endDate) %>%
+        do(year = .data$first_observed:.data$last_observed) %>%
         bind_cols(df_cleaned) %>% 
         unnest(year)
     
