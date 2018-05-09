@@ -114,7 +114,8 @@ Create function to visualize yearly introduction evolution
 #'                             smooth_span = 0.6)
 indicator_introduction_year <- function(df, start_year_plot = 1920,
                                        smooth_span = .85,
-                                       x_scale_stepsize = 5,
+                                       x_major_scale_stepsize = 10,
+                                       x_minor_scale_stepsize = 5,
                                        facet_column = NULL) {
     # initial input checks 
     assert_that(is.data.frame(df))
@@ -138,7 +139,7 @@ indicator_introduction_year <- function(df, start_year_plot = 1920,
         ylab("Number of introduced alien species") +         
         scale_x_continuous(breaks = seq(start_year_plot, 
                                      max(data_top_graph$first_observed), 
-                                     x_scale_stepsize), 
+                                     x_major_scale_stepsize), 
                        limits = c(start_year_plot, 
                                   max(data_top_graph$first_observed))) +
         theme_inbo()
@@ -165,7 +166,10 @@ indicator_introduction_year <- function(df, start_year_plot = 1920,
             ylab("Number of introduced alien species") + 
             scale_x_continuous(breaks = seq(start_year_plot, 
                                             max(data_facet_graph$first_observed), 
-                                            x_scale_stepsize), 
+                                            x_major_scale_stepsize),
+                               minor_breaks = seq(start_year_plot,
+                                                  max(data_facet_graph$first_observed), 
+                                            x_minor_scale_stepsize),
                                limits = c(start_year_plot, 
                                           max(data_facet_graph$first_observed))) +
             theme_inbo()
@@ -182,11 +186,12 @@ default settings (that were specified above)
 # Example
 start_year_plot <- 1920
 loess_span <- .85
-x_scale_stepsize <- 5
-
+x_major_scale_stepsize <- 10
+x_minor_scale_stepsize <- 2.5
 indicator_introduction_year(data, start_year_plot = start_year_plot, 
                             smooth_span = loess_span,
-                            x_scale_stepsize = x_scale_stepsize,
+                            x_major_scale_stepsize = x_major_scale_stepsize,
+                            x_minor_scale_stepsize = x_minor_scale_stepsize,
                             facet_column = "kingdom")
 ```
 
