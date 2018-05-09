@@ -83,8 +83,10 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 #' @param start_year_plot int Limit to use as start year of the plot. For scientific
 #' usage, the entire period could be relevant, but for policy purpose, focusing
 #' on a more recent period could be required.
-#' @param x_scale_stepsize int On which year interval labels are placed 
+#' @param x_major_scale_stepsize int On which year interval labels are placed 
 #' on the x axis.
+#' @param x_minor_scale_stepsize int On which year interval minor breaks are
+#' placed on the x axis.
 #' @param facet_column NULL | char The column to use to create additional
 #' facet wrap plots underneath the main graph. When NULL, no facet graph is
 #' included.
@@ -103,11 +105,13 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 #'
 #' @examples
 indicator_total_year <- function(df, start_year_plot = 1940, 
-                                 x_scale_stepsize = 10, 
+                                 x_major_scale_stepsize = 10,
+                                 x_minor_scale_stepsize = 5,
                                  facet_column = NULL) {
     
     # initial input checks
     assert_that(is.data.frame(df))
+    assert_that(x_major_scale_stepsize >= x_minor_scale_stepsize)
     assert_colnames(df, c("key", "first_observed", "last_observed"), 
                     only_colnames = FALSE)
     
@@ -194,10 +198,11 @@ indicator_total_year(data, start_year_plot, x_scale_stepsize)
 
 or with the facet usage:
 
-```{r fig.width=8, fig.height=8}
+```{r fig.width=10, fig.height=20}
 start_year_plot <- 1900
-x_scale_stepsize <- 25
+x_major_scale_stepsize <- 25
+x_minor_scale_stepsize <- 12.5
 
-indicator_total_year(data, start_year_plot, x_scale_stepsize, 
-                     facet_column = "`native range`")
+indicator_total_year(data, start_year_plot, x_major_scale_stepsize, 
+                     x_minor_scale_stepsize, facet_column = "`native range`")
 ```
