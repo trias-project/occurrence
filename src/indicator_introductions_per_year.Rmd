@@ -124,7 +124,7 @@ indicator_introduction_year <- function(df, start_year_plot = 1920,
     
     # first filtering of the incoming data
     data <- df %>%
-        filter(!is.na(.data$first_observed)) %>%
+      filter(!is.na(.data$first_observed)) %>%
         filter(.data$first_observed > start_year_plot)
         
     data_top_graph <- data %>% 
