@@ -120,30 +120,29 @@ indicator_introduction_year <- function(df, start_year_plot = 1920,
                                        facet_column = NULL) {
     # initial input checks 
     assert_that(is.data.frame(df))
-    assert_colnames(df, c("type", "startDate"), only_colnames = FALSE)
+    assert_colnames(df, c("first_observed"), only_colnames = FALSE)
     
     # first filtering of the incoming data
     data <- df %>%
-        filter(!is.na(.data$startDate)) %>%
-        filter(.data$type == "pathway") %>% # to recheck after issue #30
-        filter(.data$startDate > start_year_plot)
+        filter(!is.na(.data$first_observed)) %>%
+        filter(.data$first_observed > start_year_plot)
         
     data_top_graph <- data %>% 
-        group_by(.data$startDate) %>%
+        group_by(.data$first_observed) %>%
         count() %>%
         ungroup()
     
     # top graph with all counts
-    top_graph <- ggplot(data_top_graph, aes(x = startDate, y = n)) +
+    top_graph <- ggplot(data_top_graph, aes(x = first_observed, y = n)) +
         geom_point(stat = 'identity') +
         geom_smooth(span = smooth_span) +
         xlab("Year") +
         ylab("Number of introduced alien species") +         
         scale_x_continuous(breaks = seq(start_year_plot, 
-                                     max(data_top_graph$startDate), 
+                                     max(data_top_graph$first_observed), 
                                      x_scale_stepsize), 
                        limits = c(start_year_plot, 
-                                  max(data_top_graph$startDate))) +
+                                  max(data_top_graph$first_observed))) +
         theme_inbo()
     
     if (is.null(facet_column)) {
@@ -156,21 +155,21 @@ indicator_introduction_year <- function(df, start_year_plot = 1920,
         facet_column <- match.arg(facet_column, valid_facet_options)        
         
         data_facet_graph <- data %>% 
-            group_by_("startDate", facet_column) %>%
+            group_by_("first_observed", facet_column) %>%
             count() %>%
             ungroup()
         
-        facet_graph <- ggplot(data_facet_graph, aes(x = startDate, y = n)) +
+        facet_graph <- ggplot(data_facet_graph, aes(x = first_observed, y = n)) +
             geom_point(stat = 'identity') +
             geom_smooth(span = smooth_span) +
             facet_wrap(facet_column) +
             xlab("Year") +
             ylab("Number of introduced alien species") + 
             scale_x_continuous(breaks = seq(start_year_plot, 
-                                            max(data_facet_graph$startDate), 
+                                            max(data_facet_graph$first_observed), 
                                             x_scale_stepsize), 
                                limits = c(start_year_plot, 
-                                          max(data_facet_graph$startDate))) +
+                                          max(data_facet_graph$first_observed))) +
             theme_inbo()
          
         ggarrange(top_graph, facet_graph)
