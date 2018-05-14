@@ -1,0 +1,14 @@
+name: "Checklist-based Invasive Alien Species indicators"
+navbar:
+  title: "Checklist-based Invasive Alien Species indicators"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Data retrieveal"
+      href: build_checklist_indicators.html
+    - text: "New introductions"
+      href: indicator_introductions_per_year.html
+    - text: "Cumulative number of Alien Species"
+      href: indicator_cumulative_number.html
+    - text: "Cumulative number of Alien Species"
+      href: indicator_pathways.html
