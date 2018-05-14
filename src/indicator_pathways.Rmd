@@ -55,7 +55,6 @@ library(stringr)
 
 ```{r save_data_output}
 data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
-
 ```
 
 # Build indicators
