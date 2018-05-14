@@ -151,13 +151,13 @@ indicator_pathway <- function(data, subcategory = TRUE) {
 
 Example usage of the function when using both category levels:
 
-```{r pathway-figure, fig.width=12, fig.height=10}
+```{r pathway-figure_both_category, fig.width=12, fig.height=10}
 indicator_pathway(data, subcategory = TRUE)
 ```
 
 Or when only interested in the main category in the graph:
 
-```{r pathway-figure, fig.width=8, fig.height=6}
+```{r pathway-figure_main_category, fig.width=8, fig.height=6}
 indicator_pathway(data, subcategory = FALSE)
 ```
 
