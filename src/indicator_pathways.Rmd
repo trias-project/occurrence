@@ -99,8 +99,7 @@ indicator_pathway <- function(data, subcategory = TRUE) {
     # focus on pathway data counts
     df_pathway <- data  %>%
         filter(kingdom %in% c('Plantae', 'Animalia')) %>%
-        filter(type == 'pathway') %>%
-        group_by(description, pathway_level1, 
+        group_by(pathway_level1, 
                 pathway_level2, kingdom) %>%
         count() %>%
         ungroup()
