@@ -1,6 +1,11 @@
 name: "TrIAS data processing pipeline"
 output_dir: "../docs"
 include: ["static/"]
+exclude:
+- build_checklist_indicators.Rmd
+- get_occurrences.Rmd
+- occurrence_indicators_downscaling.Rmd
+- occurrence_indicators_gam.Rmd
 navbar:
   title: "TrIAS pipeline"
   left:
