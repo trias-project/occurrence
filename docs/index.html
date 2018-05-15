@@ -9,14 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Damiano Oldoni" />
-<meta name="author" content="Sander Devisscher" />
-<meta name="author" content="Yasmine Verzelen" />
-<meta name="author" content="Stijn Van Hoey" />
 
-<meta name="date" content="2018-05-14" />
 
-<title>Checklist-based indicators of Invasive Alien Species</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,6 +24,7 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -75,6 +71,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="static/css/trias.css" type="text/css" />
 
 </head>
 
@@ -180,28 +177,36 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Checklist-based Invasive Alien Species indicators</a>
+      <a class="navbar-brand" href="index.html">TrIAS pipeline</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="build_checklist_indicators.html">Data retrieveal</a>
-</li>
-<li>
-  <a href="indicator_introductions_per_year.html">New introductions</a>
-</li>
-<li>
-  <a href="indicator_cumulative_number.html">Cumulative number of Alien Species</a>
-</li>
-<li>
-  <a href="indicator_pathways.html">Cumulative number of Alien Species</a>
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -211,26 +216,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Checklist-based indicators of Invasive Alien Species</h1>
-<h4 class="author"><em>Damiano Oldoni</em></h4>
-<h4 class="author"><em>Sander Devisscher</em></h4>
-<h4 class="author"><em>Yasmine Verzelen</em></h4>
-<h4 class="author"><em>Stijn Van Hoey</em></h4>
-<h4 class="date"><em>2018-05-14</em></h4>
 
 </div>
 
 
-<div id="about" class="section level1">
-<h1><span class="header-section-number">1</span> About</h1>
-<p>This collection of R Markdown websites would like to show the checklist-based indicators of Alien Species in Belgium and it is part of <a href="https://osf.io/7dpgr/">TrIAS project</a>.</p>
-<p>The next sections are taken into account:</p>
-<ol style="list-style-type: decimal">
-<li><a href="build_checklist_indicators.html">Data retrieval</a></li>
-<li><a href="indicator_introductions_per_year.html">New introductions per year</a> (indicator)</li>
-<li><a href="indicator_cumulative_number.html">Cumulative number of new introductions</a> (indicator)</li>
-<li><a href="indicator_pathways.html">Pathways of introduction</a> (indicator)</li>
-</ol>
+<div id="pipeline" class="section level1">
+<h1>Pipeline</h1>
+<p>TrIAS data pipeline from a species checklist over occurrences to indicators.</p>
+<div id="repo-structure" class="section level2">
+<h2>Repo structure</h2>
+<p>The repository structure is based on <a href="http://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a>. Files indicated with <code>GENERATED</code> should not be edited manually.</p>
+<pre><code>├── README.md                       : Top-level description of the project and how to run it
+├── LICENSE                         : Project license
+├── .gitignore                      : Files and folders to be ignored by git
+│
+├── data
+│   ├── input
+│   │   ├── modelling_species.csv   : List of species for risk modelling
+|   │   └── belgian_species.csv     : List of alien species in Belgium
+│   │
+│   └── output
+|       └── gbif_downloads.csv      : List of triggered GBIF occurrence downloads GENERATED
+│
+└── src
+    ├── gbif_download.Rmd           : Script to trigger and verify a GBIF occurrence download
+    └── src.Rproj                   : RStudio project file</code></pre>
+</div>
+<div id="contributors" class="section level2">
+<h2>Contributors</h2>
+<p><a href="https://github.com/trias-project/occurrence/contributors">List of contributors</a></p>
+</div>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p><a href="LICENSE">MIT License</a></p>
+</div>
 </div>
 
 

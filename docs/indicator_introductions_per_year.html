@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Damiano Oldoni" />
+<meta name="author" content="Yasmine Verzelen" />
+<meta name="author" content="Stijn Van Hoey" />
+
+<meta name="date" content="2018-05-15" />
+
+<title>Indicator: Number of new introductions of alien species per year</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="static/css/trias.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TrIAS pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Indicator: Number of new introductions of alien species per year</h1>
+<h4 class="author"><em>Damiano Oldoni</em></h4>
+<h4 class="author"><em>Yasmine Verzelen</em></h4>
+<h4 class="author"><em>Stijn Van Hoey</em></h4>
+<h4 class="date"><em>2018-05-15</em></h4>
+
+</div>
+
+
+<p>This document describes how to build indicators of Invasive Alien Species based on checklist data. In particular, this document takes into account:</p>
+<ol style="list-style-type: decimal">
+<li>number of new introductions of alien species per year in Belgium (see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/17">#17</a>)</li>
+</ol>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<p>Install <code>trias</code> package:</p>
+<pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
+<p>Load libraries:</p>
+<pre class="r"><code># Tidyverse packages
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+library(magrittr)
+library(stringr)
+library(readr)
+# GBIF related packages
+library(rgbif)
+# project package
+library(trias)
+# INBO theme package
+library(INBOtheme)
+# other packages
+library(lazyeval)
+library(assertthat)
+library(assertable)
+library(egg)</code></pre>
+</div>
+<div id="get-data" class="section level1">
+<h1><span class="header-section-number">2</span> Get data</h1>
+<pre class="r"><code># Get data
+data &lt;- read_tsv(&quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+</div>
+<div id="build-indicators" class="section level1">
+<h1><span class="header-section-number">3</span> Build indicators</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
+<p>New functions should be written in <code>trias</code> official project package.</p>
+<p>In order to not consider subspecies, please take care of grouping by <code>species</code> (see point 8 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>).</p>
+<p>About point 7 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>, please see this <a href="https://github.com/trias-project/pipeline/issues/%2021#issuecomment-381164874">comment</a>.</p>
+</div>
+<div id="number-of-new-introductions-of-alien-species-per-year" class="section level2">
+<h2><span class="header-section-number">3.2</span> Number of new introductions of alien species per year</h2>
+<p>See GitHub issue <a href="https://github.com/trias-project/pipeline/issues/17">#17</a>.</p>
+<p>Create function to visualize yearly introduction evolution</p>
+<pre class="r"><code># Create function
+#&#39; Create year of introduction based Trias indicator
+#&#39;
+#&#39; @param data df, as created by preprocessing
+#&#39; @param start_year_plot Start year to show the plot, as initial years are 
+#&#39; mostly irrelevant
+#&#39; @param smooth_span Parameter for the applied Loess smoother, for  more 
+#&#39; information on the appropriate value, see...
+#&#39; @param x_scale_stepsize Parameter that indicates the stepsize of the x axis
+#&#39; @param facet_column NULL | char The column to use to create additional
+#&#39; facet wrap plots underneath the main graph. When NULL, no facet graph is
+#&#39; included.
+#&#39;
+#&#39; @return ggplot
+#&#39; @export
+#&#39;
+#&#39; @importFrom assertthat assert_that
+#&#39; @importFrom assertable assert_colnames
+#&#39; @importFrom dplyr %&gt;% filter group_by group_by_ count ungroup
+#&#39; @importFrom ggplot2 geom_point aes xlab ylab scale_x_continuous facet_wrap
+#&#39; geom_smooth
+#&#39; @importFrom INBOtheme theme_inbo
+#&#39; @importFrom egg ggarrange
+#&#39;
+#&#39; @examples
+#&#39; indicator_introduction_year(data)
+#&#39; indicator_introduction_year(data, start_year_plot = 1940, 
+#&#39;                             smooth_span = 0.6)
+indicator_introduction_year &lt;- function(df, start_year_plot = 1920,
+                                       smooth_span = .85,
+                                       x_major_scale_stepsize = 10,
+                                       x_minor_scale_stepsize = 5,
+                                       facet_column = NULL) {
+    # initial input checks 
+    assert_that(is.data.frame(df))
+    assert_colnames(df, c(&quot;first_observed&quot;), only_colnames = FALSE)
+    
+    # first filtering of the incoming data
+    data &lt;- df %&gt;%
+      filter(!is.na(.data$first_observed)) %&gt;%
+        filter(.data$first_observed &gt; start_year_plot)
+        
+    data_top_graph &lt;- data %&gt;% 
+        group_by(.data$first_observed) %&gt;%
+        count() %&gt;%
+        ungroup()
+    
+    # top graph with all counts
+    top_graph &lt;- ggplot(data_top_graph, aes(x = first_observed, y = n)) +
+        geom_point(stat = &#39;identity&#39;) +
+        geom_smooth(span = smooth_span) +
+        xlab(&quot;Year&quot;) +
+        ylab(&quot;Number of introduced alien species&quot;) +         
+        scale_x_continuous(breaks = seq(start_year_plot, 
+                                     max(data_top_graph$first_observed), 
+                                     x_major_scale_stepsize), 
+                       limits = c(start_year_plot, 
+                                  max(data_top_graph$first_observed))) +
+        theme_inbo()
+    
+    if (is.null(facet_column)) {
+      return(top_graph)
+    } else {
+        # check for valid facet options
+        valid_facet_options &lt;- c(&quot;family&quot;, &quot;order&quot;, &quot;class&quot;, &quot;phylum&quot;, 
+                                 &quot;kingdom&quot;, &quot;pathway_level1&quot;, &quot;locality&quot;, 
+                                 &quot;native_range&quot;)
+        facet_column &lt;- match.arg(facet_column, valid_facet_options)        
+        
+        data_facet_graph &lt;- data %&gt;% 
+            group_by_(&quot;first_observed&quot;, facet_column) %&gt;%
+            count() %&gt;%
+            ungroup()
+        
+        facet_graph &lt;- ggplot(data_facet_graph, aes(x = first_observed, y = n)) +
+            geom_point(stat = &#39;identity&#39;) +
+            geom_smooth(span = smooth_span) +
+            facet_wrap(facet_column) +
+            xlab(&quot;Year&quot;) +
+            ylab(&quot;Number of introduced alien species&quot;) + 
+            scale_x_continuous(breaks = seq(start_year_plot, 
+                                            max(data_facet_graph$first_observed), 
+                                            x_major_scale_stepsize),
+                               minor_breaks = seq(start_year_plot,
+                                                  max(data_facet_graph$first_observed), 
+                                            x_minor_scale_stepsize),
+                               limits = c(start_year_plot, 
+                                          max(data_facet_graph$first_observed))) +
+            theme_inbo()
+         
+        ggarrange(top_graph, facet_graph)
+    }
+ }</code></pre>
+<p>Set start_year and loess_span if you want Specify this in the function so the function knows that it shouldn’t use the default settings (that were specified above)</p>
+<pre class="r"><code># Example
+start_year_plot &lt;- 1920
+loess_span &lt;- .85
+x_major_scale_stepsize &lt;- 10
+x_minor_scale_stepsize &lt;- 2.5
+indicator_introduction_year(data, start_year_plot = start_year_plot, 
+                            smooth_span = loess_span,
+                            x_major_scale_stepsize = x_major_scale_stepsize,
+                            x_minor_scale_stepsize = x_minor_scale_stepsize,
+                            facet_column = &quot;kingdom&quot;)</code></pre>
+<pre><code>## [1] &quot;All column names present&quot;</code></pre>
+<p><img src="indicator_introductions_per_year_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
