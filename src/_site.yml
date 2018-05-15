@@ -1,0 +1,23 @@
+name: "TrIAS data processing pipeline"
+output_dir: "../docs"
+include: ["static/"]
+navbar:
+  title: "TrIAS pipeline"
+  left:
+    - text: "Checklist indicators"
+      href: ""
+      menu:
+      - text: "New species introductions"
+        href: indicator_introductions_per_year.html
+      - text: "Cumulative number of species"
+        href: indicator_cumulative_number.html
+      - text: "Introduction pathways"
+        href: indicator_pathways.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/trias-project/pipeline
+output:
+  html_document:
+    theme: yeti
+    df_print: paged
+    css: static/css/trias.css
