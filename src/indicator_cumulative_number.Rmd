@@ -115,7 +115,6 @@ indicator_total_year <- function(df, start_year_plot = 1940,
     assert_colnames(df, c("key", "first_observed", "last_observed"), 
                     only_colnames = FALSE)
     
-    # prepare the data set, !recheck when issue #30 cleared out
     if (is.null(facet_column)) {
         df_cleaned <- df %>%
             distinct_("key", "first_observed", "last_observed")
@@ -169,7 +168,6 @@ indicator_total_year <- function(df, start_year_plot = 1940,
             count() %>%
             ungroup()
 
-        # ISSUE starts here...
         facet_graph <- ggplot(counts_ias_grouped, 
                               aes(x = year, y = n)) + 
             geom_line() +
