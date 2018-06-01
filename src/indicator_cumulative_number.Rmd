@@ -75,7 +75,6 @@ About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), ple
 see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 
 ```{r determine_presence_per_specieskey_per_year}
-
 #' Create total invasive species indicator plot (Trias)
 #'
 #' @param df data.frame Contains the data as produced by the Trias pipeline,
@@ -108,81 +107,79 @@ indicator_total_year <- function(df, start_year_plot = 1940,
                                  x_major_scale_stepsize = 10,
                                  x_minor_scale_stepsize = 5,
                                  facet_column = NULL) {
+  
+  # initial input checks
+  assert_that(is.data.frame(df))
+  assert_that(x_major_scale_stepsize >= x_minor_scale_stepsize)
+  assert_colnames(df, c("key", "first_observed", "last_observed"), 
+                  only_colnames = FALSE)
+  
+  if (is.null(facet_column)) {
+    df_cleaned <- df %>%
+      distinct_("speciesKey", "first_observed", "last_observed")
+  } else {
+    # check for valid facet options
+    valid_facet_options <- c("family", "order", "class", "phylum", 
+                             "kingdom", "pathway_level1", "pathway_level2",
+                             "locality", "`native range`")
+    facet_column <- match.arg(facet_column, valid_facet_options) 
     
-    # initial input checks
-    assert_that(is.data.frame(df))
-    assert_that(x_major_scale_stepsize >= x_minor_scale_stepsize)
-    assert_colnames(df, c("key", "first_observed", "last_observed"), 
-                    only_colnames = FALSE)
+    df_cleaned <- df %>%
+      distinct_("speciesKey", "first_observed", "last_observed", facet_column)
+  }
+  
+  # Provide warning messages for last_observed/first_observed NA values
+  if (nrow(filter(df, is.na(first_observed), is.na(last_observed))) > 0) {
+    warning("Some records have no first_observed and last_observed defined, ",
+            "these are currently not taken into account")
+  }        
+  if (nrow(filter(df, !is.na(first_observed))) > 0) {
+    warning(paste("Some records have a first_observed,",
+                  "but last_observed is not defined,",
+                  "using same year as startYear to replace NA"))
+  }
+  df_cleaned <- df_cleaned %>%
+    filter(!is.na(first_observed))  # ignore information without first_observed
     
-    if (is.null(facet_column)) {
-        df_cleaned <- df %>%
-            distinct_("key", "first_observed", "last_observed")
-    } else {
-        # check for valid facet options
-        valid_facet_options <- c("family", "order", "class", "phylum", 
-                                 "kingdom", "pathway_level1", "pathway_level2", "locality", 
-                                 "`native range`")
-        facet_column <- match.arg(facet_column, valid_facet_options) 
-        
-        df_cleaned <- df %>%
-            distinct_("key", "first_observed", "last_observed", facet_column)
-    }
-
-    # Provide warning messages for last_observed/first_observed NA values
-    if (nrow(filter(df, is.na(first_observed), is.na(last_observed))) > 0) {
-        warning("Some records have no first_observed and last_observed defined, ",
-                "these are currently not taken into account")
-    }        
-    if (nrow(filter(df, !is.na(first_observed), is.na(last_observed))) > 0) {
-        warning("Some records have a first_observed, but last_observed is not defined, ",
-                "using same year as startYear to replace NA")
-    }
-    df_cleaned <- df_cleaned %>%
-        filter(!is.na(first_observed)) %>%  # ignore information without first_observed
-        mutate(last_observed = if_else(is.na(last_observed), first_observed, last_observed)) # replace NA with first_observed
+  # Make individual records for each year within the range    
+  df_extended <- df_cleaned %>%
+    rowwise() %>%
+    do(year = .data$first_observed:as.integer(format(Sys.Date(), "%Y"))) %>%
+    bind_cols(df_cleaned) %>% 
+    unnest(year)
+  
+  maxDate <- max(df_extended$year)
+  top_graph <- ggplot(df_extended, aes(x = year)) +
+    geom_line(stat = "count") +
+    xlab("Year") +
+    ylab("Number of alien species") +
+    scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                    x_scale_stepsize),
+                       limits = c(start_year_plot, maxDate)) +
+    theme_inbo()
+  
+  if (is.null(facet_column)) {
+    return(top_graph)
+  } else {
+    # calculate numbers
+    counts_ias_grouped <- df_extended %>%
+      group_by_("year", facet_column)  %>%
+      count() %>%
+      ungroup()
     
-    # Make individual records for each year within the range    
-    df_extended <- df_cleaned %>%
-        rowwise() %>%
-        do(year = .data$first_observed:.data$last_observed) %>%
-        bind_cols(df_cleaned) %>% 
-        unnest(year)
+    facet_graph <- ggplot(counts_ias_grouped, 
+                          aes(x = year, y = n)) + 
+      geom_line(stat = "identity") +
+      xlab("Year") +
+      ylab("Number of alien species") +
+      facet_wrap(facet_column) + 
+      scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                      x_scale_stepsize),
+                         limits = c(start_year_plot, maxDate)) +
+      theme_inbo()
     
-    maxDate <- max(df_extended$year)
-    top_graph <- ggplot(df_extended, aes(x = year)) +
-        geom_line(stat = "count") +
-        xlab("Year") +
-        ylab("Number of alien species") +
-        scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                        x_scale_stepsize),
-                           limits = c(start_year_plot, maxDate)) +
-        theme_inbo()
-    
-    if (is.null(facet_column)) {
-        return(top_graph)
-    } else {
-        # calculate numbers
-        counts_ias_grouped <- df_extended %>%
-            group_by_("year", facet_column)  %>%
-            count() %>%
-            ungroup()
-
-        facet_graph <- ggplot(counts_ias_grouped, 
-                              aes(x = year, y = n)) + 
-            geom_line() +
-            xlab("Year") +
-            ylab("Number of alien species") +
-            facet_wrap(facet_column) + 
-            scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                        x_scale_stepsize),
-                               limits = c(start_year_plot, maxDate)) +
-            theme_inbo()
-
-        ggarrange(top_graph, facet_graph)
-    }    
-            
-    
+    ggarrange(top_graph, facet_graph)
+  }
 }
 ```
 
@@ -196,11 +193,11 @@ indicator_total_year(data, start_year_plot, x_major_scale_stepsize)
 
 or with the facet usage:
 
-```{r fig.width=10, fig.height=20}
+```{r fig.width=10, fig.height=5}
 start_year_plot <- 1900
 x_major_scale_stepsize <- 25
 x_minor_scale_stepsize <- 12.5
 
 indicator_total_year(data, start_year_plot, x_major_scale_stepsize, 
-                     x_minor_scale_stepsize, facet_column = "`native range`")
+                     x_minor_scale_stepsize, facet_column = "kingdom")
 ```
