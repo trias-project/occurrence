@@ -150,7 +150,7 @@ indicator_total_year <- function(df, start_year_plot = 1940,
     xlab("Year") +
     ylab("Number of alien species") +
     scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                    x_scale_stepsize),
+                                    x_major_scale_stepsize),
                        limits = c(start_year_plot, maxDate)) +
     theme_inbo()
   
@@ -169,9 +169,10 @@ indicator_total_year <- function(df, start_year_plot = 1940,
       xlab("Year") +
       ylab("Number of alien species") +
       facet_wrap(facet_column) + 
-      scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                      x_scale_stepsize),
-                         limits = c(start_year_plot, maxDate)) +
+      scale_x_continuous(
+        breaks = seq(start_year_plot, maxDate, x_major_scale_stepsize),
+        minor_breaks = seq(start_year_plot, maxDate, x_minor_scale_stepsize),
+        limits = c(start_year_plot, maxDate)) +
       theme_inbo()
     
     ggarrange(top_graph, facet_graph)
@@ -183,7 +184,7 @@ So, the figure can be created without using facets (default):
 
 ```{r fig.width=10, fig.height=5}
 start_year_plot <- 1900
-x_scale_stepsize <- 25
+x_major_scale_stepsize <- 25
 indicator_total_year(data, start_year_plot, x_major_scale_stepsize)
 ```
 
