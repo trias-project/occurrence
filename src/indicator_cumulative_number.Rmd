@@ -78,7 +78,7 @@ see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
 #' Create total invasive species indicator plot (Trias)
 #'
 #' @param df data.frame Contains the data as produced by the Trias pipeline,
-#' with minimal colums.
+#' with minimal columns.
 #' @param start_year_plot int Limit to use as start year of the plot. For scientific
 #' usage, the entire period could be relevant, but for policy purpose, focusing
 #' on a more recent period could be required.
