@@ -11,9 +11,6 @@ output:
     toc_depth: 3
     toc_float: true
     number_sections: true
-    theme: yeti
-    df_print: paged
-knit: (function(input_file, encoding) { rmarkdown::render(input_file, encoding = encoding, output_file = paste0("../docs/",sub(".Rmd", ".html", basename(input_file))))})
 ---
 
 This document describes how to build indicators of Invasive Alien Species based 
