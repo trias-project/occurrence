@@ -10,11 +10,12 @@
 
 
 <meta name="author" content="Damiano Oldoni" />
-<meta name="author" content="Stijn Van Hoey" />
+<meta name="author" content="Sander Devisscher" />
+<meta name="author" content="Stijn Vanhoey" />
 
 <meta name="date" content="2018-07-05" />
 
-<title>Indicator: Pathways associated with alien species introductions</title>
+<title>Indicator: Cumulative number of alien species</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -317,9 +318,10 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Indicator: Pathways associated with alien species introductions</h1>
+<h1 class="title toc-ignore">Indicator: Cumulative number of alien species</h1>
 <h4 class="author"><em>Damiano Oldoni</em></h4>
-<h4 class="author"><em>Stijn Van Hoey</em></h4>
+<h4 class="author"><em>Sander Devisscher</em></h4>
+<h4 class="author"><em>Stijn Vanhoey</em></h4>
 <h4 class="date"><em>2018-07-05</em></h4>
 
 </div>
@@ -335,20 +337,28 @@ div.tocify {
 <pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
 <p>Load libraries:</p>
 <pre class="r"><code># Tidyverse packages
-library(tidyr)
-library(dplyr)
-library(magrittr)
-library(stringr)
-library(readr)
-library(ggplot2)
-# GBIF related packages
+library(tidyr)</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.4</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.4</code></pre>
+<pre class="r"><code>library(magrittr)
+library(stringr)</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.4.4</code></pre>
+<pre class="r"><code>library(readr)
+library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
+<pre class="r"><code># GBIF related packages
 library(rgbif)
 # project package
 library(trias)
 #other pckages
 library(lazyeval)
-library(INBOtheme)
-library(stringr)</code></pre>
+library(INBOtheme)</code></pre>
+<pre><code>## Warning: New theme missing the following elements: panel.grid, plot.tag,
+## plot.tag.position</code></pre>
+<pre class="r"><code>library(assertthat)
+library(assertable)
+library(egg)</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
@@ -362,88 +372,137 @@ library(stringr)</code></pre>
 <p>In order to not consider subspecies, please take care of grouping by <code>species</code> (see point 8 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>).</p>
 <p>About point 7 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>, please see this <a href="https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874">comment</a>.</p>
 </div>
-<div id="pathways-associated-with-alien-species-introductions" class="section level2">
-<h2><span class="header-section-number">3.2</span> Pathways associated with alien species introductions</h2>
-<p>See GitHub isue <a href="https://github.com/trias-project/pipeline/issues/19">#19</a>. Ths functionality is scripted inside a function, with the two usecase taken into account:</p>
-<ol style="list-style-type: decimal">
-<li>using the subcategory and category level, making a double grouping in the graph</li>
-<li>using the category level only</li>
-</ol>
-<p>As the function is ad-hoc to the use-case, most options are hard-coded.</p>
-<pre class="r"><code>#&#39; Pathway count indicator figure 
+<div id="number-of-alien-species" class="section level2">
+<h2><span class="header-section-number">3.2</span> Number of alien species</h2>
+<p>see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/20">#20</a></p>
+<pre class="r"><code>#&#39; Create total invasive species indicator plot (Trias)
 #&#39;
-#&#39; Both only the main category or using both category levels are included in the
-#&#39; graph, using the \code{subcategory} option
+#&#39; @param df data.frame Contains the data as produced by the Trias pipeline,
+#&#39; with minimal columns.
+#&#39; @param start_year_plot int Limit to use as start year of the plot. For scientific
+#&#39; usage, the entire period could be relevant, but for policy purpose, focusing
+#&#39; on a more recent period could be required.
+#&#39; @param x_major_scale_stepsize int On which year interval labels are placed 
+#&#39; on the x axis.
+#&#39; @param x_minor_scale_stepsize int On which year interval minor breaks are
+#&#39; placed on the x axis.
+#&#39; @param facet_column NULL | char The column to use to create additional
+#&#39; facet wrap plots underneath the main graph. When NULL, no facet graph is
+#&#39; included.
 #&#39;
-#&#39; @param data data.frame According to the specification of the Trias pipeline
-#&#39; @param subcategory boolean If TRUE, the subcategory levels are included in 
-#&#39; the visualisation.
-#&#39;
-#&#39; @return
+#&#39; @return ggplot2 object
 #&#39; @export
+#&#39; @importFrom assertthat assert_that
+#&#39; @importFrom assertable assert_colnames
+#&#39; @importFrom dplyr distinct_ %&gt;% filter rowwise do bind_cols group_by_ 
+#&#39; count ungroup
+#&#39; @importFrom tidyr replace_na unnest
+#&#39; @importFrom lubridate year now
+#&#39; @importFrom ggplot2 geom_line aes xlab ylab scale_x_continuous facet_wrap
+#&#39; @importFrom INBOtheme theme_inbo
+#&#39; @importFrom egg ggarrange
 #&#39;
 #&#39; @examples
-#&#39; indicator_pathway(data)
-#&#39; indicator_pathway(data, subcategory = TRUE)
-indicator_pathway &lt;- function(data, subcategory = TRUE) {
+indicator_total_year &lt;- function(df, start_year_plot = 1940, 
+                                 x_major_scale_stepsize = 10,
+                                 x_minor_scale_stepsize = 5,
+                                 facet_column = NULL) {
+  
+  # initial input checks
+  assert_that(is.data.frame(df))
+  assert_that(x_major_scale_stepsize &gt;= x_minor_scale_stepsize)
+  assert_colnames(df, c(&quot;key&quot;, &quot;first_observed&quot;, &quot;last_observed&quot;), 
+                  only_colnames = FALSE)
+  
+  if (is.null(facet_column)) {
+    df_cleaned &lt;- df %&gt;%
+      distinct_(&quot;speciesKey&quot;, &quot;first_observed&quot;)
+  } else {
+    # check for valid facet options
+    valid_facet_options &lt;- c(&quot;family&quot;, &quot;order&quot;, &quot;class&quot;, &quot;phylum&quot;, 
+                             &quot;kingdom&quot;, &quot;pathway_level1&quot;, &quot;pathway_level2&quot;,
+                             &quot;locality&quot;, &quot;`native range`&quot;)
+    facet_column &lt;- match.arg(facet_column, valid_facet_options) 
     
-    # focus on pathway data counts
-    df_pathway &lt;- data  %&gt;%
-        filter(kingdom %in% c(&#39;Plantae&#39;, &#39;Animalia&#39;)) %&gt;%
-        group_by(pathway_level1, 
-                pathway_level2, kingdom) %&gt;%
-        count() %&gt;%
-        ungroup()
+    df_cleaned &lt;- df %&gt;%
+      distinct_(&quot;speciesKey&quot;, &quot;first_observed&quot;, facet_column)
+  }
+  
+  # Provide warning messages for last_observed/first_observed NA values
+  if (nrow(filter(df, is.na(first_observed)) &gt; 0)) {
+    warning(&quot;Some records have no first_observed&quot;,
+            &quot;and are not taken into account.&quot;)
+  }        
+
+  df_cleaned &lt;- df_cleaned %&gt;%
+    filter(!is.na(first_observed))  # ignore information without first_observed
     
-    # uppercase on category names for figure styling
-    df_pathway &lt;- mutate_at(df_pathway, 
-                            .cols = c(&quot;pathway_level1&quot;), 
-                            .funs = toupper)
-    # replace underscore by spaces
-    df_pathway &lt;- df_pathway %&gt;%
-        mutate(pathway_level2 = str_replace(pathway_level2, &quot;_&quot;, &quot; &quot;))
-        
-    if (subcategory) {
-        ggplot(df_pathway, aes(x = reorder(pathway_level2, -n), 
-                               y = n, fill = kingdom)) +
-            geom_bar(stat = &quot;identity&quot;, width = .65) +
-            ylab(&quot;Number of species&quot;) +
-            facet_grid(. ~ pathway_level1, scales = &quot;free_x&quot;,
-                       space = &quot;free_x&quot;) +
-            theme_inbo(base_size = 14) +
-            theme(
-                axis.text.x = element_text(angle = 90, hjust = 1,
-                                           vjust = 0.2, size = 15),
-                axis.title.x = element_blank(),
-                axis.text.y = element_text(size = 15, angle = 90,
-                                           hjust = 0.5),
-                axis.title.y = element_text(size = 14),
-                strip.text.x = element_text(angle = 90, size = 12),
-                legend.direction = &quot;horizontal&quot;,
-                legend.position = &quot;right&quot;,
-                legend.text = element_text(angle = 90, size = 14),
-                legend.title = element_blank(),
-                legend.text.align = -.6)
-    } else {
-        ggplot(df_pathway,  aes(x = reorder(pathway_level1, n, function(x){sum(x)}),
-                            y = n, fill = kingdom)) +
-            geom_bar(stat = &quot;summary&quot;, fun.y = sum,
-                     width = .65) + 
-            xlab(&quot;Pathway&quot;) +
-            ylab(&quot;Number of species&quot;) + 
-            coord_flip() +
-            theme_inbo(base_size = 14) +
-            theme(legend.position = &quot;top&quot;,
-                  legend.title = element_blank(),
-                  legend.text = element_text(size = 14))
-    }
+  # Make individual records for each year up to now   
+  df_extended &lt;- df_cleaned %&gt;%
+    rowwise() %&gt;%
+    do(year = .data$first_observed:as.integer(format(Sys.Date(), &quot;%Y&quot;))) %&gt;%
+    bind_cols(df_cleaned) %&gt;% 
+    unnest(year)
+  
+  maxDate &lt;- max(df_extended$year)
+  top_graph &lt;- ggplot(df_extended, aes(x = year)) +
+    geom_line(stat = &quot;count&quot;) +
+    xlab(&quot;Year&quot;) +
+    ylab(&quot;Number of alien species&quot;) +
+    scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
+                                    x_major_scale_stepsize),
+                       limits = c(start_year_plot, maxDate)) +
+    theme_inbo()
+  
+  if (is.null(facet_column)) {
+    return(top_graph)
+  } else {
+    # calculate numbers
+    counts_ias_grouped &lt;- df_extended %&gt;%
+      group_by_(&quot;year&quot;, facet_column)  %&gt;%
+      count() %&gt;%
+      ungroup()
+    
+    facet_graph &lt;- ggplot(counts_ias_grouped, 
+                          aes(x = year, y = n)) + 
+      geom_line(stat = &quot;identity&quot;) +
+      xlab(&quot;Year&quot;) +
+      ylab(&quot;Number of alien species&quot;) +
+      facet_wrap(facet_column) + 
+      scale_x_continuous(
+        breaks = seq(start_year_plot, maxDate, x_major_scale_stepsize),
+        minor_breaks = seq(start_year_plot, maxDate, x_minor_scale_stepsize),
+        limits = c(start_year_plot, maxDate)) +
+      theme_inbo()
+    
+    ggarrange(top_graph, facet_graph)
+  }
 }</code></pre>
-<p>Example usage of the function when using both category levels:</p>
-<pre class="r"><code>indicator_pathway(data, subcategory = TRUE)</code></pre>
-<p><img src="indicator_pathways_files/figure-html/pathway-figure_both_category-1.png" width="1152" /></p>
-<p>Or when only interested in the main category in the graph:</p>
-<pre class="r"><code>indicator_pathway(data, subcategory = FALSE)</code></pre>
-<p><img src="indicator_pathways_files/figure-html/pathway-figure_main_category-1.png" width="768" /></p>
+<p>So, the figure can be created without using facets (default):</p>
+<pre class="r"><code>start_year_plot &lt;- 1900
+x_major_scale_stepsize &lt;- 25
+indicator_total_year(data, start_year_plot, x_major_scale_stepsize)</code></pre>
+<pre><code>## [1] &quot;All column names present&quot;</code></pre>
+<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning in indicator_total_year(data, start_year_plot,
+## x_major_scale_stepsize): Some records have no first_observedand are not
+## taken into account.</code></pre>
+<pre><code>## Warning: Removed 34875 rows containing non-finite values (stat_count).</code></pre>
+<p><img src="indicator_cumulative_number_files/figure-html/unnamed-chunk-1-1.png" width="960" /></p>
+<p>or with the facet usage:</p>
+<pre class="r"><code>start_year_plot &lt;- 1900
+x_major_scale_stepsize &lt;- 25
+x_minor_scale_stepsize &lt;- 12.5
+
+indicator_total_year(data, start_year_plot, x_major_scale_stepsize, 
+                     x_minor_scale_stepsize, facet_column = &quot;kingdom&quot;)</code></pre>
+<pre><code>## [1] &quot;All column names present&quot;</code></pre>
+<pre><code>## Warning in indicator_total_year(data, start_year_plot,
+## x_major_scale_stepsize, : Some records have no first_observedand are not
+## taken into account.</code></pre>
+<pre><code>## Warning: Removed 34875 rows containing non-finite values (stat_count).</code></pre>
+<pre><code>## Warning: Removed 346 rows containing missing values (geom_path).</code></pre>
+<p><img src="indicator_cumulative_number_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
 </div>
 </div>
 
