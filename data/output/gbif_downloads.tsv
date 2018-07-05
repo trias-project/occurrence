@@ -10,3 +10,4 @@ gbif_download_key	input_checklist	gbif_download_created	gbif_download_status	gbi
 0007989-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-20T15:53:37.371+0000	SUCCEEDED	https://doi.org/10.15468/dl.6cljf9
 0008516-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-21T08:48:06.100+0000	SUCCEEDED	https://doi.org/10.15468/dl.qm87vt
 0020843-180131172636756	./data/input/species_test_invasion_curve.tsv	2018-03-14T12:49:59.729+0000	SUCCEEDED	https://doi.org/10.15468/dl.xrm1lc
+0033087-180508205500799	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-06-26T11:42:26.054+0000	RUNNING	https://doi.org/10.15468/dl.kwlgmi
