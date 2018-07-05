@@ -1,5 +1,5 @@
 ---
-title: "Occurrence indicators: downscaling"
+title: "Occurrence indicators: generalized additive model"
 author:
 - Damiano Oldoni
 date: "`r Sys.Date()`"
@@ -11,7 +11,7 @@ output:
     number_sections: true
 ---
 
-This document describes how to apply additive generative model on GBIF occurrence data of Invasive Alien Species.
+This document describes how to apply generalized additive model on GBIF occurrence data of Invasive Alien Species.
 
 # Setup
 
