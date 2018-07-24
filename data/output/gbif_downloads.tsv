@@ -6,8 +6,9 @@ gbif_download_key	input_checklist	gbif_download_created	gbif_download_status	gbi
 0003024-171124123535762	../data/input/eu_concern_species.tsv	2017-11-30 11:00:49	SUCCEEDED	doi:10.15468/dl.9unif7
 0001588-180131172636756	../data/input/eu_concern_species.tsv	2018-02-05 12:16:20	SUCCEEDED	doi:10.15468/dl.tkwwwh
 0001636-180131172636756	../data/input/eu_concern_species.tsv	2018-02-05 13:49:10	SUCCEEDED	doi:10.15468/dl.m2mjuj
-0001676-180131172636756	../data/input/eu_concern_species.tsv	2018-02-05T15:10:08.078+0000	SUCCEEDED	doi:10.15468/dl.1vwwfw
-0007989-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-20T15:53:37.371+0000	SUCCEEDED	https://doi.org/10.15468/dl.6cljf9
-0008516-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-21T08:48:06.100+0000	SUCCEEDED	https://doi.org/10.15468/dl.qm87vt
-0020843-180131172636756	./data/input/species_test_invasion_curve.tsv	2018-03-14T12:49:59.729+0000	SUCCEEDED	https://doi.org/10.15468/dl.xrm1lc
-0033087-180508205500799	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-06-26T11:42:26.054+0000	RUNNING	https://doi.org/10.15468/dl.kwlgmi
+0001676-180131172636756	../data/input/eu_concern_species.tsv	2018-02-05 15:10:08	SUCCEEDED	doi:10.15468/dl.1vwwfw
+0007989-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-20 15:53:37	SUCCEEDED	https://doi.org/10.15468/dl.6cljf9
+0008516-180131172636756	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-02-21 08:48:06	SUCCEEDED	https://doi.org/10.15468/dl.qm87vt
+0020843-180131172636756	./data/input/species_test_invasion_curve.tsv	2018-03-14 12:49:59	SUCCEEDED	https://doi.org/10.15468/dl.xrm1lc
+0033087-180508205500799	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-06-26 11:42:26	SUCCEEDED	https://doi.org/10.15468/dl.kwlgmi
+0045622-180508205500799	../data/input/plants_species_test_downscaling.tsv	2018-07-19 08:12:24	SUCCEEDED	https://doi.org/10.15468/dl.iyi6hg
