@@ -330,52 +330,51 @@ names(upgrain_species_year) <- str_c(species_year$scientificName,
                                      species_year$year, sep = "_")
 ```
 
-Run downscale models (simple ensemble as in article of Quentin Groom except INB which doesn't converge):
+Select downscale models:
+
+```{r models}
+models = c("Nachman", "PL", "Poisson", "Logis", "NB")
+```
+
+and cell areas:
+
+```{r cell_areas}
+# 1 by 1, 2 by 2, 3 by 3, 4 by 4 km2
+areas <- c(10^6, 4*10^6, 9*10^6, 16*10^6)
+```
+
+
+Run downscaling:
 
 ```{r apply_downscaling_models}
-areas <- c(10^6, 4*10^6, 9*10^6, 16*10^6)
 progress_bar <- progress_estimated(length(upgrain_species_year))
 downscaling <- map(upgrain_species_year, ~ {  
   progress_bar$tick()$print()
   ensemble.downscale(., 
                      new.areas = areas, 
-                     models = c("Nachman", "PL", "Poisson", 
-                                "Logis", "NB"),
-                     plot = FALSE,
+                     models = models,
                      verbose = FALSE)
   })
-
-# apply_downscale_rosa_rugosa <- ensemble.downscale(
-#   upgrain_rosa_rugosa, 
-#   new.areas = c(10^6, 4*10^6, 9*10^6, 16*10^6), 
-#   models = c("Nachman", "PL", "Poisson", "Logis", "NB", "INB"),
-#   plot = TRUE,
-#   verbose = TRUE)
-
-# models = c("Nachman", "PL", "Logis", "Poisson", "NB", "GNB", "INB", "FNB")
 ```
 
-We calculate the standard deviation of occupancy and tidy the data:
+We tidy the data:
 
 ```{r calculate_std}
-downscaling_with_std_occupancy <- map(
+downscaling_tidy <- map(
   names(downscaling), function(x) {
     downscaling[[x]]$Occupancy %>%
-      rowwise() %>%
-      mutate(std = sd(c(Nachman, PL, Poisson, Logis, NB)),
-             scientificName = str_split(x, pattern = "_")[[1]][1],
-             year = as.integer(str_split(x, pattern = "_")[[1]][2])) %>%
-      ungroup()
-  }
+      mutate(scientificName = str_split(x, pattern = "_")[[1]][1],
+             year = as.integer(str_split(x, pattern = "_")[[1]][2]))   }
 )
-downscaling_with_std_occupancy <- bind_rows(downscaling_with_std_occupancy)
+downscaling_tidy <- bind_rows(downscaling_tidy) %>%
+  gather_(key = "method", value = "occupancy", c(models,"Means"))
 
-downscaling_with_std_occupancy <- crossing(
+downscaling_tidy <- crossing(
   data.frame(scientificName = species, 
              stringsAsFactors = FALSE),
-  year = seq(min(downscaling_with_std_occupancy$year, na.rm = TRUE),
-             max(downscaling_with_std_occupancy$year, na.rm = TRUE))) %>%
-  left_join(data.frame(downscaling_with_std_occupancy, 
+  year = seq(min(downscaling_tidy$year, na.rm = TRUE),
+             max(downscaling_tidy$year, na.rm = TRUE))) %>%
+  left_join(data.frame(downscaling_tidy, 
                        stringsAsFactors = FALSE),
             by = c("scientificName", "year"))
 ```
@@ -383,24 +382,23 @@ downscaling_with_std_occupancy <- crossing(
 We save the occupancies:
 
 ```{r save_occupancy}
-write_tsv(downscaling_with_std_occupancy,
-          path = "../data/output/downscaling_occupancy.tsv")
+write_tsv(downscaling_tidy,
+          path = "../data/output/downscaling_tidy.tsv")
 ```
 
-And plot them for each taxa:
+And plot them for each taxa at 1 square kilometer (`Cell.area` equal to 1.0e+06):
 
 ```{r plot_occupancy}
+cell_area <- 1.0e+06
 occupancy_plots <- map(
   species, function(species_name)
-    ggplot(downscaling_with_std_occupancy %>%
+    ggplot(downscaling_tidy %>%
              filter(scientificName == species_name & 
-                      is.finite(Means)), 
-           aes(x = year, y = Means, 
-               colour = Cell.area)) +
-    geom_errorbar(aes(ymin= Means - std, ymax= Means + std)) +
+                      is.finite(occupancy) &
+                      Cell.area == cell_area), 
+           aes(x = year, y = occupancy, colour = method)) +
     geom_line() +
     geom_point() +
     ggtitle(species_name))
 occupancy_plots
 ```
-
