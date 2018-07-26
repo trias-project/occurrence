@@ -19,7 +19,9 @@ This document describes how to build indicators of Invasive Alien Species based 
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE)
 ```
 
 Install `trias` package:
@@ -32,20 +34,15 @@ Load libraries:
 
 ```{r load_libraries}
 # Tidyverse packages
-library(tidyr)
+# library(tidyr)
 library(dplyr)
-library(magrittr)
+library(purrr)
 library(stringr)
 library(readr)
-library(ggplot2)
-# GBIF related packages
-library(rgbif)
 # project package
 library(trias)
 #other pckages
-library(lazyeval)
-library(INBOtheme)
-library(stringr)
+library(kableExtra)
 ```
 
 # Get data
@@ -54,110 +51,223 @@ library(stringr)
 data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
-# Build indicators
+# Build pathway indicator
 
 ## Introduction
 
-New functions should be written in `trias` official project package.
-
-In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
+New functions should be afterwards moved to `trias` official project package.
 
 About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
 
+In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
+
 ## Pathways associated with alien species introductions
 
-See GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19). Ths functionality is scripted inside a function, with the two usecase taken into account:
+See GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19).
 
-1. using the subcategory and category level, making a double grouping in the graph
-2. using the category level only
+If animal species are present, separate them in two groups: vertebrates ( `Chordata`) and invertebrates (`Not Chordata`):
 
-As the function is ad-hoc to the use-case, most options are hard-coded.
-
-```{r}
-
-#' Pathway count indicator figure 
-#'
-#' Both only the main category or using both category levels are included in the
-#' graph, using the \code{subcategory} option
-#'
-#' @param data data.frame According to the specification of the Trias pipeline
-#' @param subcategory boolean If TRUE, the subcategory levels are included in 
-#' the visualisation.
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' indicator_pathway(data)
-#' indicator_pathway(data, subcategory = TRUE)
-indicator_pathway <- function(data, subcategory = TRUE) {
-    
-    # focus on pathway data counts
-    df_pathway <- data  %>%
-        filter(kingdom %in% c('Plantae', 'Animalia')) %>%
-        group_by(pathway_level1, 
-                pathway_level2, kingdom) %>%
-        count() %>%
-        ungroup()
-    
-    # uppercase on category names for figure styling
-    df_pathway <- mutate_at(df_pathway, 
-                            .cols = c("pathway_level1"), 
-                            .funs = toupper)
-    # replace underscore by spaces
-    df_pathway <- df_pathway %>%
-        mutate(pathway_level2 = str_replace(pathway_level2, "_", " "))
-        
-    if (subcategory) {
-        ggplot(df_pathway, aes(x = reorder(pathway_level2, -n), 
-                               y = n, fill = kingdom)) +
-            geom_bar(stat = "identity", width = .65) +
-            ylab("Number of species") +
-            facet_grid(. ~ pathway_level1, scales = "free_x",
-                       space = "free_x") +
-            theme_inbo(base_size = 14) +
-            theme(
-                axis.text.x = element_text(angle = 90, hjust = 1,
-                                           vjust = 0.2, size = 15),
-                axis.title.x = element_blank(),
-                axis.text.y = element_text(size = 15, angle = 90,
-                                           hjust = 0.5),
-                axis.title.y = element_text(size = 14),
-                strip.text.x = element_text(angle = 90, size = 12),
-                legend.direction = "horizontal",
-                legend.position = "right",
-                legend.text = element_text(angle = 90, size = 14),
-                legend.title = element_blank(),
-                legend.text.align = -.6)
-    } else {
-        ggplot(df_pathway,  aes(x = reorder(pathway_level1, n, function(x){sum(x)}),
-                            y = n, fill = kingdom)) +
-            geom_bar(stat = "summary", fun.y = sum,
-                     width = .65) + 
-            xlab("Pathway") +
-            ylab("Number of species") + 
-            coord_flip() +
-            theme_inbo(base_size = 14) +
-            theme(legend.position = "top",
-                  legend.title = element_blank(),
-                  legend.text = element_text(size = 14))
-    }
+```{r find_categories_in_data}
+categories <- data %>% distinct(kingdom) %>%
+  rename(category = kingdom)
+if ("Animalia" %in% categories$category) {
+  if ("Chordata" %in% data$phylum) {
+    categories <- categories %>% 
+      bind_rows(data.frame(category = "Chordata",
+                           stringsAsFactors = FALSE))
+  }
+  if (data %>% 
+      filter(kingdom == "Animalia") %>%
+      filter(! phylum == "Chordata") %>%
+      distinct(phylum) %>% nrow() > 0) {
+    categories <- categories %>%
+      bind_rows(data.frame(category = "Not Chordata",
+                           stringsAsFactors = FALSE))
+  }
+  if (any(c("Chordata", "Not Chordata") %in% categories$category)) {
+    categories <- categories %>%
+      filter(category != "Animalia")
+  }
 }
 ```
 
-Example usage of the function when using both category levels:
+Function  `get_table_pathways()` for creating a table based on checklist data, chosen species category and number of species returned as example per each pathway modality.
 
-```{r pathway-figure_both_category, fig.width=12, fig.height=10}
-indicator_pathway(data, subcategory = TRUE)
+```{r pathway_table_function}
+#' Pathway count indicator figure
+#' 
+#' @param data data.frame According to the specification of the Trias pipeline
+#' @param category character One of the kingdoms as given in GBIF: \itemize{ \item{"Plantae"} \item{Animalia} \item{} \item{"Fungi"} \item{"Chromista"} \item{"Archaea"} \item{Bacteria} \item{Protozoa} \item{Viruses} \item{incertae sedis} } It can also be one of the following not kingdoms: #'\itemize{\item{Chordata} \item{Not Chordata} }
+#' @param n_species integer The maximum number of species to return as examples per pathway. For groups with less species than \code{n_species}, all species are given. Default: 5.
+#' 
+#' @return a data.frame
+#' @export
+#' 
+#' @examples
+#' indicator_pathway(data, "Plantae", n_species = 8)
+get_table_pathways <- function(data, category, n_species = 5) {
+  
+  # handle asymmetric cateogry system (Chordata, Not Chordta are not kingdoms) 
+  if (!category %in% c("Chordata", "Not Chordata")) {
+    filtered_data <- data %>% filter(kingdom == category)
+  } else {
+    if (category == "Chordata") {
+      filtered_data <- data %>% filter(phylum == category)
+    } else {
+      filtered_data <- data %>% 
+        filter(kingdom == "Animalia") %>%
+        filter(phylum != category)
+    }
+  }
+  
+  # Create groups basd on pathway level1 and level2
+  preprocess_data <- filtered_data %>% 
+  distinct(scientificName, species, genus, family, order, 
+         class, phylum, kingdom, speciesKey, country,
+         pathway_level1, pathway_level2) %>%
+  mutate(pathway_level1 = ifelse(is.na(pathway_level2), 
+                                 NA, .$pathway_level1)) %>%
+  group_by(pathway_level1, pathway_level2)
+  
+  # Assess size of sample per group
+  pathway_data <- preprocess_data %>% 
+    count() %>% 
+    rowwise() %>%
+    mutate(size_sample = ifelse(n > n_species,
+                                n_species, n))
+  # Make df with sample species
+  samples <- pmap_dfr(list(pathway_data$pathway_level1,
+                        pathway_data$pathway_level2,
+                        pathway_data$size_sample),
+                   function(p1, p2, s) {
+                     set_species <- if (!is.na(p1)) {
+                       preprocess_data %>%
+                         filter(pathway_level1 == p1) %>% 
+                         filter(pathway_level2 == p2)
+                     } else {
+                       preprocess_data %>%
+                         filter(is.na(pathway_level1))
+                     }
+                     examples <- sample_n(set_species,
+                                          s) %>% pull(species) 
+                     data.frame(examples = str_c(examples, collapse = ", "),
+                                stringsAsFactors = FALSE) %>% 
+                       as_tibble() %>%
+                       mutate(pathway_level1 = p1,
+                              pathway_level2 = p2)
+                   })
+  
+  # Join pathways and samples together
+  pathway_data <- left_join(pathway_data, samples,
+                            by = c("pathway_level1", "pathway_level2")) %>%
+    select(-size_sample)
+  
+  # Create output table (untidy)
+  pathway_data <- pathway_data %>%
+    mutate(pathway_level1 = ifelse(!is.na(pathway_level1),
+                                   pathway_level1, "unknown"),
+           pathway_level2 = ifelse(pathway_level1 == "unknown",
+                                   "",
+                                   pathway_level2)) %>%
+    mutate(examples = ifelse(!is.na(examples),
+                             examples,
+                             str_c(sample_n(preprocess_data %>% 
+                                        filter(is.na(pathway_level1) |
+                                                 is.na(pathway_level1)),
+                                        n)$species,
+                                   collapse = ", "))) %>%
+    ungroup()
+  
+  pathway_data$pathway_level1[
+    duplicated(pathway_data$pathway_level1) == TRUE] <- ""
+  
+  return(pathway_data)
+}
 ```
 
-Or when only interested in the main category in the graph:
+Number of species returned in table as examples of the group:
 
-```{r pathway-figure_main_category, fig.width=8, fig.height=6}
-indicator_pathway(data, subcategory = FALSE)
+```{r set_n_species}
+n_species <- 5
 ```
 
+Pathways tables
 
+```{r make_tables}
+tables <- map(categories$category, ~ get_table_pathways(data, ., n_species))
+names(tables) <- categories$category
+```
 
+## Pathways per category
 
+Intentionality of introduction is mapped by cell color background: white for intentional introduction, grey for unintentional introduction.
 
+### Plantae
+
+Pathways for Plantae:
+
+```{r view_tables, echo = FALSE, 'asis' = TRUE}
+if ("Plantae" %in% categories$category) {
+  kable(tables$Plantae) %>% 
+    row_spec(which(tables$Plantae$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables$Plantae$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
+
+### Vertebrates
+
+Pathways for vertebrates:
+
+```{r view_table_Chordata, echo = FALSE}
+if ("Chordata" %in% categories$category) {
+    kable(tables$Chordata) %>% 
+    row_spec(which(tables$Chordata$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables$Chordata$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
+
+### Invertebrates
+
+Pathways for invertebrates:
+
+```{r view_table_NotChordata, echo = FALSE}
+if ("Not Chordata" %in% categories$category) {
+  kable(tables$`Not Chordata`) %>% 
+    row_spec(which(tables$`Not Chordata`$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables$`Not Chordata`$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
+
+### Fungi
+
+Pathways for Fungi:
+
+```{r view_table_Fungi, echo = FALSE}
+if ("Fungi" %in% categories$category) {
+  tables$Fungi
+}
+```
+
+### Bacteria
+
+Pathways for Bacteria:
+
+```{r view_table_Bacteria, echo = FALSE}
+if ("Bacteria" %in% categories$category) {
+  tables$Bacteria
+}
+```
+
+Add sections for other kingdoms if needed.
