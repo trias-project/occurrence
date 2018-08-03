@@ -35,8 +35,9 @@ library(dplyr)
 library(magrittr)
 library(readr)
 
-# Other packages
+# GBIF package
 library(rgbif)
+# Project package
 library(trias)
 ```
 
