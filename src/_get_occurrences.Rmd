@@ -23,8 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Install packages:
 
 ```{r install_packages}
-devtools::install_github("trias-project/trias",
-                         ref = "remove_country_from_tsv") # remove it after merging to master
+devtools::install_github("trias-project/trias")
 devtools::install_github("ropensci/rgbif")
 ```
 
