@@ -54,8 +54,6 @@ library(downscale)
 library(rgbif)
 # project package
 library(trias)
-#other pckages
-library(lazyeval)
 ```
 
 ## Set coordinate reference systems
