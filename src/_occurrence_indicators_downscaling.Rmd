@@ -34,12 +34,9 @@ Load libraries:
 library(ggplot2)
 library(sf)
 library(sp)
-# library(ggmap)
 library(rgdal)
 library(raster)
 library(rgeos)
-# library(leaflet)
-# library(scales)
 # Tidyverse packages
 library(tidyr)
 library(dplyr)
@@ -52,7 +49,7 @@ library(zoo)
 library(downscale)
 # GBIF related packages
 library(rgbif)
-# project package
+# Project package
 library(trias)
 ```
 
@@ -161,7 +158,7 @@ occ_pts_lambert <- st_buffer(occ_pts_lambert,
                              nQuadSegs = 6)
 ```
 
-We intersect occurrence circles with the grid per each species, grid and year:
+We intersect occurrence circles with the grid per each species and year:
 
 ```{r intersection}
 spatial_fit <- st_intersection(belgium_5grid, occ_pts_lambert)
@@ -188,13 +185,15 @@ pres_abs_table <- belgium_5grid %>%
   mutate(presence = ifelse(!is.na(n) & n > 0, 1, 0))
 ```
 
+A presence-absence table per species and year is thus formed and ready to be used as input for downscaling modelling.
+
 # Downscaling
 
 ## Select species 
 
-It would not have sense to apply downscaling to species occurring in less than 10 percentage of the squares.
+It would not have sense to apply downscaling to species occurring in less than 10 percentage of the squares (`n1_threshold`). For this reason we 
 
-```{r centroids}
+```{r species_in_more_than_n1_threshold_squares}
 n1_threshold <- nrow(belgium_5grid)/100*10
 species <- pres_abs_table %>% 
   as.data.frame() %>%
@@ -205,9 +204,6 @@ species <- pres_abs_table %>%
   mutate(accept = if_else(n >= n1_threshold, TRUE, FALSE)) %>%
   filter(isTRUE(accept)) %>% 
   pull(scientificName)
-
-pres_abs_table <- pres_abs_table %>% 
-  filter(scientificName %in% species)
 species
 ```
 
@@ -217,9 +213,14 @@ Species not included in downloading:
 sc_names[which(!sc_names %in% species)]
 ```
 
+```{r filter_out_excluded_species_info}
+pres_abs_table <- pres_abs_table %>% 
+  filter(scientificName %in% species)
+```
+
 ## Temporal distribution
 
-We are interested on how occupancy varies with time. We need to apply downscaling modelling on data within time windows.
+We are interested on how occupancy varies with time.
 
 ### Explore temporal distribution
 
@@ -233,7 +234,7 @@ geom_histogram(binwidth = 1) +
 facet_wrap(~ scientificName, ncol = 3)
 ```
 
-The temporal variability is very high due to changes in survey efforts. Such variability risks to covers variations in aliean species spreading. So, for each species and square, we aggregate data within a moving time window (here a window of 5 years is used. Note: a longer time window would be not policy relevant):
+The temporal variability is very high due to changes in survey efforts. Such variability risks to covers variations in aliean species spreading. So, for each species and square, we aggregate data within a moving time window. We use a window of 5 years. A longer time window would be not policy relevant:
 
 ```{r time_window}
 t_window <- 5
@@ -243,13 +244,13 @@ t_window <- 5
 pres_abs_table_mov_sum <- pres_abs_table %>%
   group_by(scientificName, TAG) %>%
   mutate(mov_sum = ifelse(year < (max(year) - t_window + 1),
-                          rollsum(na.fill(n, 0), 5, align = "left"),
+                          rollsum(na.fill(n, 0), 5, align = "right"),
                           0)) %>%
   ungroup() %>%
   mutate(presence = if_else(mov_sum > 0, 1, 0))
 ```
 
-A moving sum has a second benefit: downscaling tends to underestimate occupancy if less than 2.5% percentage of squares are occupied. The moving sum could increase the number of occupied squares. We restrict our modelling to years and species when number of occupied squares are above the threshold:
+Downscaling tends to underestimate occupancy if less than 2.5% percentage of squares (`n2_threshold`) are occupied. We apply downscaling to years and species when number of occupied squares are above this threshold. The moving sum could increase the number of occupied squares, thus reducing the situations when downscaling is not applicable:
 
 ```{r second_threshold}
 n2_threshold <- round(nrow(belgium_5grid)/100*2.5)
@@ -263,17 +264,21 @@ species_year <- pres_abs_table_mov_sum %>%
   group_by(scientificName, year) %>%
   count() %>%
   ungroup() %>%
-  filter(nn > n2_threshold)
+  rename(number_of_squares = nn) %>%
+  filter(number_of_squares > n2_threshold)
 species_year
+```
 
+```{r}
 pres_abs_tag_year <- pres_abs_table_mov_sum %>%
   right_join(species_year,
              by = c("scientificName", "year"))
 ```
 
+
 ## Apply downscaling
 
-First upgraining, then downscaling. See documentation package [`downscale`](https://cran.r-project.org/web/packages/downscale/downscale.pdf).
+We apply first an upgraining, then we proceed with downscaling. See documentation package [`downscale`](https://cran.r-project.org/web/packages/downscale/downscale.pdf).
 
 ### Prepare input data 
 
@@ -285,17 +290,17 @@ pres_abs_tag_year_ctds <- st_centroid(pres_abs_tag_year)
 
 ### Upgraining
 
-Apply `upgrain.threshold` to estimate the best threshold method. We use two scaling levels (we upgrain from 5 by 5 to 10 by 10 and 20 by 20). As explained in `vignette("Upgraining", package = "downscale")`:
+Apply `upgrain.threshold()` to estimate the best threshold method. We use two scaling levels (we upgrain from 5 by 5 to 10 by 10 and 20 by 20). As explained in `vignette("Upgraining", package = "downscale")`:
 
 >a larger number of scales means there is more data to fit the downscaling models, however the larger discrepancy there will be between the original extent of the atlas data and the new standardised extent.
 
-In case of small extent (Belgium is relatively small) this discrepancy can easily become very large. So, no further upgraining is applied. Here below we show the effects of choosing different thresholds:
+In case of small extent (Belgium is relatively small) this discrepancy can easily become very large. So, we don't recommend any further upgraining. Here below we show the effects of choosing different thresholds for _Fallopia japonica (Houtt.) Ronse Decraene_ and period 2013-2017:
 
 ```{r apply_upgrain_threshold}
 test <- pres_abs_tag_year_ctds %>%
              filter(scientificName == 
                       "Fallopia japonica (Houtt.) Ronse Decraene") %>%
-             filter(year == 2013)
+             filter(year == 2017)
 test <- as(test, "Spatial")
 test@data <- data.frame(test@data$presence)
 get_upgrain_values <- upgrain.threshold(
