@@ -432,3 +432,20 @@ occupancy_plots <- map(
     ggtitle(species_name))
 occupancy_plots
 ```
+
+The same at 2 square kilometer (`Cell.area` equal to 4.0e+06):
+
+```{r plot_occupancy}
+cell_area <- 4.0e+06
+occupancy_plots <- map(
+  species, function(species_name)
+    ggplot(downscaling_tidy %>%
+             filter(scientificName == species_name & 
+                      is.finite(occupancy) &
+                      Cell.area == cell_area), 
+           aes(x = year, y = occupancy, colour = method)) +
+    geom_line() +
+    geom_point() +
+    ggtitle(species_name))
+occupancy_plots
+```
