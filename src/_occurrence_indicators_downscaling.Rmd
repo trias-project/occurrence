@@ -243,11 +243,37 @@ t_window <- 5
 ```{r running_aggregation}
 pres_abs_table_mov_sum <- pres_abs_table %>%
   group_by(scientificName, TAG) %>%
-  mutate(mov_sum = ifelse(year < (max(year) - t_window + 1),
-                          rollsum(na.fill(n, 0), 5, align = "right"),
-                          0)) %>%
+  mutate(mov_sum = c(rep(0, t_window - 1), 
+                     rollsum(na.fill(n, 0), t_window, align = "right"))) %>% 
   ungroup() %>%
   mutate(presence = if_else(mov_sum > 0, 1, 0))
+```
+
+This moving sum smoothing technique results in the following temporal distribution:
+
+```{r temporal_distribution,  echo = FALSE}
+data_mov_sum <- occ_df %>%
+  group_by(scientificName, year) %>%
+  count() %>%
+  ungroup()
+
+data_mov_sum_tidy <- crossing(
+  data.frame(scientificName = unique(data_mov_sum$scientificName),
+             stringsAsFactors = FALSE),
+  data.frame(year = seq(min(data_mov_sum$year, na.rm = TRUE),
+                        max(data_mov_sum$year, na.rm = TRUE)))
+  ) %>%
+    left_join(data_mov_sum,
+              by = c("scientificName", "year")) %>%
+  group_by(scientificName) %>%
+  mutate(mov_sum = c(rep(0, t_window - 1), 
+                     rollsum(na.fill(n, 0), t_window, align = "right"))) %>% 
+  ungroup()
+
+ggplot(data_mov_sum_tidy,
+       aes(x = year, y = mov_sum)) + ylab("n. records") +
+geom_bar(stat = "identity") +
+facet_wrap(~ scientificName, ncol = 3)
 ```
 
 Downscaling tends to underestimate occupancy if less than 2.5% percentage of squares (`n2_threshold`) are occupied. We apply downscaling to years and species when number of occupied squares are above this threshold. The moving sum could increase the number of occupied squares, thus reducing the situations when downscaling is not applicable:
@@ -300,7 +326,7 @@ In case of small extent (Belgium is relatively small) this discrepancy can easil
 test <- pres_abs_tag_year_ctds %>%
              filter(scientificName == 
                       "Fallopia japonica (Houtt.) Ronse Decraene") %>%
-             filter(year == 2017)
+             filter(year == 2013)
 test <- as(test, "Spatial")
 test@data <- data.frame(test@data$presence)
 get_upgrain_values <- upgrain.threshold(
@@ -356,7 +382,8 @@ downscaling <- map(upgrain_species_year, ~ {
   ensemble.downscale(., 
                      new.areas = areas, 
                      models = models,
-                     verbose = FALSE)
+                     verbose = FALSE,
+                     plot = FALSE)
   })
 ```
 
