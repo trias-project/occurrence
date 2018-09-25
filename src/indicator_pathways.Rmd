@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE,
 Install `trias` package:
 
 ```{r install_packages, eval=FALSE}
-devtools::install_github("trias-project/trias")
+devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
 ```
 
 Load libraries:
@@ -55,11 +55,8 @@ data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 
 ## Introduction
 
-New functions should be afterwards moved to `trias` official project package.
 
 About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
-
-In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
 
 ## Pathways associated with alien species introductions
 
@@ -91,104 +88,17 @@ if ("Animalia" %in% categories$category) {
 }
 ```
 
-Function  `get_table_pathways()` for creating a table based on checklist data, chosen species category and number of species returned as example per each pathway modality.
-
-```{r pathway_table_function}
-#' Pathway count indicator figure
-#' 
-#' @param data data.frame According to the specification of the Trias pipeline
-#' @param category character One of the kingdoms as given in GBIF: \itemize{ \item{"Plantae"} \item{Animalia} \item{} \item{"Fungi"} \item{"Chromista"} \item{"Archaea"} \item{Bacteria} \item{Protozoa} \item{Viruses} \item{incertae sedis} } It can also be one of the following not kingdoms: #'\itemize{\item{Chordata} \item{Not Chordata} }
-#' @param n_species integer The maximum number of species to return as examples per pathway. For groups with less species than \code{n_species}, all species are given. Default: 5.
-#' 
-#' @return a data.frame
-#' @export
-#' 
-#' @examples
-#' indicator_pathway(data, "Plantae", n_species = 8)
-get_table_pathways <- function(data, category, n_species = 5) {
-  
-  # handle asymmetric cateogry system (Chordata, Not Chordta are not kingdoms) 
-  if (!category %in% c("Chordata", "Not Chordata")) {
-    filtered_data <- data %>% filter(kingdom == category)
-  } else {
-    if (category == "Chordata") {
-      filtered_data <- data %>% filter(phylum == category)
-    } else {
-      filtered_data <- data %>% 
-        filter(kingdom == "Animalia") %>%
-        filter(phylum != category)
-    }
-  }
-  
-  # Create groups basd on pathway level1 and level2
-  preprocess_data <- filtered_data %>% 
-  distinct(scientificName, species, genus, family, order, 
-         class, phylum, kingdom, speciesKey, country,
-         pathway_level1, pathway_level2) %>%
-  mutate(pathway_level1 = ifelse(is.na(pathway_level2), 
-                                 NA, .$pathway_level1)) %>%
-  group_by(pathway_level1, pathway_level2)
-  
-  # Assess size of sample per group
-  pathway_data <- preprocess_data %>% 
-    count() %>% 
-    rowwise() %>%
-    mutate(size_sample = ifelse(n > n_species,
-                                n_species, n))
-  # Make df with sample species
-  samples <- pmap_dfr(list(pathway_data$pathway_level1,
-                        pathway_data$pathway_level2,
-                        pathway_data$size_sample),
-                   function(p1, p2, s) {
-                     set_species <- if (!is.na(p1)) {
-                       preprocess_data %>%
-                         filter(pathway_level1 == p1) %>% 
-                         filter(pathway_level2 == p2)
-                     } else {
-                       preprocess_data %>%
-                         filter(is.na(pathway_level1))
-                     }
-                     examples <- sample_n(set_species,
-                                          s) %>% pull(species) 
-                     data.frame(examples = str_c(examples, collapse = ", "),
-                                stringsAsFactors = FALSE) %>% 
-                       as_tibble() %>%
-                       mutate(pathway_level1 = p1,
-                              pathway_level2 = p2)
-                   })
-  
-  # Join pathways and samples together
-  pathway_data <- left_join(pathway_data, samples,
-                            by = c("pathway_level1", "pathway_level2")) %>%
-    select(-size_sample)
-  
-  # Create output table (untidy)
-  pathway_data <- pathway_data %>%
-    mutate(pathway_level1 = ifelse(!is.na(pathway_level1),
-                                   pathway_level1, "unknown"),
-           pathway_level2 = ifelse(pathway_level1 == "unknown",
-                                   "",
-                                   pathway_level2)) %>%
-    mutate(examples = ifelse(!is.na(examples),
-                             examples,
-                             str_c(sample_n(preprocess_data %>% 
-                                        filter(is.na(pathway_level1) |
-                                                 is.na(pathway_level1)),
-                                        n)$species,
-                                   collapse = ", "))) %>%
-    ungroup()
-  
-  pathway_data$pathway_level1[
-    duplicated(pathway_data$pathway_level1) == TRUE] <- ""
-  
-  return(pathway_data)
-}
-```
-
+Function `get_table_pathways()` from `trias` library is used for creating a table based on checklist data, chosen species category and number of species returned as example per each pathway modality.
 Number of species returned in table as examples of the group:
 
 ```{r set_n_species}
 n_species <- 5
+```
+
+```{r pathway_table_function}
+trias::get_table_pathways(data, 
+                          category = pull(categories, category), 
+                          n_species = n_species )
 ```
 
 Pathways tables
@@ -256,7 +166,13 @@ Pathways for Fungi:
 
 ```{r view_table_Fungi, echo = FALSE}
 if ("Fungi" %in% categories$category) {
-  tables$Fungi
+  kable(tables$Fungi) %>% 
+    row_spec(which(tables$Fungi$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables$Fungi$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
 }
 ```
 
@@ -266,8 +182,117 @@ Pathways for Bacteria:
 
 ```{r view_table_Bacteria, echo = FALSE}
 if ("Bacteria" %in% categories$category) {
-  tables$Bacteria
+  kable(tables$Bacteria) %>% 
+    row_spec(which(tables$Bacteria$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables$Bacteria$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
 }
 ```
 
 Add sections for other kingdoms if needed.
+
+## Pathways related to policy relevant species
+
+It is important to focus our attention also to a intercategory group of species which is of particular policy importance.
+
+We import this list of species:
+
+```{r}
+eu_concern_file <- "../data/input/eu_concern_species.tsv"
+eu_concern_species <- read_tsv(eu_concern_file)
+```
+
+Check which species form this subgroup are not present in `data`:
+
+```{r check_presence_eu_species}
+eu_concern_species %>% filter(!backbone_taxonKey %in% data$nubKey)
+```
+
+Present categories:
+
+```{r categories_eu_concern}
+categories_eu_concern <- data %>%
+  filter(nubKey %in% eu_concern_species$backbone_taxonKey) %>%
+  distinct(kingdom) %>%
+  rename(category = kingdom)
+if ("Animalia" %in% categories_eu_concern$category) {
+  if ("Chordata" %in% data$phylum) {
+    categories_eu_concern <- categories_eu_concern %>% 
+      bind_rows(data.frame(category = "Chordata",
+                           stringsAsFactors = FALSE))
+  }
+  if (data %>% 
+      filter(kingdom == "Animalia") %>%
+      filter(! phylum == "Chordata") %>%
+      distinct(phylum) %>% nrow() > 0) {
+    categories_eu_concern <- categories_eu_concern %>%
+      bind_rows(data.frame(category = "Not Chordata",
+                           stringsAsFactors = FALSE))
+  }
+  if (any(c("Chordata", "Not Chordata") %in% categories_eu_concern$category)) {
+    categories_eu_concern <- categories_eu_concern %>%
+      filter(category != "Animalia")
+  }
+}
+```
+
+Categories present in this subgroup:
+
+```{r}
+categories_eu_concern
+```
+
+Pathways tables:
+
+```{r make_tables}
+tables_eu_concern <- map(categories_eu_concern$category, ~ 
+  get_table_pathways(data %>%
+                       filter(nubKey %in% eu_concern_species$backbone_taxonKey), 
+                     ., n_species))
+names(tables_eu_concern) <- categories_eu_concern$category
+```
+
+### Plantae
+
+```{r eu_concern_plantae}
+if ("Plantae" %in% categories_eu_concern$category) {
+  kable(tables_eu_concern$Plantae) %>% 
+    row_spec(which(tables_eu_concern$Plantae$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables_eu_concern$Plantae$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
+
+### Chordata
+
+```{r eu_concern_chordata}
+if ("Chordata" %in% categories_eu_concern$category) {
+  kable(tables_eu_concern$Chordata) %>% 
+    row_spec(which(tables_eu_concern$Plantae$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables_eu_concern$Chordata$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
+
+### Not Chordata
+
+```{r eu_concern_not_chordata}
+if ("`Not Chordata`" %in% categories_eu_concern$category) {
+  kable(tables_eu_concern$`Not Chordata`) %>% 
+    row_spec(which(tables_eu_concern$`Not Chordata`$pathway_level1 == "release"), 
+           background = "white") %>%
+    row_spec(which(tables_eu_concern$`Not Chordata`$pathway_level1 != "release"), 
+           background = "#faf0e6") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "10cm")
+}
+```
