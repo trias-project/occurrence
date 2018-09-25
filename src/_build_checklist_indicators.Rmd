@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Install `trias` package:
 
 ```{r install_packages}
-devtools::install_github("trias-project/trias")
+devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
 ```
 
 
@@ -128,7 +128,7 @@ Contrarily to distribution information, description contains a column  `type` wi
 description %>% distinct(type)
 descriptors <- description %>% distinct(type) %>% pull()
 ```
-We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example
+We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example:
 
 ```{r duplicates_issue_spread}
 description %>% filter(taxonKey == 141264585 & type == "native range")
@@ -150,7 +150,7 @@ description_tidy <-
 head(description_tidy)
 ```
 
-The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
+The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `tidyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
 
 ### Species profile
 
@@ -164,8 +164,6 @@ speciesProfiles <- data.frame(key = taxon_keys) %>%
                                                data = "speciesProfiles"))))
 head(speciesProfiles)
 ```
-
-At the moment is `speciesProfiles` empty.
 
 ### Merge data
 
@@ -272,44 +270,13 @@ merged_info %>%
   head()
 ```
 
-## Save data ouput
+## Save data output
 
-The information in `merged_info` is ready to be saved in folder `\data\interim`
+The information in `merged_info` is ready to be saved in folder `\data\interim`:
 
 ```{r save_data_output, eval=FALSE}
 write_tsv(x = merged_info, 
           path = "../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
-
-# Build indicators
-
-You can start from this point and not repeat previous steps by loading the tsv file saved at the end of previous section:
-
-```{r read_data_output, eval=FALSE}
-checklist_data <- read_tsv(file = "../data/interim/test_data_output_checklist_indicators.tsv")
-```
-
-New functions should be written in `trias` official project package.
-
-In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
-
-About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
-
-## Number of new introductions of alien species per year
-
-For information and development, see file [Number of new introductions of alien species per year](indicator_introductions_per_year.Rmd)
-
-See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
-
-## Pathways associated with alien species introductions
-
-For information and development, see file [Pathways associated with alien species introductions](indicator_pathways_introductions.Rmd)
-
-see GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19)
-
-## Cumulative number of alien species
-
-For information and development, see file [Cumulative number of alien species](indicator_cumulative_number.Rmd)
-
-see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
+And be used as start point for building indicators.
