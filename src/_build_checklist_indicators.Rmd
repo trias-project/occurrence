@@ -55,7 +55,9 @@ One of the TrIAS goals is to unify seven authoritative checklists. Such unified 
 1. [Manual of the Alien Plants of Belgium](https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42)
 2. [Inventory of alien macroinvertebrates in Flanders, Belgium](https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265)
 3. [Checklist of non-native freshwater fishes in Flanders, Belgium](https://www.gbif.org/dataset/98940a79-2bf1-46e6-afd6-ba2e85a26f9f)
-*(add more lists when available)*
+4. [Catalogue of the Rust Fungi of Belgium](https://www.gbif.org/dataset/b043c480-dd36-4f4f-aa82-e188753ff09d)
+5. [RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)](https://www.gbif.org/dataset/3f5e930b-52a5-461d-87ec-26ecd66f14a3)
+6. [RINSE - Pathways and vectors of biological invasions in Northwest Europe](https://www.gbif.org/dataset/1738f272-6b5d-4f43-9a92-453a8c5ea50a)
 
 ## Retrieve data in checklist(s) from GBIF
 
@@ -66,7 +68,10 @@ checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
 taxon <- trias::gbif_get_taxa(
   checklist_keys = c("9ff7d317-609b-4c08-bd86-3bc404b77c42",
                      "289244ee-e1c1-49aa-b2d7-d379391ce265",
-                     "98940a79-2bf1-46e6-afd6-ba2e85a26f9f"),
+                     "98940a79-2bf1-46e6-afd6-ba2e85a26f9f",
+                     "b043c480-dd36-4f4f-aa82-e188753ff09d",
+                     "3f5e930b-52a5-461d-87ec-26ecd66f14a3",
+                     "1738f272-6b5d-4f43-9a92-453a8c5ea50a"),
   origin = "SOURCE", 
   limit = 99999) %>%
   select(one_of(checklist_info))
