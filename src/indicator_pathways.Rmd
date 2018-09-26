@@ -34,7 +34,6 @@ Load libraries:
 
 ```{r load_libraries}
 # Tidyverse packages
-# library(tidyr)
 library(dplyr)
 library(purrr)
 library(stringr)
