@@ -53,16 +53,9 @@ data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 
 # Build pathway indicator
 
-## Introduction
+## Find categories
 
-
-About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
-
-## Pathways associated with alien species introductions
-
-See GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19).
-
-If animal species are present, separate them in two groups: vertebrates ( `Chordata`) and invertebrates (`Not Chordata`):
+We divide the species in categories. Each kingdom, except _Animalia_, is a category. If animal species are present, they are separated in two categories: vertebrates (phylum `Chordata`) and invertebrates (phylum other than `Chordata`, defined as `Not Chordata`).
 
 ```{r find_categories_in_data}
 categories <- data %>% distinct(kingdom) %>%
@@ -88,6 +81,9 @@ if ("Animalia" %in% categories$category) {
 }
 ```
 
+
+## Pathways associated with alien species introductions
+
 Function `get_table_pathways()` from `trias` library is used for creating a table based on checklist data, chosen species category and number of species returned as example per each pathway modality.
 Number of species returned in table as examples of the group:
 
@@ -95,15 +91,9 @@ Number of species returned in table as examples of the group:
 n_species <- 5
 ```
 
-```{r pathway_table_function}
-trias::get_table_pathways(data, 
-                          category = pull(categories, category), 
-                          n_species = n_species )
-```
-
 Pathways tables
 
-```{r make_tables}
+```{r make_tables_all_data}
 tables <- map(categories$category, ~ get_table_pathways(data, ., n_species))
 names(tables) <- categories$category
 ```
@@ -247,7 +237,7 @@ categories_eu_concern
 
 Pathways tables:
 
-```{r make_tables}
+```{r make_tables_eu_concern}
 tables_eu_concern <- map(categories_eu_concern$category, ~ 
   get_table_pathways(data %>%
                        filter(nubKey %in% eu_concern_species$backbone_taxonKey), 
@@ -294,5 +284,5 @@ if ("`Not Chordata`" %in% categories_eu_concern$category) {
            background = "#faf0e6") %>%
   kable_styling() %>%
   scroll_box(width = "100%", height = "10cm")
-}
+} # CHECK!!!! No table output!!
 ```
