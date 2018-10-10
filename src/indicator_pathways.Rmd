@@ -42,12 +42,16 @@ library(readr)
 library(trias)
 #other pckages
 library(kableExtra)
+library(here)
 ```
 
 # Get data
 
 ```{r save_data_output}
-data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
+data_file <- here("data", 
+                  "interim",
+                  "test_data_output_checklist_indicators.tsv")
+data <- read_tsv(data_file)
 ```
 
 # Build pathway indicator
@@ -190,7 +194,7 @@ It is important to focus our attention also to a intercategory group of species 
 We import this list of species:
 
 ```{r}
-eu_concern_file <- "../data/input/eu_concern_species.tsv"
+eu_concern_file <- here("data","input", "eu_concern_species.tsv")
 eu_concern_species <- read_tsv(eu_concern_file)
 ```
 
