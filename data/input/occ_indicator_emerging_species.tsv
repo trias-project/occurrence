@@ -1,6 +1,8 @@
 scientificName	rank	kingdom	backbone_taxonKey
-Baccharis halimifolia	species	Plantae	3129663
-Branta canadensis canadensis	subspecies	Animalia	7191098
-Branta canadensis	species	Animalia	5232437
-Harmonia axyridis	species	Animalia	4989904
-Hydrocotyle ranunculoides	species	Plantae	7978544
+Baccharis halimifolia	Species	Plantae	3129663
+Branta canadensis	Species	Animalia	5232437
+Harmonia axyridis	Species	Animalia	4989904
+Hydrocotyle ranunculoides	Species	Plantae	7978544
+Aves	Class	Animalia	212
+Plantae	Kingdom	Plantae	6
+Coccinellidae	Family	Plantae	7782
