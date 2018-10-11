@@ -12,3 +12,8 @@ gbif_download_key	input_checklist	gbif_download_created	gbif_download_status	gbi
 0020843-180131172636756	./data/input/species_test_invasion_curve.tsv	2018-03-14 12:49:59	SUCCEEDED	https://doi.org/10.15468/dl.xrm1lc
 0033087-180508205500799	https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv	2018-06-26 11:42:26	SUCCEEDED	https://doi.org/10.15468/dl.kwlgmi
 0045622-180508205500799	../data/input/plants_species_test_downscaling.tsv	2018-07-19 08:12:24	SUCCEEDED	https://doi.org/10.15468/dl.iyi6hg
+0003300-181003121212138	https://raw.githubusercontent.com/trias-project/pipeline/9f20d33a14696bc42d059a2e0f50fb11c4f97d35/data/input/occ_indicator_emerging_species.tsv	2018-10-10 08:49:01	SUCCEEDED	https://doi.org/10.15468/dl.5xygvn
+0003400-181003121212138	https://raw.githubusercontent.com/trias-project/pipeline/a004f59c84a820b8dcee3a5d304df38c9daeded3/data/input/occ_indicator_emerging_species.tsv	2018-10-10 14:03:48	SUCCEEDED	https://doi.org/10.15468/dl.m7blny
+0003460-181003121212138	https://raw.githubusercontent.com/trias-project/pipeline/363d2037708469a9f63609f45a3c603527202a65/data/input/occ_indicator_emerging_species_part1.tsv	2018-10-10 16:23:07	CANCELLED	https://doi.org/10.15468/dl.h3dcgv
+0003482-181003121212138	https://raw.githubusercontent.com/trias-project/pipeline/363d2037708469a9f63609f45a3c603527202a65/data/input/occ_indicator_emerging_species_part2.tsv	2018-10-10 16:58:22	SUCCEEDED	https://doi.org/10.15468/dl.n2fwhm
+0003489-181003121212138	https://raw.githubusercontent.com/trias-project/pipeline/363d2037708469a9f63609f45a3c603527202a65/data/input/occ_indicator_emerging_species_part3.tsv	2018-10-10 17:15:34	SUCCEEDED	https://doi.org/10.15468/dl.ghpdpn
