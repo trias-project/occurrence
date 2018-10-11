@@ -53,7 +53,7 @@ downloads_output_file <- "../data/output/gbif_downloads.tsv"
 The list of taxa we want to get occurrences for is maintained in a tsv file. To allow better tracking, the path to the file will be added to the `download_output_file`. Ideally we don't use a local file path, but the URL of a specific commit:
 
 ```{r define_taxa}
-taxa_input_file <- "https://raw.githubusercontent.com/trias-project/pipeline/642fc791c56750e3a7b25b0ba9efa9d30d5736b4/data/input/modelling_species.tsv"
+taxa_input_file <- "https://raw.githubusercontent.com/trias-project/pipeline/363d2037708469a9f63609f45a3c603527202a65/data/input/occ_indicator_emerging_species_part3.tsv"
 ```
 
 Read file:
@@ -106,6 +106,20 @@ gbif_download_key <- occ_download(
 )
 ```
 
+If you need only occurrence data with geographic coordinates, you can opt to add additional parameter `hasCoordinate = TRUE` to the query, thus reducing data size.
+
+```r
+gbif_download_key <- occ_download(
+  paste0("taxonKey = ", paste(taxon_keys, collapse = ",")), 
+  paste0("country = ", paste(countries, collapse = ",")),
+  paste0("hasCoordinate = TRUE"),
+  curlopts = list(verbose = TRUE),
+  user = rstudioapi::askForPassword("GBIF username"),
+  pwd = rstudioapi::askForPassword("GBIF password"),
+  email = rstudioapi::askForPassword("Email address for notification")
+)
+```
+
 Check status of download:
 
 ```{r}
@@ -129,7 +143,7 @@ update_download_list(
 To import occurrences from an existing GBIF download, you will need the `gbif_download_key`. This key can be found in the 1st column of [gbif_download.tsv](../data/output/gbif_downloads.tsv), which lists all GBIF downloads triggered for TrIAS. For example:
 
 ```{r import_ocurrence_from_gbif_key, evaluate = FALSE}
-gbif_key <- "0002455-171124123535762"
+gbif_key <- "0003400-181003121212138"
 file_path <- paste0("../data/output/", gbif_key)
 if (!file.exists(file_path))
   dir.create(file_path)
