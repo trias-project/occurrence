@@ -1,0 +1,313 @@
+---
+title: "Is uncertainty negligible while calculating Area Of Occupancy (AOO)?"
+author:
+  - Damiano Oldoni
+date: "`Sys.Date()`"
+output:
+  html_document:
+  toc: true
+toc_depth: 3
+toc_float: true
+number_sections: true
+---
+  
+This document describes how to retrieve occurrences for a list of species.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+  
+```{r load_libraries}
+# Tidyverse packages
+library(dplyr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(purrr)
+# GBIF package
+library(rgbif)
+# Spatial packages
+library(sf)
+```
+
+# Define species under study
+
+We are interested in the following alien species:
+  
+  species | kingdom | GBIF backbone key
+--- | --- | ---
+  Baccharis halimifolia | Plantae | 3129663
+Impatiens glandulifera | Plantae | 2891770
+Impatiens capensis | Plantae | 2891774
+Hydrocotyle ranunculoides | Plantae | 7978544
+Branta canadensis | Animalia | 5232437
+Harmonia axyridis | Animalia | 4989904
+
+limited to Belgium (`countryCode = BE`).
+
+# Import data 
+
+## Import occurrence data
+
+A download has been triggered. Download key: `0008278-181003121212138`.
+
+```{r get_dwc_hascoord}
+gbif_key <- "0008278-181003121212138"
+occ_df_file <- paste0("../data/interim/rgbif/occ_df_", 
+                                          gbif_key, ".csv")
+# downloaded zip file is in subdirectory ./data/interim/rgbif
+file_path <- paste0("../data/interim/rgbif/")
+if (!file.exists(file_path))
+  dir.create(file_path)
+occ <- occ_download_get(key = gbif_key, overwrite = TRUE, path = file_path)
+fn <- "occurrence.txt"
+unzip(zipfile = occ, files = fn,
+      exdir = "../data/interim/rgbif/.")
+file.rename(from = "../data/interim/rgbif/occurrence.txt", 
+            to = occ_df_file)
+```
+
+Import text file to R:
+  
+```{r import_to_R_df2}
+occ_df <- read_delim(
+  file = occ_df_file, delim = "\t",
+  escape_double = FALSE, trim_ws = TRUE, 
+  col_types = cols(recordNumber = col_character(),
+                   catalogNumber = col_character(),
+                   taxonID = col_character(),
+                   organismQuantity = col_character()))
+```
+
+Number of occurrences per species:
+  
+```{r _n_occ_per_species_query_rgbif_coord}
+count_occ_df <- occ_df %>%
+  group_by(speciesKey, species) %>%
+  count()
+count_occ_df
+```
+
+## Pre-process occurrence data
+
+### Check presence of coordinates
+
+We remove occurrences without coordinates:
+
+```{r filter_valid_geo_coords}
+occ_df <- occ_df %>%
+  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude))
+```
+
+Number of occurrences per species left:
+  
+```{r _n_occ_per_species_query_rgbif_coord}
+count_occ_df <- occ_df %>%
+  group_by(speciesKey, species) %>%
+  count() %>%
+  rename(n_hasCoordinate = n) %>%
+  left_join(count_occ_df, by = c("speciesKey", "species"))
+```
+
+This check can be removed if the GBIF download query contains the additional parameter `hasCoordinate = TRUE`.
+
+### Handle data without spatial uncertainty
+
+Uncertainty on position is given in `coordinateUncertaintyInMeters` while in `verbatimCoordinateSystem` we can get details about the coordinate system used while collecting data:
+
+```{r}
+occ_df %>% 
+  group_by(coordinateUncertaintyInMeters, verbatimCoordinateSystem) %>%
+  count() %>%
+  arrange(desc(n))
+```
+
+Overview of occurrence data without coordinate uncertainty:
+
+```{r}
+occ_df %>% 
+  filter(is.na(coordinateUncertaintyInMeters)) %>%
+  group_by(datasetKey, datasetName, speciesKey, species) %>%
+  count() %>%
+  arrange(desc(n))
+```
+
+In some cases, based on the dataset and the coordinate system information, we can assign the right uncertainty. However, this approach is not machine-based, very time consuming and not scalable. A possible solution is the following: **we assign automatically an uncertainty of 1000 meters to occurrence data without uncertainty**.
+
+```{r assign_default_1000m_uncertainty}
+occ_df <- occ_df %>%
+  mutate(coordinateUncertaintyInMeters = ifelse(
+    is.na(coordinateUncertaintyInMeters), 1000.0, coordinateUncertaintyInMeters)
+  )
+```
+
+## Check temporal information
+
+Occurrence data without temporal information cannot be handled. Overview:
+
+```{r temporal_info}
+occ_df %>%
+  filter(is.na(year)) %>%
+  group_by(speciesKey, species, datasetKey, datasetName) %>%
+  count()
+```
+
+We remove them:
+
+```{r remove_occ_without_time}
+occ_df <- occ_df %>%
+  filter(!is.na(year))
+```
+
+
+## Import grid data
+
+We import UTM grid data at two scales: 5 by 5 km  and 10 by 10. The first one is not a standard (it is used only within INBO) and we will tend to use the standard 10 by 10 grid.
+
+UTM grid of Belgium at 5 by 5 km with CRS (Coordinate Reference System) Belge Lambert 1972:
+
+```{r import_grids_5km}
+belgium_5grid <- st_read("../data/external/utm5_bel", "utm5_bel")
+crs_data_5 <- st_crs(belgium_5grid)
+```
+
+UTM grid of Belgium at 10 by 10 km with CRS (Coordinate Reference System) Belge Lambert 1972:
+
+```{r import_grids_10km}
+belgium_10grid <- st_read("../data/external/utm10_bel", "utm10_bel")
+crs_data_10 <- st_crs(belgium_10grid)
+```
+
+```{r list_grids}
+belgium_grids <- list(belgium_5grid, belgium_10grid)
+```
+
+
+# Calculate AOO without taking into account uncertainty
+
+We consider occurrence data as points. No uncertainty on position is taken into account. We use information in columns `decimalLongitude` and `decimalLatitude` to create points. Also notice that GBIF occurrence data use WGS84 projection. The data hav eto be converted to the CRS of the grid:
+
+```{r points}
+# CRS used by GBIF
+wgs_84 <- st_crs("+init=epsg:4326") 
+occ_pts <- st_as_sf(occ_df, coords = c('decimalLongitude', 'decimalLatitude'), 
+                    crs = wgs_84)
+# set coordinate system equal to Lamber 1972
+occ_pts <- st_transform(occ_pts, crs_data)
+```
+
+Intersect points and grids:
+
+```{r intersect}
+points_on_grids <- map(belgium_grids, st_intersection, occ_pts)
+```
+
+We assign 1 (presence) to the squares with at least one occurrence, 0 otherwise:
+
+```{r pres_abs}
+pres_abs_table <- map(points_on_grids, function(x) {
+  x %>%
+    group_by(species, speciesKey, TAG, year) %>%
+    count() %>%
+    mutate(presence = ifelse(n >= 1, 1, 0))
+})
+```
+
+For each species and grid resolution, we calculate the area of occupancy in percentage:
+
+```{r AOO_calculate}
+aoo <- map(pres_abs_table, function(grid) {
+  grid %>%
+    filter(presence == 1) %>%
+    group_by(species, speciesKey, year) %>% 
+    summarize(aoo_perc = n()/nrow(grid)*100)  %>%
+    ungroup()
+  })
+aoo <- set_names(aoo, c("5x5km", "10x10km"))
+```
+
+Plot:
+
+```{r AOO_plot}
+map2(aoo, names(aoo), function(grid, name_grid) {
+    ggplot(grid) + 
+    aes(year, aoo_perc) +
+    facet_wrap(~ species) +
+    geom_col() +
+    labs(x = "year", y = "AOO (%)")
+})
+```
+
+
+# Calculate AOO taking into account uncertainty
+
+We consider occurrence data as circles, with `decimalLongitude` and `decimalLatitude` as coordinates of centrum and radius equal to `coordinateUncertaintyInMeters`.
+
+```{r create_circles}
+occ_circles <- st_buffer(occ_pts, 
+                         dist = occ_pts$coordinateUncertaintyInMeters,
+                         nQuadSegs = 6)
+```
+
+Intersect occurrence circles and grids:
+
+```{r intersect_circles_grids}
+spatial_fit <- map(belgium_grids, st_intersection, occ_circles)
+```
+
+If the circle falls completely within a cell, then 1 is given (the occurrence datum is *certainly* present within the cell).  Otherwise a decimal number equal to the ratio between the area of the intersection and the area of the circle is assigned (we can speak about *fuzzy* presence). We apply this procedure for each circle and then, per each triplet species-year-grid cell, we calculate the total number of occurrences rounding it up to the nearest integer. We assign 1 (presence) to the squares with at least one occurrence, 0 otherwise:
+
+```{r pres_abs_uncertainty}
+pres_abs_table_unc <- map(spatial_fit, function(x) {
+  x %>% 
+    mutate(n_float =
+             as.numeric(st_area(.))/(coordinateUncertaintyInMeters^2*pi)) %>%
+    group_by(species, speciesKey, year, TAG) %>%
+    summarize(n = round(sum(n_float))) %>%
+    mutate(presence = ifelse(n >= 1, 1, 0))
+})
+```
+
+For each species and grid resolution, we calculate the area of occupancy in percentage:
+
+```{r AOO_calculate_uncertainty}
+aoo_unc <- map(pres_abs_table_unc, function(grid) {
+  grid %>%
+    filter(presence == 1) %>%
+    group_by(species, speciesKey, year) %>% 
+    summarize(aoo_perc = n()/nrow(grid)*100) %>%
+    ungroup()
+  })
+aoo_unc <- set_names(aoo_unc, c("5x5km", "10x10km")) 
+```
+
+# Compare the Area of Occupancies
+
+We can now compare `aoo` and `aoo_unc`:
+
+```{r compare_aoos}
+aoo_compare <- map2(aoo, aoo_unc, function(grid, grid_unc, size) {
+  df1 <- grid %>% mutate(uncertainty = FALSE)
+  df2 <- grid_unc %>% mutate(uncertainty = TRUE)
+  df <- bind_rows(df1, df2)
+})
+# aoo_compare_tidy <- map2_df(aoo_compare, names(aoo_compare), function(df, name) {
+#   df %>% 
+#     mutate(size = name) %>%
+#     ungroup()
+# })
+```
+
+```{r}
+map2(aoo_compare, names(aoo_compare), function(df, grid_size) {
+  ggplot(df, aes(x = year, y = aoo_perc, fill = uncertainty)) +
+    facet_wrap(~ species) +
+    geom_bar(position = position_dodge(preserve = "total")) +
+    labs(x = "year", y = "AOO (%)")
+})
+```
+
