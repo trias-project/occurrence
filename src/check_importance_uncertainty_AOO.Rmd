@@ -38,9 +38,9 @@ library(sf)
 
 We are interested in the following alien species:
   
-  species | kingdom | GBIF backbone key
+species | kingdom | GBIF backbone key
 --- | --- | ---
-  Baccharis halimifolia | Plantae | 3129663
+Baccharis halimifolia | Plantae | 3129663
 Impatiens glandulifera | Plantae | 2891770
 Impatiens capensis | Plantae | 2891774
 Hydrocotyle ranunculoides | Plantae | 7978544
@@ -181,6 +181,7 @@ UTM grid of Belgium at 10 by 10 km with CRS (Coordinate Reference System) Belge 
 belgium_10grid <- st_read("../data/external/utm10_bel", "utm10_bel")
 crs_data_10 <- st_crs(belgium_10grid)
 ```
+
 
 ```{r list_grids}
 belgium_grids <- list(belgium_5grid, belgium_10grid)
