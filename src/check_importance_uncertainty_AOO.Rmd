@@ -182,6 +182,13 @@ belgium_10grid <- st_read("../data/external/utm10_bel", "utm10_bel")
 crs_data_10 <- st_crs(belgium_10grid)
 ```
 
+The CRS is the same for both grids:
+
+```{r compare_crs_grids}
+crs_data_10 == crs_data_5
+crs_data <- crs_data_10
+```
+
 
 ```{r list_grids}
 belgium_grids <- list(belgium_5grid, belgium_10grid)
