@@ -1,0 +1,144 @@
+---
+title: "Check correctness downloads with query parameter `hasCoordinate`"
+author:
+  - Damiano Oldoni
+date: "October 18, 2018"
+output:
+  html_document:
+  toc: true
+toc_depth: 3
+toc_float: true
+number_sections: true
+---
+  
+This document describes how to retrieve occurrences for a list of species.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+  
+```{r load_libraries}
+# Tidyverse packages
+library(dplyr)
+library(magrittr)
+library(readr)
+
+# GBIF package
+library(rgbif)
+# Project package
+library(trias)
+```
+
+# Define species under study
+
+We are interested in the following alien species:
+  
+  species | kingdom | GBIF backbone key
+--- | --- | ---
+  Baccharis halimifolia | Plantae | 3129663
+Impatiens glandulifera | Plantae | 2891770
+Impatiens capensis | Plantae | 2891774
+Hydrocotyle ranunculoides | Plantae | 7978544
+Branta canadensis | Animalia | 5232437
+Harmonia axyridis | Animalia | 4989904
+
+limited to Belgium (`countryCode = BE`).
+
+# Occurrence data without `hasCoordinate` parameter
+
+We triggered a download with key `0008278-181003121212138`. 
+Download the related DwC archive:
+  
+```{r retrieve_download}
+gbif_key <- "0008278-181003121212138"
+rgbif_query_csv_files_dwc <- paste0("../data/interim/rgbif/rgbif_query_", 
+                                    gbif_key, ".csv")
+# downloaded zip file is in subdirectory ./data/interim/rgbif
+file_path <- paste0("../data/interim/rgbif/")
+if (!file.exists(file_path))
+  dir.create(file_path)
+occ <- occ_download_get(key = gbif_key, overwrite = TRUE, path = file_path)
+fn <- "occurrence.txt"
+unzip(zipfile = occ, files = fn,
+      exdir = "../data/interim/rgbif/.")
+file.rename(from = "../data/interim/rgbif/occurrence.txt", 
+            to = rgbif_query_csv_files_dwc)
+```
+
+Import text file to R:
+  
+```{r import_to_R_df}
+rgbif_query_occ_df_dwc <- read_delim(
+  file = rgbif_query_csv_files_dwc, delim = "\t",
+  escape_double = FALSE, trim_ws = TRUE, 
+  col_types = cols(recordNumber = col_character(),
+                   catalogNumber = col_character(),
+                   taxonID = col_character(),
+                   organismQuantity = col_character()))
+```
+
+Number of occurrences per species:
+  
+```{r _n_occ_per_species_query_rgbif}
+count_rgbif_query_occ_df_dwc <- rgbif_query_occ_df_dwc %>%
+  group_by(speciesKey, species) %>%
+  count() %>%
+  rename(n_dwc_rgbif_query = n)
+count_rgbif_query_occ_df_dwc
+```
+
+# Occurrence data with `hasCoordinate=TRUE`
+
+A second download has been triggered with additional parameter `hasCoordinate=TRUE`. Download key: `0008376-181003121212138`.
+
+```{r get_dwc_hascoord}
+gbif_key <- "0008376-181003121212138"
+rgbif_query_csv_files_dwc_coord <- paste0("../data/interim/rgbif/rgbif_query_coord_", 
+                                          gbif_key, ".csv")
+# downloaded zip file is in subdirectory ./data/interim/rgbif
+file_path <- paste0("../data/interim/rgbif/")
+if (!file.exists(file_path))
+  dir.create(file_path)
+occ <- occ_download_get(key = gbif_key, overwrite = TRUE, path = file_path)
+fn <- "occurrence.txt"
+unzip(zipfile = occ, files = fn,
+      exdir = "../data/interim/rgbif/.")
+file.rename(from = "../data/interim/rgbif/occurrence.txt", 
+            to = rgbif_query_csv_files_dwc_coord)
+```
+
+Import text file to R:
+  
+```{r import_to_R_df2}
+rgbif_query_occ_df_dwc_coord <- read_delim(
+  file = rgbif_query_csv_files_dwc_coord, delim = "\t",
+  escape_double = FALSE, trim_ws = TRUE, 
+  col_types = cols(recordNumber = col_character(),
+                   catalogNumber = col_character(),
+                   taxonID = col_character(),
+                   organismQuantity = col_character()))
+```
+
+Number of occurrences per species:
+  
+```{r _n_occ_per_species_query_rgbif_coord}
+count_rgbif_query_occ_df_dwc_coord <- rgbif_query_occ_df_dwc_coord %>%
+  group_by(speciesKey, species) %>%
+  count() %>%
+  rename(n_dwc_rgbif_query_coord = n)
+count_rgbif_query_occ_df_dwc_coord
+```
+
+Compare:
+
+```{r compare}
+comparison_table <- count_rgbif_query_occ_df_dwc %>%
+  full_join(count_rgbif_query_occ_df_dwc_coord, 
+            by = c("speciesKey", "species"))
+comparison_table
+```
+
