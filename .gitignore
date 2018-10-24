@@ -18,6 +18,9 @@
 .Rproj.user/
 .Rproj.user
 
+# SQLite databases
+**/*.db
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
