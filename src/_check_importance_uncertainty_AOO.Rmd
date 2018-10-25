@@ -210,7 +210,7 @@ occ_df <- occ_df %>%
   )
 ```
 
-Final overview of coordinate uncertainty per species.
+Final overview of most commonly used coordinate uncertainty for each species, the so called _mode_.
 
 ```{r }
 calc_mode <- function(data) {
@@ -231,8 +231,6 @@ most_used_unc_df <- occ_df %>%
 most_used_unc_df
 ```
 
-
-
 ## Import grid data
 
 We import UTM grid data at three scales: 1 by 1 km, 5 by 5 km  and 10 km by 10 km. As said in introduction, the 5 by 5 km is not a standard resolution: it is used only within INBO Flemish research. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
@@ -244,6 +242,20 @@ grids <- list(grid_1x1km = "utm1_bel",
 belgium_grids <- map(grids, ~ st_read(paste0("../data/external/", .)))
 crs_data <- st_crs(belgium_grids[["grid_1x1km"]])
 crs_data
+```
+
+Total area of the grids in square meters:
+
+```{r}
+total_areas <- map(belgium_grids, function(x) sum(x$Shape_Area))
+total_areas
+```
+
+and mean cell size in meters:
+
+```{r mean_cell_size}
+cell_sizes <- map(belgium_grids, function(x) mean(x$Shape_Area))
+cell_sizes
 ```
 
 # Calculate AOO 
@@ -272,7 +284,7 @@ Only grid cells containing at least one point are present.
 We calculate the number of occurrences per cell and assign 1 (presence) to them:
 
 ```{r pres_abs}
-pres_table <- map(points_on_grids, function(x) {
+pres_table <- map(points_on_grids, function(x, grid) {
   x %>%
     group_by(species, speciesKey, TAG, year) %>%
     count() %>%
@@ -280,26 +292,33 @@ pres_table <- map(points_on_grids, function(x) {
 })
 ```
 
-For each species and grid resolution, we calculate the area of occupancy in percentage:
+For each species and grid resolution, we calculate the area of occupancy and the relative occupancy (AOO divided by total area):
 
 ```{r AOO_calculate}
-n_cells <- map(belgium_grids, nrow)
-aoo <- map2(pres_table, n_cells,
-            function(presence_df, n_of_cells) {
-  presence_df %>%
-    group_by(species, speciesKey, year) %>% 
-    summarize(aoo_perc = n()/n_of_cells*100)  %>%
-    ungroup() %>% st_set_geometry(NULL)
-  })
+aoo <- pmap(list(pres_table, belgium_grids, total_areas, cell_sizes),
+            function(presence_df, grid, total_area, cell_size) {
+              presence_df %>%
+                st_set_geometry(NULL) %>%
+                left_join(grid %>%
+                            st_set_geometry(NULL) %>%
+                            select(TAG, Shape_Area),
+                          by = "TAG") %>%
+                group_by(species, speciesKey, year) %>% 
+                summarize(aoo = sum(Shape_Area)) %>%
+                ungroup() %>%
+                mutate(occupancy = aoo / total_area,
+                       cell_area = cell_size
+                       )
+})
 ```
 
 ```{r AOO_plot}
 map2(aoo, names(aoo), function(grid, name_grid) {
     ggplot(grid) + 
-    aes(year, aoo_perc) +
+    aes(x = year, y = aoo/(10^6)) +
     facet_wrap(~ species) +
     geom_col() +
-    labs(x = "year", y = "AOO (%)") +
+    labs(x = "year", y = "AOO (km2)") +
     ggtitle(name_grid)
 })
 ```
@@ -314,153 +333,55 @@ occ_circles <- st_buffer(occ_pts,
                          nQuadSegs = 6)
 ```
 
-We intersect the occurrence circles and the grids:
+We can intersect the occurrence circles and the grids by doing:
 
-```{r intersect_circles_grids}
+```r
 spatial_fit <- map(belgium_grids, st_intersection, occ_circles)
 ```
 
-The main idea to _measure_ the presence of an occurrence observation in a cell comes from a mathematical theory called fuzzy logic. We conceive the presence of an occurrence within a cell as a real number between O and 1. If the circle falls completely within a cell, then 1 is given (the occurrence datum is surely present within the cell).  Otherwise a decimal number equal to the ratio between the area of the intersection and the area of the circle is assigned (we can speak about a *fuzzy* definition of measuring the presence). We apply this procedure for each circle and then, per each triplet species-year-grid cell, we calculate the total number of occurrences rounding it up to the nearest integer. We assign 1 (presence) to the squares with at least one occurrence, 0 otherwise. Although an elegant and mathematically correct, this approach is not totally realistic: a small set of very scattered and not precise (high uncertainty) observations would result in zero AOO, which results in a dangerous absurd if you are interested in detecting _emerging_ species. Thinking to solve such dangerous understimation by setting the threshold equal to zero would result in overestimating the AOO because a circle would intersect more cells: higher the radius and the geographical scattering, higher the overestimation, which is also not nice. Setting the threshold in between is also not a valid option: it could end up in getting underestimation for some species/years and overestimation for other species/year. A tuning should be performed and would be very data depedent, computationally demanding, in other words unfeasible.
+The main idea to _measure_ the presence of an occurrence observation in a cell comes from a mathematical theory called fuzzy logic. We conceive the presence of an occurrence within a cell as a real number between O and 1. If the circle falls completely within a cell, then 1 is given (the occurrence datum is surely present within the cell).  Otherwise a decimal number equal to the ratio between the area of the intersection and the area of the circle is assigned: in math this is called a *fuzzy* definition of measuring the presence. We apply this procedure for each circle and then, per each triplet species-year-grid cell, we calculate the total number of occurrences rounding it up to the nearest integer. We assign 1 (presence) to the squares with at least one occurrence, 0 otherwise. Although an elegant and mathematically correct, this approach is not totally realistic: a small set of very scattered and not precise (high uncertainty) observations would result in zero AOO, which results in a dangerous absurd if you are interested in detecting _emerging_ species. Thinking to solve such dangerous understimation by setting the threshold equal to zero would result in overestimating the AOO because a circle would intersect more cells, thus assigning more cells to one observation: higher the radius and the geographical scattering, higher the overestimation. Setting the threshold in between is also not a valid option: it could end up in getting underestimation for some species/years and overestimation for other species/year. A tuning should be performed and would be very data depedent, computationally demanding, in other words unfeasible.
 
 To solve this issue and to let math meet ecology, we need to assign each observation to _one and only one_ cell. This can be achieved by applying the following strategy:
-**assign an observation to the cell with higher measure of presence**, which is geometrically equivalent to say assign an observation to the cell containing the center. If uncertainty is much higher than the cell size, two or more cells would be completely "covered" by the circle, which means that they will get the same highest measure of presence. Still, the nature of the problem forces us to pick one (and only one!) cell. The choice of the cell containing the center results the most valid one. So, we can finally say that the strategy: **assign an observation to the cell containing the center** is a rule, as it is always justified.
+**assign an observation to the cell with the highest measure of presence**, which is geometrically equivalent to say: assign an observation to the cell containing the center. If uncertainty is much higher than the cell size, two or more cells would be completely "covered" by the circle, which means that they will get the same highest measure of presence. Still, the nature of the problem forces us to pick one and only one cell. The choice of the cell containing the center results the most valid one. So, we can finally say that the strategy: **assign an observation to the cell containing the center** is a rule, as it is always well justified. This means that calculating AOO taking into account geographic uncertainty of observation data is equivalent to the calculation performed in the previous section where we neglected it. 
 
-Note: this calculation can take long:
+# Effect of grid cell on (Area of) Occupancy
 
-```{r pres_abs_uncertainty}
-pres_table_unc <- map(spatial_fit, function(x) {
-  x %>% 
-    mutate(n_float =
-             as.numeric(st_area(.))/(coordinateUncertaintyInMeters^2*pi)) %>%
-    group_by(species, speciesKey, year, TAG) %>%
-    summarize(n = round(sum(n_float))) %>%
-    mutate(presence = ifelse(n >= 1, 1, 0))
-})
-```
+We compare the AOO calculated using different grid cell size:
 
-For each species and grid resolution, we calculate the area of occupancy in percentage:
-
-```{r AOO_calculate_uncertainty}
-n_cells <- map(belgium_grids, nrow)
-aoo_unc <- map2(pres_table_unc, n_cells, 
-               function(grid, n_of_cells) {
-                 grid %>%
-                   filter(presence == 1) %>%
-                   group_by(species, speciesKey, year) %>% 
-                   summarize(aoo_perc = n()/n_of_cells*100) %>%
-                   ungroup() %>% 
-                   st_set_geometry(NULL)
-  })
-```
-
-We merge all information in a tidy data frame containing column `uncertainty` (`TRUE` or `FALSE`) and grid size (`"1x1km"`, `"5x5km"` or `"10x10km"`):
-
-```{r tidy_df}
-aoo_compare_tidy <- pmap_dfr(list(aoo, aoo_unc, names(aoo)),
-                             function(grid, grid_unc, grid_name) {
-  df1 <- grid %>% mutate(uncertainty = FALSE)
-  df2 <- grid_unc %>% mutate(uncertainty = TRUE)
-  df <- bind_rows(df1, df2)
+```{r aoo_compare_tidy_df}
+aoo_compare_tidy <- map2_dfr(aoo, names(aoo),
+                             function(df, grid_name) {
   df %>% mutate(grid_size = grid_name)
 })
 ```
 
-# Effect of grid cells on AOO
-
-We compare the AOO by different grid cell size:
-
 ```{r plot_AOO_different_grid_cell_sizes}
-uncertainty <- c(FALSE, TRUE)
-map(uncertainty, function(x) {
+map(unique(aoo_compare_tidy$species), 
+    function(x){
+      ggplot(aoo_compare_tidy %>%
+         filter(species == x),
+       aes(x = year, y = aoo/(10^6), color = grid_size)) +
+  geom_col(alpha=0.5, fill = "white", position = "dodge") +
+  labs(x= "year", y = "AOO") +
+  ggtitle(paste0(x,". Area Of Occupancy (AOO)"))
+})
+```
+
+As expected the AOO increases by increasing the grid cell size. We plot the logarithm of occupancy and the logarithm of cell area from 2000 and 2009:
+
+```{r}
+years <- aoo_compare_tidy %>%
+  filter(year >= 2000 & year < 2010) %>%
+  distinct(year) %>%
+  pull()
+map(years, function(y) {
   ggplot(aoo_compare_tidy %>%
-           filter(uncertainty == x),  
-       aes(x = year, y = aoo_perc, color = grid_size)) +
-  geom_col(alpha=0.5) +
-  labs(x= "year", y = "AOO (%)") +
-  facet_wrap(~ species) +
-  ggtitle(paste("Use of uncertainty:", x))
+           filter(year == y), 
+       aes(x = log(cell_area), y = log(occupancy), color = species)) +
+    geom_point() + 
+    labs(x = "log(area)", y = "log(occupancy)") +
+    ggtitle(y)
 })
 ```
 
-As expected the AOO increases by increasing the grid cell size. To better understand this dependency we calculate the ratio between AOO at a given cell size and the AOO using 1 by 1 km cell size (reference):
 
-```{r change_AOO}
-aoo_diff_grid <- aoo_compare_tidy %>%
-  spread(grid_size, aoo_perc) %>%
-  filter(!is.na(grid_1x1km) & !is.na(grid_5x5km) | 
-           !is.na(grid_1x1km) & !is.na(grid_10x10km)) %>%
-  mutate(ratio_5_1 = grid_5x5km/grid_1x1km,
-         ratio_10_1 = grid_10x10km/grid_1x1km) %>%
-  mutate(diff_5_1 = grid_5x5km - grid_1x1km,
-         diff_10_1 = grid_10x10km - grid_1x1km) %>%
-  mutate(ratio_diffs = diff_10_1 / diff_5_1)
-```
-
-We plot it:
-
-```{r plot_change_AOO}
-map2(c("diff_5_1", "diff_10_1"), c("5x5km", "10x10km"),
-     function(col_name) {
-  ggplot(aoo_diff_grid, 
-       aes_string(y = col_name, x = "grid_1x1km", color = "species")) +
-  geom_point() +
-  facet_wrap(~ uncertainty) +
-  ggtitle(paste0("Difference AOO ", "vs AOO 1x1km"))
-})
-```
-
-```{r plot_ratio_diffs}
-ggplot(aoo_diff_grid, 
-       aes(y = ratio_diffs, x = grid_1x1km, color = species)) +
-  geom_point() +
-  facet_wrap(~ uncertainty) +
-  ggtitle("Difference AOO vs AOO at 1x1km")
-```
-
-
-# Compare the Area of Occupancies
-
-## Effects of adding uncertainty
-
-We plot the area of occupancy for all grid sizes.
-
-```{r plot_5x5}
-grid_sizes <- unique(aoo_compare_tidy$grid_size)
-map(grid_sizes, function(size) {
-  ggplot(aoo_compare_tidy %>%
-         filter(grid_size == size), 
-       aes(x = year, y = aoo_perc, color = uncertainty)) +
-    geom_col(position = "dodge2") +
-    facet_wrap(~ species) +
-    labs(x = "year", y = "AOO (%)") +
-    ggtitle(paste("Grid size:", size))
-})
-```
-
-We extract information about the difference in AOOs (absolute and relative):
-
-```{r calculate_diff_due_to_uncertainty}
-aoo_diff_unc <- aoo_compare_tidy %>%
-  spread(key = uncertainty, value = aoo_perc) %>%
-  rename("aoo_no_unc" = "FALSE",
-         "aoo_with_unc" = "TRUE") %>%
-  filter(!is.na(aoo_with_unc) & !is.na(aoo_no_unc)) %>%
-  mutate(aoo_diff_unc = aoo_no_unc - aoo_with_unc)
-```
-
-We plot the absolute difference against the AOO calculated taking into account coordinate uncertainty:
-
-```{r plot_diff_vs_AOO_with_unc}
-ggplot(aoo_diff_unc, 
-       aes(y = aoo_diff_unc, x = aoo_with_unc, color = species)) +
-  geom_point() +
-  facet_wrap(~ grid_size) +
-  ggtitle("Difference AOOs vs AOO with uncertainty")
-```
-
-We can see that:
-
-1. Differences between AOOs are linear dependent to the AOO itself (only for low AOO?).
-2. Reducing the grid size means increasing the steepness of the linear dependency.
-
-We need to better understand the effects of grid size. 
