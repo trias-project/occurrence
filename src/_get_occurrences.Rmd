@@ -53,7 +53,7 @@ downloads_output_file <- "../data/output/gbif_downloads.tsv"
 The list of taxa we want to get occurrences for is maintained in a tsv file. To allow better tracking, the path to the file will be added to the `download_output_file`. Ideally we don't use a local file path, but the URL of a specific commit:
 
 ```{r define_taxa}
-taxa_input_file <- "https://raw.githubusercontent.com/trias-project/pipeline/363d2037708469a9f63609f45a3c603527202a65/data/input/occ_indicator_emerging_species_part3.tsv"
+taxa_input_file <- "https://raw.githubusercontent.com/trias-project/pipeline/occ_indicators_downscaling/data/input/occ_indicator_emerging_species_AOO.tsv"
 ```
 
 Read file:
