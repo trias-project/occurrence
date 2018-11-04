@@ -38,7 +38,6 @@ Load libraries:
 # GBIF package
 library(rgbif)
 # Spatial packages
-# installation via devtools::install_github("r-spatial/sf") suggested
 library(sf) 
 # visualization package
 library(leaflet)
@@ -71,7 +70,7 @@ limited to Belgium (`countryCode = BE`).
 
 A download has been triggered. Download key: `"0012078-181003121212138"`.
 
-```{r get_dwc_hascoord}
+```{r get_dwc_file_from GBIF}
 gbif_key <- "0012078-181003121212138"
 occ_df_file <- paste0("../data/interim/occ_df_", 
                                           gbif_key, ".csv")
@@ -91,7 +90,7 @@ file.rename(from = "../data/interim/occurrence.txt",
 
 Import text file to R:
   
-```{r import_to_R_df2}
+```{r import_to_R_as_df}
 occ_df <- read_delim(
   file = occ_df_file, delim = "\t",
   escape_double = FALSE, trim_ws = TRUE)
@@ -112,10 +111,9 @@ species_df <- occ_df %>%
 species_df
 ```
 
-
 Number of occurrences per species:
   
-```{r n_occ_per_species_query_rgbif_coord}
+```{r n_occ_per_species}
 count_occ_df <- occ_df %>%
   group_by(speciesKey, species) %>%
   count() %>%
@@ -135,9 +133,9 @@ occ_df %>%
   count()
 ```
 
-We retain only human observations:
+We use only human observations:
 
-```{r}
+```{r occs_only_human_obs}
 occ_df <- occ_df %>%
   filter(basisOfRecord == "HUMAN_OBSERVATION")
 ```
@@ -146,7 +144,7 @@ occ_df <- occ_df %>%
 
 Some occurrences have `occurrenceStatus` equal to `absent`:
 
-```{r show_summary_occ_Status}
+```{r show_summary_occtarrenceStatus}
 occ_df %>%
   group_by(occurrenceStatus) %>%
   count()
@@ -191,7 +189,7 @@ occ_df <- occ_df %>%
 
 Occurrences without coordinates:
 
-```{r}
+```{r n_occs_with_no_coords}
 occ_df %>%
   filter(is.na(decimalLatitude) | is.na(decimalLongitude)) %>%
   group_by(speciesKey, species) %>%
@@ -209,7 +207,7 @@ Note: this filter is equivalent of a GBIF download query containing the addition
 
 Number of occurrences per species left:
   
-```{r _n_occ_per_species_query_rgbif_coord}
+```{r n_occ_per_species_with_coord}
 count_occ_df <- occ_df %>%
   group_by(speciesKey, species) %>%
   count()
@@ -227,9 +225,9 @@ occ_df %>%
   arrange(desc(n))
 ```
 
-Overview of occurrence data without coordinate uncertainty:
+Overview of occurrence data with missing coordinate uncertainty:
 
-```{r}
+```{r details_data_with_no_coordinate_uncertainty}
 occ_df %>% 
   filter(is.na(coordinateUncertaintyInMeters)) %>%
   group_by(datasetKey, datasetName, speciesKey, species) %>%
@@ -274,7 +272,7 @@ mode_unc_df
 
 We import UTM grid data at three scales: 1 by 1 km, 5 by 5 km  and 10 km by 10 km. As said in introduction, the 5 by 5 km is not a standard resolution: it is used only within INBO Flemish research. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
 
-```{r import_grids_5km}
+```{r import_grids_of_BE_from_EEA}
 grids <- list(grid_1x1km = "utm1_bel", 
               grid_10x10km = "utm10_bel", 
               grid_100x100km = "utm100_bel")
@@ -285,7 +283,7 @@ crs_grid
 
 Total area of the grids in square meters:
 
-```{r}
+```{r get_total_area}
 total_areas <- map(belgium_grids, function(x) as.numeric(sum(st_area(x))))
 total_areas
 ```
@@ -409,7 +407,7 @@ map(species_df$species,
 
 As expected the AOO increases by increasing the grid cell size. We plot the logarithm of occupancy and the logarithm of cell area for period 2005 - 2010:
 
-```{r}
+```{r log_aoo_vs_log_cell_area_basic}
 years <- aoo_compare_tidy %>%
   filter(year >= 2005 & year <= 2010) %>%
   distinct(year) %>%
@@ -431,6 +429,182 @@ We can see that no signs of saturation (horizonta line) although endemism surely
 
 Given a coordinate uncertainty $\Delta r$, any grid with cell with side $l < 2 \Delta r$ would be too fine. If we aim to calculate AOO at a resolution of 1km we should apply downscaling techniques.
 
+For downscaling we need a presence-absence table for each grid, so we need to add zeros to number of occurrences (column `n_occs`) and presence (column `presence`) where needed:
+
+```{r add_absence}
+pres_df <- pres_table$grid_10x10km
+grid <- belgium_grids$grid_10x10km
+species_years <- pres_df %>%
+  distinct(species, speciesKey, year)
+pres_abs_df <- crossing(grid, species_years) %>%
+    left_join(pres_df) %>%
+    mutate(n_occs = replace_na(n_occs, 0),
+           presence = replace_na(presence, 0))  
+```
+
+Assign presence-absence table to centroids:
+
+```{r centroids}
+pres_abs_ctds <- st_centroid(pres_abs_df)
+```
+
+### Upgraining
+
+Apply `upgrain.threshold()` to estimate the best threshold method. We use two scaling levels (we upgrain from 10 by 10 to 20 by 20 and 40 by 40). As explained in `vignette("Upgraining", package = "downscale")`:
+
+>a larger number of scales means there is more data to fit the downscaling models, however the larger discrepancy there will be between the original extent of the atlas data and the new standardised extent.
+
+In case of small extent (Belgium is relatively small) this discrepancy can easily become very large. So, we don't recommend any further upgraining. Here below we show the effects of choosing different thresholds for _Hydrocotyle ranunculoides_ and year 2011:
+
+```{r apply_upgrain_threshold}
+example <- pres_abs_ctds %>%
+             filter(species == 
+                      "Hydrocotyle ranunculoides") %>%
+             filter(year == 2011)
+example <- as(example, "Spatial")
+example@data <- data.frame(example@data$presence)
+get_upgrain_values <- upgrain.threshold(
+  example,
+  cell.width = 10000,
+  scales = 2,
+  thresholds = seq(0, 1, 0.01))
+```
+
+Apply threshold method `All_Occurrences` with scales equal to 2 for all species and years:
+
+```{r apply_upgrain}
+progress_bar <- progress_estimated(nrow(species_years))
+upgrain_species_year <- map2(species_years$species,
+                             species_years$year,
+                             function(s,y) {
+                               progress_bar$tick()$print()
+                               points <- pres_abs_ctds %>% 
+                                 filter(species == s) %>%
+                                 filter(year == y)
+                               points <- as(points, "Spatial")
+                               points@data <- data.frame(points@data$presence)
+                               upgrain(points, scales = 2, 
+                                       cell.width = 10000,
+                                       method = "All_Occurrences", 
+                                       plot = FALSE)
+                               }
+                             )
+names(upgrain_species_year) <- str_c(species_years$species,
+                                     species_years$year, sep = "_")
+```
+
+We select the five simplest downscale models, which have been used in Groom at al. 2018 in order to form the so called _simple ensemble_: power law, Nachman, Poisson, logistic and negative binomial.
+
+```{r models}
+models_simple_ensemble = c("Nachman", "PL", "Poisson", "Logis", "NB")
+```
+
+and cell resolution 1x1km, 2x2km and: 
+
+```{r cell_areas}
+# 1x1km, 2x2, 5x5 
+areas <- c(10^6, 4*10^6, 25*10^6)
+```
+
+
+Run downscaling:
+
+```{r apply_downscaling_models}
+# library(stringr)
+# select_species <- upgrain_species_year[which(map_lgl(names(upgrain_species_year), str_detect, "Impatiens glandulifera"))]
+progress_bar <- progress_estimated(length(upgrain_species_year))
+downscaling <- map(upgrain_species_year, ~ {  
+  progress_bar$tick()$print()
+  try(ensemble.downscale(., 
+                     new.areas = areas, 
+                     models = models_simple_ensemble,
+                     verbose = FALSE,
+                     plot = FALSE),
+      silent = FALSE)
+  })
+```
+
+If `Error : Not enough scales before scale of endemism for modelling` appears it means that the scale of endemism  has been reached among 10x10km and 40x40km. As explained in Azaele et al., 2012 and  `vignette("Upgraining", package = "downscale")`, the scale of endemism is the grain size where all presences occur in a single cell. This happens for species-years with very few and very localized occurrences, i.e. very low occupancy. Here below we show number of occurrences and uncertainty (mode) of all cases of endemism:
+
+```{r cases_of_endemism_in_df}
+endemism_df <- map2_dfr(names(downscaling), downscaling, 
+                       function(s_y, results) {
+                         if (class(results) == "try-error") {
+                           endemic_df <- data.frame(species_year = s_y)
+                           endemic_df <- separate(endemic_df,
+                                                  col = species_year, 
+                                                  into = c("species", "year"),
+                                                  sep = "_", 
+                                                  convert = TRUE)
+                           return(endemic_df)
+                         }
+                       })
+endemism_df <- aoo_compare_tidy_sum %>%
+              select(-starts_with("grid")) %>% 
+  right_join(endemism_df) %>%
+  left_join(mode_unc_df) %>%
+  arrange(desc(n_occs))
+endemism_df
+```
+
+We remove these species-year combinations and transform the list to data.frame containing occupancies and area of occupancies:
+
+```{r downscale_df}
+downscaling_tidy <- map_dfr(
+  names(downscaling), function(x) {
+    if (class(downscaling[[x]]) != "try-error") {
+      downscale_occ <- downscaling[[x]]$Occupancy
+      downscale_aoo <- downscaling[[x]]$AOO
+      colnames(downscale_aoo) <- paste0("aoo_", colnames(downscale_aoo))
+      downscale_occ <- downscale_occ %>%
+        mutate(species = str_split(x, pattern = "_")[[1]][1],
+               year = as.integer(str_split(x, pattern = "_")[[1]][2])) %>%
+        bind_cols(downscale_aoo %>% select(-aoo_Cell.area))
+      return(downscale_occ)
+    }
+    
+  }
+)
+
+downscaling_tidy <- downscaling_tidy %>% select(-starts_with("aoo_")) %>%
+  gather_(key = "method", 
+          value = "occupancy", 
+          c(models_simple_ensemble,"Means")) %>%
+  left_join(downscaling_tidy %>%
+              select(starts_with("aoo_"), species, year) %>%
+              gather_(key = "method", 
+                      value = "aoo", 
+                      paste0("aoo_",c(models_simple_ensemble, "Means"))) %>%
+              mutate(method = str_remove(method, "aoo_")),
+            by = c("species", "year", "method"))
+```
+
+And plot occupancy for each species and downscaling method at 1 square kilometer (`Cell.area` equal to 1.0e+06):
+
+```{r plot_occupancy_basic}
+cell_area <- 1.0e+06
+occupancy_plots <- map(
+  species_df$species, function(species_name)
+    ggplot(downscaling_tidy %>%
+             filter(species == species_name & 
+                      Cell.area == cell_area), 
+           aes(x = year, y = occupancy, colour = method)) +
+    geom_line() +
+    geom_point() +
+    ggtitle(species_name))
+occupancy_plots
+```
+
+We select the mean of the simple ensemble at 1x1km resolution as summary for final comparison:
+
+```{r selet_meman_simple_ensemble}
+aoo_compare_downscaling_sum <- downscaling_tidy %>%
+  filter(Cell.area == 10^6 & 
+           method == "Means") %>%
+  right_join(species_df) %>%
+  select(species, speciesKey, year, occupancy, aoo)
+```
+
 # Solution 2: use uncertainty on occurrence data
 
 In this chapter we use information about coordinate uncertainty and conceive occurrence data as circles, with `decimalLongitude` and `decimalLatitude` as centre and radius equal to `coordinateUncertaintyInMeters`.
@@ -443,7 +617,7 @@ occ_circles <- st_buffer(occ_pts,
 
 A preview leaflet map by using the grid with cell size 10x10km and occurrence data of species _Hydrocotyle ranunculoides_ from 2000:
 
-```{r leaflet}
+```{r leaflet_hydrocotye_from_2000}
 data_on_leaflet <- occ_circles %>%
   filter(species == "Hydrocotyle ranunculoides") %>%
   filter(year >= 2015) %>%
@@ -504,7 +678,9 @@ mapt
 We can now repeat the same procedure followed in #calculate-(area-of)-occupancy. First, intersect these new points and grids:
 
 ```{r intersect_randomize}
-points_on_grids_randomize <- map(belgium_grids, st_intersection, occ_pts_randomize)
+points_on_grids_randomize <- map(belgium_grids, 
+                                 st_intersection, 
+                                 occ_pts_randomize)
 ```
 
 Only grid cells containing at least one point are present. 
@@ -528,7 +704,7 @@ pres_table_randomize <- map(points_on_grids_randomize, function(x) {
 })
 ```
 
-For each grid resolution species and year, we calculate the Area Of Occupancy (AOO) and the Occupancy (AOO divided by total grid area):
+For each grid resolution, species and year, we calculate the Area Of Occupancy and the Occupancy (AOO divided by total grid area):
 
 ```{r AOO_calculate_randomize}
 aoo_randomize <- pmap(list(pres_table_randomize, belgium_grids, total_areas, cell_sizes),
@@ -580,7 +756,7 @@ aoo_compare_tidy_randomize <- map2_dfr(aoo_randomize, names(aoo_randomize),
 
 Again, AOO increases by increasing the grid cell size. We plot the logarithm of occupancy and the logarithm of cell area for period 2005 - 2010:
 
-```{r}
+```{r AOO_log_occ_log_cell_area}
 years <- aoo_compare_tidy_randomize %>%
   filter(year >= 2005 & year <= 2010) %>%
   distinct(year) %>%
@@ -596,13 +772,6 @@ map(years, function(y) {
 })
 ```
 
-
-
-
-
-
-
-
 # Final summary
 
 We can now summarize the results for comparison.
@@ -614,99 +783,102 @@ aoo_compare_tidy_sum <- aoo_compare_tidy %>%
   select(species, speciesKey, year, n_occs, occupancy_unc, grid_size) %>%
   spread(key = grid_size,
          value = occupancy_unc)
+aoo_compare_downscaling_sum <- aoo_compare_downscaling_sum %>%
+  rename("aoo_downscale" = "aoo",
+         "occupancy_downscale" = "occupancy")
+ 
 aoo_compare_tidy_randomize_sum <- aoo_compare_tidy_randomize %>%
   rename("aoo_unc" = "aoo",
          "occupancy_unc" = "occupancy") %>% 
-  filter(grid_size == "grid_100x100km") %>%
+  filter(grid_size == "grid_1x1km") %>%
   select(species, speciesKey, year, n_occs, occupancy_unc, grid_size) %>%
   spread(key = grid_size,
          value = occupancy_unc) %>%
-  rename("grid_100x100km_uncertainty" = "grid_100x100km")
+  rename("grid_1x1km_uncertainty" = "grid_1x1km")
 aoo_summary <- aoo_compare_tidy_sum %>%
-  inner_join(aoo_compare_tidy_randomize_sum)
+  inner_join(mode_unc_df) %>%
+  inner_join(aoo_compare_downscaling_sum %>%
+               select(-aoo_downscale)) %>%
+  inner_join(aoo_compare_tidy_randomize_sum) %>%
+  select(speciesKey, species, year, n_occs, mode_uncertainty, everything())
 aoo_summary
 ```
 
-Plot differences between different methods:
+Plot occupancy at 1x1km for the three different methods:
 
-```{r differences}
-ggplot(aoo_summary, 
-       aes(x = year, 
-           y = (grid_100x100km_uncertainty - grid_100x100km)/grid_100x100km*100)) + 
-  geom_col() +
-  facet_wrap(~ species) +
-  ylab("Relative increase in occupancy (%)") +
-  xlab("year") +
-  ggtitle("Occupancy: effect of taking into account uncertainty")
-```
-
-
-# Effect of grid cell on (Area of) Occupancy
-
-
-
-Find the minimum cell size for each species and year given the mode's uncertainty and the best one among the three cell sizes available:
-
-```{r add_right_size}
-mode_unc_df <- mode_unc_df %>%
-  mutate(minimum_right_size = mode_uncertainty * 2) %>%
-  rowwise() %>%
-  mutate(minimum_grid_size = 
-           sqrt(cell_sizes[which(cell_sizes > (minimum_right_size**2))[1]][[1]]))
-mode_unc_df
-```
-
-We can now select the species-year combinations with sufficiently fine occurrence data to be fitted in the grid with the desired cell size of 1x1km:
-
-```{r}
-exact_data_df <- mode_unc_df %>%
-  filter(minimum_grid_size == sqrt(cell_sizes[1][[1]]))
-exact_data_df
-```
-
-We plot the occupancy for this subset:
-
-We can now use the AOO at 1x1 km cell size of these species-year to evaluate other data at the same grain size:
-
-```{r plot_for_subset_exact}
-subset_use_all_sizes <- aoo_compare_tidy %>%
-         right_join((exact_data_df %>%
-                      select(species, speciesKey, year)), 
-                   by = c("species", "speciesKey", "year")) %>%
-         mutate(species_year = paste(species, year))
-ggplot(subset_use_all_sizes,
-         aes(x = log(cell_area), 
-             y = log(occupancy), 
-             color = species_year)) +
-    geom_point() +
-  geom_line() +
-  labs(x = "log(area)", y = "log(occupancy)")
-```
-
-We can see that no signs of saturation (horizonta line) or endemism (completely straight line) (see Azaele et al., 2012 and  `vignette("Upgraining", package = "downscale")`) occurs at the cell sizes under consideration.
-
-Although each species/year has a different occupancy, we can still see that the difference between (the logarithm of) occupancy at 10x10km cell size and 1x1km for this subset is quite similar:
-
-```{r ovreview_diff_10_minus_1}
-diff_10_1_df <- subset_use_all_sizes %>% 
-  filter(grid_size %in% c("grid_1x1km", "grid_10x10km")) %>%
-  select(-c(cell_area, aoo)) %>%
-  spread(key = grid_size, value = occupancy) %>%
-  group_by(species, speciesKey, species_year) %>%
-  mutate(log_diff_10_1 = log(grid_10x10km) - log(grid_1x1km))
-
-summary(diff_10_1_df$log_diff_10_1)
-```
-
-Or by species:
-
-```{r plot_diffs}
-map(unique(diff_10_1_df$species), function(x) {
-  diff_10_1_df %>%
-    filter(species == x) %>%
-    pull(log_diff_10_1) %>%
-    summary()
+```{r plot_occupancy_methods_together}
+occ_plot_summary <- map(species_df$species, function(x) {
+  ggplot(aoo_summary %>%
+           gather(key = "method",
+           value = "occupancy_1x1km",
+           grid_1x1km,
+           occupancy_downscale,
+           grid_1x1km_uncertainty) %>%
+           filter(species == x),
+         aes(x = year, 
+             y = occupancy_1x1km, 
+            color = method)) +
+    geom_col(position = "dodge",
+             aes(fill = occupancy_1x1km)) +
+    scale_fill_gradient(space = "Lab") +
+    ylab("1x1km_occupancy") +
+    xlab("year") +
+    ggtitle(paste("Occupancy at 1x1km resolution:", x))
 })
+occ_plot_summary  
 ```
 
-## 
+As expected, we can see how occupancy calculated applying downscaling or using uncertainty to assign occurrence coordinates is almost always higher than just using the coordinates. 
+
+Differences between occupancy calculated by downscaling and by using uncertainty are less prononunced. Occupancy calculated by downscaling seems in general higher if number of occurrences is lower than 1500:
+
+```{r diff_occ_vs_n_occs}
+ggplot(aoo_summary %>%
+         mutate(diff_downscale_unc = 
+                  occupancy_downscale - grid_1x1km_uncertainty)) + 
+       aes(x = n_occs,
+           y = diff_downscale_unc) +
+  geom_point() +
+  ylab("occupancy (downscaling) - occupancy (uncertainty)") +
+  xlab("number of occurrences)") +
+  ggtitle("Occupancy vs number of occurrences")
+```
+
+The relative difference in occupancy seems linearly dependent to the number of occurrences, especially if number of occurrences if sufficiently high (linear fit in graph below for `n_occs> 50`:
+
+```{r rel_diff_occ_vs_n_occs}
+aoo_summary_rel_diff <- aoo_summary %>%
+         mutate(diff_downscale_unc = 
+                  (occupancy_downscale - grid_1x1km_uncertainty)/occupancy_downscale)
+ggplot(aoo_summary_rel_diff, aes(n_occs, diff_downscale_unc)) +
+  geom_point() +
+  geom_smooth(data = aoo_summary_rel_diff %>%
+                filter(n_occs > 50), method = "lm") +
+  ylab("(occ(dws) - occ(unc))/occ(dws)") +
+  xlab("number of occurrences") +
+  ggtitle("Relative difference in occupancy vs number of occurrences")
+```
+
+The graph shows also the difficulties in calculating the right occupancy if number of occurrences is very low. Downscaling tends often to underestimate occupancy in such situations. And we have also to not forget that downscaling couldn't be applied for 
+
+We conclude this analysis showing that no relation between the coordinate (mode of) uncertainty and the relative differences seems to exist:
+
+```{r rel_diff_occ_vs_mode_unc}
+ggplot(aoo_summary %>%
+         mutate(diff_downscale_unc = 
+                  (occupancy_downscale - grid_1x1km_uncertainty)/occupancy_downscale) %>%
+         group_by(mode_uncertainty) %>%
+         summarize(mean_rel_diff = mean(diff_downscale_unc),
+                   N = n(),
+                sd = sd(diff_downscale_unc),
+               se = sd / sqrt(N))) + 
+       aes(x = mode_uncertainty,
+           y = mean_rel_diff) +
+  geom_point() +
+  geom_errorbar(aes(ymin=mean_rel_diff-sd, ymax=mean_rel_diff+sd),
+                  width=.2,
+                  position=position_dodge(.9)) +
+  ylab("(occ(dws) - occ(unc))/occ(dws)") +
+  xlab("uncertainty (mode) in meters") +
+  ggtitle("Relative difference in occupancy vs uncertainty")
+```
