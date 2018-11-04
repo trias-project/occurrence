@@ -246,7 +246,7 @@ occ_df <- occ_df %>%
   )
 ```
 
-Final overview of the most common coordinate uncertainty for each species and year, the _mode_:
+Overview of the most common coordinate uncertainty for each species and year, the _mode_:
 
 ```{r mode_coord_unc}
 calc_mode <- function(data) {
@@ -539,10 +539,10 @@ endemism_df <- map2_dfr(names(downscaling), downscaling,
                            return(endemic_df)
                          }
                        })
-endemism_df <- aoo_compare_tidy_sum %>%
-              select(-starts_with("grid")) %>% 
-  right_join(endemism_df) %>%
+endemism_df <- endemism_df %>%
   left_join(mode_unc_df) %>%
+  left_join(aoo_compare_tidy %>%
+              distinct(speciesKey, species, year, n_occs)) %>%
   arrange(desc(n_occs))
 endemism_df
 ```
