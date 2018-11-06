@@ -359,17 +359,17 @@ names(upgrain_species_year) <- str_c(species_year$scientificName,
                                      species_year$year, sep = "_")
 ```
 
-Select downscale models:
+We select the five simplest downscale models, which have been used in Groom at al. 2018 in order to form the so called _simple ensemble_: power law, Nachman, Poisson, logistic and negative binomial.
 
 ```{r models}
-models = c("Nachman", "PL", "Poisson", "Logis", "NB")
+models_simple_ensemble = c("Nachman", "PL", "Poisson", "Logis", "NB")
 ```
 
-and cell areas:
+and cell resolution 1x1km, 2x2km and 5x5km: 
 
 ```{r cell_areas}
-# 1 by 1, 2 by 2, 3 by 3, 4 by 4 km2
-areas <- c(10^6, 4*10^6, 9*10^6, 16*10^6)
+# 1x1km, 2x2, 5x5 
+areas <- c(10^6, 4*10^6, 25*10^6)
 ```
 
 
@@ -381,7 +381,7 @@ downscaling <- map(upgrain_species_year, ~ {
   progress_bar$tick()$print()
   ensemble.downscale(., 
                      new.areas = areas, 
-                     models = models,
+                     models = models_simple_ensemble,
                      verbose = FALSE,
                      plot = FALSE)
   })
