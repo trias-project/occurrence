@@ -2,7 +2,7 @@
 title: "Effects of grid size on (Area Of) Occupancy"
 author:
   - Damiano Oldoni
-date: "`Sys.Date()`"
+date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
