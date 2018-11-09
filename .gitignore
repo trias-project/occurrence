@@ -51,3 +51,4 @@ vignettes/*.pdf
 
 # all files extracted from compressed files (GBIF downloads)
 data/output/*/*
+data/interim/*
