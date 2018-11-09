@@ -13,7 +13,7 @@
 <meta name="author" content="Sander Devisscher" />
 <meta name="author" content="Stijn Vanhoey" />
 
-<meta name="date" content="2018-07-05" />
+<meta name="date" content="2018-11-09" />
 
 <title>Indicator: Cumulative number of alien species</title>
 
@@ -31,7 +31,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -100,6 +102,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -299,6 +304,9 @@ div.tocify {
     <li>
       <a href="indicator_pathways.html">Introduction pathways</a>
     </li>
+    <li>
+      <a href="grid_size_effect.html">Grid size effect</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -322,7 +330,7 @@ div.tocify {
 <h4 class="author"><em>Damiano Oldoni</em></h4>
 <h4 class="author"><em>Sander Devisscher</em></h4>
 <h4 class="author"><em>Stijn Vanhoey</em></h4>
-<h4 class="date"><em>2018-07-05</em></h4>
+<h4 class="date"><em>2018-11-09</em></h4>
 
 </div>
 
@@ -337,17 +345,13 @@ div.tocify {
 <pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
 <p>Load libraries:</p>
 <pre class="r"><code># Tidyverse packages
-library(tidyr)</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.4</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.4</code></pre>
-<pre class="r"><code>library(magrittr)
-library(stringr)</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.4.4</code></pre>
-<pre class="r"><code>library(readr)
-library(ggplot2)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
-<pre class="r"><code># GBIF related packages
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(stringr)
+library(readr)
+library(ggplot2)
+# GBIF related packages
 library(rgbif)
 # project package
 library(trias)
@@ -359,6 +363,7 @@ library(INBOtheme)</code></pre>
 <pre class="r"><code>library(assertthat)
 library(assertable)
 library(egg)</code></pre>
+<pre><code>## Warning: package &#39;egg&#39; was built under R version 3.4.4</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
@@ -483,7 +488,6 @@ indicator_total_year &lt;- function(df, start_year_plot = 1940,
 x_major_scale_stepsize &lt;- 25
 indicator_total_year(data, start_year_plot, x_major_scale_stepsize)</code></pre>
 <pre><code>## [1] &quot;All column names present&quot;</code></pre>
-<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
 <pre><code>## Warning in indicator_total_year(data, start_year_plot,
 ## x_major_scale_stepsize): Some records have no first_observedand are not
 ## taken into account.</code></pre>
