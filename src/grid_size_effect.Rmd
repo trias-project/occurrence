@@ -415,7 +415,7 @@ years <- aoo_compare_tidy %>%
 map(years, function(y) {
   ggplot(aoo_compare_tidy %>%
            filter(year == y), 
-       aes(x = log(cell_area), y = log(occupancy), fill = species)) +
+       aes(x = log(cell_area), y = log(occupancy), color = species)) +
     geom_point() + 
     geom_line() + 
     labs(x = "log(area)", y = "log(occupancy)") +
@@ -764,7 +764,7 @@ years <- aoo_compare_tidy_randomize %>%
 map(years, function(y) {
   ggplot(aoo_compare_tidy %>%
            filter(year == y), 
-       aes(x = log(cell_area), y = log(occupancy), fill = species)) +
+       aes(x = log(cell_area), y = log(occupancy), color = species)) +
     geom_point() + 
     geom_line() + 
     labs(x = "log(area)", y = "log(occupancy)") +
