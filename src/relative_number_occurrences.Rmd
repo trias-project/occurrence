@@ -1,0 +1,286 @@
+---
+title: "Calculate relative number of occurrences"
+author:
+  - Damiano Oldoni
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r load_libs}
+library(tidyverse)
+library(purrr)
+library(lubridate)
+library(rgbif)
+```
+
+# Goal
+
+The relative number of occurrences is the ration between the number of occurrences of a certain species and the number of occurrences of its relative higher ranks. 
+
+In this document we focus on calculating the relatie number of occurrences related to some alien species related to the families they belong to.
+
+# Define taxa under study
+
+We focus on these alien species:
+
+```{r define_taxa}
+species_df <- data.frame(
+  species = c(
+    "Baccharis halimifolia",
+    "Impatiens glandulifera",
+    "Impatiens capensis",
+    "Hydrocotyle ranunculoides",
+    "Branta canadensis",
+    "Harmonia axyridis"
+    ),
+  speciesKey = c(
+    3129663,
+    2891770,
+    2891774,
+    7978544,
+    5232437,
+    4989904
+    ),
+  family = c(
+    "Asteraceae",
+    "Balsaminaceae",
+    "Balsaminaceae",
+    "Apiaceae",
+    "Anatidae",
+    "Coccinellidae"
+  ),
+  familyKey = c(
+    3065, # Asteraceae
+    6699, # Balsaminaceae
+    6699, # Balsaminaceae
+    6720, # Apiaceae
+    2986, # Anatidae
+    7782 # Coccinellidae
+  ),
+  kingdom = c(
+    "Plantae",
+    "Plantae",
+    "Plantae",
+    "Plantae",
+    "Animalia",
+    "Animalia"
+  ),
+  stringsAsFactors = FALSE
+) %>%
+  as_tibble()
+species_df
+```
+
+The number of occurrences are retrieved by GBIF facets without teiggering any download. In this way, we don't have to work with very large files.
+
+# Get number of occurrences
+
+## Parameters
+
+We are interested to occurrences in Belgium:
+
+```{r country}
+country <- "BE"
+```
+
+We compare occurrences of the species to their corresponding families:
+
+```{r higher_rank}
+higher_rank <- "family"
+higher_rank_key <- paste0(higher_rank,
+                          "Key")
+```
+
+We exclude occurrences which are not `HUMAN_OBSERVATION` or `PRESERVED_SPECIMEN`:
+
+```{r basisOfRecords}
+basisOfRecord <- c("HUMAN_OBSERVATION", "PRESERVED_SPECIMEN")
+```
+
+We don't consider vbalid occurrences without geographic coordinates:
+
+```{r hasCoordinate}
+hasCoordinate <- TRUE
+```
+
+We take into account the following years:
+
+```{r year}
+start_year <- 1960
+end_year <- lubridate::year(Sys.Date())
+year <- c(start_year : end_year)
+```
+
+## Retrieve number of occurrences for taxa
+
+Get number of occurrences by using `facets` option of `occ_search()`, a function of `rgbif`package.
+
+First we set facet to species level:
+
+```{r facet}
+facet <- "speciesKey"
+```
+
+Then we define all possible combinations of parameters we need to retrieve number of occurrences for:
+
+```{r combinations_params}
+key <- 
+  species_df %>%
+  pull(speciesKey)
+
+inputs <- crossing(key, year, basisOfRecord, country)
+inputs
+```
+
+We retrieve information from GBIF:
+
+```{r get_n_occs_species}
+progress_bar <- progress_estimated(nrow(inputs))
+counts_taxa <- pmap_dfr(inputs, 
+  function(key, year, basisOfRecord, country) {
+    progress_bar$tick()$print()
+    df_facet <- occ_search(
+      year = year,
+      taxonKey = key,
+      basisOfRecord = basisOfRecord,
+      country = country,
+      facet = facet,
+      hasCoordinate = TRUE,
+      limit = 0,
+      return = "facets",
+      curlopts = list(verbose = TRUE)
+    )$facets[[facet]]
+    if (!is.null(df_facet)) {
+      df_facet <-
+        df_facet %>%
+        mutate(year = c(year),
+               basisOfRecord = c(basisOfRecord))
+  }
+  return(df_facet)
+})
+counts_taxa <-
+  counts_taxa %>%
+  rename(!!facet := name)
+counts_taxa
+```
+
+## Retrieve number of occurrences for higher rank
+
+We retrieve now the number of occurrences related to corresponding families. 
+
+As before, we define the facet. This time it is at higher rank than species. We defined it at the beginning that we will work at family level:
+
+```{r}
+facet <- higher_rank_key
+facet
+```
+
+Then, we generate all combinations of parameters:
+
+```{r combinations_params_higher_rank}
+key <- 
+  species_df %>%
+  pull(!!higher_rank_key)
+
+inputs_higher_rank <- crossing(key, year, basisOfRecord, country)
+inputs_higher_rank
+```
+
+We retrieve the counts from GBIF:
+
+```{r get_n_occs_family}
+progress_bar <- progress_estimated(nrow(inputs_higher_rank))
+counts_higher <- pmap_dfr(inputs_higher_rank, function(key, year, basisOfRecord, country) {
+  progress_bar$tick()$print()
+  df_facet <- occ_search(
+    year = year,
+    taxonKey = key,
+    basisOfRecord = basisOfRecord,
+    country = country,
+    facet = facet,
+    hasCoordinate = TRUE,
+    limit = 0,
+    return = "facets",
+    curlopts = list(verbose = TRUE)
+  )$facets[[facet]]
+  if (!is.null(df_facet)) {
+    df_facet <-
+      df_facet %>%
+      mutate(year = c(year),
+             basisOfRecord = c(basisOfRecord))
+  }
+  return(df_facet)
+})
+counts_higher <-
+  counts_higher %>%
+  rename(!!facet := name)
+counts_higher
+```
+
+# Relative number of occurrences
+
+## Summarize information
+
+We can now summarize information from multiple `basisOfRecords`. We do it at species level:
+
+```{r summarize_species}
+counts_species_sum <- counts_species %>%
+  group_by(year, speciesKey) %>%
+  summarize(n = sum(count)) %>%
+  mutate(speciesKey = as.integer(speciesKey))
+counts_species_sum
+```
+
+And at higher rank (family) level:
+
+```{r summarize_higher}
+counts_higher_sum <- counts_higher %>%
+  group_by_(quo(year), higher_rank_key) %>%
+  summarize(n_higher = sum(count))
+class(counts_higher_sum[[higher_rank_key]]) <- "integer"
+counts_higher_sum
+```
+
+## Calculation of relative number of occurrences 
+
+The relative number of occurrences is the ratio between the number of occurrences at species level and at higher rank. We add such information as a new column called `rel_n`:
+
+```{r rel_num_occ}
+rel_counts <- 
+  counts_higher_sum %>%
+  left_join(species_df,
+            by = c(higher_rank_key)) %>%
+  left_join(counts_species,
+             by = c("year",
+                    "speciesKey")) %>%
+  mutate(n = ifelse(is.na(n), 0, n)) %>%
+  mutate(rel_n = n/n_higher)
+```
+
+## Visualization
+
+Plot the relative number of occurrences for all species:
+
+```{r plot_rel_n}
+map(species_df$species, function(s) {
+  ggplot(rel_counts %>%
+           filter(species == s)) +
+    geom_point(aes(x = year,
+                 y = rel_n)) +
+    ggtitle(s)
+})
+```
+
