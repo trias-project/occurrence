@@ -1,0 +1,206 @@
+---
+title: "Testing segmented regression for the analysis of occurence time series"
+author:
+  - Toon Van Daele Damiano Oldoni
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+  
+# Goal 
+
+This document is a test with the segmented regression technique for the analysis of time series of occurence data.
+
+## segmented regression paper (on deseases)
+
+blabla
+
+## segmented package R
+
+blabla
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+  
+```{r load_libraries}
+library(tidyverse)
+library(pander)
+library(segmented)
+```
+
+```{r define functions}
+# segm_regr = apply a simple regression and try adding 1 or 2 
+# break points.
+# df_r = data frame with time series data
+# 
+segm_regr <- function(df_r){    
+  cat(spec, " - ", i, " - ", max(df_r$year), "\n")  
+  df_r$nyear <- scale(df_r$year)
+  lm <- lm(aantal ~ nyear, data = df_r)
+    
+  # linear model
+  msm  <- c(lm$coefficients[2], confint(lm)[2,],
+            lm$coefficients[1], min(df_r$nyear))
+  msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
+    
+  if (nrow(df_r) > 10){
+
+    #Try one break point
+    try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, 
+                            control = seg.control(stop.if.error = TRUE))
+      msm <- slope(lm_s1)[[1]][,c(1, 4, 5)] 
+      msm <- cbind(msm,intercept(lm_s1)[[1]][,1])
+      msm <- cbind(msm, c(min(df_r$nyear), lm_s1$psi[,2]))
+      msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
+    }, silent = FALSE)}
+    
+    
+  if (nrow(df_r) > 25){
+    # Try two break points    
+    try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, psi = NA,
+                            control = seg.control(seed = 31, K = 2,
+                                                  stop.if.error = TRUE))
+      
+      msm <- slope(lm_s1)[[1]][,c(1, 4, 5)] 
+      msm <- cbind(msm,intercept(lm_s1)[[1]][,1])
+      msm <- cbind(msm, c(min(df_r$nyear), lm_s1$psi[,2]))
+      msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
+    }, silent = FALSE)
+  }
+}
+
+#plot_sr - ggplot plot object segmented regression
+# msm 
+# df_r
+# minyear
+# maxyear
+# maxaantal
+# spec
+
+plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, spec){
+
+  sls <- sign(msm[,2]) == sign(msm[,3])
+
+  g <- ggplot(df_r, aes(x = year, y = aantal)) + geom_point()
+
+  for (i in 1:(nrow(msm) - 1)) {
+    sgm_xb <- msm[i, 5]
+    sgm_xe <- msm[i + 1, 5]
+    sgm_yb <- msm[i, 4] + sgm_xb * msm[i,1]
+    sgm_ye <- sgm_yb + msm[i,1] * (sgm_xe - sgm_xb)
+
+    if (sls[i] == TRUE){mycol = "red"}else{mycol = "green"}
+    xb <- sgm_xb * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
+    xe <- sgm_xe * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
+    g <- g + geom_segment(x = xb, y = sgm_yb, xend = xe, yend = sgm_ye, colour = mycol)
+  }
+
+    coord_cartesian(xlim = c(minyear, maxyear), ylim = c(0, maxaantal)) +
+    ggtitle(spec)
+
+  ggsave(filename = paste0(spec, "_", max(df_r$year), ".png"), plot = g)
+
+}
+```
+
+# Load data
+
+```{r load data}
+filename <- "../data/interim/segmented_regression_test_2018_12_06.RDS"
+df <- readRDS(filename)
+```
+
+filename: 'r filename'
+
+```{r}
+pandoc.table (summary(df))
+```
+
+List of species for the analysis:
+
+```{r}
+speclist <- unique(df$species)
+pandoc.table(speclist)
+```
+
+Plot of raw time series as it's downloaded from GBIF
+
+```{r raw_time_series}
+df %>%
+  group_by(species, year) %>%
+  summarize(aantal = n()) %>%
+  ggplot(aes(x = year, y = aantal)) + geom_line(color = "dark grey") + geom_point() + 
+  facet_wrap(~species, scales = "free")
+```
+
+
+We do some minor cleaning:
+- Data from the last two years (2017 & 2018) are not complete. Probably due to the delay between  observation and the GBIF database. We'll have to think about how to handle this. for now we ignore the data from 2017 and 2018.
+- The single data point in 1905 is not useful. We only consider data after 1980.
+
+```{r data cleaning}
+df <- filter(df, year > 1980 & year < 2017) %>%
+    group_by(species, year) %>%
+    summarize(aantal = n())
+df$em <- "unkown"
+
+df %>%
+  group_by(species) %>%
+  ggplot(aes(x = year, y = aantal)) + geom_line(color = "dark grey") + geom_point() +
+  facet_wrap(~species, scales = "free")
+```
+
+# Run the segmented regression algoritm
+
+for each species and for increasing time series
+
+```{r}
+#loop through all species in speclist
+for (spec in speclist){
+  # select the species  
+  df_s <- filter(df, species == spec)
+
+  # Some info needed to assure all plots for one species are the same size
+  maxyear <- max(df_s$year)
+  minyear <- min(df_s$year)
+  maxaantal <- max(df_s$aantal)
+  
+  # Create an increasing time series starting from three data points
+  # (when to start is to be decided)
+  for (i in 3:nrow(df_s)){
+  
+    df_r <- top_n(df_s, -i, year)
+      
+    plot_sr(msm, df_r, minyear, maxyear, maxaantal, spec)
+    sls <- sign(slope(lm_s1)[[1]][,4]) == sign(slope(lm_s1)[[1]][,5])
+    df[df$year == max(df_r$year) & df$species == spec, "em"] <- sls[length(sls)]
+    
+  }
+}
+```
+
+## Result plot
+
+The color of the dot indicates how the latest segment is evaluated (emerging or not emerging) for a time series up till this dot.
+
+```{r plot_results}
+group.colors <- c("TRUE" = "red", "FALSE" = "green", "unkown" = "black")
+
+df %>%
+  group_by(species) %>%
+  ggplot(aes(x = year, y = aantal)) + geom_line(color = "dark grey") + 
+  geom_point(aes(group = em, colour = em)) + 
+  scale_color_manual(values = group.colors) +
+  facet_wrap(~species, scales = "free")
+```
+
+
