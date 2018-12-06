@@ -44,7 +44,7 @@ library(segmented)
 #
 # '@param data.frame data frame with time series data
 # '@return matrix matrix with slopes for each break point. Columns: slope,
-# lower ci, upper ci, intercept, slope positive.
+# lower ci, upper ci, intercept
 segm_regr <- function(df_r){    
   cat(spec, " - ", min(df_r$year), " -> ", max(df_r$year), "\n")  
   lm <- lm(aantal ~ nyear, data = df_r)
@@ -81,16 +81,17 @@ segm_regr <- function(df_r){
   return(msm)
 }
 
-#plot_sr - ggplot plot object segmented regression
-# msm 
-# df_r
-# minyear
-# maxyear
-# maxaantal
-# spec
+# 'ggplot plot object segmented regression
+# '
+# '@param msm output from segm_regr
+# '@param df_r time series data
+# '@param minyear minimum x value
+# '@param maxyear maximum x value
+# '@param maxaantal maximum y value
 
-plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, spec){
+plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal){
 
+  spec <- as.character(df_r[1,1])
   g <- ggplot(df_r, aes(x = year, y = aantal)) + geom_point()
 
   for (i in 1:(nrow(msm) - 1)) {
@@ -183,7 +184,7 @@ for (spec in speclist) {
     df_r$nyear <- scale(df_r$year)
     msm <- segm_regr(df_r)
     
-    #plot_sr(msm, df_r, minyear, maxyear, maxaantal, spec)
+    plot_sr(msm, df_r, minyear, maxyear, maxaantal)
     
     df[df$year == max(df_r$year) & df$species == spec, "em"] <- sign(msm[nrow(msm) - 1,2])
   }
