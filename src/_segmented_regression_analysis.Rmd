@@ -9,6 +9,8 @@ output:
     toc_depth: 3
     toc_float: true
     number_sections: true
+    df_print: paged
+    theme: yeti
 ---
   
 # Goal 
@@ -17,11 +19,11 @@ This document is a test with the segmented regression technique for the analysis
 
 ## segmented regression paper (on deseases)
 
-blabla
+Funk, S., et al. (2013). "Quantifying Trends in Disease Impact to Produce a Consistent and Reproducible Definition of an Emerging Infectious Disease." Plos One 8(8).
 
 ## segmented package R
 
-blabla
+We use the the segmented function from the package with the same name.
 
 # Setup
 
@@ -38,13 +40,13 @@ library(segmented)
 ```
 
 ```{r define functions}
-# segm_regr = apply a simple regression and try adding 1 or 2 
-# break points.
-# df_r = data frame with time series data
-# 
+# 'Apply a simple regression and try adding 1 or 2 break points.
+#
+# '@param data.frame data frame with time series data
+# '@return matrix matrix with slopes for each break point. Columns: slope,
+# lower ci, upper ci, intercept, slope positive.
 segm_regr <- function(df_r){    
-  cat(spec, " - ", i, " - ", max(df_r$year), "\n")  
-  df_r$nyear <- scale(df_r$year)
+  cat(spec, " - ", min(df_r$year), " -> ", max(df_r$year), "\n")  
   lm <- lm(aantal ~ nyear, data = df_r)
     
   # linear model
@@ -52,7 +54,7 @@ segm_regr <- function(df_r){
             lm$coefficients[1], min(df_r$nyear))
   msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
     
-  if (nrow(df_r) > 10){
+  if (nrow(df_r) > 6) {
 
     #Try one break point
     try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, 
@@ -64,7 +66,7 @@ segm_regr <- function(df_r){
     }, silent = FALSE)}
     
     
-  if (nrow(df_r) > 25){
+  if (nrow(df_r) > 20) {
     # Try two break points    
     try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, psi = NA,
                             control = seg.control(seed = 31, K = 2,
@@ -76,6 +78,7 @@ segm_regr <- function(df_r){
       msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
     }, silent = FALSE)
   }
+  return(msm)
 }
 
 #plot_sr - ggplot plot object segmented regression
@@ -88,8 +91,6 @@ segm_regr <- function(df_r){
 
 plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, spec){
 
-  sls <- sign(msm[,2]) == sign(msm[,3])
-
   g <- ggplot(df_r, aes(x = year, y = aantal)) + geom_point()
 
   for (i in 1:(nrow(msm) - 1)) {
@@ -98,16 +99,16 @@ plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, spec){
     sgm_yb <- msm[i, 4] + sgm_xb * msm[i,1]
     sgm_ye <- sgm_yb + msm[i,1] * (sgm_xe - sgm_xb)
 
-    if (sls[i] == TRUE){mycol = "red"}else{mycol = "green"}
+    if (msm[i,2] > 0) {mycol = "red"}else{mycol = "green"}
     xb <- sgm_xb * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
     xe <- sgm_xe * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
     g <- g + geom_segment(x = xb, y = sgm_yb, xend = xe, yend = sgm_ye, colour = mycol)
   }
 
-    coord_cartesian(xlim = c(minyear, maxyear), ylim = c(0, maxaantal)) +
+  g <- g + coord_cartesian(xlim = c(minyear, maxyear), ylim = c(0, maxaantal)) +
     ggtitle(spec)
 
-  ggsave(filename = paste0(spec, "_", max(df_r$year), ".png"), plot = g)
+  ggsave(filename = paste0("../figures/spec_", spec, "_", max(df_r$year), ".png"), plot = g)
 
 }
 ```
@@ -115,19 +116,19 @@ plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, spec){
 # Load data
 
 ```{r load data}
-filename <- "../data/interim/segmented_regression_test_2018_12_06.RDS"
+filename <- "../data/input/segmented_regression_test_2018_12_06.RDS"
 df <- readRDS(filename)
 ```
 
-filename: 'r filename'
+filename: `r filename`
 
-```{r}
-pandoc.table (summary(df))
+```{r summary, results='asis'}
+pandoc.table(summary(df))
 ```
 
 List of species for the analysis:
 
-```{r}
+```{r specieslist, results='asis'}
 speclist <- unique(df$species)
 pandoc.table(speclist)
 ```
@@ -165,7 +166,7 @@ for each species and for increasing time series
 
 ```{r}
 #loop through all species in speclist
-for (spec in speclist){
+for (spec in speclist) {
   # select the species  
   df_s <- filter(df, species == spec)
 
@@ -176,14 +177,15 @@ for (spec in speclist){
   
   # Create an increasing time series starting from three data points
   # (when to start is to be decided)
-  for (i in 3:nrow(df_s)){
+  for (i in 3:nrow(df_s)) {
   
     df_r <- top_n(df_s, -i, year)
-      
-    plot_sr(msm, df_r, minyear, maxyear, maxaantal, spec)
-    sls <- sign(slope(lm_s1)[[1]][,4]) == sign(slope(lm_s1)[[1]][,5])
-    df[df$year == max(df_r$year) & df$species == spec, "em"] <- sls[length(sls)]
+    df_r$nyear <- scale(df_r$year)
+    msm <- segm_regr(df_r)
     
+    #plot_sr(msm, df_r, minyear, maxyear, maxaantal, spec)
+    
+    df[df$year == max(df_r$year) & df$species == spec, "em"] <- sign(msm[nrow(msm) - 1,2])
   }
 }
 ```
@@ -193,7 +195,7 @@ for (spec in speclist){
 The color of the dot indicates how the latest segment is evaluated (emerging or not emerging) for a time series up till this dot.
 
 ```{r plot_results}
-group.colors <- c("TRUE" = "red", "FALSE" = "green", "unkown" = "black")
+group.colors <- c("1" = "red", "0" = "green", "-1" = "green", "unkown" = "black")
 
 df %>%
   group_by(species) %>%
