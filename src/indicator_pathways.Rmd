@@ -287,5 +287,5 @@ if ("`Not Chordata`" %in% categories_eu_concern$category) {
            background = "#faf0e6") %>%
   kable_styling() %>%
   scroll_box(width = "100%", height = "10cm")
-} # CHECK!!!! No table output!!
+}
 ```
