@@ -37,49 +37,52 @@ Load libraries:
 library(tidyverse)
 library(pander)
 library(segmented)
+library(strucchange)
+library(MASS)
 ```
 
 ```{r define functions}
-# 'Apply a simple regression and try adding 1 or 2 break points.
+# 'Apply a simple regression and try adding break points.
 #
-# '@param data.frame data frame with time series data
+# '@param df_r data.frame data frame with time series data
 # '@return matrix matrix with slopes for each break point. Columns: slope,
 # lower ci, upper ci, intercept
-segm_regr <- function(df_r){    
-  cat(spec, " - ", min(df_r$year), " -> ", max(df_r$year), "\n")  
+segm_regr <- function(df_r){
+  cat(spec, " - ", min(df_r$year), " -> ", max(df_r$year), "\n")
+
+  # glm no breakpoints
   lm <- lm(aantal ~ nyear, data = df_r)
-    
-  # linear model
+  #lm <- glm(aantal ~ nyear, family = poisson, data = df_r)
+  #lm <- glm.nb(aantal ~ nyear, data = df_r)
+
   msm  <- c(lm$coefficients[2], confint(lm)[2,],
             lm$coefficients[1], min(df_r$nyear))
   msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
-    
-  if (nrow(df_r) > 6) {
 
-    #Try one break point
-    try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, 
-                            control = seg.control(stop.if.error = TRUE))
-      msm <- slope(lm_s1)[[1]][,c(1, 4, 5)] 
-      msm <- cbind(msm,intercept(lm_s1)[[1]][,1])
-      msm <- cbind(msm, c(min(df_r$nyear), lm_s1$psi[,2]))
-      msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
-    }, silent = FALSE)}
-    
-    
-  if (nrow(df_r) > 20) {
-    # Try two break points    
-    try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, psi = NA,
-                            control = seg.control(seed = 31, K = 2,
-                                                  stop.if.error = TRUE))
-      
-      msm <- slope(lm_s1)[[1]][,c(1, 4, 5)] 
-      msm <- cbind(msm,intercept(lm_s1)[[1]][,1])
-      msm <- cbind(msm, c(min(df_r$nyear), lm_s1$psi[,2]))
-      msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
+  if (nrow(df_r) > 6) {
+    myts <- ts(df_r$aantal, start = min(df_r$year), end = max(df_r$year))
+    try({bp <- breakpoints(myts ~ 1, h = 4)
+      bpy <- df_r$nyear[bp$breakpoints]
+
+      if (length(bpy) > 0 ){
+        for (bpi in 1:length(bpy)){
+          #Try to fit with breakpoints
+          try({lm_s1 <- segmented(obj = lm, seg.Z = ~nyear, psi = bpy[1:bpi],
+                                  control = seg.control(seed = 31, K = bpi,
+                                                        stop.if.error = TRUE))
+
+            msm <- slope(lm_s1)[[1]][,c(1, 4, 5)]
+            msm <- cbind(msm,intercept(lm_s1)[[1]][,1])
+            msm <- cbind(msm, c(min(df_r$nyear), lm_s1$psi[,2]))
+            msm <- rbind(msm, c(rep(NA, 4), max(df_r$nyear)))
+          }, silent = FALSE)
+        }
+      }
     }, silent = FALSE)
   }
   return(msm)
 }
+
 
 # 'ggplot plot object segmented regression
 # '
@@ -88,10 +91,14 @@ segm_regr <- function(df_r){
 # '@param minyear minimum x value
 # '@param maxyear maximum x value
 # '@param maxaantal maximum y value
+# '@param printplot boolean print plot to screen 
 
-plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal){
+plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal, printplot = FALSE){
 
-  spec <- as.character(df_r[1,1])
+  spec <- as.character(df_r[1,"species"])
+  l_year <- max(df_r$year)
+  l_aantal <- df_r[df_r$year == l_year, "aantal"]
+
   g <- ggplot(df_r, aes(x = year, y = aantal)) + geom_point()
 
   for (i in 1:(nrow(msm) - 1)) {
@@ -103,13 +110,14 @@ plot_sr <- function(msm, df_r, minyear, maxyear, maxaantal){
     if (msm[i,2] > 0) {mycol = "red"}else{mycol = "green"}
     xb <- sgm_xb * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
     xe <- sgm_xe * attr(df_r$nyear, 'scaled:scale') + attr(df_r$nyear, 'scaled:center')
-    g <- g + geom_segment(x = xb, y = sgm_yb, xend = xe, yend = sgm_ye, colour = mycol)
+    g <- g + geom_segment(x = xb, y = exp(sgm_yb), xend = xe, yend = exp(sgm_ye), colour = mycol)
   }
 
   g <- g + coord_cartesian(xlim = c(minyear, maxyear), ylim = c(0, maxaantal)) +
-    ggtitle(spec)
+    ggtitle(paste0(spec, "_", l_year, "_", l_aantal))
 
-  ggsave(filename = paste0("../figures/spec_", spec, "_", max(df_r$year), ".png"), plot = g)
+  ggsave(filename = paste0("spec_", spec, "_", l_year, ".png"), plot = g)
+  if (printplot == TRUE) plot(g)
 
 }
 ```
@@ -148,11 +156,15 @@ df %>%
 We do some minor cleaning:
 - Data from the last two years (2017 & 2018) are not complete. Probably due to the delay between  observation and the GBIF database. We'll have to think about how to handle this. for now we ignore the data from 2017 and 2018.
 - The single data point in 1905 is not useful. We only consider data after 1980.
+- no observation (NA) should be 0. (no distinction between NA and 0 observations)
 
 ```{r data cleaning}
 df <- filter(df, year > 1980 & year < 2017) %>%
     group_by(species, year) %>%
-    summarize(aantal = n())
+    summarize(aantal = n()) %>%
+    spread(key = species, value = aantal) %>%
+    gather(key = species, value = aantal, -year) %>%
+    mutate_all(funs(replace(., is.na(.), 0)))
 df$em <- "unkown"
 
 df %>%
