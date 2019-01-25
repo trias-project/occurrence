@@ -279,7 +279,7 @@ if ("Chordata" %in% categories_eu_concern$category) {
 ### Not Chordata
 
 ```{r eu_concern_not_chordata}
-if ("`Not Chordata`" %in% categories_eu_concern$category) {
+if ("Not Chordata" %in% categories_eu_concern$category) {
   kable(tables_eu_concern$`Not Chordata`) %>% 
     row_spec(which(tables_eu_concern$`Not Chordata`$pathway_level1 == "release"), 
            background = "white") %>%
@@ -288,4 +288,5 @@ if ("`Not Chordata`" %in% categories_eu_concern$category) {
   kable_styling() %>%
   scroll_box(width = "100%", height = "10cm")
 }
+```
 ```
