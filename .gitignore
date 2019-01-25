@@ -18,6 +18,9 @@
 .Rproj.user/
 .Rproj.user
 
+# SQLite databases
+**/*.db
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
@@ -28,6 +31,9 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 /*_cache/
 /cache/
+src/*_cache/
+src/*_files/
+
 
 # Temporary files created by R markdown
 *.utf8.md
@@ -48,3 +54,4 @@ vignettes/*.pdf
 
 # all files extracted from compressed files (GBIF downloads)
 data/output/*/*
+data/interim/*

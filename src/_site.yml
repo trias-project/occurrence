@@ -13,6 +13,8 @@ navbar:
         href: indicator_cumulative_number.html
       - text: "Introduction pathways"
         href: indicator_pathways.html
+      - text: "Grid size effect"
+        href: grid_size_effect.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/trias-project/pipeline
