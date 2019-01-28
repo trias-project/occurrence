@@ -33,28 +33,14 @@ Load libraries:
 
 ```{r load_libraries}
 # Tidyverse packages
-library(tidyr)
-library(dplyr)
-library(magrittr)
-library(stringr)
 library(readr)
-library(ggplot2)
-# GBIF related packages
-library(rgbif)
 # project package
 library(trias)
-#other pckages
-library(lazyeval)
-library(INBOtheme)
-library(assertthat)
-library(assertable)
-library(egg)
 ```
 
 # Get data
 
 ```{r save_data_output}
-# Get data
 data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
@@ -62,23 +48,22 @@ data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
 
 We use function `indicator_total_year()` from `trias` library.
 
-We show facetted data by kingdom:
+```{r fig.width=10, fig.height=15, results = "hide"}
+indicator_total_year(data, facet_column = NULL)
+```
+
+We can facet data by kingdom:
 
 ```{r facet_column}
 facet_column = "kingdom"
 ```
 
-```{r fig.width=10, fig.height=15}
-start_year_plot <- 1920
-x_major_scale_stepsize <- 25
-x_minor_scale_stepsize <- 12.5
+Show facetted data:
 
-indicator_total_year(data, facet_column = facet_column)
+```{r fig.width=10, fig.height=5, results = "hide"}
+indicator_total_year(data, 
+                     start_year_plot = 1920, 
+                     x_major_scale_stepsize =  25, 
+                     x_minor_scale_stepsize = 12.5,
+                     facet_column = facet_column)
 ```
-
-Version without facets:
-
-```{r fig.width=10, fig.height=5}
-indicator_total_year(data, start_year_plot, x_major_scale_stepsize)
-```
-

@@ -26,8 +26,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 Install `trias` package:
 
-```{r install_packages, eval=FALSE}
-devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
+```{r install_packages, eval=TRUE}
+devtools::install_github("trias-project/trias")
 ```
 
 Load libraries:
@@ -60,7 +60,9 @@ data <- read_tsv(data_file)
 
 We divide the species in categories. Each kingdom, except _Animalia_, is a category. If animal species are present, they are separated in two categories: vertebrates (phylum `Chordata`) and invertebrates (phylum other than `Chordata`, defined as `Not Chordata`).
 
-```{r find_categories_in_data}
+Categories present in our checklist data:
+
+```{r find_categories_in_data, echo=FALSE}
 categories <- data %>% distinct(kingdom) %>%
   rename(category = kingdom)
 if ("Animalia" %in% categories$category) {
@@ -71,7 +73,7 @@ if ("Animalia" %in% categories$category) {
   }
   if (data %>% 
       filter(kingdom == "Animalia") %>%
-      filter(! phylum == "Chordata") %>%
+      filter(!phylum == "Chordata") %>%
       distinct(phylum) %>% nrow() > 0) {
     categories <- categories %>%
       bind_rows(data.frame(category = "Not Chordata",
@@ -82,34 +84,36 @@ if ("Animalia" %in% categories$category) {
       filter(category != "Animalia")
   }
 }
+categories
 ```
-
 
 ## Pathways associated with alien species introductions
 
-Function `get_table_pathways()` from `trias` library is used for creating a table based on checklist data, chosen species category and number of species returned as example per each pathway modality.
+Function `get_table_pathways()` from `trias` library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided. 
+
 Number of species returned in table as examples of the group:
 
 ```{r set_n_species}
 n_species <- 5
 ```
 
-Pathways tables
+Create tables:
 
-```{r make_tables_all_data}
-tables <- map(categories$category, ~ get_table_pathways(data, ., n_species))
+```{r make_tables_all_data, results="hide"}
+tables <- map(categories$category, ~ 
+                get_table_pathways(data, category = ., n_species = n_species))
 names(tables) <- categories$category
 ```
 
 ## Pathways per category
 
-Intentionality of introduction is mapped by cell color background: white for intentional introduction, grey for unintentional introduction.
+Intentionality of introduction is mapped by cell color background: white for intentional introduction (`release`), light orange for unintentional introduction.
 
 ### Plantae
 
-Pathways for Plantae:
+Pathways associated to plants (category `Plantae`):
 
-```{r view_tables, echo = FALSE, 'asis' = TRUE}
+```{r view_tables, echo = FALSE}
 if ("Plantae" %in% categories$category) {
   kable(tables$Plantae) %>% 
     row_spec(which(tables$Plantae$pathway_level1 == "release"), 
@@ -123,7 +127,7 @@ if ("Plantae" %in% categories$category) {
 
 ### Vertebrates
 
-Pathways for vertebrates:
+Pathways associated to vertebrates (category `Chordata`):
 
 ```{r view_table_Chordata, echo = FALSE}
 if ("Chordata" %in% categories$category) {
@@ -139,7 +143,7 @@ if ("Chordata" %in% categories$category) {
 
 ### Invertebrates
 
-Pathways for invertebrates:
+Pathways associated to invertebrates (category `Not Chordata`):
 
 ```{r view_table_NotChordata, echo = FALSE}
 if ("Not Chordata" %in% categories$category) {
@@ -155,7 +159,7 @@ if ("Not Chordata" %in% categories$category) {
 
 ### Fungi
 
-Pathways for Fungi:
+Pathways associated to fungi (category `Fungi`):
 
 ```{r view_table_Fungi, echo = FALSE}
 if ("Fungi" %in% categories$category) {
@@ -171,7 +175,7 @@ if ("Fungi" %in% categories$category) {
 
 ### Bacteria
 
-Pathways for Bacteria:
+Pathways associated to bacteria (category `Bacteria`):
 
 ```{r view_table_Bacteria, echo = FALSE}
 if ("Bacteria" %in% categories$category) {
@@ -189,7 +193,7 @@ Add sections for other kingdoms if needed.
 
 ## Pathways related to policy relevant species
 
-It is important to focus our attention also to a intercategory group of species which is of particular policy importance.
+It is important to focus our attention also to a intercategory group of species which is of particular policy importance: the *List of Invasive Alien Species of Union concern* (see more info about [here](http://ec.europa.eu/environment/nature/invasivealien/list/index_en.htm)).
 
 We import this list of species:
 
@@ -198,15 +202,15 @@ eu_concern_file <- here("data","input", "eu_concern_species.tsv")
 eu_concern_species <- read_tsv(eu_concern_file)
 ```
 
-Check which species form this subgroup are not present in `data`:
+Check which species from this subgroup are not present in `data`:
 
 ```{r check_presence_eu_species}
 eu_concern_species %>% filter(!backbone_taxonKey %in% data$nubKey)
 ```
 
-Present categories:
+Categories present in this subgroup:
 
-```{r categories_eu_concern}
+```{r categories_eu_concern, echo = FALSE}
 categories_eu_concern <- data %>%
   filter(nubKey %in% eu_concern_species$backbone_taxonKey) %>%
   distinct(kingdom) %>%
@@ -230,27 +234,24 @@ if ("Animalia" %in% categories_eu_concern$category) {
       filter(category != "Animalia")
   }
 }
-```
-
-Categories present in this subgroup:
-
-```{r}
 categories_eu_concern
 ```
 
-Pathways tables:
+Create tables:
 
-```{r make_tables_eu_concern}
+```{r make_tables_eu_concern, results = "hide"}
 tables_eu_concern <- map(categories_eu_concern$category, ~ 
   get_table_pathways(data %>%
                        filter(nubKey %in% eu_concern_species$backbone_taxonKey), 
-                     ., n_species))
+                     category = ., n_species = n_species))
 names(tables_eu_concern) <- categories_eu_concern$category
 ```
 
 ### Plantae
 
-```{r eu_concern_plantae}
+Pathways associated to plants (category `Plantae`):
+
+```{r eu_concern_plantae, echo = FALSE}
 if ("Plantae" %in% categories_eu_concern$category) {
   kable(tables_eu_concern$Plantae) %>% 
     row_spec(which(tables_eu_concern$Plantae$pathway_level1 == "release"), 
@@ -264,7 +265,9 @@ if ("Plantae" %in% categories_eu_concern$category) {
 
 ### Chordata
 
-```{r eu_concern_chordata}
+Pathways associated to vertebrates (category `Chordata`):
+
+```{r eu_concern_chordata, echo = FALSE}
 if ("Chordata" %in% categories_eu_concern$category) {
   kable(tables_eu_concern$Chordata) %>% 
     row_spec(which(tables_eu_concern$Plantae$pathway_level1 == "release"), 
@@ -278,7 +281,9 @@ if ("Chordata" %in% categories_eu_concern$category) {
 
 ### Not Chordata
 
-```{r eu_concern_not_chordata}
+Pathways associated to invertebrates (category `Not Chordata`):
+
+```{r eu_concern_not_chordata, echo = FALSE}
 if ("Not Chordata" %in% categories_eu_concern$category) {
   kable(tables_eu_concern$`Not Chordata`) %>% 
     row_spec(which(tables_eu_concern$`Not Chordata`$pathway_level1 == "release"), 
@@ -288,5 +293,4 @@ if ("Not Chordata" %in% categories_eu_concern$category) {
   kable_styling() %>%
   scroll_box(width = "100%", height = "10cm")
 }
-```
 ```

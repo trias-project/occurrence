@@ -28,30 +28,16 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Install `trias` package:
 
 ```{r install_packages}
-devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
+devtools::install_github("trias-project/trias")
 ```
 
 Load libraries:
 
 ```{r load_libraries}
 # Tidyverse packages
-library(tidyr)
-library(tidyverse)
-library(dplyr)
-library(magrittr)
-library(stringr)
 library(readr)
-# GBIF related packages
-library(rgbif)
-# project package
+# Project package
 library(trias)
-# INBO theme package
-library(INBOtheme)
-# other packages
-library(lazyeval)
-library(assertthat)
-library(assertable)
-library(egg)
 ```
 
 # Get data
@@ -72,18 +58,10 @@ facet_column = "kingdom"
 ```
 
 
-```{r, fig.width=10, fig.height=10}
-# Example
-start_year_plot <- 1920
-loess_span <- .85
-x_major_scale_stepsize <- 10
-x_minor_scale_stepsize <- 2.5
-indicator_introduction_year(data, start_year_plot = start_year_plot, 
-                            smooth_span = loess_span,
-                            x_major_scale_stepsize = x_major_scale_stepsize,
-                            x_minor_scale_stepsize = x_minor_scale_stepsize,
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(data, start_year_plot = 1920, 
+                            smooth_span = .85,
+                            x_major_scale_stepsize = 10,
+                            x_minor_scale_stepsize = 2.5,
                             facet_column = "kingdom")
 ```
-
-
-
