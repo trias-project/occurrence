@@ -25,18 +25,10 @@ issue [#17](https://github.com/trias-project/pipeline/issues/17))
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Install `trias` package:
-
-```{r install_packages}
-devtools::install_github("trias-project/trias")
-```
-
 Load libraries:
 
 ```{r load_libraries}
-# Tidyverse packages
 library(readr)
-# Project package
 library(trias)
 ```
 

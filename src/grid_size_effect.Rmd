@@ -35,18 +35,12 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
   
 ```{r load_libraries}
-# GBIF package
-library(rgbif)
-# Spatial packages
-library(sf) 
-# visualization package
-library(leaflet)
-# Downscaling package
-library(downscale)
-# multiprocessor package
-library(multidplyr)
-# Tidyverse packages
-library(tidyverse)
+library(rgbif)        # GBIF interface
+library(sf)           # Spatial functions
+library(leaflet)      # Map visualizations
+library(downscale)    # Downscaling
+library(multidplyr)   # Multiprocessing
+library(tidyverse)    # Data science
 ```
 
 # Define species under study

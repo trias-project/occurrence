@@ -23,18 +23,10 @@ This document describes how to build indicators of Invasive Alien Species based 
 knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = FALSE)
 ```
 
-Install `trias` package:
-
-```{r install_packages}
-devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
-```
-
 Load libraries:
 
 ```{r load_libraries}
-# Tidyverse packages
 library(readr)
-# project package
 library(trias)
 ```
 

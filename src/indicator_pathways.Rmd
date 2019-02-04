@@ -19,28 +19,17 @@ This document describes how to build indicators of Invasive Alien Species based 
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE)
-```
-
-Install `trias` package:
-
-```{r install_packages, eval=TRUE}
-devtools::install_github("trias-project/trias")
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 Load libraries:
 
 ```{r load_libraries}
-# Tidyverse packages
 library(dplyr)
 library(purrr)
 library(stringr)
 library(readr)
-# project package
 library(trias)
-#other pckages
 library(kableExtra)
 library(here)
 ```
