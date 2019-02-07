@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Install `trias` package:
 
 ```{r install_packages}
-devtools::install_github("trias-project/trias")
+devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
 ```
 
 
@@ -55,7 +55,9 @@ One of the TrIAS goals is to unify seven authoritative checklists. Such unified 
 1. [Manual of the Alien Plants of Belgium](https://www.gbif.org/dataset/9ff7d317-609b-4c08-bd86-3bc404b77c42)
 2. [Inventory of alien macroinvertebrates in Flanders, Belgium](https://www.gbif.org/dataset/289244ee-e1c1-49aa-b2d7-d379391ce265)
 3. [Checklist of non-native freshwater fishes in Flanders, Belgium](https://www.gbif.org/dataset/98940a79-2bf1-46e6-afd6-ba2e85a26f9f)
-*(add more lists when available)*
+4. [Catalogue of the Rust Fungi of Belgium](https://www.gbif.org/dataset/b043c480-dd36-4f4f-aa82-e188753ff09d)
+5. [RINSE - Registry of non-native species in the Two Seas region countries (Great Britain, France, Belgium and the Netherlands)](https://www.gbif.org/dataset/3f5e930b-52a5-461d-87ec-26ecd66f14a3)
+6. [RINSE - Pathways and vectors of biological invasions in Northwest Europe](https://www.gbif.org/dataset/1738f272-6b5d-4f43-9a92-453a8c5ea50a)
 
 ## Retrieve data in checklist(s) from GBIF
 
@@ -66,7 +68,10 @@ checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
 taxon <- trias::gbif_get_taxa(
   checklist_keys = c("9ff7d317-609b-4c08-bd86-3bc404b77c42",
                      "289244ee-e1c1-49aa-b2d7-d379391ce265",
-                     "98940a79-2bf1-46e6-afd6-ba2e85a26f9f"),
+                     "98940a79-2bf1-46e6-afd6-ba2e85a26f9f",
+                     "b043c480-dd36-4f4f-aa82-e188753ff09d",
+                     "3f5e930b-52a5-461d-87ec-26ecd66f14a3",
+                     "1738f272-6b5d-4f43-9a92-453a8c5ea50a"),
   origin = "SOURCE", 
   limit = 99999) %>%
   select(one_of(checklist_info))
@@ -128,7 +133,7 @@ Contrarily to distribution information, description contains a column  `type` wi
 description %>% distinct(type)
 descriptors <- description %>% distinct(type) %>% pull()
 ```
-We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example
+We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example:
 
 ```{r duplicates_issue_spread}
 description %>% filter(taxonKey == 141264585 & type == "native range")
@@ -150,7 +155,7 @@ description_tidy <-
 head(description_tidy)
 ```
 
-The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `dplyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
+The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `tidyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
 
 ### Species profile
 
@@ -164,8 +169,6 @@ speciesProfiles <- data.frame(key = taxon_keys) %>%
                                                data = "speciesProfiles"))))
 head(speciesProfiles)
 ```
-
-At the moment is `speciesProfiles` empty.
 
 ### Merge data
 
@@ -272,44 +275,13 @@ merged_info %>%
   head()
 ```
 
-## Save data ouput
+## Save data output
 
-The information in `merged_info` is ready to be saved in folder `\data\interim`
+The information in `merged_info` is ready to be saved in folder `\data\interim`:
 
 ```{r save_data_output, eval=FALSE}
 write_tsv(x = merged_info, 
           path = "../data/interim/test_data_output_checklist_indicators.tsv")
 ```
 
-
-# Build indicators
-
-You can start from this point and not repeat previous steps by loading the tsv file saved at the end of previous section:
-
-```{r read_data_output, eval=FALSE}
-checklist_data <- read_tsv(file = "../data/interim/test_data_output_checklist_indicators.tsv")
-```
-
-New functions should be written in `trias` official project package.
-
-In order to not consider subspecies, please take care of grouping by `species` (see point 8 of [#21](https://github.com/trias-project/pipeline/issues/21)).
-
-About point 7 of [#21](https://github.com/trias-project/pipeline/issues/21), please see this [comment](https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874).
-
-## Number of new introductions of alien species per year
-
-For information and development, see file [Number of new introductions of alien species per year](indicator_introductions_per_year.Rmd)
-
-See GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17).
-
-## Pathways associated with alien species introductions
-
-For information and development, see file [Pathways associated with alien species introductions](indicator_pathways_introductions.Rmd)
-
-see GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19)
-
-## Cumulative number of alien species
-
-For information and development, see file [Cumulative number of alien species](indicator_cumulative_number.Rmd)
-
-see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20)
+And be used as start point for building indicators.

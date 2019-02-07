@@ -13,7 +13,7 @@
 <meta name="author" content="Sander Devisscher" />
 <meta name="author" content="Stijn Vanhoey" />
 
-<meta name="date" content="2018-11-09" />
+<meta name="date" content="2019-02-04" />
 
 <title>Indicator: Cumulative number of alien species</title>
 
@@ -31,9 +31,8 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -109,6 +108,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -123,7 +125,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -143,6 +144,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -164,18 +202,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -330,7 +427,7 @@ div.tocify {
 <h4 class="author"><em>Damiano Oldoni</em></h4>
 <h4 class="author"><em>Sander Devisscher</em></h4>
 <h4 class="author"><em>Stijn Vanhoey</em></h4>
-<h4 class="date"><em>2018-11-09</em></h4>
+<h4 class="date"><em>2019-02-04</em></h4>
 
 </div>
 
@@ -341,173 +438,47 @@ div.tocify {
 </ol>
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">1</span> Setup</h1>
-<p>Install <code>trias</code> package:</p>
-<pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
 <p>Load libraries:</p>
-<pre class="r"><code># Tidyverse packages
-library(tidyr)
-library(dplyr)
-library(magrittr)
-library(stringr)
-library(readr)
-library(ggplot2)
-# GBIF related packages
-library(rgbif)
-# project package
-library(trias)
-#other pckages
-library(lazyeval)
-library(INBOtheme)</code></pre>
-<pre><code>## Warning: New theme missing the following elements: panel.grid, plot.tag,
-## plot.tag.position</code></pre>
-<pre class="r"><code>library(assertthat)
-library(assertable)
-library(egg)</code></pre>
-<pre><code>## Warning: package &#39;egg&#39; was built under R version 3.4.4</code></pre>
+<pre class="r"><code>library(readr)
+library(trias)</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
 <pre class="r"><code>data &lt;- read_tsv(&quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+<pre><code>## Warning: 22 parsing failures.
+##   row            col               expected actual                                                        file
+## 12634 first_observed no trailing characters -06-08 &#39;../data/interim/test_data_output_checklist_indicators.tsv&#39;
+## 12634 last_observed  no trailing characters -06-12 &#39;../data/interim/test_data_output_checklist_indicators.tsv&#39;
+## 12635 first_observed no trailing characters -09-18 &#39;../data/interim/test_data_output_checklist_indicators.tsv&#39;
+## 12635 last_observed  no trailing characters -09-18 &#39;../data/interim/test_data_output_checklist_indicators.tsv&#39;
+## 12636 first_observed no trailing characters -10-13 &#39;../data/interim/test_data_output_checklist_indicators.tsv&#39;
+## ..... .............. ...................... ...... ...........................................................
+## See problems(...) for more details.</code></pre>
 </div>
-<div id="build-indicators" class="section level1">
-<h1><span class="header-section-number">3</span> Build indicators</h1>
-<div id="introduction" class="section level2">
-<h2><span class="header-section-number">3.1</span> Introduction</h2>
-<p>New functions should be written in <code>trias</code> official project package.</p>
-<p>In order to not consider subspecies, please take care of grouping by <code>species</code> (see point 8 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>).</p>
-<p>About point 7 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>, please see this <a href="https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874">comment</a>.</p>
-</div>
-<div id="number-of-alien-species" class="section level2">
-<h2><span class="header-section-number">3.2</span> Number of alien species</h2>
-<p>see GitHub issue <a href="https://github.com/trias-project/pipeline/issues/20">#20</a></p>
-<pre class="r"><code>#&#39; Create total invasive species indicator plot (Trias)
-#&#39;
-#&#39; @param df data.frame Contains the data as produced by the Trias pipeline,
-#&#39; with minimal columns.
-#&#39; @param start_year_plot int Limit to use as start year of the plot. For scientific
-#&#39; usage, the entire period could be relevant, but for policy purpose, focusing
-#&#39; on a more recent period could be required.
-#&#39; @param x_major_scale_stepsize int On which year interval labels are placed 
-#&#39; on the x axis.
-#&#39; @param x_minor_scale_stepsize int On which year interval minor breaks are
-#&#39; placed on the x axis.
-#&#39; @param facet_column NULL | char The column to use to create additional
-#&#39; facet wrap plots underneath the main graph. When NULL, no facet graph is
-#&#39; included.
-#&#39;
-#&#39; @return ggplot2 object
-#&#39; @export
-#&#39; @importFrom assertthat assert_that
-#&#39; @importFrom assertable assert_colnames
-#&#39; @importFrom dplyr distinct_ %&gt;% filter rowwise do bind_cols group_by_ 
-#&#39; count ungroup
-#&#39; @importFrom tidyr replace_na unnest
-#&#39; @importFrom lubridate year now
-#&#39; @importFrom ggplot2 geom_line aes xlab ylab scale_x_continuous facet_wrap
-#&#39; @importFrom INBOtheme theme_inbo
-#&#39; @importFrom egg ggarrange
-#&#39;
-#&#39; @examples
-indicator_total_year &lt;- function(df, start_year_plot = 1940, 
-                                 x_major_scale_stepsize = 10,
-                                 x_minor_scale_stepsize = 5,
-                                 facet_column = NULL) {
-  
-  # initial input checks
-  assert_that(is.data.frame(df))
-  assert_that(x_major_scale_stepsize &gt;= x_minor_scale_stepsize)
-  assert_colnames(df, c(&quot;key&quot;, &quot;first_observed&quot;, &quot;last_observed&quot;), 
-                  only_colnames = FALSE)
-  
-  if (is.null(facet_column)) {
-    df_cleaned &lt;- df %&gt;%
-      distinct_(&quot;speciesKey&quot;, &quot;first_observed&quot;)
-  } else {
-    # check for valid facet options
-    valid_facet_options &lt;- c(&quot;family&quot;, &quot;order&quot;, &quot;class&quot;, &quot;phylum&quot;, 
-                             &quot;kingdom&quot;, &quot;pathway_level1&quot;, &quot;pathway_level2&quot;,
-                             &quot;locality&quot;, &quot;`native range`&quot;)
-    facet_column &lt;- match.arg(facet_column, valid_facet_options) 
-    
-    df_cleaned &lt;- df %&gt;%
-      distinct_(&quot;speciesKey&quot;, &quot;first_observed&quot;, facet_column)
-  }
-  
-  # Provide warning messages for last_observed/first_observed NA values
-  if (nrow(filter(df, is.na(first_observed)) &gt; 0)) {
-    warning(&quot;Some records have no first_observed&quot;,
-            &quot;and are not taken into account.&quot;)
-  }        
-
-  df_cleaned &lt;- df_cleaned %&gt;%
-    filter(!is.na(first_observed))  # ignore information without first_observed
-    
-  # Make individual records for each year up to now   
-  df_extended &lt;- df_cleaned %&gt;%
-    rowwise() %&gt;%
-    do(year = .data$first_observed:as.integer(format(Sys.Date(), &quot;%Y&quot;))) %&gt;%
-    bind_cols(df_cleaned) %&gt;% 
-    unnest(year)
-  
-  maxDate &lt;- max(df_extended$year)
-  top_graph &lt;- ggplot(df_extended, aes(x = year)) +
-    geom_line(stat = &quot;count&quot;) +
-    xlab(&quot;Year&quot;) +
-    ylab(&quot;Number of alien species&quot;) +
-    scale_x_continuous(breaks = seq(start_year_plot, maxDate, 
-                                    x_major_scale_stepsize),
-                       limits = c(start_year_plot, maxDate)) +
-    theme_inbo()
-  
-  if (is.null(facet_column)) {
-    return(top_graph)
-  } else {
-    # calculate numbers
-    counts_ias_grouped &lt;- df_extended %&gt;%
-      group_by_(&quot;year&quot;, facet_column)  %&gt;%
-      count() %&gt;%
-      ungroup()
-    
-    facet_graph &lt;- ggplot(counts_ias_grouped, 
-                          aes(x = year, y = n)) + 
-      geom_line(stat = &quot;identity&quot;) +
-      xlab(&quot;Year&quot;) +
-      ylab(&quot;Number of alien species&quot;) +
-      facet_wrap(facet_column) + 
-      scale_x_continuous(
-        breaks = seq(start_year_plot, maxDate, x_major_scale_stepsize),
-        minor_breaks = seq(start_year_plot, maxDate, x_minor_scale_stepsize),
-        limits = c(start_year_plot, maxDate)) +
-      theme_inbo()
-    
-    ggarrange(top_graph, facet_graph)
-  }
-}</code></pre>
-<p>So, the figure can be created without using facets (default):</p>
-<pre class="r"><code>start_year_plot &lt;- 1900
-x_major_scale_stepsize &lt;- 25
-indicator_total_year(data, start_year_plot, x_major_scale_stepsize)</code></pre>
-<pre><code>## [1] &quot;All column names present&quot;</code></pre>
-<pre><code>## Warning in indicator_total_year(data, start_year_plot,
-## x_major_scale_stepsize): Some records have no first_observedand are not
-## taken into account.</code></pre>
-<pre><code>## Warning: Removed 34875 rows containing non-finite values (stat_count).</code></pre>
+<div id="cumulative-number-of-introductions-of-alien-species" class="section level1">
+<h1><span class="header-section-number">3</span> Cumulative number of introductions of alien species</h1>
+<p>We use function <code>indicator_total_year()</code> from <code>trias</code> library.</p>
+<pre class="r"><code>indicator_total_year(data, facet_column = NULL)</code></pre>
+<pre><code>## Warning in indicator_total_year(data, facet_column = NULL): Some records
+## have no information about year of introduction (empty values in column
+## first_observed) and are not taken into account.</code></pre>
+<pre><code>## Warning: Removed 80539 rows containing non-finite values (stat_count).</code></pre>
 <p><img src="indicator_cumulative_number_files/figure-html/unnamed-chunk-1-1.png" width="960" /></p>
-<p>or with the facet usage:</p>
-<pre class="r"><code>start_year_plot &lt;- 1900
-x_major_scale_stepsize &lt;- 25
-x_minor_scale_stepsize &lt;- 12.5
-
-indicator_total_year(data, start_year_plot, x_major_scale_stepsize, 
-                     x_minor_scale_stepsize, facet_column = &quot;kingdom&quot;)</code></pre>
-<pre><code>## [1] &quot;All column names present&quot;</code></pre>
-<pre><code>## Warning in indicator_total_year(data, start_year_plot,
-## x_major_scale_stepsize, : Some records have no first_observedand are not
-## taken into account.</code></pre>
-<pre><code>## Warning: Removed 34875 rows containing non-finite values (stat_count).</code></pre>
-<pre><code>## Warning: Removed 346 rows containing missing values (geom_path).</code></pre>
+<p>We can facet data by kingdom:</p>
+<pre class="r"><code>facet_column = &quot;kingdom&quot;</code></pre>
+<p>Show facetted data:</p>
+<pre class="r"><code>indicator_total_year(data, 
+                     start_year_plot = 1920, 
+                     x_major_scale_stepsize =  25, 
+                     x_minor_scale_stepsize = 12.5,
+                     facet_column = facet_column)</code></pre>
+<pre><code>## Warning in indicator_total_year(data, start_year_plot = 1920,
+## x_major_scale_stepsize = 25, : Some records have no information about year
+## of introduction (empty values in column first_observed) and are not taken
+## into account.</code></pre>
+<pre><code>## Warning: Removed 56467 rows containing non-finite values (stat_count).</code></pre>
+<pre><code>## Warning: Removed 366 rows containing missing values (geom_path).</code></pre>
 <p><img src="indicator_cumulative_number_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
-</div>
 </div>
 
 

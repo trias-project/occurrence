@@ -1,6 +1,6 @@
 name: "TrIAS data processing pipeline"
 output_dir: "../docs"
-include: ["static/"]
+include: "static"
 navbar:
   title: "TrIAS pipeline"
   left:
@@ -22,4 +22,4 @@ output:
   html_document:
     theme: yeti
     df_print: paged
-    css: static/css/trias.css
+    css: "static/css/trias.css"

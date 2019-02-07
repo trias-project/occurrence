@@ -12,7 +12,7 @@
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Stijn Van Hoey" />
 
-<meta name="date" content="2018-11-09" />
+<meta name="date" content="2019-02-04" />
 
 <title>Indicator: Pathways associated with alien species introductions</title>
 
@@ -30,9 +30,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -108,6 +108,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -122,7 +125,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -142,6 +144,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -163,18 +202,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -328,7 +426,7 @@ div.tocify {
 <h1 class="title toc-ignore">Indicator: Pathways associated with alien species introductions</h1>
 <h4 class="author"><em>Damiano Oldoni</em></h4>
 <h4 class="author"><em>Stijn Van Hoey</em></h4>
-<h4 class="date"><em>2018-11-09</em></h4>
+<h4 class="date"><em>2019-02-04</em></h4>
 
 </div>
 
@@ -339,119 +437,929 @@ div.tocify {
 </ol>
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">1</span> Setup</h1>
-<p>Install <code>trias</code> package:</p>
-<pre class="r"><code>devtools::install_github(&quot;trias-project/trias&quot;)</code></pre>
 <p>Load libraries:</p>
-<pre class="r"><code># Tidyverse packages
-library(tidyr)
-library(dplyr)
-library(magrittr)
+<pre class="r"><code>library(dplyr)
+library(purrr)
 library(stringr)
 library(readr)
-library(ggplot2)
-# GBIF related packages
-library(rgbif)
-# project package
 library(trias)
-#other pckages
-library(lazyeval)
-library(INBOtheme)
-library(stringr)</code></pre>
+library(kableExtra)
+library(here)</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
-<pre class="r"><code>data &lt;- read_tsv(&quot;../data/interim/test_data_output_checklist_indicators.tsv&quot;)</code></pre>
+<pre class="r"><code>data_file &lt;- here(&quot;data&quot;, 
+                  &quot;interim&quot;,
+                  &quot;test_data_output_checklist_indicators.tsv&quot;)
+data &lt;- read_tsv(data_file)</code></pre>
 </div>
-<div id="build-indicators" class="section level1">
-<h1><span class="header-section-number">3</span> Build indicators</h1>
-<div id="introduction" class="section level2">
-<h2><span class="header-section-number">3.1</span> Introduction</h2>
-<p>New functions should be written in <code>trias</code> official project package.</p>
-<p>In order to not consider subspecies, please take care of grouping by <code>species</code> (see point 8 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>).</p>
-<p>About point 7 of <a href="https://github.com/trias-project/pipeline/issues/21">#21</a>, please see this <a href="https://github.com/trias-project/pipeline/issues/21#issuecomment-381164874">comment</a>.</p>
+<div id="build-pathway-indicator" class="section level1">
+<h1><span class="header-section-number">3</span> Build pathway indicator</h1>
+<div id="find-categories" class="section level2">
+<h2><span class="header-section-number">3.1</span> Find categories</h2>
+<p>We divide the species in categories. Each kingdom, except <em>Animalia</em>, is a category. If animal species are present, they are separated in two categories: vertebrates (phylum <code>Chordata</code>) and invertebrates (phylum other than <code>Chordata</code>, defined as <code>Not Chordata</code>).</p>
+<p>Categories present in our checklist data:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["category"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Plantae"},{"1":"Fungi"},{"1":"Bacteria"},{"1":"Chromista"},{"1":"Chordata"},{"1":"Not Chordata"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="pathways-associated-with-alien-species-introductions" class="section level2">
 <h2><span class="header-section-number">3.2</span> Pathways associated with alien species introductions</h2>
-<p>See GitHub isue <a href="https://github.com/trias-project/pipeline/issues/19">#19</a>. Ths functionality is scripted inside a function, with the two usecase taken into account:</p>
-<ol style="list-style-type: decimal">
-<li>using the subcategory and category level, making a double grouping in the graph</li>
-<li>using the category level only</li>
-</ol>
-<p>As the function is ad-hoc to the use-case, most options are hard-coded.</p>
-<pre class="r"><code>#&#39; Pathway count indicator figure 
-#&#39;
-#&#39; Both only the main category or using both category levels are included in the
-#&#39; graph, using the \code{subcategory} option
-#&#39;
-#&#39; @param data data.frame According to the specification of the Trias pipeline
-#&#39; @param subcategory boolean If TRUE, the subcategory levels are included in 
-#&#39; the visualisation.
-#&#39;
-#&#39; @return
-#&#39; @export
-#&#39;
-#&#39; @examples
-#&#39; indicator_pathway(data)
-#&#39; indicator_pathway(data, subcategory = TRUE)
-indicator_pathway &lt;- function(data, subcategory = TRUE) {
-    
-    # focus on pathway data counts
-    df_pathway &lt;- data  %&gt;%
-        filter(kingdom %in% c(&#39;Plantae&#39;, &#39;Animalia&#39;)) %&gt;%
-        group_by(pathway_level1, 
-                pathway_level2, kingdom) %&gt;%
-        count() %&gt;%
-        ungroup()
-    
-    # uppercase on category names for figure styling
-    df_pathway &lt;- mutate_at(df_pathway, 
-                            .cols = c(&quot;pathway_level1&quot;), 
-                            .funs = toupper)
-    # replace underscore by spaces
-    df_pathway &lt;- df_pathway %&gt;%
-        mutate(pathway_level2 = str_replace(pathway_level2, &quot;_&quot;, &quot; &quot;))
-        
-    if (subcategory) {
-        ggplot(df_pathway, aes(x = reorder(pathway_level2, -n), 
-                               y = n, fill = kingdom)) +
-            geom_bar(stat = &quot;identity&quot;, width = .65) +
-            ylab(&quot;Number of species&quot;) +
-            facet_grid(. ~ pathway_level1, scales = &quot;free_x&quot;,
-                       space = &quot;free_x&quot;) +
-            theme_inbo(base_size = 14) +
-            theme(
-                axis.text.x = element_text(angle = 90, hjust = 1,
-                                           vjust = 0.2, size = 15),
-                axis.title.x = element_blank(),
-                axis.text.y = element_text(size = 15, angle = 90,
-                                           hjust = 0.5),
-                axis.title.y = element_text(size = 14),
-                strip.text.x = element_text(angle = 90, size = 12),
-                legend.direction = &quot;horizontal&quot;,
-                legend.position = &quot;right&quot;,
-                legend.text = element_text(angle = 90, size = 14),
-                legend.title = element_blank(),
-                legend.text.align = -.6)
-    } else {
-        ggplot(df_pathway,  aes(x = reorder(pathway_level1, n, function(x){sum(x)}),
-                            y = n, fill = kingdom)) +
-            geom_bar(stat = &quot;summary&quot;, fun.y = sum,
-                     width = .65) + 
-            xlab(&quot;Pathway&quot;) +
-            ylab(&quot;Number of species&quot;) + 
-            coord_flip() +
-            theme_inbo(base_size = 14) +
-            theme(legend.position = &quot;top&quot;,
-                  legend.title = element_blank(),
-                  legend.text = element_text(size = 14))
-    }
-}</code></pre>
-<p>Example usage of the function when using both category levels:</p>
-<pre class="r"><code>indicator_pathway(data, subcategory = TRUE)</code></pre>
-<p><img src="indicator_pathways_files/figure-html/pathway-figure_both_category-1.png" width="1152" /></p>
-<p>Or when only interested in the main category in the graph:</p>
-<pre class="r"><code>indicator_pathway(data, subcategory = FALSE)</code></pre>
-<p><img src="indicator_pathways_files/figure-html/pathway-figure_main_category-1.png" width="768" /></p>
+<p>Function <code>get_table_pathways()</code> from <code>trias</code> library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided.</p>
+<p>Number of species returned in table as examples of the group:</p>
+<pre class="r"><code>n_species &lt;- 5</code></pre>
+<p>Create tables:</p>
+<pre class="r"><code>tables &lt;- map(categories$category, ~ 
+                get_table_pathways(data, category = ., n_species = n_species))
+names(tables) &lt;- categories$category</code></pre>
+</div>
+<div id="pathways-per-category" class="section level2">
+<h2><span class="header-section-number">3.3</span> Pathways per category</h2>
+<p>Intentionality of introduction is mapped by cell color background: white for intentional introduction (<code>release</code>), light orange for unintentional introduction.</p>
+<div id="plantae" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Plantae</h3>
+<p>Pathways associated to plants (category <code>Plantae</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+contaminant
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+habitat_material
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+91
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Verbascum phlomoides, Oenothera casimiri, Pilosella piloselloides, Lepidium heterophyllum, Solanum triflorum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+nursery
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+21
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Galinsoga quadriradiata, Cuscuta suaveolens, Euphorbia hypericifolia, Portulaca nitida, Acalypha indica
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+on_animals
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+565
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Gilia capitata, Ridolfia segetum, Digitaria acuminatissima, Dorycnium pentaphyllum, Datura stramonium
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+on_plants
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+4
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Botrychium simplex, Orthilia secunda, Goodyera repens, Moneses uniflora
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+seed
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+618
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Centromadia pungens, Trifolium diffusum, Schoenoplectiella bucharica, Axyris amaranthoides, Scorpiurus muricatus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+timber
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+10
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Epilobium ciliatum, Symphyotrichum lateriflorum, Carex loliacea, Euphorbia vermiculata, Melampyrum nemorosum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+agriculture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+85
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Triticum monococcum, Helianthus tuberosus, Phaseolus coccineus, Spinacia oleracea, Allium schoenoprasum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+food_bait
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+22
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Actinidia chinensis, Cucurbita pepo, Cucumis sativus, Citrus aurantium, Pastinaca sativa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+horticulture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1066
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Tagetes tenuifolia, Hydrangea paniculata, Broussonetia papyrifera, Fraxinus angustifolia, Calystegia pulchra
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+36
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Campylopus introflexus, Cornus sericea, Cortaderia selloana, Helianthus tuberosus, Hydrocotyle ranunculoides
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+stowaway
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+people_luggage
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+10
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Medicago littoralis, Paronychia argentea, Soliva sessilis, Erodium moschatum, Trifolium suffocatum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+2407
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Oenothera deflexa, Atriplex sagittata, Dysphania cristata, Pilosella prussica, Dichondra micrantha
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="vertebrates" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Vertebrates</h3>
+<p>Pathways associated to vertebrates (category <code>Chordata</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+corridor
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+water
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+4
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Proterorhinus semilunaris, Ponticola kessleri, Neogobius fluviatilis, Neogobius melanostomus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+aquaculture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+10
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Cyprinus carpio, Oreochromis niloticus, Ictalurus punctatus, Acipenser baerii, Oncorhynchus mykiss
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+food_bait
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+7
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Coracias abyssinicus, Cardinalis cardinalis, Haemorhous mexicanus, Neovison vison, Pseudorasbora parva, Pimephales promelas, Natrix tessellata
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+ornamental
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+7
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Acipenser gueldenstaedtii, Umbra pygmaea, Acipenser baerii, Lepomis gibbosus, Carassius auratus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+17
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Branta canadensis, Ctenopharyngodon idella, Procyon lotor, Oncorhynchus kisutch, Nyctereutes procyonoides
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white;">
+release
+</td>
+<td style="text-align:left;background-color: white;">
+biological_control
+</td>
+<td style="text-align:right;background-color: white;">
+3
+</td>
+<td style="text-align:left;background-color: white;">
+Ctenopharyngodon idella, Hypophthalmichthys molitrix, Hypophthalmichthys nobilis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+stowaway
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+ballast_water
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+3
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Ponticola kessleri, Neogobius melanostomus, Neogobius fluviatilis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+374
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Sciurotamias davidianus, Ploceus melanocephalus, Chen caerulescens, Ovis aries, Pimephales promelas
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="invertebrates" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Invertebrates</h3>
+<p>Pathways associated to invertebrates (category <code>Not Chordata</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+contaminant
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+on_animals
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+5
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Monocorophium sextonae, Sinanodonta woodiana, Amphibalanus improvisus, Petricolaria pholadiformis, Mya arenaria
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+corridor
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+water
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+22
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Dreissena polymorpha, Dendrocoelum romanodanubiale, Dreissena bugensis, Jaera istri, Ponticola kessleri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+aquaculture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+19
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Cyprinus carpio, Caprella mutica, Umbra pygmaea, Acipenser ruthenus, Orconectes limosus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+food_bait
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+7
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Plodia interpunctella, Ceryle rudis, Amara anthobia, Cygnus atratus, Numida meleagris, Harmonia axyridis, Dendrocoelum romanodanubiale
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+ornamental
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+7
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Acipenser baerii, Carassius auratus, Umbra pygmaea, Lepomis gibbosus, Acipenser gueldenstaedtii
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+pet
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+5
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Procambarus clarkii, Hippolyte desmarestii, Pontastacus leptodactylus, Orconectes limosus, Ferrissia californica
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+29
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Proterorhinus semilunaris, Branta canadensis, Sander lucioperca, Tadorna ferruginea, Crepidula fornicata
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: white;">
+release
+</td>
+<td style="text-align:left;background-color: white;">
+biological_control
+</td>
+<td style="text-align:right;background-color: white;">
+3
+</td>
+<td style="text-align:left;background-color: white;">
+Hypophthalmichthys molitrix, Hypophthalmichthys nobilis, Ctenopharyngodon idella
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+stowaway
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+ballast_water
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+34
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Amphibalanus improvisus, Mytilopsis leucophaeata, Potamothrix vejdovskyi, Hemigrapsus takanoi, Palaemon macrodactylus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+hull_fouling
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+20
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Caprella mutica, Teredo navalis, Amphibalanus amphitrite, Potamopyrgus antipodarum, Mytilopsis leucophaeata
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+other
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+11
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Physella acuta, Crepidula fornicata, Hemimysis anomala, Girardia tigrina, Proasellus meridianus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1074
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Haplotinea insectella, Anas versicolor, Rhagium inquisitor, Sitotroga cerealella, Estrilda astrild
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="fungi" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Fungi</h3>
+<p>Pathways associated to fungi (category <code>Fungi</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+72
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Puccinia pelargonii-zonalis, Athelia rolfsii, Melampsora medusae, Leucocoprinus birnbaumii, Didymascella thujina
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="bacteria" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Bacteria</h3>
+<p>Pathways associated to bacteria (category <code>Bacteria</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Erwinia amylovora
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Add sections for other kingdoms if needed.</p>
+</div>
+</div>
+<div id="pathways-related-to-policy-relevant-species" class="section level2">
+<h2><span class="header-section-number">3.4</span> Pathways related to policy relevant species</h2>
+<p>It is important to focus our attention also to a intercategory group of species which is of particular policy importance: the <em>List of Invasive Alien Species of Union concern</em> (see more info about <a href="http://ec.europa.eu/environment/nature/invasivealien/list/index_en.htm">here</a>).</p>
+<p>We import this list of species:</p>
+<pre class="r"><code>eu_concern_file &lt;- here(&quot;data&quot;,&quot;input&quot;, &quot;eu_concern_species.tsv&quot;)
+eu_concern_species &lt;- read_tsv(eu_concern_file)</code></pre>
+<p>Check which species from this subgroup are not present in <code>data</code>:</p>
+<pre class="r"><code>eu_concern_species %&gt;% filter(!backbone_taxonKey %in% data$nubKey)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["checklist_scientificName"],"name":[1],"type":["chr"],"align":["left"]},{"label":["english_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["entry_into_force"],"name":[3],"type":["date"],"align":["right"]},{"label":["checklist_kingdom"],"name":[4],"type":["chr"],"align":["left"]},{"label":["backbone_taxonKey"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["backbone_taxonomicStatus"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Alternanthera philoxeroides","2":"Alligator weed","3":"2017-08-02","4":"Plantae","5":"3084923","6":"ACCEPTED"},{"1":"Gunnera tinctoria","2":"Chilean rhubarb","3":"2017-08-02","4":"Plantae","5":"2984306","6":"ACCEPTED"},{"1":"Heracleum persicum","2":"Persian hogweed","3":"2016-08-03","4":"Plantae","5":"3628745","6":"ACCEPTED"},{"1":"Heracleum sosnowskyi","2":"Sosnowsky's hogweed","3":"2016-08-03","4":"Plantae","5":"3642949","6":"ACCEPTED"},{"1":"Microstegium vimineum","2":"Japanese stiltgrass","3":"2017-08-02","4":"Plantae","5":"5289808","6":"ACCEPTED"},{"1":"Pennisetum setaceum","2":"Crimson fountaingrass","3":"2017-08-02","4":"Plantae","5":"2706134","6":"ACCEPTED"},{"1":"Persicaria perfoliata","2":"Asiatic tearthumb","3":"2016-08-03","4":"Plantae","5":"4033648","6":"ACCEPTED"},{"1":"Pueraria lobata","2":"Kudzu vine","3":"2016-08-03","4":"Plantae","5":"9035634","6":"ACCEPTED"},{"1":"Herpestes javanicus","2":"Small Asian mongoose","3":"2016-08-03","4":"Animalia","5":"8858565","6":"ACCEPTED"},{"1":"Orconectes virilis","2":"Virile crayfish","3":"2016-08-03","4":"Animalia","5":"2227064","6":"ACCEPTED"},{"1":"Percottus glenii","2":"Amur sleeper","3":"2016-08-03","4":"Animalia","5":"2390064","6":"ACCEPTED"},{"1":"Procambarus fallax f. virginalis","2":"Marbled crayfish","3":"2016-08-03","4":"Animalia","5":"8879526","6":"SYNONYM"},{"1":"Sciurus niger","2":"Fox squirrel","3":"2016-08-03","4":"Animalia","5":"5219683","6":"ACCEPTED"},{"1":"Vespa velutina nigrithorax","2":"Asian hornet","3":"2016-08-03","4":"Animalia","5":"6247411","6":"ACCEPTED"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Categories present in this subgroup:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["category"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Plantae"},{"1":"Chordata"},{"1":"Not Chordata"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Create tables:</p>
+<pre class="r"><code>tables_eu_concern &lt;- map(categories_eu_concern$category, ~ 
+  get_table_pathways(data %&gt;%
+                       filter(nubKey %in% eu_concern_species$backbone_taxonKey), 
+                     category = ., n_species = n_species))
+names(tables_eu_concern) &lt;- categories_eu_concern$category</code></pre>
+<div id="plantae-1" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Plantae</h3>
+<p>Pathways associated to plants (category <code>Plantae</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+contaminant
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+on_animals
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Elodea nuttallii
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+seed
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Parthenium hysterophorus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+horticulture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+10
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Baccharis halimifolia, Lagarosiphon major, Myriophyllum aquaticum, Eichhornia crassipes, Myriophyllum heterophyllum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+7
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Hydrocotyle ranunculoides, Heracleum mantegazzianum, Eichhornia crassipes, Elodea nuttallii, Myriophyllum heterophyllum
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+41
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Lagarosiphon major, Eichhornia crassipes, Eichhornia crassipes, Cabomba caroliniana, Hydrocotyle ranunculoides
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="chordata" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Chordata</h3>
+<p>Pathways associated to vertebrates (category <code>Chordata</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+food_bait
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Pseudorasbora parva
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+5
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Procyon lotor, Pseudorasbora parva, Oxyura jamaicensis, Nyctereutes procyonoides, Ondatra zibethicus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+40
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Trachemys scripta, Tamias sibiricus, Pseudorasbora parva, Tamias sibiricus, Nyctereutes procyonoides
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="not-chordata" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Not Chordata</h3>
+<p>Pathways associated to invertebrates (category <code>Not Chordata</code>):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+pathway_level1
+</th>
+<th style="text-align:left;">
+pathway_level2
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+examples
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+escape
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+aquaculture
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+3
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Pacifastacus leniusculus, Procambarus clarkii, Orconectes limosus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+food_bait
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Pseudorasbora parva
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+pet
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+2
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Procambarus clarkii, Orconectes limosus
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+natural
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+dispersal
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+5
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Ondatra zibethicus, Nyctereutes procyonoides, Pseudorasbora parva, Procyon lotor, Oxyura jamaicensis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+stowaway
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+ballast_water
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+1
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Eriocheir sinensis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #faf0e6;">
+unknown
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+</td>
+<td style="text-align:right;background-color: #faf0e6;">
+44
+</td>
+<td style="text-align:left;background-color: #faf0e6;">
+Tamias sibiricus, Threskiornis aethiopicus, Alopochen aegyptiaca, Procyon lotor, Corvus splendens
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 
