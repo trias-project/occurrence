@@ -28,6 +28,10 @@ Load libraries:
 ```{r load_libraries}
 library(rgbif)        # GBIF interface
 library(tidyverse)    # Data science
+library(sf)           # GeoSpatial operations
+library(multidplyr)   # Parallel computing
+library(leaflet)      # Create maps
+library(zoo)          # time series
 ```
 
 # Define species under study
@@ -104,9 +108,9 @@ count_occ_df
 
 ## Pre-process occurrence data
 
-### Remove specimen
+### basisOfRecord
 
-Specimen are not occurrence data we are interested to:
+Everything except `FOSSIL_SPECIMEN` (is historical distribution) and `LIVING_SPECIMEN` (includes location of captured taxa).
 
 ```{r show_specimen}
 occ_df %>%
@@ -117,13 +121,14 @@ occ_df %>%
 We use only human observations:
 
 ```{r occs_only_human_obs}
-occ_df <- occ_df %>%
-  filter(basisOfRecord == "HUMAN_OBSERVATION")
+occ_df <- 
+  occ_df %>%
+  filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN"))
 ```
 
 ## Remove occurrence related to absence
 
-Some occurrences have `occurrenceStatus` equal to `absent`:
+Some occurrences have `occurrenceStatus` equal to `absent` and `excluded`:
 
 ```{r show_summary_occtarrenceStatus}
 occ_df %>%
@@ -131,11 +136,11 @@ occ_df %>%
   count()
 ```
 
-These occurrence points are related to following species:
+We will filter out occurrence points related to following species:
 
 ```{r summary_species_absency}
 occ_df %>%
-  filter(occurrenceStatus == "absent") %>%
+  filter(occurrenceStatus %in% c("absent", "excluded")) %>%
   group_by(speciesKey, species, occurrenceStatus) %>%
   count()
 ```
@@ -144,7 +149,7 @@ We remove them:
 
 ```{r remove_absence}
 occ_df <- occ_df %>%
-  filter(!occurrenceStatus %in% c("absent"))
+  filter(!occurrenceStatus %in% c("absent", "excluded"))
 ```
 
 
@@ -251,36 +256,31 @@ mode_unc_df
 
 ## Import grid data
 
-We import UTM grid data at three scales: 1 by 1 km, 5 by 5 km  and 10 km by 10 km. As said in introduction, the 5 by 5 km is not a standard resolution: it is used only within INBO Flemish research. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
+We import UTM grid data at 1 by 1 km resolution. Grid has CRS (Coordinate Reference System) _Belge Lambert 1972_:
 
 ```{r import_grids_of_BE_from_EEA}
-grids <- list(grid_1x1km = "utm1_bel", 
-              grid_10x10km = "utm10_bel", 
-              grid_100x100km = "utm100_bel")
-belgium_grids <- map(grids, ~ st_read(paste0("../data/external/", .)))
-crs_grid <- st_crs(belgium_grids[["grid_1x1km"]])
+belgium_grid <- st_read("../data/external/utm1_bel/be_1km.shp")
+crs_grid <- st_crs(belgium_grid)
 crs_grid
 ```
 
-Total area of the grids in square meters:
+Total area of the grid in square meters:
 
 ```{r get_total_area}
-total_areas <- map(belgium_grids, function(x) as.numeric(sum(st_area(x))))
-total_areas
+total_area <- as.numeric(sum(st_area(belgium_grid)))
+total_area
 ```
 
 and mean cell size in meters:
 
 ```{r mean_cell_size}
-cell_sizes <- map(belgium_grids, function(x) as.numeric(mean(st_area(x))))
-cell_sizes
+cell_size <- as.numeric(mean(st_area(belgium_grid)))
+cell_size
 ```
 
-# Calculate (Area of) Occupancy
+# Calculate Occupancy by point-in-circle technique
 
-## Assign occurrence to centre (no use of uncertainty values)
-
-We assign the occurrence data to the centre of the circle formed by taking the `coordinateUncertaintyInMeters` as radius and the columns `decimalLongitude` - `decimalLatitude` as centre. We use the latter ones to create such points, thus discarding information about geographic coordinate uncertainty. Notice that GBIF occurrence data use WGS84 projection:
+Notice that GBIF occurrence data use WGS84 projection:
 
 ```{r set_crs_GBIF_data}
 # CRS used by GBIF
@@ -295,300 +295,7 @@ occ_pts <- st_as_sf(occ_df, coords = c('decimalLongitude', 'decimalLatitude'),
 occ_pts <- st_transform(occ_pts, crs_grid)
 ```
 
-Intersect points and grids:
-
-```{r intersect, cache=TRUE}
-points_on_grids <- map(belgium_grids, st_intersection, occ_pts)
-```
-
-Only grid cells containing at least one point are present. 
-
-We calculate the number of occurrences per cell and assign 1 (presence) to them. This step can take long due to the high number of cells of the grid with 1x1km resolution:
-
-```{r pres_abs, cache=TRUE}
-pres_table <- map(points_on_grids, function(x) {
-  part_year <- partition (x, CELLCODE) 
-  pres_year <- part_year %>%
-  group_by(speciesKey, year) %>%
-  summarise(dplyr::n()) %>%
-  as.tibble(pres_year) %>%
-  ungroup() %>%
-  rename("n_occs" = "dplyr::n()") %>%
-  filter(n_occs > 0) %>%
-  mutate(presence = 1) %>%
-  left_join(species_df, by = "speciesKey") %>%
-  select(speciesKey, species, everything())
-  return(pres_year)
-})
-```
-
-For each grid resolution species and year, we calculate the Area Of Occupancy (AOO) and the Occupancy (AOO divided by total grid area):
-
-```{r AOO_calculate}
-aoo <- pmap(list(pres_table, belgium_grids, total_areas, cell_sizes),
-            function(presence_df, grid, total_area, cell_size) {
-              presence_df %>%
-                group_by(species, speciesKey, year) %>% 
-                summarize(aoo = n() *cell_size,
-                          n_occs = sum(n_occs)) %>%
-                ungroup() %>%
-                mutate(occupancy = aoo / total_area,
-                       cell_area = cell_size)
-})
-```
-
-AOO plot:
-
-```{r AOO_plot}
-map2(aoo, names(aoo), function(grid, name_grid) {
-    ggplot(grid) + 
-    aes(x = year, y = aoo/10^6) +
-    facet_wrap(~ species) +
-    geom_col() +
-    labs(x = "year", y = "AOO (km2)") +
-    ggtitle(name_grid)
-})
-```
-
-Occupancy plot:
-
-```{r occupancy_plot}
-map2(aoo, names(aoo), function(grid, name_grid) {
-    ggplot(grid) + 
-    aes(x = year, y = occupancy) +
-    facet_wrap(~ species) +
-    geom_col() +
-    labs(x = "year", y = "occupancy") +
-    ggtitle(name_grid)
-})
-```
-
-We compare the AOO calculated using different grid cell size:
-
-```{r aoo_compare_tidy_df}
-aoo_compare_tidy <- map2_dfr(aoo, names(aoo),
-                             function(df, grid_name) {
-  df %>% mutate(grid_size = grid_name)
-})
-```
-
-Plot for each species:
-
-```{r plot_AOO_different_grid_cell_sizes}
-map(species_df$species, 
-    function(x){
-      ggplot(aoo_compare_tidy %>%
-         filter(species == x),
-       aes(x = year, y = aoo/(10^6), fill = grid_size)) +
-  geom_col(position = "dodge") +
-  labs(x= "year", y = "AOO") +
-  ggtitle(paste0(x,". Area Of Occupancy (AOO) km2"))
-})
-```
-
-As expected the AOO increases by increasing the grid cell size. We plot the logarithm of occupancy and the logarithm of cell area for period 2005 - 2010:
-
-```{r log_aoo_vs_log_cell_area_basic}
-years <- aoo_compare_tidy %>%
-  filter(year >= 2005 & year <= 2010) %>%
-  distinct(year) %>%
-  pull()
-map(years, function(y) {
-  ggplot(aoo_compare_tidy %>%
-           filter(year == y), 
-       aes(x = log(cell_area), y = log(occupancy), color = species)) +
-    geom_point() + 
-    geom_line() + 
-    labs(x = "log(area)", y = "log(occupancy)") +
-    ggtitle(y)
-})
-```
-
-We can see that no signs of saturation (horizonta line) occur although endemism surely occurs for species-year combination with very few occurrences (see Azaele et al., 2012 and  `vignette("Upgraining", package = "downscale")`). On the other hand, mapping coarse occurrence data with a finer grid tends theoretically to uncorrect occupancy at such resolution: underestimation will occurr especially if data are aggregated.
-
-# Solution 1: downscaling
-
-Given a coordinate uncertainty $\Delta r$, any grid with cell with side $l < 2 \Delta r$ would be too fine. If we aim to calculate AOO at a resolution of 1km we should apply downscaling techniques.
-
-For downscaling we need a presence-absence table for each grid, so we need to add zeros to number of occurrences (column `n_occs`) and presence (column `presence`) where needed:
-
-```{r add_absence}
-pres_df <- pres_table$grid_10x10km
-grid <- belgium_grids$grid_10x10km
-species_years <- pres_df %>%
-  distinct(species, speciesKey, year)
-pres_abs_df <- crossing(grid, species_years) %>%
-    left_join(pres_df) %>%
-    mutate(n_occs = replace_na(n_occs, 0),
-           presence = replace_na(presence, 0))  
-```
-
-Assign presence-absence table to centroids:
-
-```{r centroids}
-pres_abs_ctds <- st_centroid(pres_abs_df)
-```
-
-### Upgraining
-
-Apply `upgrain.threshold()` to estimate the best threshold method. We use two scaling levels (we upgrain from 10 by 10 to 20 by 20 and 40 by 40). As explained in `vignette("Upgraining", package = "downscale")`:
-
->a larger number of scales means there is more data to fit the downscaling models, however the larger discrepancy there will be between the original extent of the atlas data and the new standardised extent.
-
-In case of small extent (Belgium is relatively small) this discrepancy can easily become very large. So, we don't recommend any further upgraining. Here below we show the effects of choosing different thresholds for _Hydrocotyle ranunculoides_ and year 2011:
-
-```{r apply_upgrain_threshold}
-example <- pres_abs_ctds %>%
-             filter(species == 
-                      "Hydrocotyle ranunculoides") %>%
-             filter(year == 2011)
-example <- as(example, "Spatial")
-example@data <- data.frame(example@data$presence)
-get_upgrain_values <- upgrain.threshold(
-  example,
-  cell.width = 10000,
-  scales = 2,
-  thresholds = seq(0, 1, 0.01))
-```
-
-Apply upgraining using thresholdbased on method `All_Occurrences` with scales equal to 2 for all species and years:
-
-```{r apply_upgrain, cache=TRUE}
-progress_bar <- progress_estimated(nrow(species_years))
-upgrain_species_year <- map2(species_years$species,
-                             species_years$year,
-                             function(s,y) {
-                               progress_bar$tick()$print()
-                               points <- pres_abs_ctds %>% 
-                                 filter(species == s) %>%
-                                 filter(year == y)
-                               points <- as(points, "Spatial")
-                               points@data <- data.frame(points@data$presence)
-                               upgrain(points, scales = 2, 
-                                       cell.width = 10000,
-                                       method = "All_Occurrences", 
-                                       plot = FALSE)
-                               }
-                             )
-names(upgrain_species_year) <- str_c(species_years$species,
-                                     species_years$year, sep = "_")
-```
-
-We select the five simplest downscale models, which have been used in Groom at al. 2018 in order to form the so called _simple ensemble_: power law, Nachman, Poisson, logistic and negative binomial.
-
-```{r models}
-models_simple_ensemble = c("Nachman", "PL", "Poisson", "Logis", "NB")
-```
-
-and cell resolution 1x1km, 2x2km and: 
-
-```{r cell_areas}
-# 1x1km, 2x2, 5x5 
-areas <- c(10^6, 4*10^6, 25*10^6)
-```
-
-
-Run downscaling:
-
-```{r apply_downscaling_models}
-# library(stringr)
-# select_species <- upgrain_species_year[which(map_lgl(names(upgrain_species_year), str_detect, "Impatiens glandulifera"))]
-progress_bar <- progress_estimated(length(upgrain_species_year))
-downscaling <- map(upgrain_species_year, ~ {  
-  progress_bar$tick()$print()
-  try(ensemble.downscale(., 
-                     new.areas = areas, 
-                     models = models_simple_ensemble,
-                     verbose = FALSE,
-                     plot = FALSE),
-      silent = FALSE)
-  })
-```
-
-If `Error : Not enough scales before scale of endemism for modelling` appears it means that the scale of endemism  has been reached among 10x10km and 40x40km. As explained in Azaele et al., 2012 and  `vignette("Upgraining", package = "downscale")`, the scale of endemism is the grain size where all presences occur in a single cell. This happens for species-years with very few and very localized occurrences, i.e. very low occupancy. In general, downscaling methods are deprecated at low occupancy levels. Here below we show number of occurrences and uncertainty (mode) of all cases of endemism:
-
-```{r cases_of_endemism_in_df}
-endemism_df <- map2_dfr(names(downscaling), downscaling, 
-                       function(s_y, results) {
-                         if (class(results) == "try-error") {
-                           endemic_df <- data.frame(species_year = s_y)
-                           endemic_df <- separate(endemic_df,
-                                                  col = species_year, 
-                                                  into = c("species", "year"),
-                                                  sep = "_", 
-                                                  convert = TRUE)
-                           return(endemic_df)
-                         }
-                       })
-endemism_df <- endemism_df %>%
-  left_join(mode_unc_df) %>%
-  left_join(aoo_compare_tidy %>%
-              distinct(speciesKey, species, year, n_occs)) %>%
-  arrange(desc(n_occs))
-endemism_df
-```
-
-We remove these species-year combinations and transform the list to data.frame containing occupancy and AOO:
-
-```{r downscale_df}
-downscaling_tidy <- map_dfr(
-  names(downscaling), function(x) {
-    if (class(downscaling[[x]]) != "try-error") {
-      downscale_occ <- downscaling[[x]]$Occupancy
-      downscale_aoo <- downscaling[[x]]$AOO
-      colnames(downscale_aoo) <- paste0("aoo_", colnames(downscale_aoo))
-      downscale_occ <- downscale_occ %>%
-        mutate(species = str_split(x, pattern = "_")[[1]][1],
-               year = as.integer(str_split(x, pattern = "_")[[1]][2])) %>%
-        bind_cols(downscale_aoo %>% select(-aoo_Cell.area))
-      return(downscale_occ)
-    }
-    
-  }
-)
-
-downscaling_tidy <- downscaling_tidy %>% select(-starts_with("aoo_")) %>%
-  gather_(key = "method", 
-          value = "occupancy", 
-          c(models_simple_ensemble,"Means")) %>%
-  left_join(downscaling_tidy %>%
-              select(starts_with("aoo_"), species, year) %>%
-              gather_(key = "method", 
-                      value = "aoo", 
-                      paste0("aoo_",c(models_simple_ensemble, "Means"))) %>%
-              mutate(method = str_remove(method, "aoo_")),
-            by = c("species", "year", "method"))
-```
-
-Plot occupancy for each species and downscaling method at 1 square kilometer (`Cell.area` equal to 1.0e+06):
-
-```{r plot_occupancy_basic}
-cell_area <- 1.0e+06
-occupancy_plots <- map(
-  species_df$species, function(species_name)
-    ggplot(downscaling_tidy %>%
-             filter(species == species_name & 
-                      Cell.area == cell_area), 
-           aes(x = year, y = occupancy, colour = method)) +
-    geom_line() +
-    geom_point() +
-    ggtitle(species_name))
-occupancy_plots
-```
-
-We select the mean of the simple ensemble at 1x1km resolution as summary for final comparison:
-
-```{r selet_meman_simple_ensemble}
-aoo_compare_downscaling_sum <- downscaling_tidy %>%
-  filter(Cell.area == 10^6 & 
-           method == "Means") %>%
-  right_join(species_df) %>%
-  select(species, speciesKey, year, occupancy, aoo)
-```
-
-# Solution 2: use uncertainty on occurrence data
-
-In this chapter we use information about coordinate uncertainty and conceive occurrence data as circles, with `decimalLongitude` and `decimalLatitude` as centre and radius equal to `coordinateUncertaintyInMeters`.
+We use uncertainty in `coordinateUncertaintyInMeters` to create circles linked to occurrences:
 
 ```{r create_circles}
 occ_circles <- st_buffer(occ_pts, 
@@ -596,25 +303,7 @@ occ_circles <- st_buffer(occ_pts,
                          nQuadSegs = 6)
 ```
 
-A preview leaflet map by using the grid with cell size 10x10km and occurrence data of species _Hydrocotyle ranunculoides_ from 2000:
-
-```{r leaflet_hydrocotye_from_2000}
-data_on_leaflet <- occ_circles %>%
-  filter(species == "Hydrocotyle ranunculoides") %>%
-  filter(year >= 2015) %>%
-  st_transform(wgs_84)
-
-mapt <- leaflet() %>%
-  addTiles() %>%
-  addPolygons(data = belgium_grids$grid_10x10km %>%
-                st_transform(wgs_84),
-              weight = 1, opacity = 0.5, fillOpacity = 0.1) %>%
-  addPolygons(data = data_on_leaflet,
-              weight = 1, opacity = 0.4, fillOpacity = 0.5)
-mapt
-```
-
-Some occurrence data are quite coarse and geographically aggregated: they are assigned to same coordinates, thus resulting in darker points on map. A way to solve such issue and at the same time to take into account the coordinate uncertainty, we assign the occurrence data to a point randomly chosen within the circle. Note: this step can take long:
+Some occurrence data are quite coarse and geographically aggregated: they are assigned to same coordinates, thus resulting in darker points on map. A way to solve this issue and at the same time to take into account the coordinate uncertainty, we assign the occurrence data to a point randomly chosen within the circle. Note: this step can take long:
 
 ```{r assign_pts_randomly_within_circle, cache=TRUE}
 get_random_pt <- function(x) {
@@ -629,49 +318,49 @@ random_pts <- map(st_geometry(occ_circles), get_random_pt)
 random_pts <- st_sfc(unlist(random_pts, recursive = FALSE), crs = crs_grid)
 ```
 
-Assign these new points to the occurrence data:
+Assign these points to the occurrence data:
 
 ```{r assign_pts_to_circles_randomize}
 occ_pts_randomize <- st_sf(data.frame(occ_df, geom = random_pts))
 ```
 
-Preview:
+Preview on a map:
 
 ```{r check_randomize}
+# add preview (select a subset of polygons via st_intersect)
 n_pts <- 50
 preview_pts_circles <- occ_pts_randomize[1:n_pts,]
-
+preview_circles <- occ_circles[1:n_pts,]
+subset_grid <- st_intersection(belgium_grid, preview_circles)$CELLCODE
+subset_grid <- belgium_grid %>%
+  filter(CELLCODE %in% subset_grid)
 mapt <- leaflet() %>%
   addTiles() %>%
-  addPolygons(data = belgium_grids$grid_10x10km %>%
+  addPolygons(data = subset_grid %>%
                 st_transform(wgs_84),
               weight = 1, opacity = 0.5, fillOpacity = 0.1) %>%
   addCircleMarkers(data = preview_pts_circles %>%
                      st_transform(wgs_84), 
                    radius = 2, color = "red") %>%
-  addPolygons(data = occ_circles[1:n_pts,] %>%
+  addPolygons(data = preview_circles %>%
                 st_transform(wgs_84),
               weight = 1, opacity = 0.3, fillOpacity = 0.3)
   
 mapt
 ```
 
-We can now repeat the same procedure followed at the beginning. First, intersect the new points with grids:
+Intersect points and grid:
 
-```{r intersect_randomize}
-points_on_grids_randomize <- map(belgium_grids, 
-                                 st_intersection, 
-                                 occ_pts_randomize)
+```{r intersect, cache=TRUE}
+points_on_grid <- st_intersection(belgium_grid, occ_pts_randomize)
 ```
 
 Only grid cells containing at least one point are present. 
 
-We calculate the number of occurrences per cell and assign 1 (presence) to them. This step can take long due to the high number of cells at 1x1km resolution:
+We calculate the number of occurrences per cell and assign 1 (presence) to them. This step can take long due to the high number of cells of the grid with 1x1km resolution:
 
-```{r pres_abs_randomize, cache=TRUE}
-pres_table_randomize <- map(points_on_grids_randomize, function(x) {
-  part_year <- partition (x, CELLCODE) 
-  pres_year <- part_year %>%
+```{r pres_abs, cache=TRUE}
+pres_table <- partition(points_on_grid, CELLCODE) %>%
   group_by(speciesKey, year) %>%
   summarise(dplyr::n()) %>%
   as.tibble(pres_year) %>%
@@ -681,173 +370,158 @@ pres_table_randomize <- map(points_on_grids_randomize, function(x) {
   mutate(presence = 1) %>%
   left_join(species_df, by = "speciesKey") %>%
   select(speciesKey, species, everything())
-  return(pres_year)
-})
 ```
 
-For each grid resolution, species and year, we calculate the Area Of Occupancy and the Occupancy (AOO divided by total grid area):
+For each species and year, we calculate the Area Of Occupancy (AOO) and the Occupancy (AOO divided by total grid area):
 
-```{r AOO_calculate_randomize}
-aoo_randomize <- pmap(list(pres_table_randomize, belgium_grids, total_areas, cell_sizes),
-            function(presence_df, grid, total_area, cell_size) {
-              presence_df %>%
-                group_by(species, speciesKey, year) %>% 
-                summarize(aoo = n() * cell_size,
-                          n_occs = sum(n_occs)) %>%
-                ungroup() %>%
-                mutate(occupancy = aoo / total_area,
-                       cell_area = cell_size)
-})
+```{r AOO_calculate}
+aoo <- 
+  pres_table %>%
+  group_by(species, speciesKey, year) %>% 
+  summarize(aoo = n()*cell_size, n_occs = sum(n_occs)) %>%
+  ungroup() %>%
+  mutate(occupancy = aoo / total_area,
+         cell_area = cell_size
+)
 ```
 
-The new AOO plot:
+AOO plot:
 
-```{r AOO_plot_randomize}
-map2(aoo_randomize, names(aoo_randomize), function(grid, name_grid) {
-    ggplot(grid) + 
-    aes(x = year, y = aoo/10^6) +
-    facet_wrap(~ species) +
-    geom_col() +
-    labs(x = "year", y = "AOO (km2)") +
-    ggtitle(name_grid)
-})
+```{r AOO_plot}
+ggplot(aoo) + 
+  aes(x = year, y = aoo/10^6) +
+  facet_wrap(~ species) +
+  geom_col() +
+  labs(x = "year", y = "AOO (km2)") +
+  ggtitle(names(aoo))
 ```
 
 Occupancy plot:
 
-```{r occupancy_plot_randomize}
-map2(aoo_randomize, names(aoo_randomize), function(grid, name_grid) {
-    ggplot(grid) + 
-    aes(x = year, y = occupancy) +
-    facet_wrap(~ species) +
-    geom_col() +
-    labs(x = "year", y = "occupancy") +
-    ggtitle(name_grid)
-})
+```{r occupancy_plot}
+ggplot(aoo) + 
+  aes(x = year, y = occupancy) +
+  facet_wrap(~ species) +
+  geom_col() +
+  labs(x = "year", y = "occupancy") +
+  ggtitle(names(aoo))
 ```
 
-We compare the AOO calculated using different grid cell size:
+# Research effort bias
 
-```{r aoo_compare_tidy_df_randomize}
-aoo_compare_tidy_randomize <- map2_dfr(aoo_randomize, names(aoo_randomize),
-                             function(df, grid_name) {
-  df %>% mutate(grid_size = grid_name)
-})
+The difference in occupancy along the years contains a bias which is typically called *research effort bias*. The presence of some species is not monitored constantly each year with the same effort and it can happen that a campaign runs over the entire country in different years. Moreover, the observations coming from citizen science projects are typically scattered over time and place and their contribute is difficult to estimate a priori.  Such variability risks to covers variations in the spreading of aliean species. In TriAS we will have to work with thousands of species, so we need to develop a technique which is not only effective but also as much general as possible.
+
+## Aggregation technique
+
+In this section we study how aggregating data on time can partly remove the effort bias.
+
+We calculate the occupancy levels by using different aggregation spans, from 1 (no aggregation) up to 10 years:
+
+```{r t_span}
+t_span <- c(1:10)
 ```
 
-Again, AOO increases by increasing the grid cell size. We plot the logarithm of occupancy and the logarithm of cell area for period 2005 - 2010:
+Preprocessing: introduce years where no occupancy is detected and set `presence = 0`:
 
-```{r AOO_log_occ_log_cell_area}
-years <- aoo_compare_tidy_randomize %>%
-  filter(year >= 2005 & year <= 2010) %>%
-  distinct(year) %>%
-  pull()
-map(years, function(y) {
-  ggplot(aoo_compare_tidy %>%
-           filter(year == y), 
-       aes(x = log(cell_area), y = log(occupancy), color = species)) +
+```{r add_absences}
+# Get all cells occupied at least once for each species
+cellcodes_species <- 
+  pres_table %>%
+  distinct(speciesKey, species, CELLCODE)
+# Get series years for each species and join on the cells
+years_species_cell <- 
+  pres_table %>%
+  distinct(speciesKey, species, year) %>%
+  group_by(speciesKey, species) %>%
+  complete(year = seq(min(year, na.rm = TRUE), 
+                      max(year, na.rm = TRUE))) %>%
+  left_join(cellcodes_species, by = c("speciesKey", "species"))
+
+pres_abs_table <- 
+  pres_table %>%
+  right_join(years_species_cell, 
+            by = c("speciesKey", "species", "year", "CELLCODE")) %>%
+  mutate(presence = if_else(!is.na(presence), presence, 0)) %>%
+  select(-n_occs)
+```
+
+Apply moving sum
+
+```{r running_aggregation, cache=TRUE}
+progress_bar <- progress_estimated(length(t_span))
+pres_abs_table_mov_sum <- 
+  map_dfr(
+    t_span, function(t) {
+      progress_bar$tick()$print()
+      pres_abs_table %>%
+        group_by(speciesKey, species, CELLCODE) %>%
+        mutate(mov_sum = c(
+          rep(0, t - 1), 
+          rollsum(na.fill(presence, 0), t, align = "right"))) %>%
+        ungroup() %>%
+        mutate(presence = if_else(mov_sum > 0, 1, 0)) %>%
+        mutate(t_window = t)
+    }
+)
+```
+
+Calculate the AOO for each time window:
+
+```{r aggregated_AOO}
+aoo_mov_sum <- 
+  pres_abs_table_mov_sum %>%
+  group_by(species, speciesKey, year, t_window) %>% 
+  summarize(aoo = sum(presence)*cell_size) %>%
+  ungroup() %>%
+  mutate(occupancy = aoo / total_area)
+```
+
+Occupancy is a monotonous function of the time window use for calculating the moving sum. Some examples:
+
+```{r plot_aggregated_AOO}
+map(c(2008:2012), function(x) {
+  ggplot(aoo_mov_sum %>% filter(year == x),
+         aes(x = t_window, y = occupancy, color = species)) +
     geom_point() + 
-    geom_line() + 
-    labs(x = "log(area)", y = "log(occupancy)") +
-    ggtitle(y)
+    geom_line() +
+    scale_x_continuous(breaks = c(1:10))
 })
 ```
 
-# Final summary
+Please notice that a time window of 1 is equivalent of not applying any aggregation. The values are right aligned: as example, the occupancy calculated at year 2010 and time window 10 is the sum of occupancy from 2001 to 2010.
 
-We can now summarize the results for comparison.
+If we set the occupancy at time window 10  as our reference unit, we can calculate summary statistics: how many years do we have to aggregate to get a relative occupancy higher than or equal to 0.1, 0.2, ..., 1.0?
 
-```{r summarize_results}
-aoo_compare_tidy_sum <- aoo_compare_tidy %>%
-  rename("aoo_unc" = "aoo",
-         "occupancy_unc" = "occupancy") %>% 
-  select(species, speciesKey, year, n_occs, occupancy_unc, grid_size) %>%
-  spread(key = grid_size,
-         value = occupancy_unc)
-aoo_compare_downscaling_sum <- aoo_compare_downscaling_sum %>%
-  rename("aoo_downscale" = "aoo",
-         "occupancy_downscale" = "occupancy")
- 
-aoo_compare_tidy_randomize_sum <- aoo_compare_tidy_randomize %>%
-  rename("aoo_unc" = "aoo",
-         "occupancy_unc" = "occupancy") %>% 
-  filter(grid_size == "grid_1x1km") %>%
-  select(species, speciesKey, year, n_occs, occupancy_unc, grid_size) %>%
-  spread(key = grid_size,
-         value = occupancy_unc) %>%
-  rename("grid_1x1km_uncertainty" = "grid_1x1km")
-aoo_summary <- aoo_compare_tidy_sum %>%
-  inner_join(mode_unc_df) %>%
-  inner_join(aoo_compare_downscaling_sum %>%
-               select(-aoo_downscale)) %>%
-  inner_join(aoo_compare_tidy_randomize_sum) %>%
-  select(speciesKey, species, year, n_occs, mode_uncertainty, everything())
-aoo_summary
+```{r percentiles_distr}
+thresholds <- seq(0.1, 1.0, by = 0.1)
+rel_occ_perc <- 
+  map_dfr(thresholds, 
+          function(perc) {
+            aoo_mov_sum %>%
+              group_by(species, speciesKey, year) %>%
+              # occupancy at longest time window is the maximum value possible
+              mutate(rel_occ = occupancy/max(occupancy)) %>%
+              filter(!is.na(rel_occ)) %>%
+              filter(rel_occ >= perc) %>%
+              filter(rel_occ == min(rel_occ)) %>%
+              filter(t_window == min(t_window)) %>%
+              ungroup() %>%
+              select(speciesKey, species, year, t_window, rel_occ) %>%
+              mutate(threshold = perc)
+          }
+)
+rel_occ_perc
 ```
 
-Plot occupancy at 1x1km for the three different methods:
+We calculate the distributions of the time windows for each threshold:
 
-```{r plot_occupancy_methods_together}
-occ_plot_summary <- map(species_df$species, function(x) {
-  ggplot(aoo_summary %>%
-           gather(key = "method",
-           value = "occupancy_1x1km",
-           grid_1x1km,
-           occupancy_downscale,
-           grid_1x1km_uncertainty) %>%
-           filter(species == x),
-         aes(x = year, 
-             y = occupancy_1x1km, 
-            fill = method)) +
-    geom_col(position = "dodge") +
-    ylab("1x1km_occupancy") +
-    xlab("year") +
-    ggtitle(paste("Occupancy at 1x1km resolution:", x))
+```{r plot_distribution_t}
+map(thresholds, function(perc) {
+  ggplot(rel_occ_perc %>% filter(threshold == perc),
+         aes(x = t_window, fill = species)) +
+    geom_bar(stat = "count") +
+    scale_x_continuous(breaks = c(1:10)) +
+    ggtitle(paste0("Relative occupancy >=", perc*100, "% of occupancy at 10 year time window."))
 })
-occ_plot_summary  
 ```
 
-As expected, we can see how occupancy calculated applying downscaling or using uncertainty to assign occurrence coordinates is almost always higher than just using the coordinates. 
-
-Differences between occupancy calculated by downscaling and by using uncertainty are less prononunced. We plot the relative difference in occupancy calculatd by the two methods ( _occupancy by downscaling_ - _occupancy by uncertainty_ ) vs the occupancy calculated by downscaling:
-
-```{r rel_diff_occ_vs_n_occs}
-aoo_summary_rel_diff <- aoo_summary %>%
-         mutate(diff_downscale_unc = 
-                  (occupancy_downscale - grid_1x1km_uncertainty)/occupancy_downscale)
-ggplot(aoo_summary_rel_diff, aes(occupancy_downscale, diff_downscale_unc)) +
-  geom_point() +
-  geom_smooth(data = aoo_summary_rel_diff, method = "lm") +
-  ylab("(occ(dws) - occ(unc))/occ(dws)") +
-  xlab("occ(dws)") +
-  ggtitle("Relative difference in occupancy vs occupancy")
-```
-
-We can see how the relative differences don't show a prononuced trend. We cannot see any trend at all actually. For occupancy not near to zero the two methods provide We notice how the relative difference very high for vey low occupancy, which is quite reasonable if we take into account that:
-
-1. Relative differences tend to be high if number of occupied grid cells (denominator) is very low.
-2. Downscaling is deprecated if occupancy is very low (FIND CITATION about).
-
-We have also to not forget that downscaling couldn't be applied for 31 species/year combinations due to endemism effects. 
-
-We conclude this analysis showing that no relation between coordinate uncertainty (mode) and relative difference in occupancy seems to exist:
-
-```{r rel_diff_occ_vs_mode_unc}
-ggplot(aoo_summary %>%
-         mutate(diff_downscale_unc = 
-                  (occupancy_downscale - grid_1x1km_uncertainty)/occupancy_downscale) %>%
-         group_by(mode_uncertainty) %>%
-         summarize(mean_rel_diff = mean(diff_downscale_unc),
-                   N = n(),
-                sd = sd(diff_downscale_unc),
-               se = sd / sqrt(N))) + 
-       aes(x = mode_uncertainty,
-           y = mean_rel_diff) +
-  geom_point() +
-  geom_errorbar(aes(ymin=mean_rel_diff-sd, ymax=mean_rel_diff+sd),
-                  width=.2,
-                  position=position_dodge(.9)) +
-  ylab("(occ(dws) - occ(unc))/occ(dws)") +
-  xlab("uncertainty (mode) in meters") +
-  ggtitle("Relative difference in occupancy vs uncertainty")
-```
