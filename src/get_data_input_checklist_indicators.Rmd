@@ -1,8 +1,7 @@
 ---
-title: "Checklist-based indicators of Invasive Alien Species"
+title: "Get input data for checklist-based indicators"
 author:
 - Damiano Oldoni
-- Add your name
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -12,11 +11,7 @@ output:
     number_sections: true
 ---
 
-This document describes how to build indicators of Invasive Alien Species based on checklist data. In particular, the following indicators are taken into account:
-
-1. number of new introductions of alien species per year in Belgium (see GitHub issue [#17](https://github.com/trias-project/pipeline/issues/17))
-2. pathways associated with alien species introductions (see GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19))
-3. cumulative number of alien species (see GitHub issue [#20](https://github.com/trias-project/pipeline/issues/20))
+This document describes how to get and manipulate data from [unified checklist](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e) for checklist-based indicators.
 
 # Setup
 
@@ -24,28 +19,14 @@ This document describes how to build indicators of Invasive Alien Species based 
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-Install `trias` package:
-
-```{r install_packages}
-devtools::install_github("trias-project/trias@add_functions_checklist_indicators")
-```
-
-
 Load libraries:
 
 ```{r load_libraries}
-# Tidyverse packages
-library(tidyr)
-library(dplyr)
-library(magrittr)
-library(stringr)
-library(readr)
-# GBIF related packages
-library(rgbif)
-# project package
-library(trias)
-#other pckages
-library(lazyeval)
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(here)           # To find files
+library(rgbif)          # To get taxa from publisehd unified checklist
+library(trias)          # To get indicator functionalities
 ```
 
 # Get data
@@ -71,106 +52,74 @@ taxa <-
 ```
 
 
-### Distribution
+## Get distribution
 
 Extract distribution information
 
-```{r retrieve_distribution_information}
-distribution <- data.frame(key = taxon_keys) %>%
-  rowwise() %>%
-  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
-                                               return = "data",
-                                               data = "distribution")))) %>% 
+```{r retrieve_distribution_information, cache=TRUE}
+distribution <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "distribution")) %>% 
   select(-source)
 head(distribution)
 ```
 
-### Description
+## Get description
 
 Extract description information
 
-```{r retrieve_description_information}
-description <- data.frame(key = taxon_keys) %>%
-  rowwise() %>%
-  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
-                                               return = "data",
-                                               data = "description"))))
-description %<>% select(-c(key, language, source))
-description %<>% ungroup()
+```{r retrieve_description_information, cache=TRUE}
+description <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "description")) %>% 
+  select(-c(key, language, source))
 head(description, n = 10)
 ```
 
-Contrarily to distribution information, description contains a column  `type` with the following descriptors: 
+Description contains a column `type` with the following descriptors: 
 
-```{r}
+```{r descriptors}
 description %>% distinct(type)
-descriptors <- description %>% distinct(type) %>% pull()
-```
-We would like to *tidy* this data.frame, thus having different descriptors as different columns. Unfortunately `dplyr::spread(key, value)` doesn't work due to *duplicates*, i.e. keys with more than one value, for example:
-
-```{r duplicates_issue_spread}
-description %>% filter(taxonKey == 141264585 & type == "native range")
 ```
 
-A more complex strategy has been found:
+We *tidy* this data.frame, thus having different descriptors as different columns:
 
 ```{r tidy_description}
-change_colname <- function(df, new_colname){
-  df %>% 
-    rename(!!new_colname := description) %>%
-    select(-type)
-}
-
-description_tidy <- 
-  purrr::map(descriptors, function(x) description %>% filter(type == x)) %>%
-  purrr::map2(descriptors, ~ change_colname(.x, .y)) %>%
-  purrr::reduce(dplyr::full_join, by = "taxonKey")
-head(description_tidy)
+description <- spread_with_multiple_values(data = description,
+                                           key = type,
+                                           value = description)
+description %>% head(n = 10)
 ```
 
-The chunk code above should be wrapped in a function: Peter Desmet proposed the name `spread_with_duplicates`. It could be put in project package, `trias`, or be part of `tidyr` package eventually. See GitHub issue [#16](https://github.com/trias-project/trias/issues/16).
-
-### Species profile
+## Species profile
 
 Extract species profile
 
-```{r retrieve_species_profile_information}
-speciesProfiles <- data.frame(key = taxon_keys) %>%
-  rowwise() %>%
-  do_(interp(~ as.data.frame(rgbif::name_usage(key = .$key,
-                                               return = "data",
-                                               data = "speciesProfiles"))))
+```{r retrieve_species_profile_information, cache=TRUE}
+speciesProfiles <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "speciesProfiles"))
 head(speciesProfiles)
 ```
 
-### Merge data
+## Merge data
 
-Merge all retrieved informations
+Merge distribution, description and species profile information:
 
 ```{r merge_extensions_information}
 merged_extensions <- full_join(distribution,
-                               description_tidy,
+                               description,
                                speciesProfiles,
                                by = "taxonKey")
 
-merged_info <- left_join(combined_taxon_info, merged_extensions,
+merged_info <- left_join(taxa, merged_extensions,
                          by = c("key" = "taxonKey"))
-```
-
-## Filter invasive alien species
-
-Filter species by:
-
-1. invasion stage (`establishmentMeans` equal to one of `INTRODUCED`,  `NATURALISED`, `INVASIVE`, `ASSISTED COLONISATION`) see GitHub issue [#28](https://github.com/trias-project/pipeline/issues/28#issuecomment-382036510)
-2. presence status (`status` not equal to `DOUBTFUL`, `ABSENT`, `EXCLUDED` or `EXTINCT`) see GitHugb issue [#26](https://github.com/trias-project/pipeline/issues/26#issuecomment-382036007)
-3. presence in Belgium (`country` equal to `BE`)
-
-```{r filter_by_establishmentMeans}
-merged_info %<>%
-  filter(establishmentMeans %in% c("INTRODUCED", "NATURALISED", "INVASIVE",
-                                   "ASSISTED COLONISATION"),
-         !status %in% c("DOUBTFUL", "ABSENT", "EXCLUDED", "EXTINCT"),
-         country == "BE")
 ```
 
 ## Tidy data
@@ -179,7 +128,7 @@ Some columns should be splitted in order to make the data.frame completely tidy:
 
 ### Split column `temporal`
 
-The column `temporal` contains one or two datums
+The column `temporal` contains one or two datums:
 
 ```{r example_temporal, echo = FALSE}
 merged_info %>% 
@@ -189,21 +138,22 @@ merged_info %>%
   head()
 ```
 
-In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed` as suggested [here]().
+In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed`.
 
 ```{r split_temporal}
-merged_info %<>% separate(col = temporal,
-                          sep = "/",
-                          into = c("first_observed", "last_observed"),
-                          convert = TRUE,
-                          fill = "right",
-                          remove = TRUE) %>%
+merged_info <-
+  merged_info %>% separate(col = temporal,
+                           sep = "/",
+                           into = c("first_observed", "last_observed"),
+                           convert = TRUE,
+                           fill = "right",
+                           remove = TRUE) %>%
   mutate(last_observed = ifelse(is.na(last_observed),
                           first_observed,
                           last_observed))
 ```
 
-As example
+An example:
 
 ```{r example_split_temporal, echo = FALSE}
 merged_info %>% 
@@ -250,11 +200,15 @@ merged_info %>%
 
 ## Save data output
 
-The information in `merged_info` is ready to be saved in folder `\data\interim`:
+The data.frame `merged_info` is saved as output file:
 
-```{r save_data_output, eval=FALSE}
-write_tsv(x = merged_info, 
-          path = "../data/interim/test_data_output_checklist_indicators.tsv")
+```{r save_data_output}
+write_tsv(merged_info, 
+          path = here("data", 
+                      "output", 
+                      "data_input_checklist_indicators.tsv"),
+          na = ""
+)
 ```
 
-And be used as start point for building indicators.
+This file will be used as start point for building checklist-based indicators.
