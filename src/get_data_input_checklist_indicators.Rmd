@@ -45,7 +45,11 @@ taxa <- name_usage(datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
 Select columns we are interested to:
 
 ```{r select_cols_interest}
-checklist_info <- c("key", "nubKey", "scientificName", "datasetKey")
+checklist_info <- c("key", "nubKey", "scientificName", "datasetKey",
+                    "species", "genus", "family", "order",	
+                    "class", "phylum", "kingdom",	
+                    "rank", "speciesKey", "taxonomicStatus", 	
+                    "acceptedKey", "accepted")
 taxa <-
   taxa %>%
   select(one_of(checklist_info))
@@ -122,6 +126,7 @@ merged_extensions <-
 
 merged_info <- left_join(taxa, merged_extensions,
                          by = c("key" = "taxonKey"))
+head(merged_extensions)
 ```
 
 ## Tidy data
@@ -177,7 +182,9 @@ merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
 We split this column in `pathway_level1` and `pathway_level2`
 
 ```{r split_pathway}
-merged_info %<>% rowwise() %>%
+merged_info <-
+  merged_info %>% 
+  rowwise() %>%
   mutate(pathway_level1 = 
            str_split_fixed(
              str_split(pathway,
