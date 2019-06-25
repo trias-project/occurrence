@@ -78,3 +78,60 @@ indicator_introduction_year(data, start_year_plot = 1920,
                             facet_column = facet_column)
 ```
 
+# Checklist indicators for Living Planet Index
+
+## Prepare data
+
+We remove data related to:
+
+1. kingdom `Chromista` and `Fungi`
+2. mixed habitats `freshwater|terrestrial` and `marine|freshwater`
+3. missing habitat information
+
+```{r data_lpi}
+data_lpi <-
+  
+  filter(!habitat %in% c("freshwater|terrestrial",
+                         "marine|freshwater"))
+```
+
+## Number of introductions per year 
+
+We group data by kingdom:
+
+```{r facet_column_lpi_kingdom_lpi}
+facet_column <- "kingdom"
+```
+
+We don't take into account Fungi and Chromista due to a lack of comprehensive data on those kingdoms:
+
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(
+  data %>%
+  filter(!kingdom %in% c("Chromista", "Fungi")), 
+  start_year_plot = 1920, 
+  smooth_span = .85,
+  x_major_scale_stepsize = 10,
+  x_minor_scale_stepsize = 2.5,
+  facet_column = facet_column)
+```
+
+We group data by habitat:
+
+```{r facet_column_lpi_habitat}
+facet_column <- "habitat"
+```
+
+We don't take into account combined habitats `freshwater|terrestrial` `marine|freshwater` due to a lack of comprehensive data on those habitats:
+
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(
+  data %>%
+  filter(!habitat %in% c("freshwater|terrestrial",
+                         "marine|freshwater", NA_character_)), 
+  start_year_plot = 1920, 
+  smooth_span = .85,
+  x_major_scale_stepsize = 10,
+  x_minor_scale_stepsize = 2.5,
+  facet_column = facet_column)
+```
