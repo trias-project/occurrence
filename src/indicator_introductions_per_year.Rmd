@@ -44,6 +44,8 @@ data <- read_tsv(here("data","output", "data_input_checklist_indicators.tsv"),
 
 We use function `indicator_introduction_year()` from `trias` library.
 
+## Grouping by kingdom
+
 We group data by kingdom:
 
 ```{r facet_column}
@@ -58,3 +60,5 @@ indicator_introduction_year(data, start_year_plot = 1920,
                             x_minor_scale_stepsize = 2.5,
                             facet_column = "kingdom")
 ```
+
+## Grouping by species profile
