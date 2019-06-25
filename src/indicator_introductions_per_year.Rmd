@@ -35,9 +35,9 @@ library(trias)      # To use functions developed for TrIAS
 
 # Get data
 
-```{r save_data_output}
-# Get data
-data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
+```{r get_data_input}
+data <- read_tsv(here("data","output", "data_input_checklist_indicators.tsv"),
+                 na = "")
 ```
 
 # Number of new introductions of alien species per year
