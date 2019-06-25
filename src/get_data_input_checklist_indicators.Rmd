@@ -113,10 +113,12 @@ head(speciesProfiles)
 Merge distribution, description and species profile information:
 
 ```{r merge_extensions_information}
-merged_extensions <- full_join(distribution,
-                               description,
-                               speciesProfiles,
-                               by = "taxonKey")
+merged_extensions <- 
+  full_join(distribution,
+            description,
+            by = "taxonKey") %>%
+  full_join(speciesProfiles,
+            by = "taxonKey")
 
 merged_info <- left_join(taxa, merged_extensions,
                          by = c("key" = "taxonKey"))
