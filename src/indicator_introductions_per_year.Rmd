@@ -49,9 +49,8 @@ We use function `indicator_introduction_year()` from `trias` library.
 We group data by kingdom:
 
 ```{r facet_column}
-facet_column = "kingdom"
+facet_column <- "kingdom"
 ```
-
 
 ```{r, fig.width=10, fig.height=10, results="hide"}
 indicator_introduction_year(data, start_year_plot = 1920, 
@@ -69,7 +68,6 @@ We group data by habitat:
 facet_column <- "habitat"
 ```
 
-
 ```{r, fig.width=10, fig.height=10, results="hide"}
 indicator_introduction_year(data, start_year_plot = 1920, 
                             smooth_span = .85,
@@ -80,22 +78,9 @@ indicator_introduction_year(data, start_year_plot = 1920,
 
 # Checklist indicators for Living Planet Index
 
-## Prepare data
+In this section we make little changes to the indicator graphs for publication on the Living Planet Index.
 
-We remove data related to:
-
-1. kingdom `Chromista` and `Fungi`
-2. mixed habitats `freshwater|terrestrial` and `marine|freshwater`
-3. missing habitat information
-
-```{r data_lpi}
-data_lpi <-
-  
-  filter(!habitat %in% c("freshwater|terrestrial",
-                         "marine|freshwater"))
-```
-
-## Number of introductions per year 
+## Grouping by kingdom
 
 We group data by kingdom:
 
@@ -116,20 +101,21 @@ indicator_introduction_year(
   facet_column = facet_column)
 ```
 
-We group data by habitat:
+## Grouping by species profile
 
 ```{r facet_column_lpi_habitat}
 facet_column <- "habitat"
 ```
 
-We don't take into account combined habitats `freshwater|terrestrial` `marine|freshwater` due to a lack of comprehensive data on those habitats:
+We don't take into account combined habitats `freshwater|terrestrial` and `marine|freshwater` due to a lack of comprehensive data on those habitats:
 
 ```{r, fig.width=10, fig.height=10, results="hide"}
 indicator_introduction_year(
   data %>%
   filter(!habitat %in% c("freshwater|terrestrial",
-                         "marine|freshwater", NA_character_)), 
-  start_year_plot = 1920, 
+                         "marine|freshwater",
+                         NA_character_)), 
+  start_year_plot = 1950, 
   smooth_span = .85,
   x_major_scale_stepsize = 10,
   x_minor_scale_stepsize = 2.5,
