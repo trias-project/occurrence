@@ -28,8 +28,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(readr)
-library(trias)
+library(tidyverse)  # To do datascience
+library(here)       # To find files
+library(trias)      # To use functions developed for TrIAS
 ```
 
 # Get data
