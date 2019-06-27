@@ -116,7 +116,7 @@ indicator_introduction_year(
   filter(!habitat %in% c("freshwater|terrestrial",
                          "marine|freshwater",
                          NA_character_)), 
-  start_year_plot = 1950, 
+  start_year_plot = 1920, 
   smooth_span = .85,
   x_major_scale_stepsize = 10,
   x_minor_scale_stepsize = 2.5,
