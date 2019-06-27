@@ -18,8 +18,8 @@ Lysichiton americanus	American skunk cabbage	2016-08-03	Plantae	2869311	ACCEPTED
 Microstegium vimineum	Japanese stiltgrass	2017-08-02	Plantae	5289808	ACCEPTED
 Myriophyllum aquaticum	Parrot's feather	2016-08-03	Plantae	5361785	ACCEPTED
 Myriophyllum heterophyllum	Broadleaf watermilfoil	2017-08-02	Plantae	5361762	ACCEPTED
-Parthenium hysterophorus	Whitetop weed	2016-08-03	Plantae	3086784	DOUBTFUL
-Pennisetum setaceum	Crimson fountaingrass	2017-08-02	Plantae	2706134	ACCEPTED
+Parthenium hysterophorus	Whitetop weed	2016-08-03	Plantae	3086784	ACCEPTED
+Pennisetum setaceum	Crimson fountaingrass	2017-08-02	Plantae	2706134	SYNONYM
 Persicaria perfoliata	Asiatic tearthumb	2016-08-03	Plantae	4033648	ACCEPTED
 Pueraria lobata	Kudzu vine	2016-08-03	Plantae	9035634	ACCEPTED
 Alopochen aegyptiacus	Egyptian goose	2017-08-02	Animalia	2498252	ACCEPTED
@@ -48,3 +48,20 @@ Tamias sibiricus	Siberian chipmunk	2016-08-03	Animalia	2437450	ACCEPTED
 Threskiornis aethiopicus	Sacred ibis	2016-08-03	Animalia	2480764	ACCEPTED
 Trachemys scripta	Red-eared, yellow-bellied and Cumberland sliders	2016-08-03	Animalia	2443002	ACCEPTED
 Vespa velutina nigrithorax	Asian hornet	2016-08-03	Animalia	6247411	ACCEPTED
+Humulus scandens	Japanese hop		Plantae	2984537	SYNONYM
+Acridotheres tristis	Common myna		Animalia	2489005	ACCEPTED
+Ailanthus altissima	Tree of heaven		Plantae	3190653	ACCEPTED
+Andropogon virginicus	Broomsedge bluestem		Plantae	2706080	ACCEPTED
+Arthurdendyus triangulatus	New Zealand flatworm		Animalia	2502792	ACCEPTED
+Cardiospermum grandiflorum	Balloon vine		Plantae	9685025	DOUBTFUL
+Cortaderia jubata	Purple pampas grass		Plantae	2704521	ACCEPTED
+Acacia saligna	Coojong		Plantae	8790482	DOUBTFUL
+Gymnocoronis spilanthoides	Spadeleaf plant		Plantae	6063677	ACCEPTED
+Triadica sebifera	Chinese tallow		Plantae	3054399	ACCEPTED
+Lepomis gibbosus	pumpkinseed		Animalia	2394486	ACCEPTED
+Lespedeza cuneata	Chinese bushclover		Plantae	8114276	SYNONYM
+Lygodium japonicum	Japanese climbing fern		Plantae	2650436	ACCEPTED
+Plotosus lineatus	Striped eel catfish		Animalia	7965247	ACCEPTED
+Prosopis juliflora	Mesquite		Plantae	5358460	ACCEPTED
+Salvinia molesta	Giant salvinia		Plantae	5274863	ACCEPTED
+Ehrharta calycina	Perennial veldtgrass		Plantae	7644403	SYNONYM
