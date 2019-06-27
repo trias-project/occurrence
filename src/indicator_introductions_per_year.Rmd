@@ -54,11 +54,11 @@ facet_column <- "kingdom"
 ```
 
 ```{r, fig.width=10, fig.height=10, results="hide"}
-indicator_introduction_year(data, start_year_plot = 1920, 
+indicator_introduction_year(data, start_year_plot = 1920,
                             smooth_span = .85,
                             x_major_scale_stepsize = 10,
                             x_minor_scale_stepsize = 2.5,
-                            facet_column = "kingdom")
+                            facet_column = facet_column)
 ```
 
 ## Grouping by species profile
