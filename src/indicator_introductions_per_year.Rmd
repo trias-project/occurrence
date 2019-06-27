@@ -31,6 +31,7 @@ Load libraries:
 library(tidyverse)  # To do datascience
 library(here)       # To find files
 library(trias)      # To use functions developed for TrIAS
+library(INBOtheme)  # To use INBO theme for graphs
 ```
 
 # Get data
