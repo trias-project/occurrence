@@ -36,11 +36,9 @@ library(here)
 
 # Get data
 
-```{r save_data_output}
-data_file <- here("data", 
-                  "interim",
-                  "test_data_output_checklist_indicators.tsv")
-data <- read_tsv(data_file)
+```{r read_data_for_building_indicators}
+data_file <- here("data","output", "data_input_checklist_indicators.tsv")
+data <- read_tsv(data_file, na = "")
 ```
 
 # Build pathway indicator
