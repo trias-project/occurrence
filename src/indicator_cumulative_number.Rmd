@@ -33,7 +33,7 @@ library(trias)
 # Get data
 
 ```{r save_data_output}
-data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
+data <- read_tsv("../data/output/data_input_checklist_indicators.tsv")
 ```
 
 # Cumulative number of introductions of alien species
