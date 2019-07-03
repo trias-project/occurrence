@@ -46,8 +46,8 @@ Select columns we are interested to:
 
 ```{r select_cols_interest}
 checklist_info <- c("key", "nubKey", "scientificName", "datasetKey",
-                    "species", "genus", "family", "order",	
-                    "class", "phylum", "kingdom",	
+                    "canonicalName", "species", "genus", "family", 
+                    "order", "class", "phylum", "kingdom",	
                     "rank", "speciesKey", "taxonomicStatus", 	
                     "acceptedKey", "accepted")
 taxa <-
