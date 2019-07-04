@@ -5,7 +5,7 @@ before_script:
   # Dependencies are defined in DESCRIPTION
 
 script:
-  - Rscript -e "rmarkdown::render_site(encoding = 'UTF-8')"
+  - Rscript -e "rmarkdown::render_site(input = 'src', encoding = 'UTF-8')"
 
 deploy:
   provider: pages
