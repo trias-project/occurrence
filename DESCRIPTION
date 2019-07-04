@@ -1,0 +1,17 @@
+Package: indicators
+Type: R Markdown website
+Title: Alien species indicators
+Version: 0.0.1
+Description: This description file is only used to define dependencies.
+Imports:
+    here,
+    INBOtheme,
+    kableExtra,
+    rgbif,
+    rmarkdown,
+    trias,
+    tidylog,
+    tidyverse
+Remotes:
+    trias-project/trias,
+    inbo/INBOtheme
