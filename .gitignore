@@ -55,3 +55,6 @@ src/*_files/
 # all files extracted from compressed files (GBIF downloads)
 data/output/*/*
 data/interim/*
+
+# R Markdown site
+_site

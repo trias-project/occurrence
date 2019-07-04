@@ -1,5 +1,5 @@
 name: "TrIAS data processing pipeline"
-output_dir: "../docs"
+output_dir: "../_site"
 include: "static"
 navbar:
   title: "TrIAS pipeline"

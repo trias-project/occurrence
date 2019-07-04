@@ -9,7 +9,7 @@ script:
 
 deploy:
   provider: pages
-  local_dir: _book
+  local_dir: _site
   skip_cleanup: true
   keep_history: true
   github_token: $GITHUB_TOKEN
