@@ -28,32 +28,97 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(readr)
-library(trias)
+library(tidyverse)  # To do datascience
+library(here)       # To find files
+library(trias)      # To use functions developed for TrIAS
+library(INBOtheme)  # To use INBO theme for graphs
 ```
 
 # Get data
 
-```{r save_data_output}
-# Get data
-data <- read_tsv("../data/interim/test_data_output_checklist_indicators.tsv")
+```{r get_data_input}
+data <- read_tsv(here("data","output", "data_input_checklist_indicators.tsv"),
+                 na = "")
 ```
 
 # Number of new introductions of alien species per year
 
 We use function `indicator_introduction_year()` from `trias` library.
 
+## Grouping by kingdom
+
 We group data by kingdom:
 
 ```{r facet_column}
-facet_column = "kingdom"
+facet_column <- "kingdom"
 ```
 
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(data, start_year_plot = 1920,
+                            smooth_span = .85,
+                            x_major_scale_stepsize = 10,
+                            x_minor_scale_stepsize = 2.5,
+                            facet_column = facet_column)
+```
+
+## Grouping by species profile
+
+We group data by habitat:
+
+```{r facet_column}
+facet_column <- "habitat"
+```
 
 ```{r, fig.width=10, fig.height=10, results="hide"}
 indicator_introduction_year(data, start_year_plot = 1920, 
                             smooth_span = .85,
                             x_major_scale_stepsize = 10,
                             x_minor_scale_stepsize = 2.5,
-                            facet_column = "kingdom")
+                            facet_column = facet_column)
+```
+
+# Checklist indicators for Living Planet Index
+
+In this section we make little changes to the indicator graphs for publication on the Living Planet Index.
+
+## Grouping by kingdom
+
+We group data by kingdom:
+
+```{r facet_column_lpi_kingdom_lpi}
+facet_column <- "kingdom"
+```
+
+We don't take into account Fungi and Chromista due to a lack of comprehensive data on those kingdoms:
+
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(
+  data %>%
+  filter(!kingdom %in% c("Chromista", "Fungi")), 
+  start_year_plot = 1920, 
+  smooth_span = .85,
+  x_major_scale_stepsize = 10,
+  x_minor_scale_stepsize = 2.5,
+  facet_column = facet_column)
+```
+
+## Grouping by species profile
+
+```{r facet_column_lpi_habitat}
+facet_column <- "habitat"
+```
+
+We don't take into account combined habitats `freshwater|terrestrial` and `marine|freshwater` due to a lack of comprehensive data on those habitats:
+
+```{r, fig.width=10, fig.height=10, results="hide"}
+indicator_introduction_year(
+  data %>%
+  filter(!habitat %in% c("freshwater|terrestrial",
+                         "marine|freshwater",
+                         NA_character_)), 
+  start_year_plot = 1920, 
+  smooth_span = .85,
+  x_major_scale_stepsize = 10,
+  x_minor_scale_stepsize = 2.5,
+  facet_column = facet_column)
 ```

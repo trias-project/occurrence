@@ -1,0 +1,223 @@
+---
+title: "Get input data for checklist-based indicators"
+author:
+- Damiano Oldoni
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+This document describes how to get and manipulate data from [unified checklist](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e) for checklist-based indicators.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Load libraries:
+
+```{r load_libraries}
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(here)           # To find files
+library(rgbif)          # To get taxa from publisehd unified checklist
+library(trias)          # To get indicator functionalities
+```
+
+# Get data
+
+## Get taxonomic data
+
+Get taxa from the published unified checklist, the [*Global Register of Introduced and Invasive Species - Belgium*](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e):
+
+```{r get_data_unified_checklist}
+taxa <- name_usage(datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
+                   return = "data",
+                   limit = 10000) %>%
+  filter(origin == "SOURCE")
+```
+
+Select columns we are interested to:
+
+```{r select_cols_interest}
+checklist_info <- c("key", "nubKey", "scientificName", "datasetKey",
+                    "canonicalName", "species", "genus", "family", 
+                    "order", "class", "phylum", "kingdom",	
+                    "rank", "speciesKey", "taxonomicStatus", 	
+                    "acceptedKey", "accepted")
+taxa <-
+  taxa %>%
+  select(one_of(checklist_info))
+```
+
+
+## Get distribution
+
+Extract distribution information
+
+```{r retrieve_distribution_information, cache=TRUE}
+distribution <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "distribution")) %>% 
+  select(-source)
+head(distribution)
+```
+
+## Get description
+
+Extract description information
+
+```{r retrieve_description_information, cache=TRUE}
+description <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "description")) %>% 
+  select(-c(key, language, source))
+head(description, n = 10)
+```
+
+Description contains a column `type` with the following descriptors: 
+
+```{r descriptors}
+description %>% distinct(type)
+```
+
+We *tidy* this data.frame, thus having different descriptors as different columns:
+
+```{r tidy_description}
+description <- spread_with_multiple_values(data = description,
+                                           key = type,
+                                           value = description)
+description %>% head(n = 10)
+```
+
+## Species profile
+
+Extract species profile
+
+```{r retrieve_species_profile_information, cache=TRUE}
+speciesProfiles <- taxa %>%
+  pull(key) %>%
+  map_dfr(~ name_usage(.,
+                     return = "data",
+                     data = "speciesProfiles"))
+head(speciesProfiles)
+```
+
+## Merge data
+
+Merge distribution, description and species profile information:
+
+```{r merge_extensions_information}
+merged_extensions <- 
+  full_join(distribution,
+            description,
+            by = "taxonKey") %>%
+  full_join(speciesProfiles,
+            by = "taxonKey")
+
+merged_info <- left_join(taxa, merged_extensions,
+                         by = c("key" = "taxonKey"))
+head(merged_extensions)
+```
+
+## Tidy data
+
+Some columns should be splitted in order to make the data.frame completely tidy: `temporal` and `pathway`.
+
+### Split column `temporal`
+
+The column `temporal` contains one or two datums:
+
+```{r example_temporal, echo = FALSE}
+merged_info %>% 
+  select(key, temporal) %>% 
+  distinct() %>% 
+  filter(!is.na(temporal)) %>%
+  head()
+```
+
+In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed`.
+
+```{r split_temporal}
+merged_info <-
+  merged_info %>% separate(col = temporal,
+                           sep = "/",
+                           into = c("first_observed", "last_observed"),
+                           convert = TRUE,
+                           fill = "right",
+                           remove = TRUE) %>%
+  mutate(last_observed = ifelse(is.na(last_observed),
+                          first_observed,
+                          last_observed))
+```
+
+An example:
+
+```{r example_split_temporal, echo = FALSE}
+merged_info %>% 
+  filter(locality == "Belgium") %>% 
+  select(key, first_observed, last_observed) %>%
+  distinct() %>%
+  filter(!is.na(first_observed) & !is.na(last_observed)) %>%
+  head()
+```
+
+### Split column `pathway`
+
+The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_`
+
+```{r pathway_levels_example, echo = FALSE}
+merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
+```
+
+We split this column in `pathway_level1` and `pathway_level2`
+
+```{r split_pathway}
+merged_info <-
+  merged_info %>% 
+  rowwise() %>%
+  mutate(pathway_level1 = 
+           str_split_fixed(
+             str_split(pathway,
+                       pattern = "pathway:")[[1]][2],
+             pattern = "_", n = 2)[[1]][1],
+         pathway_level2 = 
+           str_split_fixed(
+             str_split(pathway,pattern = "pathway:")[[1]][2],
+             pattern = "_", n = 2)[[2]][1]) %>%
+  ungroup() %>%
+  select(-pathway) 
+```
+
+As example:
+
+```{r example_split_pathway, echo = FALSE}
+merged_info %>% 
+  distinct(pathway_level1, pathway_level2) %>%
+  filter(!is.na(pathway_level1) & !is.na(pathway_level2)) %>%
+  head()
+```
+
+## Save data output
+
+The data.frame `merged_info` is saved as output file:
+
+```{r save_data_output}
+write_tsv(merged_info, 
+          path = here("data", 
+                      "output", 
+                      "data_input_checklist_indicators.tsv"),
+          na = ""
+)
+```
+
+This file will be used as start point for building checklist-based indicators.
