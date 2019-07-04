@@ -10,5 +10,5 @@ Imports:
     here,
     rgbif
 Remotes:
-    trias-project/trias
+    trias-project/trias,
     inbo/INBOtheme
