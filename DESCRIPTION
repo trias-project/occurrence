@@ -6,7 +6,7 @@ Description: This description file is only used to define dependencies.
 Imports:
     here,
     INBOtheme,
-    kableExtra
+    kableExtra,
     rgbif,
     rmarkdown,
     trias,
