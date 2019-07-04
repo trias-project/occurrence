@@ -49,7 +49,7 @@ We use function `indicator_introduction_year()` from `trias` library.
 
 We group data by kingdom:
 
-```{r facet_column}
+```{r facet_column_kingdom}
 facet_column <- "kingdom"
 ```
 
@@ -65,7 +65,7 @@ indicator_introduction_year(data, start_year_plot = 1920,
 
 We group data by habitat:
 
-```{r facet_column}
+```{r facet_column_habitat}
 facet_column <- "habitat"
 ```
 
