@@ -84,11 +84,20 @@ Number of species returned in table as examples of the group:
 n_species <- 5
 ```
 
+We limit to pathways of taxa introduced from 2000.
+
+```{r year_of_introduction}
+start_year <- 2000
+```
+
 Create tables:
 
 ```{r make_tables_all_data, results="hide"}
 tables <- map(categories$category, ~ 
-                get_table_pathways(data, category = ., n_species = n_species))
+                get_table_pathways(data, 
+                                   category = ., 
+                                   from = start_year,
+                                   n_species = n_species))
 names(tables) <- categories$category
 ```
 
@@ -160,23 +169,7 @@ if ("Fungi" %in% categories$category) {
 }
 ```
 
-### Bacteria
-
-Pathways associated to bacteria (category `Bacteria`):
-
-```{r view_table_Bacteria, echo = FALSE}
-if ("Bacteria" %in% categories$category) {
-  kable(tables$Bacteria) %>% 
-    row_spec(which(tables$Bacteria$pathway_level1 == "release"), 
-           background = "white") %>%
-    row_spec(which(tables$Bacteria$pathway_level1 != "release"), 
-           background = "#faf0e6") %>%
-  kable_styling() %>%
-  scroll_box(width = "100%", height = "10cm")
-}
-```
-
-Add sections for other kingdoms if needed.
+Note: add sections for other kingdoms if needed in the future.
 
 ## Pathways related to policy relevant species
 
@@ -210,7 +203,7 @@ if ("Animalia" %in% categories_eu_concern$category) {
   }
   if (data %>% 
       filter(kingdom == "Animalia") %>%
-      filter(! phylum == "Chordata") %>%
+      filter(!phylum == "Chordata") %>%
       distinct(phylum) %>% nrow() > 0) {
     categories_eu_concern <- categories_eu_concern %>%
       bind_rows(data.frame(category = "Not Chordata",
@@ -224,13 +217,17 @@ if ("Animalia" %in% categories_eu_concern$category) {
 categories_eu_concern
 ```
 
+As done before, we limit to pathways of taxa introduced from 2000.
+
 Create tables:
 
 ```{r make_tables_eu_concern, results = "hide"}
 tables_eu_concern <- map(categories_eu_concern$category, ~ 
   get_table_pathways(data %>%
                        filter(nubKey %in% eu_concern_species$backbone_taxonKey), 
-                     category = ., n_species = n_species))
+                     category = ., 
+                     from = start_year,
+                     n_species = n_species))
 names(tables_eu_concern) <- categories_eu_concern$category
 ```
 
