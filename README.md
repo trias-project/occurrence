@@ -1,5 +1,7 @@
 # Pipeline
 
+[![Build Status](https://travis-ci.org/trias-project/indicators.svg?branch=master)](https://travis-ci.org/trias-project/indicators)
+
 TrIAS data pipeline from a species checklist over occurrences to indicators.
 
 ## Repo structure
