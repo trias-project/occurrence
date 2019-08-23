@@ -19,7 +19,12 @@ The first two indicators are in the form of graphs, while the pathway of introdu
 
 ## Occurrence-based indicators
 
-Work in progress...
+We take into account:
+
+1. number of occurrences per year
+2. area of occupancy (AOO)
+
+in order to calculate an emergency index. Still work in progress.
 
 ## Repo structure
 
@@ -40,6 +45,8 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │
 └── src
     ├── gbif_download.Rmd           : Script to trigger and verify a GBIF occurrence download
+    ├── get_data_input_checklist_indicators.Rmd:
+                                    : Script to manipulate taxonomic data from the Global Register of Introduced and Invasive Species - Belgium
     ├── indicator_introductions_per_year.Rmd
                                     : Script to generate graphs with number of new introduced species per year
     ├── indicator_pathways.Rmd      : Script to generate tables with pathways of introduction
