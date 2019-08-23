@@ -23,6 +23,7 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │
 └── src
     ├── gbif_download.Rmd           : Script to trigger and verify a GBIF occurrence download
+    ├── indicator_pathways.Rmd      : Script to generate tables with pathways of introduction
     └── src.Rproj                   : RStudio project file
 ```
 
