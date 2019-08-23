@@ -17,6 +17,8 @@ Checklist based indicators developed within TrIAS project are:
 
 The first two indicators are in the form of graphs, while the pathway of introductions are given in the form of a table.
 
+The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e). For the data manipulation of the taxonomic information, see [this pipeline](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
+
 ## Occurrence-based indicators
 
 We take into account:
