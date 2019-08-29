@@ -1,0 +1,198 @@
+---
+title: "Get cells containing protected areas"
+author: "Damiano Oldoni"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+# Goal
+
+Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura2000 protected areas, this document documents how it is possible to assess which cells contain protected areas.
+
+# Setup 
+
+```{r load_libraries}
+library(tidyverse)
+library(tidylog)
+library(sf)
+library(here)
+```
+
+# Read input data
+
+## Import EEA reference grid
+
+We import UTM grid data of Belgium at 1 by 1 km resolution. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
+  
+```{r import_grids_of_BE_from_EEA, cache=TRUE}
+be_grid <- st_read(here("data", "external", "utm1_bel"))
+be_grid_crs <- st_crs(be_grid)
+be_grid_crs
+```
+
+## Read Belgian protected areas Natura2000
+
+GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/protected_aras_natura2000_20190528`. 
+
+We read the shapefile:
+
+```{r protected_areas, cache=TRUE}
+protected_areas <- st_read(here("data", 
+                                "external", 
+                                "protected_areas_natura2000_20190528")
+)
+protected_areas_crs <- st_crs(protected_areas)
+protected_areas_crs
+```
+
+Check whether grid and protected areas have same CRS:
+
+```{r crs_comparison}
+be_grid_crs == protected_areas_crs
+```
+
+### Select Belgian protected areas
+
+We are interested in protected areas in Belgium:
+
+```{r select_by_country_Belgium}
+protected_areas <- 
+  protected_areas %>% 
+  filter(MS == "BE")
+```
+
+Summary by site type:
+
+```{r n_areas_per_siteype}
+protected_areas %>% 
+  as_tibble() %>% 
+  group_by(SITETYPE) %>% 
+  count()
+```
+
+## Define Bird and Habitat directive areas
+
+### Bird directive areas
+
+Bird directive areas (SPA areas) are defined as the areas with `SITETYPE`: A and C.
+
+```{r bird_directive_areas}
+protected_areas_bird <- 
+  protected_areas %>%
+  filter(SITETYPE %in% c("A", "C"))
+```
+
+### Habitat directive areas
+
+Habitat directive areas (SAC areas) are defined as the protected areas with `SITETYPE` values B and C.
+
+```{r habitat_directive_areas}
+protected_areas_habitat <- 
+  protected_areas %>%
+  filter(SITETYPE %in% c("B", "C"))
+```
+
+# Intersect grid of Belgium with protected areas
+
+## Interset grid with protected areas
+
+Find the cells of the grid which intersect all protected areas:
+
+```{r intersect_grid_protected_areas}
+grid_intersects_areas <- st_intersects(be_grid, protected_areas, 
+                                       sparse = FALSE)
+grid_intersects_areas <- as_tibble(grid_intersects_areas,
+                                   .name_repair = "universal")
+# Assign column names based on protected areas code
+names(grid_intersects_areas) <- droplevels(protected_areas$SITECODE)
+# Add 1x1km grid cellcode as new column
+grid_intersects_areas <- 
+  grid_intersects_areas %>%
+  mutate(CELLCODE = be_grid$CELLCODE) %>%
+  select(CELLCODE, everything())
+```
+
+Preview:
+
+```{r prview_intersection}
+grid_intersects_areas %>% head()
+```
+
+## Natura2000 protected areas
+
+Select cells which intersect any of the protected areas:
+
+```{r cells_with_protected_areas}
+cells_protected <- 
+  grid_intersects_areas %>%
+  filter_at(vars(starts_with("BE")), any_vars(. == TRUE))
+```
+
+## Natura2000
+
+We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000:
+
+```{r cells_natura2000}
+cells_protected_natura2000 <- 
+  cells_protected %>% 
+  as_tibble() %>% 
+  pull(CELLCODE)
+
+be_grid_extended <- 
+  be_grid %>%
+  mutate(natura2000 = ifelse(CELLCODE %in% cells_protected_natura2000,
+                             TRUE,
+                             FALSE)
+)
+```
+
+### SPA areas
+
+We add also a column, `spa`, assessing whether the cell intersects a SPA area:
+
+```{r be_grid_add_spa}
+cells_protected_spa <-
+  cells_protected %>%
+  select(CELLCODE,
+         one_of(as.character(protected_areas_bird$SITECODE))) %>%
+  filter_at(vars(starts_with("BE")), any_vars(. == TRUE)) %>%
+  as_tibble() %>% 
+  pull(CELLCODE)
+
+be_grid_extended <- 
+  be_grid_extended %>%
+  mutate(spa = ifelse(CELLCODE %in% cells_protected_spa,
+                             TRUE,
+                             FALSE)
+)
+```
+
+### Habitat dirctive areas
+
+We add also a column, `habitat`, assessing whether the cell intersects a habitat deirective area:
+
+```{r be_grid_add_spa}
+cells_protected_hab <-
+  cells_protected %>%
+  select(CELLCODE,
+         one_of(as.character(protected_areas_habitat$SITECODE))) %>%
+  filter_at(vars(starts_with("BE")), any_vars(. == TRUE)) %>%
+  as_tibble() %>% 
+  pull(CELLCODE)
+
+be_grid_extended <- 
+  be_grid_extended %>%
+  mutate(habitat = ifelse(CELLCODE %in% cells_protected_hab,
+                             TRUE,
+                             FALSE)
+)
+```
+
+### Summary
+
+group and count
