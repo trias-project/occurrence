@@ -173,7 +173,7 @@ merged_info %>%
 
 ### Split column `pathway`
 
-The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_`
+The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels)
 
 ```{r pathway_levels_example, echo = FALSE}
 merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
@@ -195,7 +195,15 @@ merged_info <-
              str_split(pathway,pattern = "pathway:")[[1]][2],
              pattern = "_", n = 2)[[2]][1]) %>%
   ungroup() %>%
-  select(-pathway) 
+  mutate(pathway_level1 = ifelse(
+    pathway_level1 == "natural",
+    "natural_dispersal",
+    pathway_level1)) %>%
+  mutate(pathway_level2 = ifelse(
+    pathway_level2 == "dispersal",
+    NA_character_,
+    pathway_level2)) %>%
+  select(-pathway)
 ```
 
 As example:
