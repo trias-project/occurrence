@@ -135,7 +135,7 @@ cells_protected <-
 
 ## Natura2000
 
-We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000:
+We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000. We add this information in column `natura2000`:
 
 ```{r cells_natura2000}
 cells_protected_natura2000 <- 
@@ -193,6 +193,31 @@ be_grid_extended <-
 )
 ```
 
-### Summary
+## Summary
 
-group and count
+How many cells contain/intersect protected areas?
+
+```{r summary_natura2000}
+be_grid_extended <-
+  be_grid_extended %>%
+  as_tibble()
+be_grid_extended %>%
+  group_by(natura2000) %>%
+  count()
+```
+
+How many cells contain/intersect SPA areas?
+
+```{r summary_spa_areas}
+be_grid_extended %>%
+  group_by(spa) %>%
+  count()
+```
+
+How many cells contain/intersect habitat directive areas?
+
+```{r summary_spa_habitat}
+be_grid_extended %>%
+  group_by(habitat) %>%
+  count()
+```
