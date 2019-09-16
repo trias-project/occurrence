@@ -172,11 +172,11 @@ be_grid_membership_protected_areas <-
 )
 ```
 
-### Habitat dirctive areas
+### Habitat directive areas
 
 We add also a column, `habitat`, assessing whether the cell intersects a habitat deirective area:
 
-```{r be_grid_add_spa}
+```{r be_grid_add_directive}
 cells_protected_hab <-
   cells_protected %>%
   select(CELLCODE,
