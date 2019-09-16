@@ -143,7 +143,7 @@ cells_protected_natura2000 <-
   as_tibble() %>% 
   pull(CELLCODE)
 
-be_grid_extended <- 
+be_grid_membership_protected_areas <- 
   be_grid %>%
   mutate(natura2000 = ifelse(CELLCODE %in% cells_protected_natura2000,
                              TRUE,
@@ -164,8 +164,8 @@ cells_protected_spa <-
   as_tibble() %>% 
   pull(CELLCODE)
 
-be_grid_extended <- 
-  be_grid_extended %>%
+be_grid_membership_protected_areas <- 
+  be_grid_membership_protected_areas %>%
   mutate(spa = ifelse(CELLCODE %in% cells_protected_spa,
                              TRUE,
                              FALSE)
@@ -185,8 +185,8 @@ cells_protected_hab <-
   as_tibble() %>% 
   pull(CELLCODE)
 
-be_grid_extended <- 
-  be_grid_extended %>%
+be_grid_membership_protected_areas <-
+  be_grid_membership_protected_areas %>%
   mutate(habitat = ifelse(CELLCODE %in% cells_protected_hab,
                              TRUE,
                              FALSE)
@@ -198,10 +198,10 @@ be_grid_extended <-
 How many cells contain/intersect protected areas?
 
 ```{r summary_natura2000}
-be_grid_extended <-
-  be_grid_extended %>%
+be_grid_membership_protected_areas <-
+  be_grid_membership_protected_areas %>%
   as_tibble()
-be_grid_extended %>%
+be_grid_membership_protected_areas %>%
   group_by(natura2000) %>%
   count()
 ```
@@ -209,7 +209,7 @@ be_grid_extended %>%
 How many cells contain/intersect SPA areas?
 
 ```{r summary_spa_areas}
-be_grid_extended %>%
+be_grid_membership_protected_areas %>%
   group_by(spa) %>%
   count()
 ```
@@ -217,7 +217,19 @@ be_grid_extended %>%
 How many cells contain/intersect habitat directive areas?
 
 ```{r summary_spa_habitat}
-be_grid_extended %>%
+be_grid_membership_protected_areas %>%
   group_by(habitat) %>%
   count()
+```
+
+## Save data
+
+We now save `be_grid_membership_protected_areas` as tab-separated file (tsv):
+
+```{r save_data}
+write_tsv(be_grid_membership_protected_areas, 
+          path = here("data", 
+                      "output",
+                      "intersect_EEA_ref_grid_protected_areas.tsv"),
+          na = "")
 ```
