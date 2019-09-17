@@ -16,7 +16,7 @@ Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura
 
 # Setup 
 
-```{r load_libraries}
+```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidylog)
 library(sf)
