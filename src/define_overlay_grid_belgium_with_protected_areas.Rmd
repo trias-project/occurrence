@@ -130,12 +130,6 @@ grid_intersects_areas <-
   select(CELLCODE, everything())
 ```
 
-Preview:
-
-```{r prview_intersection}
-grid_intersects_areas %>% head()
-```
-
 ## Natura2000 protected areas
 
 Select cells which intersect any of the protected areas:
