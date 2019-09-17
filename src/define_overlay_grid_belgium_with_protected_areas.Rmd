@@ -37,15 +37,28 @@ be_grid_crs
 
 ## Read Belgian protected areas Natura2000
 
-GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/protected_aras_natura2000_20190528`. 
+GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/protected_aras_natura2000_20190528`:
+
+```{r download_data, cache=TRUE}
+path_natura2000 <- here(
+  "data", 
+  "external", 
+  "protected_areas_natura2000_20190528"
+)
+if (!file.exists(path_natura2000)) {
+  temp <- tempfile()
+  download.file(
+    "http://ftp.eea.europa.eu/www/natura2000/Natura2000_end2018_Shapefile.zip",
+    temp)
+  unzip(temp,exdir = path_natura2000)
+  unlink(temp)
+}
+```
 
 We read the shapefile:
 
 ```{r protected_areas, cache=TRUE}
-protected_areas <- st_read(here("data", 
-                                "external", 
-                                "protected_areas_natura2000_20190528")
-)
+protected_areas <- st_read(path_natura2000)
 protected_areas_crs <- st_crs(protected_areas)
 protected_areas_crs
 ```
