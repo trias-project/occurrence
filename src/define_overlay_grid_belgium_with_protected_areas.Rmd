@@ -29,7 +29,7 @@ library(here)
 
 We import UTM grid data of Belgium at 1 by 1 km resolution. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
   
-```{r import_grids_of_BE_from_EEA, cache=TRUE}
+```{r import_grids_of_BE_from_EEA}
 be_grid <- st_read(here("data", "external", "utm1_bel"))
 be_grid_crs <- st_crs(be_grid)
 be_grid_crs
@@ -57,7 +57,7 @@ if (!file.exists(path_natura2000)) {
 
 We read the shapefile:
 
-```{r protected_areas, cache=TRUE}
+```{r protected_areas}
 protected_areas <- st_read(path_natura2000)
 protected_areas_crs <- st_crs(protected_areas)
 protected_areas_crs
