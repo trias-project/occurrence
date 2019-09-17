@@ -3,6 +3,7 @@ cache: packages
 
 before_script:
   # Dependencies are defined in DESCRIPTION
+  devtools::install_github("r-quantities/units", args='--configure-args="--with-udunits2-lib=/opt/lib --with-udunits2-include=/opt/include"')
 
 script:
   - Rscript -e "rmarkdown::render_site(input = 'src', encoding = 'UTF-8')"
