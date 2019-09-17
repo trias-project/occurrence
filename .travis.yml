@@ -3,7 +3,7 @@ cache: packages
 
 before_install:
   - sudo apt-get install libudunits2-dev
-  - sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
+  - sudo add-apt-repository ppa:ubuntugis/ppa
   - sudo apt-get install gdal-bin
 
 before_script:
