@@ -1,6 +1,9 @@
 language: r
 cache: packages
 
+before_install:
+  sudo apt-get install libudunits2-dev
+
 before_script:
   # Dependencies are defined in DESCRIPTION
 
