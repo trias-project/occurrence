@@ -18,5 +18,6 @@ Imports:
     tidylog,
     tidyverse
 Remotes:
+    r-quantities/units,
     trias-project/trias,
     inbo/INBOtheme
