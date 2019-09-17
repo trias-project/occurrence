@@ -60,7 +60,6 @@ We read the shapefile:
 ```{r protected_areas}
 protected_areas <- st_read(path_natura2000)
 protected_areas_crs <- st_crs(protected_areas)
-protected_areas_crs
 ```
 
 Check whether grid and protected areas have same CRS:
