@@ -2,9 +2,9 @@ language: r
 cache: packages
 
 before_install:
-  sudo apt-get install libudunits2-dev,
-  sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
-  sudo apt-get install gdal-bin
+  - sudo apt-get install libudunits2-dev
+  - sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
+  - sudo apt-get install gdal-bin
 
 before_script:
   # Dependencies are defined in DESCRIPTION
