@@ -58,3 +58,6 @@ data/interim/*
 
 # R Markdown site
 _site
+
+# natura200 shapefiles
+data/external/protected_areas_natura2000_20190528/*

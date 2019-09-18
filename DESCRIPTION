@@ -13,9 +13,11 @@ Imports:
     kableExtra,
     rgbif,
     rmarkdown,
+    sf,
     trias,
     tidylog,
     tidyverse
 Remotes:
+    r-quantities/units,
     trias-project/trias,
     inbo/INBOtheme
