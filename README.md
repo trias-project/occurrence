@@ -42,12 +42,20 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 |   │   └── belgian_species.csv   : List of alien species in Belgium
 │   │
 │   └── output
-|       └── gbif_downloads.csv    : List of triggered GBIF occurrence downloads GENERATED
+|       ├── gbif_downloads.csv                  : List of triggered GBIF occurrence downloads GENERATED
+|       └── data_input_checklist_indicators.tsv : Data for making checklist indicators. Output of 'get_data_input_checklist_indicators.Rmd'.
+|       └── intersect_EEA_ref_grid_protected_areas.tsv  : Membership of reference grid cells to (one or more) protected areas.
+│   ├── external
+│   |   ├── utm_1_bel       : Belgian reference grid of European Environmental Agency (EEA) at 1km<sup>2</sup> resolution
+│   |   ├── utm_10_bel      : Belgian reference grid of European Environmental Agency (EEA) at 10km<sup>2</sup> resolution
+│   |   ├── utm_100_bel     : Belgian reference grid of European Environmental Agency (EEA) at 100km<sup>2</sup> resolution
+│   |   └── utm_5_bel     : Belgian reference grid at 5km<sup>2</sup> resolution created by INBO
 │
 └── src
     ├── gbif_download.Rmd         : Script to trigger and verify a GBIF occurrence download
     ├── get_data_input_checklist_indicators.Rmd : Script to manipulate taxonomic data from the Global Register of Introduced and Invasive Species - Belgium
     ├── indicator_introductions_per_year.Rmd : Script to generate graphs with number of new introduced species per year
+    ├── indicator_cumulative_number.Rmd: Script to generate graphs with cumulative number of introduced species per year
     └── indicator_pathways.Rmd    : Script to generate tables with pathways of introduction
 ```
 
