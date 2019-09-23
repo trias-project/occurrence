@@ -1,0 +1,336 @@
+---
+title: "Occurrence indicators: pre-processing"
+author:
+- Damiano Oldoni
+- Toon Van Daele
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+This document describes the pre-processing of occurrence data of alien species. The outputs of this pipeline will be used as input for modelling.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries:
+
+```{r load_libraries, message = FALSE}
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(here)           # To find files
+library(rgbif)          # To get taxa from publisehd unified checklist
+```
+
+# Get data
+
+We get occurrence data as obtained in `trias-project/occ-processing` repository. 
+
+## Alien species 
+
+We load occurrence data related to alien species in Belgium:
+
+```{r read_data_cube}
+df <- read_tsv(
+  file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium.tsv",
+  col_types = cols(year = col_double(),
+                   eea_cell_code = col_character(),
+                   taxonKey = col_double(),
+                   n = col_double(),
+                   min_coord_uncertainty = col_double()),
+  na = ""
+)
+```
+
+We remove columns we will never use:
+
+```{r remove_coords_uncertainty}
+df <- 
+  df %>%
+  select(-min_coord_uncertainty)
+```
+
+## Baseline data
+
+We get data at class level, which will be used for correcting the research bias effort:
+
+```{r get_data_baseline, message = FALSE}
+df_bl <- read_tsv(
+  file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium_baseline.tsv",
+  col_types = cols(year = col_double(),
+                   eea_cell_code = col_character(),
+                   classKey = col_double(),
+                   n = col_double(),
+                   min_coord_uncertainty = col_double()),
+  na = "")
+```
+
+We remove columns we will never use:
+
+```{r remove_coords_uncertainty_baseline}
+df_bl <- 
+  df_bl %>%
+  select(-min_coord_uncertainty)
+```
+
+#  Pre-processing
+
+## Add informative columns
+
+For better interpretation of the data, we retrieve canonical names of the species whose data we are going to anaylze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+
+```{r get_canonical_names}
+taxon_key <- 
+  df %>% 
+  distinct(taxonKey) %>%
+  pull()
+spec_names <- map_df(
+  taxon_key, 
+  function(taxonKey){
+    name_usage(key = taxonKey, return = "data")
+  }) %>%
+  select(key, canonicalName, kingdomKey, classKey)
+```
+
+We also retrieve kingdom and class:
+
+```{r get_kingodm_class}
+kingdom_class <- map_df(
+  unique(spec_names$classKey),
+  function(x){
+    name_usage(key = x, return = "data")
+  }) %>%
+  select(classKey, class, kingdomKey, kingdom)
+```
+
+and we add them:
+
+```{r add_kingdom_class}
+spec_names <-
+  spec_names %>%
+  left_join(kingdom_class, by = c("kingdomKey", "classKey"))
+```
+
+So, these are the covered alien species:
+
+```{r review_species}
+spec_names
+```
+
+## Extract x-y coordinates from cellcodes
+
+Extract coordinates from column `eea_cell_code`. For example, the coordinates of cellcode `1kmE3895N3116` are `x = 3895` and `y = 3116`:
+
+```{r extract_x_y}
+df_xy <- 
+  df %>% 
+  distinct(eea_cell_code) %>%
+  bind_cols(
+    tibble(
+      x = unlist(str_extract_all(unique(df$eea_cell_code), 
+                                 pattern = "(?<=E)\\d+")),
+      y = unlist(str_extract_all(unique(df$eea_cell_code), 
+                                 pattern = "(?<=N)\\d+"))) %>%
+      mutate_all(as.integer)
+)
+```
+
+Preview:
+
+```{r x_y_preview}
+df_xy %>% head()
+```
+
+## Apply temporal and spatial restraints
+
+Select observations:
+
+- from 1950, start of state of invasion researches
+- to 2017, thus dealing with data publishing delay on GBIF
+
+```{r define_year_range}
+first_year <- 1950
+last_year <- 2017
+```
+
+Some occurrence data can be published with erroneous coordinates (see [#trias-project/occ-processing#13](https://github.com/trias-project/occ-processing/issues/13)). We define the allowed `x` and `y` ranges: 
+
+```{r define_x_y_range_values}
+x_min <- 3768
+x_max <- 4079
+y_min <- 2926
+y_max <- 3236
+```
+
+Apply restraints defined above to both occurrence data:
+
+```{r apply_restraints_time_space_occ_data}
+df <- 
+  df %>%
+  left_join(df_xy, by = "eea_cell_code") %>%
+  filter(year > first_year & year <= last_year) %>%
+  filter(x >= x_min & x <= x_max & y >= y_min & y <= y_max)
+```
+
+and baseline data:
+
+```{r apply_restraints_time_space_baseline_data}
+df_bl <- 
+  df_bl %>%
+  left_join(df_xy, by = "eea_cell_code") %>%
+  filter(year > first_year & year <= last_year) %>%
+  filter(x >= x_min & x <= x_max & y >= y_min & y <= y_max)
+```
+
+
+## Compensate research effort bias
+
+Calculate the total number of invasive species observations per `cell_code`, `year` and `class`:
+
+```{r}
+df_ispec <- 
+  df %>%
+  left_join(spec_names, by = c("taxonKey" = "key")) %>%
+  group_by(classKey, eea_cell_code, year) %>%
+  summarize(ispec = sum(n)) %>%
+  ungroup()
+df_ispec
+```
+
+Substract the alien species observations from the baseline data:
+
+```{r subtract_alien_species}
+df_bl <- 
+  df_bl %>%
+  left_join(df_ispec, by = c("classKey", "eea_cell_code", "year")) %>%
+  replace_na(list(ispec = 0)) %>%
+  mutate(cobs = n - ispec) %>%
+  mutate(cobs = if_else(cobs < 0, 0, cobs)) %>%
+  select(year, eea_cell_code, classKey, cobs)
+```
+
+## Create time series
+
+For each species, define cells with at least one observation:
+
+```{r}
+df_cc <- 
+  df %>%
+  group_by(taxonKey) %>%
+  distinct(eea_cell_code) %>%
+  ungroup()
+```
+
+For each species, identify the first year with an observation:
+
+```{r begin_year_per_species}
+df_begin_year <- 
+  df %>%
+  group_by(taxonKey) %>%
+  summarize(begin_year = min(year))
+```
+
+For each species, combine `begin_year` and unique `eea_cell_code` as found above: 
+
+```{r }
+df_cc <- 
+  df_cc %>%
+  left_join(df_begin_year, by = "taxonKey")
+```
+```{r}
+df_cc
+```
+
+We can now create a time series from `begin_year` for each cell (`eea_cell_code`) and species (`taxonKey`). Notice that at this step we create only time series slots: occurrence data are added at next stage.
+
+```{r make_time_series}
+make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
+
+    expand_grid(eea_cell_code = eea_cell_code,
+                taxonKey = taxonKey,
+                year = seq(from = begin_year, to = last_year))
+
+}
+
+df_s <- pmap_dfr(df_cc, .f = make_time_series, last_year = last_year)
+```
+
+Fill occurrence data and corrected baseline data to the time series:
+
+```{r add_data}
+df_s <- 
+  df_s %>%
+  # add occurrence data
+  left_join(df, by = c("taxonKey", "year", "eea_cell_code")) %>%
+  # add classKey
+  left_join(spec_names %>% 
+              select(key, classKey), 
+            by = c("taxonKey" = "key")) %>%
+  # add baseline data (at class level)
+  left_join(df_bl %>%
+              select(year, eea_cell_code, classKey, cobs),
+            by = c("year", "eea_cell_code", "classKey")) %>%
+  replace_na(list(cobs = 0, n = 0))
+```
+
+For each species, we can now get time series of number of cells (ncells) and number of observations (obs).
+
+```{r ts_ncells_nobs}
+df_1 <- 
+  df_s %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(n),
+            cobs = sum(cobs)) %>%
+  ungroup()
+
+# Get number of cells per taxonKey and year
+df_2 <- 
+  df_s %>%
+  filter(n > 0) %>%
+  group_by(taxonKey, year) %>%
+  summarise(ncells = n_distinct(eea_cell_code)) %>%
+  ungroup()
+
+# Get reference number of cells  (baseline) per taxonKey and year
+df_3 <- 
+  df_s %>%
+  filter(cobs > 0) %>%
+  group_by(taxonKey, year) %>%
+  summarise(ncobs = n_distinct(eea_cell_code)) %>%
+  ungroup()
+
+df_ncells_nobs <- 
+  df_1 %>%
+  left_join(df_2,
+            by = c("taxonKey", "year")) %>%
+  left_join(df_3,
+             by = c("taxonKey", "year")) %>%
+  replace_na(list(ncells = 0, ncobs = 0)) %>%
+  ungroup() %>%
+  # add taxonomic information
+  left_join(spec_names,
+            by = c("taxonKey" = "key"))
+```
+
+Preview:
+
+```{r preview_ncells_nobs}
+df_ncells_nobs %>% head()
+```
+
+# Save data
+
+Save `df_ncells_nobs` as it will be used as start point of modelling pipelines:
+
+```{r save_data_as_tsv}
+write_tsv(df_ncells_nobs, 
+          path = here("data", "interim", "df_n_obs_n_cells.tsv"),
+          na = "")
+```
