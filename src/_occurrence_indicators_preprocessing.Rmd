@@ -306,8 +306,8 @@ df_bl <-
   df_bl %>%
   left_join(df_alien_species, by = c("classKey", "eea_cell_code", "year")) %>%
   replace_na(list(n_alien = 0)) %>%
-  mutate(cobs = n - n_alien) %>%
-  mutate(cobs = if_else(cobs < 0, 0, cobs)) %>%
+  mutate(native_obs = n - n_alien) %>%
+  mutate(native_obs = if_else(native_obs < 0, 0, native_obs)) %>%
   select(year, eea_cell_code, classKey, native_obs, natura2000)
 ```
 
