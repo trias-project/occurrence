@@ -1,0 +1,204 @@
+---
+title: 'Emerging status: modelling'
+author:
+- Damiano Oldoni
+- Toon Van Daele
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+This document describes the modelling to assess the emerging status of alien species.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries:
+
+```{r load_libraries, message = FALSE}
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(progress)       # To add progress bars
+library(here)           # To find files
+library(mgcv)           # To apply GAM           
+# library(gratia)
+```
+
+# Get data
+
+We read the output of preprocessing pipeline: 
+
+```{r read_preprocessed_data}
+df_ncells_nobs <- read_tsv(
+  here::here("data", "interim", "df_n_obs_n_cells.tsv"),
+  na = "")
+```
+
+## Preview
+
+Plot some time series as preview:
+
+```{r plot_ts_func}
+plot_ts <- function(df, y_axis = "ncells", ptitle = NULL){
+
+  spec <- unique(df$taxonKey)
+  lyear <- max(df$year)
+
+  if (is.null(ptitle)) {ptitle <- paste0(spec, "_", lyear)}
+
+  g <- 
+    ggplot(df, aes(x = year, y = get(y_axis))) + 
+    geom_line(colour = "grey") +
+    geom_point() + 
+    ggtitle(ptitle) + 
+    ylab(y_axis)
+  return(g)
+}
+
+taxon_keys <- unique(df_ncells_nobs$taxonKey)[1:10]
+canonical_names <- unique(df_ncells_nobs$canonicalName[df_ncells_nobs$taxonKey %in% taxon_keys])
+map2(taxon_keys, canonical_names,
+     function(x,y) {
+       df_ncells_nobs %>%
+         filter(taxonKey == x) %>%
+         plot_ts(ptitle = y)
+      }
+    )
+```
+
+# Modelling
+
+# Decision rules
+
+We define some decision rules for occupancy and we group them in a function:
+
+```{r decision_rules_function}
+#' @param df data frame with time series
+#' @return list with dataframe, emergency status and tests
+em_status_dr <- function(df) {
+  
+  # Group by taxonKey
+  df <- 
+    df %>%
+    group_by(taxonKey)
+  
+  # Rule 1: Time series with only one value? -> appearing species  (always > 0)
+  dr_1 <- 
+    df  %>%
+    tally() %>%
+    mutate(dr_1 = ifelse(n == 1, TRUE, FALSE)) %>%
+    select(taxonKey, dr_1)
+  
+  # dr_2: 50% of time series > 0?
+  dr_2 <- 
+    df %>%
+    summarize(dr_2 = ifelse(sum(ncells > 0)/ n() >= 0.5, TRUE, FALSE))
+  
+  # dr_3: last value above median value -> possibly emerging ("2")
+  dr_3 <-
+    df %>%
+    mutate(last_ncells = ifelse(year == max(year), ncells, -1)) %>%
+    summarize(median_ncells = median(ncells),
+              last_ncells = max(last_ncells)) %>%
+    mutate(dr_3 = last_ncells > median_ncells) %>%
+    select(taxonKey,  dr_3)
+  
+  # dr_4: 0 since 5 years -> not emerging
+  dr_4 <-
+    df %>%
+    filter(year > (max(year)-5)) %>%
+    tally(ncells) %>%
+    mutate(dr_4 = n == 0) %>%
+    select(taxonKey, dr_4)
+  
+  # dr_5: > 0 and 5 consecutive years 0 before  -> (re)appearing
+  dr_5 <- 
+    df %>%
+    filter(year == max(year)) %>%
+    summarize(dr_5_cond1 = ncells > 0) %>%
+    left_join(df %>%
+                 filter(year > (max(year)-6) & year < max(year)) %>%
+                 tally(ncells) %>%
+                 mutate(dr_5_cond2 = n == 0) %>%
+                 select(-n),
+               by = "taxonKey") %>%
+    mutate(dr_5 = dr_5_cond1 & dr_5_cond2) %>%
+    select(taxonKey, dr_5)
+  
+  # dr_6: Maximum of ncell == 1
+  dr_6 <-
+    df %>%
+    summarize(dr_6 = max(ncells) <= 1)
+  
+  # dr_7: Increase? Last value > before last value
+  dr_7 <- 
+    df %>%
+    filter(year == max(year)) %>%
+    select(taxonKey, ncells) %>%
+    rename(last_ncells = ncells) %>%
+    ungroup() %>%
+    left_join(
+      df %>%
+        filter(year == max(year) - 1) %>%
+        select(taxonKey, ncells) %>%
+        rename(before_last_ncells = ncells) %>%
+        ungroup(),
+      by = "taxonKey") %>%
+    mutate(dr_7 = last_ncells > before_last_ncells) %>%
+    select(taxonKey, dr_7)
+  
+  # dr_8: Maximum ever observed?
+  dr_8 <- 
+    df %>%
+    summarize(max_ncells = max(ncells)) %>%
+    inner_join(df %>%
+                 filter(year == max(year)) %>%
+                 ungroup() %>%
+                 rename(last_value = ncells),
+               by = "taxonKey") %>%
+    mutate(dr_8 = last_value == max_ncells) %>%
+    select(taxonKey, dr_8)
+  
+  # convert to em status codes:
+  # 0 = not emerging
+  # 1 = unclear
+  # 2 = potentially emerging
+  # 3 = emerging
+  # 4 = appearing / re-appearing
+  
+  dr_all <- 
+    list(dr_1, dr_2, dr_3, dr_4, dr_5, dr_6, dr_7, dr_8) %>% 
+    reduce(inner_join, by = "taxonKey")
+
+  em_dr <- 
+    dr_all %>%
+    mutate(em = case_when(
+      dr_8 == TRUE & dr_1 == FALSE ~ 3,  # maximum ever observerd => emerging
+      dr_3 == TRUE ~ 2,                  # potentially emerging
+      dr_7 == TRUE & dr_8 == FALSE ~ 2, # Last year increase but not maximum => potentially emerging
+      dr_6 == TRUE & dr_2 == TRUE ~ 1,  # appearing / re-appearing
+      dr_5 == TRUE ~ 1,                  # > 0 after 5 consecutive 0 => re-appearing
+      dr_1 == TRUE ~ 1,                  # One value > 1 => appearing / re-appearing
+      dr_4 == TRUE ~ 0,                  # zeros since > 5 years => not emerging
+      )) %>%
+    mutate(em = ifelse(is.na(em), 0, em))
+  # %>%
+  #   select(taxonKey, em)
+  return(em_dr)
+}
+```
+
+We apply this function to all taxa:
+
+```{r apply_decision_rules}
+emerging_status_dr <- em_status_dr(df_ncells_nobs)
+emerging_status_dr
+```
+
