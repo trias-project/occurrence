@@ -59,6 +59,14 @@ df <-
   select(-min_coord_uncertainty)
 ```
 
+and rename column `n` to `obs`:
+
+```{r rename_n_to_obs}
+df <- 
+  df %>%
+  rename(obs = n)
+```
+
 ## Baseline data
 
 We get data at class level, which will be used for correcting the research bias effort:
@@ -81,9 +89,18 @@ df_bl <-
   df_bl %>%
   select(-min_coord_uncertainty)
 ```
+
+and rename column `n` to `cobs`:
+
+```{r rename_n_to_obs_bl}
+df_bl <- 
+  df_bl %>%
+  rename(cobs = n)
+```
 ## Grid cells intersecting protected areas
 
 We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in  `data/output`:
+
 ```{r read_protected_areas}
 df_prot_areas <- read_tsv(
   here::here("data", 
@@ -217,14 +234,10 @@ df_bl_xy %>% head()
 
 ## Apply temporal and spatial restraints
 
-Select observations:
-
-- from 1950, start of state of invasion researches
-- to 2017, thus dealing with data publishing delay on GBIF, estimated to be two years behind present date
+Select observations from 1950, start of state of invasion researches
 
 ```{r define_year_range}
 first_year <- 1950
-last_year <- year(Sys.Date()) - 2
 ```
 
 Some occurrence data can be published with erroneous coordinates (see [#trias-project/occ-processing#13](https://github.com/trias-project/occ-processing/issues/13)) or can be assigned to a grid cell out of Belgium. We remove these records:
@@ -239,7 +252,7 @@ Apply restraints defined above to both occurrence data:
 df <- 
   df %>%
   left_join(df_xy, by = "eea_cell_code") %>%
-  filter(year > first_year & year <= last_year) %>%
+  filter(year > first_year) %>%
   filter(eea_cell_code %in% be_cellcodes)
 ```
 
@@ -249,7 +262,7 @@ and baseline data:
 df_bl <- 
   df_bl %>%
   left_join(df_bl_xy, by = "eea_cell_code") %>%
-  filter(year > first_year & year <= last_year) %>%
+  filter(year > first_year) %>%
   filter(eea_cell_code %in% be_cellcodes)
 ```
 
@@ -294,7 +307,7 @@ df_alien_species <-
   df %>%
   left_join(spec_names, by = c("taxonKey" = "key")) %>%
   group_by(classKey, eea_cell_code, year) %>%
-  summarize(n_alien = sum(n)) %>%
+  summarize(n_alien = sum(obs)) %>%
   ungroup()
 df_alien_species
 ```
@@ -306,7 +319,7 @@ df_bl <-
   df_bl %>%
   left_join(df_alien_species, by = c("classKey", "eea_cell_code", "year")) %>%
   replace_na(list(n_alien = 0)) %>%
-  mutate(native_obs = n - n_alien) %>%
+  mutate(native_obs = cobs - n_alien) %>%
   mutate(native_obs = if_else(native_obs < 0, 0, native_obs)) %>%
   select(year, eea_cell_code, classKey, native_obs, natura2000)
 ```
@@ -354,98 +367,97 @@ Preview:
 df_cc %>% head()
 ```
 
-For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series from `begin_year` to `last_year`. Notice that at this step we create only time series slots: occurrence data are added at next stage.
+For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series. Notice that at this step we create only time series slots: occurrence data are added at next stage.
 
 ```{r make_time_series}
 make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
-
-    expand_grid(eea_cell_code = eea_cell_code,
-                taxonKey = taxonKey,
-                year = seq(from = begin_year, to = last_year))
+  expand_grid(eea_cell_code = eea_cell_code,
+              taxonKey = taxonKey,
+              year = seq(from = begin_year, to = last_year))
 
 }
 
-df_s <- pmap_dfr(df_cc, .f = make_time_series, last_year = last_year)
+df_ts <- pmap_dfr(df_cc, .f = make_time_series, last_year = year(Sys.Date()))
+```
+
+We remove data.frames not in use anymore to free some memory:
+
+```{r}
+remove(df_cc)
+remove(df_begin_year)
+remove(df_bl_xy)
 ```
 
 Fill occurrence data and corrected baseline data to the time series:
 
 ```{r add_data}
-df_s <- 
-  df_s %>%
+df_ts <- 
+  df_ts %>%
   # add occurrence data
-  left_join(df %>% select(-c(x,y)), 
-            by = c("taxonKey", "year", "eea_cell_code")) %>%
+  left_join(df %>% select(taxonKey, year, eea_cell_code, obs), 
+            by = c("taxonKey", "year", "eea_cell_code"))
+df_ts <- 
+  df_ts %>%
+  # add membership to protected areas
+  left_join(df_prot_areas %>% select(CELLCODE, natura2000),
+            by = c("eea_cell_code" = "CELLCODE"))
+df_ts <- 
+  df_ts %>%
   # add classKey
   left_join(spec_names %>% 
               select(key, classKey), 
-            by = c("taxonKey" = "key")) %>%
+            by = c("taxonKey" = "key"))
+
+df_ts <- 
+  df_ts %>%
   # add baseline data (at class level)
   left_join(df_bl %>%
               select(year, eea_cell_code, classKey, native_obs),
-            by = c("year", "eea_cell_code", "classKey")) %>%
-  replace_na(list(native_obs = 0, n = 0))
+            by = c("year", "eea_cell_code", "classKey"))
+
+df_ts <-
+  df_ts %>%
+  # replace NAs with 0
+  replace_na(list(native_obs = 0, obs = 0))
 ```
 
 Preview:
 
 ```{r}
-df_s %>% head(n = 30)
+df_ts %>% head(n = 30)
 ```
 
-For each species, we can now get the time series of number of cells, `ncells`, and number of observations, `obs`.
+Add column for presence (1) or absence (0)
 
-```{r ts_ncells_nobs}
-df_obs <- 
-  df_s %>%
-  group_by(taxonKey, year) %>%
-  summarise(obs = sum(n),
-            native_obs = sum(native_obs)) %>%
-  ungroup()
-
-# Get number of cells per taxonKey and year
-df_ncells <- 
-  df_s %>%
-  filter(n > 0) %>%
-  group_by(taxonKey, year) %>%
-  summarise(ncells = n_distinct(eea_cell_code)) %>%
-  ungroup()
-
-# Get reference number of cells (native species at class level) per taxonKey and
-# year
-df_native_ncells <- 
-  df_s %>%
-  filter(native_obs > 0) %>%
-  group_by(taxonKey, year) %>%
-  summarise(native_ncells = n_distinct(eea_cell_code)) %>%
-  ungroup()
-
-# Merge together
-df_ncells_nobs <- 
-  df_obs %>%
-  left_join(df_ncells,
-            by = c("taxonKey", "year")) %>%
-  left_join(df_native_ncells,
-             by = c("taxonKey", "year")) %>%
-  replace_na(list(ncells = 0, native_ncells = 0)) %>%
-  # add taxonomic information
-  left_join(spec_names,
-            by = c("taxonKey" = "key")) %>%
-  select(taxonKey, canonicalName, year, everything())
+```{r add_presence_absence}
+df_ts <- 
+  df_ts %>%
+  mutate(pa_native_obs = ifelse(native_obs > 0, 1, 0),
+         pa_obs = ifelse(obs > 0, 1, 0))
 ```
 
-Preview:
+Arrange order columns:
 
-```{r preview_ncells_nobs}
-df_ncells_nobs %>% head(n = 30)
+```{r set_order_columns}
+df_ts <-
+  df_ts %>%
+  select(taxonKey, 
+         year, 
+         eea_cell_code, 
+         obs, 
+         pa_obs, 
+         native_obs, 
+         pa_native_obs,
+         classKey,
+         natura2000)
 ```
 
 # Save data
 
-Save `df_ncells_nobs` as it will be used as start point of modelling pipelines:
+Save `df_ts` as it will be used as start point of modelling pipelines:
 
 ```{r save_data_as_tsv}
-write_tsv(df_ncells_nobs, 
-          path = here::here("data", "interim", "df_n_obs_n_cells.tsv"),
+write_tsv(df_ts, 
+          path = here::here("data", "interim", "df_timeseries.tsv"),
           na = "")
 ```
