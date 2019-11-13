@@ -165,6 +165,10 @@ is_appearing <- function(df,
     filter(year == min(year)) %>%
     ungroup()
   
+  appearing_taxa <-
+    appearing_taxa %>%
+    rename(!!sym(data_col) := "occ")
+  
   # reappearing taxa
   reappearing_taxa <-
     df_reference %>%
@@ -176,10 +180,12 @@ is_appearing <- function(df,
     left_join(taxa_eval_years_df, by = "taxonKey") %>%
     group_by(taxonKey) %>%
     summarize(n_latent_years = year - last_year_before_reappearing) %>%
-    filter(n_latent_years > latency)
+    filter(n_latent_years > latency) %>%
+    left_join(taxa_eval_years_df %>% select(taxonKey, occ, year), 
+              by = "taxonKey")
   
-  appearing_taxa <-
-    appearing_taxa %>%
+  reappearing_taxa <-
+    reappearing_taxa %>%
     rename(!!sym(data_col) := "occ")
   
   return(list(appearing_taxa = appearing_taxa, 
@@ -191,7 +197,7 @@ Apply function defined above:
 
 ```{r appearing_reappearing_taxa}
 appearing_reappearing_taxa <- is_appearing(df = df_ts_compact, 
-                                           eval_years = c(2018, 2019), 
+                                           eval_years = years, 
                                            latency = years_latency,
                                            df_reference = NULL)
 ```
@@ -231,8 +237,8 @@ We apply function `is_appearing`. Notice that we use occurrences about all Belgi
 ```{r appearing_reappearing_taxa_prot_areas}
 appearing_reappearing_taxa_prot_areas <- is_appearing(
   df = df_ts_compact_prot_areas, 
-  eval_years = c(2018, 2019),
-  latency = 3,
+  eval_years = years,
+  latency = years_latency,
   df_reference = df_ts_compact)
 ```
 
@@ -257,12 +263,22 @@ app_reapp_global <-
   map2(appearing_reappearing_taxa_prot_areas,
        appearing_reappearing_taxa,
        function(x,y) {
-         bind_rows(x %>% 
-                     mutate(natura2000 = TRUE),
-                   y %>%
-                     filter(!taxonKey %in% x$taxonKey) %>%
-                     mutate(natura2000 = FALSE)) %>%
-           arrange(desc(natura2000))
+         x <-
+           x %>%
+           rename(ncells_in_prot_areas = ncells)
+         y <- 
+           y %>%
+           rename(ncells_BE = ncells)
+         full_join(x, y) %>%
+           mutate(
+             in_prot_areas = ifelse(!is.na(ncells_in_prot_areas),
+                                              TRUE,
+                                              FALSE),
+             in_BE = ifelse(!is.na(ncells_BE),
+                                      TRUE,
+                                      FALSE)) %>%
+           arrange(desc(ncells_in_prot_areas),
+                   desc(ncells_BE))
     }
 )
 ```
@@ -316,8 +332,10 @@ app_reapp_global$appearing_taxa <-
   select(taxonKey, 
          canonicalName, 
          year, 
-         ncells, 
-         natura2000, 
+         ncells_in_prot_areas,
+         ncells_BE,
+         in_prot_areas,
+         in_BE,
          class, 
          kingdom, 
          classKey, 
@@ -340,11 +358,15 @@ app_reapp_global$reappearing_taxa <-
   app_reapp_global$reappearing_taxa %>%
   select(taxonKey, 
          canonicalName, 
+         year, 
+         ncells_in_prot_areas,
+         ncells_BE,
+         in_prot_areas,
+         in_BE,
          n_latent_years,
-         natura2000,
-         class,
-         kingdom,
-         classKey,
+         class, 
+         kingdom, 
+         classKey, 
          kingdomKey
 )
 ```
@@ -353,6 +375,44 @@ Reappearing taxa:
 
 ```{r add_taxonomic_info_reappearing_taxa}
 app_reapp_global$reappearing_taxa
+```
+
+Taxa appearing in protected areas and reappearing outside:
+
+```{r appearing_in_pa_reappearing_outside}
+app_reapp_global$appearing_taxa %>% 
+  filter(in_BE == FALSE) %>%
+  filter(taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %>%
+  select(taxonKey, canonicalName)
+```
+
+Taxa appearing in protected areas and with a stable presence outside:
+
+```{r appearing_in_pa_stable_outside}
+app_reapp_global$appearing_taxa %>% 
+  filter(in_BE == FALSE) %>%
+  filter(!taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %>%
+  select(taxonKey, canonicalName, class, kingdom, classKey, kingdomKey)
+```
+
+Two examples follow.
+
+Taxa:
+
+```{r taxa_examples}
+taxa_examples <- app_reapp_global$appearing_taxa %>% 
+  filter(in_BE == FALSE) %>%
+  filter(!taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %>%
+  distinct(taxonKey, canonicalName) %>%
+  head(n = 2)
+```
+
+Time series for all Belgium:
+
+```{r time_series}
+taxa_examples %>%
+  left_join(df_ts_compact,
+            by = "taxonKey")
 ```
 
 ## Appearing taxa from checklists
@@ -392,7 +452,7 @@ write_tsv(app_reapp_global$reappearing_taxa,
 Save taxa from unified checklist without occurrences:
 
 ```{r}
-write_tsv(app_reapp_global$reappearing_taxa,
+write_tsv(taxa_from_checklist_df,
           path = here::here("data", "output", "present_taxa_without_occurrences.tsv"),
           na = ""
 )
