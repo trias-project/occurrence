@@ -459,4 +459,3 @@ write_tsv(taxa_from_checklist_df,
           na = ""
 )
 ```
-
