@@ -38,7 +38,7 @@ We read the output of preprocessing pipeline.
 
 Time series:
 
-```{r read_preprocessed_data}
+```{r read_preprocessed_data, cache = TRUE}
 df_ts <- read_tsv(
   here::here("data", "interim", "df_timeseries.tsv"),
   na = "")
