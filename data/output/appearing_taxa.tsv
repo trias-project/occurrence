@@ -1,4 +1,4 @@
-taxonKey	canonicalName	year	ncells_in_prot_areas	ncells_BE	in_prot_areas	in_BE	class	kingdom	classKey	kingdomKey
+taxonKey	canonicalName	year	ncells_prot_areas	ncells_BE	in_prot_areas	in_BE	class	kingdom	classKey	kingdomKey
 5229204	Eudocimus ruber	2018	11		TRUE	FALSE	Aves	Animalia	212	1
 5229411	Anastomus lamelligerus	2018	5	9	TRUE	TRUE	Aves	Animalia	212	1
 7157952	Dryopteris erythrosora	2018	3		TRUE	FALSE	Polypodiopsida	Plantae	7228684	6

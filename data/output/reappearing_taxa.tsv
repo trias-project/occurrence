@@ -1,4 +1,4 @@
-taxonKey	canonicalName	year	ncells_in_prot_areas	ncells_BE	in_prot_areas	in_BE	n_latent_years	class	kingdom	classKey	kingdomKey
+taxonKey	canonicalName	year	ncells_prot_areas	ncells_BE	in_prot_areas	in_BE	n_latent_years	class	kingdom	classKey	kingdomKey
 2498145	Anas rhynchotis	2019	2	4	TRUE	TRUE	6	Aves	Animalia	212	1
 5376846	Lepidium heterophyllum	2019	2	3	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
 2480542	Buteo jamaicensis	2019	2	2	TRUE	TRUE	4	Aves	Animalia	212	1

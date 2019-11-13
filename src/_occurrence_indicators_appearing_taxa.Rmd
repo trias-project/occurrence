@@ -265,19 +265,19 @@ app_reapp_global <-
        function(x,y) {
          x <-
            x %>%
-           rename(ncells_in_prot_areas = ncells)
+           rename(ncells_prot_areas = ncells)
          y <- 
            y %>%
            rename(ncells_BE = ncells)
          full_join(x, y) %>%
            mutate(
-             in_prot_areas = ifelse(!is.na(ncells_in_prot_areas),
+             in_prot_areas = ifelse(!is.na(ncells_prot_areas),
                                               TRUE,
                                               FALSE),
              in_BE = ifelse(!is.na(ncells_BE),
                                       TRUE,
                                       FALSE)) %>%
-           arrange(desc(ncells_in_prot_areas),
+           arrange(desc(ncells_prot_areas),
                    desc(ncells_BE))
     }
 )
@@ -332,7 +332,7 @@ app_reapp_global$appearing_taxa <-
   select(taxonKey, 
          canonicalName, 
          year, 
-         ncells_in_prot_areas,
+         ncells_prot_areas,
          ncells_BE,
          in_prot_areas,
          in_BE,
@@ -349,6 +349,8 @@ Appearing taxa:
 app_reapp_global$appearing_taxa
 ```
 
+An empty `ncells_BE` and `in_BE` equal to FALSE means that the taxon is appearing in protected areas but not appearing outside, i.e. the taxon is maybe reappearing at Belgian level or occurring with a more stable presence. See next section for more details about. 
+
 ## Reappearing taxa
 
 Reorder columns of data.frame containing reappearing taxa:
@@ -359,7 +361,7 @@ app_reapp_global$reappearing_taxa <-
   select(taxonKey, 
          canonicalName, 
          year, 
-         ncells_in_prot_areas,
+         ncells_prot_areas,
          ncells_BE,
          in_prot_areas,
          in_BE,
@@ -451,7 +453,7 @@ write_tsv(app_reapp_global$reappearing_taxa,
 
 Save taxa from unified checklist without occurrences:
 
-```{r}
+```{r save_taxa_from_unified_checklist_without_occs}
 write_tsv(taxa_from_checklist_df,
           path = here::here("data", "output", "present_taxa_without_occurrences.tsv"),
           na = ""
