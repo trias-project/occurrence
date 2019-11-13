@@ -461,3 +461,13 @@ write_tsv(df_ts,
           path = here::here("data", "interim", "df_timeseries.tsv"),
           na = "")
 ```
+
+We save also the taxonomic information:
+
+```{r save_spec_names}
+write_tsv(spec_names,
+          path = here::here("data", 
+                            "interim", 
+                            "timeseries_taxonomic_info.tsv"))
+```
+
