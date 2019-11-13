@@ -280,7 +280,7 @@ app_reapp_global <- map(app_reapp_global,
                           })
 ```
 
-## Add taxa with from checklists
+## Taxa from checklists
 
 Some taxa are in the unified checklist, but no occurrences are linked to them. Among taxa of this group, we should select those ones still considered as _present_.
 
@@ -295,8 +295,8 @@ checklist_df<- read_tsv(
 
 Select taxa from unified checklist present in evaluation time window:
 
-```{r present_taxa}
-checklist_df %>%
+```{r present_taxa_with_no_occs}
+taxa_from_checklist_df <- checklist_df %>%
   filter(!nubKey %in% df_ts_compact$taxonKey & last_observed >= min(years)) %>%
   distinct(nubKey) %>%
   pull() %>%
@@ -356,6 +356,14 @@ Reappearing taxa:
 app_reapp_global$reappearing_taxa
 ```
 
+## Appearing taxa from checklists
+
+Present taxa in unified checklist but still without occurrences:
+
+```{r taxa_from_checklist_df}
+taxa_from_checklist_df
+```
+
 # Save data
 
 ## Appearing taxa
@@ -379,3 +387,15 @@ write_tsv(app_reapp_global$reappearing_taxa,
           na = ""
 )
 ```
+
+## Taxa without occurrences
+
+Save taxa from unified checklist without linked occurrences:
+
+```{r}
+write_tsv(app_reapp_global$reappearing_taxa,
+          path = here::here("data", "output", "present_taxa_without_occurrences.tsv"),
+          na = ""
+)
+```
+
