@@ -97,6 +97,7 @@ df_bl <-
   df_bl %>%
   rename(cobs = n)
 ```
+
 ## Grid cells intersecting protected areas
 
 We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in  `data/output`:
@@ -140,11 +141,11 @@ taxon_key <-
 pb <- progress_bar$new(total = length(taxon_key))
 spec_names <- map_df(
   taxon_key, 
-  function(taxonKey){
+  function(k){
     pb$tick()
-    name_usage(key = taxonKey, return = "data")
+    name_usage(key = k, return = "data")
   }) %>%
-  select(key, canonicalName, kingdomKey, classKey)
+  select(taxonKey = key, canonicalName, kingdomKey, classKey)
 ```
 
 We also retrieve kingdom and class:
@@ -305,7 +306,7 @@ Calculate the total number of alien species observations per `eea_cell_code`, `y
 ```{r }
 df_alien_species <- 
   df %>%
-  left_join(spec_names, by = c("taxonKey" = "key")) %>%
+  left_join(spec_names, by = "taxonKey") %>%
   group_by(classKey, eea_cell_code, year) %>%
   summarize(n_alien = sum(obs)) %>%
   ungroup()
@@ -405,8 +406,8 @@ df_ts <-
   df_ts %>%
   # add classKey
   left_join(spec_names %>% 
-              select(key, classKey), 
-            by = c("taxonKey" = "key"))
+              select(taxonKey, classKey), 
+            by = "taxonKey")
 
 df_ts <- 
   df_ts %>%
