@@ -1,0 +1,381 @@
+---
+title: 'Detect appearing and reappearing species'
+author:
+- Damiano Oldoni
+- Toon Van Daele
+- Tim Adriaens
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+---
+
+In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last 2 years. Such detection is based on decision rules instead of using GAM modelling as the number of GBIF observations decreases sensibly in the last two years as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries:
+
+```{r load_libraries, message = FALSE}
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(progress)       # To add progress bars
+library(here)           # To find files
+library(mgcv)           # To apply GAM           
+library(gratia)         # To calculate derivatives
+```
+
+# Get data
+
+We read the output of preprocessing pipeline.
+
+Time series:
+
+```{r read_preprocessed_data}
+df_ts <- read_tsv(
+  here::here("data", "interim", "df_timeseries.tsv"),
+  na = "")
+```
+
+Columns `pa_obs` and `pa_native_obs` indicate the presence (1) or absence (0) of the specific taxon and native species at class level.
+
+Preview:
+
+```{r preview_ts}
+# Get a taxon
+taxon <- 
+  df_ts$taxonKey[5]
+
+# Preview
+df_ts %>%
+  filter(taxonKey == taxon,
+         year == 2016,
+         eea_cell_code %in% c("1kmE3802N3132", 
+                              "1kmE3803N3132",
+                              "1kmE3802N3133", 
+                              "1kmE3803N3133")
+)
+```
+
+Taxonomic information:
+
+```{r spec_names}
+spec_names <- read_tsv(
+  file = here::here("data", 
+                            "interim", 
+                            "timeseries_taxonomic_info.tsv")
+)
+```
+
+
+# Detect appearing - reappearing species
+
+Years to evaluate:
+
+```{r eval_years}
+present_year <- lubridate::year(Sys.Date())
+years <- c(present_year - 1, present_year)
+years
+```
+
+We define the minimum latency (in years) before we speak about reappearance. For example, a latency time window of 3 years means that we consider a taxon reappearing in 2018 if observations occur in 2018 and 2014 or before:
+
+```{r latency_years}
+years_latency <- 3
+```
+
+## Appearing - reappearing species in Belgium
+
+Lump geographic information:
+
+```{r df_ts_compact}
+df_ts_compact <- 
+  df_ts %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %>%
+  ungroup()
+```
+
+We define the function `is_appearing` for appearing/reappearing detection:
+
+```{r decision_rules_function}
+#' @param df data frame with time series
+#' @param eval_years vector with years used for evaluation. Warning is returned
+#' if not a sequence. Typically present year and year before.
+#' @param latency years of latency (no observations). Strictly positive integer.
+#' @param df_reference data frame with time series used to assess reappearing. If NULL (default) df is used.
+#' @return data.frame with appearing or reappearing taxa
+is_appearing <- function(df, 
+                         eval_years,
+                         latency = 2,
+                         df_reference = NULL,
+                         data_col = "ncells",
+                         id_col = "taxonKey",
+                         year_col = "year") {
+
+  df <- 
+    df %>%
+    select(id_col, year_col, data_col) %>%
+    rename("taxonKey" = id_col,
+           "year" = year_col,
+           "occ" = data_col) %>%
+    filter(occ > 0) %>%
+    group_by(taxonKey)
+  
+  if (!is.null(df_reference)) {
+    df_reference <- 
+      df_reference %>%
+      select(id_col, year_col, data_col) %>%
+      rename("taxonKey" = id_col,
+           "year" = year_col,
+           "occ" = data_col) %>%
+      filter(occ > 0) %>%
+      group_by(taxonKey)
+  } else {
+    df_reference <- df
+  }
+  
+  # Taxa present in evaluated years
+  
+  taxa_eval_years_df <- 
+    df %>%
+    filter(year %in% eval_years) %>%
+    filter(year == min(year))
+  
+  taxa_eval_years <- 
+    taxa_eval_years_df %>%
+    distinct(taxonKey) %>%
+    pull()
+  
+  # appearing taxa
+  appearing_taxa <- 
+    df %>%
+    filter(taxonKey %in% taxa_eval_years) %>%
+    filter(min(year) %in% eval_years) %>%
+    filter(year == min(year)) %>%
+    ungroup()
+  
+  # reappearing taxa
+  reappearing_taxa <-
+    df_reference %>%
+    filter(taxonKey %in% taxa_eval_years) %>%
+    filter(year < min(eval_years)) %>%
+    filter(year == max(year)) %>%
+    ungroup() %>%
+    rename(last_year_before_reappearing = year) %>%
+    left_join(taxa_eval_years_df, by = "taxonKey") %>%
+    group_by(taxonKey) %>%
+    summarize(n_latent_years = year - last_year_before_reappearing) %>%
+    filter(n_latent_years > latency)
+  
+  appearing_taxa <-
+    appearing_taxa %>%
+    rename(!!sym(data_col) := "occ")
+  
+  return(list(appearing_taxa = appearing_taxa, 
+              reappearing_taxa = reappearing_taxa))
+}
+```
+
+Apply function defined above:
+
+```{r appearing_reappearing_taxa}
+appearing_reappearing_taxa <- is_appearing(df = df_ts_compact, 
+                                           eval_years = c(2018, 2019), 
+                                           latency = years_latency,
+                                           df_reference = NULL)
+```
+
+Number of appearing taxa:
+
+```{r n_appearing_taxa_BE}
+nrow(appearing_reappearing_taxa$appearing_taxa)
+```
+
+Number of reappearing taxa:
+
+```{r n_appearing_taxa_BE}
+nrow(appearing_reappearing_taxa$reappearing_taxa)
+```
+
+## Appearing - reappearing species in Belgian protected areas
+
+We repeat the workflow defined above to assess which taxa are appearing or reappearing in protected areas.
+
+First we select data referring to protected areas (Natura2000) and then we lump geographical information:
+
+```{r df_ts_compact_protected_areas}
+df_ts_compact_prot_areas <-
+  df_ts %>%
+  filter(natura2000 == TRUE) %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %>%
+  ungroup()
+```
+
+We apply function `is_appearing`. Notice that we use occurrences about all Belgium to assess the reappearance in protected areas:
+
+```{r appearing_reappearing_taxa_prot_areas}
+appearing_reappearing_taxa_prot_areas <- is_appearing(
+  df = df_ts_compact_prot_areas, 
+  eval_years = c(2018, 2019),
+  latency = 3,
+  df_reference = df_ts_compact)
+```
+
+Number of appearing taxa:
+
+```{r n_appearing_taxa_prot_areas}
+nrow(appearing_reappearing_taxa_prot_areas$appearing_taxa)
+```
+
+Number of reappearing taxa:
+
+```{r n_appearing_taxa_BE_prot_areas}
+nrow(appearing_reappearing_taxa_prot_areas$reappearing_taxa)
+```
+
+## Merge
+
+We merge appearing and reappearing taxa from all Belgium and from protected areas. We arrange taxa by giving higher ranking to taxa appearing or reappearing in protected areas. This information is present in column `natura2000` with values `TRUE` (presence in protected areas) and  `FALSE` (absence in protected areas).
+
+```{r merge_ranking_by_presence_in protected_area}
+app_reapp_global <- 
+  map2(appearing_reappearing_taxa_prot_areas,
+       appearing_reappearing_taxa,
+       function(x,y) {
+         full_join(
+           x %>% 
+             mutate(natura2000 = TRUE),
+           y, by = names(x)) %>%
+           mutate(natura2000 = ifelse(is.na(natura2000), FALSE, TRUE))
+    }
+)
+app_reapp_global$appearing_taxa
+```
+
+## Add canonical names
+
+Add taxonomic information for better readibility.
+
+```{r add_taxonomic_info}
+app_reapp_global <- map(app_reapp_global,
+                          function(x) {
+                            x %>% 
+                              left_join(spec_names, by = "taxonKey") %>%
+                              select(taxonKey, )
+                          })
+```
+
+## Add taxa with from checklists
+
+Some taxa are in the unified checklist, but no occurrences are linked to them. Among taxa of this group, we should select those ones still considered as _present_.
+
+Read input data.frame used for checklist indicators (output of [checklist indicators preprocessing pipeline](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd)):
+
+```{r read_data_input_checklist_inds}
+checklist_df<- read_tsv(
+  here::here("data", "output", "data_input_checklist_indicators.tsv"),
+  na = ""
+)
+```
+
+Select taxa from unified checklist present in evaluation time window:
+
+```{r present_taxa}
+checklist_df %>%
+  filter(!nubKey %in% df_ts_compact$taxonKey & last_observed >= min(years)) %>%
+  distinct(nubKey) %>%
+  pull() %>%
+  map_dfr(~ name_usage(key = ., return = "data", data = "all")) %>%
+  select(key, canonicalName, class, kingdom, classKey, kingdomKey) %>%
+  rename(taxonkey = key)
+```
+
+# Table of appearing and reappearing taxa
+
+## Appearing taxa
+
+Reorder columns of data.frame containing appearring taxa:
+
+```{r reorder_cols_appearing}
+app_reapp_global$appearing_taxa <- 
+  app_reapp_global$appearing_taxa %>%
+  select(taxonKey, 
+         canonicalName, 
+         year, 
+         ncells, 
+         natura2000, 
+         class, 
+         kingdom, 
+         classKey, 
+         kingdomKey
+)
+```
+
+Appearing taxa:
+
+```{r add_taxonomic_info_appearing_taxa}
+app_reapp_global$appearing_taxa
+```
+
+## Reappearing taxa
+
+Reorder columns of data.frame containing reappearing taxa:
+
+```{r reorder_cols_reappearing}
+app_reapp_global$reappearing_taxa <- 
+  app_reapp_global$reappearing_taxa %>%
+  select(taxonKey, 
+         canonicalName, 
+         n_latent_years,
+         natura2000,
+         class,
+         kingdom,
+         classKey,
+         kingdomKey
+)
+```
+
+Reappearing taxa:
+
+```{r add_taxonomic_info_reappearing_taxa}
+app_reapp_global$reappearing_taxa
+```
+
+# Save data
+
+## Appearing taxa
+
+Save appearing taxa:
+
+```{r save_appearing_taxa}
+write_tsv(app_reapp_global$appearing_taxa,
+          path = here::here("data", "output", "appearing_taxa.tsv"),
+          na = ""
+)
+```
+
+## Reappearing taxa
+
+Save reappearing taxa:
+
+```{r save_reappearing_taxa}
+write_tsv(app_reapp_global$reappearing_taxa,
+          path = here::here("data", "output", "reappearing_taxa.tsv"),
+          na = ""
+)
+```
