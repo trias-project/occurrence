@@ -1,120 +1,94 @@
-taxonKey	canonicalName	n_latent_years	natura2000	class	kingdom	classKey	kingdomKey
-2115692	Balanus tintinnabulum	7	TRUE	Maxillopoda	Animalia	203	1
-2215949	Melita nitida	10	TRUE	Malacostraca	Animalia	229	1
-2437397	Callosciurus prevostii	7	TRUE	Mammalia	Animalia	359	1
-2480542	Buteo jamaicensis	4	TRUE	Aves	Animalia	212	1
-2480800	Platalea alba	6	TRUE	Aves	Animalia	212	1
-2481936	Mycteria ibis	13	TRUE	Aves	Animalia	212	1
-2484628	Vidua macroura	10	TRUE	Aves	Animalia	212	1
-2493697	Amandava subflava	20	TRUE	Aves	Animalia	212	1
-2495342	Oena capensis	24	TRUE	Aves	Animalia	212	1
-2498145	Anas rhynchotis	6	TRUE	Aves	Animalia	212	1
-2516137	Gymnosporangium sabinae	10	TRUE	Pucciniomycetes	Fungi	270	5
-2683894	Xanthocyparis nootkatensis	5	TRUE	Pinopsida	Plantae	194	6
-2705031	Festuca glauca	5	TRUE	Liliopsida	Plantae	196	6
-2722380	Carex crawfordii	6	TRUE	Liliopsida	Plantae	196	6
-2747939	Crocosmia crocosmiiflora	5	TRUE	Liliopsida	Plantae	196	6
-2767229	Scilla sardensis	9	TRUE	Liliopsida	Plantae	196	6
-2857679	Allium macleanii	4	TRUE	Liliopsida	Plantae	196	6
-2873994	Aristolochia macrophylla	5	TRUE	Magnoliopsida	Plantae	220	6
-2889229	Persicaria orientalis	8	TRUE	Magnoliopsida	Plantae	220	6
-2890651	Geranium psilostemon	5	TRUE	Magnoliopsida	Plantae	220	6
-2926042	Nonea lutea	6	TRUE	Magnoliopsida	Plantae	220	6
-2926884	Satureja montana	9	TRUE	Magnoliopsida	Plantae	220	6
-2928775	Nicotiana rustica	4	TRUE	Magnoliopsida	Plantae	220	6
-2928779	Nicotiana forgetiana	5	TRUE	Magnoliopsida	Plantae	220	6
-3026040	Cotoneaster suecicus	4	TRUE	Magnoliopsida	Plantae	220	6
-3033518	Clematis viticella	4	TRUE	Magnoliopsida	Plantae	220	6
-3040255	Reseda odorata	5	TRUE	Magnoliopsida	Plantae	220	6
-3064495	Euphorbia heterophylla	19	TRUE	Magnoliopsida	Plantae	220	6
-3102823	Anthemis ruthenica	6	TRUE	Magnoliopsida	Plantae	220	6
-5229128	Himantopus mexicanus	4	TRUE	Aves	Animalia	212	1
-5231398	Leiothrix lutea	4	TRUE	Aves	Animalia	212	1
-5332120	Betula papyrifera	5	TRUE	Magnoliopsida	Plantae	220	6
-5334253	Lonicera involucrata	4	TRUE	Magnoliopsida	Plantae	220	6
-5376846	Lepidium heterophyllum	5	TRUE	Magnoliopsida	Plantae	220	6
-5376925	Lepidium bonariense	7	TRUE	Magnoliopsida	Plantae	220	6
-5380041	Ricinus communis	4	TRUE	Magnoliopsida	Plantae	220	6
-5392883	Echinops sphaerocephalus	4	TRUE	Magnoliopsida	Plantae	220	6
-5415056	Forsythia suspensa	6	TRUE	Magnoliopsida	Plantae	220	6
-5568322	Dysphania schraderiana	7	TRUE	Magnoliopsida	Plantae	220	6
-5682465	Erica carnea	7	TRUE	Magnoliopsida	Plantae	220	6
-5845390	Gracupica nigricollis	7	TRUE	Aves	Animalia	212	1
-5959227	Ara macao	16	TRUE	Aves	Animalia	212	1
-7226804	Avena sterilis sterilis	21	TRUE	Liliopsida	Plantae	196	6
-7295374	Anchusa officinalis officinalis	5	TRUE	Magnoliopsida	Plantae	220	6
-7331666	Melampyrum nemorosum	4	TRUE	Magnoliopsida	Plantae	220	6
-7433196	Euonymus latifolius	5	TRUE	Magnoliopsida	Plantae	220	6
-7681436	Cytisus multiflorus	16	TRUE	Magnoliopsida	Plantae	220	6
-7695021	Epimedium alpinum	10	TRUE	Magnoliopsida	Plantae	220	6
-7777960	Vaccinium macrocarpum	17	TRUE	Magnoliopsida	Plantae	220	6
-7894250	Datura ferox	9	TRUE	Magnoliopsida	Plantae	220	6
-1421105	Thermobia domestica	4	FALSE	Insecta	Animalia	216	1
-1702101	Anacridium aegyptium	9	FALSE	Insecta	Animalia	216	1
-1932752	Cacyreus marshalli	9	FALSE	Insecta	Animalia	216	1
-2157245	Steatoda grossa	18	FALSE	Arachnida	Animalia	367	1
-2362486	Hypophthalmichthys nobilis	4	FALSE	Actinopterygii	Animalia	204	1
-2474055	Alectoris graeca	8	FALSE	Aves	Animalia	212	1
-2476041	Bucorvus leadbeateri	4	FALSE	Aves	Animalia	212	1
-2481034	Falco cherrug	6	FALSE	Aves	Animalia	212	1
-2486132	Pycnonotus leucotis	5	FALSE	Aves	Animalia	212	1
-2494070	Ploceus melanocephalus	10	FALSE	Aves	Animalia	212	1
-2498065	Anas flavirostris	4	FALSE	Aves	Animalia	212	1
-2498398	Dendrocygna arcuata	4	FALSE	Aves	Animalia	212	1
-2498405	Dendrocygna eytoni	18	FALSE	Aves	Animalia	212	1
-2705081	Panicum virgatum	4	FALSE	Liliopsida	Plantae	196	6
-2774846	Chlorophytum comosum	4	FALSE	Liliopsida	Plantae	196	6
-2925496	Verbena rigida	4	FALSE	Magnoliopsida	Plantae	220	6
-3025858	Cotoneaster ambiguus	6	FALSE	Magnoliopsida	Plantae	220	6
-3033543	Clematis recta	68	FALSE	Magnoliopsida	Plantae	220	6
-3033905	Berberis darwinii	8	FALSE	Magnoliopsida	Plantae	220	6
-3044349	Chorispora tenella	4	FALSE	Magnoliopsida	Plantae	220	6
-3046744	Sisymbrium volgense	4	FALSE	Magnoliopsida	Plantae	220	6
-3048166	Erysimum repandum	4	FALSE	Magnoliopsida	Plantae	220	6
-3083702	Atriplex tatarica	19	FALSE	Magnoliopsida	Plantae	220	6
-3083745	Atriplex rosea	58	FALSE	Magnoliopsida	Plantae	220	6
-3083903	Chenopodium opulifolium	5	FALSE	Magnoliopsida	Plantae	220	6
-3084700	Portulaca grandiflora	6	FALSE	Magnoliopsida	Plantae	220	6
-3114986	Arctotheca calendula	5	FALSE	Magnoliopsida	Plantae	220	6
-3125933	Santolina chamaecyparissus	4	FALSE	Magnoliopsida	Plantae	220	6
-3131367	Helichrysum petiolare	5	FALSE	Magnoliopsida	Plantae	220	6
-3802956	Solanum villosum villosum	32	FALSE	Magnoliopsida	Plantae	220	6
-4021919	Portulaca sativa	9	FALSE	Magnoliopsida	Plantae	220	6
-4201784	Petrosedum sediforme	5	FALSE	Magnoliopsida	Plantae	220	6
-5199161	Hypania invalida	4	FALSE	Polychaeta	Animalia	256	1
-5200414	Diplosoma listerianum	11	FALSE	Ascidiacea	Animalia	356	1
-5230734	Onychognathus tristramii	17	FALSE	Aves	Animalia	212	1
-5232432	Cereopsis novaehollandiae	5	FALSE	Aves	Animalia	212	1
-5289783	Aegilops cylindrica	5	FALSE	Liliopsida	Plantae	196	6
-5296218	Sisyrinchium californicum	4	FALSE	Liliopsida	Plantae	196	6
-5352425	Anthyllis vulneraria carpatica	4	FALSE	Magnoliopsida	Plantae	220	6
-5358912	Trifolium diffusum	8	FALSE	Magnoliopsida	Plantae	220	6
-5359249	Trifolium rubens	19	FALSE	Magnoliopsida	Plantae	220	6
-5359345	Trifolium echinatum	33	FALSE	Magnoliopsida	Plantae	220	6
-5359411	Trifolium pallidum	5	FALSE	Magnoliopsida	Plantae	220	6
-5360498	Trigonella caerulea	8	FALSE	Magnoliopsida	Plantae	220	6
-5361841	Pilea microphylla	14	FALSE	Magnoliopsida	Plantae	220	6
-5363819	Photinia villosa	6	FALSE	Magnoliopsida	Plantae	220	6
-5365888	Potentilla inclinata	4	FALSE	Magnoliopsida	Plantae	220	6
-5383971	Blitum capitatum	39	FALSE	Magnoliopsida	Plantae	220	6
-5384773	Silene pendula	38	FALSE	Magnoliopsida	Plantae	220	6
-5410210	Campanula fenestrellata	4	FALSE	Magnoliopsida	Plantae	220	6
-5414932	Chelone obliqua	4	FALSE	Magnoliopsida	Plantae	220	6
-5414959	Collinsia heterophylla	6	FALSE	Magnoliopsida	Plantae	220	6
-5415054	Forsythia intermedia	5	FALSE	Magnoliopsida	Plantae	220	6
-5530829	Corydalis cheilanthifolia	6	FALSE	Magnoliopsida	Plantae	220	6
-5686494	Decaisnea insignis	4	FALSE	Magnoliopsida	Plantae	220	6
-5690287	Sedum cepaea	44	FALSE	Magnoliopsida	Plantae	220	6
-5959118	Bubo virginianus	4	FALSE	Aves	Animalia	212	1
-6376216	Clematis montana	4	FALSE	Magnoliopsida	Plantae	220	6
-7070211	Cyperus longus longus	4	FALSE	Liliopsida	Plantae	196	6
-7172720	Sedum dasyphyllum	13	FALSE	Magnoliopsida	Plantae	220	6
-7223276	Centaurea solstitialis solstitialis	8	FALSE	Magnoliopsida	Plantae	220	6
-7309012	Callicarpa bodinieri	4	FALSE	Magnoliopsida	Plantae	220	6
-7323711	Amaranthus quitensis	5	FALSE	Magnoliopsida	Plantae	220	6
-7415922	Rumex pulcher woodsii	19	FALSE	Magnoliopsida	Plantae	220	6
-7628663	Viola cornuta	20	FALSE	Magnoliopsida	Plantae	220	6
-8060423	Cercidiphyllum japonicum	4	FALSE	Magnoliopsida	Plantae	220	6
-8144599	Papaver nudicaule	5	FALSE	Magnoliopsida	Plantae	220	6
-8773480	Koenigia fennica	5	FALSE	Magnoliopsida	Plantae	220	6
-9567226	Oxybasis glauca salina	4	FALSE	Magnoliopsida	Plantae	220	6
+taxonkey	canonicalName	class	kingdom	classKey	kingdomKey
+3202936	Aphanomyces astaci	Peronosporea	Chromista	8179345	4
+5250069	Thecaphora oxalidis	Ustilaginomycetes	Fungi	148	5
+5250090	Urocystis trollii	Ustilaginomycetes	Fungi	148	5
+2557730	Sporisorium destruens	Ustilaginomycetes	Fungi	148	5
+9350124	Natrix helvetica	Reptilia	Animalia	358	1
+8740315	Marionfyfea adventor		Animalia		1
+2502938	Bipalium kewense		Animalia		1
+7670473	Batrachochytrium salamandrivorans	Chytridiomycetes	Fungi	318	5
+2627503	Batrachochytrium dendrobatidis	Chytridiomycetes	Fungi	318	5
+7805595	Chara braunii	Charophyceae	Plantae	328	6
+9518324	Procyon cancrivorus	Mammalia	Animalia	359	1
+2433536	Nasua nasua	Mammalia	Animalia	359	1
+2435451	Sarcophilus harrisii	Mammalia	Animalia	359	1
+5216933	Rhinella marina	Amphibia	Animalia	131	1
+4285694	Oreochromis niloticus	Actinopterygii	Animalia	204	1
+5208832	Gobiosoma bosc	Actinopterygii	Animalia	204	1
+5545159	Ludwigia peploides montevidensis	Magnoliopsida	Plantae	220	6
+2367033	Ballerus ballerus	Actinopterygii	Animalia	204	1
+5190777	Deroceras panormitanum	Gastropoda	Animalia	225	1
+4598226	Tandonia sowerbyi	Gastropoda	Animalia	225	1
+4564944	Xerosecta cespitum	Gastropoda	Animalia	225	1
+2296805	Trochoidea elegans	Gastropoda	Animalia	225	1
+4307880	Potamothrix heuscheri	Clitellata	Animalia	255	1
+4556286	Meloidogyne artiellia	Secernentea	Animalia	250	1
+6304873	Cicerbita macrophylla macrophylla	Magnoliopsida	Plantae	220	6
+4227439	Cicerbita macrophylla uralensis	Magnoliopsida	Plantae	220	6
+2202786	Synarmadillo	Malacostraca	Animalia	229	1
+3142974	Doronicum excelsum	Magnoliopsida	Plantae	220	6
+4549071	Varroa jacobsoni	Arachnida	Animalia	367	1
+4553469	Leiobunum	Arachnida	Animalia	367	1
+2162464	Uroctea durandi	Arachnida	Animalia	367	1
+2140406	Triaeris stenaspis	Arachnida	Animalia	367	1
+8871276	Neuroctenus lestoni	Insecta	Animalia	216	1
+7481364	Fulvius subnitens	Insecta	Animalia	216	1
+4487282	Fulvius anthocoroides	Insecta	Animalia	216	1
+1650106	Anopheles pharoensis	Insecta	Animalia	216	1
+1420197	Aleurodothrips fasciapennis	Insecta	Animalia	216	1
+8351995	Frankliniella occidentalis	Insecta	Animalia	216	1
+1420857	Parthenothrips dracaenae	Insecta	Animalia	216	1
+1420846	Echinothrips americanus	Insecta	Animalia	216	1
+1420769	Aurantothrips orchidaceus	Insecta	Animalia	216	1
+1420791	Leucothrips nigripennis	Insecta	Animalia	216	1
+1420795	Heliothrips haemorrhoidalis	Insecta	Animalia	216	1
+1420828	Hercinothrips bicinctus	Insecta	Animalia	216	1
+1420829	Hercinothrips femoralis	Insecta	Animalia	216	1
+1420612	Scirtothrips longipennis	Insecta	Animalia	216	1
+1420765	Chaetanaphothrips orchidii	Insecta	Animalia	216	1
+1419894	Euborellia annulipes	Insecta	Animalia	216	1
+8410115	Hedera hibernica	Magnoliopsida	Plantae	220	6
+1322674	Pheidole anastasii	Insecta	Animalia	216	1
+1321805	Pheidole bilimeki	Insecta	Animalia	216	1
+1319260	Tetraponera allaborans	Insecta	Animalia	216	1
+4453195	Carpophilus obsoletus	Insecta	Animalia	216	1
+1043978	Stelidota geminata	Insecta	Animalia	216	1
+4989894	Hippodamia convergens	Insecta	Animalia	216	1
+4990175	Rhyzobius lophanthae	Insecta	Animalia	216	1
+4400961	Badonnelia titei	Insecta	Animalia	216	1
+4987920	Trichopsocus clarus	Insecta	Animalia	216	1
+1031743	Dorypteryx pallida	Insecta	Animalia	216	1
+1031564	Psoquilla marginepunctata	Insecta	Animalia	216	1
+1031685	Lepinotus reticulatus	Insecta	Animalia	216	1
+1031677	Trogium pulsatorium	Insecta	Animalia	216	1
+1031680	Cerobasis annulata	Insecta	Animalia	216	1
+1031512	Liposcelis brunnea	Insecta	Animalia	216	1
+1031520	Liposcelis bostrychophila	Insecta	Animalia	216	1
+1031524	Liposcelis paeta	Insecta	Animalia	216	1
+1010644	Hanseniella caldaria	Symphyla	Animalia	7742773	1
+7334576	Sempervivum barbulatum	Magnoliopsida	Plantae	220	6
+4048052	Hippophae rhamnoides caucasica	Magnoliopsida	Plantae	220	6
+3026167	Cotoneaster boisianus	Magnoliopsida	Plantae	220	6
+9382645	Rosa virginiana	Magnoliopsida	Plantae	220	6
+3012254	Sorbus intermedia	Magnoliopsida	Plantae	220	6
+9823072	Oxalis stricta	Magnoliopsida	Plantae	220	6
+5376961	Lepidium draba	Magnoliopsida	Plantae	220	6
+8227753	Anchusa procera	Magnoliopsida	Plantae	220	6
+4067281	Symphytum hidcotense	Magnoliopsida	Plantae	220	6
+4926977	Catalpa erubescens	Magnoliopsida	Plantae	220	6
+8287616	Linaria simplex	Magnoliopsida	Plantae	220	6
+8233535	Linaria supina	Magnoliopsida	Plantae	220	6
+3729273	Asarina procumbens	Magnoliopsida	Plantae	220	6
+7096205	Clinopodium nepeta nepeta	Magnoliopsida	Plantae	220	6
+3084748	Claytonia perfoliata	Magnoliopsida	Plantae	220	6
+8012084	Dianthus subacaulis	Magnoliopsida	Plantae	220	6
+7267631	Dianthus giganteus giganteus	Magnoliopsida	Plantae	220	6
+7428369	Centranthus ruber	Magnoliopsida	Plantae	220	6
+5295375	Smilax rotundifolia	Liliopsida	Plantae	196	6
+4013762	Narcissus cyclazetta	Liliopsida	Plantae	196	6
+5296015	Sisyrinchium angustifolium	Liliopsida	Plantae	196	6
+5289490	Typha provincialis	Liliopsida	Plantae	196	6
+2704966	Festuca valesiaca	Liliopsida	Plantae	196	6
+5890148	Anguillicoloides crassus	Secernentea	Animalia	250	1
+1728964	Diestrammena asynamora	Insecta	Animalia	216	1
+4467502	Otiorhynchus indefinitus	Insecta	Animalia	216	1
