@@ -59,14 +59,12 @@ taxonKey	canonicalName	year	ncells	natura2000	class	kingdom	classKey	kingdomKey
 7695021	Epimedium alpinum	2019	1	TRUE	Magnoliopsida	Plantae	220	6
 9182765	Calendula arvensis	2019	1	TRUE	Magnoliopsida	Plantae	220	6
 1423286	Ischnura senegalensis	2019	1	FALSE	Insecta	Animalia	216	1
-1722140	Eumodicogryllus bordigalensis	2018	3	FALSE	Insecta	Animalia	216	1
 2176858	Philaeus chrysops	2019	3	FALSE	Arachnida	Animalia	367	1
 2295309	Hawaiia minuscula	2019	1	FALSE	Gastropoda	Animalia	225	1
 2431886	Triturus marmoratus	2018	2	FALSE	Amphibia	Animalia	131	1
 2489450	Gymnorhina tibicen	2018	1	FALSE	Aves	Animalia	212	1
 2495165	Rhea americana	2018	2	FALSE	Aves	Animalia	212	1
 2747750	Crocus luteus	2019	1	FALSE	Liliopsida	Plantae	196	6
-2772082	Muscari latifolium	2018	3	FALSE	Liliopsida	Plantae	196	6
 2778358	Asphodelus tenuifolius	2019	1	FALSE	Liliopsida	Plantae	196	6
 2888943	Rumex confertus	2019	3	FALSE	Magnoliopsida	Plantae	220	6
 2925879	Amsinckia eastwoodiae	2019	1	FALSE	Magnoliopsida	Plantae	220	6
@@ -76,20 +74,16 @@ taxonKey	canonicalName	year	ncells	natura2000	class	kingdom	classKey	kingdomKey
 3006974	Rosa pendulina	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 3046765	Sisymbrium erysimoides	2019	2	FALSE	Magnoliopsida	Plantae	220	6
 3082297	Limonium sinuatum	2018	1	FALSE	Magnoliopsida	Plantae	220	6
-3083488	Paeonia officinalis	2019	3	FALSE	Magnoliopsida	Plantae	220	6
 3104491	Argyranthemum frutescens	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 3128962	Centaurea diffusa	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 3167003	Triodanis perfoliata	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 3896282	Teucrium hircanicum	2019	1	FALSE	Magnoliopsida	Plantae	220	6
 3905825	Betonica macrantha	2019	1	FALSE	Magnoliopsida	Plantae	220	6
 4487370	Tropidosteptes pacificus	2018	2	FALSE	Insecta	Animalia	216	1
-5104748	Cameraria gaultheriella	2018	5	FALSE	Insecta	Animalia	216	1
 5229045	Psittacula alexandri	2019	1	FALSE	Aves	Animalia	212	1
-5229411	Anastomus lamelligerus	2018	9	FALSE	Aves	Animalia	212	1
 5231103	Zonotrichia capensis	2018	1	FALSE	Aves	Animalia	212	1
 5377286	Iberis pinnata	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 6100962	Urocissa erythroryncha	2018	1	FALSE	Aves	Animalia	212	1
 7885624	Cucumis myriocarpus	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 8167990	Lycopsis arvensis orientalis	2019	2	FALSE	Magnoliopsida	Plantae	220	6
-9182765	Calendula arvensis	2018	1	FALSE	Magnoliopsida	Plantae	220	6
 9362842	Junco hyemalis	2018	48	FALSE	Aves	Animalia	212	1

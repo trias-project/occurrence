@@ -58,17 +58,13 @@ taxonKey	canonicalName	n_latent_years	natura2000	class	kingdom	classKey	kingdomK
 2476041	Bucorvus leadbeateri	4	FALSE	Aves	Animalia	212	1
 2481034	Falco cherrug	6	FALSE	Aves	Animalia	212	1
 2486132	Pycnonotus leucotis	5	FALSE	Aves	Animalia	212	1
-2493697	Amandava subflava	19	FALSE	Aves	Animalia	212	1
 2494070	Ploceus melanocephalus	10	FALSE	Aves	Animalia	212	1
 2498065	Anas flavirostris	4	FALSE	Aves	Animalia	212	1
 2498398	Dendrocygna arcuata	4	FALSE	Aves	Animalia	212	1
 2498405	Dendrocygna eytoni	18	FALSE	Aves	Animalia	212	1
-2705031	Festuca glauca	4	FALSE	Liliopsida	Plantae	196	6
 2705081	Panicum virgatum	4	FALSE	Liliopsida	Plantae	196	6
 2774846	Chlorophytum comosum	4	FALSE	Liliopsida	Plantae	196	6
 2925496	Verbena rigida	4	FALSE	Magnoliopsida	Plantae	220	6
-2926042	Nonea lutea	5	FALSE	Magnoliopsida	Plantae	220	6
-2928779	Nicotiana forgetiana	4	FALSE	Magnoliopsida	Plantae	220	6
 3025858	Cotoneaster ambiguus	6	FALSE	Magnoliopsida	Plantae	220	6
 3033543	Clematis recta	68	FALSE	Magnoliopsida	Plantae	220	6
 3033905	Berberis darwinii	8	FALSE	Magnoliopsida	Plantae	220	6
@@ -79,7 +75,6 @@ taxonKey	canonicalName	n_latent_years	natura2000	class	kingdom	classKey	kingdomK
 3083745	Atriplex rosea	58	FALSE	Magnoliopsida	Plantae	220	6
 3083903	Chenopodium opulifolium	5	FALSE	Magnoliopsida	Plantae	220	6
 3084700	Portulaca grandiflora	6	FALSE	Magnoliopsida	Plantae	220	6
-3102823	Anthemis ruthenica	5	FALSE	Magnoliopsida	Plantae	220	6
 3114986	Arctotheca calendula	5	FALSE	Magnoliopsida	Plantae	220	6
 3125933	Santolina chamaecyparissus	4	FALSE	Magnoliopsida	Plantae	220	6
 3131367	Helichrysum petiolare	5	FALSE	Magnoliopsida	Plantae	220	6
@@ -115,7 +110,6 @@ taxonKey	canonicalName	n_latent_years	natura2000	class	kingdom	classKey	kingdomK
 7070211	Cyperus longus longus	4	FALSE	Liliopsida	Plantae	196	6
 7172720	Sedum dasyphyllum	13	FALSE	Magnoliopsida	Plantae	220	6
 7223276	Centaurea solstitialis solstitialis	8	FALSE	Magnoliopsida	Plantae	220	6
-7226804	Avena sterilis sterilis	20	FALSE	Liliopsida	Plantae	196	6
 7309012	Callicarpa bodinieri	4	FALSE	Magnoliopsida	Plantae	220	6
 7323711	Amaranthus quitensis	5	FALSE	Magnoliopsida	Plantae	220	6
 7415922	Rumex pulcher woodsii	19	FALSE	Magnoliopsida	Plantae	220	6

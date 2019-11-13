@@ -257,14 +257,14 @@ app_reapp_global <-
   map2(appearing_reappearing_taxa_prot_areas,
        appearing_reappearing_taxa,
        function(x,y) {
-         full_join(
-           x %>% 
-             mutate(natura2000 = TRUE),
-           y, by = names(x)) %>%
-           mutate(natura2000 = ifelse(is.na(natura2000), FALSE, TRUE))
+         bind_rows(x %>% 
+                     mutate(natura2000 = TRUE),
+                   y %>%
+                     filter(!taxonKey %in% x$taxonKey) %>%
+                     mutate(natura2000 = FALSE)) %>%
+           arrange(desc(natura2000))
     }
 )
-app_reapp_global$appearing_taxa
 ```
 
 ## Add canonical names
@@ -275,8 +275,7 @@ Add taxonomic information for better readibility.
 app_reapp_global <- map(app_reapp_global,
                           function(x) {
                             x %>% 
-                              left_join(spec_names, by = "taxonKey") %>%
-                              select(taxonKey, )
+                              left_join(spec_names, by = "taxonKey")
                           })
 ```
 
@@ -388,9 +387,9 @@ write_tsv(app_reapp_global$reappearing_taxa,
 )
 ```
 
-## Taxa without occurrences
+## Appearing taxa from checklists
 
-Save taxa from unified checklist without linked occurrences:
+Save taxa from unified checklist without occurrences:
 
 ```{r}
 write_tsv(app_reapp_global$reappearing_taxa,
