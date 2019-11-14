@@ -4,7 +4,7 @@ include: "static"
 navbar:
   title: "TrIAS pipeline"
   left:
-    - text: "Checklist indicators"
+    - text: "Checklist-based indicators"
       href: ""
       menu:
       - text: "New species introductions"
@@ -16,10 +16,15 @@ navbar:
     - text: "Occurrence-based indicators"
       href: ""
       menu:
-      - text: "Preprocessing"
-        href: occurrence_indicators_preprocessing.html
       - text: "Appearing-reappearing species"
         href: occurrence_indicators_appearing_taxa.html
+    - text: "Appendix"
+      href: ""
+      menu:
+      - text: "Preprocessing for checklist-based indicators"
+        href: get_data_input_checklist_indicators.html
+      - text: "Preprocessing for occurrence-based indicators"
+        href: occurrence_indicators_preprocessing.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/trias-project/pipeline
