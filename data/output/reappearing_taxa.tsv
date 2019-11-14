@@ -1,0 +1,126 @@
+taxonKey	canonicalName	year	ncells_prot_areas	ncells_BE	in_prot_areas	in_BE	n_latent_years	class	kingdom	classKey	kingdomKey
+2498145	Anas rhynchotis	2019	2	4	TRUE	TRUE	6	Aves	Animalia	212	1
+5376846	Lepidium heterophyllum	2019	2	3	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+2480542	Buteo jamaicensis	2019	2	2	TRUE	TRUE	4	Aves	Animalia	212	1
+2767229	Scilla sardensis	2018	2	2	TRUE	TRUE	9	Liliopsida	Plantae	196	6
+2857679	Allium macleanii	2018	2	2	TRUE	TRUE	4	Liliopsida	Plantae	196	6
+7331666	Melampyrum nemorosum	2019	2	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+2705031	Festuca glauca	2019	2		TRUE	FALSE	5	Liliopsida	Plantae	196	6
+5682465	Erica carnea	2018	1	4	TRUE	TRUE	7	Magnoliopsida	Plantae	220	6
+5332120	Betula papyrifera	2018	1	3	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+2115692	Balanus tintinnabulum	2018	1	2	TRUE	TRUE	7	Maxillopoda	Animalia	203	1
+3026040	Cotoneaster suecicus	2019	1	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+3033518	Clematis viticella	2019	1	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+3040255	Reseda odorata	2019	1	2	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+5376925	Lepidium bonariense	2019	1	2	TRUE	TRUE	7	Magnoliopsida	Plantae	220	6
+5392883	Echinops sphaerocephalus	2019	1	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+7433196	Euonymus latifolius	2019	1	2	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+7681436	Cytisus multiflorus	2018	1	2	TRUE	TRUE	16	Magnoliopsida	Plantae	220	6
+2215949	Melita nitida	2019	1	1	TRUE	TRUE	10	Malacostraca	Animalia	229	1
+2437397	Callosciurus prevostii	2018	1	1	TRUE	TRUE	7	Mammalia	Animalia	359	1
+2480800	Platalea alba	2018	1	1	TRUE	TRUE	6	Aves	Animalia	212	1
+2481936	Mycteria ibis	2018	1	1	TRUE	TRUE	13	Aves	Animalia	212	1
+2484628	Vidua macroura	2018	1	1	TRUE	TRUE	10	Aves	Animalia	212	1
+2495342	Oena capensis	2018	1	1	TRUE	TRUE	24	Aves	Animalia	212	1
+2516137	Gymnosporangium sabinae	2019	1	1	TRUE	TRUE	10	Pucciniomycetes	Fungi	270	5
+2683894	Xanthocyparis nootkatensis	2018	1	1	TRUE	TRUE	5	Pinopsida	Plantae	194	6
+2722380	Carex crawfordii	2019	1	1	TRUE	TRUE	6	Liliopsida	Plantae	196	6
+2747939	Crocosmia crocosmiiflora	2019	1	1	TRUE	TRUE	5	Liliopsida	Plantae	196	6
+2873994	Aristolochia macrophylla	2019	1	1	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+2889229	Persicaria orientalis	2018	1	1	TRUE	TRUE	8	Magnoliopsida	Plantae	220	6
+2890651	Geranium psilostemon	2018	1	1	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+2926884	Satureja montana	2018	1	1	TRUE	TRUE	9	Magnoliopsida	Plantae	220	6
+2928775	Nicotiana rustica	2019	1	1	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+3064495	Euphorbia heterophylla	2018	1	1	TRUE	TRUE	19	Magnoliopsida	Plantae	220	6
+5229128	Himantopus mexicanus	2019	1	1	TRUE	TRUE	4	Aves	Animalia	212	1
+5231398	Leiothrix lutea	2018	1	1	TRUE	TRUE	4	Aves	Animalia	212	1
+5334253	Lonicera involucrata	2018	1	1	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+5380041	Ricinus communis	2019	1	1	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+5415056	Forsythia suspensa	2019	1	1	TRUE	TRUE	6	Magnoliopsida	Plantae	220	6
+5568322	Dysphania schraderiana	2018	1	1	TRUE	TRUE	7	Magnoliopsida	Plantae	220	6
+5845390	Gracupica nigricollis	2019	1	1	TRUE	TRUE	7	Aves	Animalia	212	1
+5959227	Ara macao	2018	1	1	TRUE	TRUE	16	Aves	Animalia	212	1
+7295374	Anchusa officinalis officinalis	2019	1	1	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
+7695021	Epimedium alpinum	2019	1	1	TRUE	TRUE	10	Magnoliopsida	Plantae	220	6
+7777960	Vaccinium macrocarpum	2018	1	1	TRUE	TRUE	17	Magnoliopsida	Plantae	220	6
+7894250	Datura ferox	2018	1	1	TRUE	TRUE	9	Magnoliopsida	Plantae	220	6
+2493697	Amandava subflava	2019	1		TRUE	FALSE	20	Aves	Animalia	212	1
+2926042	Nonea lutea	2019	1		TRUE	FALSE	6	Magnoliopsida	Plantae	220	6
+2928779	Nicotiana forgetiana	2019	1		TRUE	FALSE	5	Magnoliopsida	Plantae	220	6
+3102823	Anthemis ruthenica	2019	1		TRUE	FALSE	6	Magnoliopsida	Plantae	220	6
+7226804	Avena sterilis sterilis	2019	1		TRUE	FALSE	21	Liliopsida	Plantae	196	6
+7172720	Sedum dasyphyllum	2018		8	FALSE	TRUE	13	Magnoliopsida	Plantae	220	6
+2925496	Verbena rigida	2018		4	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+2705081	Panicum virgatum	2018		3	FALSE	TRUE	4	Liliopsida	Plantae	196	6
+3114986	Arctotheca calendula	2019		3	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+2498065	Anas flavirostris	2018		2	FALSE	TRUE	4	Aves	Animalia	212	1
+2705031	Festuca glauca	2018		2	FALSE	TRUE	4	Liliopsida	Plantae	196	6
+2926042	Nonea lutea	2018		2	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+4021919	Portulaca sativa	2019		2	FALSE	TRUE	9	Magnoliopsida	Plantae	220	6
+5199161	Hypania invalida	2018		2	FALSE	TRUE	4	Polychaeta	Animalia	256	1
+7070211	Cyperus longus longus	2018		2	FALSE	TRUE	4	Liliopsida	Plantae	196	6
+7309012	Callicarpa bodinieri	2018		2	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+7628663	Viola cornuta	2019		2	FALSE	TRUE	20	Magnoliopsida	Plantae	220	6
+1421105	Thermobia domestica	2018		1	FALSE	TRUE	4	Insecta	Animalia	216	1
+1702101	Anacridium aegyptium	2019		1	FALSE	TRUE	9	Insecta	Animalia	216	1
+1932752	Cacyreus marshalli	2018		1	FALSE	TRUE	9	Insecta	Animalia	216	1
+2157245	Steatoda grossa	2019		1	FALSE	TRUE	18	Arachnida	Animalia	367	1
+2362486	Hypophthalmichthys nobilis	2019		1	FALSE	TRUE	4	Actinopterygii	Animalia	204	1
+2474055	Alectoris graeca	2018		1	FALSE	TRUE	8	Aves	Animalia	212	1
+2476041	Bucorvus leadbeateri	2018		1	FALSE	TRUE	4	Aves	Animalia	212	1
+2481034	Falco cherrug	2018		1	FALSE	TRUE	6	Aves	Animalia	212	1
+2486132	Pycnonotus leucotis	2018		1	FALSE	TRUE	5	Aves	Animalia	212	1
+2493697	Amandava subflava	2018		1	FALSE	TRUE	19	Aves	Animalia	212	1
+2494070	Ploceus melanocephalus	2019		1	FALSE	TRUE	10	Aves	Animalia	212	1
+2498398	Dendrocygna arcuata	2018		1	FALSE	TRUE	4	Aves	Animalia	212	1
+2498405	Dendrocygna eytoni	2018		1	FALSE	TRUE	18	Aves	Animalia	212	1
+2774846	Chlorophytum comosum	2019		1	FALSE	TRUE	4	Liliopsida	Plantae	196	6
+2928779	Nicotiana forgetiana	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+3025858	Cotoneaster ambiguus	2018		1	FALSE	TRUE	6	Magnoliopsida	Plantae	220	6
+3033543	Clematis recta	2019		1	FALSE	TRUE	68	Magnoliopsida	Plantae	220	6
+3033905	Berberis darwinii	2018		1	FALSE	TRUE	8	Magnoliopsida	Plantae	220	6
+3044349	Chorispora tenella	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+3046744	Sisymbrium volgense	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+3048166	Erysimum repandum	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+3083702	Atriplex tatarica	2018		1	FALSE	TRUE	19	Magnoliopsida	Plantae	220	6
+3083745	Atriplex rosea	2019		1	FALSE	TRUE	58	Magnoliopsida	Plantae	220	6
+3083903	Chenopodium opulifolium	2018		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+3084700	Portulaca grandiflora	2019		1	FALSE	TRUE	6	Magnoliopsida	Plantae	220	6
+3102823	Anthemis ruthenica	2018		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+3125933	Santolina chamaecyparissus	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+3131367	Helichrysum petiolare	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+3802956	Solanum villosum villosum	2018		1	FALSE	TRUE	32	Magnoliopsida	Plantae	220	6
+4201784	Petrosedum sediforme	2018		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+5200414	Diplosoma listerianum	2019		1	FALSE	TRUE	11	Ascidiacea	Animalia	356	1
+5230734	Onychognathus tristramii	2018		1	FALSE	TRUE	17	Aves	Animalia	212	1
+5232432	Cereopsis novaehollandiae	2018		1	FALSE	TRUE	5	Aves	Animalia	212	1
+5289783	Aegilops cylindrica	2019		1	FALSE	TRUE	5	Liliopsida	Plantae	196	6
+5296218	Sisyrinchium californicum	2019		1	FALSE	TRUE	4	Liliopsida	Plantae	196	6
+5352425	Anthyllis vulneraria carpatica	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5358912	Trifolium diffusum	2019		1	FALSE	TRUE	8	Magnoliopsida	Plantae	220	6
+5359249	Trifolium rubens	2019		1	FALSE	TRUE	19	Magnoliopsida	Plantae	220	6
+5359345	Trifolium echinatum	2018		1	FALSE	TRUE	33	Magnoliopsida	Plantae	220	6
+5359411	Trifolium pallidum	2018		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+5360498	Trigonella caerulea	2019		1	FALSE	TRUE	8	Magnoliopsida	Plantae	220	6
+5361841	Pilea microphylla	2019		1	FALSE	TRUE	14	Magnoliopsida	Plantae	220	6
+5363819	Photinia villosa	2018		1	FALSE	TRUE	6	Magnoliopsida	Plantae	220	6
+5365888	Potentilla inclinata	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5383971	Blitum capitatum	2019		1	FALSE	TRUE	39	Magnoliopsida	Plantae	220	6
+5384773	Silene pendula	2019		1	FALSE	TRUE	38	Magnoliopsida	Plantae	220	6
+5410210	Campanula fenestrellata	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5414932	Chelone obliqua	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5414959	Collinsia heterophylla	2018		1	FALSE	TRUE	6	Magnoliopsida	Plantae	220	6
+5415054	Forsythia intermedia	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+5530829	Corydalis cheilanthifolia	2019		1	FALSE	TRUE	6	Magnoliopsida	Plantae	220	6
+5686494	Decaisnea insignis	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5690287	Sedum cepaea	2019		1	FALSE	TRUE	44	Magnoliopsida	Plantae	220	6
+5959118	Bubo virginianus	2019		1	FALSE	TRUE	4	Aves	Animalia	212	1
+6376216	Clematis montana	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+7223276	Centaurea solstitialis solstitialis	2019		1	FALSE	TRUE	8	Magnoliopsida	Plantae	220	6
+7226804	Avena sterilis sterilis	2018		1	FALSE	TRUE	20	Liliopsida	Plantae	196	6
+7323711	Amaranthus quitensis	2018		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+7415922	Rumex pulcher woodsii	2018		1	FALSE	TRUE	19	Magnoliopsida	Plantae	220	6
+8060423	Cercidiphyllum japonicum	2018		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+8144599	Papaver nudicaule	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+8773480	Koenigia fennica	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+9567226	Oxybasis glauca salina	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6

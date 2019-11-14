@@ -90,6 +90,23 @@ Description contains a column `type` with the following descriptors:
 description %>% distinct(type)
 ```
 
+We are interested to the following types:
+
+```{r define_types}
+types <- c("invasion stage", 
+           "native range", 
+           "degree of establishment", 
+           "pathway")
+```
+
+We filter out the other types:
+
+```{r select_types}
+description <- 
+  description %>%
+  filter(type %in% types)
+```
+
 We *tidy* this data.frame, thus having different descriptors as different columns:
 
 ```{r tidy_description}
@@ -201,18 +218,16 @@ merged_info <-
     pathway_level1)) %>%
   mutate(pathway_level2 = ifelse(
     pathway_level2 == "dispersal",
-    NA_character_,
+    "",
     pathway_level2)) %>%
   select(-pathway)
 ```
 
-As example:
+Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
 merged_info %>% 
-  distinct(pathway_level1, pathway_level2) %>%
-  filter(!is.na(pathway_level1) & !is.na(pathway_level2)) %>%
-  head()
+  distinct(pathway_level1, pathway_level2)
 ```
 
 ## Save data output
@@ -221,11 +236,11 @@ The data.frame `merged_info` is saved as output file:
 
 ```{r save_data_output}
 write_tsv(merged_info, 
-          path = here("data", 
-                      "output", 
-                      "data_input_checklist_indicators.tsv"),
+          path = here::here("data", 
+                            "interim",
+                            "data_input_checklist_indicators.tsv"),
           na = ""
 )
 ```
 
-This file will be used as start point for building checklist-based indicators.
+This file is the start point for building checklist-based indicators.
