@@ -103,7 +103,7 @@ df_ts_compact <-
   ungroup()
 ```
 
-We define the function `is_appearing` for appearing/reappearing detection (this function will be part of TrIAS package this workflow will be positively reviewed):
+We define the function `is_appearing` for appearing/reappearing detection (this function will be moved to TrIAS package `trias` if this workflow will be positively reviewed):
 
 ```{r decision_rules_function}
 #' @param df data frame with time series
@@ -253,7 +253,7 @@ nrow(appearing_reappearing_taxa_prot_areas$reappearing_taxa)
 
 ## Merge
 
-We merge appearing taxa from all Belgium and from protected areas. We arrange taxa by area of occupancy in protected areas and in all Belgium as first and second level respectively. We do the same for reappearing taxa as well:
+We merge appearing taxa from all Belgium and from protected areas. We rank taxa by area of occupancy (number of cells) in protected areas and in all Belgium. We do the same for reappearing taxa as well:
 
 ```{r merge_ranking_by_presence_in protected_area}
 app_reapp_global <- 
@@ -296,7 +296,7 @@ app_reapp_global <- map(app_reapp_global,
 
 Some taxa are in the unified checklist, but no occurrences are linked to them. Among taxa of this group, we should select those ones still considered as _present_.
 
-Read input data.frame used for checklist indicators (output of [checklist indicators preprocessing pipeline](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd)):
+First, we read data used as input for checklist indicators, i.e. the output of [checklist indicators preprocessing pipeline](https://trias-project.github.io/indicators/get_data_input_checklist_indicators.html):
 
 ```{r read_data_input_checklist_inds}
 checklist_df<- read_tsv(
@@ -309,7 +309,8 @@ checklist_df<- read_tsv(
 Select taxa from unified checklist present in evaluation time window:
 
 ```{r present_taxa_with_no_occs}
-taxa_from_checklist_df <- checklist_df %>%
+taxa_from_checklist_df <- 
+  checklist_df %>%
   filter(!nubKey %in% df_ts_compact$taxonKey & last_observed >= min(years)) %>%
   distinct(nubKey) %>%
   pull() %>%
@@ -347,7 +348,7 @@ Appearing taxa:
 app_reapp_global$appearing_taxa
 ```
 
-An empty `ncells_BE` and `in_BE` equal to FALSE means that the taxon is appearing in protected areas but not appearing outside, i.e. the taxon is maybe reappearing at Belgian level or occurring with a more stable presence. See next section for more details about. 
+Empty `ncells_BE` and `in_BE` equal to FALSE means that the taxon is appearing in protected areas but not appearing outside, i.e. the taxon is maybe reappearing at Belgian level or occurring with a more stable presence. See next section for more details about. 
 
 ## Reappearing taxa
 
@@ -412,7 +413,8 @@ Time series for all Belgium:
 ```{r time_series}
 taxa_examples %>%
   left_join(df_ts_compact,
-            by = "taxonKey")
+            by = "taxonKey") %>%
+  select(-starts_with("native"))
 ```
 
 ## Appearing taxa from checklists
@@ -453,7 +455,9 @@ Save taxa from unified checklist without occurrences:
 
 ```{r save_taxa_from_unified_checklist_without_occs}
 write_tsv(taxa_from_checklist_df,
-          path = here::here("data", "output", "present_taxa_without_occurrences.tsv"),
+          path = here::here("data", 
+                            "output", 
+                            "present_taxa_without_occurrences.tsv"),
           na = ""
 )
 ```

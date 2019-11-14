@@ -810,7 +810,7 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 2498064	Anas erythrorhyncha	1	212	Aves	Animalia
 3040232	Populus deltoides	6	220	Magnoliopsida	Plantae
 5289764	Gastridium ventricosum	6	196	Liliopsida	Plantae
-10173593	NA	6	220	Magnoliopsida	Plantae
+10173593		6	220	Magnoliopsida	Plantae
 2891774	Impatiens capensis	6	220	Magnoliopsida	Plantae
 5359260	Trifolium patens	6	220	Magnoliopsida	Plantae
 3172099	Veronica austriaca	6	220	Magnoliopsida	Plantae
@@ -978,7 +978,7 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 2888636	Symphoricarpos orbiculatus	6	220	Magnoliopsida	Plantae
 5374998	Arabis collina	6	220	Magnoliopsida	Plantae
 2882849	Vaccinium corymbosum	6	220	Magnoliopsida	Plantae
-5892120	Girardia tigrina	1	NA	NA	NA
+5892120	Girardia tigrina	1			
 2427091	Lithobates catesbeianus	1	131	Amphibia	Animalia
 2705512	Glyceria canadensis	6	196	Liliopsida	Plantae
 2927305	Lavandula angustifolia	6	220	Magnoliopsida	Plantae
@@ -1246,7 +1246,7 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 2891783	Impatiens balfourii	6	220	Magnoliopsida	Plantae
 3925834	Anemone hybrida	6	220	Magnoliopsida	Plantae
 5334194	Macleaya cordata	6	220	Magnoliopsida	Plantae
-4344674	Dendrocoelum romanodanubiale	1	NA	NA	NA
+4344674	Dendrocoelum romanodanubiale	1			
 7862391	Lysimachia monellii	6	220	Magnoliopsida	Plantae
 2480089	Psephotus haematonotus	1	212	Aves	Animalia
 8080743	Scilla siberica	6	196	Liliopsida	Plantae
@@ -1404,7 +1404,7 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 7636833	Syringa josikaea	6	220	Magnoliopsida	Plantae
 3131367	Helichrysum petiolare	6	220	Magnoliopsida	Plantae
 5289833	Nassella tenuissima	6	196	Liliopsida	Plantae
-10172912	NA	6	220	Magnoliopsida	Plantae
+10172912		6	220	Magnoliopsida	Plantae
 5421180	Koelreuteria paniculata	6	220	Magnoliopsida	Plantae
 9685907	Falco sparverius	1	212	Aves	Animalia
 3645346	Philadelphus virginalis	6	220	Magnoliopsida	Plantae
@@ -1748,7 +1748,7 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 9376410	Delosperma cooperi	6	220	Magnoliopsida	Plantae
 2722515	Carex morrowii	6	196	Liliopsida	Plantae
 3094939	Onopordum tauricum	6	220	Magnoliopsida	Plantae
-10661581	NA	6	220	Magnoliopsida	Plantae
+10661581		6	220	Magnoliopsida	Plantae
 2989222	Rubus tricolor	6	220	Magnoliopsida	Plantae
 7307492	Leonurus quinquelobatus	6	220	Magnoliopsida	Plantae
 2927026	Salvia glutinosa	6	220	Magnoliopsida	Plantae

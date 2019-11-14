@@ -17,7 +17,7 @@ This document describes the pre-processing of occurrence data of alien species. 
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 Load libraries:
@@ -370,7 +370,7 @@ df_cc %>% head()
 
 For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series. Notice that at this step we create only time series slots: occurrence data are added at next stage.
 
-```{r make_time_series, cache=TRUE}
+```{r make_ts, cache=TRUE}
 make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
   expand_grid(eea_cell_code = eea_cell_code,
               taxonKey = taxonKey,
@@ -378,47 +378,39 @@ make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
 
 }
 
+# create timeseries slots
 df_ts <- pmap_dfr(df_cc, .f = make_time_series, last_year = year(Sys.Date()))
-```
 
-We remove data.frames not in use anymore to free some memory:
+## Add data
 
-```{r remove_dfs_free_memory}
-remove(df_cc)
-remove(df_begin_year)
-remove(df_bl_xy)
-```
-
-Fill occurrence data and corrected baseline data to the time series:
-
-```{r add_data}
+# add occurrence data
 df_ts <- 
   df_ts %>%
-  # add occurrence data
   left_join(df %>% select(taxonKey, year, eea_cell_code, obs), 
             by = c("taxonKey", "year", "eea_cell_code"))
+
+# add membership to protected areas
 df_ts <- 
   df_ts %>%
-  # add membership to protected areas
   left_join(df_prot_areas %>% select(CELLCODE, natura2000),
             by = c("eea_cell_code" = "CELLCODE"))
+# add classKey
 df_ts <- 
   df_ts %>%
-  # add classKey
   left_join(spec_names %>% 
               select(taxonKey, classKey), 
             by = "taxonKey")
 
+# add baseline data (at class level)
 df_ts <- 
   df_ts %>%
-  # add baseline data (at class level)
   left_join(df_bl %>%
               select(year, eea_cell_code, classKey, native_obs),
             by = c("year", "eea_cell_code", "classKey"))
 
+# replace NAs with 0
 df_ts <-
   df_ts %>%
-  # replace NAs with 0
   replace_na(list(native_obs = 0, obs = 0))
 ```
 
@@ -458,9 +450,10 @@ df_ts <-
 Save `df_ts` as it will be used as start point of modelling pipelines:
 
 ```{r save_data_as_tsv}
-write_tsv(df_ts, 
-          path = here::here("data", "interim", "df_timeseries.tsv"),
-          na = "")
+write.table(df_ts, 
+          file = here::here("data", "interim", "df_timeseries.tsv"), 
+          na = ""
+)
 ```
 
 We save also the taxonomic information:
@@ -469,6 +462,8 @@ We save also the taxonomic information:
 write_tsv(spec_names,
           path = here::here("data", 
                             "interim", 
-                            "timeseries_taxonomic_info.tsv"))
+                            "timeseries_taxonomic_info.tsv"),
+          na = ""
+)
 ```
 
