@@ -69,7 +69,7 @@ We group data by kingdom:
 facet_column <- "kingdom"
 ```
 
-```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+```{r graph_grouping_kingdom, fig.width=10, fig.height=10, results="hide", echo=FALSE}
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
@@ -88,7 +88,7 @@ We group data by habitat:
 facet_column <- "habitat"
 ```
 
-```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+```{r graph_grouping_habitat, fig.width=10, fig.height=10, results="hide", echo=FALSE}
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
@@ -113,7 +113,7 @@ facet_column <- "kingdom"
 
 We don't take into account Fungi and Chromista due to a lack of comprehensive data on those kingdoms:
 
-```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+```{r graph_grouping_kingdom_LPI, fig.width=10, fig.height=10, results="hide", echo=FALSE}
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
@@ -133,7 +133,7 @@ facet_column <- "habitat"
 
 We don't take into account combined habitats `freshwater|terrestrial` and `marine|freshwater` due to a lack of comprehensive data on those habitats:
 
-```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+```{r graph_grouping_habitat_LPI, fig.width=10, fig.height=10, results="hide", echo=FALSE}
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%

@@ -65,7 +65,7 @@ We group data by kingdom:
 facet_column = "kingdom"
 ```
 
-```{r fig.width=10, fig.height=5, results = "hide", echo=FALSE, warning=FALSE}
+```{r cumulative_graph_grouping_kingdom, fig.width=10, fig.height=5, results = "hide", echo=FALSE, warning=FALSE}
 data %>%
   select(speciesKey, facet_column, first_observed) %>%
   distinct() %>%
