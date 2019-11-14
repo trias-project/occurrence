@@ -300,8 +300,9 @@ Read input data.frame used for checklist indicators (output of [checklist indica
 
 ```{r read_data_input_checklist_inds}
 checklist_df<- read_tsv(
-  here::here("data", "output", "data_input_checklist_indicators.tsv"),
-  na = ""
+  here::here("data", "interim", "data_input_checklist_indicators.tsv"),
+  na = "",
+  guess_max = 5000
 )
 ```
 
