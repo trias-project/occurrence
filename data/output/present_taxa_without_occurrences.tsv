@@ -18,7 +18,6 @@ taxonkey	canonicalName	class	kingdom	classKey	kingdomKey
 5545159	Ludwigia peploides montevidensis	Magnoliopsida	Plantae	220	6
 2367033	Ballerus ballerus	Actinopterygii	Animalia	204	1
 5190777	Deroceras panormitanum	Gastropoda	Animalia	225	1
-5190912	Testacella haliotidea	Gastropoda	Animalia	225	1
 4598226	Tandonia sowerbyi	Gastropoda	Animalia	225	1
 4564944	Xerosecta cespitum	Gastropoda	Animalia	225	1
 2296805	Trochoidea elegans	Gastropoda	Animalia	225	1
@@ -28,6 +27,7 @@ taxonkey	canonicalName	class	kingdom	classKey	kingdomKey
 4227439	Cicerbita macrophylla uralensis	Magnoliopsida	Plantae	220	6
 2202786	Synarmadillo	Malacostraca	Animalia	229	1
 3142974	Doronicum excelsum	Magnoliopsida	Plantae	220	6
+4549071	Varroa jacobsoni	Arachnida	Animalia	367	1
 4553469	Leiobunum	Arachnida	Animalia	367	1
 2162464	Uroctea durandi	Arachnida	Animalia	367	1
 2140406	Triaeris stenaspis	Arachnida	Animalia	367	1
@@ -69,23 +69,26 @@ taxonkey	canonicalName	class	kingdom	classKey	kingdomKey
 7334576	Sempervivum barbulatum	Magnoliopsida	Plantae	220	6
 4048052	Hippophae rhamnoides caucasica	Magnoliopsida	Plantae	220	6
 3026167	Cotoneaster boisianus	Magnoliopsida	Plantae	220	6
+9382645	Rosa virginiana	Magnoliopsida	Plantae	220	6
+3012254	Sorbus intermedia	Magnoliopsida	Plantae	220	6
+9823072	Oxalis stricta	Magnoliopsida	Plantae	220	6
+5376961	Lepidium draba	Magnoliopsida	Plantae	220	6
 8227753	Anchusa procera	Magnoliopsida	Plantae	220	6
 4067281	Symphytum hidcotense	Magnoliopsida	Plantae	220	6
 4926977	Catalpa erubescens	Magnoliopsida	Plantae	220	6
 8287616	Linaria simplex	Magnoliopsida	Plantae	220	6
+8233535	Linaria supina	Magnoliopsida	Plantae	220	6
 3729273	Asarina procumbens	Magnoliopsida	Plantae	220	6
 7096205	Clinopodium nepeta nepeta	Magnoliopsida	Plantae	220	6
+3084748	Claytonia perfoliata	Magnoliopsida	Plantae	220	6
 8012084	Dianthus subacaulis	Magnoliopsida	Plantae	220	6
 7267631	Dianthus giganteus giganteus	Magnoliopsida	Plantae	220	6
+7428369	Centranthus ruber	Magnoliopsida	Plantae	220	6
 5295375	Smilax rotundifolia	Liliopsida	Plantae	196	6
 4013762	Narcissus cyclazetta	Liliopsida	Plantae	196	6
 5296015	Sisyrinchium angustifolium	Liliopsida	Plantae	196	6
 5289490	Typha provincialis	Liliopsida	Plantae	196	6
 2704966	Festuca valesiaca	Liliopsida	Plantae	196	6
 5890148	Anguillicoloides crassus	Secernentea	Animalia	250	1
+1728964	Diestrammena asynamora	Insecta	Animalia	216	1
 4467502	Otiorhynchus indefinitus	Insecta	Animalia	216	1
-9513097	Saproamanita inopinata	Agaricomycetes	Fungi	186	5
-7425750	Stropholoma aurantiacum	Agaricomycetes	Fungi	186	5
-2489073	Lamprotornis nitens	Aves	Animalia	212	1
-4124350	Eleusine africana	Liliopsida	Plantae	196	6
-8309092	Ludwigia grandiflora hexapetala	Magnoliopsida	Plantae	220	6
