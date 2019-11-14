@@ -253,7 +253,7 @@ nrow(appearing_reappearing_taxa_prot_areas$reappearing_taxa)
 
 ## Merge
 
-We merge appearing and reappearing taxa from all Belgium and from protected areas. We arrange taxa by giving higher ranking to taxa appearing or reappearing in protected areas. This information is present in column `natura2000` with values `TRUE` (presence in protected areas) and  `FALSE` (absence in protected areas).
+We merge appearing taxa from all Belgium and from protected areas. We arrange taxa by area of occupancy in protected areas and in all Belgium as first and second level respectively. We do the same for reappearing taxa as well:
 
 ```{r merge_ranking_by_presence_in protected_area}
 app_reapp_global <- 
@@ -416,7 +416,7 @@ taxa_examples %>%
 
 ## Appearing taxa from checklists
 
-Present taxa in unified checklist but still without occurrences:
+Taxa defined as `PRESENT` in unified checklist but still without occurrences:
 
 ```{r taxa_from_checklist_df}
 taxa_from_checklist_df
