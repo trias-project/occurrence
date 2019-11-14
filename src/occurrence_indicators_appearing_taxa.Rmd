@@ -74,7 +74,6 @@ spec_names <- read_tsv(
 )
 ```
 
-
 # Detect appearing - reappearing species
 
 Years to evaluate:
@@ -106,7 +105,7 @@ df_ts_compact <-
   ungroup()
 ```
 
-We define the function `is_appearing` for appearing/reappearing detection:
+We define the function `is_appearing` for appearing/reappearing detection (this function will be part of TrIAS package this workflow will be positively reviewed):
 
 ```{r decision_rules_function}
 #' @param df data frame with time series
@@ -210,7 +209,7 @@ nrow(appearing_reappearing_taxa$appearing_taxa)
 
 Number of reappearing taxa:
 
-```{r n_appearing_taxa_BE}
+```{r n_reappearing_taxa_BE}
 nrow(appearing_reappearing_taxa$reappearing_taxa)
 ```
 
