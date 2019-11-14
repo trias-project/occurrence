@@ -90,6 +90,23 @@ Description contains a column `type` with the following descriptors:
 description %>% distinct(type)
 ```
 
+We are interested to the following types:
+
+```{r define_types}
+types <- c("invasion stage", 
+           "native range", 
+           "degree of establishment", 
+           "pathway")
+```
+
+We filter out the other types:
+
+```{r select_types}
+description <- 
+  description %>%
+  filter(type %in% types)
+```
+
 We *tidy* this data.frame, thus having different descriptors as different columns:
 
 ```{r tidy_description}
