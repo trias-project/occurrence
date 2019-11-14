@@ -238,9 +238,9 @@ The data.frame `merged_info` is saved as output file:
 
 ```{r save_data_output}
 write_tsv(merged_info, 
-          path = here("data", 
-                      "output", 
-                      "data_input_checklist_indicators.tsv"),
+          path = here::here("data", 
+                            "interim",
+                            "data_input_checklist_indicators.tsv"),
           na = ""
 )
 ```
