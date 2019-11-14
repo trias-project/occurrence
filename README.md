@@ -22,7 +22,8 @@ In order to calculate an emergency index, we take into account:
 1. number of occurrences per year
 2. area of occupancy (AOO)
 
-Still work in progress.
+We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This is still work in progress. Still, if you want to get an idea about it, follow [issue #49](https://github.com/trias-project/indicators/issues/49). 
+
 For the data manipulation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html).
 
 ## Repo structure
