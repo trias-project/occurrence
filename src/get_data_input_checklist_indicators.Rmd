@@ -218,18 +218,16 @@ merged_info <-
     pathway_level1)) %>%
   mutate(pathway_level2 = ifelse(
     pathway_level2 == "dispersal",
-    NA_character_,
+    "",
     pathway_level2)) %>%
   select(-pathway)
 ```
 
-As example:
+Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
 merged_info %>% 
-  distinct(pathway_level1, pathway_level2) %>%
-  filter(!is.na(pathway_level1) & !is.na(pathway_level2)) %>%
-  head()
+  distinct(pathway_level1, pathway_level2)
 ```
 
 ## Save data output
@@ -245,4 +243,4 @@ write_tsv(merged_info,
 )
 ```
 
-This file will be used as start point for building checklist-based indicators.
+This file is the start point for building checklist-based indicators.
