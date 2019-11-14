@@ -18,7 +18,7 @@ In this document we analyze the Belgian datacube to detect possible (re)appearin
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache.lazy = FALSE)
 ```
 
 Load libraries:
@@ -26,10 +26,8 @@ Load libraries:
 ```{r load_libraries, message = FALSE}
 library(tidyverse)      # To do data science
 library(tidylog)        # To provide feedback on dplyr functions
-library(progress)       # To add progress bars
 library(here)           # To find files
-library(mgcv)           # To apply GAM           
-library(gratia)         # To calculate derivatives
+library(rgbif)          # To get information from GBIF
 ```
 
 # Get data
