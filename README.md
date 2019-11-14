@@ -41,7 +41,6 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │   │   ├── modelling_species.csv               : List of species for risk modelling
 │   ├── interim
 |       ├── data_input_checklist_indicators.tsv : Data for making checklist indicators. Output of 'get_data_input_checklist_indicators.Rmd'
-|       └── df_timeseries.tsv                   : Timeseries for all species and cells
 │   └── output
 |       ├── gbif_downloads.csv                  : List of triggered GBIF occurrence downloads 
 |       └── intersect_EEA_ref_grid_protected_areas.tsv  : Membership of reference grid cells to (one or more) protected areas.
