@@ -39,7 +39,7 @@ We get occurrence data as obtained in `trias-project/occ-processing` repository.
 
 We load occurrence data related to alien species in Belgium:
 
-```{r read_data_cube}
+```{r read_data_cube, message = FALSE, warning = FALSE}
 df <- read_tsv(
   file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium.tsv",
   col_types = cols(year = col_double(),
@@ -303,7 +303,7 @@ df_bl %>% head()
 
 Calculate the total number of alien species observations per `eea_cell_code`, `year` and `class`:
 
-```{r }
+```{r total_n_species_obs_per_cell_year_class}
 df_alien_species <- 
   df %>%
   left_join(spec_names, by = "taxonKey") %>%
@@ -370,7 +370,7 @@ df_cc %>% head()
 
 For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series. Notice that at this step we create only time series slots: occurrence data are added at next stage.
 
-```{r make_time_series}
+```{r make_time_series, cache=TRUE}
 make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
   expand_grid(eea_cell_code = eea_cell_code,
               taxonKey = taxonKey,
@@ -383,7 +383,7 @@ df_ts <- pmap_dfr(df_cc, .f = make_time_series, last_year = year(Sys.Date()))
 
 We remove data.frames not in use anymore to free some memory:
 
-```{r}
+```{r remove_dfs_free_memory}
 remove(df_cc)
 remove(df_begin_year)
 remove(df_bl_xy)
@@ -424,7 +424,7 @@ df_ts <-
 
 Preview:
 
-```{r}
+```{r preview_df_ts}
 df_ts %>% head(n = 30)
 ```
 
