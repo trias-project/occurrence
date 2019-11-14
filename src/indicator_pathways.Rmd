@@ -12,9 +12,7 @@ output:
     number_sections: true
 ---
 
-This document describes how to build indicators of Invasive Alien Species based on checklist data. In particular, this document takes into account:
-
-1. pathways associated with alien species introductions (see GitHub isue [#19](https://github.com/trias-project/pipeline/issues/19))
+This document describes how to build indicators based on checklist data. In particular, this document focuses on pathways of introduction. See  [#19](https://github.com/trias-project/pipeline/issues/19) for more details and discussion about this indicator.
 
 # Setup
 
@@ -25,20 +23,23 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(dplyr)
-library(purrr)
-library(stringr)
-library(readr)
-library(trias)
-library(kableExtra)
-library(here)
+library(tidyverse)      # To do datascience
+library(tidylog)        # To provide feedback on dplyr functions
+library(here)           # To find files
+library(trias)          # To use functions developed for TrIAS
+library(kableExtra)     # To customize tables
+
 ```
 
 # Get data
 
 ```{r read_data_for_building_indicators}
-data_file <- here("data","output", "data_input_checklist_indicators.tsv")
-data <- read_tsv(data_file, na = "")
+data_file <- here::here("data",
+                        "interim",
+                        "data_input_checklist_indicators.tsv")
+data <- read_tsv(data_file,
+                 na = "",
+                 guess_max = 5000)
 ```
 
 # Build pathway indicator
@@ -76,7 +77,7 @@ categories
 
 ## Pathways associated with alien species introductions
 
-Function `get_table_pathways()` from `trias` library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided. 
+Function `get_table_pathways` from `trias` library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided. 
 
 Number of species returned in table as examples of the group:
 
@@ -103,7 +104,7 @@ names(tables) <- categories$category
 
 ## Pathways per category
 
-Intentionality of introduction is mapped by cell color background: white for intentional introduction (`release`), light orange for unintentional introduction.
+Intentionality of introduction is mapped by cell color background: white for intentional introduction (pathway value: `release`), light orange for unintentional introduction.
 
 ### Plantae
 
@@ -171,21 +172,22 @@ if ("Fungi" %in% categories$category) {
 
 Note: add sections for other kingdoms if needed in the future.
 
-## Pathways related to policy relevant species
+## Pathways related to EU policy relevant species
 
 It is important to focus our attention also to a intercategory group of species which is of particular policy importance: the *List of Invasive Alien Species of Union concern* (see more info about [here](http://ec.europa.eu/environment/nature/invasivealien/list/index_en.htm)).
 
 We import this list of species:
 
 ```{r}
-eu_concern_file <- here("data","input", "eu_concern_species.tsv")
+eu_concern_file <- here::here("data","input", "eu_concern_species.tsv")
 eu_concern_species <- read_tsv(eu_concern_file)
 ```
 
 Check which species from this subgroup are not present in `data`:
 
 ```{r check_presence_eu_species}
-eu_concern_species %>% filter(!backbone_taxonKey %in% data$nubKey)
+eu_concern_species %>% 
+  filter(!backbone_taxonKey %in% data$nubKey)
 ```
 
 Categories present in this subgroup:
