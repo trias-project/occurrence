@@ -13,7 +13,7 @@ Checklist based indicators developed within the TrIAS project are:
 2. [cumulative number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_cumulative_number.html) shown as graphs
 3. [pathways of introduction](https://trias-project.github.io/indicators/indicator_pathways.html) shown as tables
 
-The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd). For the data manipulation of the taxonomic information, see Appendix [Preprocessing for checklist-based indicators](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
+The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd). For the data manipulation of the taxonomic information, see Appendix [Preprocessing for checklist-based indicators](https://trias-project.github.io/indicators/get_data_input_checklist_indicators.html).
 
 ## Occurrence-based indicators
 
@@ -23,7 +23,7 @@ In order to calculate an emergency index, we take into account:
 2. area of occupancy (AOO)
 
 Still work in progress.
-For the data manipulation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
+For the data manipulation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html).
 
 ## Repo structure
 
