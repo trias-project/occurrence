@@ -4,6 +4,7 @@ author:
 - Damiano Oldoni
 - Yasmine Verzelen
 - Stijn Van Hoey
+- Tim Adriaens
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -29,6 +30,7 @@ Load libraries:
 
 ```{r load_libraries}
 library(tidyverse)  # To do datascience
+library(tidylog)    # To provide feedback on dplyr functions
 library(here)       # To find files
 library(trias)      # To use functions developed for TrIAS
 library(INBOtheme)  # To use INBO theme for graphs
@@ -37,13 +39,27 @@ library(INBOtheme)  # To use INBO theme for graphs
 # Get data
 
 ```{r get_data_input}
-data <- read_tsv(here("data","output", "data_input_checklist_indicators.tsv"),
-                 na = "")
+data_file <- here::here("data",
+                        "interim",
+                        "data_input_checklist_indicators.tsv")
+data <- read_tsv(data_file,
+                 na = "",
+                 guess_max = 5000)
 ```
 
 # Number of new introductions of alien species per year
 
-We use function `indicator_introduction_year()` from `trias` library.
+We use function `indicator_introduction_year` from `trias` library.
+
+## Select data from Belgium
+
+We select data at national level (no regional distribution):
+
+```{r select_data_at_Belgian_level}
+data <-
+  data %>%
+  filter(locationId == "ISO_3166-2:BE")
+```
 
 ## Grouping by kingdom
 
@@ -53,12 +69,15 @@ We group data by kingdom:
 facet_column <- "kingdom"
 ```
 
-```{r, fig.width=10, fig.height=10, results="hide"}
-indicator_introduction_year(data, start_year_plot = 1920,
-                            smooth_span = .85,
-                            x_major_scale_stepsize = 10,
-                            x_minor_scale_stepsize = 2.5,
-                            facet_column = facet_column)
+```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+data %>%
+  select(key, facet_column, first_observed) %>%
+  distinct() %>%
+  indicator_introduction_year(start_year_plot = 1920,
+                              smooth_span = .85,
+                              x_major_scale_stepsize = 10,
+                              x_minor_scale_stepsize = 2.5,
+                              facet_column = facet_column)
 ```
 
 ## Grouping by species profile
@@ -69,12 +88,15 @@ We group data by habitat:
 facet_column <- "habitat"
 ```
 
-```{r, fig.width=10, fig.height=10, results="hide"}
-indicator_introduction_year(data, start_year_plot = 1920, 
-                            smooth_span = .85,
-                            x_major_scale_stepsize = 10,
-                            x_minor_scale_stepsize = 2.5,
-                            facet_column = facet_column)
+```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+data %>%
+  select(key, facet_column, first_observed) %>%
+  distinct() %>%
+  indicator_introduction_year(start_year_plot = 1920, 
+                              smooth_span = .85,
+                              x_major_scale_stepsize = 10,
+                              x_minor_scale_stepsize = 2.5,
+                              facet_column = facet_column)
 ```
 
 # Checklist indicators for Living Planet Index
@@ -91,15 +113,16 @@ facet_column <- "kingdom"
 
 We don't take into account Fungi and Chromista due to a lack of comprehensive data on those kingdoms:
 
-```{r, fig.width=10, fig.height=10, results="hide"}
-indicator_introduction_year(
-  data %>%
-  filter(!kingdom %in% c("Chromista", "Fungi")), 
-  start_year_plot = 1920, 
-  smooth_span = .85,
-  x_major_scale_stepsize = 10,
-  x_minor_scale_stepsize = 2.5,
-  facet_column = facet_column)
+```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+data %>%
+  select(key, facet_column, first_observed) %>%
+  distinct() %>%
+  filter(!facet_column %in% c("Chromista", "Fungi")) %>%
+  indicator_introduction_year(start_year_plot = 1920, 
+                              smooth_span = .85,
+                              x_major_scale_stepsize = 10,
+                              x_minor_scale_stepsize = 2.5,
+                              facet_column = facet_column)
 ```
 
 ## Grouping by species profile
@@ -110,15 +133,16 @@ facet_column <- "habitat"
 
 We don't take into account combined habitats `freshwater|terrestrial` and `marine|freshwater` due to a lack of comprehensive data on those habitats:
 
-```{r, fig.width=10, fig.height=10, results="hide"}
-indicator_introduction_year(
-  data %>%
-  filter(!habitat %in% c("freshwater|terrestrial",
+```{r, fig.width=10, fig.height=10, results="hide", echo=FALSE}
+data %>%
+  select(key, facet_column, first_observed) %>%
+  distinct() %>%
+  filter(!facet_column %in% c("freshwater|terrestrial",
                          "marine|freshwater",
-                         NA_character_)), 
-  start_year_plot = 1920, 
-  smooth_span = .85,
-  x_major_scale_stepsize = 10,
-  x_minor_scale_stepsize = 2.5,
-  facet_column = facet_column)
+                         NA_character_)) %>%
+  indicator_introduction_year(start_year_plot = 1920,
+                              smooth_span = .85,
+                              x_major_scale_stepsize = 10,
+                              x_minor_scale_stepsize = 2.5,
+                              facet_column = facet_column)
 ```
