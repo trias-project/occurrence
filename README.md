@@ -1,7 +1,5 @@
 # Indicators
 
-[![Build Status](https://travis-ci.org/trias-project/indicators.svg?branch=master)](https://travis-ci.org/trias-project/indicators)
-
 This repository contains pipelines to generate alien species _indicators_, i.e. graphs or tables analyzing specific aspects of their _stage of invasion_. Indicators can be divided in two groups:
 
 1. checklist-based indicators
@@ -11,11 +9,11 @@ This repository contains pipelines to generate alien species _indicators_, i.e. 
 
 Checklist based indicators developed within the TrIAS project are:
 
-1. [number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_introductions_per_year.html): graph
-2. [cumulative number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_cumulative_number.html): graph
-3. [pathways of introduction](https://trias-project.github.io/indicators/indicator_pathways.html): table
+1. [number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_introductions_per_year.html) shown as graphs
+2. [cumulative number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_cumulative_number.html) shown as graphs
+3. [pathways of introduction](https://trias-project.github.io/indicators/indicator_pathways.html) shown as tables
 
-The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd). For the data manipulation of the taxonomic information, see [this pipeline](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
+The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd). For the data manipulation of the taxonomic information, see Appendix [Preprocessing for checklist-based indicators](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
 
 ## Occurrence-based indicators
 
@@ -25,6 +23,7 @@ In order to calculate an emergency index, we take into account:
 2. area of occupancy (AOO)
 
 Still work in progress.
+For the data manipulation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://github.com/trias-project/indicators/blob/master/src/get_data_input_checklist_indicators.Rmd).
 
 ## Repo structure
 
