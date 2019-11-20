@@ -292,33 +292,6 @@ app_reapp_global <- map(app_reapp_global,
                           })
 ```
 
-## Taxa from checklists
-
-Some taxa are in the unified checklist, but no occurrences are linked to them. Among taxa of this group, we should select those ones still considered as _present_.
-
-First, we read data used as input for checklist indicators, i.e. the output of [checklist indicators preprocessing pipeline](https://trias-project.github.io/indicators/get_data_input_checklist_indicators.html):
-
-```{r read_data_input_checklist_inds}
-checklist_df<- read_tsv(
-  here::here("data", "interim", "data_input_checklist_indicators.tsv"),
-  na = "",
-  guess_max = 5000
-)
-```
-
-Select taxa from unified checklist present in evaluation time window:
-
-```{r present_taxa_with_no_occs}
-taxa_from_checklist_df <- 
-  checklist_df %>%
-  filter(!nubKey %in% df_ts_compact$taxonKey & last_observed >= min(years)) %>%
-  distinct(nubKey) %>%
-  pull() %>%
-  map_dfr(~ name_usage(key = ., return = "data", data = "all")) %>%
-  select(key, canonicalName, class, kingdom, classKey, kingdomKey) %>%
-  rename(taxonkey = key)
-```
-
 # Table of appearing and reappearing taxa
 
 ## Appearing taxa
@@ -329,7 +302,7 @@ Reorder columns of data.frame containing appearring taxa:
 app_reapp_global$appearing_taxa <- 
   app_reapp_global$appearing_taxa %>%
   select(taxonKey, 
-         canonicalName, 
+         canonicalName,
          year, 
          ncells_prot_areas,
          ncells_BE,
@@ -445,19 +418,6 @@ Save reappearing taxa:
 ```{r save_reappearing_taxa}
 write_tsv(app_reapp_global$reappearing_taxa,
           path = here::here("data", "output", "reappearing_taxa.tsv"),
-          na = ""
-)
-```
-
-## Appearing taxa from checklists
-
-Save taxa from unified checklist without occurrences:
-
-```{r save_taxa_from_unified_checklist_without_occs}
-write_tsv(taxa_from_checklist_df,
-          path = here::here("data", 
-                            "output", 
-                            "present_taxa_without_occurrences.tsv"),
           na = ""
 )
 ```

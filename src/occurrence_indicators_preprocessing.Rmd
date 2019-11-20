@@ -98,6 +98,54 @@ df_bl <-
   rename(cobs = n)
 ```
 
+## Checklist data
+
+We read input data based on [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e), typically referred to as the _unified checklist_. These data contain taxonomic information as well distribution, description and species profiles. We limit to taxa introduced in Belgium (`locationId` : `ISO_3166-2:BE`)
+
+```{r unified_checklist_tidy_df}
+data_file <- here::here("data",
+                        "interim",
+                        "data_input_checklist_indicators.tsv")
+taxa_df <- 
+  read_tsv(data_file,
+           na = "",
+           guess_max = 5000)
+taxa_df <- 
+  taxa_df %>%
+  filter(locationId == "ISO_3166-2:BE")
+```
+
+### Taxa in unified checklist without occurrences
+
+There is a group of taxa defined in the unified checklist which are not present in the occurrence data, i.e. the presence of these taxa, although confirmed by authoritative's checklists, is still not sustained by observations:
+
+```{r taxa_without_occs}
+alien_taxa_without_occs <- 
+  taxa_df %>%
+  filter(!nubKey %in% df$taxonKey) %>%
+  distinct(key,
+           nubKey,
+           canonicalName,
+           first_observed,
+           last_observed,
+           class,
+           kingdom) %>%
+  arrange(nubKey)
+alien_taxa_without_occs
+```
+
+where `key` is the unique GBIF identifier of the taxon as published in the unified checklist, while `nubKey` is the unique GBIF identifier of the taxon in the GBIF Backbone Taxonomy.
+We save this data.frame as `alien_taxa_without_occurrences.tsv` in `data/output`:
+
+```{r save_alien_taxa_without_occs}
+write_tsv(
+  alien_taxa_without_occs,
+  here::here("data", "output", "alien_taxa_without_occs.tsv"),
+  na = ""
+)
+```
+
+
 ## Grid cells intersecting protected areas
 
 We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in  `data/output`:
