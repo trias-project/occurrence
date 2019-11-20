@@ -18,7 +18,7 @@ In this document we analyze the Belgian datacube to detect possible (re)appearin
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache.lazy = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 Load libraries:
@@ -36,7 +36,7 @@ We read the output of preprocessing pipeline.
 
 Time series:
 
-```{r read_preprocessed_data, cache = TRUE, message = FALSE}
+```{r read_preprocessed_data, message = FALSE}
 df_ts <- read_tsv(
   here::here("data", "interim", "df_timeseries.tsv"),
   na = "")
@@ -54,11 +54,8 @@ taxon <-
 # Preview
 df_ts %>%
   filter(taxonKey == taxon,
-         year == 2016,
-         eea_cell_code %in% c("1kmE3802N3132", 
-                              "1kmE3803N3132",
-                              "1kmE3802N3133", 
-                              "1kmE3803N3133")
+         year %in% c(2016, 2017),
+         eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
 )
 ```
 
