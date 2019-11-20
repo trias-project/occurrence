@@ -35,7 +35,9 @@ library(rgbif)          # To get taxa from publisehd unified checklist
 
 We get occurrence data as obtained in `trias-project/occ-processing` repository. 
 
-## Alien species 
+## Occurrence data
+
+### Alien species
 
 We load occurrence data related to alien species in Belgium:
 
@@ -67,11 +69,11 @@ df <-
   rename(obs = n)
 ```
 
-## Baseline data
+### Baseline
 
-We get data at class level, which will be used for correcting the research bias effort:
+We get occurrence data of non alien species grouped at class level, which will be used for correcting the research bias effort:
 
-```{r get_data_baseline, message = FALSE}
+```{r get_data_baseline}
 df_bl <- read_tsv(
   file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium_baseline.tsv",
   col_types = cols(year = col_double(),
@@ -148,7 +150,7 @@ write_tsv(
 
 ## Grid cells intersecting protected areas
 
-We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in  `data/output`:
+We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in `data/output`:
 
 ```{r read_protected_areas}
 df_prot_areas <- read_tsv(
@@ -283,25 +285,97 @@ df_bl_xy %>% head()
 
 ## Apply temporal and spatial restraints
 
-Select observations from 1950, start of state of invasion researches
+Select alien species introduced after 1950 (`year_of_introduction`: 1950) or whose date of introduction is not known:
+
+```{r select_aliens_after_year_of_introduction}
+year_of_introduction <- 1950
+
+recent_alien_species <- 
+  taxa_df %>%
+  # lower limit on date of first introduction if present
+  filter(first_observed >= year_of_introduction | is.na(first_observed)) %>%
+  # remove duplciates due to other columns as pathways
+  distinct(nubKey, first_observed, last_observed) %>%
+  
+  # get classkey info and filter out taxa without data
+  inner_join(spec_names, by = c("nubKey" = "taxonKey")) %>%
+  
+  distinct(taxonKey = nubKey,
+           canonicalName, 
+           first_observed,
+           last_observed,
+           class,
+           kingdom,
+           classKey,
+           kingdomKey)
+```
+
+Number of taxa recently introduced or whose introduction year is not specified:
+
+```{r n_recent_taxa}
+nrow(recent_alien_species)
+```
+
+List of alien species excluded as first introduction date is earlier than 1950:
+
+```{r recent_alien_species}
+old_introductions_taxa <- 
+  taxa_df %>%
+  filter(first_observed < year_of_introduction) %>%
+  anti_join(recent_alien_species %>%
+              select(taxonKey), 
+             by = c("nubKey" = "taxonKey")) %>%
+  distinct(nubKey,
+           first_observed,
+           last_observed) %>%
+  inner_join(spec_names, by = c("nubKey" = "taxonKey")) %>%
+  select(taxonKey = nubKey,
+         canonicalName,
+         first_observed,
+         last_observed,
+         class,
+         kingdom,
+         everything())
+
+old_introductions_taxa
+```
+
+We save them in file `taxa_introduced_in_BE_before_1950.tsv` in  `data/output`:
+
+```{r save_old_introduced_taxa_as_tsv_file}
+write_tsv(old_introductions_taxa,
+          here::here("data",
+                     "output", 
+                     paste("taxa_introduced_in_BE_before_",
+                           year_of_introduction,
+                           ".tsv")),
+          na = ""
+)
+```
+
+We also limit the time series analysis on observations from 1950, start of state of invasion researches:
 
 ```{r define_year_range}
 first_year <- 1950
 ```
 
-Some occurrence data can be published with erroneous coordinates (see [#trias-project/occ-processing#13](https://github.com/trias-project/occ-processing/issues/13)) or can be assigned to a grid cell out of Belgium. We remove these records:
+Some observations can be published with erroneous coordinates (see [#trias-project/occ-processing#13](https://github.com/trias-project/occ-processing/issues/13)) or can be assigned to a grid cell out of Belgium and should therefore removed.
 
 ```{r define_x_y_range_values}
 be_cellcodes <- df_prot_areas$CELLCODE
 ```
 
-Apply restraints defined above to both occurrence data:
+Apply spatial and temporal restraints defined above to both occurrence data:
 
 ```{r apply_restraints_time_space_occ_data}
 df <- 
   df %>%
+  # recently introduced taxa
+  filter(taxonKey %in% recent_alien_species$taxonKey) %>%
   left_join(df_xy, by = "eea_cell_code") %>%
+  # recent history
   filter(year > first_year) %>%
+  # in Belgium
   filter(eea_cell_code %in% be_cellcodes)
 ```
 
@@ -311,11 +385,13 @@ and baseline data:
 df_bl <- 
   df_bl %>%
   left_join(df_bl_xy, by = "eea_cell_code") %>%
+  # recent history
   filter(year > first_year) %>%
+  # in Belgium
   filter(eea_cell_code %in% be_cellcodes)
 ```
 
-## Add information about presence of protected areas
+## Add information about presence in protected areas
 
 We add whether the grid cell intersects any of the Natura2000 Belgian protected areas.
 
@@ -358,7 +434,10 @@ df_alien_species <-
   group_by(classKey, eea_cell_code, year) %>%
   summarize(n_alien = sum(obs)) %>%
   ungroup()
-df_alien_species
+```
+
+```{r preview_total_number_alien_species}
+df_alien_species %>% head()
 ```
 
 Substract the alien species observations from the baseline data to get number of observations of native species:
@@ -392,7 +471,7 @@ df_cc <-
   ungroup()
 ```
 
-For each species, identify the first year with an observation:
+For each species, identify the first year with at least one observation:
 
 ```{r begin_year_per_species}
 df_begin_year <- 
@@ -416,7 +495,7 @@ Preview:
 df_cc %>% head()
 ```
 
-For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series. Notice that at this step we create only time series slots: occurrence data are added at next stage.
+For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series:
 
 ```{r make_ts, cache=TRUE}
 make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
@@ -514,4 +593,3 @@ write_tsv(spec_names,
           na = ""
 )
 ```
-
