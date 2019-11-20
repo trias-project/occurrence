@@ -368,31 +368,22 @@ app_reapp_global$appearing_taxa %>%
 
 Two examples follow.
 
-Taxa:
-
-```{r taxa_examples}
+```{r taxa_examples, echo=FALSE}
 taxa_examples <- app_reapp_global$appearing_taxa %>% 
   filter(in_BE == FALSE) %>%
   filter(!taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %>%
   distinct(taxonKey, canonicalName) %>%
   head(n = 2)
-```
-
-Time series for all Belgium:
-
-```{r time_series}
 taxa_examples %>%
-  left_join(df_ts_compact,
+  left_join(df_ts_compact %>%
+              select(-starts_with("native")),
             by = "taxonKey") %>%
-  select(-starts_with("native"))
-```
-
-## Appearing taxa from checklists
-
-Taxa defined as `PRESENT` in unified checklist but still without occurrences:
-
-```{r taxa_from_checklist_df}
-taxa_from_checklist_df
+  left_join(df_ts_compact_prot_areas %>%
+              select(-starts_with("native")) %>%
+              rename(prot_areas_ncells = ncells,
+                     prot_areas_obs = obs),
+            by = c("taxonKey", "year")
+)
 ```
 
 # Save data
