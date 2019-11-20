@@ -498,8 +498,8 @@ df_ts <-
 Save `df_ts` as it will be used as start point of modelling pipelines:
 
 ```{r save_data_as_tsv}
-write.table(df_ts, 
-          file = here::here("data", "interim", "df_timeseries.tsv"), 
+write_tsv(df_ts, 
+          path = here::here("data", "interim", "df_timeseries.tsv"), 
           na = ""
 )
 ```
