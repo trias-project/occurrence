@@ -49,7 +49,7 @@ We use function `indicator_total_year` from `trias` library.
 
 ## Select taxa at Belgian level
 
-We select data at national level (no regional distribution):
+We select data at national level (no regional distributions):
 
 ```{r select_data_at_Belgian_level}
 data <-
@@ -67,7 +67,7 @@ facet_column = "kingdom"
 
 ```{r cumulative_graph_grouping_kingdom, fig.width=10, fig.height=5, results = "hide", echo=FALSE, warning=FALSE}
 data %>%
-  select(speciesKey, facet_column, first_observed) %>%
+  select(key, facet_column, first_observed) %>%
   distinct() %>%
   indicator_total_year(start_year_plot = 1920,
                        x_major_scale_stepsize =  25,

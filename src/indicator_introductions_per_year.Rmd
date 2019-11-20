@@ -53,7 +53,7 @@ We use function `indicator_introduction_year` from `trias` library.
 
 ## Select data from Belgium
 
-We select data at national level (no regional distribution):
+We select data at national level (no regional distributions):
 
 ```{r select_data_at_Belgian_level}
 data <-
