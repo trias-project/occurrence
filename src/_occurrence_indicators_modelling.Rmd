@@ -390,7 +390,7 @@ apply_gam <- function(df,
       if (verbose) {
         print(paste0("GAM (",
                      method_em,
-                     ") returned an error. Not enough points.")
+                     ") cannot be performed or cannot converge.")
         )
       }
       output_model <-
@@ -520,7 +520,7 @@ apply_gam <- function(df,
     if (verbose) {
       print(paste0("Too few data for applying GAM (",
                    method_em,
-                   ") to ", name, "(", taxon_key, ")", ". Decision rules are used."))
+                   ") to ", name, "(", taxon_key, ")."))
     }
   }
 
