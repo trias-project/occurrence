@@ -379,17 +379,14 @@ apply_gam <- function(df,
   }
 
   if (nrow(df) > 3 & sum(df$obs[2:nrow(df)]) != 0) {
-    result <- try(silent = TRUE, 
-                  expr = {
-
+    result <- tryCatch(expr = {
       model <- gam(formula = fm,
-                family = nb(),
-                data = df,
-                method = "REML")
-      # draw(model)
-    })
+                   family = nb(),
+                   data = df,
+                   method = "REML")
+      }, error=function(e) e, warning=function(w) w)
 
-    if (class(result)[1] == "try-error") {
+    if (class(result)[1] %in% c("simpleWarning", "simpleError")) {
       if (verbose) {
         print(paste0("GAM (",
                      method_em,
