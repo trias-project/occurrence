@@ -584,8 +584,8 @@ apply_gam <- function(df,
 Apply GAM for occurrence data in all Belgium:
 
 ```{r apply_gam_to_all_taxa, message=FALSE}
-taxon_keys <- spec_names$taxonKey[1]
-taxon_names <- spec_names$canonicalName[1]
+taxon_keys <- spec_names$taxonKey
+taxon_names <- spec_names$canonicalName
 gam_occs_BE <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
@@ -602,7 +602,7 @@ gam_occs_BE <- map2(
                               name = n,
                               use_baseline = TRUE,
                               baseline_var = "native_obs",
-                              verbose = TRUE,
+                              verbose = FALSE,
                               saveplot = TRUE)
     return(results_gam)
   }
