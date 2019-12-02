@@ -119,6 +119,22 @@ df_ts_compact <-
 
 # Modelling
 
+## Define evaluation period 
+
+We define the time window (in years) used to assess the emerging status:
+
+```{r eval_years}
+# Last evaluation year
+last_year <- lubridate::year(Sys.Date()) - 1
+
+# First evalution year 
+first_year <- last_year - 2
+
+# Evaluation years
+evaluation_years <- seq(first_year, last_year)
+evaluation_years
+```
+
 ## Decision rules
 
 We define some decision rules for occupancy and we group them in a function:
@@ -252,20 +268,6 @@ em_status_dr <- function(df,
   #   select(taxonKey, em)
   return(dr_1)
 }
-```
-
-Evaluation years:
-
-```{r eval_years}
-# Last evaluation year
-last_year <- lubridate::year(Sys.Date()) - 1
-
-# First evalution year 
-first_year <- last_year - 2
-
-# Evaluation years
-evaluation_years <- seq(first_year, last_year)
-evaluation_years
 ```
 
 We apply this function to all taxa after lumping spatial information:
