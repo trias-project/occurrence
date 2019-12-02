@@ -552,9 +552,11 @@ apply_gam <- function(df,
           ggsave(filename = paste0(dir_name, "/", ptitle, ".png"), plot_gam)
         }
       } else {
-        print(paste0("GAM output cannot be used: ",
+        if (verbose) {
+          print(paste0("GAM output cannot be used: ",
                      "p-values of all GAM smoothers are above ",
                      p_max, ". "))
+        }
       }
       
     }
