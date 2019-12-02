@@ -25,7 +25,8 @@ Load libraries:
 ```{r load_libraries, message = FALSE}
 library(tidyverse)      # To do data science
 library(tidylog)        # To provide feedback on dplyr functions
-library(progress)       # To add progress bars
+library(tidyselect)
+library(rgbif)          # To get information from GBIF
 library(here)           # To find files
 library(mgcv)           # To apply GAM           
 library(gratia)         # To calculate derivatives
