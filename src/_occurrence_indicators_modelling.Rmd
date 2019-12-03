@@ -679,7 +679,7 @@ Apply GAM for occupancy data (number of occupied cells) in all Belgium:
 ```{r apply_gam_occupancy_to_all_taxa, message=FALSE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
-gam_occs_BE <- map2(
+gam_occupancy_BE <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact %>%
@@ -694,18 +694,18 @@ gam_occs_BE <- map2(
                               name = n,
                               use_baseline = TRUE,
                               baseline_var = "native_ncells",
-                              verbose = FALSE,
+                              verbose = TRUE,
                               saveplot = TRUE)
     return(results_gam)
   }
 )
-names(gam_occs_BE) <- taxon_keys
+names(gam_occupancy_BE) <- taxon_keys
 ```
 
 Show some results:
 
 ```{r message=FALSE}
-map(gam_occs_BE[1:10], 
+map(gam_occupancy_BE[1:10], 
     function(t) {
       if (!is.null(t$plot)) t$plot
     }
@@ -714,46 +714,32 @@ map(gam_occs_BE[1:10],
 
 ### Protected aras
 
-First we select data referring to protected areas (Natura2000) and then we lump geographical information as we did it before for all Belgium:
-
-```{r df_ts_compact_protected_areas}
-df_ts_compact_prot_areas <-
-  df_ts %>%
-  filter(natura2000 == TRUE) %>%
-  group_by(taxonKey, year) %>%
-  summarise(obs = sum(obs),
-            native_obs = sum(native_obs),
-            ncells = sum(pa_obs),
-            native_ncells = sum(pa_native_obs)) %>%
-  ungroup()
-```
-
-Apply GAM:
+Apply GAM for occupancy in protected areas:
 
 ```{r apply_gam_to_all_taxa_protected_areas, message=FALSE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
-gam_occs_pa <- map2(
+gam_occupancy_pa <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact_prot_areas %>%
       dplyr::filter(taxonKey == t)
     results_gam  <- apply_gam(df = df_key,
-                              y_var = "obs",
+                              y_var = "ncells",
                               year = "year",
                               eval_years = evaluation_years,
-                              type_indicator = "observations",
+                              type_indicator = "occupancy",
                               taxon_key = t, 
                               name = n,
                               use_baseline = TRUE, 
-                              baseline_var = "native_obs",
+                              baseline_var = "native_ncells",
                               df_title = "Natura2000",
                               verbose = FALSE,
                               saveplot = TRUE)
     return(results_gam)
   }
 )
-names(gam_occs_pa) <- taxon_keys
+names(gam_occupancy_pa) <- taxon_keys
 ```
 
 Show some results:
