@@ -13,7 +13,7 @@ output:
     number_sections: true
 ---
 
-In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last 2 years. Such detection is based on decision rules instead of using GAM modelling as the number of GBIF observations decreases sensibly in the last two years as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.
+In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last year. Such detection is based on decision rules instead of using GAM modelling as the number of GBIF observations decreases sensibly during current year as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.
 
 # Setup
 
@@ -75,11 +75,11 @@ Years to evaluate:
 
 ```{r eval_years}
 present_year <- lubridate::year(Sys.Date())
-years <- c(present_year - 1, present_year)
+years <- c(present_year)
 years
 ```
 
-We define the minimum latency (in years) before we speak about reappearance. For example, a latency time window of 3 years means that we consider a taxon reappearing in 2018 if observations occur in 2018 and 2014 or before:
+We define the minimum latency (in years) before we speak about reappearance. For example, a latency time window of 3 years means that we consider a taxon reappearing in 2019 if observations occur in 2019 and 2015 or before:
 
 ```{r latency_years}
 years_latency <- 3
