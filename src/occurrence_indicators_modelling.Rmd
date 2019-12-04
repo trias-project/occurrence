@@ -313,7 +313,7 @@ plot_ribbon_em <- function(df_plot,
                  "0" = "not emerging (0)")
   y_label <- case_when(
     y_axis == "obs" ~ "number of obesrvations",
-    y_axis == "n_cells" ~ "km2",
+    y_axis == "ncells" ~ "km2",
     TRUE ~ y_axis)
   g <- 
     df_plot %>%
@@ -348,7 +348,6 @@ apply_gam <- function(df,
                       year = "year",
                       eval_years,
                       type_indicator = "observations",
-                      use_baseline = FALSE,
                       baseline_var = NULL,
                       p_max = 0.1,
                       taxon_key = NULL,
@@ -356,49 +355,49 @@ apply_gam <- function(df,
                       df_title = NULL,
                       verbose = FALSE,
                       saveplot = FALSE) {
-  
+
+
+  if (!is.null(baseline_var)) {
+    method_em <- "correct_baseline"
+  } else {
+    method_em <- "basic"
+  }
+
   year <- vars_pull(names(df), !!enquo(year))
-  # check all eval_years are valid years in df$year
-  assertthat::are_equal(all(eval_years %in% unique(df[[year]])), TRUE)
-  assertthat::assert_that(
-    if (isTRUE(use_baseline)) !is.null(baseline_var), 
-    msg = paste0("If 'baseline' TRUE, ",
-                "you need to specify which column contains baseline data.")
-  )
 
   if (verbose == TRUE ) {
     print(paste0("Analyzing: ", name, "(", taxon_key, ")"))
   }
 
-  # Maximum minimum time series (year)
-  fyear <- min(df[[year]]) # first year
-  lyear <- max(df[[year]]) # last year
+  if (nrow(df) > 0) {
+    # Maximum minimum time series (year)
+    fyear <- min(df[[year]], na.rm = TRUE) # first year
+    lyear <- max(df[[year]], na.rm = TRUE) # last year
 
-  # Define model to use for GAM
-  maxk <- max(round((lyear - fyear)/10, digits = 0), 5) # max number of knots
-
-  if (use_baseline == TRUE) {
-    method_em <- "correct_baseline"
+    # Define model to use for GAM
+    maxk <- max(round((lyear - fyear)/10, digits = 0), 5) # max number of knots
+  }
+  if (method_em == "correct_baseline") {
     if (type_indicator %in% c("observations", "occupancy")) {
       fm <- paste0(y_var,
-                 " ~ s(", 
-                 year, 
-                 ", k = maxk, m = 3, bs = \"tp\") + s(",
-                 baseline_var,
-                 ")")
+                   " ~ s(",
+                   year,
+                   ", k = maxk, m = 3, bs = \"tp\") + s(",
+                   baseline_var,
+                   ")")
     }
     fm <- formula(fm)
   } else {
     method_em <- "basic"
     if (type_indicator %in% c("observations", "occupancy")) {
       fm <- paste0(y_var,
-               " ~ s(", 
-               year, 
-               ", k = maxk, m = 3, bs = \"tp\")")
+                   " ~ s(",
+                   year,
+                   ", k = maxk, m = 3, bs = \"tp\")")
       fm <- formula(fm)
     }
   }
-  
+
   # Initialization
   output_model <- df
   output_model <-
@@ -418,7 +417,7 @@ apply_gam <- function(df,
     select(taxonKey, year, em_status, growth) %>%
     mutate(method = method_em)
 
-  if (nrow(df) > 3 & sum(df$obs[2:nrow(df)]) != 0) {
+  if (nrow(df) > 3 & sum(df[[y_var]][2:nrow(df)]) != 0) {
     result <- tryCatch(expr = {
       model <- gam(formula = fm,
                    family = nb(),
@@ -427,8 +426,8 @@ apply_gam <- function(df,
       # Check at p-value of least 1 smoother < 0.1
       summary_pv <- summary.gam(model)$s.pv
       p_ok <- ifelse(any(summary_pv < p_max), TRUE, FALSE)
-      
-      }, error=function(e) e, warning=function(w) w)
+
+    }, error=function(e) e, warning=function(w) w)
 
     if (class(result)[1] %in% c("simpleWarning", "simpleError")) {
       if (verbose) {
@@ -446,20 +445,20 @@ apply_gam <- function(df,
                         type = "iterms",
                         interval = "prediction",
                         se.fit = TRUE)
-  
+
         # Calculate confidence intervals & backtransform to real scale
         intercept <- unname(model$coefficients[1])
         output_model$fit <- model$family$linkinv(temp$fit[,1] + intercept)
         output_model$ucl <- model$family$linkinv(temp$fit[,1] + intercept + temp$se.fit[,1] * 1.96)
-        output_model$lcl <- model$family$linkinv(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96) 
+        output_model$lcl <- model$family$linkinv(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
         # output_model$lcl <- exp(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
-  
+
         # Calculate first and second derivative + conf. interval
         deriv1 <- derivatives(model, type = "central", order = 1, level = 0.8,
                               n = nrow(output_model), eps = 1e-4)
         deriv2 <- derivatives(model, type = "central", order = 2, level = 0.8,
                               n = nrow(output_model), eps = 1e-4)
-  
+
         # Emerging status based on first and second derivative
         em1 <-
           deriv1 %>%
@@ -471,7 +470,7 @@ apply_gam <- function(df,
             lower >= 0 & upper > 0 ~ "1")) %>%
           select(!!sym(year) := data, em1) %>%
           mutate(!!sym(year) := round(!!sym(year)))
-  
+
         em2 <- deriv2 %>%
           as_tibble() %>%
           filter(var == year) %>%
@@ -481,14 +480,14 @@ apply_gam <- function(df,
             .$lower >= 0  & .$upper > 0 ~ "1")) %>%
           select(!!sym(year) := data, em2)  %>%
           mutate(!!sym(year) := round(!!sym(year)))
-  
+
         if (any(c(nrow(em1), nrow(em2)) != length(unique(output_model[[year]])))) {
           warning(print(paste(taxon_key),
                         nrow(em1),
                         nrow(em2),
                         length(unique(output_model[[year]]))))
         }
-  
+
         em_level_gam <- full_join(em1, em2, by = year) %>%
           mutate(em = case_when(
             em1 == 1 & em2 == 1 ~ "4",
@@ -500,7 +499,7 @@ apply_gam <- function(df,
             em1 == -1 & em2 == 1 ~ "-2",
             em1 == -1 & em2 == 0 ~ "-3",
             em1 == -1 & em2 == -1 ~ "-4"))
-  
+
         # Emerging status
         em_levels <-
           em_level_gam %>%
@@ -509,11 +508,11 @@ apply_gam <- function(df,
             em == 0 ~ 1, # unclear
             em < 3 ~ 2, # potentially emerging
             em >= 3 ~ 3 # emerging
-            )
           )
-  
+          )
+
         output_model <- left_join(output_model, em_levels, by = year)
-  
+
         # Lower value of first dedrivative (minimal guaranted growth) if positive
         lower_deriv1 <-
           deriv1 %>%
@@ -526,25 +525,25 @@ apply_gam <- function(df,
 
         # Add lower value of first derivative
         output_model <- left_join(output_model, lower_deriv1, by = "year")
-        
+
         # Get emergin status summary for output
         emerging_status_output <-
           output_model %>%
           filter(!!sym(year) %in% eval_years) %>%
           select(taxonKey, year, em_status, growth) %>%
           mutate(method = method_em)
-  
+
         # Create plot with conf. interval + colour for status
         ptitle <- paste("GAM",
                         type_indicator,
-                        method_em, 
-                        taxon_key, 
-                        name, 
+                        method_em,
+                        taxon_key,
+                        name,
                         sep = "_")
         if (!is.null(df_title)) ptitle <- paste(ptitle, df_title, sep = "_")
-        plot_gam <- plot_ribbon_em(df_plot = output_model, 
+        plot_gam <- plot_ribbon_em(df_plot = output_model,
                                    x_axis = "year",
-                                   y_axis = "obs",
+                                   y_axis = y_var,
                                    ptitle = ptitle)
         if (saveplot == TRUE) {
           dir_name <- here::here("data","output","GAM_outputs")
@@ -554,11 +553,11 @@ apply_gam <- function(df,
       } else {
         if (verbose) {
           print(paste0("GAM output cannot be used: ",
-                     "p-values of all GAM smoothers are above ",
-                     p_max, ". "))
+                       "p-values of all GAM smoothers are above ",
+                       p_max, "."))
         }
       }
-      
+
     }
   } else {
     if (verbose) {
@@ -589,7 +588,6 @@ taxon_names <- spec_names$canonicalName
 gam_occs_BE <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
-    # pb$tick()
     df_key <- df_ts_compact %>%
       filter(taxonKey == t) %>%
       filter(year <= max(evaluation_years))
@@ -600,10 +598,9 @@ gam_occs_BE <- map2(
                               type_indicator = "observations",
                               taxon_key = t, 
                               name = n,
-                              use_baseline = TRUE,
                               baseline_var = "native_obs",
                               verbose = FALSE,
-                              saveplot = TRUE)
+                              saveplot = FALSE)
     return(results_gam)
   }
 )
@@ -653,7 +650,6 @@ gam_occs_pa <- map2(
                               type_indicator = "observations",
                               taxon_key = t, 
                               name = n,
-                              use_baseline = TRUE, 
                               baseline_var = "native_obs",
                               df_title = "Natura2000",
                               verbose = FALSE,
@@ -692,9 +688,8 @@ gam_occupancy_BE <- map2(
                               type_indicator = "occupancy",
                               taxon_key = t, 
                               name = n,
-                              use_baseline = TRUE,
                               baseline_var = "native_ncells",
-                              verbose = TRUE,
+                              verbose = FALSE,
                               saveplot = TRUE)
     return(results_gam)
   }
@@ -731,7 +726,6 @@ gam_occupancy_pa <- map2(
                               type_indicator = "occupancy",
                               taxon_key = t, 
                               name = n,
-                              use_baseline = TRUE, 
                               baseline_var = "native_ncells",
                               df_title = "Natura2000",
                               verbose = FALSE,
