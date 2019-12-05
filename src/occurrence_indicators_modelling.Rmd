@@ -744,9 +744,9 @@ map(gam_occs_pa[1:10], ~.$plot)
 
 # Save results
 
-Save results modellling:
+Save complete outputs:
 
-```{r  save_results}
+```{r  save_outputs}
 method_em <- gam_occs_BE[[1]]$em_summary$method[1]
 write_tsv(map_dfr(gam_occs_BE, function(x) {x$output}),
           na = "", 
@@ -783,3 +783,35 @@ write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$output}),
                       paste0("outptut_GAM_occupancy_pa_",
                              method_em, ".tsv")))
 ```
+
+Save summary of results limited to the years included in evaluation:
+
+```{r save_em_summary}
+method_em <- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occurrences_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occurrences_pa_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occupancy_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
