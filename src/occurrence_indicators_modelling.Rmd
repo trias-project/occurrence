@@ -10,6 +10,7 @@ output:
     toc_depth: 3
     toc_float: true
     number_sections: true
+    code_folding: hide
 ---
 
 This document describes the modelling to assess the emerging status of alien species.
@@ -269,7 +270,7 @@ We apply GAM to occurrences and occupancy in all Belgium and in protected areas.
 
 We define first basic functions, which will be moved to `trias` package soon.
 
-```{r define_functions_GAM, code_folding ='hide'}
+```{r define_functions_GAM}
 ### Plot time series with confidence limits + emerging status
 plot_ribbon_em <- function(df_plot, 
                            x_axis = "year", 
