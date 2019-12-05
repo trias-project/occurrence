@@ -788,3 +788,11 @@ write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$em_summary}),
                              method_em, ".tsv")))
 
 method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occupancy_pa_",
+                             method_em, ".tsv")))
+```
