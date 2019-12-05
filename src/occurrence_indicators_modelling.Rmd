@@ -36,7 +36,7 @@ library(gratia)         # To calculate derivatives
 
 We read the time series data, output of preprocessing pipeline:
 
-```{r read_preprocessed_data}
+```{r read_preprocessed_data, message=FALSE}
 df_ts <- read_tsv(
   here::here("data", "interim", "df_timeseries.tsv"),
   na = "")
@@ -59,7 +59,7 @@ df_ts %>%
 )
 ```
 
-Retrieve canonical names which will be useful to better discuss the results.
+Retrieve scientific names which will be useful to better discuss the results.
 
 ```{r taxon_names, message=FALSE}
 spec_names <- read_tsv(
@@ -67,33 +67,6 @@ spec_names <- read_tsv(
   na = "") %>%
   select(taxonKey, canonicalName) %>%
   filter(taxonKey %in% df_ts$taxonKey)
-```
-
-For species without canonical names (e.g. hibrids) we use scientific names instead:
-
-```{r sc_names}
-# taxa without canonical names
-taxa_missing_canonicalName <- 
-  spec_names %>%
-  filter(is.na(canonicalName)) %>%
-  distinct(taxonKey)
-
-# retrieve scientific names for taxa without canonical names
-scientificNames <- 
-  map_dfr(taxa_missing_canonicalName$taxonKey,
-          function(x) {
-            name_usage(x, return = "data") %>%
-              select(taxonKey = key, 
-                     scientificName)
-            })
-
-# add scientific name
-spec_names <- 
-  spec_names %>%
-  left_join(scientificNames, by = "taxonKey") %>%
-  mutate(canonicalName = ifelse(
-    is.na(canonicalName), scientificName, canonicalName)) %>%
-  select(-scientificName)
 ```
 
 Lump geographic information:
