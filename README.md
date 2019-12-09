@@ -19,16 +19,22 @@ The indicators are built upon the taxa published in the [Global Register of Intr
 
 In order to calculate an emergency index, we take into account:
 
-1. number of occurrences per year
-2. area of occupancy (AOO)
+1. number of occurrences per year, or simply _occurrences_
+2. area of occupancy (AOO), or simply _occupancy_
 
-We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This is still work in progress. Still, if you want to get an idea about it, follow [issue #49](https://github.com/trias-project/indicators/issues/49). 
+The workflow is divded in the following pipelines:
 
-For the data manipulation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html).
+1. [Appearing or reappearing taxa in current year](https://trias-project.github.io/indicators/occurrence_indicators_appearing_taxa.html)
+2. [Assessing partial emerging statuses of alien taxa](https://trias-project.github.io/indicators/occurrence_indicators_modelling.html)
+3. [Assessing emerging status and ranking](https://trias-project.github.io/indicators/ranking_emerging_status.html)
+
+We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This part is still work in progress, although all workflow steps are now completed. Follow [issue #49](https://github.com/trias-project/indicators/issues/49) for more discussions about the different choices we took at every step of the workflow.
+
+For the data preparation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html). The output of this appendix is the starting point of the pipelines described above.
 
 ## Repo structure
 
-The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files indicated with `GENERATED` should not be edited manually.
+The repository structure is based on [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/). Files indicated with `GENERATED` should not be edited manually. This list can be not complete as the content of this repository is still in progress.
 
 ```
 ├── README.md              : Description of this repository

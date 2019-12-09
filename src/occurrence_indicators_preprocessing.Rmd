@@ -147,7 +147,6 @@ write_tsv(
 )
 ```
 
-
 ## Grid cells intersecting protected areas
 
 We get information about intersection of grid cells with Belgian protected areas by reading file `intersect_EEA_ref_grid_protected_areas.tsv` in `data/output`:
@@ -181,7 +180,7 @@ df_prot_areas <-
 
 ## Add informative columns
 
-For better interpretation of the data, we retrieve canonical names of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+For better interpretation of the data, we retrieve sqcientific names of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
 
 ```{r get_canonical_names}
 taxon_key <- 
@@ -195,7 +194,13 @@ spec_names <- map_df(
     pb$tick()
     name_usage(key = k, return = "data")
   }) %>%
-  select(taxonKey = key, canonicalName, kingdomKey, classKey)
+  select(taxonKey = key,
+         canonicalName,
+         scientificName,
+         kingdomKey, classKey) %>%
+  mutate(canonicalName = ifelse(
+    is.na(canonicalName), scientificName, canonicalName)) %>%
+  select(-scientificName)
 ```
 
 We also retrieve kingdom and class:

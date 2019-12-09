@@ -1,0 +1,918 @@
+---
+title: 'Emerging status: modelling'
+author:
+- Damiano Oldoni
+- Toon Van Daele
+- Tim Adriaens
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+---
+
+This document describes the modelling to assess the emerging status of alien species.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+Load libraries:
+
+```{r load_libraries, message = FALSE}
+library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(tidyselect)
+library(rgbif)          # To get information from GBIF
+library(here)           # To find files
+library(mgcv)           # To apply GAM           
+library(gratia)         # To calculate derivatives
+library(INBOtheme)      # To load graphic INBO theme
+```
+
+# Get data
+
+We read the time series data, output of preprocessing pipeline:
+
+```{r read_preprocessed_data, message=FALSE}
+df_ts <- read_tsv(
+  here::here("data", "interim", "df_timeseries.tsv"),
+  na = "")
+```
+
+Columns `pa_obs` and `pa_native_obs` indicate the presence (1) or absence (0) of the specific taxon and native species at class level.
+
+Preview:
+
+```{r preview_ts}
+# Get a taxon
+taxon <- 
+  df_ts$taxonKey[5]
+
+# Preview
+df_ts %>%
+  filter(taxonKey == taxon,
+         year %in% c(2016, 2017),
+         eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
+)
+```
+
+Retrieve scientific names which will be useful to better discuss the results.
+
+```{r taxon_names, message=FALSE}
+spec_names <- read_tsv(
+  file = here::here("data", "interim", "timeseries_taxonomic_info.tsv"),
+  na = "") %>%
+  select(taxonKey, canonicalName) %>%
+  filter(taxonKey %in% df_ts$taxonKey)
+```
+
+Lump geographic information:
+
+```{r df_ts_compact}
+df_ts_compact <- 
+  df_ts %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %>%
+  ungroup()
+```
+
+We create a similar data.frame specific to protected areas (Natura2000):
+
+```{r df_ts_compact_protected_areas, cache=TRUE}
+df_ts_compact_prot_areas <-
+  df_ts %>%
+  filter(natura2000 == TRUE) %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %>%
+  ungroup()
+```
+
+Add canonical names:
+
+```{r add_canonicalName}
+df_ts_compact <-
+  df_ts_compact %>%
+  left_join(spec_names, by = "taxonKey")
+```
+
+# Modelling
+
+## Define evaluation period 
+
+We define the time window (in years) used to assess the emerging status:
+
+```{r eval_years}
+# Last evaluation year
+last_year <- lubridate::year(Sys.Date()) - 1
+
+# First evalution year 
+first_year <- last_year - 2
+
+# Evaluation years
+evaluation_years <- seq(first_year, last_year)
+evaluation_years
+```
+
+## Decision rules
+
+We define some decision rules for occupancy and we group them in a function:
+
+```{r decision_rules_function, message=FALSE}
+#' @param df data frame with time series. It should contain at least two columns: time and values.
+#' @param evaluation_year the decision rules are applied to time series up to this year.
+#' @return list with dataframe, emergency status and tests
+em_status_dr <- function(df, 
+                         evaluation_year, 
+                         data_col = "ncells",
+                         id_col = "taxonKey",
+                         year_col = "year") {
+  
+  df <- 
+    df %>%
+    select(id_col, year_col, data_col) %>%
+    rename("taxonKey" = id_col,
+           "year" = year_col,
+           "occ" = data_col)
+
+  # Cut time series up to evaluation_year
+  df <- 
+    df %>%
+    group_by(taxonKey) %>%
+    filter(year <= evaluation_year) %>%
+    ungroup()
+  
+  # Rule 1: Time series with only one value at evaluation year
+  dr_1 <- 
+    df %>%
+    group_by(taxonKey) %>%
+    add_tally() %>%
+    mutate(dr_1 = n == 1) %>%
+    filter(year == evaluation_year) %>%
+    select(taxonKey, dr_1)
+  
+  # # dr_2: 50% of time series > 0?
+  # dr_2 <-
+  #   df %>%
+  #   group_by(taxonKey) %>%
+  #   summarize(dr_2 = sum(occ > 0)/ n() >= 0.5)
+  
+  # dr_3: last value above median value -> possibly emerging ("2")
+  dr_3 <-
+    df %>%
+    group_by( taxonKey) %>%
+    mutate(last_occ = ifelse(year == max(year), occ, -1)) %>%
+    summarize(median_occ = median(occ),
+              last_occ = max(last_occ)) %>%
+    mutate(dr_3 = last_occ > median_occ) %>%
+    select(taxonKey,  dr_3)
+
+  # dr_4: 0 since 5 years -> not emerging
+  dr_4 <-
+    df %>%
+    group_by(taxonKey) %>%
+    filter(year > (max(year)-5)) %>%
+    tally(occ) %>%
+    mutate(dr_4 = n == 0) %>%
+    select(taxonKey, dr_4)
+
+  # # dr_5: > 0 and 5 consecutive years 0 before  -> (re)appearing
+  # dr_5 <-
+  #   df %>%
+  #   filter(year == max(year)) %>%
+  #   group_by(taxonKey) %>%
+  #   summarize(dr_5_cond1 = occ > 0) %>%
+  #   left_join(df %>%
+  #               filter(year > (max(year)-6) & year < max(year)) %>%
+  #               group_by(taxonKey) %>%
+  #               tally(occ) %>%
+  #               mutate(dr_5_cond2 = n == 0) %>%
+  #               select(-n),
+  #             by = "taxonKey") %>%
+  #   mutate(dr_5 = dr_5_cond1 & dr_5_cond2) %>%
+  #   select(taxonKey, dr_5)
+ 
+  # # dr_6: Maximum of occ >= 1
+  # dr_6 <-
+  #   df %>%
+  #   filter(year == max(year)) %>%
+  #   group_by(taxonKey) %>%
+  #   summarize(dr_6 = max(occ) >= 1)
+
+  # # # dr_7: Increase? Last value > before last value > 0
+  # dr_7 <-
+  #   df %>%
+  #   filter(year == max(year)) %>%
+  #   select(taxonKey, occ) %>%
+  #   rename(last_occ = occ) %>%
+  #   left_join(
+  #     df %>%
+  #       filter(year == max(year) - 1) %>%
+  #       select(taxonKey, occ) %>%
+  #       rename(before_last_occ = occ),
+  #     by = "taxonKey") %>%
+  #   mutate(dr_7 = last_occ > before_last_occ & 
+  #            before_last_occ > 0) %>%
+  #   select(taxonKey, dr_7)
+
+  # dr_8: Maximum ever observed?
+  dr_8 <-
+    df %>%
+    group_by(taxonKey) %>%
+    summarize(max_occ = max(occ)) %>%
+    inner_join(df %>%
+                 filter(year == max(year)) %>%
+                 ungroup() %>%
+                 rename(last_value = occ),
+               by = "taxonKey") %>%
+    mutate(dr_8 = last_value == max_occ) %>%
+    select(taxonKey, dr_8)
+
+  # # dr_9: Decrease? Last value < before last value
+  # dr_9 <-
+  #   df %>%
+  #   filter(year == max(year)) %>%
+  #   select(taxonKey, occ) %>%
+  #   rename(last_occ = occ) %>%
+  #   left_join(
+  #     df %>%
+  #       filter(year == max(year) - 1) %>%
+  #       select(taxonKey, occ) %>%
+  #       rename(before_last_occ = occ),
+  #     by = "taxonKey") %>%
+  #   mutate(dr_9 = last_occ < before_last_occ) %>%
+  #   select(taxonKey, dr_9)
+
+  # Join all decision rules together
+  dr_all <- 
+    list(dr_1, dr_3, dr_4, dr_8) %>% 
+    reduce(inner_join, by = "taxonKey")
+  
+  # convert to em status codes:
+  # 0 = not emerging
+  # 1 = unclear ((re)appearing at eyear is judged as unclear too)
+  # 2 = potentially emerging
+  # 3 = emerging
+  em_dr <-
+    dr_all %>%
+    mutate(em_status = case_when(
+      
+      dr_4 == TRUE ~ 0, # not emerging
+      
+      dr_1 == FALSE & dr_3 == TRUE &  
+        dr_4 == FALSE  & dr_8 == TRUE ~ 3, # emerging
+      
+      dr_1 == FALSE & dr_3 == TRUE &  
+        dr_4 == FALSE  & dr_8 == FALSE ~ 2, # potentially emerging
+      
+      (dr_1 == TRUE & dr_4 == FALSE) | 
+        (dr_1 == FALSE & dr_3 == FALSE & dr_4 == FALSE) ~ 1, # unclear
+      )) %>%
+    mutate(year = evaluation_year) %>%
+    select(taxonKey, year, em_status, everything())
+  
+  return(em_dr)
+}
+```
+
+### Occurrences
+
+#### Belgium
+
+We apply this function to occurrences for all Belgium:
+
+```{r apply_decision_rules_occs_be, message=FALSE}
+em_decision_rules_occs_BE <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact,
+                 evaluation_year = .,
+                 data_col = "obs")
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_BE}
+em_decision_rules_occs_BE %>% head()
+```
+
+#### Protected areas
+
+We apply this function to occurrences for protected areas:
+
+```{r apply_decision_rules_occs_pa, message=FALSE}
+em_decision_rules_occs_pa <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact_prot_areas,
+                 evaluation_year = .,
+                 data_col = "obs")
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_pa}
+em_decision_rules_occs_pa %>% head()
+```
+
+### Occupancy
+
+#### Belgium
+
+We apply this function to occupancy for all Belgium:
+
+```{r apply_decision_rules_occupancy_BE, message=FALSE}
+em_decision_rules_occupancy_BE <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact,
+                 evaluation_year = .,
+                 data_col = "ncells")
+)
+```
+
+Examples:
+
+```{r example_decision_rules}
+em_decision_rules_occupancy_BE %>% head()
+```
+
+#### Protected areas
+
+We apply this function to occupancy in protected areas:
+
+```{r apply_dec_rules_occupancy_pa, message=FALSE}
+em_decision_rules_occupancy_pa <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact_prot_areas,
+                 evaluation_year = .,
+                 data_col = "ncells")
+)
+```
+
+Examples:
+
+```{r example_dr_occupancy_pa}
+em_decision_rules_occupancy_pa %>% head()
+```
+
+## Generalized additive model (GAM)
+
+We apply GAM to occurrences and occupancy in all Belgium and in protected areas.
+
+We define first basic functions, which will be moved to `trias` package soon.
+
+```{r define_functions_GAM, message=FALSE}
+### Plot time series with confidence limits + emerging status
+plot_ribbon_em <- function(df_plot, 
+                           x_axis = "year", 
+                           y_axis = "obs", 
+                           ptitle = NULL){
+  
+  colors_em <- c("3" = "darkred", 
+                 "2" = "orangered",
+                 "1" = "grey50",
+                 "0" = "darkgreen")
+  labels_em <- c("3" = "emerging (3)", 
+                 "2" = "pot. emerging (2)",
+                 "1" = "unclear (1)",
+                 "0" = "not emerging (0)")
+  y_label <- case_when(
+    y_axis == "obs" ~ "number of obesrvations",
+    y_axis == "ncells" ~ "km2",
+    TRUE ~ y_axis)
+  g <- 
+    df_plot %>%
+    ggplot(aes(x = year, y = get(y_axis))) +
+    geom_point(color = "black") +
+    ylab(y_label) +
+    ggtitle(ptitle)
+  
+  if (all(all(abs(df_plot$lcl < 10^10)),
+          all(abs(df_plot$ucl < 10^10)),
+          all(abs(df_plot$fit < 10^10)))) {
+    g <- g + 
+      geom_ribbon(aes(ymax = ucl, ymin = lcl),
+                  fill = grey(0.5),
+                  alpha = 0.4) +
+      geom_line(aes(x = year, y = fit), color = "grey50") +
+      geom_point(aes(x = year, 
+                     y = fit, 
+                     color = factor(em_status)),
+                 size = 2) +
+    scale_colour_manual(values = colors_em,
+                        labels = labels_em,
+                        name = "Emerging status") +
+    theme(plot.title = element_text(size=10))
+  }
+  
+  return(g)
+}
+
+# GAM function
+apply_gam <- function(df,
+                      y_var,
+                      year = "year",
+                      eval_years,
+                      type_indicator = "observations",
+                      baseline_var = NULL,
+                      p_max = 0.1,
+                      taxon_key = NULL,
+                      name = NULL,
+                      df_title = NULL,
+                      verbose = FALSE,
+                      saveplot = FALSE) {
+
+
+  if (!is.null(baseline_var)) {
+    method_em <- "correct_baseline"
+  } else {
+    method_em <- "basic"
+  }
+
+  year <- vars_pull(names(df), !!enquo(year))
+
+  if (verbose == TRUE ) {
+    print(paste0("Analyzing: ", name, "(", taxon_key, ")"))
+  }
+
+  if (nrow(df) > 0) {
+    # Maximum minimum time series (year)
+    fyear <- min(df[[year]], na.rm = TRUE) # first year
+    lyear <- max(df[[year]], na.rm = TRUE) # last year
+
+    # Define model to use for GAM
+    maxk <- max(round((lyear - fyear)/10, digits = 0), 5) # max number of knots
+  }
+  if (method_em == "correct_baseline") {
+    if (type_indicator %in% c("observations", "occupancy")) {
+      fm <- paste0(y_var,
+                   " ~ s(",
+                   year,
+                   ", k = maxk, m = 3, bs = \"tp\") + s(",
+                   baseline_var,
+                   ")")
+    }
+    fm <- formula(fm)
+  } else {
+    method_em <- "basic"
+    if (type_indicator %in% c("observations", "occupancy")) {
+      fm <- paste0(y_var,
+                   " ~ s(",
+                   year,
+                   ", k = maxk, m = 3, bs = \"tp\")")
+      fm <- formula(fm)
+    }
+  }
+
+  # Initialization
+  output_model <- df
+  output_model <-
+    output_model %>%
+    mutate(fit = NA_real_,
+           ucl = NA_real_,
+           lcl = NA_real_,
+           em1 = NA_real_,
+           em2 = NA_real_,
+           em = NA_real_,
+           em_status = NA_real_,
+           growth = NA_real_)
+  model <- deriv1 <- deriv2 <- plot_gam <- summary_pv <- p_ok <- NULL
+  emerging_status_output <-
+    output_model %>%
+    filter(!!sym(year) %in% eval_years) %>%
+    select(taxonKey, year, em_status, growth) %>%
+    mutate(method = method_em)
+
+  if (nrow(df) > 3 & sum(df[[y_var]][2:nrow(df)]) != 0) {
+    result <- tryCatch(expr = {
+      model <- gam(formula = fm,
+                   family = nb(),
+                   data = df,
+                   method = "REML")
+      # Check at p-value of least 1 smoother < 0.1
+      summary_pv <- summary.gam(model)$s.pv
+      p_ok <- ifelse(any(summary_pv < p_max), TRUE, FALSE)
+
+    }, error=function(e) e, warning=function(w) w)
+
+    if (class(result)[1] %in% c("simpleWarning", "simpleError")) {
+      if (verbose) {
+        print(paste0("GAM (",
+                     method_em,
+                     ") cannot be performed or cannot converge.")
+        )
+      }
+    } else{
+      if (isTRUE(p_ok)) {
+        output_model <- df
+        # Predict to new data (5 values per year)
+        temp <- predict(object = model,
+                        newdata = output_model,
+                        type = "iterms",
+                        interval = "prediction",
+                        se.fit = TRUE)
+
+        # Calculate confidence intervals & backtransform to real scale
+        intercept <- unname(model$coefficients[1])
+        output_model$fit <- model$family$linkinv(temp$fit[,1] + intercept)
+        output_model$ucl <- model$family$linkinv(temp$fit[,1] + intercept + temp$se.fit[,1] * 1.96)
+        output_model$lcl <- model$family$linkinv(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
+        # output_model$lcl <- exp(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
+
+        # Calculate first and second derivative + conf. interval
+        deriv1 <- derivatives(model, type = "central", order = 1, level = 0.8,
+                              n = nrow(output_model), eps = 1e-4)
+        deriv2 <- derivatives(model, type = "central", order = 2, level = 0.8,
+                              n = nrow(output_model), eps = 1e-4)
+
+        # Emerging status based on first and second derivative
+        em1 <-
+          deriv1 %>%
+          as_tibble() %>%
+          filter(var == year) %>%
+          mutate(em1 = case_when(
+            lower < 0 & upper <= 0 ~ "-1",
+            lower < 0 & upper > 0 ~ "0",
+            lower >= 0 & upper > 0 ~ "1")) %>%
+          select(!!sym(year) := data, em1) %>%
+          mutate(!!sym(year) := round(!!sym(year)))
+
+        em2 <- deriv2 %>%
+          as_tibble() %>%
+          filter(var == year) %>%
+          mutate(em2 = case_when(
+            .$lower < 0  & .$upper <= 0 ~ "-1",
+            .$lower < 0  & .$upper > 0 ~ "0",
+            .$lower >= 0  & .$upper > 0 ~ "1")) %>%
+          select(!!sym(year) := data, em2)  %>%
+          mutate(!!sym(year) := round(!!sym(year)))
+
+        if (any(c(nrow(em1), nrow(em2)) != length(unique(output_model[[year]])))) {
+          warning(print(paste(taxon_key),
+                        nrow(em1),
+                        nrow(em2),
+                        length(unique(output_model[[year]]))))
+        }
+
+        em_level_gam <- full_join(em1, em2, by = year) %>%
+          mutate(em = case_when(
+            em1 == 1 & em2 == 1 ~ "4",
+            em1 == 1 & em2 == 0 ~ "3",
+            em1 == 1 & em2 == -1 ~ "2",
+            em1 == 0 & em2 == 1 ~ "1",
+            em1 == 0 & em2 == 0 ~ "0",
+            em1 == 0 & em2 == -1 ~ "-1",
+            em1 == -1 & em2 == 1 ~ "-2",
+            em1 == -1 & em2 == 0 ~ "-3",
+            em1 == -1 & em2 == -1 ~ "-4"))
+
+        # Emerging status
+        em_levels <-
+          em_level_gam %>%
+          mutate(em_status = case_when(
+            em < 0 ~ 0, # not emerging
+            em == 0 ~ 1, # unclear
+            em < 3 ~ 2, # potentially emerging
+            em >= 3 ~ 3 # emerging
+          )
+          )
+
+        output_model <- left_join(output_model, em_levels, by = year)
+
+        # Lower value of first dedrivative (minimal guaranted growth) if positive
+        lower_deriv1 <-
+          deriv1 %>%
+          filter(var == year) %>%
+          rename(!!sym(year) := data) %>%
+          mutate(!!sym(year) := round(!!sym(year), digits = 0)) %>%
+          mutate(growth = model$family$linkinv(lower)) %>%
+          # mutate(growth = ifelse(lower >= 0, lower, NA_real_)) %>%
+          select(!!sym(year), growth)
+
+        # Add lower value of first derivative
+        output_model <- left_join(output_model, lower_deriv1, by = "year")
+
+        # Get emergin status summary for output
+        emerging_status_output <-
+          output_model %>%
+          filter(!!sym(year) %in% eval_years) %>%
+          select(taxonKey, year, em_status, growth) %>%
+          mutate(method = method_em)
+
+        # Create plot with conf. interval + colour for status
+        ptitle <- paste("GAM",
+                        type_indicator,
+                        method_em,
+                        taxon_key,
+                        name,
+                        sep = "_")
+        if (!is.null(df_title)) ptitle <- paste(ptitle, df_title, sep = "_")
+        plot_gam <- plot_ribbon_em(df_plot = output_model,
+                                   x_axis = "year",
+                                   y_axis = y_var,
+                                   ptitle = ptitle)
+        if (saveplot == TRUE) {
+          dir_name <- here::here("data","output","GAM_outputs")
+          dir.create(dir_name, showWarnings = FALSE)
+          ggsave(filename = paste0(dir_name, "/", ptitle, ".png"), plot_gam)
+        }
+      } else {
+        if (verbose) {
+          print(paste0("GAM output cannot be used: ",
+                       "p-values of all GAM smoothers are above ",
+                       p_max, "."))
+        }
+      }
+
+    }
+  } else {
+    if (verbose) {
+      print(paste0("Too few data for applying GAM (",
+                   method_em,
+                   ") to ", name, "(", taxon_key, ")."))
+    }
+  }
+
+  return(list(em_summary = emerging_status_output,
+              model = model,
+              output = output_model,
+              first_derivative = deriv1,
+              second_derivative = deriv2,
+              plot = plot_gam))
+}
+```
+
+### Occurrences
+
+#### Belgium
+
+Apply GAM for occurrence data in all Belgium:
+
+```{r apply_gam_to_all_taxa, message=FALSE, cache=TRUE}
+taxon_keys <- spec_names$taxonKey
+taxon_names <- spec_names$canonicalName
+gam_occs_BE <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact %>%
+      filter(taxonKey == t) %>%
+      filter(year <= max(evaluation_years))
+    results_gam  <- apply_gam(df = df_key,
+                              year = "year",
+                              y_var = "obs",
+                              eval_years = evaluation_years,
+                              type_indicator = "observations",
+                              taxon_key = t, 
+                              name = n,
+                              baseline_var = "native_obs",
+                              verbose = FALSE,
+                              saveplot = FALSE)
+    return(results_gam)
+  }
+)
+names(gam_occs_BE) <- taxon_keys
+```
+
+Show some results:
+
+```{r show_results_proveiw_occs_BE, message=FALSE}
+map(gam_occs_BE[1:10], 
+    function(t) {
+      if (!is.null(t$plot)) t$plot
+    }
+)
+```
+
+#### Protected aras
+
+Apply GAM for occurrence data in protected areas:
+
+```{r apply_gam_occurrences_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
+taxon_keys <- spec_names$taxonKey
+taxon_names <- spec_names$canonicalName
+gam_occs_pa <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact_prot_areas %>%
+      dplyr::filter(taxonKey == t)
+    results_gam  <- apply_gam(df = df_key,
+                              y_var = "obs",
+                              year = "year",
+                              eval_years = evaluation_years,
+                              type_indicator = "observations",
+                              taxon_key = t, 
+                              name = n,
+                              baseline_var = "native_obs",
+                              df_title = "Natura2000",
+                              verbose = FALSE,
+                              saveplot = TRUE)
+    return(results_gam)
+  }
+)
+names(gam_occs_pa) <- taxon_keys
+```
+
+Show some results:
+
+```{r preview_gam_occs_PA, message=FALSE}
+map(gam_occs_pa[1:10], ~.$plot)
+```
+
+### Occupancy
+
+#### Belgium
+
+Apply GAM for occupancy data (number of occupied cells) in all Belgium:
+
+```{r apply_gam_occupancy_to_all_taxa, message=FALSE, cache=TRUE}
+taxon_keys <- spec_names$taxonKey
+taxon_names <- spec_names$canonicalName
+gam_occupancy_BE <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact %>%
+      filter(taxonKey == t) %>%
+      filter(year <= max(evaluation_years))
+    results_gam  <- apply_gam(df = df_key,
+                              year = "year",
+                              y_var = "ncells",
+                              eval_years = evaluation_years,
+                              type_indicator = "occupancy",
+                              taxon_key = t, 
+                              name = n,
+                              baseline_var = "native_ncells",
+                              verbose = FALSE,
+                              saveplot = TRUE)
+    return(results_gam)
+  }
+)
+names(gam_occupancy_BE) <- taxon_keys
+```
+
+Show some results:
+
+```{r preview_gam_occupancy_BE, message=FALSE}
+map(gam_occupancy_BE[1:10], 
+    function(t) {
+      if (!is.null(t$plot)) t$plot
+    }
+)
+```
+
+#### Protected aras
+
+Apply GAM for occupancy in protected areas:
+
+```{r apply_gam_occupancy_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
+taxon_keys <- spec_names$taxonKey
+taxon_names <- spec_names$canonicalName
+gam_occupancy_pa <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact_prot_areas %>%
+      dplyr::filter(taxonKey == t)
+    results_gam  <- apply_gam(df = df_key,
+                              y_var = "ncells",
+                              year = "year",
+                              eval_years = evaluation_years,
+                              type_indicator = "occupancy",
+                              taxon_key = t, 
+                              name = n,
+                              baseline_var = "native_ncells",
+                              df_title = "Natura2000",
+                              verbose = FALSE,
+                              saveplot = TRUE)
+    return(results_gam)
+  }
+)
+names(gam_occupancy_pa) <- taxon_keys
+```
+
+Show some results:
+
+```{r preview_gam_occupancy_PA, message=FALSE}
+map(gam_occupancy_pa[1:10], ~.$plot)
+```
+
+# Save results
+
+## Decision rules
+
+Save emerging status based on decision rules:
+
+```{r save_decisionrules_results}
+write_tsv(em_decision_rules_occs_BE,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occs_belgium.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occs_pa,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occs_pa.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occupancy_BE,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occupancy_belgium.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occupancy_pa,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occupancy_pa.tsv"),
+          na = "")
+```
+
+
+## GAM models
+
+Save complete outputs:
+
+```{r  save_outputs}
+method_em <- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {x$output}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("outptut_GAM_occurrences_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {x$output}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("outptut_GAM_occurrences_pa_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$output}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("outptut_GAM_occupancy_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$output}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("outptut_GAM_occupancy_pa_",
+                             method_em, ".tsv")))
+```
+
+Save summary of results limited to the years included in evaluation:
+
+```{r save_em_summary}
+method_em <- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occurrences_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occurrences_pa_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occupancy_belgium_",
+                             method_em, ".tsv")))
+
+method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$em_summary}),
+          na = "", 
+          path = here("data",
+                      "output", 
+                      "GAM_outputs",
+                      paste0("summary_GAM_occupancy_pa_",
+                             method_em, ".tsv")))
+```

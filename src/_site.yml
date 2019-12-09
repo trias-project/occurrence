@@ -18,6 +18,10 @@ navbar:
       menu:
       - text: "Appearing-reappearing species"
         href: occurrence_indicators_appearing_taxa.html
+      - text: "Assessing emerging status of alien species"
+        href: occurrence_indicators_modelling.html
+      - text: "Ranking species by emerging status"
+        href: ranking_emerging_status.html
     - text: "Appendix"
       href: ""
       menu:
