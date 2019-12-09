@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Damiano Oldoni" />
+<meta name="author" content="Toon Van Daele" />
+<meta name="author" content="Tim Adriaens" />
+
+<meta name="date" content="2019-12-09" />
+
+<title>Detect appearing and reappearing species</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="static\css\trias.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TrIAS pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Occurrence-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
+    </li>
+    <li>
+      <a href="occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
+    </li>
+    <li>
+      <a href="ranking_emerging_status.html">Ranking species by emerging status</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Appendix
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
+    </li>
+    <li>
+      <a href="occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Detect appearing and reappearing species</h1>
+<h4 class="author">Damiano Oldoni</h4>
+<h4 class="author">Toon Van Daele</h4>
+<h4 class="author">Tim Adriaens</h4>
+<h4 class="date">2019-12-09</h4>
+
+</div>
+
+
+<p>In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last year. Such detection is based on some basic rules instead of using GAM (Generalized Additive Models) as the number of GBIF observations decreases sensibly during the current year as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.</p>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<p>Load libraries:</p>
+<pre class="r"><code>library(tidyverse)      # To do data science
+library(tidylog)        # To provide feedback on dplyr functions
+library(here)           # To find files
+library(rgbif)          # To get information from GBIF</code></pre>
+</div>
+<div id="get-data" class="section level1">
+<h1><span class="header-section-number">2</span> Get data</h1>
+<p>We read the output of preprocessing pipeline.</p>
+<p>Time series:</p>
+<pre class="r"><code>df_ts &lt;- read_tsv(
+  here::here(&quot;data&quot;, &quot;interim&quot;, &quot;df_timeseries.tsv&quot;),
+  na = &quot;&quot;)</code></pre>
+<p>Columns <code>pa_obs</code> and <code>pa_native_obs</code> indicate the presence (1) or absence (0) of the specific taxon and native species at class level.</p>
+<p>Preview:</p>
+<pre class="r"><code># Get a taxon
+taxon &lt;- 
+  df_ts$taxonKey[5]
+
+# Preview
+df_ts %&gt;%
+  filter(taxonKey == taxon,
+         year %in% c(2016, 2017),
+         eea_cell_code %in% c(&quot;1kmE3814N3108&quot;, &quot;1kmE3894N3090&quot;)
+)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["eea_cell_code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["obs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pa_obs"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["native_obs"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["pa_native_obs"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["classKey"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["natura2000"],"name":[9],"type":["lgl"],"align":["right"]}],"data":[{"1":"2722051","2":"2016","3":"1kmE3814N3108","4":"0","5":"0","6":"15","7":"1","8":"196","9":"TRUE"},{"1":"2722051","2":"2017","3":"1kmE3814N3108","4":"0","5":"0","6":"0","7":"0","8":"196","9":"TRUE"},{"1":"2722051","2":"2016","3":"1kmE3894N3090","4":"1","5":"1","6":"4","7":"1","8":"196","9":"TRUE"},{"1":"2722051","2":"2017","3":"1kmE3894N3090","4":"0","5":"0","6":"14","7":"1","8":"196","9":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Taxonomic information:</p>
+<pre class="r"><code>spec_names &lt;- read_tsv(
+  file = here::here(&quot;data&quot;, 
+                            &quot;interim&quot;, 
+                            &quot;timeseries_taxonomic_info.tsv&quot;)
+)</code></pre>
+</div>
+<div id="detect-appearing---reappearing-species" class="section level1">
+<h1><span class="header-section-number">3</span> Detect appearing - reappearing species</h1>
+<p>Years to evaluate:</p>
+<pre class="r"><code>present_year &lt;- lubridate::year(Sys.Date())
+years &lt;- c(present_year)
+years</code></pre>
+<pre><code>## [1] 2019</code></pre>
+<p>We define the minimum latency (in years) before we speak about reappearance. For example, a latency time window of 3 years means that we consider a taxon reappearing in 2019 if observations occur in 2019 and 2015 or before:</p>
+<pre class="r"><code>years_latency &lt;- 3</code></pre>
+<div id="appearing---reappearing-species-in-belgium" class="section level2">
+<h2><span class="header-section-number">3.1</span> Appearing - reappearing species in Belgium</h2>
+<p>Lump geographic information:</p>
+<pre class="r"><code>df_ts_compact &lt;- 
+  df_ts %&gt;%
+  group_by(taxonKey, year) %&gt;%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %&gt;%
+  ungroup()</code></pre>
+<p>We define the function <code>is_appearing</code> for appearing/reappearing detection (this function will be moved to TrIAS package <code>trias</code> if this workflow will be positively reviewed):</p>
+<pre class="r"><code>#&#39; @param df data frame with time series
+#&#39; @param eval_years vector with years used for evaluation. Warning is returned
+#&#39; if not a sequence. Typically present year and year before.
+#&#39; @param latency years of latency (no observations). Strictly positive integer.
+#&#39; @param df_reference data frame with time series used to assess reappearing. If NULL (default) df is used.
+#&#39; @return data.frame with appearing or reappearing taxa
+is_appearing &lt;- function(df, 
+                         eval_years,
+                         latency = 2,
+                         df_reference = NULL,
+                         data_col = &quot;ncells&quot;,
+                         id_col = &quot;taxonKey&quot;,
+                         year_col = &quot;year&quot;) {
+
+  df &lt;- 
+    df %&gt;%
+    select(id_col, year_col, data_col) %&gt;%
+    rename(&quot;taxonKey&quot; = id_col,
+           &quot;year&quot; = year_col,
+           &quot;occ&quot; = data_col) %&gt;%
+    filter(occ &gt; 0) %&gt;%
+    group_by(taxonKey)
+  
+  if (!is.null(df_reference)) {
+    df_reference &lt;- 
+      df_reference %&gt;%
+      select(id_col, year_col, data_col) %&gt;%
+      rename(&quot;taxonKey&quot; = id_col,
+           &quot;year&quot; = year_col,
+           &quot;occ&quot; = data_col) %&gt;%
+      filter(occ &gt; 0) %&gt;%
+      group_by(taxonKey)
+  } else {
+    df_reference &lt;- df
+  }
+  
+  # Taxa present in evaluated years
+  
+  taxa_eval_years_df &lt;- 
+    df %&gt;%
+    filter(year %in% eval_years) %&gt;%
+    filter(year == min(year))
+  
+  taxa_eval_years &lt;- 
+    taxa_eval_years_df %&gt;%
+    distinct(taxonKey) %&gt;%
+    pull()
+  
+  # appearing taxa
+  appearing_taxa &lt;- 
+    df %&gt;%
+    filter(taxonKey %in% taxa_eval_years) %&gt;%
+    filter(min(year) %in% eval_years) %&gt;%
+    filter(year == min(year)) %&gt;%
+    ungroup()
+  
+  appearing_taxa &lt;-
+    appearing_taxa %&gt;%
+    rename(!!sym(data_col) := &quot;occ&quot;)
+  
+  # reappearing taxa
+  reappearing_taxa &lt;-
+    df_reference %&gt;%
+    filter(taxonKey %in% taxa_eval_years) %&gt;%
+    filter(year &lt; min(eval_years)) %&gt;%
+    filter(year == max(year)) %&gt;%
+    ungroup() %&gt;%
+    rename(last_year_before_reappearing = year) %&gt;%
+    left_join(taxa_eval_years_df, by = &quot;taxonKey&quot;) %&gt;%
+    group_by(taxonKey) %&gt;%
+    summarize(n_latent_years = year - last_year_before_reappearing) %&gt;%
+    filter(n_latent_years &gt; latency) %&gt;%
+    left_join(taxa_eval_years_df %&gt;% select(taxonKey, occ, year), 
+              by = &quot;taxonKey&quot;)
+  
+  reappearing_taxa &lt;-
+    reappearing_taxa %&gt;%
+    rename(!!sym(data_col) := &quot;occ&quot;)
+  
+  return(list(appearing_taxa = appearing_taxa, 
+              reappearing_taxa = reappearing_taxa))
+}</code></pre>
+<p>Apply function defined above:</p>
+<pre class="r"><code>appearing_reappearing_taxa &lt;- is_appearing(df = df_ts_compact, 
+                                           eval_years = years, 
+                                           latency = years_latency,
+                                           df_reference = NULL)</code></pre>
+<p>Number of appearing taxa:</p>
+<pre class="r"><code>nrow(appearing_reappearing_taxa$appearing_taxa)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>Number of reappearing taxa:</p>
+<pre class="r"><code>nrow(appearing_reappearing_taxa$reappearing_taxa)</code></pre>
+<pre><code>## [1] 31</code></pre>
+</div>
+<div id="appearing---reappearing-species-in-belgian-protected-areas" class="section level2">
+<h2><span class="header-section-number">3.2</span> Appearing - reappearing species in Belgian protected areas</h2>
+<p>We repeat the workflow defined above to assess which taxa are appearing or reappearing in protected areas.</p>
+<p>First we select data referring to protected areas (Natura2000) and then we lump geographical information:</p>
+<pre class="r"><code>df_ts_compact_prot_areas &lt;-
+  df_ts %&gt;%
+  filter(natura2000 == TRUE) %&gt;%
+  group_by(taxonKey, year) %&gt;%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %&gt;%
+  ungroup()</code></pre>
+<p>We apply function <code>is_appearing</code>. Notice that we use occurrences about all Belgium to assess the reappearance in protected areas:</p>
+<pre class="r"><code>appearing_reappearing_taxa_prot_areas &lt;- is_appearing(
+  df = df_ts_compact_prot_areas, 
+  eval_years = years,
+  latency = years_latency,
+  df_reference = df_ts_compact)</code></pre>
+<p>Number of appearing taxa:</p>
+<pre class="r"><code>nrow(appearing_reappearing_taxa_prot_areas$appearing_taxa)</code></pre>
+<pre><code>## [1] 11</code></pre>
+<p>Number of reappearing taxa:</p>
+<pre class="r"><code>nrow(appearing_reappearing_taxa_prot_areas$reappearing_taxa)</code></pre>
+<pre><code>## [1] 12</code></pre>
+</div>
+<div id="merge" class="section level2">
+<h2><span class="header-section-number">3.3</span> Merge</h2>
+<p>We merge appearing taxa from all Belgium and from protected areas. We rank taxa by area of occupancy (number of cells) in protected areas and in all Belgium. We do the same for reappearing taxa as well:</p>
+<pre class="r"><code>app_reapp_global &lt;- 
+  map2(appearing_reappearing_taxa_prot_areas,
+       appearing_reappearing_taxa,
+       function(x,y) {
+         x &lt;-
+           x %&gt;%
+           rename(ncells_prot_areas = ncells)
+         y &lt;- 
+           y %&gt;%
+           rename(ncells_BE = ncells)
+         full_join(x, y) %&gt;%
+           mutate(
+             in_prot_areas = ifelse(!is.na(ncells_prot_areas),
+                                              TRUE,
+                                              FALSE),
+             in_BE = ifelse(!is.na(ncells_BE),
+                                      TRUE,
+                                      FALSE)) %&gt;%
+           arrange(desc(ncells_prot_areas),
+                   desc(ncells_BE))
+    }
+)</code></pre>
+</div>
+<div id="add-canonical-names" class="section level2">
+<h2><span class="header-section-number">3.4</span> Add canonical names</h2>
+<p>Add taxonomic information for better readibility.</p>
+<pre class="r"><code>app_reapp_global &lt;- map(app_reapp_global,
+                          function(x) {
+                            x %&gt;% 
+                              left_join(spec_names, by = &quot;taxonKey&quot;)
+                          })</code></pre>
+</div>
+</div>
+<div id="table-of-appearing-and-reappearing-taxa" class="section level1">
+<h1><span class="header-section-number">4</span> Table of appearing and reappearing taxa</h1>
+<div id="appearing-taxa" class="section level2">
+<h2><span class="header-section-number">4.1</span> Appearing taxa</h2>
+<p>Reorder columns of data.frame containing appearring taxa:</p>
+<pre class="r"><code>app_reapp_global$appearing_taxa &lt;- 
+  app_reapp_global$appearing_taxa %&gt;%
+  select(taxonKey, 
+         canonicalName,
+         year, 
+         ncells_prot_areas,
+         ncells_BE,
+         in_prot_areas,
+         in_BE,
+         class, 
+         kingdom, 
+         classKey, 
+         kingdomKey
+)</code></pre>
+<p>Appearing taxa:</p>
+<pre class="r"><code>app_reapp_global$appearing_taxa</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["canonicalName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ncells_prot_areas"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ncells_BE"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["in_prot_areas"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["in_BE"],"name":[7],"type":["lgl"],"align":["right"]},{"label":["class"],"name":[8],"type":["chr"],"align":["left"]},{"label":["kingdom"],"name":[9],"type":["chr"],"align":["left"]},{"label":["classKey"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["kingdomKey"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"7331666","2":"Melampyrum nemorosum","3":"2019","4":"2","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"3083488","2":"Paeonia officinalis","3":"2019","4":"1","5":"3","6":"TRUE","7":"TRUE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"2493697","2":"Amandava subflava","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Aves","9":"Animalia","10":"212","11":"1"},{"1":"2888323","2":"Clethra alnifolia","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"2926042","2":"Nonea lutea","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"2928238","2":"Phacelia campanularia","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"2964167","2":"Lupinus albus","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"4005004","2":"Lysimachia fortunei","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"5353590","2":"Cercis siliquastrum","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"5415056","2":"Forsythia suspensa","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"5568442","2":"Dysphania anthelmintica","3":"2019","4":"1","5":"NA","6":"TRUE","7":"FALSE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"2176858","2":"Philaeus chrysops","3":"2019","4":"NA","5":"3","6":"FALSE","7":"TRUE","8":"Arachnida","9":"Animalia","10":"367","11":"1"},{"1":"3046765","2":"Sisymbrium erysimoides","3":"2019","4":"NA","5":"2","6":"FALSE","7":"TRUE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"1423286","2":"Ischnura senegalensis","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Insecta","9":"Animalia","10":"216","11":"1"},{"1":"2295309","2":"Hawaiia minuscula","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Gastropoda","9":"Animalia","10":"225","11":"1"},{"1":"2747750","2":"Crocus luteus","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Liliopsida","9":"Plantae","10":"196","11":"6"},{"1":"2928589","2":"Ipomoea tricolor","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"3896282","2":"Teucrium hircanicum","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"3905825","2":"Betonica macrantha","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Magnoliopsida","9":"Plantae","10":"220","11":"6"},{"1":"5229045","2":"Psittacula alexandri","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"Aves","9":"Animalia","10":"212","11":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Empty <code>ncells_BE</code> and <code>in_BE</code> equal to FALSE means that the taxon is appearing in protected areas but not appearing outside, i.e. the taxon is maybe reappearing at Belgian level or occurring with a more stable presence. See next section for more details about.</p>
+</div>
+<div id="reappearing-taxa" class="section level2">
+<h2><span class="header-section-number">4.2</span> Reappearing taxa</h2>
+<p>Reorder columns of data.frame containing reappearing taxa:</p>
+<pre class="r"><code>app_reapp_global$reappearing_taxa &lt;- 
+  app_reapp_global$reappearing_taxa %&gt;%
+  select(taxonKey, 
+         canonicalName, 
+         year, 
+         ncells_prot_areas,
+         ncells_BE,
+         in_prot_areas,
+         in_BE,
+         n_latent_years,
+         class, 
+         kingdom, 
+         classKey, 
+         kingdomKey
+)</code></pre>
+<p>Reappearing taxa:</p>
+<pre class="r"><code>app_reapp_global$reappearing_taxa</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["canonicalName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ncells_prot_areas"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ncells_BE"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["in_prot_areas"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["in_BE"],"name":[7],"type":["lgl"],"align":["right"]},{"label":["n_latent_years"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["class"],"name":[9],"type":["chr"],"align":["left"]},{"label":["kingdom"],"name":[10],"type":["chr"],"align":["left"]},{"label":["classKey"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["kingdomKey"],"name":[12],"type":["dbl"],"align":["right"]}],"data":[{"1":"2498145","2":"Anas rhynchotis","3":"2019","4":"2","5":"4","6":"TRUE","7":"TRUE","8":"6","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"2480542","2":"Buteo jamaicensis","3":"2019","4":"2","5":"2","6":"TRUE","7":"TRUE","8":"4","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"7331666","2":"Melampyrum nemorosum","3":"2019","4":"2","5":"2","6":"TRUE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"3026040","2":"Cotoneaster suecicus","3":"2019","4":"1","5":"2","6":"TRUE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"7433196","2":"Euonymus latifolius","3":"2019","4":"1","5":"2","6":"TRUE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"2215949","2":"Melita nitida","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"10","9":"Malacostraca","10":"Animalia","11":"229","12":"1"},{"1":"2722380","2":"Carex crawfordii","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"6","9":"Liliopsida","10":"Plantae","11":"196","12":"6"},{"1":"2747939","2":"Crocosmia crocosmiiflora","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"5","9":"Liliopsida","10":"Plantae","11":"196","12":"6"},{"1":"2873994","2":"Aristolochia macrophylla","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5229128","2":"Himantopus mexicanus","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"4","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"5415056","2":"Forsythia suspensa","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"6","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5845390","2":"Gracupica nigricollis","3":"2019","4":"1","5":"1","6":"TRUE","7":"TRUE","8":"7","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"1702101","2":"Anacridium aegyptium","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"9","9":"Insecta","10":"Animalia","11":"216","12":"1"},{"1":"2157245","2":"Steatoda grossa","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"18","9":"Arachnida","10":"Animalia","11":"367","12":"1"},{"1":"2362486","2":"Hypophthalmichthys nobilis","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Actinopterygii","10":"Animalia","11":"204","12":"1"},{"1":"2494070","2":"Ploceus melanocephalus","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"10","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"2774846","2":"Chlorophytum comosum","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Liliopsida","10":"Plantae","11":"196","12":"6"},{"1":"3125933","2":"Santolina chamaecyparissus","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"3131367","2":"Helichrysum petiolare","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5200414","2":"Diplosoma listerianum","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"11","9":"Ascidiacea","10":"Animalia","11":"356","12":"1"},{"1":"5296218","2":"Sisyrinchium californicum","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Liliopsida","10":"Plantae","11":"196","12":"6"},{"1":"5359249","2":"Trifolium rubens","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"19","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5361841","2":"Pilea microphylla","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"14","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5410210","2":"Campanula fenestrellata","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5414932","2":"Chelone obliqua","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5415054","2":"Forsythia intermedia","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5686494","2":"Decaisnea insignis","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"5959118","2":"Bubo virginianus","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Aves","10":"Animalia","11":"212","12":"1"},{"1":"8144599","2":"Papaver nudicaule","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"8773480","2":"Koenigia fennica","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"5","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"},{"1":"9567226","2":"Oxybasis glauca salina","3":"2019","4":"NA","5":"1","6":"FALSE","7":"TRUE","8":"4","9":"Magnoliopsida","10":"Plantae","11":"220","12":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Taxa appearing in protected areas and reappearing outside:</p>
+<pre class="r"><code>app_reapp_global$appearing_taxa %&gt;% 
+  filter(in_BE == FALSE) %&gt;%
+  filter(taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %&gt;%
+  select(taxonKey, canonicalName)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["canonicalName"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"7331666","2":"Melampyrum nemorosum"},{"1":"5415056","2":"Forsythia suspensa"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Taxa appearing in protected areas and with a stable presence outside:</p>
+<pre class="r"><code>app_reapp_global$appearing_taxa %&gt;% 
+  filter(in_BE == FALSE) %&gt;%
+  filter(!taxonKey %in% app_reapp_global$reappearing_taxa$taxonKey) %&gt;%
+  select(taxonKey, canonicalName, class, kingdom, classKey, kingdomKey)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["canonicalName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["class"],"name":[3],"type":["chr"],"align":["left"]},{"label":["kingdom"],"name":[4],"type":["chr"],"align":["left"]},{"label":["classKey"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["kingdomKey"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2493697","2":"Amandava subflava","3":"Aves","4":"Animalia","5":"212","6":"1"},{"1":"2888323","2":"Clethra alnifolia","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"2926042","2":"Nonea lutea","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"2928238","2":"Phacelia campanularia","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"2964167","2":"Lupinus albus","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"4005004","2":"Lysimachia fortunei","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"5353590","2":"Cercis siliquastrum","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"},{"1":"5568442","2":"Dysphania anthelmintica","3":"Magnoliopsida","4":"Plantae","5":"220","6":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Two examples follow.</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["canonicalName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["obs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ncells"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["prot_areas_obs"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["prot_areas_ncells"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"2493697","2":"Amandava subflava","3":"1999","4":"1","5":"1","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2000","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2001","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2002","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2003","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2004","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2005","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2006","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2007","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2008","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2009","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2010","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2011","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2012","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2013","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2014","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2015","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2016","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2017","4":"0","5":"0","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2018","4":"1","5":"1","6":"0","7":"0"},{"1":"2493697","2":"Amandava subflava","3":"2019","4":"1","5":"1","6":"1","7":"1"},{"1":"2888323","2":"Clethra alnifolia","3":"2010","4":"1","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2011","4":"1","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2012","4":"1","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2013","4":"1","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2014","4":"2","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2015","4":"1","5":"1","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2016","4":"3","5":"2","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2017","4":"4","5":"3","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2018","4":"2","5":"2","6":"0","7":"0"},{"1":"2888323","2":"Clethra alnifolia","3":"2019","4":"2","5":"2","6":"1","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="save-data" class="section level1">
+<h1><span class="header-section-number">5</span> Save data</h1>
+<div id="appearing-taxa-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Appearing taxa</h2>
+<p>Save appearing taxa:</p>
+<pre class="r"><code>write_tsv(app_reapp_global$appearing_taxa,
+          path = here::here(&quot;data&quot;, &quot;output&quot;, &quot;appearing_taxa.tsv&quot;),
+          na = &quot;&quot;
+)</code></pre>
+</div>
+<div id="reappearing-taxa-1" class="section level2">
+<h2><span class="header-section-number">5.2</span> Reappearing taxa</h2>
+<p>Save reappearing taxa:</p>
+<pre class="r"><code>write_tsv(app_reapp_global$reappearing_taxa,
+          path = here::here(&quot;data&quot;, &quot;output&quot;, &quot;reappearing_taxa.tsv&quot;),
+          na = &quot;&quot;
+)</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
