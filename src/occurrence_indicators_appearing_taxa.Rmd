@@ -13,7 +13,7 @@ output:
     number_sections: true
 ---
 
-In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last year. Such detection is based on decision rules instead of using GAM modelling as the number of GBIF observations decreases sensibly during current year as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.
+In this document we analyze the Belgian datacube to detect possible (re)appearing taxa in the last year. Such detection is based on some basic rules instead of using GAM (Generalized Additive Models) as the number of GBIF observations decreases sensibly during the current year as effect of a puslishing delay. We also take into account the appearing/reappearing in protected areas as additional warning.
 
 # Setup
 
