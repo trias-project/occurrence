@@ -19,7 +19,7 @@ This document describes the modelling to assess the emerging status of alien spe
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 Load libraries:
@@ -32,6 +32,7 @@ library(rgbif)          # To get information from GBIF
 library(here)           # To find files
 library(mgcv)           # To apply GAM           
 library(gratia)         # To calculate derivatives
+library(INBOtheme)      # To load graphic INBO theme
 ```
 
 # Get data
@@ -84,6 +85,20 @@ df_ts_compact <-
   ungroup()
 ```
 
+We create a similar data.frame specific to protected areas (Natura2000):
+
+```{r df_ts_compact_protected_areas, cache=TRUE}
+df_ts_compact_prot_areas <-
+  df_ts %>%
+  filter(natura2000 == TRUE) %>%
+  group_by(taxonKey, year) %>%
+  summarise(obs = sum(obs),
+            native_obs = sum(native_obs),
+            ncells = sum(pa_obs),
+            native_ncells = sum(pa_native_obs)) %>%
+  ungroup()
+```
+
 Add canonical names:
 
 ```{r add_canonicalName}
@@ -114,7 +129,7 @@ evaluation_years
 
 We define some decision rules for occupancy and we group them in a function:
 
-```{r decision_rules_function}
+```{r decision_rules_function, message=FALSE}
 #' @param df data frame with time series. It should contain at least two columns: time and values.
 #' @param evaluation_year the decision rules are applied to time series up to this year.
 #' @return list with dataframe, emergency status and tests
@@ -357,7 +372,7 @@ We apply GAM to occurrences and occupancy in all Belgium and in protected areas.
 
 We define first basic functions, which will be moved to `trias` package soon.
 
-```{r define_functions_GAM}
+```{r define_functions_GAM, message=FALSE}
 ### Plot time series with confidence limits + emerging status
 plot_ribbon_em <- function(df_plot, 
                            x_axis = "year", 
@@ -397,7 +412,8 @@ plot_ribbon_em <- function(df_plot,
                  size = 2) +
     scale_colour_manual(values = colors_em,
                         labels = labels_em,
-                        name = "Emerging status")
+                        name = "Emerging status") +
+    theme(plot.title = element_text(size=10))
   }
   
   return(g)
@@ -643,7 +659,7 @@ apply_gam <- function(df,
 
 Apply GAM for occurrence data in all Belgium:
 
-```{r apply_gam_to_all_taxa, message=FALSE}
+```{r apply_gam_to_all_taxa, message=FALSE, cache=TRUE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
 gam_occs_BE <- map2(
@@ -670,7 +686,7 @@ names(gam_occs_BE) <- taxon_keys
 
 Show some results:
 
-```{r message=FALSE}
+```{r show_results_proveiw_occs_BE, message=FALSE}
 map(gam_occs_BE[1:10], 
     function(t) {
       if (!is.null(t$plot)) t$plot
@@ -678,25 +694,11 @@ map(gam_occs_BE[1:10],
 )
 ```
 
-### Protected aras
+#### Protected aras
 
-First we select data referring to protected areas (Natura2000) and then we lump geographical information as we did it before for all Belgium:
+Apply GAM for occurrence data in protected areas:
 
-```{r df_ts_compact_protected_areas}
-df_ts_compact_prot_areas <-
-  df_ts %>%
-  filter(natura2000 == TRUE) %>%
-  group_by(taxonKey, year) %>%
-  summarise(obs = sum(obs),
-            native_obs = sum(native_obs),
-            ncells = sum(pa_obs),
-            native_ncells = sum(pa_native_obs)) %>%
-  ungroup()
-```
-
-Apply GAM:
-
-```{r apply_gam_to_all_taxa_protected_areas, message=FALSE}
+```{r apply_gam_occurrences_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
 gam_occs_pa <- map2(
@@ -723,7 +725,7 @@ names(gam_occs_pa) <- taxon_keys
 
 Show some results:
 
-```{r message=FALSE}
+```{r preview_gam_occs_PA, message=FALSE}
 map(gam_occs_pa[1:10], ~.$plot)
 ```
 
@@ -733,7 +735,7 @@ map(gam_occs_pa[1:10], ~.$plot)
 
 Apply GAM for occupancy data (number of occupied cells) in all Belgium:
 
-```{r apply_gam_occupancy_to_all_taxa, message=FALSE}
+```{r apply_gam_occupancy_to_all_taxa, message=FALSE, cache=TRUE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
 gam_occupancy_BE <- map2(
@@ -760,7 +762,7 @@ names(gam_occupancy_BE) <- taxon_keys
 
 Show some results:
 
-```{r message=FALSE}
+```{r preview_gam_occupancy_BE, message=FALSE}
 map(gam_occupancy_BE[1:10], 
     function(t) {
       if (!is.null(t$plot)) t$plot
@@ -768,11 +770,11 @@ map(gam_occupancy_BE[1:10],
 )
 ```
 
-### Protected aras
+#### Protected aras
 
 Apply GAM for occupancy in protected areas:
 
-```{r apply_gam_to_all_taxa_protected_areas, message=FALSE}
+```{r apply_gam_occupancy_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
 taxon_keys <- spec_names$taxonKey
 taxon_names <- spec_names$canonicalName
 gam_occupancy_pa <- map2(
@@ -799,8 +801,8 @@ names(gam_occupancy_pa) <- taxon_keys
 
 Show some results:
 
-```{r message=FALSE}
-map(gam_occs_pa[1:10], ~.$plot)
+```{r preview_gam_occupancy_PA, message=FALSE}
+map(gam_occupancy_pa[1:10], ~.$plot)
 ```
 
 # Save results
