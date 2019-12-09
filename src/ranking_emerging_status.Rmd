@@ -309,7 +309,7 @@ occurrences | 2017 | Belgium | 1.5
 occupancy | 2016 | protected areas | 2
 occurrences | 2016 | protected areas | 1.5
 occupancy | 2016 | Belgium | 1.5
-occurrences in 2016 | Belgium | 1
+occurrences | 2016 | Belgium | 1
 
 ```{r rank_by_em_pts}
 ranking_pts <- 
