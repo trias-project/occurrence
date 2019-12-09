@@ -3,6 +3,7 @@ title: 'Emerging status: modelling'
 author:
 - Damiano Oldoni
 - Toon Van Daele
+- Tim Adriaens
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -129,139 +130,225 @@ em_status_dr <- function(df,
     rename("taxonKey" = id_col,
            "year" = year_col,
            "occ" = data_col)
-  print(names(df))
-  # Group by taxonKey
+
+  # Cut time series up to evaluation_year
   df <- 
     df %>%
     group_by(taxonKey) %>%
-    filter(year <= evaluation_year)
+    filter(year <= evaluation_year) %>%
+    ungroup()
   
   # Rule 1: Time series with only one value at evaluation year
   dr_1 <- 
     df %>%
+    group_by(taxonKey) %>%
     add_tally() %>%
     mutate(dr_1 = n == 1) %>%
     filter(year == evaluation_year) %>%
     select(taxonKey, dr_1)
   
-  # dr_2: 50% of time series > 0?
-  dr_2 <-
+  # # dr_2: 50% of time series > 0?
+  # dr_2 <-
+  #   df %>%
+  #   group_by(taxonKey) %>%
+  #   summarize(dr_2 = sum(occ > 0)/ n() >= 0.5)
+  
+  # dr_3: last value above median value -> possibly emerging ("2")
+  dr_3 <-
     df %>%
-    summarize(dr_2 = sum(occ > 0)/ n() >= 0.5)
-  # 
-  # # dr_3: last value above median value -> possibly emerging ("2")
-  # dr_3 <-
-  #   df %>%
-  #   mutate(last_occ = ifelse(year == max(year), occ, -1)) %>%
-  #   summarize(median_occ = median(occ),
-  #             last_occ = max(last_occ)) %>%
-  #   mutate(dr_3 = last_occ > median_occ) %>%
-  #   select(taxonKey,  dr_3)
-  # 
-  # # dr_4: 0 since 5 years -> not emerging
-  # dr_4 <-
-  #   df %>%
-  #   filter(year > (max(year)-5)) %>%
-  #   tally(occ) %>%
-  #   mutate(dr_4 = n == 0) %>%
-  #   select(taxonKey, dr_4)
-  # 
+    group_by( taxonKey) %>%
+    mutate(last_occ = ifelse(year == max(year), occ, -1)) %>%
+    summarize(median_occ = median(occ),
+              last_occ = max(last_occ)) %>%
+    mutate(dr_3 = last_occ > median_occ) %>%
+    select(taxonKey,  dr_3)
+
+  # dr_4: 0 since 5 years -> not emerging
+  dr_4 <-
+    df %>%
+    group_by(taxonKey) %>%
+    filter(year > (max(year)-5)) %>%
+    tally(occ) %>%
+    mutate(dr_4 = n == 0) %>%
+    select(taxonKey, dr_4)
+
   # # dr_5: > 0 and 5 consecutive years 0 before  -> (re)appearing
-  # dr_5 <- 
+  # dr_5 <-
   #   df %>%
   #   filter(year == max(year)) %>%
+  #   group_by(taxonKey) %>%
   #   summarize(dr_5_cond1 = occ > 0) %>%
   #   left_join(df %>%
-  #                filter(year > (max(year)-6) & year < max(year)) %>%
-  #                tally(occ) %>%
-  #                mutate(dr_5_cond2 = n == 0) %>%
-  #                select(-n),
-  #              by = "taxonKey") %>%
+  #               filter(year > (max(year)-6) & year < max(year)) %>%
+  #               group_by(taxonKey) %>%
+  #               tally(occ) %>%
+  #               mutate(dr_5_cond2 = n == 0) %>%
+  #               select(-n),
+  #             by = "taxonKey") %>%
   #   mutate(dr_5 = dr_5_cond1 & dr_5_cond2) %>%
   #   select(taxonKey, dr_5)
-  # 
-  # # dr_6: Maximum of occ == 1
+ 
+  # # dr_6: Maximum of occ >= 1
   # dr_6 <-
   #   df %>%
-  #   summarize(dr_6 = max(occ) <= 1)
-  # 
-  # # dr_7: Increase? Last value > before last value
-  # dr_7 <- 
+  #   filter(year == max(year)) %>%
+  #   group_by(taxonKey) %>%
+  #   summarize(dr_6 = max(occ) >= 1)
+
+  # # # dr_7: Increase? Last value > before last value > 0
+  # dr_7 <-
   #   df %>%
   #   filter(year == max(year)) %>%
   #   select(taxonKey, occ) %>%
   #   rename(last_occ = occ) %>%
-  #   ungroup() %>%
   #   left_join(
   #     df %>%
   #       filter(year == max(year) - 1) %>%
   #       select(taxonKey, occ) %>%
-  #       rename(before_last_occ = occ) %>%
-  #       ungroup(),
+  #       rename(before_last_occ = occ),
   #     by = "taxonKey") %>%
-  #   mutate(dr_7 = last_occ > before_last_occ) %>%
+  #   mutate(dr_7 = last_occ > before_last_occ & 
+  #            before_last_occ > 0) %>%
   #   select(taxonKey, dr_7)
-  # 
-  # # dr_8: Maximum ever observed?
-  # dr_8 <- 
+
+  # dr_8: Maximum ever observed?
+  dr_8 <-
+    df %>%
+    group_by(taxonKey) %>%
+    summarize(max_occ = max(occ)) %>%
+    inner_join(df %>%
+                 filter(year == max(year)) %>%
+                 ungroup() %>%
+                 rename(last_value = occ),
+               by = "taxonKey") %>%
+    mutate(dr_8 = last_value == max_occ) %>%
+    select(taxonKey, dr_8)
+
+  # # dr_9: Decrease? Last value < before last value
+  # dr_9 <-
   #   df %>%
-  #   summarize(max_occ = max(occ)) %>%
-  #   inner_join(df %>%
-  #                filter(year == max(year)) %>%
-  #                ungroup() %>%
-  #                rename(last_value = occ),
-  #              by = "taxonKey") %>%
-  #   mutate(dr_8 = last_value == max_occ) %>%
-  #   select(taxonKey, dr_8)
-  # 
-  # # convert to em status codes:
-  # # 0 = not emerging
-  # # 1 = unclear
-  # # 2 = potentially emerging
-  # # 3 = emerging
-  # # 4 = appearing
-  # 
-  # dr_all <- 
-  #   list(dr_1, dr_2, dr_3, dr_4, dr_5, dr_6, dr_7, dr_8) %>% 
-  #   reduce(inner_join, by = "taxonKey")
-  # 
-  # em_dr <- 
-  #   dr_all %>%
-  #   mutate(em = case_when(
-  #     dr_8 == TRUE & dr_1 == FALSE ~ 3, # maximum ever observerd => emerging
-  #     dr_3 == TRUE ~ 2, # potentially emerging
-  #     dr_7 == TRUE & dr_8 == FALSE ~ 2, # Last year increase but not maximum => potentially emerging
-  #     dr_6 == TRUE & dr_2 == TRUE ~ 1, # appearing / re-appearing
-  #     dr_5 == TRUE ~ 1, # > 0 after 5 consecutive 0 => re-appearing
-  #     dr_1 == TRUE ~ 1, # One value at evaluation year > 1 => appearing / re-appearing
-  #     dr_4 == TRUE ~ 0, # zeros for at least the last 5 years => not emerging
-  #     )) %>%
-  #   mutate(em = ifelse(is.na(em), 0, em)) %>%
-  #   mutate(eval_year = evaluation_year)
-  # %>%
-  #   select(taxonKey, em)
-  return(dr_1)
+  #   filter(year == max(year)) %>%
+  #   select(taxonKey, occ) %>%
+  #   rename(last_occ = occ) %>%
+  #   left_join(
+  #     df %>%
+  #       filter(year == max(year) - 1) %>%
+  #       select(taxonKey, occ) %>%
+  #       rename(before_last_occ = occ),
+  #     by = "taxonKey") %>%
+  #   mutate(dr_9 = last_occ < before_last_occ) %>%
+  #   select(taxonKey, dr_9)
+
+  # Join all decision rules together
+  dr_all <- 
+    list(dr_1, dr_3, dr_4, dr_8) %>% 
+    reduce(inner_join, by = "taxonKey")
+  
+  # convert to em status codes:
+  # 0 = not emerging
+  # 1 = unclear ((re)appearing at eyear is judged as unclear too)
+  # 2 = potentially emerging
+  # 3 = emerging
+  em_dr <-
+    dr_all %>%
+    mutate(em_status = case_when(
+      
+      dr_4 == TRUE ~ 0, # not emerging
+      
+      dr_1 == FALSE & dr_3 == TRUE &  
+        dr_4 == FALSE  & dr_8 == TRUE ~ 3, # emerging
+      
+      dr_1 == FALSE & dr_3 == TRUE &  
+        dr_4 == FALSE  & dr_8 == FALSE ~ 2, # potentially emerging
+      
+      (dr_1 == TRUE & dr_4 == FALSE) | 
+        (dr_1 == FALSE & dr_3 == FALSE & dr_4 == FALSE) ~ 1, # unclear
+      )) %>%
+    mutate(year = evaluation_year) %>%
+    select(taxonKey, year, em_status, everything())
+  
+  return(em_dr)
 }
 ```
 
-We apply this function to all taxa after lumping spatial information:
+### Occurrences
 
-```{r apply_decision_rules}
-emerging_status_dr <- 
-  df_ts %>%
-  group_by(taxonKey, year) %>%
-  summarise(obs = sum(obs),
-            native_obs = sum(native_obs),
-            ncells = sum(pa_obs),
-            native_ncells = sum(pa_native_obs)) %>%
-  ungroup()
-emerging_status_dr <- map_dfr(
+#### Belgium
+
+We apply this function to occurrences for all Belgium:
+
+```{r apply_decision_rules_occs_be, message=FALSE}
+em_decision_rules_occs_BE <- map_dfr(
   evaluation_years,
-  ~ em_status_dr(df = emerging_status_dr,
+  ~ em_status_dr(df = df_ts_compact,
+                 evaluation_year = .,
+                 data_col = "obs")
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_BE}
+em_decision_rules_occs_BE %>% head()
+```
+
+#### Protected areas
+
+We apply this function to occurrences for protected areas:
+
+```{r apply_decision_rules_occs_pa, message=FALSE}
+em_decision_rules_occs_pa <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact_prot_areas,
+                 evaluation_year = .,
+                 data_col = "obs")
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_pa}
+em_decision_rules_occs_pa %>% head()
+```
+
+### Occupancy
+
+#### Belgium
+
+We apply this function to occupancy for all Belgium:
+
+```{r apply_decision_rules_occupancy_BE, message=FALSE}
+em_decision_rules_occupancy_BE <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact,
                  evaluation_year = .,
                  data_col = "ncells")
 )
-emerging_status_dr
+```
+
+Examples:
+
+```{r example_decision_rules}
+em_decision_rules_occupancy_BE %>% head()
+```
+
+#### Protected areas
+
+We apply this function to occupancy in protected areas:
+
+```{r apply_dec_rules_occupancy_pa, message=FALSE}
+em_decision_rules_occupancy_pa <- map_dfr(
+  evaluation_years,
+  ~ em_status_dr(df = df_ts_compact_prot_areas,
+                 evaluation_year = .,
+                 data_col = "ncells")
+)
+```
+
+Examples:
+
+```{r example_dr_occupancy_pa}
+em_decision_rules_occupancy_pa %>% head()
 ```
 
 ## Generalized additive model (GAM)
@@ -550,9 +637,9 @@ apply_gam <- function(df,
 }
 ```
 
-## Occurrences
+### Occurrences
 
-### Belgium
+#### Belgium
 
 Apply GAM for occurrence data in all Belgium:
 
@@ -640,9 +727,9 @@ Show some results:
 map(gam_occs_pa[1:10], ~.$plot)
 ```
 
-## Occupancy
+### Occupancy
 
-### Belgium
+#### Belgium
 
 Apply GAM for occupancy data (number of occupied cells) in all Belgium:
 
@@ -717,6 +804,36 @@ map(gam_occs_pa[1:10], ~.$plot)
 ```
 
 # Save results
+
+## Decision rules
+
+Save emerging status based on decision rules:
+
+```{r save_decisionrules_results}
+write_tsv(em_decision_rules_occs_BE,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occs_belgium.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occs_pa,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occs_pa.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occupancy_BE,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occupancy_belgium.tsv"),
+          na = "")
+write_tsv(em_decision_rules_occupancy_pa,
+          path = here::here("data", "output", 
+                      "decision_rules_outputs",
+                      "output_decision_rules_occupancy_pa.tsv"),
+          na = "")
+```
+
+
+## GAM models
 
 Save complete outputs:
 
