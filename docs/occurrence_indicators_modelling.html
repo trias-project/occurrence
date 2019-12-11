@@ -14,7 +14,7 @@
 <meta name="author" content="Toon Van Daele" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2019-12-09" />
+<meta name="date" content="2019-12-11" />
 
 <title>Emerging status: modelling</title>
 
@@ -434,7 +434,7 @@ div.tocify {
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Toon Van Daele</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2019-12-09</h4>
+<h4 class="date">2019-12-11</h4>
 
 </div>
 
@@ -449,7 +449,8 @@ library(tidyselect)
 library(rgbif)          # To get information from GBIF
 library(here)           # To find files
 library(mgcv)           # To apply GAM           
-library(gratia)         # To calculate derivatives</code></pre>
+library(gratia)         # To calculate derivatives
+library(INBOtheme)      # To load graphic INBO theme</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
@@ -522,7 +523,7 @@ evaluation_years</code></pre>
 </div>
 <div id="decision-rules" class="section level2">
 <h2><span class="header-section-number">3.2</span> Decision rules</h2>
-<p>We define some decision rules for occupancy and we group them in a function:</p>
+<p>We define some decision rules for occupancy and we group them in a function (we are working to move this function to <code>trias</code> package):</p>
 <pre class="r"><code>#&#39; @param df data frame with time series. It should contain at least two columns: time and values.
 #&#39; @param evaluation_year the decision rules are applied to time series up to this year.
 #&#39; @return list with dataframe, emergency status and tests
@@ -555,12 +556,6 @@ em_status_dr &lt;- function(df,
     filter(year == evaluation_year) %&gt;%
     select(taxonKey, dr_1)
   
-  # # dr_2: 50% of time series &gt; 0?
-  # dr_2 &lt;-
-  #   df %&gt;%
-  #   group_by(taxonKey) %&gt;%
-  #   summarize(dr_2 = sum(occ &gt; 0)/ n() &gt;= 0.5)
-  
   # dr_3: last value above median value -&gt; possibly emerging (&quot;2&quot;)
   dr_3 &lt;-
     df %&gt;%
@@ -580,45 +575,6 @@ em_status_dr &lt;- function(df,
     mutate(dr_4 = n == 0) %&gt;%
     select(taxonKey, dr_4)
 
-  # # dr_5: &gt; 0 and 5 consecutive years 0 before  -&gt; (re)appearing
-  # dr_5 &lt;-
-  #   df %&gt;%
-  #   filter(year == max(year)) %&gt;%
-  #   group_by(taxonKey) %&gt;%
-  #   summarize(dr_5_cond1 = occ &gt; 0) %&gt;%
-  #   left_join(df %&gt;%
-  #               filter(year &gt; (max(year)-6) &amp; year &lt; max(year)) %&gt;%
-  #               group_by(taxonKey) %&gt;%
-  #               tally(occ) %&gt;%
-  #               mutate(dr_5_cond2 = n == 0) %&gt;%
-  #               select(-n),
-  #             by = &quot;taxonKey&quot;) %&gt;%
-  #   mutate(dr_5 = dr_5_cond1 &amp; dr_5_cond2) %&gt;%
-  #   select(taxonKey, dr_5)
- 
-  # # dr_6: Maximum of occ &gt;= 1
-  # dr_6 &lt;-
-  #   df %&gt;%
-  #   filter(year == max(year)) %&gt;%
-  #   group_by(taxonKey) %&gt;%
-  #   summarize(dr_6 = max(occ) &gt;= 1)
-
-  # # # dr_7: Increase? Last value &gt; before last value &gt; 0
-  # dr_7 &lt;-
-  #   df %&gt;%
-  #   filter(year == max(year)) %&gt;%
-  #   select(taxonKey, occ) %&gt;%
-  #   rename(last_occ = occ) %&gt;%
-  #   left_join(
-  #     df %&gt;%
-  #       filter(year == max(year) - 1) %&gt;%
-  #       select(taxonKey, occ) %&gt;%
-  #       rename(before_last_occ = occ),
-  #     by = &quot;taxonKey&quot;) %&gt;%
-  #   mutate(dr_7 = last_occ &gt; before_last_occ &amp; 
-  #            before_last_occ &gt; 0) %&gt;%
-  #   select(taxonKey, dr_7)
-
   # dr_8: Maximum ever observed?
   dr_8 &lt;-
     df %&gt;%
@@ -632,21 +588,6 @@ em_status_dr &lt;- function(df,
     mutate(dr_8 = last_value == max_occ) %&gt;%
     select(taxonKey, dr_8)
 
-  # # dr_9: Decrease? Last value &lt; before last value
-  # dr_9 &lt;-
-  #   df %&gt;%
-  #   filter(year == max(year)) %&gt;%
-  #   select(taxonKey, occ) %&gt;%
-  #   rename(last_occ = occ) %&gt;%
-  #   left_join(
-  #     df %&gt;%
-  #       filter(year == max(year) - 1) %&gt;%
-  #       select(taxonKey, occ) %&gt;%
-  #       rename(before_last_occ = occ),
-  #     by = &quot;taxonKey&quot;) %&gt;%
-  #   mutate(dr_9 = last_occ &lt; before_last_occ) %&gt;%
-  #   select(taxonKey, dr_9)
-
   # Join all decision rules together
   dr_all &lt;- 
     list(dr_1, dr_3, dr_4, dr_8) %&gt;% 
@@ -657,6 +598,7 @@ em_status_dr &lt;- function(df,
   # 1 = unclear ((re)appearing at eyear is judged as unclear too)
   # 2 = potentially emerging
   # 3 = emerging
+  
   em_dr &lt;-
     dr_all %&gt;%
     mutate(em_status = case_when(
@@ -677,6 +619,13 @@ em_status_dr &lt;- function(df,
   
   return(em_dr)
 }</code></pre>
+<p>The emerging status codes:</p>
+<ul>
+<li><code>3</code>: means emerging</li>
+<li><code>2</code>: potentially emerging</li>
+<li><code>1</code>: unclear</li>
+<li><code>0</code>: not emerging</li>
+</ul>
 <div id="occurrences" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Occurrences</h3>
 <div id="belgium" class="section level4">
@@ -795,7 +744,8 @@ plot_ribbon_em &lt;- function(df_plot,
                  size = 2) +
     scale_colour_manual(values = colors_em,
                         labels = labels_em,
-                        name = &quot;Emerging status&quot;)
+                        name = &quot;Emerging status&quot;) +
+    theme(plot.title = element_text(size=10))
   }
   
   return(g)
@@ -804,8 +754,9 @@ plot_ribbon_em &lt;- function(df_plot,
 # GAM function
 apply_gam &lt;- function(df,
                       y_var,
-                      year = &quot;year&quot;,
                       eval_years,
+                      year = &quot;year&quot;,
+                      taxonKey = &quot;taxonKey&quot;,
                       type_indicator = &quot;observations&quot;,
                       baseline_var = NULL,
                       p_max = 0.1,
@@ -814,25 +765,47 @@ apply_gam &lt;- function(df,
                       df_title = NULL,
                       verbose = FALSE,
                       saveplot = FALSE) {
-
-
+  
+  # Check df is a dataframe
+  assertthat::assert_that(is.data.frame(df))
+  
+  # Check y_var, year and taxonKey arguments are valid column names in df
+  map(c(y_var, year, taxonKey), function(x){
+    assertthat::assert_that(
+      x %in% names(df),
+      msg = paste(
+        &quot;The column&quot;, x, &quot;is not present in data.frame.&quot;
+      )
+    )
+  })
+  
   if (!is.null(baseline_var)) {
     method_em &lt;- &quot;correct_baseline&quot;
+    assertthat::assert_that(baseline_var %in% names(df),
+                            msg = paste(
+                              &quot;The column&quot;, baseline_var, &quot;is not present in data.frame.&quot;
+                            ))
   } else {
     method_em &lt;- &quot;basic&quot;
   }
-
+  
   year &lt;- vars_pull(names(df), !!enquo(year))
-
+  taxonKey &lt;- vars_pull(names(df), !!enquo(taxonKey))
+  
+  assertthat::assert_that(is.numeric(p_max) &amp;&amp; p_max &gt; 0 &amp;&amp; p_max &lt; 1,
+                          msg = paste(&quot;The p-value has to be a number&quot;,
+                                      &quot;between 0 and 1.&quot;)
+  )
+  
   if (verbose == TRUE ) {
     print(paste0(&quot;Analyzing: &quot;, name, &quot;(&quot;, taxon_key, &quot;)&quot;))
   }
-
+  
   if (nrow(df) &gt; 0) {
     # Maximum minimum time series (year)
     fyear &lt;- min(df[[year]], na.rm = TRUE) # first year
     lyear &lt;- max(df[[year]], na.rm = TRUE) # last year
-
+    
     # Define model to use for GAM
     maxk &lt;- max(round((lyear - fyear)/10, digits = 0), 5) # max number of knots
   }
@@ -856,7 +829,7 @@ apply_gam &lt;- function(df,
       fm &lt;- formula(fm)
     }
   }
-
+  
   # Initialization
   output_model &lt;- df
   output_model &lt;-
@@ -875,7 +848,7 @@ apply_gam &lt;- function(df,
     filter(!!sym(year) %in% eval_years) %&gt;%
     select(taxonKey, year, em_status, growth) %&gt;%
     mutate(method = method_em)
-
+  
   if (nrow(df) &gt; 3 &amp; sum(df[[y_var]][2:nrow(df)]) != 0) {
     result &lt;- tryCatch(expr = {
       model &lt;- gam(formula = fm,
@@ -885,9 +858,9 @@ apply_gam &lt;- function(df,
       # Check at p-value of least 1 smoother &lt; 0.1
       summary_pv &lt;- summary.gam(model)$s.pv
       p_ok &lt;- ifelse(any(summary_pv &lt; p_max), TRUE, FALSE)
-
+      
     }, error=function(e) e, warning=function(w) w)
-
+    
     if (class(result)[1] %in% c(&quot;simpleWarning&quot;, &quot;simpleError&quot;)) {
       if (verbose) {
         print(paste0(&quot;GAM (&quot;,
@@ -904,20 +877,20 @@ apply_gam &lt;- function(df,
                         type = &quot;iterms&quot;,
                         interval = &quot;prediction&quot;,
                         se.fit = TRUE)
-
+        
         # Calculate confidence intervals &amp; backtransform to real scale
         intercept &lt;- unname(model$coefficients[1])
         output_model$fit &lt;- model$family$linkinv(temp$fit[,1] + intercept)
         output_model$ucl &lt;- model$family$linkinv(temp$fit[,1] + intercept + temp$se.fit[,1] * 1.96)
         output_model$lcl &lt;- model$family$linkinv(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
         # output_model$lcl &lt;- exp(temp$fit[,1] + intercept - temp$se.fit[,1] * 1.96)
-
+        
         # Calculate first and second derivative + conf. interval
         deriv1 &lt;- derivatives(model, type = &quot;central&quot;, order = 1, level = 0.8,
                               n = nrow(output_model), eps = 1e-4)
         deriv2 &lt;- derivatives(model, type = &quot;central&quot;, order = 2, level = 0.8,
                               n = nrow(output_model), eps = 1e-4)
-
+        
         # Emerging status based on first and second derivative
         em1 &lt;-
           deriv1 %&gt;%
@@ -929,7 +902,7 @@ apply_gam &lt;- function(df,
             lower &gt;= 0 &amp; upper &gt; 0 ~ &quot;1&quot;)) %&gt;%
           select(!!sym(year) := data, em1) %&gt;%
           mutate(!!sym(year) := round(!!sym(year)))
-
+        
         em2 &lt;- deriv2 %&gt;%
           as_tibble() %&gt;%
           filter(var == year) %&gt;%
@@ -939,14 +912,14 @@ apply_gam &lt;- function(df,
             .$lower &gt;= 0  &amp; .$upper &gt; 0 ~ &quot;1&quot;)) %&gt;%
           select(!!sym(year) := data, em2)  %&gt;%
           mutate(!!sym(year) := round(!!sym(year)))
-
+        
         if (any(c(nrow(em1), nrow(em2)) != length(unique(output_model[[year]])))) {
           warning(print(paste(taxon_key),
                         nrow(em1),
                         nrow(em2),
                         length(unique(output_model[[year]]))))
         }
-
+        
         em_level_gam &lt;- full_join(em1, em2, by = year) %&gt;%
           mutate(em = case_when(
             em1 == 1 &amp; em2 == 1 ~ &quot;4&quot;,
@@ -958,7 +931,7 @@ apply_gam &lt;- function(df,
             em1 == -1 &amp; em2 == 1 ~ &quot;-2&quot;,
             em1 == -1 &amp; em2 == 0 ~ &quot;-3&quot;,
             em1 == -1 &amp; em2 == -1 ~ &quot;-4&quot;))
-
+        
         # Emerging status
         em_levels &lt;-
           em_level_gam %&gt;%
@@ -969,9 +942,9 @@ apply_gam &lt;- function(df,
             em &gt;= 3 ~ 3 # emerging
           )
           )
-
+        
         output_model &lt;- left_join(output_model, em_levels, by = year)
-
+        
         # Lower value of first dedrivative (minimal guaranted growth) if positive
         lower_deriv1 &lt;-
           deriv1 %&gt;%
@@ -981,24 +954,28 @@ apply_gam &lt;- function(df,
           mutate(growth = model$family$linkinv(lower)) %&gt;%
           # mutate(growth = ifelse(lower &gt;= 0, lower, NA_real_)) %&gt;%
           select(!!sym(year), growth)
-
+        
         # Add lower value of first derivative
         output_model &lt;- left_join(output_model, lower_deriv1, by = &quot;year&quot;)
-
+        
+        # Add method
+        output_model &lt;- 
+          output_model %&gt;%
+          mutate(method = method_em)
+        
         # Get emergin status summary for output
         emerging_status_output &lt;-
           output_model %&gt;%
           filter(!!sym(year) %in% eval_years) %&gt;%
-          select(taxonKey, year, em_status, growth) %&gt;%
-          mutate(method = method_em)
-
+          select(taxonKey, year, em_status, growth, method)
+        
         # Create plot with conf. interval + colour for status
         ptitle &lt;- paste(&quot;GAM&quot;,
                         type_indicator,
                         method_em,
-                        taxon_key,
-                        name,
                         sep = &quot;_&quot;)
+        if (!is.null(taxon_key)) ptitle &lt;- paste(ptitle, taxon_key, sep = &quot;_&quot;)
+        if (!is.null(name)) ptitle &lt;- paste(ptitle, name, sep = &quot;_&quot;)
         if (!is.null(df_title)) ptitle &lt;- paste(ptitle, df_title, sep = &quot;_&quot;)
         plot_gam &lt;- plot_ribbon_em(df_plot = output_model,
                                    x_axis = &quot;year&quot;,
@@ -1016,7 +993,7 @@ apply_gam &lt;- function(df,
                        p_max, &quot;.&quot;))
         }
       }
-
+      
     }
   } else {
     if (verbose) {
@@ -1025,7 +1002,7 @@ apply_gam &lt;- function(df,
                    &quot;) to &quot;, name, &quot;(&quot;, taxon_key, &quot;).&quot;))
     }
   }
-
+  
   return(list(em_summary = emerging_status_output,
               model = model,
               output = output_model,
@@ -1049,6 +1026,7 @@ gam_occs_BE &lt;- map2(
     results_gam  &lt;- apply_gam(df = df_key,
                               year = &quot;year&quot;,
                               y_var = &quot;obs&quot;,
+                              taxonKey = &quot;taxonKey&quot;,
                               eval_years = evaluation_years,
                               type_indicator = &quot;observations&quot;,
                               taxon_key = t, 
@@ -1098,7 +1076,7 @@ names(gam_occs_BE) &lt;- taxon_keys</code></pre>
 </div>
 <div id="protected-aras" class="section level4">
 <h4><span class="header-section-number">3.3.1.2</span> Protected aras</h4>
-<p>Apply GAM for occurrencse data in protected areas:</p>
+<p>Apply GAM for occurrence data in protected areas:</p>
 <pre class="r"><code>taxon_keys &lt;- spec_names$taxonKey
 taxon_names &lt;- spec_names$canonicalName
 gam_occs_pa &lt;- map2(
@@ -1122,9 +1100,13 @@ gam_occs_pa &lt;- map2(
 )
 names(gam_occs_pa) &lt;- taxon_keys</code></pre>
 <p>Show some results:</p>
-<pre class="r"><code>map(gam_occs_pa[1:10], ~.$plot)</code></pre>
+<pre class="r"><code>map(gam_occs_pa[1:10], 
+    function(t) {
+      if (!is.null(t$plot)) t$plot
+    }
+)</code></pre>
 <pre><code>## $`1718308`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-1.png" width="672" /></p>
 <pre><code>## 
 ## $`1713034`
 ## NULL
@@ -1139,19 +1121,19 @@ names(gam_occs_pa) &lt;- taxon_keys</code></pre>
 ## NULL
 ## 
 ## $`2498027`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-2.png" width="672" /></p>
 <pre><code>## 
 ## $`2722051`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-3.png" width="672" /></p>
 <pre><code>## 
 ## $`2469188`
 ## NULL
 ## 
 ## $`3003709`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-4.png" width="672" /></p>
 <pre><code>## 
 ## $`2495414`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-5.png" width="672" /></p>
 </div>
 </div>
 <div id="occupancy-1" class="section level3">
@@ -1188,7 +1170,7 @@ names(gam_occupancy_BE) &lt;- taxon_keys</code></pre>
     }
 )</code></pre>
 <pre><code>## $`1718308`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-1.png" width="672" /></p>
 <pre><code>## 
 ## $`1713034`
 ## NULL
@@ -1203,10 +1185,10 @@ names(gam_occupancy_BE) &lt;- taxon_keys</code></pre>
 ## NULL
 ## 
 ## $`2498027`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-2.png" width="672" /></p>
 <pre><code>## 
 ## $`2722051`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-3.png" width="672" /></p>
 <pre><code>## 
 ## $`2469188`
 ## NULL
@@ -1215,7 +1197,7 @@ names(gam_occupancy_BE) &lt;- taxon_keys</code></pre>
 ## NULL
 ## 
 ## $`2495414`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-4.png" width="672" /></p>
 </div>
 <div id="protected-aras-1" class="section level4">
 <h4><span class="header-section-number">3.3.2.2</span> Protected aras</h4>
@@ -1243,9 +1225,13 @@ gam_occupancy_pa &lt;- map2(
 )
 names(gam_occupancy_pa) &lt;- taxon_keys</code></pre>
 <p>Show some results:</p>
-<pre class="r"><code>map(gam_occs_pa[1:10], ~.$plot)</code></pre>
+<pre class="r"><code>map(gam_occupancy_pa[1:10], 
+    function(t) {
+      if (!is.null(t$plot)) t$plot
+    }
+)</code></pre>
 <pre><code>## $`1718308`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_PA-1.png" width="672" /></p>
 <pre><code>## 
 ## $`1713034`
 ## NULL
@@ -1260,19 +1246,19 @@ names(gam_occupancy_pa) &lt;- taxon_keys</code></pre>
 ## NULL
 ## 
 ## $`2498027`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_PA-2.png" width="672" /></p>
 <pre><code>## 
 ## $`2722051`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_PA-3.png" width="672" /></p>
 <pre><code>## 
 ## $`2469188`
 ## NULL
 ## 
-## $`3003709`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
-<pre><code>## 
+## $`3003709`
+## NULL
+## 
 ## $`2495414`</code></pre>
-<p><img src="occurrence_indicators_modelling_files/figure-html/unnamed-chunk-3-5.png" width="672" /></p>
+<p><img src="occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_PA-4.png" width="672" /></p>
 </div>
 </div>
 </div>

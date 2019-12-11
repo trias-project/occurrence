@@ -12,8 +12,9 @@
 
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Toon Van Daele" />
+<meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2019-12-09" />
+<meta name="date" content="2019-12-11" />
 
 <title>Occurrence indicators: pre-processing</title>
 
@@ -420,7 +421,8 @@ div.tocify {
 <h1 class="title toc-ignore">Occurrence indicators: pre-processing</h1>
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Toon Van Daele</h4>
-<h4 class="date">2019-12-09</h4>
+<h4 class="author">Tim Adriaens</h4>
+<h4 class="date">2019-12-11</h4>
 
 </div>
 
@@ -701,7 +703,7 @@ old_introductions_taxa</code></pre>
 <pre class="r"><code>write_tsv(old_introductions_taxa,
           here::here(&quot;data&quot;,
                      &quot;output&quot;, 
-                     paste(&quot;taxa_introduced_in_BE_before_&quot;,
+                     paste0(&quot;taxa_introduced_in_BE_before_&quot;,
                            year_of_introduction,
                            &quot;.tsv&quot;)),
           na = &quot;&quot;
