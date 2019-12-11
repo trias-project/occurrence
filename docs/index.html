@@ -369,15 +369,21 @@ $(document).ready(function () {
 <h2>Occurrence-based indicators</h2>
 <p>In order to calculate an emergency index, we take into account:</p>
 <ol style="list-style-type: decimal">
-<li>number of occurrences per year</li>
-<li>area of occupancy (AOO)</li>
+<li>number of occurrences per year, or simply <em>occurrences</em></li>
+<li>area of occupancy (AOO), or simply <em>occupancy</em></li>
 </ol>
-<p>We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This is still work in progress. Still, if you want to get an idea about it, follow <a href="https://github.com/trias-project/indicators/issues/49">issue #49</a>.</p>
-<p>For the data manipulation of the taxonomic and occurrence information, see Appendix <a href="https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>.</p>
+<p>The workflow is divded in the following pipelines:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://trias-project.github.io/indicators/occurrence_indicators_appearing_taxa.html">Appearing or reappearing taxa in current year</a></li>
+<li><a href="https://trias-project.github.io/indicators/occurrence_indicators_modelling.html">Assessing partial emerging statuses of alien taxa</a></li>
+<li><a href="https://trias-project.github.io/indicators/ranking_emerging_status.html">Assessing emerging status and ranking</a></li>
+</ol>
+<p>We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This part is still work in progress, although all workflow steps are now completed. Follow <a href="https://github.com/trias-project/indicators/issues/49">issue #49</a> for more discussions about the different choices we took at every step of the workflow.</p>
+<p>For the data preparation of the taxonomic and occurrence information, see Appendix <a href="https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>. The output of this appendix is the starting point of the pipelines described above.</p>
 </div>
 <div id="repo-structure" class="section level2">
 <h2>Repo structure</h2>
-<p>The repository structure is based on <a href="http://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a>. Files indicated with <code>GENERATED</code> should not be edited manually.</p>
+<p>The repository structure is based on <a href="http://drivendata.github.io/cookiecutter-data-science/">Cookiecutter Data Science</a>. Files indicated with <code>GENERATED</code> should not be edited manually. This list can be not complete as the content of this repository is still in progress.</p>
 <pre><code>├── README.md              : Description of this repository
 ├── LICENSE                : Repository license
 ├── indicators.Rproj       : RStudio project file

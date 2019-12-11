@@ -83,10 +83,16 @@ em_gam_list <- list(
               model = "GAM"))
 ```
 
-Preview:
+Preview GAM ouput for modelling number of occurrences in Belgium:
 
-```{r preview_gam}
-map(em_gam_list, ~ head(., n = 10))
+```{r preview_gam_occs_BE}
+em_gam_list$gam_occurrences_be %>% head(10)
+```
+
+Preview GAM ouput for modelling occupancy (number of 1x1km cells) in Belgium:
+
+```{r preview_gam_occupancy_BE}
+em_gam_list$gam_occupancy_be %>% head(10)
 ```
 
 The emerging status (column `em_status`) score is encoded as follows:
