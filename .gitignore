@@ -34,6 +34,8 @@ vignettes/*.pdf
 src/*_cache/
 src/*_files/
 
+# knitr temp files (if failed to build website)
+src/*.html
 
 # Temporary files created by R markdown
 *.utf8.md
