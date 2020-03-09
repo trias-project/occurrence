@@ -180,7 +180,7 @@ be_grid_membership_protected_areas <-
 
 ### Habitat directive areas
 
-We add also a column, `habitat`, assessing whether the cell intersects a habitat deirective area:
+We add also a column, `habitat`, assessing whether the cell intersects a habitat directive area:
 
 ```{r be_grid_add_directive}
 cells_protected_hab <-
