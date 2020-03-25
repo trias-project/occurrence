@@ -128,7 +128,8 @@ We also clean column names by standardizing column names:
 ```{r standardize_colnames}
 description <-
   description %>%
-  janitor::clean_names(case = "snake")
+  janitor::clean_names(case = "snake") %>%
+  rename(taxonKey = taxon_key)
 names(description)
 ```
 
