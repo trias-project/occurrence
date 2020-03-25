@@ -54,7 +54,7 @@ We select data at national level (no regional distributions):
 ```{r select_data_at_Belgian_level}
 data <-
   data %>%
-  filter(locationId == "ISO_3166-2:BE")
+  filter(locationId == "ISO_3166:BE")
 ```
 
 ## Grouping by kingdom
