@@ -189,7 +189,7 @@ merged_extensions <-
 
 merged_info <- left_join(taxa, merged_extensions,
                          by = c("key" = "taxonKey"))
-head(merged_extensions)
+merged_extensions %>% head(n = 100)
 ```
 
 ## Tidy data
@@ -239,7 +239,10 @@ merged_info %>%
 The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels)
 
 ```{r pathway_levels_example, echo = FALSE}
-merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
+merged_info %>% 
+  distinct(pathway) %>% 
+  filter(!is.na(pathway)) %>% 
+  head(10)
 ```
 
 We split this column in `pathwayLevel1` and `pathwayLevel2`
