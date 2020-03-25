@@ -190,19 +190,19 @@ merged_info %>%
   head()
 ```
 
-In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed`.
+In case there are two datums, we split them in `firstObserved` and `lastObserved`. If only a datum is present, then it is used for both  `firstObserved`and `lastObserved`.
 
 ```{r split_temporal}
 merged_info <-
   merged_info %>% separate(col = temporal,
                            sep = "/",
-                           into = c("first_observed", "last_observed"),
+                           into = c("firstObserved", "lastObserved"),
                            convert = TRUE,
                            fill = "right",
                            remove = TRUE) %>%
-  mutate(last_observed = ifelse(is.na(last_observed),
-                          first_observed,
-                          last_observed))
+  mutate(lastObserved = ifelse(is.na(lastObserved),
+                          firstObserved,
+                          lastObserved))
 ```
 
 An example:
@@ -210,10 +210,10 @@ An example:
 ```{r example_split_temporal, echo = FALSE}
 merged_info %>% 
   filter(locality == "Belgium") %>% 
-  select(key, first_observed, last_observed) %>%
+  select(key, firstObserved, lastObserved) %>%
   distinct() %>%
-  filter(!is.na(first_observed) & !is.na(last_observed)) %>%
-  head()
+  filter(!is.na(firstObserved) & !is.na(lastObserved)) %>%
+  head(10)
 ```
 
 ### Split column `pathway`
@@ -224,30 +224,30 @@ The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pa
 merged_info %>% distinct(pathway) %>% filter(!is.na(pathway)) %>% head()
 ```
 
-We split this column in `pathway_level1` and `pathway_level2`
+We split this column in `pathwayLevel1` and `pathwayLevel2`
 
 ```{r split_pathway}
 merged_info <-
   merged_info %>% 
   rowwise() %>%
-  mutate(pathway_level1 = 
+  mutate(pathwayLevel1 = 
            str_split_fixed(
              str_split(pathway,
                        pattern = "pathway:")[[1]][2],
              pattern = "_", n = 2)[[1]][1],
-         pathway_level2 = 
+         pathwayLevel2 = 
            str_split_fixed(
              str_split(pathway,pattern = "pathway:")[[1]][2],
              pattern = "_", n = 2)[[2]][1]) %>%
   ungroup() %>%
-  mutate(pathway_level1 = ifelse(
-    pathway_level1 == "natural",
+  mutate(pathwayLevel1 = ifelse(
+    pathwayLevel1 == "natural",
     "natural_dispersal",
-    pathway_level1)) %>%
-  mutate(pathway_level2 = ifelse(
-    pathway_level2 == "dispersal",
+    pathwayLevel1)) %>%
+  mutate(pathwayLevel2 = ifelse(
+    pathwayLevel2 == "dispersal",
     "",
-    pathway_level2)) %>%
+    pathwayLevel2)) %>%
   select(-pathway)
 ```
 
@@ -255,7 +255,7 @@ Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
 merged_info %>% 
-  distinct(pathway_level1, pathway_level2)
+  distinct(pathwayLevel1, pathwayLevel2)
 ```
 
 ## Save data output
