@@ -110,10 +110,19 @@ description <-
 We *tidy* this data.frame, thus having different descriptors as different columns:
 
 ```{r tidy_description}
-description <- spread_with_multiple_values(data = description,
-                                           key = type,
-                                           value = description)
-description %>% head(n = 10)
+description <- 
+  description %>%
+  as_tibble() %>%
+  pivot_wider(names_from = type,
+              values_from = description,
+              values_fn = list(name=list)) %>%
+  unnest_longer(types[1]) %>%
+  unnest_longer(types[2]) %>%
+  unnest_longer(types[3]) %>%
+  unnest_longer(types[4])
+description %>% head(n = 20)
+```
+
 We also clean column names by standardizing column names:
 
 ```{r standardize_colnames}
