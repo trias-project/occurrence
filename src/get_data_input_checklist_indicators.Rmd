@@ -128,17 +128,17 @@ We also clean column names by standardizing column names:
 ```{r standardize_colnames}
 description <-
   description %>%
-  janitor::clean_names("lower_camel")
+  janitor::clean_names(case = "snake")
 names(description)
 ```
 
 ### Mapping `degree of establishment`
 
-Values in column `degreeOfEstablishment`:
+Values in column `degree_of_establishment`:
 
 ```{r degree_of_establishment}
 description %>%
-  distinct(degreeOfEstablishment)
+  distinct(degree_of_establishment)
 ```
 
 We map them as follows:
@@ -146,8 +146,8 @@ We map them as follows:
 ```{r mapping_degree_of_establishment}
 description <-
   description %>%
-  mutate(degreeOfEstablishment = recode(
-    degreeOfEstablishment,
+  mutate(degree_of_establishment = recode(
+    degree_of_establishment,
     "captive (blackburn_2011:B1)" = "captive",
     "blackburn_et_al_2011:B2" = "cultivated",
     "released (blackburn_2011:B3)" = "released",
@@ -208,19 +208,19 @@ merged_info %>%
   head()
 ```
 
-In case there are two datums, we split them in `firstObserved` and `lastObserved`. If only a datum is present, then it is used for both  `firstObserved`and `lastObserved`.
+In case there are two datums, we split them in `first_observed` and `last_observed`. If only a datum is present, then it is used for both  `first_observed`and `last_observed`.
 
 ```{r split_temporal}
 merged_info <-
   merged_info %>% separate(col = temporal,
                            sep = "/",
-                           into = c("firstObserved", "lastObserved"),
+                           into = c("first_observed", "last_observed"),
                            convert = TRUE,
                            fill = "right",
                            remove = TRUE) %>%
-  mutate(lastObserved = ifelse(is.na(lastObserved),
-                          firstObserved,
-                          lastObserved))
+  mutate(last_observed = ifelse(is.na(last_observed),
+                          first_observed,
+                          last_observed))
 ```
 
 An example:
@@ -228,9 +228,9 @@ An example:
 ```{r example_split_temporal, echo = FALSE}
 merged_info %>% 
   filter(locality == "Belgium") %>% 
-  select(key, firstObserved, lastObserved) %>%
+  select(key, first_observed, last_observed) %>%
   distinct() %>%
-  filter(!is.na(firstObserved) & !is.na(lastObserved)) %>%
+  filter(!is.na(first_observed) & !is.na(last_observed)) %>%
   head(10)
 ```
 
@@ -245,30 +245,30 @@ merged_info %>%
   head(10)
 ```
 
-We split this column in `pathwayLevel1` and `pathwayLevel2`
+We split this column in `pathway_level1` and `pathway_level2`
 
 ```{r split_pathway}
 merged_info <-
   merged_info %>% 
   rowwise() %>%
-  mutate(pathwayLevel1 = 
+  mutate(pathway_level1 = 
            str_split_fixed(
              str_split(pathway,
                        pattern = "pathway:")[[1]][2],
              pattern = "_", n = 2)[[1]][1],
-         pathwayLevel2 = 
+         pathway_level2 = 
            str_split_fixed(
              str_split(pathway,pattern = "pathway:")[[1]][2],
              pattern = "_", n = 2)[[2]][1]) %>%
   ungroup() %>%
-  mutate(pathwayLevel1 = ifelse(
-    pathwayLevel1 == "natural",
+  mutate(pathway_level1 = ifelse(
+    pathway_level1 == "natural",
     "natural_dispersal",
-    pathwayLevel1)) %>%
-  mutate(pathwayLevel2 = ifelse(
-    pathwayLevel2 == "dispersal",
+    pathway_level1)) %>%
+  mutate(pathway_level2 = ifelse(
+    pathway_level2 == "dispersal",
     "",
-    pathwayLevel2)) %>%
+    pathway_level2)) %>%
   select(-pathway)
 ```
 
@@ -276,7 +276,7 @@ Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
 merged_info %>% 
-  distinct(pathwayLevel1, pathwayLevel2)
+  distinct(pathway_level1, pathway_level2)
 ```
 
 ## Save data output
