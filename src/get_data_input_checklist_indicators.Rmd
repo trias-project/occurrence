@@ -114,6 +114,34 @@ description <- spread_with_multiple_values(data = description,
                                            key = type,
                                            value = description)
 description %>% head(n = 10)
+### Mapping `degree of establishment`
+
+Values in column `degreeOfEstablishment`:
+
+```{r degree_of_establishment}
+description %>%
+  distinct(degreeOfEstablishment)
+```
+
+We map them as follows:
+
+```{r mapping_degree_of_establishment}
+description <-
+  description %>%
+  mutate(degreeOfEstablishment = recode(
+    degreeOfEstablishment,
+    "captive (blackburn_2011:B1)" = "captive",
+    "blackburn_et_al_2011:B2" = "cultivated",
+    "released (blackburn_2011:B3)" = "released",
+    "blackburn_et_al_2011:C0" = "failing",
+    "casual (blackburn_2011:C1)" = "casual",
+    "reproducing (blackburn_2011:C2)" = "reproducing",
+    "established (blackburn_2011:C3)" = "established",
+    "blackburn_et_al_2011:C3" = "established",
+    "colonizing (blackburn_2011:D1)" = "colonizing",
+    "blackburn_et_al_2011:D2" = "invasive",
+    "blackburn_et_al_2011:E" = "widespreadInvasive"
+))
 ```
 
 ## Species profile
