@@ -43,8 +43,8 @@ We get occurrence data as obtained in `trias-project/occ-processing` repository.
 We load occurrence data related to alien species in Belgium:
 
 ```{r read_data_cube, message = FALSE, warning = FALSE}
-df <- read_tsv(
-  file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium.tsv",
+df <- read_csv(
+  file = "https://raw.githubusercontent.com/trias-project/occ-cube-alien/master/data/processed/be_alientaxa_cube.csv",
   col_types = cols(year = col_double(),
                    eea_cell_code = col_character(),
                    taxonKey = col_double(),
@@ -75,8 +75,8 @@ df <-
 We get occurrence data of non alien species grouped at class level, which will be used for correcting the research bias effort:
 
 ```{r get_data_baseline}
-df_bl <- read_tsv(
-  file = "https://raw.githubusercontent.com/trias-project/occ-processing/master/data/processed/cube_belgium_baseline.tsv",
+df_bl <- read_csv(
+  file = "https://raw.githubusercontent.com/trias-project/occ-cube-alien/master/data/processed/be_classes_cube.csv",
   col_types = cols(year = col_double(),
                    eea_cell_code = col_character(),
                    classKey = col_double(),
