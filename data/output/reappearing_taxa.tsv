@@ -1,32 +1,37 @@
 taxonKey	canonicalName	year	ncells_prot_areas	ncells_BE	in_prot_areas	in_BE	n_latent_years	class	kingdom	classKey	kingdomKey
 2498145	Anas rhynchotis	2019	2	4	TRUE	TRUE	6	Aves	Animalia	212	1
-2480542	Buteo jamaicensis	2019	2	2	TRUE	TRUE	4	Aves	Animalia	212	1
 7331666	Melampyrum nemorosum	2019	2	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
+2494070	Ploceus melanocephalus	2019	1	2	TRUE	TRUE	10	Aves	Animalia	212	1
 3026040	Cotoneaster suecicus	2019	1	2	TRUE	TRUE	4	Magnoliopsida	Plantae	220	6
 7433196	Euonymus latifolius	2019	1	2	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
 2215949	Melita nitida	2019	1	1	TRUE	TRUE	10	Malacostraca	Animalia	229	1
+2474029	Alectoris chukar	2019	1	1	TRUE	TRUE	4	Aves	Animalia	212	1
+2480542	Buteo jamaicensis	2019	1	1	TRUE	TRUE	4	Aves	Animalia	212	1
 2722380	Carex crawfordii	2019	1	1	TRUE	TRUE	6	Liliopsida	Plantae	196	6
 2747939	Crocosmia crocosmiiflora	2019	1	1	TRUE	TRUE	5	Liliopsida	Plantae	196	6
 2873994	Aristolochia macrophylla	2019	1	1	TRUE	TRUE	5	Magnoliopsida	Plantae	220	6
 5229128	Himantopus mexicanus	2019	1	1	TRUE	TRUE	4	Aves	Animalia	212	1
-5415056	Forsythia suspensa	2019	1	1	TRUE	TRUE	6	Magnoliopsida	Plantae	220	6
-5845390	Gracupica nigricollis	2019	1	1	TRUE	TRUE	7	Aves	Animalia	212	1
+5410210	Campanula fenestrellata	2019		3	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5200414	Diplosoma listerianum	2019		2	FALSE	TRUE	11	Ascidiacea	Animalia	356	1
 1702101	Anacridium aegyptium	2019		1	FALSE	TRUE	9	Insecta	Animalia	216	1
+2149679	Holocnemus pluchei	2019		1	FALSE	TRUE	18	Arachnida	Animalia	367	1
 2157245	Steatoda grossa	2019		1	FALSE	TRUE	18	Arachnida	Animalia	367	1
 2362486	Hypophthalmichthys nobilis	2019		1	FALSE	TRUE	4	Actinopterygii	Animalia	204	1
-2494070	Ploceus melanocephalus	2019		1	FALSE	TRUE	10	Aves	Animalia	212	1
+2479955	Poicephalus cryptoxanthus	2019		1	FALSE	TRUE	18	Aves	Animalia	212	1
+2498011	Tadorna variegata	2019		1	FALSE	TRUE	5	Aves	Animalia	212	1
 2774846	Chlorophytum comosum	2019		1	FALSE	TRUE	4	Liliopsida	Plantae	196	6
 3125933	Santolina chamaecyparissus	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
 3131367	Helichrysum petiolare	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
-5200414	Diplosoma listerianum	2019		1	FALSE	TRUE	11	Ascidiacea	Animalia	356	1
+3152268	Malvastrum coromandelianum	2019		1	FALSE	TRUE	19	Magnoliopsida	Plantae	220	6
 5296218	Sisyrinchium californicum	2019		1	FALSE	TRUE	4	Liliopsida	Plantae	196	6
 5359249	Trifolium rubens	2019		1	FALSE	TRUE	19	Magnoliopsida	Plantae	220	6
 5361841	Pilea microphylla	2019		1	FALSE	TRUE	14	Magnoliopsida	Plantae	220	6
-5410210	Campanula fenestrellata	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
+5384393	Amaranthus palmeri	2019		1	FALSE	TRUE	10	Magnoliopsida	Plantae	220	6
 5414932	Chelone obliqua	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
 5415054	Forsythia intermedia	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
 5686494	Decaisnea insignis	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
 5959118	Bubo virginianus	2019		1	FALSE	TRUE	4	Aves	Animalia	212	1
 8144599	Papaver nudicaule	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
 8773480	Koenigia fennica	2019		1	FALSE	TRUE	5	Magnoliopsida	Plantae	220	6
+9350124	Natrix helvetica	2019		1	FALSE	TRUE	5	Reptilia	Animalia	358	1
 9567226	Oxybasis glauca salina	2019		1	FALSE	TRUE	4	Magnoliopsida	Plantae	220	6
