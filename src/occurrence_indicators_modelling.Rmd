@@ -122,7 +122,7 @@ We define the time window (in years) used to assess the emerging status:
 
 ```{r eval_years}
 # Last evaluation year
-last_year <- lubridate::year(Sys.Date()) - 1
+last_year <- lubridate::year(Sys.Date()) - 2
 
 # First evalution year
 first_year <- last_year - 2
