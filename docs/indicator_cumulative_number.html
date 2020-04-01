@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -15,7 +14,7 @@
 <meta name="author" content="Stijn Van Hoey" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2019-12-11" />
+<meta name="date" content="2020-04-01" />
 
 <title>Indicator: Cumulative number of alien species</title>
 
@@ -245,6 +244,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -273,6 +273,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -424,7 +430,7 @@ div.tocify {
 <h4 class="author">Sander Devisscher</h4>
 <h4 class="author">Stijn Van Hoey</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2019-12-11</h4>
+<h4 class="date">2020-04-01</h4>
 
 </div>
 
@@ -433,20 +439,23 @@ div.tocify {
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">1</span> Setup</h1>
 <p>Load libraries:</p>
-<pre class="r"><code>library(tidyverse)  # To do datascience
-library(tidylog)    # To provide feedback on dplyr functions
-library(here)       # To find files
-library(trias)      # To use functions developed for TrIAS
-library(INBOtheme)  # To use INBO theme for graphs</code></pre>
+<pre class="r"><code>library(tidyverse) # To do datascience
+library(tidylog) # To provide feedback on dplyr functions
+library(here) # To find files
+library(trias) # To use functions developed for TrIAS
+library(INBOtheme) # To use INBO theme for graphs</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
-<pre class="r"><code>data_file &lt;- here::here(&quot;data&quot;,
-                        &quot;interim&quot;,
-                        &quot;data_input_checklist_indicators.tsv&quot;)
+<pre class="r"><code>data_file &lt;- here::here(
+  &quot;data&quot;,
+  &quot;interim&quot;,
+  &quot;data_input_checklist_indicators.tsv&quot;
+)
 data &lt;- read_tsv(data_file,
-                 na = &quot;&quot;,
-                 guess_max = 5000)</code></pre>
+  na = &quot;&quot;,
+  guess_max = 5000
+)</code></pre>
 </div>
 <div id="cumulative-number-of-introductions-of-alien-species" class="section level1">
 <h1><span class="header-section-number">3</span> Cumulative number of introductions of alien species</h1>
@@ -456,12 +465,12 @@ data &lt;- read_tsv(data_file,
 <p>We select data at national level (no regional distributions):</p>
 <pre class="r"><code>data &lt;-
   data %&gt;%
-  filter(locationId == &quot;ISO_3166-2:BE&quot;)</code></pre>
+  filter(locationId == &quot;ISO_3166:BE&quot;)</code></pre>
 </div>
 <div id="grouping-by-kingdom" class="section level2">
 <h2><span class="header-section-number">3.2</span> Grouping by kingdom</h2>
 <p>We group data by kingdom:</p>
-<pre class="r"><code>facet_column = &quot;kingdom&quot;</code></pre>
+<pre class="r"><code>facet_column &lt;- &quot;kingdom&quot;</code></pre>
 <p><img src="indicator_cumulative_number_files/figure-html/cumulative_graph_grouping_kingdom-1.png" width="960" /></p>
 </div>
 </div>

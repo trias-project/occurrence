@@ -1,21 +1,24 @@
 taxonKey	canonicalName	year	ncells_prot_areas	ncells_BE	in_prot_areas	in_BE	class	kingdom	classKey	kingdomKey
+5568442	Dysphania anthelmintica	2019	3		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 7331666	Melampyrum nemorosum	2019	2		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 3083488	Paeonia officinalis	2019	1	3	TRUE	TRUE	Magnoliopsida	Plantae	220	6
+1419894	Euborellia annulipes	2019	1	1	TRUE	TRUE	Insecta	Animalia	216	1
+5845390	Gracupica nigricollis	2019	1	1	TRUE	TRUE	Aves	Animalia	212	1
+7848321	Linaria triornithophora	2019	1	1	TRUE	TRUE	Magnoliopsida	Plantae	220	6
 2493697	Amandava subflava	2019	1		TRUE	FALSE	Aves	Animalia	212	1
-2888323	Clethra alnifolia	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 2926042	Nonea lutea	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 2928238	Phacelia campanularia	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 2964167	Lupinus albus	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
+3025858	Cotoneaster ambiguus	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
+3138192	Eutrochium purpureum	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 4005004	Lysimachia fortunei	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 5353590	Cercis siliquastrum	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
-5415056	Forsythia suspensa	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
-5568442	Dysphania anthelmintica	2019	1		TRUE	FALSE	Magnoliopsida	Plantae	220	6
 2176858	Philaeus chrysops	2019		3	FALSE	TRUE	Arachnida	Animalia	367	1
 3046765	Sisymbrium erysimoides	2019		2	FALSE	TRUE	Magnoliopsida	Plantae	220	6
 1423286	Ischnura senegalensis	2019		1	FALSE	TRUE	Insecta	Animalia	216	1
 2295309	Hawaiia minuscula	2019		1	FALSE	TRUE	Gastropoda	Animalia	225	1
 2747750	Crocus luteus	2019		1	FALSE	TRUE	Liliopsida	Plantae	196	6
 2928589	Ipomoea tricolor	2019		1	FALSE	TRUE	Magnoliopsida	Plantae	220	6
+3729273	Asarina procumbens	2019		1	FALSE	TRUE	Magnoliopsida	Plantae	220	6
 3896282	Teucrium hircanicum	2019		1	FALSE	TRUE	Magnoliopsida	Plantae	220	6
 3905825	Betonica macrantha	2019		1	FALSE	TRUE	Magnoliopsida	Plantae	220	6
-5229045	Psittacula alexandri	2019		1	FALSE	TRUE	Aves	Animalia	212	1
