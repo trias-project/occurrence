@@ -121,7 +121,7 @@ grid_intersects_areas <- st_intersects(be_grid, protected_areas,
 grid_intersects_areas <- as_tibble(grid_intersects_areas,
                                    .name_repair = "universal")
 # Assign column names based on protected areas code
-names(grid_intersects_areas) <- droplevels(protected_areas$SITECODE)
+names(grid_intersects_areas) <- as.character(droplevels(protected_areas$SITECODE))
 # Add 1x1km grid cellcode as new column
 grid_intersects_areas <- 
   grid_intersects_areas %>%
