@@ -79,7 +79,7 @@ Years to evaluate:
 
 ```{r eval_years}
 present_year <- lubridate::year(Sys.Date())
-years <- c(present_year)
+years <- c(present_year) - 1 # The last full year
 years
 ```
 
