@@ -258,7 +258,6 @@ em_df <-
 em_df <-
   em_df %>%
   pivot_wider(
-    data = .,
     names_from = year,
     values_from = em,
     id_cols = c(taxonKey, indicator),
