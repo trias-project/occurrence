@@ -22,12 +22,12 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(tidyverse)      # To do data science
-library(tidylog)        # To provide feedback on dplyr functions
-library(janitor)        # To clean column names
-library(here)           # To find files
-library(rgbif)          # To get taxa from publisehd unified checklist
-library(trias)          # To get indicator functionalities
+library(tidyverse) # To do data science
+library(tidylog) # To provide feedback on dplyr functions
+library(janitor) # To clean column names
+library(here) # To find files
+library(rgbif) # To get taxa from publisehd unified checklist
+library(trias) # To get indicator functionalities
 ```
 
 # Get data
@@ -37,20 +37,24 @@ library(trias)          # To get indicator functionalities
 Get taxa from the published unified checklist, the [*Global Register of Introduced and Invasive Species - Belgium*](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e):
 
 ```{r get_data_unified_checklist}
-taxa <- name_usage(datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
-                   return = "data",
-                   limit = 10000) %>%
+taxa <- name_usage(
+  datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
+  return = "data",
+  limit = 10000
+) %>%
   filter(origin == "SOURCE")
 ```
 
 Select columns we are interested to:
 
 ```{r select_cols_interest}
-checklist_info <- c("key", "nubKey", "scientificName", "datasetKey",
-                    "canonicalName", "species", "genus", "family", 
-                    "order", "class", "phylum", "kingdom",	
-                    "rank", "speciesKey", "taxonomicStatus", 	
-                    "acceptedKey", "accepted")
+checklist_info <- c(
+  "key", "nubKey", "scientificName", "datasetKey",
+  "canonicalName", "species", "genus", "family",
+  "order", "class", "phylum", "kingdom",
+  "rank", "speciesKey", "taxonomicStatus",
+  "acceptedKey", "accepted"
+)
 taxa <-
   taxa %>%
   select(one_of(checklist_info))
@@ -64,8 +68,9 @@ Extract distribution information
 distribution <- taxa %>%
   pull(key) %>%
   map_dfr(~ name_usage(.,
-                     return = "data",
-                     data = "distribution")) %>% 
+    return = "data",
+    data = "distribution"
+  )) %>%
   select(-source)
 head(distribution)
 ```
@@ -78,8 +83,9 @@ Extract description information
 description <- taxa %>%
   pull(key) %>%
   map_dfr(~ name_usage(.,
-                     return = "data",
-                     data = "description")) %>% 
+    return = "data",
+    data = "description"
+  )) %>%
   select(-c(key, language, source))
 head(description, n = 10)
 ```
@@ -93,16 +99,18 @@ description %>% distinct(type)
 We are interested to the following types:
 
 ```{r define_types}
-types <- c("invasion stage", 
-           "native range", 
-           "degree of establishment", 
-           "pathway")
+types <- c(
+  "invasion stage",
+  "native range",
+  "degree of establishment",
+  "pathway"
+)
 ```
 
 We filter out the other types:
 
 ```{r select_types}
-description <- 
+description <-
   description %>%
   filter(type %in% types)
 ```
@@ -110,12 +118,14 @@ description <-
 We *tidy* this data.frame, thus having different descriptors as different columns:
 
 ```{r tidy_description}
-description <- 
+description <-
   description %>%
   as_tibble() %>%
-  pivot_wider(names_from = type,
-              values_from = description,
-              values_fn = list(name=list)) %>%
+  pivot_wider(
+    names_from = type,
+    values_from = description,
+    values_fn = list(name = list)
+  ) %>%
   unnest_longer(types[1]) %>%
   unnest_longer(types[2]) %>%
   unnest_longer(types[3]) %>%
@@ -160,7 +170,7 @@ description <-
     "colonizing (blackburn_2011:D1)" = "colonizing",
     "blackburn_et_al_2011:D2" = "invasive",
     "blackburn_et_al_2011:E" = "widespreadInvasive"
-))
+  ))
 ```
 
 ## Species profile
@@ -171,8 +181,9 @@ Extract species profile
 speciesProfiles <- taxa %>%
   pull(key) %>%
   map_dfr(~ name_usage(.,
-                     return = "data",
-                     data = "speciesProfiles"))
+    return = "data",
+    data = "speciesProfiles"
+  ))
 head(speciesProfiles)
 ```
 
@@ -181,15 +192,18 @@ head(speciesProfiles)
 Merge distribution, description and species profile information:
 
 ```{r merge_extensions_information}
-merged_extensions <- 
+merged_extensions <-
   full_join(distribution,
-            description,
-            by = "taxonKey") %>%
+    description,
+    by = "taxonKey"
+  ) %>%
   full_join(speciesProfiles,
-            by = "taxonKey")
+    by = "taxonKey"
+  )
 
 merged_info <- left_join(taxa, merged_extensions,
-                         by = c("key" = "taxonKey"))
+  by = c("key" = "taxonKey")
+)
 merged_extensions %>% head(n = 100)
 ```
 
@@ -202,9 +216,9 @@ Some columns should be splitted in order to make the data.frame completely tidy:
 The column `temporal` contains one or two datums:
 
 ```{r example_temporal, echo = FALSE}
-merged_info %>% 
-  select(key, temporal) %>% 
-  distinct() %>% 
+merged_info %>%
+  select(key, temporal) %>%
+  distinct() %>%
   filter(!is.na(temporal)) %>%
   head()
 ```
@@ -213,22 +227,26 @@ In case there are two datums, we split them in `first_observed` and `last_observ
 
 ```{r split_temporal}
 merged_info <-
-  merged_info %>% separate(col = temporal,
-                           sep = "/",
-                           into = c("first_observed", "last_observed"),
-                           convert = TRUE,
-                           fill = "right",
-                           remove = TRUE) %>%
+  merged_info %>%
+  separate(
+    col = temporal,
+    sep = "/",
+    into = c("first_observed", "last_observed"),
+    convert = TRUE,
+    fill = "right",
+    remove = TRUE
+  ) %>%
   mutate(last_observed = ifelse(is.na(last_observed),
-                          first_observed,
-                          last_observed))
+    first_observed,
+    last_observed
+  ))
 ```
 
 An example:
 
 ```{r example_split_temporal, echo = FALSE}
-merged_info %>% 
-  filter(locality == "Belgium") %>% 
+merged_info %>%
+  filter(locality == "Belgium") %>%
   select(key, first_observed, last_observed) %>%
   distinct() %>%
   filter(!is.na(first_observed) & !is.na(last_observed)) %>%
@@ -240,9 +258,9 @@ merged_info %>%
 The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels)
 
 ```{r pathway_levels_example, echo = FALSE}
-merged_info %>% 
-  distinct(pathway) %>% 
-  filter(!is.na(pathway)) %>% 
+merged_info %>%
+  distinct(pathway) %>%
+  filter(!is.na(pathway)) %>%
   head(10)
 ```
 
@@ -250,33 +268,40 @@ We split this column in `pathway_level1` and `pathway_level2`
 
 ```{r split_pathway}
 merged_info <-
-  merged_info %>% 
+  merged_info %>%
   rowwise() %>%
-  mutate(pathway_level1 = 
-           str_split_fixed(
-             str_split(pathway,
-                       pattern = "pathway:")[[1]][2],
-             pattern = "_", n = 2)[[1]][1],
-         pathway_level2 = 
-           str_split_fixed(
-             str_split(pathway,pattern = "pathway:")[[1]][2],
-             pattern = "_", n = 2)[[2]][1]) %>%
+  mutate(
+    pathway_level1 =
+      str_split_fixed(
+        str_split(pathway,
+          pattern = "pathway:"
+        )[[1]][2],
+        pattern = "_", n = 2
+      )[[1]][1],
+    pathway_level2 =
+      str_split_fixed(
+        str_split(pathway, pattern = "pathway:")[[1]][2],
+        pattern = "_", n = 2
+      )[[2]][1]
+  ) %>%
   ungroup() %>%
   mutate(pathway_level1 = ifelse(
     pathway_level1 == "natural",
     "natural_dispersal",
-    pathway_level1)) %>%
+    pathway_level1
+  )) %>%
   mutate(pathway_level2 = ifelse(
     pathway_level2 == "dispersal",
     "",
-    pathway_level2)) %>%
+    pathway_level2
+  )) %>%
   select(-pathway)
 ```
 
 Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
-merged_info %>% 
+merged_info %>%
   distinct(pathway_level1, pathway_level2)
 ```
 
@@ -285,11 +310,13 @@ merged_info %>%
 The data.frame `merged_info` is saved as output file:
 
 ```{r save_data_output}
-write_tsv(merged_info, 
-          path = here::here("data", 
-                            "interim",
-                            "data_input_checklist_indicators.tsv"),
-          na = ""
+write_tsv(merged_info,
+  path = here::here(
+    "data",
+    "interim",
+    "data_input_checklist_indicators.tsv"
+  ),
+  na = ""
 )
 ```
 

@@ -29,23 +29,26 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(tidyverse)  # To do datascience
-library(tidylog)    # To provide feedback on dplyr functions
-library(rlang)      # To use Standard Evaluation in dplyr (!!sym())
-library(here)       # To find files
-library(trias)      # To use functions developed for TrIAS
-library(INBOtheme)  # To use INBO theme for graphs
+library(tidyverse) # To do datascience
+library(tidylog) # To provide feedback on dplyr functions
+library(rlang) # To use Standard Evaluation in dplyr (!!sym())
+library(here) # To find files
+library(trias) # To use functions developed for TrIAS
+library(INBOtheme) # To use INBO theme for graphs
 ```
 
 # Get data
 
 ```{r get_data_input}
-data_file <- here::here("data",
-                        "interim",
-                        "data_input_checklist_indicators.tsv")
+data_file <- here::here(
+  "data",
+  "interim",
+  "data_input_checklist_indicators.tsv"
+)
 data <- read_tsv(data_file,
-                 na = "",
-                 guess_max = 5000)
+  na = "",
+  guess_max = 5000
+)
 ```
 
 # Number of new introductions of alien species per year
@@ -74,11 +77,13 @@ facet_column <- "kingdom"
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
-  indicator_introduction_year(start_year_plot = 1920,
-                              smooth_span = .85,
-                              x_major_scale_stepsize = 10,
-                              x_minor_scale_stepsize = 2.5,
-                              facet_column = facet_column)
+  indicator_introduction_year(
+    start_year_plot = 1920,
+    smooth_span = .85,
+    x_major_scale_stepsize = 10,
+    x_minor_scale_stepsize = 2.5,
+    facet_column = facet_column
+  )
 ```
 
 ## Grouping by species profile
@@ -93,11 +98,13 @@ facet_column <- "habitat"
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
-  indicator_introduction_year(start_year_plot = 1920, 
-                              smooth_span = .85,
-                              x_major_scale_stepsize = 10,
-                              x_minor_scale_stepsize = 2.5,
-                              facet_column = facet_column)
+  indicator_introduction_year(
+    start_year_plot = 1920,
+    smooth_span = .85,
+    x_major_scale_stepsize = 10,
+    x_minor_scale_stepsize = 2.5,
+    facet_column = facet_column
+  )
 ```
 
 # Checklist indicators for Living Planet Index
@@ -118,12 +125,14 @@ We don't take into account Fungi and Chromista due to a lack of comprehensive da
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
-  filter(! (!!sym(facet_column)) %in% c("Chromista", "Fungi")) %>%
-  indicator_introduction_year(start_year_plot = 1920, 
-                              smooth_span = .85,
-                              x_major_scale_stepsize = 10,
-                              x_minor_scale_stepsize = 2.5,
-                              facet_column = facet_column)
+  filter(!(!!sym(facet_column)) %in% c("Chromista", "Fungi")) %>%
+  indicator_introduction_year(
+    start_year_plot = 1920,
+    smooth_span = .85,
+    x_major_scale_stepsize = 10,
+    x_minor_scale_stepsize = 2.5,
+    facet_column = facet_column
+  )
 ```
 
 ## Grouping by species profile
@@ -138,12 +147,16 @@ We don't take into account combined habitats `freshwater|terrestrial` and `marin
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
-  filter(! (!!sym(facet_column)) %in% c("freshwater|terrestrial",
-                         "marine|freshwater",
-                         NA_character_)) %>%
-  indicator_introduction_year(start_year_plot = 1920,
-                              smooth_span = .85,
-                              x_major_scale_stepsize = 10,
-                              x_minor_scale_stepsize = 2.5,
-                              facet_column = facet_column)
+  filter(!(!!sym(facet_column)) %in% c(
+    "freshwater|terrestrial",
+    "marine|freshwater",
+    NA_character_
+  )) %>%
+  indicator_introduction_year(
+    start_year_plot = 1920,
+    smooth_span = .85,
+    x_major_scale_stepsize = 10,
+    x_minor_scale_stepsize = 2.5,
+    facet_column = facet_column
+  )
 ```

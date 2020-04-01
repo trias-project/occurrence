@@ -25,9 +25,9 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries, message = FALSE}
-library(tidyverse)      # To do data science
-library(tidylog)        # To provide feedback on dplyr functions
-library(here)           # To find files
+library(tidyverse) # To do data science
+library(tidylog) # To provide feedback on dplyr functions
+library(here) # To find files
 ```
 
 # Get data
@@ -39,48 +39,71 @@ We read the emerging status based on GAM, saved as one of the outputs of [modell
 ```{r read_em_summary}
 method_gam <- "correct_baseline"
 em_gam_occs_be <- read_tsv(
-  here::here("data",
-             "output",
-             "GAM_outputs",
-       paste0("summary_GAM_occurrences_belgium_",
-              method_gam,
-              ".tsv"))) %>%
+  here::here(
+    "data",
+    "output",
+    "GAM_outputs",
+    paste0(
+      "summary_GAM_occurrences_belgium_",
+      method_gam,
+      ".tsv"
+    )
+  )
+) %>%
   mutate(indicator = "occurrences_BE")
 
 em_gam_occs_pa <- read_tsv(
-  here::here("data",
-             "output", 
-             "GAM_outputs",
-       paste0("summary_GAM_occurrences_pa_",
-              method_gam,
-              ".tsv")))  %>%
+  here::here(
+    "data",
+    "output",
+    "GAM_outputs",
+    paste0(
+      "summary_GAM_occurrences_pa_",
+      method_gam,
+      ".tsv"
+    )
+  )
+) %>%
   mutate(indicator = "occurrences_pa")
 
 em_gam_occupancy_be <- read_tsv(
-  here::here("data",
-             "output",
-             "GAM_outputs",
-       paste0("summary_GAM_occupancy_belgium_",
-              method_gam,
-              ".tsv"))) %>%
+  here::here(
+    "data",
+    "output",
+    "GAM_outputs",
+    paste0(
+      "summary_GAM_occupancy_belgium_",
+      method_gam,
+      ".tsv"
+    )
+  )
+) %>%
   mutate(indicator = "occupancy_BE")
 
 em_gam_occupancy_pa <- read_tsv(
-  here::here("data",
-             "output", 
-             "GAM_outputs",
-             paste0("summary_GAM_occupancy_pa_",
-                    method_gam,
-                    ".tsv"))) %>%
+  here::here(
+    "data",
+    "output",
+    "GAM_outputs",
+    paste0(
+      "summary_GAM_occupancy_pa_",
+      method_gam,
+      ".tsv"
+    )
+  )
+) %>%
   mutate(indicator = "occupancy_pa")
 
 em_gam_list <- list(
   gam_occurrences_be = em_gam_occs_be,
   gam_occurrences_pa = em_gam_occs_pa,
   gam_occupancy_be = em_gam_occupancy_be,
-  gam_occupancy_pa = em_gam_occupancy_pa) %>%
-  map( ~ mutate(.data = .,
-              model = "GAM"))
+  gam_occupancy_pa = em_gam_occupancy_pa
+) %>%
+  map(~ mutate(
+    .data = .,
+    model = "GAM"
+  ))
 ```
 
 Preview GAM ouput for modelling number of occurrences in Belgium:
@@ -105,12 +128,14 @@ The emerging status (column `em_status`) score is encoded as follows:
 As you can see in preview above, GAM could not be applied to all taxa (`em_status` = `NA`). Number of taxon/year combinations without emerging status:
 
 ```{r get_number_nas}
-sum(map_int(em_gam_list, 
-            function(df) {
-              df %>% filter(is.na(em_status)) %>% nrow
-              }
-            )
-)
+sum(map_int(
+  em_gam_list,
+  function(df) {
+    df %>%
+      filter(is.na(em_status)) %>%
+      nrow()
+  }
+))
 ```
 
 In these cases we will use the emerging status as assessed by applying decision rules.
@@ -121,44 +146,59 @@ We read the emerging status based on decision rules, saved as one of the outputs
 
 ```{r read_dr_results}
 em_decision_rules_occs_BE <- read_tsv(
-  here::here("data", 
-             "output",
-             "decision_rules_outputs", 
-             "output_decision_rules_occs_belgium.tsv"),
-  na = "") %>%
+  here::here(
+    "data",
+    "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_belgium.tsv"
+  ),
+  na = ""
+) %>%
   mutate(indicator = "occurrences_BE")
 
 em_decision_rules_occs_pa <- read_tsv(
-  here::here("data", 
-             "output",
-             "decision_rules_outputs", 
-             "output_decision_rules_occs_pa.tsv"),
-  na = "") %>%
+  here::here(
+    "data",
+    "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_pa.tsv"
+  ),
+  na = ""
+) %>%
   mutate(indicator = "occurrences_pa")
 
 em_decision_rules_occupancy_BE <- read_tsv(
-  here::here("data", 
-             "output",
-             "decision_rules_outputs", 
-             "output_decision_rules_occupancy_belgium.tsv"),
-  na = "") %>%
+  here::here(
+    "data",
+    "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_belgium.tsv"
+  ),
+  na = ""
+) %>%
   mutate(indicator = "occupancy_BE")
 
 em_decision_rules_occupancy_pa <- read_tsv(
-  here::here("data", 
-             "output",
-             "decision_rules_outputs", 
-             "output_decision_rules_occupancy_pa.tsv"),
-  na = "") %>%
+  here::here(
+    "data",
+    "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_pa.tsv"
+  ),
+  na = ""
+) %>%
   mutate(indicator = "occupancy_pa")
 
 em_decision_rules_list <- list(
   decision_rules_occurrences_be = em_decision_rules_occs_BE,
   decision_rules_occurrences_pa = em_decision_rules_occs_pa,
   decision_rules_occupancy_be = em_decision_rules_occupancy_BE,
-  decision_rules_occupancy_pa = em_decision_rules_occupancy_pa) %>%
-  map( ~ mutate(.data = .,
-              model = "decision_rules"))
+  decision_rules_occupancy_pa = em_decision_rules_occupancy_pa
+) %>%
+  map(~ mutate(
+    .data = .,
+    model = "decision_rules"
+  ))
 ```
 
 Preview:
@@ -173,10 +213,13 @@ Read list of scientific names:
 
 ```{r read_taxa_names}
 taxa_names <- read_tsv(
-  here::here("data",
-       "interim",
-       "timeseries_taxonomic_info.tsv"),
-  na = "")
+  here::here(
+    "data",
+    "interim",
+    "timeseries_taxonomic_info.tsv"
+  ),
+  na = ""
+)
 ```
 
 These names will be added to ranking for better readibility.
@@ -193,16 +236,18 @@ Spread columns for ranking:
 
 ```{r spread_em_dfs}
 # make a data.frame binding all dfs by row
-em_df <- 
+em_df <-
   bind_rows(em_list) %>%
-  select(-c(starts_with("growth"),starts_with("dr"), method))
+  select(-c(starts_with("growth"), starts_with("dr"), method))
 
 # spread by model
 em_df <-
   em_df %>%
-  pivot_wider(names_from = model,
-              id_cols = c(taxonKey, year, indicator),
-              values_from = em_status)
+  pivot_wider(
+    names_from = model,
+    id_cols = c(taxonKey, year, indicator),
+    values_from = em_status
+  )
 
 # assign unique emerging score (if GAM is NA, choose decision rules)
 em_df <-
@@ -210,21 +255,25 @@ em_df <-
   mutate(em = ifelse(is.na(GAM), decision_rules, GAM))
 
 # spread by years
-em_df <- 
+em_df <-
   em_df %>%
-  pivot_wider(data = ., 
-              names_from = year,
-              values_from = em, 
-              id_cols = c(taxonKey, indicator), 
-              names_prefix = paste0("year_"))
+  pivot_wider(
+    data = .,
+    names_from = year,
+    values_from = em,
+    id_cols = c(taxonKey, indicator),
+    names_prefix = paste0("year_")
+  )
 
 # spread by indicator
-em_df <- 
+em_df <-
   em_df %>%
-  pivot_wider(names_from = indicator,
-              id_cols = taxonKey,
-              values_from = starts_with("year"),
-              names_prefix = "em_status_")
+  pivot_wider(
+    names_from = indicator,
+    id_cols = taxonKey,
+    values_from = starts_with("year"),
+    names_prefix = "em_status_"
+  )
 ```
 
 We also add scientific names:
@@ -239,11 +288,11 @@ To rank taxa equally placed, we use the average of the minimal guaranteed growth
 
 ```{r add_mean_growth_occs_BE}
 # add mean growth to em_df
-em_df <- 
+em_df <-
   em_df %>%
   left_join(em_gam_list$gam_occurrences_be %>%
-              group_by(taxonKey) %>%
-              summarize(mean_growth = mean(growth, na.rm = TRUE)))
+    group_by(taxonKey) %>%
+    summarize(mean_growth = mean(growth, na.rm = TRUE)))
 # show preview
 em_df %>%
   filter(!is.na(mean_growth)) %>%
@@ -265,36 +314,40 @@ The ranking is based on the highest emerging status. The following priority rule
 4. the higher average minimal guaranteed growth (#occs/year), the higher priority is
 
 ```{r rank_basic}
-ranking <- 
+ranking <-
   em_df %>%
-  arrange(desc(year_2018_em_status_occupancy_pa),
-          desc(year_2018_em_status_occurrences_pa),
-          desc(year_2018_em_status_occupancy_BE),
-          desc(year_2018_em_status_occurrences_BE),
-          desc(year_2017_em_status_occupancy_pa),
-          desc(year_2017_em_status_occurrences_pa),
-          desc(year_2017_em_status_occupancy_BE),
-          desc(year_2017_em_status_occurrences_BE),
-          desc(year_2016_em_status_occupancy_pa),
-          desc(year_2016_em_status_occurrences_pa),
-          desc(year_2016_em_status_occupancy_BE),
-          desc(year_2016_em_status_occurrences_BE),
-          desc(mean_growth)) %>%
-  select(taxonKey, canonicalName, kingdom, class,
-         year_2018_em_status_occupancy_pa,
-         year_2018_em_status_occurrences_pa,
-         year_2018_em_status_occupancy_BE,
-         year_2018_em_status_occurrences_BE,
-         year_2017_em_status_occupancy_pa,
-         year_2017_em_status_occurrences_pa,
-         year_2017_em_status_occupancy_BE,
-         year_2017_em_status_occurrences_BE,
-         year_2016_em_status_occupancy_pa,
-         year_2016_em_status_occurrences_pa,
-         year_2016_em_status_occupancy_BE,
-         year_2016_em_status_occurrences_BE,
-         mean_growth,
-         everything())
+  arrange(
+    desc(year_2018_em_status_occupancy_pa),
+    desc(year_2018_em_status_occurrences_pa),
+    desc(year_2018_em_status_occupancy_BE),
+    desc(year_2018_em_status_occurrences_BE),
+    desc(year_2017_em_status_occupancy_pa),
+    desc(year_2017_em_status_occurrences_pa),
+    desc(year_2017_em_status_occupancy_BE),
+    desc(year_2017_em_status_occurrences_BE),
+    desc(year_2016_em_status_occupancy_pa),
+    desc(year_2016_em_status_occurrences_pa),
+    desc(year_2016_em_status_occupancy_BE),
+    desc(year_2016_em_status_occurrences_BE),
+    desc(mean_growth)
+  ) %>%
+  select(
+    taxonKey, canonicalName, kingdom, class,
+    year_2018_em_status_occupancy_pa,
+    year_2018_em_status_occurrences_pa,
+    year_2018_em_status_occupancy_BE,
+    year_2018_em_status_occurrences_BE,
+    year_2017_em_status_occupancy_pa,
+    year_2017_em_status_occurrences_pa,
+    year_2017_em_status_occupancy_BE,
+    year_2017_em_status_occurrences_BE,
+    year_2016_em_status_occupancy_pa,
+    year_2016_em_status_occurrences_pa,
+    year_2016_em_status_occupancy_BE,
+    year_2016_em_status_occurrences_BE,
+    mean_growth,
+    everything()
+  )
 ranking
 ```
 
@@ -318,42 +371,46 @@ occupancy | 2016 | Belgium | 1.5
 occurrences | 2016 | Belgium | 1
 
 ```{r rank_by_em_pts}
-ranking_pts <- 
+ranking_pts <-
   em_df %>%
   mutate(em_pts = year_2018_em_status_occupancy_pa * 3 +
-           year_2018_em_status_occurrences_pa * 2.5 +
-           year_2018_em_status_occupancy_BE * 2.5 +
-           year_2018_em_status_occurrences_BE * 2 +
-           year_2017_em_status_occupancy_pa * 2.5 +
-           year_2017_em_status_occurrences_pa * 2 +
-           year_2017_em_status_occupancy_BE * 2 +
-           year_2017_em_status_occurrences_BE * 1.5 +
-           year_2016_em_status_occupancy_pa * 2 +
-           year_2016_em_status_occurrences_pa * 1.5 +
-           year_2016_em_status_occupancy_BE * 1.5 +
-           year_2016_em_status_occurrences_BE) %>%
-  arrange(desc(em_pts),
-          desc(mean_growth)) %>%
-  select(taxonKey, canonicalName, kingdom, class,
-         em_pts, mean_growth, 
-         year_2018_em_status_occupancy_pa,
-         year_2018_em_status_occurrences_pa,
-         year_2018_em_status_occupancy_BE,
-         year_2018_em_status_occurrences_BE,
-         year_2017_em_status_occupancy_pa,
-         year_2017_em_status_occurrences_pa,
-         year_2017_em_status_occupancy_BE,
-         year_2017_em_status_occurrences_BE,
-         year_2016_em_status_occupancy_pa,
-         year_2016_em_status_occurrences_pa,
-         year_2016_em_status_occupancy_BE,
-         year_2016_em_status_occurrences_BE,
-         everything())
+    year_2018_em_status_occurrences_pa * 2.5 +
+    year_2018_em_status_occupancy_BE * 2.5 +
+    year_2018_em_status_occurrences_BE * 2 +
+    year_2017_em_status_occupancy_pa * 2.5 +
+    year_2017_em_status_occurrences_pa * 2 +
+    year_2017_em_status_occupancy_BE * 2 +
+    year_2017_em_status_occurrences_BE * 1.5 +
+    year_2016_em_status_occupancy_pa * 2 +
+    year_2016_em_status_occurrences_pa * 1.5 +
+    year_2016_em_status_occupancy_BE * 1.5 +
+    year_2016_em_status_occurrences_BE) %>%
+  arrange(
+    desc(em_pts),
+    desc(mean_growth)
+  ) %>%
+  select(
+    taxonKey, canonicalName, kingdom, class,
+    em_pts, mean_growth,
+    year_2018_em_status_occupancy_pa,
+    year_2018_em_status_occurrences_pa,
+    year_2018_em_status_occupancy_BE,
+    year_2018_em_status_occurrences_BE,
+    year_2017_em_status_occupancy_pa,
+    year_2017_em_status_occurrences_pa,
+    year_2017_em_status_occupancy_BE,
+    year_2017_em_status_occurrences_BE,
+    year_2016_em_status_occupancy_pa,
+    year_2016_em_status_occurrences_pa,
+    year_2016_em_status_occupancy_BE,
+    year_2016_em_status_occurrences_BE,
+    everything()
+  )
 ranking_pts
 ```
 
 ```{r}
-ranking_pts <- 
+ranking_pts <-
   em_df %>%
   rowwise() %>%
   mutate(em_pts = sum(
@@ -364,29 +421,34 @@ ranking_pts <-
     year_2017_em_status_occupancy_pa * 2.5,
     year_2017_em_status_occurrences_pa * 2,
     year_2017_em_status_occupancy_BE * 2,
-    year_2017_em_status_occurrences_BE * 1.5,          
+    year_2017_em_status_occurrences_BE * 1.5,
     year_2016_em_status_occupancy_pa * 2,
     year_2016_em_status_occurrences_pa * 1.5,
     year_2016_em_status_occupancy_BE * 1.5,
     year_2016_em_status_occurrences_BE,
-    na.rm = TRUE)) %>%
-  arrange(desc(em_pts),
-          desc(mean_growth)) %>%
-  select(taxonKey, canonicalName, kingdom, class,
-         em_pts, mean_growth, 
-         year_2018_em_status_occupancy_pa,
-         year_2018_em_status_occurrences_pa,
-         year_2018_em_status_occupancy_BE,
-         year_2018_em_status_occurrences_BE,
-         year_2017_em_status_occupancy_pa,
-         year_2017_em_status_occurrences_pa,
-         year_2017_em_status_occupancy_BE,
-         year_2017_em_status_occurrences_BE,
-         year_2016_em_status_occupancy_pa,
-         year_2016_em_status_occurrences_pa,
-         year_2016_em_status_occupancy_BE,
-         year_2016_em_status_occurrences_BE,
-         everything())
+    na.rm = TRUE
+  )) %>%
+  arrange(
+    desc(em_pts),
+    desc(mean_growth)
+  ) %>%
+  select(
+    taxonKey, canonicalName, kingdom, class,
+    em_pts, mean_growth,
+    year_2018_em_status_occupancy_pa,
+    year_2018_em_status_occurrences_pa,
+    year_2018_em_status_occupancy_BE,
+    year_2018_em_status_occurrences_BE,
+    year_2017_em_status_occupancy_pa,
+    year_2017_em_status_occurrences_pa,
+    year_2017_em_status_occupancy_BE,
+    year_2017_em_status_occurrences_BE,
+    year_2016_em_status_occupancy_pa,
+    year_2016_em_status_occurrences_pa,
+    year_2016_em_status_occupancy_BE,
+    year_2016_em_status_occurrences_BE,
+    everything()
+  )
 ranking_pts
 ```
 
@@ -398,14 +460,16 @@ Ranking based on hierarchical strategy is saved in `data/output/ranking_emerging
 
 ```{r save_ranking_basic}
 write_tsv(ranking,
-          here::here("data", "output", "ranking_emerging_status_hierarchical_strategy.tsv"),
-          na = "")
+  here::here("data", "output", "ranking_emerging_status_hierarchical_strategy.tsv"),
+  na = ""
+)
 ```
 
 Ranking based on points strategy is saved in `data/output/ranking_emerging_status_points_strategy.tsv`:
 
 ```{r save_ranking_pts}
 write_tsv(ranking_pts,
-          here::here("data", "output", "ranking_emerging_status_points_strategy.tsv"),
-          na = "")
+  here::here("data", "output", "ranking_emerging_status_points_strategy.tsv"),
+  na = ""
+)
 ```

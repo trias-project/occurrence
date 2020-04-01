@@ -25,22 +25,25 @@ knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries}
-library(tidyverse)  # To do datascience
-library(tidylog)    # To provide feedback on dplyr functions
-library(here)       # To find files
-library(trias)      # To use functions developed for TrIAS
-library(INBOtheme)  # To use INBO theme for graphs
+library(tidyverse) # To do datascience
+library(tidylog) # To provide feedback on dplyr functions
+library(here) # To find files
+library(trias) # To use functions developed for TrIAS
+library(INBOtheme) # To use INBO theme for graphs
 ```
 
 # Get data
 
 ```{r read_data_in}
-data_file <- here::here("data",
-                        "interim",
-                        "data_input_checklist_indicators.tsv")
+data_file <- here::here(
+  "data",
+  "interim",
+  "data_input_checklist_indicators.tsv"
+)
 data <- read_tsv(data_file,
-                 na = "",
-                 guess_max = 5000)
+  na = "",
+  guess_max = 5000
+)
 ```
 
 # Cumulative number of introductions of alien species
@@ -62,15 +65,17 @@ data <-
 We group data by kingdom:
 
 ```{r facet_column}
-facet_column = "kingdom"
+facet_column <- "kingdom"
 ```
 
 ```{r cumulative_graph_grouping_kingdom, fig.width=10, fig.height=5, results = "hide", echo=FALSE, warning=FALSE}
 data %>%
   select(key, facet_column, first_observed) %>%
   distinct() %>%
-  indicator_total_year(start_year_plot = 1920,
-                       x_major_scale_stepsize =  25,
-                      x_minor_scale_stepsize = 12.5,
-                      facet_column = facet_column)
+  indicator_total_year(
+    start_year_plot = 1920,
+    x_major_scale_stepsize = 25,
+    x_minor_scale_stepsize = 12.5,
+    facet_column = facet_column
+  )
 ```
