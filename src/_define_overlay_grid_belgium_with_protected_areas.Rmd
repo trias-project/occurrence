@@ -41,16 +41,17 @@ GIS data of protected areas as defined in Natura2000 can be found on related web
 
 ```{r download_data}
 path_natura2000 <- here(
-  "data", 
-  "external", 
+  "data",
+  "external",
   "protected_areas_natura2000_20190528"
 )
 if (!file.exists(path_natura2000)) {
   temp <- tempfile()
   download.file(
     "http://ftp.eea.europa.eu/www/natura2000/Natura2000_end2018_Shapefile.zip",
-    temp)
-  unzip(temp,exdir = path_natura2000)
+    temp
+  )
+  unzip(temp, exdir = path_natura2000)
   unlink(temp)
 }
 ```
@@ -73,17 +74,17 @@ be_grid_crs == protected_areas_crs
 We are interested in protected areas in Belgium:
 
 ```{r select_by_country_Belgium}
-protected_areas <- 
-  protected_areas %>% 
+protected_areas <-
+  protected_areas %>%
   filter(MS == "BE")
 ```
 
 Summary by site type:
 
 ```{r n_areas_per_siteype}
-protected_areas %>% 
-  as_tibble() %>% 
-  group_by(SITETYPE) %>% 
+protected_areas %>%
+  as_tibble() %>%
+  group_by(SITETYPE) %>%
   count()
 ```
 
@@ -94,7 +95,7 @@ protected_areas %>%
 Bird directive areas (SPA areas) are defined as the areas with `SITETYPE`: A and C.
 
 ```{r bird_directive_areas}
-protected_areas_bird <- 
+protected_areas_bird <-
   protected_areas %>%
   filter(SITETYPE %in% c("A", "C"))
 ```
@@ -104,7 +105,7 @@ protected_areas_bird <-
 Habitat directive areas (SAC areas) are defined as the protected areas with `SITETYPE` values B and C.
 
 ```{r habitat_directive_areas}
-protected_areas_habitat <- 
+protected_areas_habitat <-
   protected_areas %>%
   filter(SITETYPE %in% c("B", "C"))
 ```
@@ -116,14 +117,16 @@ protected_areas_habitat <-
 Find the cells of the grid which intersect all protected areas:
 
 ```{r intersect_grid_protected_areas}
-grid_intersects_areas <- st_intersects(be_grid, protected_areas, 
-                                       sparse = FALSE)
+grid_intersects_areas <- st_intersects(be_grid, protected_areas,
+  sparse = FALSE
+)
 grid_intersects_areas <- as_tibble(grid_intersects_areas,
-                                   .name_repair = "universal")
+  .name_repair = "universal"
+)
 # Assign column names based on protected areas code
 names(grid_intersects_areas) <- as.character(droplevels(protected_areas$SITECODE))
 # Add 1x1km grid cellcode as new column
-grid_intersects_areas <- 
+grid_intersects_areas <-
   grid_intersects_areas %>%
   mutate(CELLCODE = be_grid$CELLCODE) %>%
   select(CELLCODE, everything())
@@ -134,7 +137,7 @@ grid_intersects_areas <-
 Select cells which intersect any of the protected areas:
 
 ```{r cells_with_protected_areas}
-cells_protected <- 
+cells_protected <-
   grid_intersects_areas %>%
   filter_at(vars(starts_with("BE")), any_vars(. == TRUE))
 ```
@@ -144,17 +147,17 @@ cells_protected <-
 We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000. We add this information in column `natura2000`:
 
 ```{r cells_natura2000}
-cells_protected_natura2000 <- 
-  cells_protected %>% 
-  as_tibble() %>% 
+cells_protected_natura2000 <-
+  cells_protected %>%
+  as_tibble() %>%
   pull(CELLCODE)
 
-be_grid_membership_protected_areas <- 
+be_grid_membership_protected_areas <-
   be_grid %>%
   mutate(natura2000 = ifelse(CELLCODE %in% cells_protected_natura2000,
-                             TRUE,
-                             FALSE)
-)
+    TRUE,
+    FALSE
+  ))
 ```
 
 ### SPA areas
@@ -164,18 +167,20 @@ We add also a column, `spa`, assessing whether the cell intersects a SPA area:
 ```{r be_grid_add_spa}
 cells_protected_spa <-
   cells_protected %>%
-  select(CELLCODE,
-         one_of(as.character(protected_areas_bird$SITECODE))) %>%
+  select(
+    CELLCODE,
+    one_of(as.character(protected_areas_bird$SITECODE))
+  ) %>%
   filter_at(vars(starts_with("BE")), any_vars(. == TRUE)) %>%
-  as_tibble() %>% 
+  as_tibble() %>%
   pull(CELLCODE)
 
-be_grid_membership_protected_areas <- 
+be_grid_membership_protected_areas <-
   be_grid_membership_protected_areas %>%
   mutate(spa = ifelse(CELLCODE %in% cells_protected_spa,
-                             TRUE,
-                             FALSE)
-)
+    TRUE,
+    FALSE
+  ))
 ```
 
 ### Habitat directive areas
@@ -185,18 +190,20 @@ We add also a column, `habitat`, assessing whether the cell intersects a habitat
 ```{r be_grid_add_directive}
 cells_protected_hab <-
   cells_protected %>%
-  select(CELLCODE,
-         one_of(as.character(protected_areas_habitat$SITECODE))) %>%
+  select(
+    CELLCODE,
+    one_of(as.character(protected_areas_habitat$SITECODE))
+  ) %>%
   filter_at(vars(starts_with("BE")), any_vars(. == TRUE)) %>%
-  as_tibble() %>% 
+  as_tibble() %>%
   pull(CELLCODE)
 
 be_grid_membership_protected_areas <-
   be_grid_membership_protected_areas %>%
   mutate(habitat = ifelse(CELLCODE %in% cells_protected_hab,
-                             TRUE,
-                             FALSE)
-)
+    TRUE,
+    FALSE
+  ))
 ```
 
 ## Summary
@@ -233,9 +240,12 @@ be_grid_membership_protected_areas %>%
 We now save `be_grid_membership_protected_areas` as tab-separated file (tsv):
 
 ```{r save_data}
-write_tsv(be_grid_membership_protected_areas, 
-          path = here("data", 
-                      "output",
-                      "intersect_EEA_ref_grid_protected_areas.tsv"),
-          na = "")
+write_tsv(be_grid_membership_protected_areas,
+  path = here(
+    "data",
+    "output",
+    "intersect_EEA_ref_grid_protected_areas.tsv"
+  ),
+  na = ""
+)
 ```

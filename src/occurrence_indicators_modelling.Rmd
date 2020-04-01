@@ -25,13 +25,14 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 Load libraries:
 
 ```{r load_libraries, message = FALSE}
-library(tidyverse)      # To do data science
-library(tidylog)        # To provide feedback on dplyr functions
+library(tidyverse) # To do data science
+library(tidylog) # To provide feedback on dplyr functions
 library(tidyselect)
-library(rgbif)          # To get information from GBIF
-library(here)           # To find files
-library(trias)
-library(INBOtheme)      # To load graphic INBO theme
+library(rgbif) # To get information from GBIF
+library(here) # To find files
+library(mgcv) # To apply GAM
+library(gratia) # To calculate derivatives
+library(INBOtheme) # To load graphic INBO theme
 ```
 
 # Get data
@@ -41,7 +42,8 @@ We read the time series data, output of preprocessing pipeline:
 ```{r read_preprocessed_data, message=FALSE}
 df_ts <- read_tsv(
   here::here("data", "interim", "df_timeseries.tsv"),
-  na = "")
+  na = ""
+)
 ```
 
 Columns `pa_obs` and `pa_cobs` indicate the presence (1) or absence (0) of the specific taxon and any other taxa within same class respectively.
@@ -50,15 +52,16 @@ Preview:
 
 ```{r preview_ts}
 # Get a taxon
-taxon <- 
+taxon <-
   df_ts$taxonKey[5]
 
 # Preview
 df_ts %>%
-  filter(taxonKey == taxon,
-         year %in% c(2016, 2017),
-         eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
-)
+  filter(
+    taxonKey == taxon,
+    year %in% c(2016, 2017),
+    eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
+  )
 ```
 
 Retrieve scientific names which will be useful to better discuss the results.
@@ -66,7 +69,8 @@ Retrieve scientific names which will be useful to better discuss the results.
 ```{r taxon_names, message=FALSE}
 spec_names <- read_tsv(
   file = here::here("data", "interim", "timeseries_taxonomic_info.tsv"),
-  na = "") %>%
+  na = ""
+) %>%
   select(taxonKey, canonicalName) %>%
   filter(taxonKey %in% df_ts$taxonKey)
 ```
@@ -74,13 +78,15 @@ spec_names <- read_tsv(
 Lump geographic information:
 
 ```{r df_ts_compact}
-df_ts_compact <- 
+df_ts_compact <-
   df_ts %>%
-  group_by(taxonKey, year, classKey) %>%
-  summarise(obs = sum(obs),
-            cobs = sum(cobs),
-            ncells = sum(pa_cobs),
-            c_ncells = sum(pa_cobs)) %>%
+  group_by(taxonKey, year) %>%
+  summarise(
+    obs = sum(obs),
+    native_obs = sum(native_obs),
+    ncells = sum(pa_obs),
+    native_ncells = sum(pa_native_obs)
+  ) %>%
   ungroup()
 ```
 
@@ -91,10 +97,12 @@ df_ts_compact_prot_areas <-
   df_ts %>%
   filter(natura2000 == TRUE) %>%
   group_by(taxonKey, year) %>%
-  summarise(obs = sum(obs),
-            cobs = sum(cobs),
-            ncells = sum(pa_cobs),
-            c_ncells = sum(pa_cobs)) %>%
+  summarise(
+    obs = sum(obs),
+    native_obs = sum(native_obs),
+    ncells = sum(pa_obs),
+    native_ncells = sum(pa_native_obs)
+  ) %>%
   ungroup()
 ```
 
@@ -123,7 +131,7 @@ We define the time window (in years) we want to assess the emerging status:
 # Last evaluation year
 last_year <- lubridate::year(Sys.Date()) - 2
 
-# First evalution year 
+# First evalution year
 first_year <- last_year - 2
 
 # Evaluation years
@@ -133,7 +141,7 @@ evaluation_years
 
 ## Decision rules
 
-We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules`, from project package `trias`.
+We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules` from project package `trias`.
 
 ### Observations
 
@@ -259,7 +267,6 @@ gam_occs_BE <- map2(
                               verbose = TRUE,
                               saveplot = TRUE)
     }
-    
     return(results_gam)
   }
 )
@@ -268,11 +275,12 @@ names(gam_occs_BE) <- taxon_keys
 
 Show some results:
 
-```{r show_results_proveiw_occs_BE, message=FALSE}
-map(gam_occs_BE[1:20], 
-    function(t) {
-      if (!is.null(t$plot)) t$plot
-    }
+```{r show_results_preview_occs_BE, message=FALSE}
+map(
+  gam_occs_BE[1:10],
+  function(t) {
+    if (!is.null(t$plot)) t$plot
+  }
 )
 ```
 
@@ -288,18 +296,19 @@ gam_occs_pa <- map2(
   function(t, n) {
     df_key <- df_ts_compact_prot_areas %>%
       dplyr::filter(taxonKey == t)
-    results_gam  <- apply_gam(df = df_key,
-                              y_var = "obs",
-                              year = "year",
-                              eval_years = evaluation_years,
-                              type_indicator = "observations",
-                              taxon_key = t, 
-                              name = n,
-                              baseline_var = "cobs",
-                              df_title = "Natura2000",
-                              verbose = FALSE,
-                              saveplot = TRUE)
-    return(results_gam)
+    apply_gam(
+      df = df_key,
+      y_var = "obs",
+      year = "year",
+      eval_years = evaluation_years,
+      type_indicator = "observations",
+      taxon_key = t,
+      name = n,
+      baseline_var = "native_obs",
+      df_title = "Natura2000",
+      verbose = FALSE,
+      saveplot = TRUE
+    )
   }
 )
 names(gam_occs_pa) <- taxon_keys
@@ -308,10 +317,11 @@ names(gam_occs_pa) <- taxon_keys
 Show some results:
 
 ```{r preview_gam_occs_PA, message=FALSE}
-map(gam_occs_pa[1:10], 
-    function(t) {
-      if (!is.null(t$plot)) t$plot
-    }
+map(
+  gam_occs_pa[1:10],
+  function(t) {
+    if (!is.null(t$plot)) t$plot
+  }
 )
 ```
 
@@ -330,17 +340,18 @@ gam_occupancy_BE <- map2(
     df_key <- df_ts_compact %>%
       filter(taxonKey == t) %>%
       filter(year <= max(evaluation_years))
-    results_gam  <- apply_gam(df = df_key,
-                              year = "year",
-                              y_var = "ncells",
-                              eval_years = evaluation_years,
-                              type_indicator = "occupancy",
-                              taxon_key = t, 
-                              name = n,
-                              baseline_var = "class_ncells",
-                              verbose = FALSE,
-                              saveplot = TRUE)
-    return(results_gam)
+    apply_gam(
+      df = df_key,
+      year = "year",
+      y_var = "ncells",
+      eval_years = evaluation_years,
+      type_indicator = "occupancy",
+      taxon_key = t,
+      name = n,
+      baseline_var = "native_ncells",
+      verbose = FALSE,
+      saveplot = TRUE
+    )
   }
 )
 names(gam_occupancy_BE) <- taxon_keys
@@ -349,10 +360,11 @@ names(gam_occupancy_BE) <- taxon_keys
 Show some results:
 
 ```{r preview_gam_occupancy_BE, message=FALSE}
-map(gam_occupancy_BE[1:10], 
-    function(t) {
-      if (!is.null(t$plot)) t$plot
-    }
+map(
+  gam_occupancy_BE[1:10],
+  function(t) {
+    if (!is.null(t$plot)) t$plot
+  }
 )
 ```
 
@@ -368,17 +380,19 @@ gam_occupancy_pa <- map2(
   function(t, n) {
     df_key <- df_ts_compact_prot_areas %>%
       dplyr::filter(taxonKey == t)
-    results_gam  <- apply_gam(df = df_key,
-                              y_var = "ncells",
-                              year = "year",
-                              eval_years = evaluation_years,
-                              type_indicator = "occupancy",
-                              taxon_key = t, 
-                              name = n,
-                              baseline_var = "class_ncells",
-                              df_title = "Natura2000",
-                              verbose = FALSE,
-                              saveplot = TRUE)
+    apply_gam(
+      df = df_key,
+      y_var = "ncells",
+      year = "year",
+      eval_years = evaluation_years,
+      type_indicator = "occupancy",
+      taxon_key = t,
+      name = n,
+      baseline_var = "native_ncells",
+      df_title = "Natura2000",
+      verbose = FALSE,
+      saveplot = TRUE
+    )
     return(results_gam)
   }
 )
@@ -388,10 +402,11 @@ names(gam_occupancy_pa) <- taxon_keys
 Show some results:
 
 ```{r preview_gam_occupancy_PA, message=FALSE}
-map(gam_occupancy_pa[1:10], 
-    function(t) {
-      if (!is.null(t$plot)) t$plot
-    }
+map(
+  gam_occupancy_pa[1:10],
+  function(t) {
+    if (!is.null(t$plot)) t$plot
+  }
 )
 ```
 
@@ -403,25 +418,37 @@ Save emerging status based on decision rules:
 
 ```{r save_decisionrules_results}
 write_tsv(em_decision_rules_occs_BE,
-          path = here::here("data", "output", 
-                      "decision_rules_outputs",
-                      "output_decision_rules_occs_belgium.tsv"),
-          na = "")
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_belgium.tsv"
+  ),
+  na = ""
+)
 write_tsv(em_decision_rules_occs_pa,
-          path = here::here("data", "output", 
-                      "decision_rules_outputs",
-                      "output_decision_rules_occs_pa.tsv"),
-          na = "")
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_pa.tsv"
+  ),
+  na = ""
+)
 write_tsv(em_decision_rules_occupancy_BE,
-          path = here::here("data", "output", 
-                      "decision_rules_outputs",
-                      "output_decision_rules_occupancy_belgium.tsv"),
-          na = "")
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_belgium.tsv"
+  ),
+  na = ""
+)
 write_tsv(em_decision_rules_occupancy_pa,
-          path = here::here("data", "output", 
-                      "decision_rules_outputs",
-                      "output_decision_rules_occupancy_pa.tsv"),
-          na = "")
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_pa.tsv"
+  ),
+  na = ""
+)
 ```
 
 
@@ -431,78 +458,134 @@ Save complete outputs:
 
 ```{r  save_outputs}
 method_em <- gam_occs_BE[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occs_BE, function(x) {x$output}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("outptut_GAM_observations_belgium_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$output
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "outptut_GAM_observations_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occs_pa[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occs_pa, function(x) {x$output}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("outptut_GAM_observations_pa_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$output
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "outptut_GAM_observations_pa_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$output}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("outptut_GAM_occupancy_belgium_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$output
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "outptut_GAM_occupancy_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$output}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("outptut_GAM_occupancy_pa_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$output
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "outptut_GAM_occupancy_pa_",
+    method_em, ".tsv"
+  )
+)
+)
 ```
 
 Save summary of results limited to the years included in evaluation:
 
 ```{r save_em_summary}
 method_em <- gam_occs_BE[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occs_BE, function(x) {x$em_summary}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("summary_GAM_observations_belgium_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "summary_GAM_observations_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occs_pa[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occs_pa, function(x) {x$em_summary}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("summary_GAM_observations_pa_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "summary_GAM_observations_pa_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occupancy_BE, function(x) {x$em_summary}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("summary_GAM_occupancy_belgium_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "summary_GAM_occupancy_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
 
 method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
-write_tsv(map_dfr(gam_occupancy_pa, function(x) {x$em_summary}),
-          na = "", 
-          path = here("data",
-                      "output", 
-                      "GAM_outputs",
-                      paste0("summary_GAM_occupancy_pa_",
-                             method_em, ".tsv")))
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "summary_GAM_occupancy_pa_",
+    method_em, ".tsv"
+  )
+)
+)
 ```
