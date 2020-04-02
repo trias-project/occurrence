@@ -241,9 +241,9 @@ We now save `be_grid_membership_protected_areas` as tab-separated file (tsv):
 
 ```{r save_data}
 write_tsv(be_grid_membership_protected_areas,
-  path = here(
+  path = here::here(
     "data",
-    "output",
+    "interim",
     "intersect_EEA_ref_grid_protected_areas.tsv"
   ),
   na = ""

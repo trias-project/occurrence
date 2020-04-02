@@ -166,7 +166,7 @@ We get information about intersection of grid cells with Belgian protected areas
 df_prot_areas <- read_tsv(
   here::here(
     "data",
-    "output",
+    "interim",
     "intersect_EEA_ref_grid_protected_areas.tsv"
   ),
   na = ""
