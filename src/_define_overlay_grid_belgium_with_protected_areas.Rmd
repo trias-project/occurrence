@@ -143,6 +143,51 @@ cells_protected <-
   filter_at(vars(starts_with("BE")), any_vars(. == TRUE))
 ```
 
+## Get grid cells for each protected area
+
+For each protected area we can get the list of intersecting cells:
+
+```{r get_list_cells_per_area}
+cells_of_prot_areas <- 
+  map_dfr(prot_areas_sitecode,
+    function(pa_cell_code) {
+      site_type <- 
+        protected_areas %>%
+        dplyr::filter(SITECODE == pa_cell_code) %>%
+        dplyr::pull(SITETYPE)
+      cells <- 
+        cells_protected %>%
+        # avoid long logs by using dplyr functions instead of tidylog
+        dplyr::select(CELLCODE, !!sym(pa_cell_code)) %>%
+        dplyr::filter(!!sym(pa_cell_code) == TRUE) %>%
+        dplyr::mutate(SITECODE = pa_cell_code,
+                      SITETYPE = as.character(droplevels(site_type))) %>%
+        dplyr::select(SITECODE, SITETYPE, CELLCODE)
+    }
+  )
+```
+
+For example, grid cells intersecting protected area `BE1000003`:
+
+```{r example_BE31001C0}
+cells_of_prot_areas %>%
+  filter(SITECODE == "BE1000003")
+```
+
+Distribution of the number of cells covering the protected areas:
+
+```{r distribution_n_cells_protected_areas}
+cells_of_prot_areas %>%
+  group_by(SITECODE) %>%
+  count() %>%
+  arrange(desc(n)) %>%
+  ggplot() +
+  geom_histogram(aes(x = n), bins = 30) +
+  scale_x_log10() +
+  xlab("Number of cells (km2)") +
+  ylab("Number of protected areas")
+```
+
 ## Natura2000
 
 We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000. We add this information in column `natura2000`:
@@ -246,6 +291,19 @@ write_tsv(be_grid_membership_protected_areas,
     "data",
     "interim",
     "intersect_EEA_ref_grid_protected_areas.tsv"
+  ),
+  na = ""
+)
+```
+
+We also save `cells_of_prot_areas` in same format:
+
+```{r save_cells_of_prot_areas}
+write_tsv(cells_of_prot_areas,
+  path = here::here(
+    "data",
+    "interim",
+    "EEA_ref_grid_cells_covering_protected_areas.tsv"
   ),
   na = ""
 )
