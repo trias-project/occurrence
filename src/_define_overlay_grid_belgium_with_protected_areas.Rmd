@@ -30,7 +30,7 @@ library(here)
 We import UTM grid data of Belgium at 1 by 1 km resolution. All grids have CRS (Coordinate Reference System) equal to _Belge Lambert 1972_:
   
 ```{r import_grids_of_BE_from_EEA}
-be_grid <- st_read(here("data", "external", "utm1_bel"))
+be_grid <- st_read(here::here("data", "external", "utm1_bel"))
 be_grid_crs <- st_crs(be_grid)
 be_grid_crs
 ```
@@ -40,7 +40,7 @@ be_grid_crs
 GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/protected_aras_natura2000_20190528`:
 
 ```{r download_data}
-path_natura2000 <- here(
+path_natura2000 <- here::here(
   "data",
   "external",
   "protected_areas_natura2000_20190528"
@@ -114,7 +114,7 @@ protected_areas_habitat <-
 
 ## Interset grid with protected areas
 
-Find the cells of the grid which intersect all protected areas:
+Intersect cells of the grid and protected areas:
 
 ```{r intersect_grid_protected_areas}
 grid_intersects_areas <- st_intersects(be_grid, protected_areas,
@@ -124,11 +124,12 @@ grid_intersects_areas <- as_tibble(grid_intersects_areas,
   .name_repair = "universal"
 )
 # Assign column names based on protected areas code
-names(grid_intersects_areas) <- as.character(droplevels(protected_areas$SITECODE))
+prot_areas_sitecode <-  as.character(droplevels(protected_areas$SITECODE))
+names(grid_intersects_areas) <- prot_areas_sitecode
 # Add 1x1km grid cellcode as new column
 grid_intersects_areas <-
   grid_intersects_areas %>%
-  mutate(CELLCODE = be_grid$CELLCODE) %>%
+  mutate(CELLCODE = as.character(droplevels(be_grid$CELLCODE))) %>%
   select(CELLCODE, everything())
 ```
 
@@ -147,14 +148,14 @@ cells_protected <-
 We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000. We add this information in column `natura2000`:
 
 ```{r cells_natura2000}
-cells_protected_natura2000 <-
+cellcode_protected_natura2000 <-
   cells_protected %>%
   as_tibble() %>%
   pull(CELLCODE)
 
 be_grid_membership_protected_areas <-
   be_grid %>%
-  mutate(natura2000 = ifelse(CELLCODE %in% cells_protected_natura2000,
+  mutate(natura2000 = ifelse(CELLCODE %in% cellcode_protected_natura2000,
     TRUE,
     FALSE
   ))
@@ -237,7 +238,7 @@ be_grid_membership_protected_areas %>%
 
 ## Save data
 
-We now save `be_grid_membership_protected_areas` as tab-separated file (tsv):
+We save `be_grid_membership_protected_areas` as tab-separated file (tsv):
 
 ```{r save_data}
 write_tsv(be_grid_membership_protected_areas,
