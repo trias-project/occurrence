@@ -12,7 +12,7 @@ opts_chunk$set(echo = TRUE)
 
 # Goal
 
-Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura2000 protected areas, this document documents how it is possible to assess which cells contain protected areas.
+Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura2000 protected areas, this document assesses the cells covering the protected areas.
 
 # Setup 
 
