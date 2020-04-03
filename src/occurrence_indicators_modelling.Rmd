@@ -360,7 +360,7 @@ gam_occupancy_BE <- map2(
       type_indicator = "occupancy",
       taxon_key = t,
       name = n,
-      baseline_var = "native_ncells",
+      baseline_var = "class_ncells",
       verbose = FALSE,
       saveplot = TRUE
     )
