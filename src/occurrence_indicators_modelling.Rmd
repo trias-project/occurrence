@@ -30,8 +30,7 @@ library(tidylog) # To provide feedback on dplyr functions
 library(tidyselect)
 library(rgbif) # To get information from GBIF
 library(here) # To find files
-library(mgcv) # To apply GAM
-library(gratia) # To calculate derivatives
+library(trias)
 library(INBOtheme) # To load graphic INBO theme
 ```
 
@@ -80,12 +79,12 @@ Lump geographic information:
 ```{r df_ts_compact}
 df_ts_compact <-
   df_ts %>%
-  group_by(taxonKey, year) %>%
+  group_by(taxonKey, year, classKey) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
@@ -99,9 +98,9 @@ df_ts_compact_prot_areas <-
   group_by(taxonKey, year) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
@@ -152,9 +151,11 @@ We apply function `apply_decision_rules()` to observations for all Belgium:
 ```{r apply_decision_rules_occs_be, message=FALSE}
 em_decision_rules_occs_BE <- map_dfr(
   evaluation_years,
-  ~ apply_decision_rules(df = df_ts_compact,
-                         y_var= "obs",
-                         eval_year = .)
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = "obs",
+    eval_year = .
+  )
 )
 ```
 
@@ -171,9 +172,11 @@ We apply function `apply_decision_rules()` to observations for protected areas:
 ```{r apply_decision_rules_occs_pa, message=FALSE}
 em_decision_rules_occs_pa <- map_dfr(
   evaluation_years,
-  ~ apply_decision_rules(df = df_ts_compact_prot_areas,
-                         y_var = "obs",
-                         eval_year = .)
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = "obs",
+    eval_year = .
+  )
 )
 ```
 
@@ -192,9 +195,11 @@ We apply function `apply_decision_rules()` to occupancy for all Belgium:
 ```{r apply_decision_rules_occupancy_BE, message=FALSE}
 em_decision_rules_occupancy_BE <- map_dfr(
   evaluation_years,
-  ~ apply_decision_rules(df = df_ts_compact,
-                 y_var = "ncells",
-                 eval_year = .)
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = "ncells",
+    eval_year = .
+  )
 )
 ```
 
@@ -211,9 +216,11 @@ We apply function `apply_decision_rules()` to occupancy in protected areas:
 ```{r apply_dec_rules_occupancy_pa, message=FALSE}
 em_decision_rules_occupancy_pa <- map_dfr(
   evaluation_years,
-  ~ apply_decision_rules(df = df_ts_compact_prot_areas,
-                 y_var = "ncells",
-                 eval_year = .)
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = "ncells",
+    eval_year = .
+  )
 )
 ```
 
@@ -243,30 +250,35 @@ gam_occs_BE <- map2(
       filter(taxonKey == t) %>%
       filter(year <= max(evaluation_years))
     if (!is.na(classKey)) {
-      results_gam  <- apply_gam(df = df_key,
-                              year = "year",
-                              y_var = "obs",
-                              taxonKey = "taxonKey",
-                              eval_years = evaluation_years,
-                              type_indicator = "observations",
-                              taxon_key = t, 
-                              name = n,
-                              baseline_var = "cobs",
-                              dir_name = "./data/output/GAM_outputs/",
-                              saveplot = TRUE,
-                              verbose = TRUE)
+      results_gam <- apply_gam(
+        df = df_key,
+        year = "year",
+        y_var = "obs",
+        taxonKey = "taxonKey",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        baseline_var = "cobs",
+        dir_name = "./data/output/GAM_outputs/",
+        saveplot = TRUE,
+        verbose = TRUE
+      )
     } else {
-      results_gam  <- apply_gam(df = df_key,
-                              year = "year",
-                              y_var = "obs",
-                              taxonKey = "taxonKey",
-                              eval_years = evaluation_years,
-                              type_indicator = "observations",
-                              taxon_key = t, 
-                              name = n,
-                              verbose = TRUE,
-                              saveplot = TRUE)
+      results_gam <- apply_gam(
+        df = df_key,
+        year = "year",
+        y_var = "obs",
+        taxonKey = "taxonKey",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        verbose = TRUE,
+        saveplot = TRUE
+      )
     }
+
     return(results_gam)
   }
 )
@@ -277,7 +289,7 @@ Show some results:
 
 ```{r show_results_preview_occs_BE, message=FALSE}
 map(
-  gam_occs_BE[1:10],
+  gam_occs_BE[1:20],
   function(t) {
     if (!is.null(t$plot)) t$plot
   }
@@ -304,7 +316,7 @@ gam_occs_pa <- map2(
       type_indicator = "observations",
       taxon_key = t,
       name = n,
-      baseline_var = "native_obs",
+      baseline_var = "cobs",
       df_title = "Natura2000",
       verbose = FALSE,
       saveplot = TRUE
@@ -388,12 +400,11 @@ gam_occupancy_pa <- map2(
       type_indicator = "occupancy",
       taxon_key = t,
       name = n,
-      baseline_var = "native_ncells",
+      baseline_var = "class_ncells",
       df_title = "Natura2000",
       verbose = FALSE,
       saveplot = TRUE
     )
-    return(results_gam)
   }
 )
 names(gam_occupancy_pa) <- taxon_keys
