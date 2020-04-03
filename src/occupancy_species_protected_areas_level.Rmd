@@ -31,10 +31,12 @@ library(rgbif)
 Read the occurrence cubes at species level for European countries as published on Zenodo (https://zenodo.org/record/3637911). It can take a long time:
 
 ```{r read_cube_from_zenodo}
-if (!"be_species_cube.csv" %in% 
-    list.files(here::here("data", "interim"))) {
-  download_zenodo(doi = "10.5281/zenodo.3637911",
-                path = here::here("data", "interim"))
+if (!"be_species_cube.csv" %in%
+  list.files(here::here("data", "interim"))) {
+  download_zenodo(
+    doi = "10.5281/zenodo.3637911",
+    path = here::here("data", "interim")
+  )
 }
 ```
 
@@ -93,7 +95,7 @@ alien_taxa %>%
 Alien genera:
 
 ```{r alien_genus}
-genus_alien <- 
+genus_alien <-
   alien_taxa %>%
   filter(rank == "GENUS")
 ```
@@ -106,18 +108,24 @@ infraspecific_alien <-
   filter(rank %in% c("SUBSPECIES", "VARIETY")) %>%
   select(-starts_with("species"))
 infraspecific_alien <-
-  map_dfr(infraspecific_alien$nubKey,
-          function(x) {
-            name_usage(x, return = "data")
-            })
+  map_dfr(
+    infraspecific_alien$nubKey,
+    function(x) {
+      name_usage(x, return = "data")
+    }
+  )
 infraspecific_alien <-
   infraspecific_alien %>%
-  mutate(species = if_else(is.na(species),
-                           parent,
-                           species),
-         speciesKey = if_else(is.na(speciesKey),
-                              parentKey,
-                              speciesKey))
+  mutate(
+    species = if_else(is.na(species),
+      parent,
+      species
+    ),
+    speciesKey = if_else(is.na(speciesKey),
+      parentKey,
+      speciesKey
+    )
+  )
 ```
 
 ## EEA cells containing the Natura2000 protected areas
@@ -125,7 +133,7 @@ infraspecific_alien <-
 We download also the file containing the intersection of protected areas and the EEA grid as produced in :
 
 ```{r read_cells_of_prot_areas}
-cells_of_prot_areas <-read_tsv(
+cells_of_prot_areas <- read_tsv(
   file = here::here(
     "data",
     "interim",
@@ -144,7 +152,7 @@ cells_of_prot_areas %>% head(10)
 Number of cells per protected area:
 
 ```{r n_cells_per_prot_areas}
-n_cells_prot_areas <- 
+n_cells_prot_areas <-
   cells_of_prot_areas %>%
   group_by(SITECODE) %>%
   summarize(n_cells = n())
@@ -162,9 +170,11 @@ Metadata about all Belgian Natura2000 protected areas have been already saved in
 
 ```{r protected_areas_metadata}
 protected_areas_metadata <- read_tsv(
-  here::here("data",
-  "interim",
-  "protected_areas_metadata.tsv"),
+  here::here(
+    "data",
+    "interim",
+    "protected_areas_metadata.tsv"
+  ),
   na = ""
 )
 ```
@@ -174,10 +184,11 @@ protected_areas_metadata <- read_tsv(
 Get values from occurrence cube related to cells covering the protected areas:
 
 ```{r join_cell_prot_areas_with_be_cube}
-be_prot_areas_cube <- 
+be_prot_areas_cube <-
   cells_of_prot_areas %>%
   inner_join(be_species_cube,
-            by = c("CELLCODE" = "eea_cell_code"))
+    by = c("CELLCODE" = "eea_cell_code")
+  )
 ```
 
 Preview:
@@ -188,20 +199,22 @@ be_prot_areas_cube %>% head(10)
 
 For each taxon, year and protected area, calculate the number of observations, the area of occupancy and minimum coordinate uncertainty:
 
-```{r occupancy_in_prot_areas}
-occupancy_in_prot_areas <-
+```{r occs_prot_areas}
+occs_prot_areas <-
   be_prot_areas_cube %>%
   group_by(SITECODE, SITETYPE, year, speciesKey) %>%
-  summarize(aoo = n(),
-            n = sum(n),
-            min_coord_uncertainty = min(min_coord_uncertainty)) %>%
+  summarize(
+    aoo = n(),
+    n = sum(n),
+    min_coord_uncertainty = min(min_coord_uncertainty)
+  ) %>%
   ungroup()
 ```
 
 Previewing the 10 highest area of occupancies:
 
-```{r preview_occupancy_in_prot_areas}
-occupancy_in_prot_areas %>% 
+```{r preview_occs_prot_areas}
+occs_prot_areas %>%
   arrange(desc(aoo)) %>%
   head(10)
 ```
@@ -211,18 +224,19 @@ occupancy_in_prot_areas %>%
 To add the coverage of each protected area, we divide the area of occupancy by the area of each protected area defined as the number of cells totally covering the protected area:
 
 ```{r add_coverage}
-occupancy_in_prot_areas <- 
-  occupancy_in_prot_areas %>%
+occs_prot_areas <-
+  occs_prot_areas %>%
   left_join(n_cells_prot_areas,
-            by = c("SITECODE")) %>%
-  mutate(coverage = aoo/n_cells) %>%
+    by = c("SITECODE")
+  ) %>%
+  mutate(coverage = aoo / n_cells) %>%
   select(-n_cells)
 ```
 
 The coverage is a number between 0 (species not present) and 1 (species present in the entire protected area). Preview the 10 highest coverage values:
 
 ```{r preview_coverage}
-occupancy_in_prot_areas %>%
+occs_prot_areas %>%
   arrange(desc(coverage)) %>%
   head(10)
 ```
@@ -234,34 +248,38 @@ Not all taxa in Belgian occurrence cube are present in protected areas. We remov
 ```{r reduce_be_species_info}
 prot_areas_species_info <-
   be_species_info %>%
-  filter(speciesKey %in% occupancy_in_prot_areas$speciesKey)
+  filter(speciesKey %in% occs_prot_areas$speciesKey)
 ```
 
 We retrieve taxonomic information from GBIF:
 
 ```{r taxonomic_info_species_cube, cache = TRUE}
-prot_areas_species_taxon_info <- 
-  map_dfr(prot_areas_species_info$speciesKey,
-          function(x) {
-            name_usage(key = x, return = "data")
-          }
+prot_areas_species_taxon_info <-
+  map_dfr(
+    prot_areas_species_info$speciesKey,
+    function(x) {
+      name_usage(key = x, return = "data")
+    }
   )
-prot_areas_species_taxon_info <- 
+prot_areas_species_taxon_info <-
   prot_areas_species_taxon_info %>%
-  select(key,
-         kingdom,
-         phylum,
-         order,
-         class,
-         family,
-         genusKey,
-         genus,
-         speciesKey,
-         species)
+  select(
+    key,
+    kingdom,
+    phylum,
+    order,
+    class,
+    family,
+    genusKey,
+    genus,
+    speciesKey,
+    species
+  )
 prot_areas_species_info <-
   prot_areas_species_info %>%
   left_join(prot_areas_species_taxon_info,
-            by = "speciesKey") 
+    by = "speciesKey"
+  )
 ```
 
 Preview:
@@ -276,15 +294,16 @@ We would also like to indicate whether the species is alien. We add a boolean co
 
 ```{r add_is_alien}
 # add genusKey to species
-occupancy_in_prot_areas <-
-  occupancy_in_prot_areas %>%
+occs_prot_areas <-
+  occs_prot_areas %>%
   left_join(prot_areas_species_info %>%
-              select(speciesKey, genusKey),
-            by = c("speciesKey"))
-occupancy_in_prot_areas <-
-  occupancy_in_prot_areas %>%
-  mutate(is_alien = speciesKey %in% alien_taxa$nubKey | 
-           genusKey %in% alien_taxa$nubKey)
+    select(speciesKey, genusKey),
+  by = c("speciesKey")
+  )
+occs_prot_areas <-
+  occs_prot_areas %>%
+  mutate(is_alien = speciesKey %in% alien_taxa$nubKey |
+    genusKey %in% alien_taxa$nubKey)
 ```
 
 As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:
@@ -293,99 +312,126 @@ As the Belgian list of alien taxa contains infraspecific taxa, it can occur that
 species_infraspecific_alien <-
   infraspecific_alien %>%
   select(speciesKey, scientificName, key) %>%
-  filter(speciesKey %in% occupancy_in_prot_areas$speciesKey) %>%
+  filter(speciesKey %in% occs_prot_areas$speciesKey) %>%
   group_by(speciesKey) %>%
-  summarize(remarks = paste0("Infraspecific alien taxa present. ",
-                                  paste(key,
-                                        scientificName,
-                                        sep = ":",
-                                        collapse = ",")))
-occupancy_in_prot_areas <- 
-  occupancy_in_prot_areas %>%
+  summarize(remarks = paste0(
+    "Infraspecific alien taxa present. ",
+    paste(key,
+      scientificName,
+      sep = ":",
+      collapse = ","
+    )
+  ))
+occs_prot_areas <-
+  occs_prot_areas %>%
   left_join(species_infraspecific_alien,
-            by = "speciesKey")
+    by = "speciesKey"
+  )
 ```
 
 Example of native species with alien infraspecific taxa:
 
 ```{r example_alien_infraspecific}
-occupancy_in_prot_areas %>%
+occs_prot_areas %>%
   filter(!is.na(remarks)) %>%
   select(speciesKey, is_alien, remarks) %>%
   head(10)
 ```
 
-## Finalize output
+# Save data and metadata
 
-We finalize the table containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
+## Save protected area analysis 
+
+We finalize the data.frame containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
 
 Select column of interest and set columns order:
 
-```{r finalize_occupancy_in_prot_areas}
-occupancy_in_prot_areas <-
-  occupancy_in_prot_areas %>%
-  select(sitecode = SITECODE,
-         sitetype = SITETYPE,
-         year,
-         speciesKey,
-         n,
-         aoo,
-         coverage,
-         min_coord_uncertainty,
-         is_alien,
-         remarks
-         )
+```{r finalize_occs_prot_areas}
+occs_prot_areas <-
+  occs_prot_areas %>%
+  select(
+    SITECODE,
+    SITETYPE,
+    year,
+    speciesKey,
+    n,
+    aoo,
+    coverage,
+    min_coord_uncertainty,
+    is_alien,
+    remarks
+  )
 ```
 
-# Metadata
+Save data:
 
-## Taxonomic metadata
+```{r save_occs_prot_areas}
+occs_prot_areas %>%
+  write_tsv(
+    path = here::here(
+      "data",
+      "output",
+      "analysis_protected_areas.tsv"
+    ),
+    na = ""
+  )
+```
+
+## Finalize en save metadata
+
+### Taxonomic metadata
 
 Select taxonomic metadata we are interested to:
 
 ```{r selection_taxon_metadata}
-taxonomic_metadata <- 
+taxonomic_metadata <-
   prot_areas_species_info %>%
-  select(speciesKey,
-         scientificName,
-         kingdom,
-         phylum,
-         order,
-         class,
-         genus,
-         family,
-         species,
-         rank,
-         includes)
+  select(
+    speciesKey,
+    scientificName,
+    kingdom,
+    phylum,
+    order,
+    class,
+    genus,
+    family,
+    species,
+    rank,
+    includes
+  )
 ```
 
 ```{r save_taxonomic_metadata}
 taxonomic_metadata %>%
-  write_tsv(here::here("data",
-                       "output",
-                       "protected_areas_species_info.csv"),
-            na = "")
+  write_tsv(here::here(
+    "data",
+    "output",
+    "protected_areas_species_info.csv"
+  ),
+  na = ""
+  )
 ```
 
-## Protected areas metadata
+### Protected areas metadata
 
 We remove metadata of areas without observations:
 
 ```{r filter_protected_areas_metadata}
 protected_areas_metadata <-
   protected_areas_metadata %>%
-  rename(sitecode = SITECODE,
-         sitetype = SITETYPE,
-         sitename = SITENAME) %>%
-  filter(sitecode %in% occupancy_in_prot_areas$sitecode)
+  filter(sitecode %in% occs_prot_areas$sitecode)
 ```
 
 We save the metadata as output:
 
 ```{r save_final_protected_areas_metadata}
 protected_areas_metadata %>%
-  write_tsv(path = here::here("data",
-                              "output",
-                              "protected_areas_metadata.tsv"),
-            na = "")
+  write_tsv(
+    path = here::here(
+      "data",
+      "output",
+      "protected_areas_metadata.tsv"
+    ),
+    na = ""
+  )
 ```

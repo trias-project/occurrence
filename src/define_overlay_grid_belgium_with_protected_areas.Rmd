@@ -124,7 +124,7 @@ grid_intersects_areas <- as_tibble(grid_intersects_areas,
   .name_repair = "universal"
 )
 # Assign column names based on protected areas code
-prot_areas_sitecode <-  as.character(droplevels(protected_areas$SITECODE))
+prot_areas_sitecode <- as.character(droplevels(protected_areas$SITECODE))
 names(grid_intersects_areas) <- prot_areas_sitecode
 # Add 1x1km grid cellcode as new column
 grid_intersects_areas <-
@@ -148,20 +148,23 @@ cells_protected <-
 For each protected area we can get the list of intersecting cells:
 
 ```{r get_list_cells_per_area}
-cells_of_prot_areas <- 
-  map_dfr(prot_areas_sitecode,
+cells_of_prot_areas <-
+  map_dfr(
+    prot_areas_sitecode,
     function(pa_cell_code) {
-      site_type <- 
+      site_type <-
         protected_areas %>%
         dplyr::filter(SITECODE == pa_cell_code) %>%
         dplyr::pull(SITETYPE)
-      cells <- 
+      cells <-
         cells_protected %>%
         # avoid long logs by using dplyr functions instead of tidylog
         dplyr::select(CELLCODE, !!sym(pa_cell_code)) %>%
         dplyr::filter(!!sym(pa_cell_code) == TRUE) %>%
-        dplyr::mutate(SITECODE = pa_cell_code,
-                      SITETYPE = as.character(droplevels(site_type))) %>%
+        dplyr::mutate(
+          SITECODE = pa_cell_code,
+          SITETYPE = as.character(droplevels(site_type))
+        ) %>%
         dplyr::select(SITECODE, SITETYPE, CELLCODE)
     }
   )
@@ -312,7 +315,7 @@ write_tsv(cells_of_prot_areas,
 We are also interested in saving basic information about protected areas:
 
 ```{r save_metadata_prot_areas}
-protected_areas_metadata <- 
+protected_areas_metadata <-
   protected_areas %>%
   st_drop_geometry() %>%
   select(SITECODE, SITENAME, SITETYPE)
@@ -323,10 +326,14 @@ We save these metadata:
 
 ```{r save_protected_areas_metadata}
 protected_areas_metadata %>%
-  write_tsv(path = here::here("data",
-                              "interim",
-                              "protected_areas_metadata.tsv"),
-            na = "")
+  write_tsv(
+    path = here::here(
+      "data",
+      "interim",
+      "protected_areas_metadata.tsv"
+    ),
+    na = ""
+  )
 ```
 
 
