@@ -64,3 +64,4 @@ data/external/protected_areas_natura2000_20190528/*
 
 # timeseries
 data/interim/df_timeseries.tsv
+data/interim/*_species_*.csv
