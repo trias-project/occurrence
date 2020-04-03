@@ -308,3 +308,25 @@ write_tsv(cells_of_prot_areas,
   na = ""
 )
 ```
+
+We are also interested in saving basic information about protected areas:
+
+```{r save_metadata_prot_areas}
+protected_areas_metadata <- 
+  protected_areas %>%
+  st_drop_geometry() %>%
+  select(SITECODE, SITENAME, SITETYPE)
+protected_areas_metadata
+```
+
+We save these metadata:
+
+```{r save_protected_areas_metadata}
+protected_areas_metadata %>%
+  write_tsv(path = here::here("data",
+                              "interim",
+                              "protected_areas_metadata.tsv"),
+            na = "")
+```
+
+
