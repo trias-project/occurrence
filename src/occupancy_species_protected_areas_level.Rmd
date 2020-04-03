@@ -324,8 +324,8 @@ Select column of interest and set columns order:
 ```{r finalize_occupancy_in_prot_areas}
 occupancy_in_prot_areas <-
   occupancy_in_prot_areas %>%
-  select(SITECODE = sitecode,
-         SITETYPE = sitetype,
+  select(sitecode = SITECODE,
+         sitetype = SITETYPE,
          year,
          speciesKey,
          n,
@@ -336,7 +336,6 @@ occupancy_in_prot_areas <-
          remarks
          )
 ```
-
 
 # Metadata
 
@@ -360,6 +359,14 @@ taxonomic_metadata <-
          includes)
 ```
 
+```{r save_taxonomic_metadata}
+taxonomic_metadata %>%
+  write_tsv(here::here("data",
+                       "output",
+                       "protected_areas_species_info.csv"),
+            na = "")
+```
+
 ## Protected areas metadata
 
 We remove metadata of areas without observations:
@@ -367,7 +374,10 @@ We remove metadata of areas without observations:
 ```{r filter_protected_areas_metadata}
 protected_areas_metadata <-
   protected_areas_metadata %>%
-  filter(SITECODE %in% occupancy_in_prot_areaes$SITECODE)
+  rename(sitecode = SITECODE,
+         sitetype = SITETYPE,
+         sitename = SITENAME) %>%
+  filter(sitecode %in% occupancy_in_prot_areas$sitecode)
 ```
 
 We save the metadata as output:
