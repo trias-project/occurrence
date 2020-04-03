@@ -1,0 +1,381 @@
+---
+title: "Species observations and occupancy in Belgian protected areas"
+author: "Damiano Oldoni"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+# Goal
+
+This document aims to calculate the species occupancy and the number of obsrvations in Belgian natura2000 protected areas. Data are aggregated per year, species and at a resolution of 1 km x 1km as we use the EEA reference grid for Belgium.
+
+# Setup 
+
+```{r load_libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidylog)
+library(here)
+library(inborutils)
+library(rgbif)
+```
+
+# Read input data
+
+## Occurrence cube at species level
+
+Read the occurrence cubes at species level for European countries as published on Zenodo (https://zenodo.org/record/3637911). It can take a long time:
+
+```{r read_cube_from_zenodo}
+if (!"be_species_cube.csv" %in% 
+    list.files(here::here("data", "interim"))) {
+  download_zenodo(doi = "10.5281/zenodo.3637911",
+                path = here::here("data", "interim"))
+}
+```
+
+We are interested in the Belgian cube (`be_species_cube.csv`) and its metadata (`be_species_info.csv`):
+
+```{r read_be_species_cube}
+be_species_cube <- read_csv(
+  file = here::here("data", "interim", "be_species_cube.csv"),
+  na = ""
+)
+be_species_info <- read_csv(
+  file = here::here("data", "interim", "be_species_info.csv"),
+  na = ""
+)
+```
+
+Preview occurrence cube:
+
+```{r preview_cube}
+be_species_cube %>% head(10)
+```
+
+Preview taxonomic metadata of occurrence cube:
+
+```{r preview_cube_metadata}
+be_species_info %>% head(10)
+```
+
+## Global Register of Introduced and Invasive Species - Belgium
+
+We also retrieve the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e) from GBIF, which is sometimes called the [unified checklist](https://github.com/trias-project/unified-checklist):
+
+```{r griis_Belgium}
+alien_taxa <- name_usage(
+  datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
+  return = "data",
+  limit = 10000
+) %>%
+  filter(origin == "SOURCE")
+```
+
+Preview:
+
+```{r preview_alien_taxa}
+alien_taxa %>% head(10)
+```
+
+Number of taxa per rank:
+
+```{r rank_alien}
+alien_taxa %>%
+  group_by(rank) %>%
+  count()
+```
+
+Alien genera:
+
+```{r alien_genus}
+genus_alien <- 
+  alien_taxa %>%
+  filter(rank == "GENUS")
+```
+
+Infraspecific alien taxa:
+
+```{r species_with_alien_infraspecific_taxa, cache = TRUE}
+infraspecific_alien <-
+  alien_taxa %>%
+  filter(rank %in% c("SUBSPECIES", "VARIETY")) %>%
+  select(-starts_with("species"))
+infraspecific_alien <-
+  map_dfr(infraspecific_alien$nubKey,
+          function(x) {
+            name_usage(x, return = "data")
+            })
+infraspecific_alien <-
+  infraspecific_alien %>%
+  mutate(species = if_else(is.na(species),
+                           parent,
+                           species),
+         speciesKey = if_else(is.na(speciesKey),
+                              parentKey,
+                              speciesKey))
+```
+
+## EEA cells containing the Natura2000 protected areas
+
+We download also the file containing the intersection of protected areas and the EEA grid as produced in :
+
+```{r read_cells_of_prot_areas}
+cells_of_prot_areas <-read_tsv(
+  file = here::here(
+    "data",
+    "interim",
+    "EEA_ref_grid_cells_covering_protected_areas.tsv"
+  ),
+  na = ""
+)
+```
+
+Preview:
+
+```{r preview_cells_of_prot_areas}
+cells_of_prot_areas %>% head(10)
+```
+
+Number of cells per protected area:
+
+```{r n_cells_per_prot_areas}
+n_cells_prot_areas <- 
+  cells_of_prot_areas %>%
+  group_by(SITECODE) %>%
+  summarize(n_cells = n())
+```
+
+Preview:
+
+```{r preview_n_cells_prot_areas}
+n_cells_prot_areas %>% head(10)
+```
+
+## Protected areas metadata
+
+Metadata about all Belgian Natura2000 protected areas have been already saved in [other pipeline](define_overlay_grid_belgium_with_protected_areas.html). We read them:
+
+```{r protected_areas_metadata}
+protected_areas_metadata <- read_tsv(
+  here::here("data",
+  "interim",
+  "protected_areas_metadata.tsv"),
+  na = ""
+)
+```
+
+# Calculate number of observations, occupancy and coverage of Belgian protected areas
+
+Get values from occurrence cube related to cells covering the protected areas:
+
+```{r join_cell_prot_areas_with_be_cube}
+be_prot_areas_cube <- 
+  cells_of_prot_areas %>%
+  inner_join(be_species_cube,
+            by = c("CELLCODE" = "eea_cell_code"))
+```
+
+Preview:
+
+```{r preview_be_prot_areas_cube}
+be_prot_areas_cube %>% head(10)
+```
+
+For each taxon, year and protected area, calculate the number of observations, the area of occupancy and minimum coordinate uncertainty:
+
+```{r occupancy_in_prot_areas}
+occupancy_in_prot_areas <-
+  be_prot_areas_cube %>%
+  group_by(SITECODE, SITETYPE, year, speciesKey) %>%
+  summarize(aoo = n(),
+            n = sum(n),
+            min_coord_uncertainty = min(min_coord_uncertainty)) %>%
+  ungroup()
+```
+
+Previewing the 10 highest area of occupancies:
+
+```{r preview_occupancy_in_prot_areas}
+occupancy_in_prot_areas %>% 
+  arrange(desc(aoo)) %>%
+  head(10)
+```
+
+## Add coverage of protected areas
+
+To add the coverage of each protected area, we divide the area of occupancy by the area of each protected area defined as the number of cells totally covering the protected area:
+
+```{r add_coverage}
+occupancy_in_prot_areas <- 
+  occupancy_in_prot_areas %>%
+  left_join(n_cells_prot_areas,
+            by = c("SITECODE")) %>%
+  mutate(coverage = aoo/n_cells) %>%
+  select(-n_cells)
+```
+
+The coverage is a number between 0 (species not present) and 1 (species present in the entire protected area). Preview the 10 highest coverage values:
+
+```{r preview_coverage}
+occupancy_in_prot_areas %>%
+  arrange(desc(coverage)) %>%
+  head(10)
+```
+
+## Retrieve taxonomic metadata from GBIF
+
+Not all taxa in Belgian occurrence cube are present in protected areas. We remove them from the taxonomic metadata of the occurrence cube:
+
+```{r reduce_be_species_info}
+prot_areas_species_info <-
+  be_species_info %>%
+  filter(speciesKey %in% occupancy_in_prot_areas$speciesKey)
+```
+
+We retrieve taxonomic information from GBIF:
+
+```{r taxonomic_info_species_cube, cache = TRUE}
+prot_areas_species_taxon_info <- 
+  map_dfr(prot_areas_species_info$speciesKey,
+          function(x) {
+            name_usage(key = x, return = "data")
+          }
+  )
+prot_areas_species_taxon_info <- 
+  prot_areas_species_taxon_info %>%
+  select(key,
+         kingdom,
+         phylum,
+         order,
+         class,
+         family,
+         genusKey,
+         genus,
+         speciesKey,
+         species)
+prot_areas_species_info <-
+  prot_areas_species_info %>%
+  left_join(prot_areas_species_taxon_info,
+            by = "speciesKey") 
+```
+
+Preview:
+
+```{r preview_prot_areas_species_taxon_info_after_gbif}
+prot_areas_species_taxon_info %>% head(10)
+```
+
+## Add alien status
+
+We would also like to indicate whether the species is alien. We add a boolean column indicating whether the species is alien or not based on the unified checklist:
+
+```{r add_is_alien}
+# add genusKey to species
+occupancy_in_prot_areas <-
+  occupancy_in_prot_areas %>%
+  left_join(prot_areas_species_info %>%
+              select(speciesKey, genusKey),
+            by = c("speciesKey"))
+occupancy_in_prot_areas <-
+  occupancy_in_prot_areas %>%
+  mutate(is_alien = speciesKey %in% alien_taxa$nubKey | 
+           genusKey %in% alien_taxa$nubKey)
+```
+
+As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:
+
+```{r add_remarks}
+species_infraspecific_alien <-
+  infraspecific_alien %>%
+  select(speciesKey, scientificName, key) %>%
+  filter(speciesKey %in% occupancy_in_prot_areas$speciesKey) %>%
+  group_by(speciesKey) %>%
+  summarize(remarks = paste0("Infraspecific alien taxa present. ",
+                                  paste(key,
+                                        scientificName,
+                                        sep = ":",
+                                        collapse = ",")))
+occupancy_in_prot_areas <- 
+  occupancy_in_prot_areas %>%
+  left_join(species_infraspecific_alien,
+            by = "speciesKey")
+```
+
+Example of native species with alien infraspecific taxa:
+
+```{r example_alien_infraspecific}
+occupancy_in_prot_areas %>%
+  filter(!is.na(remarks)) %>%
+  select(speciesKey, is_alien, remarks) %>%
+  head(10)
+```
+
+## Finalize output
+
+We finalize the table containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
+
+Select column of interest and set columns order:
+
+```{r finalize_occupancy_in_prot_areas}
+occupancy_in_prot_areas <-
+  occupancy_in_prot_areas %>%
+  select(SITECODE = sitecode,
+         SITETYPE = sitetype,
+         year,
+         speciesKey,
+         n,
+         aoo,
+         coverage,
+         min_coord_uncertainty,
+         is_alien,
+         remarks
+         )
+```
+
+
+# Metadata
+
+## Taxonomic metadata
+
+Select taxonomic metadata we are interested to:
+
+```{r selection_taxon_metadata}
+taxonomic_metadata <- 
+  prot_areas_species_info %>%
+  select(speciesKey,
+         scientificName,
+         kingdom,
+         phylum,
+         order,
+         class,
+         genus,
+         family,
+         species,
+         rank,
+         includes)
+```
+
+## Protected areas metadata
+
+We remove metadata of areas without observations:
+
+```{r filter_protected_areas_metadata}
+protected_areas_metadata <-
+  protected_areas_metadata %>%
+  filter(SITECODE %in% occupancy_in_prot_areaes$SITECODE)
+```
+
+We save the metadata as output:
+
+```{r save_final_protected_areas_metadata}
+protected_areas_metadata %>%
+  write_tsv(path = here::here("data",
+                              "output",
+                              "protected_areas_metadata.tsv"),
+            na = "")
+```
