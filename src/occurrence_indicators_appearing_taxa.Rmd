@@ -50,14 +50,14 @@ Preview:
 ```{r preview_ts}
 # Get a taxon
 taxon <-
-  df_ts$taxonKey[5]
+  df_ts$taxonKey[10]
 
 # Preview
 df_ts %>%
   filter(
     taxonKey == taxon,
     year %in% c(2016, 2017),
-    eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
+    eea_cell_code == "1kmE3924N3102"
   )
 ```
 
@@ -96,17 +96,17 @@ Lump geographic information:
 ```{r df_ts_compact}
 df_ts_compact <-
   df_ts %>%
-  group_by(taxonKey, year) %>%
+  group_by(taxonKey, year, classKey) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
 
-We define the function `is_appearing` for appearing/reappearing detection (this function will be moved to TrIAS package `trias` if this workflow will be positively reviewed):
+We define the function `is_appearing` for appearing/reappearing detection (this function could be moved to TrIAS package `trias` later):
 
 ```{r decision_rules_function}
 #' @param df data frame with time series
@@ -235,9 +235,9 @@ df_ts_compact_prot_areas <-
   group_by(taxonKey, year) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
@@ -393,7 +393,7 @@ app_reapp_global$appearing_taxa %>%
   select(taxonKey, canonicalName, class, kingdom, classKey, kingdomKey)
 ```
 
-Two examples follow.
+Two examples:
 
 ```{r taxa_examples, echo=FALSE}
 taxa_examples <- app_reapp_global$appearing_taxa %>%

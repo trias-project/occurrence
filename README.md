@@ -30,7 +30,7 @@ The workflow is divded in the following pipelines:
 
 We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This part is still work in progress, although all workflow steps are now completed. Follow [issue #49](https://github.com/trias-project/indicators/issues/49) for more discussions about the different choices we took at every step of the workflow.
 
-For the data preparation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html). The output of this appendix is the starting point of the pipelines described above.
+For the data preparation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html). The starting point is the *occurrence cube* as produced in TrIAS repository [occ-cube](https://github.com/trias-project/occ-cube) and published on [Zenodo](https://zenodo.org/record/3637911). The output of this appendix is the starting point of the pipelines described above.
 
 ## Repo structure
 
@@ -62,6 +62,11 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
     ├── indicator_introductions_per_year.Rmd : Script to generate graphs with number of new introduced species per year
     ├── indicator_cumulative_number.Rmd: Script to generate graphs with cumulative number of introduced species per year
     └── indicator_pathways.Rmd    : Script to generate tables with pathways of introduction
+    ├── occurrence_indicators_preprocessing.Rmd    : Script to produce time series from the occurrence cube
+    ├── occurrence_indicators_modelling.Rmd    : Apply GAM and decision rules models to assess partial emerging scores
+    ├── ranking_emerging_status.Rmd    : Rank alien taxa based on their emerging status derived by the emerging scores
+    ├── occurrence_indicators_appearing_taxa.Rmd    : Find appearing and reappearing taxa in the last years
+    ├── occurrence_species_protected_areas_level.Rmd    : Assess number of observations, area of occupancy, coverage of Belgian protected areas for all  species and year
 ```
 
 ## Contributors

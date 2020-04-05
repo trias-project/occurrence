@@ -64,3 +64,7 @@ data/external/protected_areas_natura2000_20190528/*
 
 # timeseries
 data/interim/df_timeseries.tsv
+# occurrence cube and its metadata (as downloaded from Zenodo)
+data/interim/*_species_*.csv
+# Analysis of data about Protected area
+data/output/analysis_protected_areas.tsv

@@ -325,6 +325,9 @@ $(document).ready(function () {
     <li>
       <a href="occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
     </li>
+    <li>
+      <a href="occurrence_species_protected_areas_level.html">Species in Belgian protected areas</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -379,7 +382,7 @@ $(document).ready(function () {
 <li><a href="https://trias-project.github.io/indicators/ranking_emerging_status.html">Assessing emerging status and ranking</a></li>
 </ol>
 <p>We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This part is still work in progress, although all workflow steps are now completed. Follow <a href="https://github.com/trias-project/indicators/issues/49">issue #49</a> for more discussions about the different choices we took at every step of the workflow.</p>
-<p>For the data preparation of the taxonomic and occurrence information, see Appendix <a href="https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>. The output of this appendix is the starting point of the pipelines described above.</p>
+<p>For the data preparation of the taxonomic and occurrence information, see Appendix <a href="https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>. The starting point is the <em>occurrence cube</em> as produced in TrIAS repository <a href="https://github.com/trias-project/occ-cube">occ-cube</a> and published on <a href="https://zenodo.org/record/3637911">Zenodo</a>. The output of this appendix is the starting point of the pipelines described above.</p>
 </div>
 <div id="repo-structure" class="section level2">
 <h2>Repo structure</h2>
@@ -408,7 +411,12 @@ $(document).ready(function () {
     ├── get_data_input_checklist_indicators.Rmd : Script to manipulate taxonomic data from the Global Register of Introduced and Invasive Species - Belgium
     ├── indicator_introductions_per_year.Rmd : Script to generate graphs with number of new introduced species per year
     ├── indicator_cumulative_number.Rmd: Script to generate graphs with cumulative number of introduced species per year
-    └── indicator_pathways.Rmd    : Script to generate tables with pathways of introduction</code></pre>
+    └── indicator_pathways.Rmd    : Script to generate tables with pathways of introduction
+    ├── occurrence_indicators_preprocessing.Rmd    : Script to produce time series from the occurrence cube
+    ├── occurrence_indicators_modelling.Rmd    : Apply GAM and decision rules models to assess partial emerging scores
+    ├── ranking_emerging_status.Rmd    : Rank alien taxa based on their emerging status derived by the emerging scores
+    ├── occurrence_indicators_appearing_taxa.Rmd    : Find appearing and reappearing taxa in the last years
+    ├── occurrence_species_protected_areas_level.Rmd    : Assess number of observations, area of occupancy, coverage of Belgian protected areas for all  species and year</code></pre>
 </div>
 <div id="contributors" class="section level2">
 <h2>Contributors</h2>

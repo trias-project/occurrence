@@ -29,6 +29,8 @@ navbar:
         href: get_data_input_checklist_indicators.html
       - text: "Preprocessing for occurrence-based indicators"
         href: occurrence_indicators_preprocessing.html
+      - text: "Species in Belgian protected areas"
+        href: occurrence_species_protected_areas_level.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/trias-project/pipeline

@@ -166,7 +166,7 @@ We get information about intersection of grid cells with Belgian protected areas
 df_prot_areas <- read_tsv(
   here::here(
     "data",
-    "output",
+    "interim",
     "intersect_EEA_ref_grid_protected_areas.tsv"
   ),
   na = ""
@@ -195,7 +195,7 @@ df_prot_areas <-
 
 ## Add informative columns
 
-For better interpretation of the data, we retrieve sqcientific names of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+For better interpretation of the data, we retrieve sqcientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
 
 ```{r get_canonical_names}
 taxon_key <-
@@ -218,8 +218,21 @@ spec_names <- map_df(
   ) %>%
   mutate(canonicalName = ifelse(
     is.na(canonicalName), scientificName, canonicalName
-  )) %>%
-  select(-scientificName)
+  ))
+```
+
+In the rare case multiple taxa share the same scientific name, authorship is added:
+
+```{r add_authorship_if_needed}
+spec_names <-
+  spec_names %>%
+  group_by(canonicalName) %>%
+  add_tally() %>%
+  ungroup() %>%
+  mutate(canonicalName = if_else(n > 1,
+                                 scientificName,
+                                 canonicalName)) %>%
+  select(-c(n, scientificName))
 ```
 
 We also retrieve kingdom and class:
@@ -249,10 +262,10 @@ spec_names <-
   left_join(kingdom_class, by = c("kingdomKey", "classKey"))
 ```
 
-So, these are the covered alien species:
+Preview:
 
-```{r review_species}
-spec_names
+```{r preview_species}
+spec_names %>% head(10)
 ```
 
 Taxa not assigned to any class:
@@ -467,48 +480,12 @@ Preview:
 df_bl %>% head()
 ```
 
-## Calculate number of observations of native species
-
-Calculate the total number of alien species observations per `eea_cell_code`, `year` and `class`:
-
-```{r total_n_species_obs_per_cell_year_class}
-df_alien_species <-
-  df %>%
-  left_join(spec_names, by = "taxonKey") %>%
-  group_by(classKey, eea_cell_code, year) %>%
-  summarize(n_alien = sum(obs)) %>%
-  ungroup()
-```
-
-```{r preview_total_number_alien_species}
-df_alien_species %>% head()
-```
-
-Substract the alien species observations from the baseline data to get number of observations of native species:
-
-```{r subtract_alien_species}
-df_bl <-
-  df_bl %>%
-  left_join(df_alien_species, by = c("classKey", "eea_cell_code", "year")) %>%
-  replace_na(list(n_alien = 0)) %>%
-  mutate(native_obs = cobs - n_alien) %>%
-  mutate(native_obs = if_else(native_obs < 0, 0, native_obs)) %>%
-  select(year, eea_cell_code, classKey, native_obs, natura2000)
-```
-
-Preview:
-
-```{r preview_corrected_baseline}
-df_bl %>%
-  head()
-```
-
 ## Create time series
 
 For each species, define cells with at least one observation:
 
 ```{r distinct_cells_taxa}
-df_cc <-
+df_cc <- 
   df %>%
   group_by(taxonKey) %>%
   distinct(eea_cell_code) %>%
@@ -518,7 +495,7 @@ df_cc <-
 For each species, identify the first year with at least one observation:
 
 ```{r begin_year_per_species}
-df_begin_year <-
+df_begin_year <- 
   df %>%
   group_by(taxonKey) %>%
   summarize(begin_year = min(year))
@@ -527,7 +504,7 @@ df_begin_year <-
 For each species, combine `begin_year` and unique `eea_cell_code` as found above: 
 
 ```{r combine_begin_year_cells_taxa}
-df_cc <-
+df_cc <- 
   df_cc %>%
   left_join(df_begin_year, by = "taxonKey") %>%
   select(taxonKey, begin_year, eea_cell_code)
@@ -542,52 +519,57 @@ df_cc %>% head()
 For each cell (`eea_cell_code`) and species (`taxonKey`) we can now create a time series:
 
 ```{r make_ts, cache=TRUE}
-make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year) {
-  expand_grid(
-    eea_cell_code = eea_cell_code,
-    taxonKey = taxonKey,
-    year = seq(from = begin_year, to = last_year)
-  )
+make_time_series <- function(eea_cell_code, taxonKey, begin_year, last_year ) {
+  expand_grid(eea_cell_code = eea_cell_code,
+              taxonKey = taxonKey,
+              year = seq(from = begin_year, to = last_year))
+
 }
 
 # create timeseries slots
-df_ts <- pmap_dfr(df_cc, .f = make_time_series, last_year = year(Sys.Date()))
+df_ts <- pmap_dfr(df_cc, 
+                  .f = make_time_series, 
+                  last_year = year(Sys.Date())
+)
 
 ## Add data
 
 # add occurrence data
-df_ts <-
+df_ts <- 
   df_ts %>%
-  left_join(df %>% select(taxonKey, year, eea_cell_code, obs),
-    by = c("taxonKey", "year", "eea_cell_code")
-  )
+  left_join(df %>% select(taxonKey, year, eea_cell_code, obs), 
+            by = c("taxonKey", "year", "eea_cell_code"))
 
 # add membership to protected areas
-df_ts <-
+df_ts <- 
   df_ts %>%
   left_join(df_prot_areas %>% select(CELLCODE, natura2000),
-    by = c("eea_cell_code" = "CELLCODE")
-  )
+            by = c("eea_cell_code" = "CELLCODE"))
 # add classKey
-df_ts <-
+df_ts <- 
   df_ts %>%
-  left_join(spec_names %>%
-    select(taxonKey, classKey),
-  by = "taxonKey"
-  )
+  left_join(spec_names %>% 
+              select(taxonKey, classKey), 
+            by = "taxonKey")
+```
 
-# add baseline data (at class level)
-df_ts <-
+## Research effort correction
+
+To correct the effect of research effort of an alien speies, we calculate the number of observations at class level excluding the observations of the alien species itself:
+
+```{r correct_cobs_research_effort_bias}
+# add baseline data (at class level) diminished by obs of specific alien taxon
+df_ts <- 
   df_ts %>%
   left_join(df_bl %>%
-    select(year, eea_cell_code, classKey, native_obs),
-  by = c("year", "eea_cell_code", "classKey")
-  )
+              select(year, eea_cell_code, classKey, cobs),
+            by = c("year", "eea_cell_code", "classKey")) %>%
+  mutate(cobs = cobs - obs)
 
 # replace NAs with 0
 df_ts <-
   df_ts %>%
-  replace_na(list(native_obs = 0, obs = 0))
+  replace_na(list(cobs = 0, obs = 0))
 ```
 
 Preview:
@@ -599,12 +581,10 @@ df_ts %>% head(n = 30)
 Add column for presence (1) or absence (0)
 
 ```{r add_presence_absence}
-df_ts <-
+df_ts <- 
   df_ts %>%
-  mutate(
-    pa_native_obs = ifelse(native_obs > 0, 1, 0),
-    pa_obs = ifelse(obs > 0, 1, 0)
-  )
+  mutate(pa_cobs = if_else(cobs > 0, 1, 0),
+         pa_obs = if_else(obs > 0, 1, 0))
 ```
 
 Arrange order columns:
@@ -612,17 +592,15 @@ Arrange order columns:
 ```{r set_order_columns}
 df_ts <-
   df_ts %>%
-  select(
-    taxonKey,
-    year,
-    eea_cell_code,
-    obs,
-    pa_obs,
-    native_obs,
-    pa_native_obs,
-    classKey,
-    natura2000
-  )
+  select(taxonKey, 
+         year, 
+         eea_cell_code, 
+         obs, 
+         pa_obs, 
+         cobs, 
+         pa_cobs,
+         classKey,
+         natura2000)
 ```
 
 # Save data
@@ -630,9 +608,9 @@ df_ts <-
 Save `df_ts` as it will be used as start point of modelling pipelines:
 
 ```{r save_data_as_tsv}
-write_tsv(df_ts,
-  path = here::here("data", "interim", "df_timeseries.tsv"),
-  na = ""
+write_tsv(df_ts, 
+          path = here::here("data", "interim", "df_timeseries.tsv"), 
+          na = ""
 )
 ```
 
@@ -640,11 +618,9 @@ We save also the taxonomic information:
 
 ```{r save_spec_names}
 write_tsv(spec_names,
-  path = here::here(
-    "data",
-    "interim",
-    "timeseries_taxonomic_info.tsv"
-  ),
-  na = ""
+          path = here::here("data", 
+                            "interim", 
+                            "timeseries_taxonomic_info.tsv"),
+          na = ""
 )
 ```
