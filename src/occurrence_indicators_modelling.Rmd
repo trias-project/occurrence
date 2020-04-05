@@ -277,7 +277,7 @@ We apply GAM to observations and occupancy in all Belgium and in protected areas
 Plots are saved in:
 
 ```{r plots_dir}
-dir_name <- here::here("data", "output", "GAM_outputs"),
+dir_name <- here::here("data", "output", "GAM_outputs")
 ```
 
 
