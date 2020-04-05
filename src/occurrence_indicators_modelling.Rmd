@@ -26,9 +26,10 @@ Load libraries:
 
 ```{r load_libraries, message = FALSE}
 library(tidyverse) # To do data science
+library(tidyselect) # To help tidyverse functions
 library(tidylog) # To provide feedback on dplyr functions
-library(tidyselect)
 library(rgbif) # To get information from GBIF
+library(lubridate) # To work with dates
 library(here) # To find files
 library(trias)
 library(INBOtheme) # To load graphic INBO theme
