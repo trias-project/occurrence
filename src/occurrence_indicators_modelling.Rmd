@@ -180,7 +180,7 @@ spec_names <-
 
 ## Decision rules
 
-We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules` from project package `trias`.
+We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules()` from project package `trias`.
 
 ### Observations
 
@@ -272,7 +272,7 @@ em_decision_rules_occupancy_pa %>% head()
 
 ## Generalized additive model (GAM)
 
-We apply GAM to observations and occupancy in all Belgium and in protected areas using function `apply_gam` from project package  `trias`.
+We apply GAM to observations and occupancy in all Belgium and in protected areas using function `apply_gam()` from project package `trias`.
 
 Plots are saved in:
 
@@ -419,7 +419,7 @@ gam_occupancy_BE <- map2(
         type_indicator = "occupancy",
         taxon_key = t,
         name = n,
-        baseline_var = "class_ncells",
+        baseline_var = "c_ncells",
         dir_name = dir_name,
         saveplot = TRUE
       )
@@ -472,7 +472,7 @@ gam_occupancy_pa <- map2(
         type_indicator = "occupancy",
         taxon_key = t,
         name = n,
-        baseline_var = "class_ncells",
+        baseline_var = "c_ncells",
         df_title = "Natura2000",
         dir_name = dir_name,
         saveplot = TRUE
@@ -558,12 +558,12 @@ write_tsv(map_dfr(gam_occs_BE, function(x) {
   x$output
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "outptut_GAM_observations_belgium_",
+    "output_GAM_observations_belgium_",
     method_em, ".tsv"
   )
 )
@@ -574,12 +574,12 @@ write_tsv(map_dfr(gam_occs_pa, function(x) {
   x$output
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "outptut_GAM_observations_pa_",
+    "output_GAM_observations_pa_",
     method_em, ".tsv"
   )
 )
@@ -590,12 +590,12 @@ write_tsv(map_dfr(gam_occupancy_BE, function(x) {
   x$output
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "outptut_GAM_occupancy_belgium_",
+    "output_GAM_occupancy_belgium_",
     method_em, ".tsv"
   )
 )
@@ -606,12 +606,12 @@ write_tsv(map_dfr(gam_occupancy_pa, function(x) {
   x$output
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "outptut_GAM_occupancy_pa_",
+    "output_GAM_occupancy_pa_",
     method_em, ".tsv"
   )
 )
@@ -626,12 +626,12 @@ write_tsv(map_dfr(gam_occs_BE, function(x) {
   x$em_summary
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "summary_GAM_observations_belgium_",
+    "output_GAM_observations_belgium_",
     method_em, ".tsv"
   )
 )
@@ -642,12 +642,12 @@ write_tsv(map_dfr(gam_occs_pa, function(x) {
   x$em_summary
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "summary_GAM_observations_pa_",
+    "output_GAM_observations_pa_",
     method_em, ".tsv"
   )
 )
@@ -658,12 +658,12 @@ write_tsv(map_dfr(gam_occupancy_BE, function(x) {
   x$em_summary
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "summary_GAM_occupancy_belgium_",
+    "output_GAM_occupancy_belgium_",
     method_em, ".tsv"
   )
 )
@@ -674,12 +674,12 @@ write_tsv(map_dfr(gam_occupancy_pa, function(x) {
   x$em_summary
 }),
 na = "",
-path = here(
+path = here::here(
   "data",
   "output",
   "GAM_outputs",
   paste0(
-    "summary_GAM_occupancy_pa_",
+    "output_GAM_occupancy_pa_",
     method_em, ".tsv"
   )
 )
