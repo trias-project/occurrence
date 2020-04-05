@@ -96,7 +96,7 @@ We create a similar data.frame specific to protected areas (Natura2000):
 df_ts_compact_prot_areas <-
   df_ts %>%
   filter(natura2000 == TRUE) %>%
-  group_by(taxonKey, year) %>%
+  group_by(taxonKey, year, classKey) %>%
   summarise(
     obs = sum(obs),
     cobs = sum(cobs),
