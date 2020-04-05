@@ -112,6 +112,9 @@ Add canonical names:
 df_ts_compact <-
   df_ts_compact %>%
   left_join(spec_names, by = "taxonKey")
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  left_join(spec_names, by = "taxonKey")
 ```
 
 # Modelling
