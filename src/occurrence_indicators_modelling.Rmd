@@ -274,7 +274,14 @@ em_decision_rules_occupancy_pa %>% head()
 
 We apply GAM to observations and occupancy in all Belgium and in protected areas using function `apply_gam` from project package  `trias`.
 
-### observations
+Plots are saved in:
+
+```{r plots_dir}
+dir_name <- here::here("data", "output", "GAM_outputs"),
+```
+
+
+### Observations
 
 #### Belgium
 
