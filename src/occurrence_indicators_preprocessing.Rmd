@@ -195,7 +195,7 @@ df_prot_areas <-
 
 ## Add informative columns
 
-For better interpretation of the data, we retrieve sqcientific names of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+For better interpretation of the data, we retrieve sqcientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
 
 ```{r get_canonical_names}
 taxon_key <-
@@ -218,8 +218,21 @@ spec_names <- map_df(
   ) %>%
   mutate(canonicalName = ifelse(
     is.na(canonicalName), scientificName, canonicalName
-  )) %>%
-  select(-scientificName)
+  ))
+```
+
+In the rare case multiple taxa share the same scientific name, authorship is added:
+
+```{r add_authorship_if_needed}
+spec_names <-
+  spec_names %>%
+  group_by(canonicalName) %>%
+  add_tally() %>%
+  ungroup() %>%
+  mutate(canonicalName = if_else(n > 1,
+                                 scientificName,
+                                 canonicalName)) %>%
+  select(-c(n, scientificName))
 ```
 
 We also retrieve kingdom and class:
