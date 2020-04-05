@@ -288,18 +288,17 @@ dir_name <- here::here("data", "output", "GAM_outputs"),
 Apply GAM for observation data in all Belgium:
 
 ```{r apply_gam_to_all_taxa, message=FALSE, cache=TRUE}
-taxon_keys <- spec_names$taxonKey
-taxon_names <- spec_names$canonicalName
+taxon_keys <- unique(df_ts_compact$taxonKey)
+taxon_names <- unique(df_ts_compact$canonicalName)
 gam_occs_BE <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact %>%
-      filter(taxonKey == t) %>%
-      filter(year <= max(evaluation_years))
-    if (!is.na(classKey)) {
+      filter(taxonKey == t)
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
       results_gam <- apply_gam(
         df = df_key,
-        year = "year",
         y_var = "obs",
         taxonKey = "taxonKey",
         eval_years = evaluation_years,
@@ -307,25 +306,23 @@ gam_occs_BE <- map2(
         taxon_key = t,
         name = n,
         baseline_var = "cobs",
-        dir_name = "./data/output/GAM_outputs/",
+        dir_name = dir_name,
         saveplot = TRUE,
         verbose = TRUE
       )
     } else {
       results_gam <- apply_gam(
         df = df_key,
-        year = "year",
         y_var = "obs",
-        taxonKey = "taxonKey",
         eval_years = evaluation_years,
         type_indicator = "observations",
         taxon_key = t,
         name = n,
+        dir_name = dir_name,
         verbose = TRUE,
         saveplot = TRUE
       )
     }
-
     return(results_gam)
   }
 )
@@ -348,26 +345,40 @@ map(
 Apply GAM for observation data in protected areas:
 
 ```{r apply_gam_observations_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
-taxon_keys <- spec_names$taxonKey
-taxon_names <- spec_names$canonicalName
+taxon_keys <- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names <- unique(df_ts_compact_prot_areas$canonicalName)
 gam_occs_pa <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact_prot_areas %>%
       dplyr::filter(taxonKey == t)
-    apply_gam(
-      df = df_key,
-      y_var = "obs",
-      year = "year",
-      eval_years = evaluation_years,
-      type_indicator = "observations",
-      taxon_key = t,
-      name = n,
-      baseline_var = "cobs",
-      df_title = "Natura2000",
-      verbose = FALSE,
-      saveplot = TRUE
-    )
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "obs",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        baseline_var = "cobs",
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "obs",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
   }
 )
 names(gam_occs_pa) <- taxon_keys
@@ -391,26 +402,39 @@ map(
 Apply GAM for occupancy data (number of occupied cells) in all Belgium:
 
 ```{r apply_gam_occupancy_to_all_taxa, message=FALSE, cache=TRUE}
-taxon_keys <- spec_names$taxonKey
-taxon_names <- spec_names$canonicalName
+taxon_keys <- unique(df_ts_compact$taxonKey)
+taxon_names <- unique(df_ts_compact$canonicalName)
 gam_occupancy_BE <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact %>%
       filter(taxonKey == t) %>%
       filter(year <= max(evaluation_years))
-    apply_gam(
-      df = df_key,
-      year = "year",
-      y_var = "ncells",
-      eval_years = evaluation_years,
-      type_indicator = "occupancy",
-      taxon_key = t,
-      name = n,
-      baseline_var = "class_ncells",
-      verbose = FALSE,
-      saveplot = TRUE
-    )
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        baseline_var = "class_ncells",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
   }
 )
 names(gam_occupancy_BE) <- taxon_keys
@@ -432,26 +456,40 @@ map(
 Apply GAM for occupancy in protected areas:
 
 ```{r apply_gam_occupancy_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
-taxon_keys <- spec_names$taxonKey
-taxon_names <- spec_names$canonicalName
+taxon_keys <- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names <- unique(df_ts_compact_prot_areas$canonicalName)
 gam_occupancy_pa <- map2(
   taxon_keys, taxon_names,
   function(t, n) {
     df_key <- df_ts_compact_prot_areas %>%
       dplyr::filter(taxonKey == t)
-    apply_gam(
-      df = df_key,
-      y_var = "ncells",
-      year = "year",
-      eval_years = evaluation_years,
-      type_indicator = "occupancy",
-      taxon_key = t,
-      name = n,
-      baseline_var = "class_ncells",
-      df_title = "Natura2000",
-      verbose = FALSE,
-      saveplot = TRUE
-    )
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        baseline_var = "class_ncells",
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
   }
 )
 names(gam_occupancy_pa) <- taxon_keys
