@@ -1,0 +1,3334 @@
+taxonKey	year	em_status	growth	method
+1008955	2016			correct_baseline
+1008955	2017			correct_baseline
+1008955	2018			correct_baseline
+1031394	2016			correct_baseline
+1031394	2017			correct_baseline
+1031394	2018			correct_baseline
+1031400	2016			correct_baseline
+1031400	2017			correct_baseline
+1031400	2018			correct_baseline
+1031684	2016			correct_baseline
+1031684	2017			correct_baseline
+1031684	2018			correct_baseline
+1031742	2016			correct_baseline
+1031742	2017			correct_baseline
+1031742	2018			correct_baseline
+1043717	2016			correct_baseline
+1043717	2017			correct_baseline
+1043717	2018			correct_baseline
+1152186	2016			correct_baseline
+1152186	2017			correct_baseline
+1152186	2018			correct_baseline
+1311477	2016			correct_baseline
+1311477	2017			correct_baseline
+1311477	2018			correct_baseline
+1313740	2016			correct_baseline
+1313740	2017			correct_baseline
+1313740	2018			correct_baseline
+1316805	2016			correct_baseline
+1316805	2017			correct_baseline
+1316805	2018			correct_baseline
+1316908	2016			correct_baseline
+1316908	2017			correct_baseline
+1316908	2018			correct_baseline
+1320777	2016			correct_baseline
+1320777	2017			correct_baseline
+1320777	2018			correct_baseline
+1323402	2016			correct_baseline
+1323402	2017			correct_baseline
+1323402	2018			correct_baseline
+1325561	2016			correct_baseline
+1325561	2017			correct_baseline
+1325561	2018			correct_baseline
+1421095	2016			correct_baseline
+1421095	2017			correct_baseline
+1421095	2018			correct_baseline
+1421105	2016			correct_baseline
+1421105	2017			correct_baseline
+1421105	2018			correct_baseline
+1450317	2016			correct_baseline
+1450317	2017			correct_baseline
+1450317	2018			correct_baseline
+1651430	2016			correct_baseline
+1651430	2017			correct_baseline
+1651430	2018			correct_baseline
+1652150	2016			correct_baseline
+1652150	2017			correct_baseline
+1652150	2018			correct_baseline
+1652212	2016			correct_baseline
+1652212	2017			correct_baseline
+1652212	2018			correct_baseline
+1690429	2016	1	0.8957525945732416	correct_baseline
+1690429	2017	1	0.8712258651534149	correct_baseline
+1690429	2018	1	0.8461513527872266	correct_baseline
+1702101	2016			correct_baseline
+1702101	2017			correct_baseline
+1702101	2018			correct_baseline
+1713034	2016			correct_baseline
+1713034	2017			correct_baseline
+1713034	2018			correct_baseline
+1718308	2016	3	1.0489843031393327	correct_baseline
+1718308	2017	3	1.05811676682971	correct_baseline
+1718308	2018	3	1.0670903531623872	correct_baseline
+1719204	2016			correct_baseline
+1719204	2017			correct_baseline
+1719204	2018			correct_baseline
+1722299	2016			correct_baseline
+1722299	2017			correct_baseline
+1722299	2018			correct_baseline
+1728965	2016			correct_baseline
+1728965	2017			correct_baseline
+1728965	2018			correct_baseline
+1749449	2016			correct_baseline
+1749449	2017			correct_baseline
+1749449	2018			correct_baseline
+1749886	2016			correct_baseline
+1749886	2017			correct_baseline
+1749886	2018			correct_baseline
+1932752	2016			correct_baseline
+1932752	2017			correct_baseline
+1932752	2018			correct_baseline
+2053954	2016			correct_baseline
+2053954	2017			correct_baseline
+2053954	2018			correct_baseline
+2115692	2016			correct_baseline
+2115692	2017			correct_baseline
+2115692	2018			correct_baseline
+2115769	2016			correct_baseline
+2115769	2017			correct_baseline
+2115769	2018			correct_baseline
+2142456	2016			correct_baseline
+2142456	2017			correct_baseline
+2142456	2018			correct_baseline
+2149679	2016			correct_baseline
+2149679	2017			correct_baseline
+2149679	2018			correct_baseline
+2149761	2016			correct_baseline
+2149761	2017			correct_baseline
+2149761	2018			correct_baseline
+2150043	2016			correct_baseline
+2150043	2017			correct_baseline
+2150043	2018			correct_baseline
+2150089	2016			correct_baseline
+2150089	2017			correct_baseline
+2150089	2018			correct_baseline
+2153287	2016			correct_baseline
+2153287	2017			correct_baseline
+2153287	2018			correct_baseline
+2155867	2016			correct_baseline
+2155867	2017			correct_baseline
+2155867	2018			correct_baseline
+2157245	2016	3	1.1815071498129495	correct_baseline
+2157245	2017	3	1.2086151480566372	correct_baseline
+2157245	2018	3	1.2344223348481411	correct_baseline
+2157949	2016			correct_baseline
+2157949	2017			correct_baseline
+2157949	2018			correct_baseline
+2161710	2016			correct_baseline
+2161710	2017			correct_baseline
+2161710	2018			correct_baseline
+2162537	2016			correct_baseline
+2162537	2017			correct_baseline
+2162537	2018			correct_baseline
+2172885	2016			correct_baseline
+2172885	2017			correct_baseline
+2172885	2018			correct_baseline
+2177741	2016			correct_baseline
+2177741	2017			correct_baseline
+2177741	2018			correct_baseline
+2202641	2016			correct_baseline
+2202641	2017			correct_baseline
+2202641	2018			correct_baseline
+2205951	2016	0	0.4926777446331283	correct_baseline
+2205951	2017	0	0.4704298115254992	correct_baseline
+2205951	2018	0	0.44916776942564923	correct_baseline
+2209044	2016			correct_baseline
+2209044	2017			correct_baseline
+2209044	2018			correct_baseline
+2215949	2016			correct_baseline
+2215949	2017			correct_baseline
+2215949	2018			correct_baseline
+2217982	2016	1	0.9696809767825372	correct_baseline
+2217982	2017	1	0.9580224005943795	correct_baseline
+2217982	2018	1	0.9464558828004112	correct_baseline
+2219863	2016	1	0.848223115675926	correct_baseline
+2219863	2017	1	0.8513930579702349	correct_baseline
+2219863	2018	1	0.8532522463797162	correct_baseline
+2220312	2016			correct_baseline
+2220312	2017			correct_baseline
+2220312	2018			correct_baseline
+2220347	2016			correct_baseline
+2220347	2017			correct_baseline
+2220347	2018			correct_baseline
+2224970	2016	1	0.9227830838883232	correct_baseline
+2224970	2017	1	0.9054571556316718	correct_baseline
+2224970	2018	1	0.8881840358983032	correct_baseline
+2225646	2016			correct_baseline
+2225646	2017			correct_baseline
+2225646	2018			correct_baseline
+2225772	2016			correct_baseline
+2225772	2017			correct_baseline
+2225772	2018			correct_baseline
+2226990	2016	3	1.0039829196523489	correct_baseline
+2226990	2017	1	0.9966856780417883	correct_baseline
+2226990	2018	1	0.9892009981591138	correct_baseline
+2227000	2016	3	1.0210750153417052	correct_baseline
+2227000	2017	3	1.01469764282453	correct_baseline
+2227000	2018	3	1.0081146911559875	correct_baseline
+2227300	2016			correct_baseline
+2227300	2017			correct_baseline
+2227300	2018			correct_baseline
+2227663	2016	3	1.5365013010959871	correct_baseline
+2227663	2017	3	1.807697591939336	correct_baseline
+2227663	2018	3	2.1073046883380755	correct_baseline
+2266561	2016			correct_baseline
+2266561	2017			correct_baseline
+2266561	2018			correct_baseline
+2287073	2016			correct_baseline
+2287073	2017			correct_baseline
+2287073	2018			correct_baseline
+2287249	2016	0	0.8315490707062967	correct_baseline
+2287249	2017	0	0.8204011034159662	correct_baseline
+2287249	2018	0	0.8093331914613832	correct_baseline
+2297108	2016			correct_baseline
+2297108	2017			correct_baseline
+2297108	2018			correct_baseline
+2321010	2016			correct_baseline
+2321010	2017			correct_baseline
+2321010	2018			correct_baseline
+2321012	2016			correct_baseline
+2321012	2017			correct_baseline
+2321012	2018			correct_baseline
+2327735	2016			correct_baseline
+2327735	2017			correct_baseline
+2327735	2018			correct_baseline
+2330928	2016	1	0.9087129685334382	correct_baseline
+2330928	2017	1	0.9044125452321337	correct_baseline
+2330928	2018	1	0.8998142457171765	correct_baseline
+2331942	2016			correct_baseline
+2331942	2017			correct_baseline
+2331942	2018			correct_baseline
+2337607	2016	0	0.8295347936922826	correct_baseline
+2337607	2017	0	0.7726794339938496	correct_baseline
+2337607	2018	0	0.7184799063898453	correct_baseline
+2362030	2016	0	0.8007167229679981	correct_baseline
+2362030	2017	0	0.6924341590902372	correct_baseline
+2362030	2018	0	0.5944364454709595	correct_baseline
+2362473	2016			correct_baseline
+2362473	2017			correct_baseline
+2362473	2018			correct_baseline
+2362486	2016			correct_baseline
+2362486	2017			correct_baseline
+2362486	2018			correct_baseline
+2362868	2016	3	1.0073027689021006	correct_baseline
+2362868	2017	3	1.0056012942573	correct_baseline
+2362868	2018	3	1.0026755453903209	correct_baseline
+2367742	2016	0	0.49294042940252336	correct_baseline
+2367742	2017	0	0.4202284280717915	correct_baseline
+2367742	2018	0	0.3555511898120013	correct_baseline
+2379089	2016			correct_baseline
+2379089	2017			correct_baseline
+2379089	2018			correct_baseline
+2379245	2016			correct_baseline
+2379245	2017			correct_baseline
+2379245	2018			correct_baseline
+2402129	2016			correct_baseline
+2402129	2017			correct_baseline
+2402129	2018			correct_baseline
+2402168	2016			correct_baseline
+2402168	2017			correct_baseline
+2402168	2018			correct_baseline
+2426640	2016			correct_baseline
+2426640	2017			correct_baseline
+2426640	2018			correct_baseline
+2426661	2016	3	1.1579815638409567	correct_baseline
+2426661	2017	3	1.195908173878596	correct_baseline
+2426661	2018	3	1.2352704189588586	correct_baseline
+2427091	2016	0	0.8462433324751397	correct_baseline
+2427091	2017	0	0.8082107963922897	correct_baseline
+2427091	2018	0	0.7717657467111266	correct_baseline
+2431821	2016			correct_baseline
+2431821	2017			correct_baseline
+2431821	2018			correct_baseline
+2431875	2016			correct_baseline
+2431875	2017			correct_baseline
+2431875	2018			correct_baseline
+2433652	2016			correct_baseline
+2433652	2017			correct_baseline
+2433652	2018			correct_baseline
+2434552	2016			correct_baseline
+2434552	2017			correct_baseline
+2434552	2018			correct_baseline
+2435035	2016	1	0.8368396695024187	correct_baseline
+2435035	2017	1	0.7874272508537425	correct_baseline
+2435035	2018	1	0.7367445005548391	correct_baseline
+2436940	2016	1	0.8864903711748509	correct_baseline
+2436940	2017	1	0.8733845378112002	correct_baseline
+2436940	2018	1	0.860230465783858	correct_baseline
+2437232	2016			correct_baseline
+2437232	2017			correct_baseline
+2437232	2018			correct_baseline
+2437282	2016			correct_baseline
+2437282	2017			correct_baseline
+2437282	2018			correct_baseline
+2437394	2016			correct_baseline
+2437394	2017			correct_baseline
+2437394	2018			correct_baseline
+2437397	2016			correct_baseline
+2437397	2017			correct_baseline
+2437397	2018			correct_baseline
+2437450	2016	3	1.0668066776036582	correct_baseline
+2437450	2017	3	1.0672644389596526	correct_baseline
+2437450	2018	3	1.0676953800365394	correct_baseline
+2437619	2016			correct_baseline
+2437619	2017			correct_baseline
+2437619	2018			correct_baseline
+2439261	2016	3	1.129430432900023	correct_baseline
+2439261	2017	3	1.13719439529497	correct_baseline
+2439261	2018	3	1.1447358140625858	correct_baseline
+2439838	2016			correct_baseline
+2439838	2017			correct_baseline
+2439838	2018			correct_baseline
+2440946	2016			correct_baseline
+2440946	2017			correct_baseline
+2440946	2018			correct_baseline
+2440954	2016			correct_baseline
+2440954	2017			correct_baseline
+2440954	2018			correct_baseline
+2441122	2016			correct_baseline
+2441122	2017			correct_baseline
+2441122	2018			correct_baseline
+2455523	2016			correct_baseline
+2455523	2017			correct_baseline
+2455523	2018			correct_baseline
+2469188	2016			correct_baseline
+2469188	2017			correct_baseline
+2469188	2018			correct_baseline
+2473341	2016	3	1.1603701428554034	correct_baseline
+2473341	2017	3	1.1923074781600582	correct_baseline
+2473341	2018	3	1.2239356197030613	correct_baseline
+2473477	2016	0	0.926249560143419	correct_baseline
+2473477	2017	0	0.8445552158040731	correct_baseline
+2473477	2018	0	0.7647119504289546	correct_baseline
+2474029	2016			correct_baseline
+2474029	2017			correct_baseline
+2474029	2018			correct_baseline
+2474051	2016	0	0.9971974493344878	correct_baseline
+2474051	2017	0	0.974944764895118	correct_baseline
+2474051	2018	0	0.9523710446796144	correct_baseline
+2474055	2016			correct_baseline
+2474055	2017			correct_baseline
+2474055	2018			correct_baseline
+2474162	2016			correct_baseline
+2474162	2017			correct_baseline
+2474162	2018			correct_baseline
+2474416	2016			correct_baseline
+2474416	2017			correct_baseline
+2474416	2018			correct_baseline
+2474936	2016			correct_baseline
+2474936	2017			correct_baseline
+2474936	2018			correct_baseline
+2474944	2016			correct_baseline
+2474944	2017			correct_baseline
+2474944	2018			correct_baseline
+2475648	2016			correct_baseline
+2475648	2017			correct_baseline
+2475648	2018			correct_baseline
+2476041	2016			correct_baseline
+2476041	2017			correct_baseline
+2476041	2018			correct_baseline
+2479226	2016	3	1.211621290726796	correct_baseline
+2479226	2017	3	1.2070770692855672	correct_baseline
+2479226	2018	3	1.202011797897256	correct_baseline
+2479311	2016			correct_baseline
+2479311	2017			correct_baseline
+2479311	2018			correct_baseline
+2479320	2016			correct_baseline
+2479320	2017			correct_baseline
+2479320	2018			correct_baseline
+2479329	2016			correct_baseline
+2479329	2017			correct_baseline
+2479329	2018			correct_baseline
+2479407	2016	0	0.9619260239708729	correct_baseline
+2479407	2017	0	0.8628301665772313	correct_baseline
+2479407	2018	0	0.7724247945963667	correct_baseline
+2479544	2016			correct_baseline
+2479544	2017			correct_baseline
+2479544	2018			correct_baseline
+2479553	2016			correct_baseline
+2479553	2017			correct_baseline
+2479553	2018			correct_baseline
+2479555	2016			correct_baseline
+2479555	2017			correct_baseline
+2479555	2018			correct_baseline
+2479612	2016			correct_baseline
+2479612	2017			correct_baseline
+2479612	2018			correct_baseline
+2479666	2016			correct_baseline
+2479666	2017			correct_baseline
+2479666	2018			correct_baseline
+2479686	2016			correct_baseline
+2479686	2017			correct_baseline
+2479686	2018			correct_baseline
+2479798	2016	3	1.1047724317631475	correct_baseline
+2479798	2017	3	1.101965715022456	correct_baseline
+2479798	2018	3	1.0991264386081052	correct_baseline
+2479955	2016			correct_baseline
+2479955	2017			correct_baseline
+2479955	2018			correct_baseline
+2479964	2016	1	0.955452109999028	correct_baseline
+2479964	2017	1	0.9498032608961023	correct_baseline
+2479964	2018	1	0.9440885969092374	correct_baseline
+2479977	2016	3	1.1714560651854835	correct_baseline
+2479977	2017	3	1.1708764718491727	correct_baseline
+2479977	2018	3	1.1702649108763412	correct_baseline
+2480075	2016			correct_baseline
+2480075	2017			correct_baseline
+2480075	2018			correct_baseline
+2480089	2016			correct_baseline
+2480089	2017			correct_baseline
+2480089	2018			correct_baseline
+2480102	2016			correct_baseline
+2480102	2017			correct_baseline
+2480102	2018			correct_baseline
+2480181	2016	1	0.9797885398181082	correct_baseline
+2480181	2017	1	0.9792275897415099	correct_baseline
+2480181	2018	1	0.9786055539256228	correct_baseline
+2480350	2016	1	0.7120265821121976	correct_baseline
+2480350	2017	1	0.6499104257551249	correct_baseline
+2480350	2018	1	0.5913003365226437	correct_baseline
+2480352	2016			correct_baseline
+2480352	2017			correct_baseline
+2480352	2018			correct_baseline
+2480410	2016	0	0.9301280805437052	correct_baseline
+2480410	2017	0	0.7784748046167131	correct_baseline
+2480410	2018	0	0.6295142290332252	correct_baseline
+2480445	2016			correct_baseline
+2480445	2017			correct_baseline
+2480445	2018			correct_baseline
+2480446	2016			correct_baseline
+2480446	2017			correct_baseline
+2480446	2018			correct_baseline
+2480514	2016			correct_baseline
+2480514	2017			correct_baseline
+2480514	2018			correct_baseline
+2480542	2016			correct_baseline
+2480542	2017			correct_baseline
+2480542	2018			correct_baseline
+2480568	2016			correct_baseline
+2480568	2017			correct_baseline
+2480568	2018			correct_baseline
+2480762	2016			correct_baseline
+2480762	2017			correct_baseline
+2480762	2018			correct_baseline
+2480764	2016	1	0.8858554745557067	correct_baseline
+2480764	2017	1	0.8793350973203069	correct_baseline
+2480764	2018	1	0.8728097715134541	correct_baseline
+2480766	2016			correct_baseline
+2480766	2017			correct_baseline
+2480766	2018			correct_baseline
+2480770	2016			correct_baseline
+2480770	2017			correct_baseline
+2480770	2018			correct_baseline
+2480772	2016	3	1.0016922111045405	correct_baseline
+2480772	2017	3	1.005006632461325	correct_baseline
+2480772	2018	3	1.0082846220948762	correct_baseline
+2480786	2016			correct_baseline
+2480786	2017			correct_baseline
+2480786	2018			correct_baseline
+2480800	2016			correct_baseline
+2480800	2017			correct_baseline
+2480800	2018			correct_baseline
+2480897	2016			correct_baseline
+2480897	2017			correct_baseline
+2480897	2018			correct_baseline
+2480985	2016			correct_baseline
+2480985	2017			correct_baseline
+2480985	2018			correct_baseline
+2481034	2016			correct_baseline
+2481034	2017			correct_baseline
+2481034	2018			correct_baseline
+2481092	2016			correct_baseline
+2481092	2017			correct_baseline
+2481092	2018			correct_baseline
+2481104	2016			correct_baseline
+2481104	2017			correct_baseline
+2481104	2018			correct_baseline
+2481110	2016	3	1.0307980139728756	correct_baseline
+2481110	2017	3	1.0428652038484536	correct_baseline
+2481110	2018	3	1.0548225007496836	correct_baseline
+2481936	2016			correct_baseline
+2481936	2017			correct_baseline
+2481936	2018			correct_baseline
+2482478	2016			correct_baseline
+2482478	2017			correct_baseline
+2482478	2018			correct_baseline
+2482519	2016			correct_baseline
+2482519	2017			correct_baseline
+2482519	2018			correct_baseline
+2484103	2016			correct_baseline
+2484103	2017			correct_baseline
+2484103	2018			correct_baseline
+2484133	2016			correct_baseline
+2484133	2017			correct_baseline
+2484133	2018			correct_baseline
+2484155	2016			correct_baseline
+2484155	2017			correct_baseline
+2484155	2018			correct_baseline
+2484608	2016			correct_baseline
+2484608	2017			correct_baseline
+2484608	2018			correct_baseline
+2484628	2016			correct_baseline
+2484628	2017			correct_baseline
+2484628	2018			correct_baseline
+2486131	2016			correct_baseline
+2486131	2017			correct_baseline
+2486131	2018			correct_baseline
+2486132	2016			correct_baseline
+2486132	2017			correct_baseline
+2486132	2018			correct_baseline
+2486147	2016			correct_baseline
+2486147	2017			correct_baseline
+2486147	2018			correct_baseline
+2486151	2016			correct_baseline
+2486151	2017			correct_baseline
+2486151	2018			correct_baseline
+2489004	2016			correct_baseline
+2489004	2017			correct_baseline
+2489004	2018			correct_baseline
+2489005	2016			correct_baseline
+2489005	2017			correct_baseline
+2489005	2018			correct_baseline
+2489010	2016			correct_baseline
+2489010	2017			correct_baseline
+2489010	2018			correct_baseline
+2489071	2016			correct_baseline
+2489071	2017			correct_baseline
+2489071	2018			correct_baseline
+2489075	2016			correct_baseline
+2489075	2017			correct_baseline
+2489075	2018			correct_baseline
+2489080	2016			correct_baseline
+2489080	2017			correct_baseline
+2489080	2018			correct_baseline
+2490384	2016			correct_baseline
+2490384	2017			correct_baseline
+2490384	2018			correct_baseline
+2490789	2016			correct_baseline
+2490789	2017			correct_baseline
+2490789	2018			correct_baseline
+2492081	2016			correct_baseline
+2492081	2017			correct_baseline
+2492081	2018			correct_baseline
+2492196	2016			correct_baseline
+2492196	2017			correct_baseline
+2492196	2018			correct_baseline
+2493447	2016			correct_baseline
+2493447	2017			correct_baseline
+2493447	2018			correct_baseline
+2493598	2016			correct_baseline
+2493598	2017			correct_baseline
+2493598	2018			correct_baseline
+2493633	2016	0	0.9348303050163901	correct_baseline
+2493633	2017	0	0.8565113263502891	correct_baseline
+2493633	2018	0	0.7794955899753269	correct_baseline
+2493660	2016	3	1.0955502798037655	correct_baseline
+2493660	2017	3	1.0881306209216397	correct_baseline
+2493660	2018	3	1.0796528060192239	correct_baseline
+2493697	2016			correct_baseline
+2493697	2017			correct_baseline
+2493697	2018			correct_baseline
+2493698	2016			correct_baseline
+2493698	2017			correct_baseline
+2493698	2018			correct_baseline
+2493739	2016			correct_baseline
+2493739	2017			correct_baseline
+2493739	2018			correct_baseline
+2494066	2016			correct_baseline
+2494066	2017			correct_baseline
+2494066	2018			correct_baseline
+2494070	2016			correct_baseline
+2494070	2017			correct_baseline
+2494070	2018			correct_baseline
+2494086	2016			correct_baseline
+2494086	2017			correct_baseline
+2494086	2018			correct_baseline
+2494088	2016			correct_baseline
+2494088	2017			correct_baseline
+2494088	2018			correct_baseline
+2494097	2016	2	0.9928472539561519	correct_baseline
+2494097	2017	3	1.0558964769142583	correct_baseline
+2494097	2018	3	1.1145179400932914	correct_baseline
+2494303	2016	2	1.0436680692094888	correct_baseline
+2494303	2017	0	0.997417106925727	correct_baseline
+2494303	2018	0	0.9512368709318191	correct_baseline
+2494408	2016			correct_baseline
+2494408	2017			correct_baseline
+2494408	2018			correct_baseline
+2494514	2016			correct_baseline
+2494514	2017			correct_baseline
+2494514	2018			correct_baseline
+2494536	2016			correct_baseline
+2494536	2017			correct_baseline
+2494536	2018			correct_baseline
+2494787	2016			correct_baseline
+2494787	2017			correct_baseline
+2494787	2018			correct_baseline
+2495134	2016			correct_baseline
+2495134	2017			correct_baseline
+2495134	2018			correct_baseline
+2495190	2016			correct_baseline
+2495190	2017			correct_baseline
+2495190	2018			correct_baseline
+2495342	2016			correct_baseline
+2495342	2017			correct_baseline
+2495342	2018			correct_baseline
+2495414	2016	3	1.1516948539365826	correct_baseline
+2495414	2017	3	1.163805574939742	correct_baseline
+2495414	2018	3	1.1755073974843449	correct_baseline
+2495494	2016	3	1.0047525209825272	correct_baseline
+2495494	2017	1	0.9858200948797022	correct_baseline
+2495494	2018	1	0.9657561941264611	correct_baseline
+2495659	2016			correct_baseline
+2495659	2017			correct_baseline
+2495659	2018			correct_baseline
+2495688	2016	3	1.1777682490670958	correct_baseline
+2495688	2017	3	1.1861437354793134	correct_baseline
+2495688	2018	3	1.1945582192612483	correct_baseline
+2495691	2016			correct_baseline
+2495691	2017			correct_baseline
+2495691	2018			correct_baseline
+2495699	2016			correct_baseline
+2495699	2017			correct_baseline
+2495699	2018			correct_baseline
+2497798	2016			correct_baseline
+2497798	2017			correct_baseline
+2497798	2018			correct_baseline
+2498001	2016	1	0.8671405206054431	correct_baseline
+2498001	2017	1	0.8613367526761598	correct_baseline
+2498001	2018	1	0.8555121435301669	correct_baseline
+2498007	2016			correct_baseline
+2498007	2017			correct_baseline
+2498007	2018			correct_baseline
+2498010	2016	0	0.8015361111084829	correct_baseline
+2498010	2017	0	0.7909414153044315	correct_baseline
+2498010	2018	0	0.7803852346451532	correct_baseline
+2498011	2016			correct_baseline
+2498011	2017			correct_baseline
+2498011	2018			correct_baseline
+2498027	2016	0	0.8054574672204508	correct_baseline
+2498027	2017	0	0.7944786032980214	correct_baseline
+2498027	2018	0	0.7835451506404549	correct_baseline
+2498034	2016	1	0.8953892109266441	correct_baseline
+2498034	2017	1	0.86594282956424	correct_baseline
+2498034	2018	1	0.8356101970496486	correct_baseline
+2498035	2016	3	1.117677723269331	correct_baseline
+2498035	2017	3	1.1395635454216517	correct_baseline
+2498035	2018	3	1.1615983377198795	correct_baseline
+2498036	2016	0	0.8846517006126295	correct_baseline
+2498036	2017	0	0.870013319805022	correct_baseline
+2498036	2018	0	0.8555111036902704	correct_baseline
+2498046	2016	1	0.9243085566638116	correct_baseline
+2498046	2017	1	0.8938210448215826	correct_baseline
+2498046	2018	1	0.8626811083282824	correct_baseline
+2498054	2016			correct_baseline
+2498054	2017			correct_baseline
+2498054	2018			correct_baseline
+2498064	2016			correct_baseline
+2498064	2017			correct_baseline
+2498064	2018			correct_baseline
+2498065	2016	1	0.7487981859006875	correct_baseline
+2498065	2017	1	0.7254635699758422	correct_baseline
+2498065	2018	1	0.7008548412557061	correct_baseline
+2498084	2016			correct_baseline
+2498084	2017			correct_baseline
+2498084	2018			correct_baseline
+2498090	2016	0	0.8899357656979954	correct_baseline
+2498090	2017	0	0.874770243947828	correct_baseline
+2498090	2018	0	0.8597936380278449	correct_baseline
+2498094	2016			correct_baseline
+2498094	2017			correct_baseline
+2498094	2018			correct_baseline
+2498096	2016			correct_baseline
+2498096	2017			correct_baseline
+2498096	2018			correct_baseline
+2498097	2016			correct_baseline
+2498097	2017			correct_baseline
+2498097	2018			correct_baseline
+2498107	2016	1	0.6880085682832698	correct_baseline
+2498107	2017	1	0.6734126474423472	correct_baseline
+2498107	2018	1	0.6588734243113332	correct_baseline
+2498108	2016			correct_baseline
+2498108	2017			correct_baseline
+2498108	2018			correct_baseline
+2498110	2016	3	1.0333822129956942	correct_baseline
+2498110	2017	3	1.0347507015399853	correct_baseline
+2498110	2018	3	1.0353366251858138	correct_baseline
+2498114	2016			correct_baseline
+2498114	2017			correct_baseline
+2498114	2018			correct_baseline
+2498139	2016	1	0.9296068674838942	correct_baseline
+2498139	2017	1	0.9260630748423386	correct_baseline
+2498139	2018	1	0.9224592004788174	correct_baseline
+2498145	2016			correct_baseline
+2498145	2017			correct_baseline
+2498145	2018			correct_baseline
+2498154	2016	0	0.8220769259490514	correct_baseline
+2498154	2017	0	0.8136034301583782	correct_baseline
+2498154	2018	0	0.8051918369297223	correct_baseline
+2498156	2016			correct_baseline
+2498156	2017			correct_baseline
+2498156	2018			correct_baseline
+2498160	2016	2	0.9967706159128586	correct_baseline
+2498160	2017	2	0.9990669463997464	correct_baseline
+2498160	2018	3	1.0013135548401035	correct_baseline
+2498162	2016	0	0.7932407070911356	correct_baseline
+2498162	2017	0	0.7432229686116767	correct_baseline
+2498162	2018	0	0.694759529183001	correct_baseline
+2498165	2016	0	0.8224806004835764	correct_baseline
+2498165	2017	0	0.8125401913023008	correct_baseline
+2498165	2018	0	0.8027119934951603	correct_baseline
+2498181	2016	0	0.5218997495129881	correct_baseline
+2498181	2017	0	0.43162684983797744	correct_baseline
+2498181	2018	0	0.3550089394298803	correct_baseline
+2498252	2016	0	0.9901763184533747	correct_baseline
+2498252	2017	0	0.9571833828454818	correct_baseline
+2498252	2018	0	0.9249186953563382	correct_baseline
+2498288	2016			correct_baseline
+2498288	2017			correct_baseline
+2498288	2018			correct_baseline
+2498305	2016	0	0.8497276162350484	correct_baseline
+2498305	2017	0	0.8389519957630508	correct_baseline
+2498305	2018	0	0.8280526197920751	correct_baseline
+2498313	2016			correct_baseline
+2498313	2017			correct_baseline
+2498313	2018			correct_baseline
+2498329	2016	1	0.775840532509708	correct_baseline
+2498329	2017	1	0.7317050468052011	correct_baseline
+2498329	2018	1	0.6885741979968019	correct_baseline
+2498335	2016	3	1.1274485503703806	correct_baseline
+2498335	2017	3	1.1362049543363901	correct_baseline
+2498335	2018	3	1.1450121631650456	correct_baseline
+2498344	2016	3	1.0615740046300886	correct_baseline
+2498344	2017	3	1.0716977332593034	correct_baseline
+2498344	2018	3	1.081509683280211	correct_baseline
+2498345	2016			correct_baseline
+2498345	2017			correct_baseline
+2498345	2018			correct_baseline
+2498380	2016			correct_baseline
+2498380	2017			correct_baseline
+2498380	2018			correct_baseline
+2498384	2016	3	1.0635873632342696	correct_baseline
+2498384	2017	3	1.0898498008522413	correct_baseline
+2498384	2018	3	1.116009278752123	correct_baseline
+2498387	2016	3	1.1362228120291873	correct_baseline
+2498387	2017	3	1.1656432705541675	correct_baseline
+2498387	2018	3	1.195580292998505	correct_baseline
+2498388	2016	3	1.116710856055118	correct_baseline
+2498388	2017	3	1.1208220426548612	correct_baseline
+2498388	2018	3	1.1243261434388563	correct_baseline
+2498390	2016	3	1.6755406837279838	correct_baseline
+2498390	2017	3	1.7867036946440684	correct_baseline
+2498390	2018	3	1.9028167122685986	correct_baseline
+2498393	2016	1	0.9026058341195563	correct_baseline
+2498393	2017	1	0.8916834028606647	correct_baseline
+2498393	2018	1	0.8806324573411657	correct_baseline
+2498396	2016	3	1.2302665540441027	correct_baseline
+2498396	2017	3	1.2555962241876784	correct_baseline
+2498396	2018	3	1.2804161288873885	correct_baseline
+2498398	2016			correct_baseline
+2498398	2017			correct_baseline
+2498398	2018			correct_baseline
+2498402	2016	3	1.0751759483548282	correct_baseline
+2498402	2017	3	1.11950230797811	correct_baseline
+2498402	2018	3	1.1616633311930111	correct_baseline
+2498405	2016			correct_baseline
+2498405	2017			correct_baseline
+2498405	2018			correct_baseline
+2498408	2016	0	0.8973167658584392	correct_baseline
+2498408	2017	0	0.8869349244520104	correct_baseline
+2498408	2018	0	0.8766260397943788	correct_baseline
+2498411	2016			correct_baseline
+2498411	2017			correct_baseline
+2498411	2018			correct_baseline
+2501248	2016			correct_baseline
+2501248	2017			correct_baseline
+2501248	2018			correct_baseline
+2514972	2016			correct_baseline
+2514972	2017			correct_baseline
+2514972	2018			correct_baseline
+2516075	2016			correct_baseline
+2516075	2017			correct_baseline
+2516075	2018			correct_baseline
+2516809	2016			correct_baseline
+2516809	2017			correct_baseline
+2516809	2018			correct_baseline
+2537743	2016			correct_baseline
+2537743	2017			correct_baseline
+2537743	2018			correct_baseline
+2650827	2016	3	1.1357766746607858	correct_baseline
+2650827	2017	3	1.1566847682091133	correct_baseline
+2650827	2018	3	1.1544570792657975	correct_baseline
+2650829	2016			correct_baseline
+2650829	2017			correct_baseline
+2650829	2018			correct_baseline
+2650944	2016			correct_baseline
+2650944	2017			correct_baseline
+2650944	2018			correct_baseline
+2651816	2016			correct_baseline
+2651816	2017			correct_baseline
+2651816	2018			correct_baseline
+2651843	2016			correct_baseline
+2651843	2017			correct_baseline
+2651843	2018			correct_baseline
+2683866	2016	0	0.9916767084532339	correct_baseline
+2683866	2017	0	0.9706527034073371	correct_baseline
+2683866	2018	0	0.9496508797574825	correct_baseline
+2683894	2016			correct_baseline
+2683894	2017			correct_baseline
+2683894	2018			correct_baseline
+2684171	2016	0	0.9776396758552492	correct_baseline
+2684171	2017	0	0.951904155247248	correct_baseline
+2684171	2018	0	0.9263138853084127	correct_baseline
+2684178	2016			correct_baseline
+2684178	2017			correct_baseline
+2684178	2018			correct_baseline
+2684191	2016			correct_baseline
+2684191	2017			correct_baseline
+2684191	2018			correct_baseline
+2684984	2016			correct_baseline
+2684984	2017			correct_baseline
+2684984	2018			correct_baseline
+2685361	2016			correct_baseline
+2685361	2017			correct_baseline
+2685361	2018			correct_baseline
+2685484	2016	3	1.149969774932708	correct_baseline
+2685484	2017	3	1.1535366879170197	correct_baseline
+2685484	2018	3	1.1571086904624046	correct_baseline
+2685552	2016			correct_baseline
+2685552	2017			correct_baseline
+2685552	2018			correct_baseline
+2685796	2016	0	0.87347547608337	correct_baseline
+2685796	2017	0	0.863937664371386	correct_baseline
+2685796	2018	0	0.8544982830667983	correct_baseline
+2686157	2016	1	0.9605899855986227	correct_baseline
+2686157	2017	1	0.9566050073184349	correct_baseline
+2686157	2018	1	0.9526238952872597	correct_baseline
+2686212	2016	1	0.9701793412568249	correct_baseline
+2686212	2017	1	0.9669523675469834	correct_baseline
+2686212	2018	1	0.963726348820778	correct_baseline
+2687182	2016			correct_baseline
+2687182	2017			correct_baseline
+2687182	2018			correct_baseline
+2687210	2016	0	0.9005813697064717	correct_baseline
+2687210	2017	0	0.8119676110185032	correct_baseline
+2687210	2018	0	0.728831120905153	correct_baseline
+2687885	2016			correct_baseline
+2687885	2017			correct_baseline
+2687885	2018			correct_baseline
+2687948	2016			correct_baseline
+2687948	2017			correct_baseline
+2687948	2018			correct_baseline
+2700768	2016			correct_baseline
+2700768	2017			correct_baseline
+2700768	2018			correct_baseline
+2701578	2016	1	0.7834229999166478	correct_baseline
+2701578	2017	1	0.73943427969517594	correct_baseline
+2701578	2018	1	0.6972014441266957	correct_baseline
+2701612	2016			correct_baseline
+2701612	2017			correct_baseline
+2701612	2018			correct_baseline
+2701649	2016			correct_baseline
+2701649	2017			correct_baseline
+2701649	2018			correct_baseline
+2701986	2016	3	1.1794099694993485	correct_baseline
+2701986	2017	3	1.1890889520700028	correct_baseline
+2701986	2018	3	1.1987019138163753	correct_baseline
+2702544	2016			correct_baseline
+2702544	2017			correct_baseline
+2702544	2018			correct_baseline
+2702820	2016			correct_baseline
+2702820	2017			correct_baseline
+2702820	2018			correct_baseline
+2702822	2016	1	0.8672041006979968	correct_baseline
+2702822	2017	1	0.8522430274321143	correct_baseline
+2702822	2018	1	0.8370062962909716	correct_baseline
+2703041	2016			correct_baseline
+2703041	2017			correct_baseline
+2703041	2018			correct_baseline
+2703231	2016			correct_baseline
+2703231	2017			correct_baseline
+2703231	2018			correct_baseline
+2703240	2016			correct_baseline
+2703240	2017			correct_baseline
+2703240	2018			correct_baseline
+2703346	2016			correct_baseline
+2703346	2017			correct_baseline
+2703346	2018			correct_baseline
+2704194	2016			correct_baseline
+2704194	2017			correct_baseline
+2704194	2018			correct_baseline
+2704523	2016	3	1.168663018516562	correct_baseline
+2704523	2017	3	1.1324226828060269	correct_baseline
+2704523	2018	3	1.0942613942646275	correct_baseline
+2705090	2016	1	0.9928837332773072	correct_baseline
+2705090	2017	1	0.9882241111171048	correct_baseline
+2705090	2018	1	0.9834385771937898	correct_baseline
+2705512	2016			correct_baseline
+2705512	2017			correct_baseline
+2705512	2018			correct_baseline
+2705587	2016			correct_baseline
+2705587	2017			correct_baseline
+2705587	2018			correct_baseline
+2705622	2016			correct_baseline
+2705622	2017			correct_baseline
+2705622	2018			correct_baseline
+2705857	2016			correct_baseline
+2705857	2017			correct_baseline
+2705857	2018			correct_baseline
+2705932	2016			correct_baseline
+2705932	2017			correct_baseline
+2705932	2018			correct_baseline
+2706026	2016	0	0.797342816492774	correct_baseline
+2706026	2017	0	0.7008754198821553	correct_baseline
+2706026	2018	0	0.6123227253125332	correct_baseline
+2706209	2016	3	1.0328520301841104	correct_baseline
+2706209	2017	3	1.0105961116547628	correct_baseline
+2706209	2018	1	0.9880805855610969	correct_baseline
+2706225	2016			correct_baseline
+2706225	2017			correct_baseline
+2706225	2018			correct_baseline
+2714453	2016			correct_baseline
+2714453	2017			correct_baseline
+2714453	2018			correct_baseline
+2714818	2016			correct_baseline
+2714818	2017			correct_baseline
+2714818	2018			correct_baseline
+2716226	2016	3	1.1056573749295888	correct_baseline
+2716226	2017	3	1.1084360410837653	correct_baseline
+2716226	2018	3	1.1111049326912135	correct_baseline
+2716838	2016			correct_baseline
+2716838	2017			correct_baseline
+2716838	2018			correct_baseline
+2717402	2016			correct_baseline
+2717402	2017			correct_baseline
+2717402	2018			correct_baseline
+2717467	2016			correct_baseline
+2717467	2017			correct_baseline
+2717467	2018			correct_baseline
+2718302	2016			correct_baseline
+2718302	2017			correct_baseline
+2718302	2018			correct_baseline
+2718387	2016			correct_baseline
+2718387	2017			correct_baseline
+2718387	2018			correct_baseline
+2722380	2016			correct_baseline
+2722380	2017			correct_baseline
+2722380	2018			correct_baseline
+2722515	2016			correct_baseline
+2722515	2017			correct_baseline
+2722515	2018			correct_baseline
+2722973	2016			correct_baseline
+2722973	2017			correct_baseline
+2722973	2018			correct_baseline
+2723271	2016			correct_baseline
+2723271	2017			correct_baseline
+2723271	2018			correct_baseline
+2726360	2016			correct_baseline
+2726360	2017			correct_baseline
+2726360	2018			correct_baseline
+2726538	2016			correct_baseline
+2726538	2017			correct_baseline
+2726538	2018			correct_baseline
+2726539	2016			correct_baseline
+2726539	2017			correct_baseline
+2726539	2018			correct_baseline
+2727875	2016			correct_baseline
+2727875	2017			correct_baseline
+2727875	2018			correct_baseline
+2728060	2016			correct_baseline
+2728060	2017			correct_baseline
+2728060	2018			correct_baseline
+2739071	2016			correct_baseline
+2739071	2017			correct_baseline
+2739071	2018			correct_baseline
+2747489	2016			correct_baseline
+2747489	2017			correct_baseline
+2747489	2018			correct_baseline
+2747564	2016	1	0.6293469368133593	correct_baseline
+2747564	2017	1	0.5352563247380903	correct_baseline
+2747564	2018	1	0.4513820492425299	correct_baseline
+2747567	2016	3	1.0322768727964589	correct_baseline
+2747567	2017	3	1.0326028754281338	correct_baseline
+2747567	2018	3	1.0329244072628252	correct_baseline
+2747939	2016			correct_baseline
+2747939	2017			correct_baseline
+2747939	2018			correct_baseline
+2749791	2016			correct_baseline
+2749791	2017			correct_baseline
+2749791	2018			correct_baseline
+2765156	2016			correct_baseline
+2765156	2017			correct_baseline
+2765156	2018			correct_baseline
+2765940	2016			correct_baseline
+2765940	2017			correct_baseline
+2765940	2018			correct_baseline
+2766030	2016	2	1.1452909153208444	correct_baseline
+2766030	2017	2	1.0935103891513234	correct_baseline
+2766030	2018	2	1.0412498524216274	correct_baseline
+2767031	2016			correct_baseline
+2767031	2017			correct_baseline
+2767031	2018			correct_baseline
+2767229	2016			correct_baseline
+2767229	2017			correct_baseline
+2767229	2018			correct_baseline
+2767271	2016			correct_baseline
+2767271	2017			correct_baseline
+2767271	2018			correct_baseline
+2769493	2016			correct_baseline
+2769493	2017			correct_baseline
+2769493	2018			correct_baseline
+2772174	2016	0	0.6854360838863646	correct_baseline
+2772174	2017	0	0.5595907818593114	correct_baseline
+2772174	2018	0	0.4526901035444708	correct_baseline
+2772666	2016	3	1.049330408776134	correct_baseline
+2772666	2017	3	1.0491562896021864	correct_baseline
+2772666	2018	3	1.0488699325415751	correct_baseline
+2772885	2016			correct_baseline
+2772885	2017			correct_baseline
+2772885	2018			correct_baseline
+2772958	2016			correct_baseline
+2772958	2017			correct_baseline
+2772958	2018			correct_baseline
+2774846	2016			correct_baseline
+2774846	2017			correct_baseline
+2774846	2018			correct_baseline
+2775530	2016	0	0.6516021376611237	correct_baseline
+2775530	2017	0	0.5036745079301367	correct_baseline
+2775530	2018	0	0.3738825097079139	correct_baseline
+2775619	2016	3	1.0910828044639616	correct_baseline
+2775619	2017	3	1.0634134039638963	correct_baseline
+2775619	2018	3	1.0351030899558928	correct_baseline
+2781103	2016			correct_baseline
+2781103	2017			correct_baseline
+2781103	2018			correct_baseline
+2855439	2016			correct_baseline
+2855439	2017			correct_baseline
+2855439	2018			correct_baseline
+2855823	2016			correct_baseline
+2855823	2017			correct_baseline
+2855823	2018			correct_baseline
+2856456	2016			correct_baseline
+2856456	2017			correct_baseline
+2856456	2018			correct_baseline
+2856457	2016			correct_baseline
+2856457	2017			correct_baseline
+2856457	2018			correct_baseline
+2857679	2016			correct_baseline
+2857679	2017			correct_baseline
+2857679	2018			correct_baseline
+2857697	2016			correct_baseline
+2857697	2017			correct_baseline
+2857697	2018			correct_baseline
+2859597	2016			correct_baseline
+2859597	2017			correct_baseline
+2859597	2018			correct_baseline
+2865501	2016			correct_baseline
+2865501	2017			correct_baseline
+2865501	2018			correct_baseline
+2865565	2016	3	1.0430805669341234	correct_baseline
+2865565	2017	3	1.0359449948259487	correct_baseline
+2865565	2018	3	1.0280650429091178	correct_baseline
+2867614	2016	1	0.9670690078093312	correct_baseline
+2867614	2017	1	0.9639799240663981	correct_baseline
+2867614	2018	1	0.9608945780558164	correct_baseline
+2867631	2016	3	1.1100462881525772	correct_baseline
+2867631	2017	3	1.1072903667670932	correct_baseline
+2867631	2018	3	1.0802033965897406	correct_baseline
+2868827	2016			correct_baseline
+2868827	2017			correct_baseline
+2868827	2018			correct_baseline
+2869311	2016			correct_baseline
+2869311	2017			correct_baseline
+2869311	2018			correct_baseline
+2869597	2016			correct_baseline
+2869597	2017			correct_baseline
+2869597	2018			correct_baseline
+2870583	2016	1	0.8965441822465202	correct_baseline
+2870583	2017	1	0.776231929153875	correct_baseline
+2870583	2018	1	0.6440274166561083	correct_baseline
+2873994	2016			correct_baseline
+2873994	2017			correct_baseline
+2873994	2018			correct_baseline
+2874190	2016			correct_baseline
+2874190	2017			correct_baseline
+2874190	2018			correct_baseline
+2874199	2016			correct_baseline
+2874199	2017			correct_baseline
+2874199	2018			correct_baseline
+2874509	2016			correct_baseline
+2874509	2017			correct_baseline
+2874509	2018			correct_baseline
+2874515	2016	1	0.8224772600986324	correct_baseline
+2874515	2017	1	0.7939401225154687	correct_baseline
+2874515	2018	1	0.7660038543376645	correct_baseline
+2874538	2016			correct_baseline
+2874538	2017			correct_baseline
+2874538	2018			correct_baseline
+2874569	2016			correct_baseline
+2874569	2017			correct_baseline
+2874569	2018			correct_baseline
+2874706	2016			correct_baseline
+2874706	2017			correct_baseline
+2874706	2018			correct_baseline
+2875968	2016			correct_baseline
+2875968	2017			correct_baseline
+2875968	2018			correct_baseline
+2876049	2016	1	0.9569943026100228	correct_baseline
+2876049	2017	1	0.9510615209256085	correct_baseline
+2876049	2018	1	0.9451340849705885	correct_baseline
+2876571	2016			correct_baseline
+2876571	2017			correct_baseline
+2876571	2018			correct_baseline
+2876607	2016	2	1.0113167815666826	correct_baseline
+2876607	2017	0	0.918271860227939	correct_baseline
+2876607	2018	0	0.8189755618559806	correct_baseline
+2879098	2016	3	1.3359325312614603	correct_baseline
+2879098	2017	3	1.2802721747107506	correct_baseline
+2879098	2018	3	1.2109720657394138	correct_baseline
+2879504	2016			correct_baseline
+2879504	2017			correct_baseline
+2879504	2018			correct_baseline
+2880539	2016	3	1.0171093262474264	correct_baseline
+2880539	2017	3	1.0124873390042195	correct_baseline
+2880539	2018	3	1.0077838596475859	correct_baseline
+2880580	2016	3	1.0102248879223634	correct_baseline
+2880580	2017	3	1.0025130091149048	correct_baseline
+2880580	2018	1	0.9946096492495856	correct_baseline
+2882443	2016			correct_baseline
+2882443	2017			correct_baseline
+2882443	2018			correct_baseline
+2882803	2016			correct_baseline
+2882803	2017			correct_baseline
+2882803	2018			correct_baseline
+2882849	2016	1	0.8391650005551577	correct_baseline
+2882849	2017	1	0.7713075963143745	correct_baseline
+2882849	2018	1	0.7002539478328372	correct_baseline
+2888323	2016			correct_baseline
+2888323	2017			correct_baseline
+2888323	2018			correct_baseline
+2888579	2016	1	0.9457190597045302	correct_baseline
+2888579	2017	1	0.9135344277996723	correct_baseline
+2888579	2018	1	0.8803253219398792	correct_baseline
+2888585	2016			correct_baseline
+2888585	2017			correct_baseline
+2888585	2018			correct_baseline
+2888625	2016	3	1.1080559109656472	correct_baseline
+2888625	2017	3	1.1079214615334658	correct_baseline
+2888625	2018	3	1.107426999449273	correct_baseline
+2888636	2016			correct_baseline
+2888636	2017			correct_baseline
+2888636	2018			correct_baseline
+2888706	2016			correct_baseline
+2888706	2017			correct_baseline
+2888706	2018			correct_baseline
+2888797	2016			correct_baseline
+2888797	2017			correct_baseline
+2888797	2018			correct_baseline
+2888806	2016			correct_baseline
+2888806	2017			correct_baseline
+2888806	2018			correct_baseline
+2888859	2016			correct_baseline
+2888859	2017			correct_baseline
+2888859	2018			correct_baseline
+2888867	2016	0	0.8632142151367433	correct_baseline
+2888867	2017	0	0.8243452799465184	correct_baseline
+2888867	2018	0	0.7858636128051057	correct_baseline
+2889005	2016			correct_baseline
+2889005	2017			correct_baseline
+2889005	2018			correct_baseline
+2889010	2016			correct_baseline
+2889010	2017			correct_baseline
+2889010	2018			correct_baseline
+2889037	2016	0	0.8370059103357337	correct_baseline
+2889037	2017	0	0.7822582100200137	correct_baseline
+2889037	2018	0	0.7300001679391199	correct_baseline
+2889304	2016	1	0.8763361390654382	correct_baseline
+2889304	2017	1	0.8774772522040092	correct_baseline
+2889304	2018	1	0.8782985299350656	correct_baseline
+2889934	2016	0	0.9295194159521987	correct_baseline
+2889934	2017	0	0.902483944476171	correct_baseline
+2889934	2018	0	0.8749052861512115	correct_baseline
+2890541	2016	3	1.0981788157498251	correct_baseline
+2890541	2017	3	1.056144142793731	correct_baseline
+2890541	2018	3	1.011664039280882	correct_baseline
+2890623	2016			correct_baseline
+2890623	2017			correct_baseline
+2890623	2018			correct_baseline
+2890651	2016			correct_baseline
+2890651	2017			correct_baseline
+2890651	2018			correct_baseline
+2891664	2016			correct_baseline
+2891664	2017			correct_baseline
+2891664	2018			correct_baseline
+2891677	2016			correct_baseline
+2891677	2017			correct_baseline
+2891677	2018			correct_baseline
+2891707	2016	3	1.0679650985539548	correct_baseline
+2891707	2017	3	1.054430626656679	correct_baseline
+2891707	2018	3	1.0407932707183785	correct_baseline
+2891755	2016	1	0.9114651875768606	correct_baseline
+2891755	2017	1	0.8933543762517028	correct_baseline
+2891755	2018	1	0.8738339121338958	correct_baseline
+2891774	2016	0	0.8745272223277036	correct_baseline
+2891774	2017	0	0.8252686689638777	correct_baseline
+2891774	2018	0	0.7769296188715605	correct_baseline
+2891783	2016	0	0.9627828049497932	correct_baseline
+2891783	2017	0	0.9215386762688595	correct_baseline
+2891783	2018	0	0.8810127925995543	correct_baseline
+2914404	2016			correct_baseline
+2914404	2017			correct_baseline
+2914404	2018			correct_baseline
+2925351	2016			correct_baseline
+2925351	2017			correct_baseline
+2925351	2018			correct_baseline
+2925366	2016			correct_baseline
+2925366	2017			correct_baseline
+2925366	2018			correct_baseline
+2925496	2016			correct_baseline
+2925496	2017			correct_baseline
+2925496	2018			correct_baseline
+2925530	2016			correct_baseline
+2925530	2017			correct_baseline
+2925530	2018			correct_baseline
+2925532	2016			correct_baseline
+2925532	2017			correct_baseline
+2925532	2018			correct_baseline
+2925816	2016			correct_baseline
+2925816	2017			correct_baseline
+2925816	2018			correct_baseline
+2926042	2016			correct_baseline
+2926042	2017			correct_baseline
+2926042	2018			correct_baseline
+2926572	2016	1	0.7130138674471642	correct_baseline
+2926572	2017	1	0.6745122954080146	correct_baseline
+2926572	2018	1	0.6378320692872338	correct_baseline
+2926992	2016			correct_baseline
+2926992	2017			correct_baseline
+2926992	2018			correct_baseline
+2927174	2016			correct_baseline
+2927174	2017			correct_baseline
+2927174	2018			correct_baseline
+2927303	2016			correct_baseline
+2927303	2017			correct_baseline
+2927303	2018			correct_baseline
+2927530	2016			correct_baseline
+2927530	2017			correct_baseline
+2927530	2018			correct_baseline
+2927727	2016			correct_baseline
+2927727	2017			correct_baseline
+2927727	2018			correct_baseline
+2927744	2016			correct_baseline
+2927744	2017			correct_baseline
+2927744	2018			correct_baseline
+2928034	2016			correct_baseline
+2928034	2017			correct_baseline
+2928034	2018			correct_baseline
+2928238	2016			correct_baseline
+2928238	2017			correct_baseline
+2928238	2018			correct_baseline
+2928538	2016	1	0.9061076830949675	correct_baseline
+2928538	2017	1	0.9031962012329018	correct_baseline
+2928538	2018	1	0.9002768909550799	correct_baseline
+2928583	2016			correct_baseline
+2928583	2017			correct_baseline
+2928583	2018			correct_baseline
+2928613	2016			correct_baseline
+2928613	2017			correct_baseline
+2928613	2018			correct_baseline
+2928668	2016			correct_baseline
+2928668	2017			correct_baseline
+2928668	2018			correct_baseline
+2928761	2016			correct_baseline
+2928761	2017			correct_baseline
+2928761	2018			correct_baseline
+2928783	2016			correct_baseline
+2928783	2017			correct_baseline
+2928783	2018			correct_baseline
+2928861	2016			correct_baseline
+2928861	2017			correct_baseline
+2928861	2018			correct_baseline
+2929892	2016			correct_baseline
+2929892	2017			correct_baseline
+2929892	2018			correct_baseline
+2930080	2016			correct_baseline
+2930080	2017			correct_baseline
+2930080	2018			correct_baseline
+2931104	2016			correct_baseline
+2931104	2017			correct_baseline
+2931104	2018			correct_baseline
+2931914	2016			correct_baseline
+2931914	2017			correct_baseline
+2931914	2018			correct_baseline
+2956441	2016			correct_baseline
+2956441	2017			correct_baseline
+2956441	2018			correct_baseline
+2957408	2016	1	0.8515428096659583	correct_baseline
+2957408	2017	1	0.8420435938490345	correct_baseline
+2957408	2018	1	0.8324777367169176	correct_baseline
+2959443	2016			correct_baseline
+2959443	2017			correct_baseline
+2959443	2018			correct_baseline
+2964167	2016			correct_baseline
+2964167	2017			correct_baseline
+2964167	2018			correct_baseline
+2965434	2016			correct_baseline
+2965434	2017			correct_baseline
+2965434	2018			correct_baseline
+2971033	2016			correct_baseline
+2971033	2017			correct_baseline
+2971033	2018			correct_baseline
+2975187	2016			correct_baseline
+2975187	2017			correct_baseline
+2975187	2018			correct_baseline
+2977222	2016			correct_baseline
+2977222	2017			correct_baseline
+2977222	2018			correct_baseline
+2982380	2016			correct_baseline
+2982380	2017			correct_baseline
+2982380	2018			correct_baseline
+2984466	2016			correct_baseline
+2984466	2017			correct_baseline
+2984466	2018			correct_baseline
+2984532	2016			correct_baseline
+2984532	2017			correct_baseline
+2984532	2018			correct_baseline
+2984676	2016	2	1.0090595477095534	correct_baseline
+2984676	2017	0	0.9298809479016846	correct_baseline
+2984676	2018	0	0.8519704204236577	correct_baseline
+2985863	2016	1	0.947634287982516	correct_baseline
+2985863	2017	1	0.9313106488816858	correct_baseline
+2985863	2018	1	0.9149455098611935	correct_baseline
+2985944	2016			correct_baseline
+2985944	2017			correct_baseline
+2985944	2018			correct_baseline
+2985965	2016	1	0.9608941435012883	correct_baseline
+2985965	2017	1	0.9272492205605981	correct_baseline
+2985965	2018	1	0.8933828307604075	correct_baseline
+2985994	2016			correct_baseline
+2985994	2017			correct_baseline
+2985994	2018			correct_baseline
+2985995	2016			correct_baseline
+2985995	2017			correct_baseline
+2985995	2018			correct_baseline
+2986022	2016			correct_baseline
+2986022	2017			correct_baseline
+2986022	2018			correct_baseline
+2986132	2016			correct_baseline
+2986132	2017			correct_baseline
+2986132	2018			correct_baseline
+2989222	2016			correct_baseline
+2989222	2017			correct_baseline
+2989222	2018			correct_baseline
+2994120	2016			correct_baseline
+2994120	2017			correct_baseline
+2994120	2018			correct_baseline
+2995149	2016	0	0.8924022699766333	correct_baseline
+2995149	2017	0	0.8389403455830889	correct_baseline
+2995149	2018	0	0.7868769158779522	correct_baseline
+2996525	2016	0	0.8614176564174656	correct_baseline
+2996525	2017	0	0.8389977187036759	correct_baseline
+2996525	2018	0	0.8166105711967828	correct_baseline
+3000406	2016			correct_baseline
+3000406	2017			correct_baseline
+3000406	2018			correct_baseline
+3000610	2016	3	1.0572210986219006	correct_baseline
+3000610	2017	3	1.0539194815342754	correct_baseline
+3000610	2018	3	1.049589121482191	correct_baseline
+3001362	2016			correct_baseline
+3001362	2017			correct_baseline
+3001362	2018			correct_baseline
+3001650	2016			correct_baseline
+3001650	2017			correct_baseline
+3001650	2018			correct_baseline
+3003709	2016	3	1.0222623953970658	correct_baseline
+3003709	2017	3	1.0203654360751906	correct_baseline
+3003709	2018	3	1.0184360943525377	correct_baseline
+3005039	2016			correct_baseline
+3005039	2017			correct_baseline
+3005039	2018			correct_baseline
+3011247	2016			correct_baseline
+3011247	2017			correct_baseline
+3011247	2018			correct_baseline
+3012089	2016	0	0.8689229945947129	correct_baseline
+3012089	2017	0	0.8386173667154837	correct_baseline
+3012089	2018	0	0.8084544852361226	correct_baseline
+3012103	2016			correct_baseline
+3012103	2017			correct_baseline
+3012103	2018			correct_baseline
+3012117	2016			correct_baseline
+3012117	2017			correct_baseline
+3012117	2018			correct_baseline
+3015457	2016	1	0.682371048462314	correct_baseline
+3015457	2017	1	0.5710885659303542	correct_baseline
+3015457	2018	1	0.4685462391180217	correct_baseline
+3015577	2016			correct_baseline
+3015577	2017			correct_baseline
+3015577	2018			correct_baseline
+3020871	2016	0	0.9593606913477781	correct_baseline
+3020871	2017	0	0.8338857127435035	correct_baseline
+3020871	2018	0	0.7079577081712399	correct_baseline
+3021496	2016	2	1.0759140430991139	correct_baseline
+3021496	2017	2	1.0580906362625773	correct_baseline
+3021496	2018	2	1.040220063429675	correct_baseline
+3021730	2016	3	1.131491865248857	correct_baseline
+3021730	2017	3	1.1368501087077711	correct_baseline
+3021730	2018	3	1.1421382159170943	correct_baseline
+3022203	2016	0	0.8566748024190429	correct_baseline
+3022203	2017	0	0.8523653648067693	correct_baseline
+3022203	2018	0	0.8480735047437183	correct_baseline
+3022668	2016	1	0.8911635884510877	correct_baseline
+3022668	2017	1	0.88658704454791315	correct_baseline
+3022668	2018	1	0.8818961913037677	correct_baseline
+3024146	2016	1	0.9119537779454931	correct_baseline
+3024146	2017	1	0.8890377909454515	correct_baseline
+3024146	2018	1	0.8661436452772461	correct_baseline
+3025564	2016			correct_baseline
+3025564	2017			correct_baseline
+3025564	2018			correct_baseline
+3025605	2016			correct_baseline
+3025605	2017			correct_baseline
+3025605	2018			correct_baseline
+3025617	2016	0	0.92064385366971635	correct_baseline
+3025617	2017	0	0.9020881322485359	correct_baseline
+3025617	2018	0	0.8837671993359163	correct_baseline
+3025758	2016			correct_baseline
+3025758	2017			correct_baseline
+3025758	2018			correct_baseline
+3025858	2016			correct_baseline
+3025858	2017			correct_baseline
+3025858	2018			correct_baseline
+3025875	2016			correct_baseline
+3025875	2017			correct_baseline
+3025875	2018			correct_baseline
+3025896	2016	0	0.7661116664476473	correct_baseline
+3025896	2017	0	0.7033044047937307	correct_baseline
+3025896	2018	0	0.6419143048993422	correct_baseline
+3025907	2016			correct_baseline
+3025907	2017			correct_baseline
+3025907	2018			correct_baseline
+3025932	2016			correct_baseline
+3025932	2017			correct_baseline
+3025932	2018			correct_baseline
+3026004	2016			correct_baseline
+3026004	2017			correct_baseline
+3026004	2018			correct_baseline
+3026024	2016			correct_baseline
+3026024	2017			correct_baseline
+3026024	2018			correct_baseline
+3026040	2016			correct_baseline
+3026040	2017			correct_baseline
+3026040	2018			correct_baseline
+3026049	2016			correct_baseline
+3026049	2017			correct_baseline
+3026049	2018			correct_baseline
+3026074	2016	2	0.9662569520455105	correct_baseline
+3026074	2017	2	0.9796007415678054	correct_baseline
+3026074	2018	2	0.9898476272494261	correct_baseline
+3026092	2016	1	0.642620454273855	correct_baseline
+3026092	2017	1	0.5975954419921433	correct_baseline
+3026092	2018	1	0.5552206609553504	correct_baseline
+3026105	2016			correct_baseline
+3026105	2017			correct_baseline
+3026105	2018			correct_baseline
+3026107	2016	0	0.7212494444968048	correct_baseline
+3026107	2017	0	0.6446162251322658	correct_baseline
+3026107	2018	0	0.5725209474856116	correct_baseline
+3026154	2016	1	0.8897751365924951	correct_baseline
+3026154	2017	1	0.9023056597153093	correct_baseline
+3026154	2018	1	0.9069293747459455	correct_baseline
+3026160	2016	1	0.9569155171898133	correct_baseline
+3026160	2017	1	0.945031600716238	correct_baseline
+3026160	2018	1	0.9330306617084663	correct_baseline
+3026162	2016	1	0.9499546687790944	correct_baseline
+3026162	2017	1	0.9160724312899133	correct_baseline
+3026162	2018	1	0.8821342761226033	correct_baseline
+3026294	2016	0	0.8734103959191375	correct_baseline
+3026294	2017	0	0.8348518661603829	correct_baseline
+3026294	2018	0	0.7970373443161698	correct_baseline
+3026334	2016	1	0.9170062232941151	correct_baseline
+3026334	2017	1	0.8905201348779946	correct_baseline
+3026334	2018	1	0.8643485395707267	correct_baseline
+3027138	2016			correct_baseline
+3027138	2017			correct_baseline
+3027138	2018			correct_baseline
+3027332	2016			correct_baseline
+3027332	2017			correct_baseline
+3027332	2018			correct_baseline
+3027341	2016			correct_baseline
+3027341	2017			correct_baseline
+3027341	2018			correct_baseline
+3027791	2016			correct_baseline
+3027791	2017			correct_baseline
+3027791	2018			correct_baseline
+3028528	2016	2	1.0440865909061052	correct_baseline
+3028528	2017	0	0.994401799483754	correct_baseline
+3028528	2018	0	0.9434230007981678	correct_baseline
+3028586	2016			correct_baseline
+3028586	2017			correct_baseline
+3028586	2018			correct_baseline
+3032611	2016			correct_baseline
+3032611	2017			correct_baseline
+3032611	2018			correct_baseline
+3032646	2016			correct_baseline
+3032646	2017			correct_baseline
+3032646	2018			correct_baseline
+3032653	2016			correct_baseline
+3032653	2017			correct_baseline
+3032653	2018			correct_baseline
+3033077	2016	0	0.9949413107156823	correct_baseline
+3033077	2017	0	0.9776528093273942	correct_baseline
+3033077	2018	0	0.9604550943901332	correct_baseline
+3033242	2016	2	1.008120866115826	correct_baseline
+3033242	2017	0	0.9350498313837424	correct_baseline
+3033242	2018	0	0.8642401205818783	correct_baseline
+3033261	2016			correct_baseline
+3033261	2017			correct_baseline
+3033261	2018			correct_baseline
+3033396	2016			correct_baseline
+3033396	2017			correct_baseline
+3033396	2018			correct_baseline
+3033460	2016			correct_baseline
+3033460	2017			correct_baseline
+3033460	2018			correct_baseline
+3033535	2016			correct_baseline
+3033535	2017			correct_baseline
+3033535	2018			correct_baseline
+3033896	2016	0	0.8833113232147742	correct_baseline
+3033896	2017	0	0.8328496751673256	correct_baseline
+3033896	2018	0	0.784494421438647	correct_baseline
+3033905	2016			correct_baseline
+3033905	2017			correct_baseline
+3033905	2018			correct_baseline
+3033965	2016			correct_baseline
+3033965	2017			correct_baseline
+3033965	2018			correct_baseline
+3034015	2016			correct_baseline
+3034015	2017			correct_baseline
+3034015	2018			correct_baseline
+3034046	2016			correct_baseline
+3034046	2017			correct_baseline
+3034046	2018			correct_baseline
+3034523	2016			correct_baseline
+3034523	2017			correct_baseline
+3034523	2018			correct_baseline
+3034602	2016			correct_baseline
+3034602	2017			correct_baseline
+3034602	2018			correct_baseline
+3036033	2016			correct_baseline
+3036033	2017			correct_baseline
+3036033	2018			correct_baseline
+3036892	2016	0	0.9433451745333994	correct_baseline
+3036892	2017	0	0.9187766794129361	correct_baseline
+3036892	2018	0	0.8942496221597057	correct_baseline
+3039046	2016	3	1.1268130994214187	correct_baseline
+3039046	2017	3	1.1062827530916808	correct_baseline
+3039046	2018	3	1.083308217346966	correct_baseline
+3039194	2016	3	1.0713697009092673	correct_baseline
+3039194	2017	3	1.071494325524277	correct_baseline
+3039194	2018	3	1.0715794739497018	correct_baseline
+3039272	2016			correct_baseline
+3039272	2017			correct_baseline
+3039272	2018			correct_baseline
+3039418	2016			correct_baseline
+3039418	2017			correct_baseline
+3039418	2018			correct_baseline
+3040184	2016	0	0.8854103094419872	correct_baseline
+3040184	2017	1	0.8528138907970906	correct_baseline
+3040184	2018	1	0.8206027661912538	correct_baseline
+3040185	2016	0	0.8873540016118889	correct_baseline
+3040185	2017	0	0.8732296743557835	correct_baseline
+3040185	2018	0	0.8591920410523507	correct_baseline
+3040232	2016			correct_baseline
+3040232	2017			correct_baseline
+3040232	2018			correct_baseline
+3040233	2016	1	0.912888540694568	correct_baseline
+3040233	2017	1	0.8990468738771757	correct_baseline
+3040233	2018	1	0.8852752791494354	correct_baseline
+3040241	2016			correct_baseline
+3040241	2017			correct_baseline
+3040241	2018			correct_baseline
+3040928	2016			correct_baseline
+3040928	2017			correct_baseline
+3040928	2018			correct_baseline
+3040999	2016	1	0.8763401359010431	correct_baseline
+3040999	2017	1	0.8572863517293501	correct_baseline
+3040999	2018	1	0.8382630055581782	correct_baseline
+3042799	2016			correct_baseline
+3042799	2017			correct_baseline
+3042799	2018			correct_baseline
+3042845	2016	0	0.8922958651468422	correct_baseline
+3042845	2017	0	0.8674593989027899	correct_baseline
+3042845	2018	0	0.8430418599221224	correct_baseline
+3044912	2016			correct_baseline
+3044912	2017			correct_baseline
+3044912	2018			correct_baseline
+3046015	2016			correct_baseline
+3046015	2017			correct_baseline
+3046015	2018			correct_baseline
+3046744	2016	3	1.0868094555549557	correct_baseline
+3046744	2017	3	1.0934635372290933	correct_baseline
+3046744	2018	3	1.1001403539736296	correct_baseline
+3054117	2016	3	1.0153178310099136	correct_baseline
+3054117	2017	3	1.0166004330442209	correct_baseline
+3054117	2018	3	1.0170013855615705	correct_baseline
+3054352	2016			correct_baseline
+3054352	2017			correct_baseline
+3054352	2018			correct_baseline
+3054357	2016	3	1.1085646644512734	correct_baseline
+3054357	2017	3	1.0918024630872405	correct_baseline
+3054357	2018	3	1.0743516043516186	correct_baseline
+3054368	2016	1	0.9885617121230541	correct_baseline
+3054368	2017	1	0.9863769109914231	correct_baseline
+3054368	2018	1	0.9841930638250883	correct_baseline
+3064495	2016			correct_baseline
+3064495	2017			correct_baseline
+3064495	2018			correct_baseline
+3064669	2016			correct_baseline
+3064669	2017			correct_baseline
+3064669	2018			correct_baseline
+3065244	2016			correct_baseline
+3065244	2017			correct_baseline
+3065244	2018			correct_baseline
+3065883	2016			correct_baseline
+3065883	2017			correct_baseline
+3065883	2018			correct_baseline
+3066993	2016			correct_baseline
+3066993	2017			correct_baseline
+3066993	2018			correct_baseline
+3067119	2016	1	0.8984185695113432	correct_baseline
+3067119	2017	1	0.8748377038375292	correct_baseline
+3067119	2018	1	0.8515109692166621	correct_baseline
+3067353	2016	3	1.1732511769089349	correct_baseline
+3067353	2017	3	1.1578263400565754	correct_baseline
+3067353	2018	3	1.141520751328555	correct_baseline
+3067891	2016	1	0.772491048119502	correct_baseline
+3067891	2017	1	0.7289915289001689	correct_baseline
+3067891	2018	1	0.6876376399136706	correct_baseline
+3069300	2016			correct_baseline
+3069300	2017			correct_baseline
+3069300	2018			correct_baseline
+3069460	2016			correct_baseline
+3069460	2017			correct_baseline
+3069460	2018			correct_baseline
+3083486	2016			correct_baseline
+3083486	2017			correct_baseline
+3083486	2018			correct_baseline
+3083680	2016	1	0.8983762740072526	correct_baseline
+3083680	2017	1	0.8935248262146849	correct_baseline
+3083680	2018	1	0.8879054389240271	correct_baseline
+3083935	2016			correct_baseline
+3083935	2017			correct_baseline
+3083935	2018			correct_baseline
+3084015	2016	3	1.0681209812898003	correct_baseline
+3084015	2017	3	1.0442647602764068	correct_baseline
+3084015	2018	3	1.0200390672067958	correct_baseline
+3084022	2016	2	1.0756047156486654	correct_baseline
+3084022	2017	2	1.0447217005818157	correct_baseline
+3084022	2018	2	1.0133295838685465	correct_baseline
+3085346	2016			correct_baseline
+3085346	2017			correct_baseline
+3085346	2018			correct_baseline
+3085357	2016	3	1.0697591075058817	correct_baseline
+3085357	2017	3	1.0655008452566463	correct_baseline
+3085357	2018	3	1.0608362617915852	correct_baseline
+3085420	2016			correct_baseline
+3085420	2017			correct_baseline
+3085420	2018			correct_baseline
+3086784	2016			correct_baseline
+3086784	2017			correct_baseline
+3086784	2018			correct_baseline
+3088310	2016	0	0.9373636433580469	correct_baseline
+3088310	2017	0	0.8962662778926657	correct_baseline
+3088310	2018	0	0.8546661692671472	correct_baseline
+3088488	2016			correct_baseline
+3088488	2017			correct_baseline
+3088488	2018			correct_baseline
+3094939	2016			correct_baseline
+3094939	2017			correct_baseline
+3094939	2018			correct_baseline
+3096529	2016	3	1.0121549369384655	correct_baseline
+3096529	2017	3	1.016715911443377	correct_baseline
+3096529	2018	3	1.0211219161728664	correct_baseline
+3098912	2016	2	1.073851461539898	correct_baseline
+3098912	2017	2	1.0560926103253983	correct_baseline
+3098912	2018	2	1.0381476993856757	correct_baseline
+3098951	2016			correct_baseline
+3098951	2017			correct_baseline
+3098951	2018			correct_baseline
+3100375	2016			correct_baseline
+3100375	2017			correct_baseline
+3100375	2018			correct_baseline
+3104150	2016			correct_baseline
+3104150	2017			correct_baseline
+3104150	2018			correct_baseline
+3104314	2016			correct_baseline
+3104314	2017			correct_baseline
+3104314	2018			correct_baseline
+3105768	2016			correct_baseline
+3105768	2017			correct_baseline
+3105768	2018			correct_baseline
+3111758	2016			correct_baseline
+3111758	2017			correct_baseline
+3111758	2018			correct_baseline
+3112361	2016			correct_baseline
+3112361	2017			correct_baseline
+3112361	2018			correct_baseline
+3112364	2016			correct_baseline
+3112364	2017			correct_baseline
+3112364	2018			correct_baseline
+3112994	2016			correct_baseline
+3112994	2017			correct_baseline
+3112994	2018			correct_baseline
+3113637	2016	3	1.081650577492763	correct_baseline
+3113637	2017	3	1.0866686548239448	correct_baseline
+3113637	2018	3	1.0913782084016905	correct_baseline
+3113852	2016			correct_baseline
+3113852	2017			correct_baseline
+3113852	2018			correct_baseline
+3119185	2016			correct_baseline
+3119185	2017			correct_baseline
+3119185	2018			correct_baseline
+3121258	2016			correct_baseline
+3121258	2017			correct_baseline
+3121258	2018			correct_baseline
+3121562	2016			correct_baseline
+3121562	2017			correct_baseline
+3121562	2018			correct_baseline
+3123249	2016			correct_baseline
+3123249	2017			correct_baseline
+3123249	2018			correct_baseline
+3125933	2016			correct_baseline
+3125933	2017			correct_baseline
+3125933	2018			correct_baseline
+3131367	2016			correct_baseline
+3131367	2017			correct_baseline
+3131367	2018			correct_baseline
+3131614	2016			correct_baseline
+3131614	2017			correct_baseline
+3131614	2018			correct_baseline
+3133887	2016			correct_baseline
+3133887	2017			correct_baseline
+3133887	2018			correct_baseline
+3133938	2016	3	1.0596454597589045	correct_baseline
+3133938	2017	3	1.0551096949623084	correct_baseline
+3133938	2018	3	1.0500084922122168	correct_baseline
+3134867	2016			correct_baseline
+3134867	2017			correct_baseline
+3134867	2018			correct_baseline
+3138192	2016			correct_baseline
+3138192	2017			correct_baseline
+3138192	2018			correct_baseline
+3138195	2016			correct_baseline
+3138195	2017			correct_baseline
+3138195	2018			correct_baseline
+3138953	2016			correct_baseline
+3138953	2017			correct_baseline
+3138953	2018			correct_baseline
+3139003	2016			correct_baseline
+3139003	2017			correct_baseline
+3139003	2018			correct_baseline
+3142208	2016			correct_baseline
+3142208	2017			correct_baseline
+3142208	2018			correct_baseline
+3146683	2016	0	0.7887172473537032	correct_baseline
+3146683	2017	0	0.7664255261127463	correct_baseline
+3146683	2018	0	0.7446905613869784	correct_baseline
+3147018	2016	3	1.0168832256771019	correct_baseline
+3147018	2017	3	1.0097526493169626	correct_baseline
+3147018	2018	3	1.0023595396303495	correct_baseline
+3147168	2016	1	0.9703855048243621	correct_baseline
+3147168	2017	1	0.9698261540456603	correct_baseline
+3147168	2018	1	0.9667804947298266	correct_baseline
+3147815	2016			correct_baseline
+3147815	2017			correct_baseline
+3147815	2018			correct_baseline
+3148560	2016			correct_baseline
+3148560	2017			correct_baseline
+3148560	2018			correct_baseline
+3151692	2016			correct_baseline
+3151692	2017			correct_baseline
+3151692	2018			correct_baseline
+3152268	2016			correct_baseline
+3152268	2017			correct_baseline
+3152268	2018			correct_baseline
+3152583	2016	3	1.0234307052801908	correct_baseline
+3152583	2017	3	1.0217921455898713	correct_baseline
+3152583	2018	3	1.012844058382412	correct_baseline
+3152816	2016			correct_baseline
+3152816	2017			correct_baseline
+3152816	2018			correct_baseline
+3152824	2016			correct_baseline
+3152824	2017			correct_baseline
+3152824	2018			correct_baseline
+3152861	2016	1	0.9219577456276603	correct_baseline
+3152861	2017	1	0.8734574295290597	correct_baseline
+3152861	2018	1	0.8237167585738377	correct_baseline
+3164340	2016			correct_baseline
+3164340	2017			correct_baseline
+3164340	2018			correct_baseline
+3169120	2016			correct_baseline
+3169120	2017			correct_baseline
+3169120	2018			correct_baseline
+3169329	2016			correct_baseline
+3169329	2017			correct_baseline
+3169329	2018			correct_baseline
+3170040	2016			correct_baseline
+3170040	2017			correct_baseline
+3170040	2018			correct_baseline
+3170247	2016	3	1.2404486333950204	correct_baseline
+3170247	2017	3	1.253941556859579	correct_baseline
+3170247	2018	3	1.2674766371201793	correct_baseline
+3170266	2016			correct_baseline
+3170266	2017			correct_baseline
+3170266	2018			correct_baseline
+3170823	2016	1	0.9505298007343641	correct_baseline
+3170823	2017	1	0.9664997149823356	correct_baseline
+3170823	2018	1	0.9720672288088466	correct_baseline
+3171304	2016			correct_baseline
+3171304	2017			correct_baseline
+3171304	2018			correct_baseline
+3171888	2016	3	1.2896531517540764	correct_baseline
+3171888	2017	3	1.3041320369320737	correct_baseline
+3171888	2018	3	1.3186666709594221	correct_baseline
+3171952	2016			correct_baseline
+3171952	2017			correct_baseline
+3171952	2018			correct_baseline
+3172059	2016	3	1.008161694432288	correct_baseline
+3172059	2017	3	1.0074937158329091	correct_baseline
+3172059	2018	3	1.0068175297036266	correct_baseline
+3172068	2016			correct_baseline
+3172068	2017			correct_baseline
+3172068	2018			correct_baseline
+3172099	2016			correct_baseline
+3172099	2017			correct_baseline
+3172099	2018			correct_baseline
+3172206	2016			correct_baseline
+3172206	2017			correct_baseline
+3172206	2018			correct_baseline
+3172266	2016			correct_baseline
+3172266	2017			correct_baseline
+3172266	2018			correct_baseline
+3172291	2016	3	1.0680088950935456	correct_baseline
+3172291	2017	3	1.0649040421450564	correct_baseline
+3172291	2018	3	1.061699057797968	correct_baseline
+3172294	2016			correct_baseline
+3172294	2017			correct_baseline
+3172294	2018			correct_baseline
+3172348	2016	0	0.729450232780035	correct_baseline
+3172348	2017	1	0.7501476411534646	correct_baseline
+3172348	2018	1	0.7601901863320686	correct_baseline
+3172613	2016			correct_baseline
+3172613	2017			correct_baseline
+3172613	2018			correct_baseline
+3172615	2016	1	0.8931735704698196	correct_baseline
+3172615	2017	1	0.869930549190362	correct_baseline
+3172615	2018	1	0.8470971645331067	correct_baseline
+3172622	2016			correct_baseline
+3172622	2017			correct_baseline
+3172622	2018			correct_baseline
+3188711	2016			correct_baseline
+3188711	2017			correct_baseline
+3188711	2018			correct_baseline
+3188829	2016			correct_baseline
+3188829	2017			correct_baseline
+3188829	2018			correct_baseline
+3188859	2016			correct_baseline
+3188859	2017			correct_baseline
+3188859	2018			correct_baseline
+3188926	2016			correct_baseline
+3188926	2017			correct_baseline
+3188926	2018			correct_baseline
+3189073	2016			correct_baseline
+3189073	2017			correct_baseline
+3189073	2018			correct_baseline
+3189815	2016	3	1.0383620902033572	correct_baseline
+3189815	2017	3	1.0374013556018242	correct_baseline
+3189815	2018	3	1.036380853554767	correct_baseline
+3189837	2016	0	0.9865549794993219	correct_baseline
+3189837	2017	0	0.9484709964795905	correct_baseline
+3189837	2018	0	0.9108854174614788	correct_baseline
+3189866	2016	3	1.027648591150559	correct_baseline
+3189866	2017	3	1.0254031297165624	correct_baseline
+3189866	2018	3	1.0231430346338763	correct_baseline
+3189883	2016			correct_baseline
+3189883	2017			correct_baseline
+3189883	2018			correct_baseline
+3189939	2016			correct_baseline
+3189939	2017			correct_baseline
+3189939	2018			correct_baseline
+3190411	2016			correct_baseline
+3190411	2017			correct_baseline
+3190411	2018			correct_baseline
+3190522	2016			correct_baseline
+3190522	2017			correct_baseline
+3190522	2018			correct_baseline
+3190653	2016	1	0.9830683046223412	correct_baseline
+3190653	2017	1	0.9769350135597563	correct_baseline
+3190653	2018	1	0.9707198940110756	correct_baseline
+3586046	2016			correct_baseline
+3586046	2017			correct_baseline
+3586046	2018			correct_baseline
+3602227	2016			correct_baseline
+3602227	2017			correct_baseline
+3602227	2018			correct_baseline
+3627235	2016			correct_baseline
+3627235	2017			correct_baseline
+3627235	2018			correct_baseline
+3631129	2016			correct_baseline
+3631129	2017			correct_baseline
+3631129	2018			correct_baseline
+3633319	2016	0	0.8117815883632538	correct_baseline
+3633319	2017	0	0.7216534659610431	correct_baseline
+3633319	2018	0	0.6370329874429722	correct_baseline
+3636471	2016			correct_baseline
+3636471	2017			correct_baseline
+3636471	2018			correct_baseline
+3642531	2016			correct_baseline
+3642531	2017			correct_baseline
+3642531	2018			correct_baseline
+3645346	2016			correct_baseline
+3645346	2017			correct_baseline
+3645346	2018			correct_baseline
+3646556	2016			correct_baseline
+3646556	2017			correct_baseline
+3646556	2018			correct_baseline
+3663237	2016			correct_baseline
+3663237	2017			correct_baseline
+3663237	2018			correct_baseline
+3664589	2016			correct_baseline
+3664589	2017			correct_baseline
+3664589	2018			correct_baseline
+3664677	2016	3	1.0728075590069195	correct_baseline
+3664677	2017	3	1.0738011143981436	correct_baseline
+3664677	2018	3	1.074774028823328	correct_baseline
+3665866	2016			correct_baseline
+3665866	2017			correct_baseline
+3665866	2018			correct_baseline
+3665940	2016			correct_baseline
+3665940	2017			correct_baseline
+3665940	2018			correct_baseline
+3666323	2016			correct_baseline
+3666323	2017			correct_baseline
+3666323	2018			correct_baseline
+3678256	2016			correct_baseline
+3678256	2017			correct_baseline
+3678256	2018			correct_baseline
+3690997	2016			correct_baseline
+3690997	2017			correct_baseline
+3690997	2018			correct_baseline
+3728734	2016	0	0.9824832638819803	correct_baseline
+3728734	2017	0	0.9496472684413007	correct_baseline
+3728734	2018	0	0.9172950606664046	correct_baseline
+3740974	2016			correct_baseline
+3740974	2017			correct_baseline
+3740974	2018			correct_baseline
+3741446	2016			correct_baseline
+3741446	2017			correct_baseline
+3741446	2018			correct_baseline
+3754587	2016			correct_baseline
+3754587	2017			correct_baseline
+3754587	2018			correct_baseline
+3768287	2016			correct_baseline
+3768287	2017			correct_baseline
+3768287	2018			correct_baseline
+3802845	2016	1	0.9652985225820154	correct_baseline
+3802845	2017	1	0.963330672918694	correct_baseline
+3802845	2018	1	0.9613329909063252	correct_baseline
+3829143	2016			correct_baseline
+3829143	2017			correct_baseline
+3829143	2018			correct_baseline
+3853033	2016			correct_baseline
+3853033	2017			correct_baseline
+3853033	2018			correct_baseline
+3872463	2016			correct_baseline
+3872463	2017			correct_baseline
+3872463	2018			correct_baseline
+3886505	2016			correct_baseline
+3886505	2017			correct_baseline
+3886505	2018			correct_baseline
+3889056	2016			correct_baseline
+3889056	2017			correct_baseline
+3889056	2018			correct_baseline
+3902360	2016			correct_baseline
+3902360	2017			correct_baseline
+3902360	2018			correct_baseline
+3916499	2016			correct_baseline
+3916499	2017			correct_baseline
+3916499	2018			correct_baseline
+3925834	2016			correct_baseline
+3925834	2017			correct_baseline
+3925834	2018			correct_baseline
+3981543	2016	0	0.9591956190363773	correct_baseline
+3981543	2017	0	0.8900099537550573	correct_baseline
+3981543	2018	0	0.823702619486557	correct_baseline
+4005004	2016			correct_baseline
+4005004	2017			correct_baseline
+4005004	2018			correct_baseline
+4034001	2016			correct_baseline
+4034001	2017			correct_baseline
+4034001	2018			correct_baseline
+4035024	2016			correct_baseline
+4035024	2017			correct_baseline
+4035024	2018			correct_baseline
+4038485	2016	0	0.7830595685161035	correct_baseline
+4038485	2017	0	0.7529978472514742	correct_baseline
+4038485	2018	0	0.7238997624464903	correct_baseline
+4046493	2016			correct_baseline
+4046493	2017			correct_baseline
+4046493	2018			correct_baseline
+4048240	2016			correct_baseline
+4048240	2017			correct_baseline
+4048240	2018			correct_baseline
+4063372	2016			correct_baseline
+4063372	2017			correct_baseline
+4063372	2018			correct_baseline
+4067302	2016	2	1.046483376154985	correct_baseline
+4067302	2017	0	0.9517878128661315	correct_baseline
+4067302	2018	0	0.8385672956136182	correct_baseline
+4102952	2016			correct_baseline
+4102952	2017			correct_baseline
+4102952	2018			correct_baseline
+4120602	2016			correct_baseline
+4120602	2017			correct_baseline
+4120602	2018			correct_baseline
+4122968	2016			correct_baseline
+4122968	2017			correct_baseline
+4122968	2018			correct_baseline
+4127352	2016			correct_baseline
+4127352	2017			correct_baseline
+4127352	2018			correct_baseline
+4133390	2016			correct_baseline
+4133390	2017			correct_baseline
+4133390	2018			correct_baseline
+4137839	2016			correct_baseline
+4137839	2017			correct_baseline
+4137839	2018			correct_baseline
+4139345	2016			correct_baseline
+4139345	2017			correct_baseline
+4139345	2018			correct_baseline
+4201784	2016			correct_baseline
+4201784	2017			correct_baseline
+4201784	2018			correct_baseline
+4259350	2016	3	1.0447947041146881	correct_baseline
+4259350	2017	3	1.0453588959958422	correct_baseline
+4259350	2018	3	1.0459144532972784	correct_baseline
+4264680	2016	3	1.035585310341863	correct_baseline
+4264680	2017	3	1.0250245796266082	correct_baseline
+4264680	2018	3	1.0143796935664566	correct_baseline
+4283395	2016			correct_baseline
+4283395	2017			correct_baseline
+4283395	2018			correct_baseline
+4285694	2016			correct_baseline
+4285694	2017			correct_baseline
+4285694	2018			correct_baseline
+4285968	2016			correct_baseline
+4285968	2017			correct_baseline
+4285968	2018			correct_baseline
+4287131	2016			correct_baseline
+4287131	2017			correct_baseline
+4287131	2018			correct_baseline
+4314683	2016	1	0.9199797048785486	correct_baseline
+4314683	2017	1	0.9150083538679417	correct_baseline
+4314683	2018	1	0.9100444721769332	correct_baseline
+4314702	2016			correct_baseline
+4314702	2017			correct_baseline
+4314702	2018			correct_baseline
+4315705	2016	1	0.921674324502002	correct_baseline
+4315705	2017	1	0.9143401597797289	correct_baseline
+4315705	2018	1	0.9070078310320611	correct_baseline
+4344674	2016			basic
+4344674	2017			basic
+4344674	2018			basic
+4352332	2016	0	0.8272622274033742	correct_baseline
+4352332	2017	0	0.8215672842490752	correct_baseline
+4352332	2018	0	0.8159037441073167	correct_baseline
+4354941	2016	0	0.8217284797869151	correct_baseline
+4354941	2017	0	0.8018362461982467	correct_baseline
+4354941	2018	0	0.7819980895837031	correct_baseline
+4372686	2016			correct_baseline
+4372686	2017			correct_baseline
+4372686	2018			correct_baseline
+4382841	2016	0	0.87522886230691	correct_baseline
+4382841	2017	0	0.8327387428934948	correct_baseline
+4382841	2018	0	0.7916217451521901	correct_baseline
+4401285	2016			correct_baseline
+4401285	2017			correct_baseline
+4401285	2018			correct_baseline
+4409643	2016	3	1.057107650555902	correct_baseline
+4409643	2017	3	1.072783262646182	correct_baseline
+4409643	2018	3	1.0874040492044583	correct_baseline
+4410056	2016			correct_baseline
+4410056	2017			correct_baseline
+4410056	2018			correct_baseline
+4410088	2016			correct_baseline
+4410088	2017			correct_baseline
+4410088	2018			correct_baseline
+4416920	2016			correct_baseline
+4416920	2017			correct_baseline
+4416920	2018			correct_baseline
+4417131	2016			correct_baseline
+4417131	2017			correct_baseline
+4417131	2018			correct_baseline
+4423428	2016			correct_baseline
+4423428	2017			correct_baseline
+4423428	2018			correct_baseline
+4486365	2016			correct_baseline
+4486365	2017			correct_baseline
+4486365	2018			correct_baseline
+4532122	2016			correct_baseline
+4532122	2017			correct_baseline
+4532122	2018			correct_baseline
+4550810	2016			correct_baseline
+4550810	2017			correct_baseline
+4550810	2018			correct_baseline
+4559541	2016			correct_baseline
+4559541	2017			correct_baseline
+4559541	2018			correct_baseline
+4565039	2016			correct_baseline
+4565039	2017			correct_baseline
+4565039	2018			correct_baseline
+4565061	2016			correct_baseline
+4565061	2017			correct_baseline
+4565061	2018			correct_baseline
+4567717	2016			correct_baseline
+4567717	2017			correct_baseline
+4567717	2018			correct_baseline
+4568269	2016			correct_baseline
+4568269	2017			correct_baseline
+4568269	2018			correct_baseline
+4845776	2016			correct_baseline
+4845776	2017			correct_baseline
+4845776	2018			correct_baseline
+4851368	2016			correct_baseline
+4851368	2017			correct_baseline
+4851368	2018			correct_baseline
+4925890	2016			correct_baseline
+4925890	2017			correct_baseline
+4925890	2018			correct_baseline
+4930155	2016			correct_baseline
+4930155	2017			correct_baseline
+4930155	2018			correct_baseline
+4933624	2016	3	1.102076578685796	correct_baseline
+4933624	2017	3	1.1364048673865057	correct_baseline
+4933624	2018	3	1.1466877414346044	correct_baseline
+4934105	2016			correct_baseline
+4934105	2017			correct_baseline
+4934105	2018			correct_baseline
+4938160	2016			correct_baseline
+4938160	2017			correct_baseline
+4938160	2018			correct_baseline
+4985072	2016			correct_baseline
+4985072	2017			correct_baseline
+4985072	2018			correct_baseline
+4989904	2016	1	0.9998225511665159	correct_baseline
+4989904	2017	1	0.8955058800108203	correct_baseline
+4989904	2018	1	0.7794591003128162	correct_baseline
+4990176	2016			correct_baseline
+4990176	2017			correct_baseline
+4990176	2018			correct_baseline
+5041466	2016			correct_baseline
+5041466	2017			correct_baseline
+5041466	2018			correct_baseline
+5108665	2016			correct_baseline
+5108665	2017			correct_baseline
+5108665	2018			correct_baseline
+5177089	2016	1	0.9209202668139989	correct_baseline
+5177089	2017	1	0.9005998029016455	correct_baseline
+5177089	2018	1	0.8804406279372137	correct_baseline
+5177825	2016			correct_baseline
+5177825	2017			correct_baseline
+5177825	2018			correct_baseline
+5178057	2016			correct_baseline
+5178057	2017			correct_baseline
+5178057	2018			correct_baseline
+5182343	2016			correct_baseline
+5182343	2017			correct_baseline
+5182343	2018			correct_baseline
+5188971	2016			correct_baseline
+5188971	2017			correct_baseline
+5188971	2018			correct_baseline
+5189032	2016	0	0.6915910256163682	correct_baseline
+5189032	2017	1	0.6531208672244283	correct_baseline
+5189032	2018	1	0.6125503740328699	correct_baseline
+5189713	2016			correct_baseline
+5189713	2017			correct_baseline
+5189713	2018			correct_baseline
+5199161	2016			correct_baseline
+5199161	2017			correct_baseline
+5199161	2018			correct_baseline
+5200414	2016			correct_baseline
+5200414	2017			correct_baseline
+5200414	2018			correct_baseline
+5202793	2016			correct_baseline
+5202793	2017			correct_baseline
+5202793	2018			correct_baseline
+5204034	2016			correct_baseline
+5204034	2017			correct_baseline
+5204034	2018			correct_baseline
+5217334	2016			correct_baseline
+5217334	2017			correct_baseline
+5217334	2018			correct_baseline
+5218786	2016	0	0.9457324605551196	correct_baseline
+5218786	2017	0	0.8185734025186863	correct_baseline
+5218786	2018	0	0.7064051881130168	correct_baseline
+5219380	2016			correct_baseline
+5219380	2017			correct_baseline
+5219380	2018			correct_baseline
+5219681	2016			correct_baseline
+5219681	2017			correct_baseline
+5219681	2018			correct_baseline
+5219683	2016			correct_baseline
+5219683	2017			correct_baseline
+5219683	2018			correct_baseline
+5219721	2016			correct_baseline
+5219721	2017			correct_baseline
+5219721	2018			correct_baseline
+5219858	2016	3	1.0872116975195265	correct_baseline
+5219858	2017	3	1.0953673981285807	correct_baseline
+5219858	2018	3	1.103269136222796	correct_baseline
+5220136	2016	0	0.9198273821785969	correct_baseline
+5220136	2017	0	0.8810398239971974	correct_baseline
+5220136	2018	0	0.8428085108921927	correct_baseline
+5220170	2016			correct_baseline
+5220170	2017			correct_baseline
+5220170	2018			correct_baseline
+5227775	2016			correct_baseline
+5227775	2017			correct_baseline
+5227775	2018			correct_baseline
+5227966	2016	3	1.1790738996602115	correct_baseline
+5227966	2017	3	1.2963224442061099	correct_baseline
+5227966	2018	3	1.4118628051241444	correct_baseline
+5227993	2016			correct_baseline
+5227993	2017			correct_baseline
+5227993	2018			correct_baseline
+5228033	2016			correct_baseline
+5228033	2017			correct_baseline
+5228033	2018			correct_baseline
+5228034	2016	3	1.0354141565313926	correct_baseline
+5228034	2017	3	1.0261135939921835	correct_baseline
+5228034	2018	3	1.0164703860072077	correct_baseline
+5228080	2016			correct_baseline
+5228080	2017			correct_baseline
+5228080	2018			correct_baseline
+5228229	2016	3	1.0429078559532603	correct_baseline
+5228229	2017	3	1.04508631430091	correct_baseline
+5228229	2018	3	1.0447487980103836	correct_baseline
+5229044	2016			correct_baseline
+5229044	2017			correct_baseline
+5229044	2018			correct_baseline
+5229055	2016	3	1.1004402106169735	correct_baseline
+5229055	2017	3	1.0857916594462202	correct_baseline
+5229055	2018	3	1.0708288351116568	correct_baseline
+5229072	2016			correct_baseline
+5229072	2017			correct_baseline
+5229072	2018			correct_baseline
+5229110	2016			correct_baseline
+5229110	2017			correct_baseline
+5229110	2018			correct_baseline
+5229128	2016			correct_baseline
+5229128	2017			correct_baseline
+5229128	2018			correct_baseline
+5229134	2016			correct_baseline
+5229134	2017			correct_baseline
+5229134	2018			correct_baseline
+5229136	2016			correct_baseline
+5229136	2017			correct_baseline
+5229136	2018			correct_baseline
+5229142	2016			correct_baseline
+5229142	2017			correct_baseline
+5229142	2018			correct_baseline
+5229154	2016			correct_baseline
+5229154	2017			correct_baseline
+5229154	2018			correct_baseline
+5229203	2016			correct_baseline
+5229203	2017			correct_baseline
+5229203	2018			correct_baseline
+5229204	2016			correct_baseline
+5229204	2017			correct_baseline
+5229204	2018			correct_baseline
+5229205	2016	3	1.132193674294209	correct_baseline
+5229205	2017	3	1.1284673609543694	correct_baseline
+5229205	2018	3	1.1244443943619085	correct_baseline
+5230734	2016			correct_baseline
+5230734	2017			correct_baseline
+5230734	2018			correct_baseline
+5230862	2016			correct_baseline
+5230862	2017			correct_baseline
+5230862	2018			correct_baseline
+5231398	2016			correct_baseline
+5231398	2017			correct_baseline
+5231398	2018			correct_baseline
+5232422	2016			correct_baseline
+5232422	2017			correct_baseline
+5232422	2018			correct_baseline
+5232423	2016			correct_baseline
+5232423	2017			correct_baseline
+5232423	2018			correct_baseline
+5232428	2016	0	0.6691057781436432	correct_baseline
+5232428	2017	0	0.6072642082182267	correct_baseline
+5232428	2018	0	0.5498139990967813	correct_baseline
+5232432	2016			correct_baseline
+5232432	2017			correct_baseline
+5232432	2018			correct_baseline
+5232435	2016			correct_baseline
+5232435	2017			correct_baseline
+5232435	2018			correct_baseline
+5232437	2016	3	1.1346319781067786	correct_baseline
+5232437	2017	3	1.1501127726048865	correct_baseline
+5232437	2018	3	1.1655527849750495	correct_baseline
+5232445	2016	1	0.610314785839756	correct_baseline
+5232445	2017	1	0.5911885460757459	correct_baseline
+5232445	2018	1	0.5719559751563374	correct_baseline
+5232452	2016	3	1.1285427278386198	correct_baseline
+5232452	2017	3	1.184682091891158	correct_baseline
+5232452	2018	3	1.2431072926132822	correct_baseline
+5232464	2016	0	0.7924693716164771	correct_baseline
+5232464	2017	0	0.779736263750499	correct_baseline
+5232464	2018	0	0.7672017116420101	correct_baseline
+5232465	2016			correct_baseline
+5232465	2017			correct_baseline
+5232465	2018			correct_baseline
+5232469	2016			correct_baseline
+5232469	2017			correct_baseline
+5232469	2018			correct_baseline
+5274861	2016			correct_baseline
+5274861	2017			correct_baseline
+5274861	2018			correct_baseline
+5275404	2016			correct_baseline
+5275404	2017			correct_baseline
+5275404	2018			correct_baseline
+5275415	2016			correct_baseline
+5275415	2017			correct_baseline
+5275415	2018			correct_baseline
+5281901	2016	0	0.958139119072453	correct_baseline
+5281901	2017	0	0.8691506644765717	correct_baseline
+5281901	2018	0	0.7870740200590347	correct_baseline
+5284237	2016			correct_baseline
+5284237	2017			correct_baseline
+5284237	2018			correct_baseline
+5284827	2016	3	1.084652744301417	correct_baseline
+5284827	2017	3	1.085829625025684	correct_baseline
+5284827	2018	3	1.0869810671927795	correct_baseline
+5284884	2016	0	0.8884693540023032	correct_baseline
+5284884	2017	0	0.8765395952567003	correct_baseline
+5284884	2018	0	0.8646926082867927	correct_baseline
+5284950	2016			correct_baseline
+5284950	2017			correct_baseline
+5284950	2018			correct_baseline
+5284982	2016	3	1.0141193652644709	correct_baseline
+5284982	2017	3	1.011681466152879	correct_baseline
+5284982	2018	3	1.0092327650223387	correct_baseline
+5285074	2016			correct_baseline
+5285074	2017			correct_baseline
+5285074	2018			correct_baseline
+5285565	2016	0	0.7510009791693183	correct_baseline
+5285565	2017	0	0.7216762269745189	correct_baseline
+5285565	2018	0	0.6932880644908502	correct_baseline
+5285637	2016	1	0.8561095776582007	correct_baseline
+5285637	2017	1	0.845282766789381	correct_baseline
+5285637	2018	1	0.834497295360783	correct_baseline
+5289503	2016			correct_baseline
+5289503	2017			correct_baseline
+5289503	2018			correct_baseline
+5289666	2016	3	1.037939663431739	correct_baseline
+5289666	2017	3	1.045932118085603	correct_baseline
+5289666	2018	3	1.0538213633131885	correct_baseline
+5289686	2016	1	0.9428220368167333	correct_baseline
+5289686	2017	1	0.9362398718836848	correct_baseline
+5289686	2018	1	0.9294392288266133	correct_baseline
+5289709	2016			correct_baseline
+5289709	2017			correct_baseline
+5289709	2018			correct_baseline
+5289739	2016			correct_baseline
+5289739	2017			correct_baseline
+5289739	2018			correct_baseline
+5289746	2016			correct_baseline
+5289746	2017			correct_baseline
+5289746	2018			correct_baseline
+5289764	2016			correct_baseline
+5289764	2017			correct_baseline
+5289764	2018			correct_baseline
+5289995	2016			correct_baseline
+5289995	2017			correct_baseline
+5289995	2018			correct_baseline
+5295044	2016			correct_baseline
+5295044	2017			correct_baseline
+5295044	2018			correct_baseline
+5296218	2016			correct_baseline
+5296218	2017			correct_baseline
+5296218	2018			correct_baseline
+5296432	2016			correct_baseline
+5296432	2017			correct_baseline
+5296432	2018			correct_baseline
+5298765	2016			correct_baseline
+5298765	2017			correct_baseline
+5298765	2018			correct_baseline
+5300102	2016			correct_baseline
+5300102	2017			correct_baseline
+5300102	2018			correct_baseline
+5303040	2016			correct_baseline
+5303040	2017			correct_baseline
+5303040	2018			correct_baseline
+5303891	2016			correct_baseline
+5303891	2017			correct_baseline
+5303891	2018			correct_baseline
+5304294	2016	1	0.9994742444126817	correct_baseline
+5304294	2017	1	0.9916213489619629	correct_baseline
+5304294	2018	1	0.9837735154179263	correct_baseline
+5305162	2016			correct_baseline
+5305162	2017			correct_baseline
+5305162	2018			correct_baseline
+5328593	2016			correct_baseline
+5328593	2017			correct_baseline
+5328593	2018			correct_baseline
+5328909	2016	3	1.0143596902448657	correct_baseline
+5328909	2017	1	0.9849978642746651	correct_baseline
+5328909	2018	1	0.9535263225129447	correct_baseline
+5329260	2016	1	0.844839091580402	correct_baseline
+5329260	2017	1	0.8291648603818649	correct_baseline
+5329260	2018	1	0.8135211152808367	correct_baseline
+5329643	2016			correct_baseline
+5329643	2017			correct_baseline
+5329643	2018			correct_baseline
+5330661	2016	1	0.9569879358456566	correct_baseline
+5330661	2017	1	0.949284825126878	correct_baseline
+5330661	2018	1	0.9414964320636735	correct_baseline
+5332120	2016			correct_baseline
+5332120	2017			correct_baseline
+5332120	2018			correct_baseline
+5333354	2016			correct_baseline
+5333354	2017			correct_baseline
+5333354	2018			correct_baseline
+5334194	2016			correct_baseline
+5334194	2017			correct_baseline
+5334194	2018			correct_baseline
+5334240	2016	1	0.9448507774103752	correct_baseline
+5334240	2017	1	0.9107950758761897	correct_baseline
+5334240	2018	1	0.8760131519813404	correct_baseline
+5334253	2016			correct_baseline
+5334253	2017			correct_baseline
+5334253	2018			correct_baseline
+5334275	2016			correct_baseline
+5334275	2017			correct_baseline
+5334275	2018			correct_baseline
+5334527	2016			correct_baseline
+5334527	2017			correct_baseline
+5334527	2018			correct_baseline
+5341187	2016			correct_baseline
+5341187	2017			correct_baseline
+5341187	2018			correct_baseline
+5341394	2016			correct_baseline
+5341394	2017			correct_baseline
+5341394	2018			correct_baseline
+5341497	2016	0	0.9175771903575122	correct_baseline
+5341497	2017	1	0.8511870725090723	correct_baseline
+5341497	2018	1	0.7853531845497399	correct_baseline
+5341540	2016			correct_baseline
+5341540	2017			correct_baseline
+5341540	2018			correct_baseline
+5341558	2016			correct_baseline
+5341558	2017			correct_baseline
+5341558	2018			correct_baseline
+5343253	2016			correct_baseline
+5343253	2017			correct_baseline
+5343253	2018			correct_baseline
+5353590	2016			correct_baseline
+5353590	2017			correct_baseline
+5353590	2018			correct_baseline
+5354707	2016			correct_baseline
+5354707	2017			correct_baseline
+5354707	2018			correct_baseline
+5355395	2016	0	0.8766348260832234	correct_baseline
+5355395	2017	0	0.84056406399360994	correct_baseline
+5355395	2018	0	0.8051264490665356	correct_baseline
+5356541	2016			correct_baseline
+5356541	2017			correct_baseline
+5356541	2018			correct_baseline
+5358774	2016			correct_baseline
+5358774	2017			correct_baseline
+5358774	2018			correct_baseline
+5358906	2016			correct_baseline
+5358906	2017			correct_baseline
+5358906	2018			correct_baseline
+5358907	2016	3	1.1200832135562002	correct_baseline
+5358907	2017	3	1.1233554394218657	correct_baseline
+5358907	2018	3	1.126284516659808	correct_baseline
+5359099	2016			correct_baseline
+5359099	2017			correct_baseline
+5359099	2018			correct_baseline
+5359169	2016			correct_baseline
+5359169	2017			correct_baseline
+5359169	2018			correct_baseline
+5359249	2016			correct_baseline
+5359249	2017			correct_baseline
+5359249	2018			correct_baseline
+5359411	2016			correct_baseline
+5359411	2017			correct_baseline
+5359411	2018			correct_baseline
+5359475	2016			correct_baseline
+5359475	2017			correct_baseline
+5359475	2018			correct_baseline
+5359660	2016	3	1.0450741979608766	correct_baseline
+5359660	2017	3	1.0468482218226425	correct_baseline
+5359660	2018	3	1.04858211255143	correct_baseline
+5360429	2016			correct_baseline
+5360429	2017			correct_baseline
+5360429	2018			correct_baseline
+5360508	2016			correct_baseline
+5360508	2017			correct_baseline
+5360508	2018			correct_baseline
+5361762	2016	1	0.6675694571951963	correct_baseline
+5361762	2017	1	0.631950788303247	correct_baseline
+5361762	2018	1	0.5979714752730753	correct_baseline
+5361785	2016	1	0.8401392707319348	correct_baseline
+5361785	2017	1	0.8114389395374338	correct_baseline
+5361785	2018	1	0.783409044286506	correct_baseline
+5361841	2016			correct_baseline
+5361841	2017			correct_baseline
+5361841	2018			correct_baseline
+5361888	2016	1	0.668027923807047	correct_baseline
+5361888	2017	1	0.5947732060894597	correct_baseline
+5361888	2018	1	0.5274292787935493	correct_baseline
+5361944	2016			correct_baseline
+5361944	2017			correct_baseline
+5361944	2018			correct_baseline
+5362004	2016	3	1.0262507352070172	correct_baseline
+5362004	2017	3	1.0185290685436743	correct_baseline
+5362004	2018	3	1.010513288549835	correct_baseline
+5363627	2016			correct_baseline
+5363627	2017			correct_baseline
+5363627	2018			correct_baseline
+5363819	2016			correct_baseline
+5363819	2017			correct_baseline
+5363819	2018			correct_baseline
+5365705	2016	1	0.9952200910538321	correct_baseline
+5365705	2017	1	0.9842132081451018	correct_baseline
+5365705	2018	1	0.973077974682428	correct_baseline
+5366327	2016			correct_baseline
+5366327	2017			correct_baseline
+5366327	2018			correct_baseline
+5367186	2016			correct_baseline
+5367186	2017			correct_baseline
+5367186	2018			correct_baseline
+5367214	2016			correct_baseline
+5367214	2017			correct_baseline
+5367214	2018			correct_baseline
+5369784	2016	3	1.2019710656112002	correct_baseline
+5369784	2017	3	1.1804419027357522	correct_baseline
+5369784	2018	3	1.1560225764021586	correct_baseline
+5370006	2016			correct_baseline
+5370006	2017			correct_baseline
+5370006	2018			correct_baseline
+5371605	2016			correct_baseline
+5371605	2017			correct_baseline
+5371605	2018			correct_baseline
+5371610	2016			correct_baseline
+5371610	2017			correct_baseline
+5371610	2018			correct_baseline
+5372614	2016	1	0.7545741040587319	correct_baseline
+5372614	2017	1	0.7448036962067093	correct_baseline
+5372614	2018	1	0.7123454944778307	correct_baseline
+5372827	2016			correct_baseline
+5372827	2017			correct_baseline
+5372827	2018			correct_baseline
+5372875	2016			correct_baseline
+5372875	2017			correct_baseline
+5372875	2018			correct_baseline
+5375012	2016			correct_baseline
+5375012	2017			correct_baseline
+5375012	2018			correct_baseline
+5376139	2016			correct_baseline
+5376139	2017			correct_baseline
+5376139	2018			correct_baseline
+5376326	2016			correct_baseline
+5376326	2017			correct_baseline
+5376326	2018			correct_baseline
+5384347	2016			correct_baseline
+5384347	2017			correct_baseline
+5384347	2018			correct_baseline
+5384361	2016	0	0.9260355870852566	correct_baseline
+5384361	2017	0	0.910451620136662	correct_baseline
+5384361	2018	0	0.894910087330224	correct_baseline
+5384390	2016	1	0.9355444763952474	correct_baseline
+5384390	2017	1	0.933842537831358	correct_baseline
+5384390	2018	1	0.9321126278267873	correct_baseline
+5384393	2016	0	0.8211599995464725	correct_baseline
+5384393	2017	0	0.8132113574844002	correct_baseline
+5384393	2018	0	0.8053121391716199	correct_baseline
+5384931	2016			correct_baseline
+5384931	2017			correct_baseline
+5384931	2018			correct_baseline
+5384932	2016			correct_baseline
+5384932	2017			correct_baseline
+5384932	2018			correct_baseline
+5384950	2016			correct_baseline
+5384950	2017			correct_baseline
+5384950	2018			correct_baseline
+5387098	2016			correct_baseline
+5387098	2017			correct_baseline
+5387098	2018			correct_baseline
+5387639	2016			correct_baseline
+5387639	2017			correct_baseline
+5387639	2018			correct_baseline
+5389058	2016			correct_baseline
+5389058	2017			correct_baseline
+5389058	2018			correct_baseline
+5391810	2016			correct_baseline
+5391810	2017			correct_baseline
+5391810	2018			correct_baseline
+5392145	2016	0	0.5444308017153578	correct_baseline
+5392145	2017	0	0.49141978986615614	correct_baseline
+5392145	2018	0	0.4427739170262781	correct_baseline
+5392270	2016			correct_baseline
+5392270	2017			correct_baseline
+5392270	2018			correct_baseline
+5392271	2016			correct_baseline
+5392271	2017			correct_baseline
+5392271	2018			correct_baseline
+5395475	2016			correct_baseline
+5395475	2017			correct_baseline
+5395475	2018			correct_baseline
+5396474	2016			correct_baseline
+5396474	2017			correct_baseline
+5396474	2018			correct_baseline
+5396551	2016			correct_baseline
+5396551	2017			correct_baseline
+5396551	2018			correct_baseline
+5397564	2016			correct_baseline
+5397564	2017			correct_baseline
+5397564	2018			correct_baseline
+5401007	2016			correct_baseline
+5401007	2017			correct_baseline
+5401007	2018			correct_baseline
+5402340	2016			correct_baseline
+5402340	2017			correct_baseline
+5402340	2018			correct_baseline
+5402363	2016			correct_baseline
+5402363	2017			correct_baseline
+5402363	2018			correct_baseline
+5403541	2016			correct_baseline
+5403541	2017			correct_baseline
+5403541	2018			correct_baseline
+5403743	2016			correct_baseline
+5403743	2017			correct_baseline
+5403743	2018			correct_baseline
+5406735	2016	1	0.8156633143898544	correct_baseline
+5406735	2017	1	0.8071667391166689	correct_baseline
+5406735	2018	1	0.7987174206139659	correct_baseline
+5406741	2016	1	0.9447680558085225	correct_baseline
+5406741	2017	1	0.9414677914039117	correct_baseline
+5406741	2018	1	0.9381618172725916	correct_baseline
+5407810	2016			correct_baseline
+5407810	2017			correct_baseline
+5407810	2018			correct_baseline
+5408682	2016			correct_baseline
+5408682	2017			correct_baseline
+5408682	2018			correct_baseline
+5409852	2016			correct_baseline
+5409852	2017			correct_baseline
+5409852	2018			correct_baseline
+5410151	2016	1	0.9914011602658295	correct_baseline
+5410151	2017	1	0.9686239409555099	correct_baseline
+5410151	2018	1	0.9456056710613345	correct_baseline
+5410210	2016			correct_baseline
+5410210	2017			correct_baseline
+5410210	2018			correct_baseline
+5410411	2016	2	0.9613537708889335	correct_baseline
+5410411	2017	2	0.9634200042341458	correct_baseline
+5410411	2018	2	0.9653217360320976	correct_baseline
+5410826	2016			correct_baseline
+5410826	2017			correct_baseline
+5410826	2018			correct_baseline
+5411392	2016			correct_baseline
+5411392	2017			correct_baseline
+5411392	2018			correct_baseline
+5411453	2016			correct_baseline
+5411453	2017			correct_baseline
+5411453	2018			correct_baseline
+5414239	2016			correct_baseline
+5414239	2017			correct_baseline
+5414239	2018			correct_baseline
+5414932	2016			correct_baseline
+5414932	2017			correct_baseline
+5414932	2018			correct_baseline
+5414959	2016			correct_baseline
+5414959	2017			correct_baseline
+5414959	2018			correct_baseline
+5415012	2016	0	0.7116004181248711	correct_baseline
+5415012	2017	0	0.6149826199517497	correct_baseline
+5415012	2018	0	0.5266738631239792	correct_baseline
+5415053	2016			correct_baseline
+5415053	2017			correct_baseline
+5415053	2018			correct_baseline
+5415054	2016			correct_baseline
+5415054	2017			correct_baseline
+5415054	2018			correct_baseline
+5415056	2016			correct_baseline
+5415056	2017			correct_baseline
+5415056	2018			correct_baseline
+5415453	2016			correct_baseline
+5415453	2017			correct_baseline
+5415453	2018			correct_baseline
+5415455	2016			correct_baseline
+5415455	2017			correct_baseline
+5415455	2018			correct_baseline
+5420991	2016	3	1.2340895200501802	correct_baseline
+5420991	2017	3	1.2409245389923866	correct_baseline
+5420991	2018	3	1.2473134899858502	correct_baseline
+5421039	2016	3	1.1642169954373884	correct_baseline
+5421039	2017	3	1.181879911354893	correct_baseline
+5421039	2018	3	1.196404747611279	correct_baseline
+5421180	2016			correct_baseline
+5421180	2017			correct_baseline
+5421180	2018			correct_baseline
+5421385	2016			correct_baseline
+5421385	2017			correct_baseline
+5421385	2018			correct_baseline
+5421389	2016			correct_baseline
+5421389	2017			correct_baseline
+5421389	2018			correct_baseline
+5528747	2016			correct_baseline
+5528747	2017			correct_baseline
+5528747	2018			correct_baseline
+5538946	2016	1	0.887820732182115	correct_baseline
+5538946	2017	1	0.8791896521845651	correct_baseline
+5538946	2018	1	0.8704036797327759	correct_baseline
+5559837	2016			correct_baseline
+5559837	2017			correct_baseline
+5559837	2018			correct_baseline
+5567694	2016	0	0.35529520322893576	correct_baseline
+5567694	2017	0	0.2367934198880311	correct_baseline
+5567694	2018	0	0.15530239120571002	correct_baseline
+5568442	2016			correct_baseline
+5568442	2017			correct_baseline
+5568442	2018			correct_baseline
+5582033	2016	1	0.8028368586982922	correct_baseline
+5582033	2017	1	0.8044748486152525	correct_baseline
+5582033	2018	1	0.7356615220035678	correct_baseline
+5584240	2016			correct_baseline
+5584240	2017			correct_baseline
+5584240	2018			correct_baseline
+5584611	2016			correct_baseline
+5584611	2017			correct_baseline
+5584611	2018			correct_baseline
+5598598	2016			correct_baseline
+5598598	2017			correct_baseline
+5598598	2018			correct_baseline
+5598915	2016	2	1.020475846587623	correct_baseline
+5598915	2017	0	0.9970206938509938	correct_baseline
+5598915	2018	0	0.9738434785159779	correct_baseline
+5602664	2016			correct_baseline
+5602664	2017			correct_baseline
+5602664	2018			correct_baseline
+5617467	2016			correct_baseline
+5617467	2017			correct_baseline
+5617467	2018			correct_baseline
+5621983	2016			correct_baseline
+5621983	2017			correct_baseline
+5621983	2018			correct_baseline
+5640518	2016			correct_baseline
+5640518	2017			correct_baseline
+5640518	2018			correct_baseline
+5641274	2016			correct_baseline
+5641274	2017			correct_baseline
+5641274	2018			correct_baseline
+5652131	2016			correct_baseline
+5652131	2017			correct_baseline
+5652131	2018			correct_baseline
+5660450	2016			correct_baseline
+5660450	2017			correct_baseline
+5660450	2018			correct_baseline
+5667614	2016			correct_baseline
+5667614	2017			correct_baseline
+5667614	2018			correct_baseline
+5669632	2016			correct_baseline
+5669632	2017			correct_baseline
+5669632	2018			correct_baseline
+5671747	2016			correct_baseline
+5671747	2017			correct_baseline
+5671747	2018			correct_baseline
+5676646	2016	1	0.9760858599624611	correct_baseline
+5676646	2017	1	0.9726358636372585	correct_baseline
+5676646	2018	1	0.9690396451735401	correct_baseline
+5678495	2016			correct_baseline
+5678495	2017			correct_baseline
+5678495	2018			correct_baseline
+5686494	2016			correct_baseline
+5686494	2017			correct_baseline
+5686494	2018			correct_baseline
+5701337	2016			correct_baseline
+5701337	2017			correct_baseline
+5701337	2018			correct_baseline
+5709400	2016			correct_baseline
+5709400	2017			correct_baseline
+5709400	2018			correct_baseline
+5739357	2016			correct_baseline
+5739357	2017			correct_baseline
+5739357	2018			correct_baseline
+5740285	2016			correct_baseline
+5740285	2017			correct_baseline
+5740285	2018			correct_baseline
+5779455	2016			correct_baseline
+5779455	2017			correct_baseline
+5779455	2018			correct_baseline
+5786666	2016			correct_baseline
+5786666	2017			correct_baseline
+5786666	2018			correct_baseline
+5789082	2016			correct_baseline
+5789082	2017			correct_baseline
+5789082	2018			correct_baseline
+5825913	2016	0	0.9067489863058331	correct_baseline
+5825913	2017	0	0.8904714759534181	correct_baseline
+5825913	2018	0	0.8743003000946866	correct_baseline
+5828216	2016			correct_baseline
+5828216	2017			correct_baseline
+5828216	2018			correct_baseline
+5831060	2016			correct_baseline
+5831060	2017			correct_baseline
+5831060	2018			correct_baseline
+5844936	2016			correct_baseline
+5844936	2017			correct_baseline
+5844936	2018			correct_baseline
+5851603	2016	1	0.8717416718734006	correct_baseline
+5851603	2017	1	0.8486432496338142	correct_baseline
+5851603	2018	1	0.8259674331228629	correct_baseline
+5879783	2016			correct_baseline
+5879783	2017			correct_baseline
+5879783	2018			correct_baseline
+5892120	2016			basic
+5892120	2017			basic
+5892120	2018			basic
+5930559	2016			correct_baseline
+5930559	2017			correct_baseline
+5930559	2018			correct_baseline
+5959118	2016			correct_baseline
+5959118	2017			correct_baseline
+5959118	2018			correct_baseline
+5959227	2016			correct_baseline
+5959227	2017			correct_baseline
+5959227	2018			correct_baseline
+5959231	2016			correct_baseline
+5959231	2017			correct_baseline
+5959231	2018			correct_baseline
+6026665	2016			correct_baseline
+6026665	2017			correct_baseline
+6026665	2018			correct_baseline
+6077549	2016	1	0.90674012565189	correct_baseline
+6077549	2017	1	0.9033571474682489	correct_baseline
+6077549	2018	1	0.8995586165678469	correct_baseline
+6091856	2016			correct_baseline
+6091856	2017			correct_baseline
+6091856	2018			correct_baseline
+6096602	2016			correct_baseline
+6096602	2017			correct_baseline
+6096602	2018			correct_baseline
+6100996	2016	0	0.6798811874385859	correct_baseline
+6100996	2017	0	0.6632006355874001	correct_baseline
+6100996	2018	0	0.6468825388060299	correct_baseline
+6157026	2016	0	0.8702674482741038	correct_baseline
+6157026	2017	0	0.8550373025226007	correct_baseline
+6157026	2018	0	0.8400608692855921	correct_baseline
+6157035	2016	0	0.9665065007897434	correct_baseline
+6157035	2017	0	0.9059751206107038	correct_baseline
+6157035	2018	0	0.8484351590147989	correct_baseline
+6157050	2016			correct_baseline
+6157050	2017			correct_baseline
+6157050	2018			correct_baseline
+6159273	2016			correct_baseline
+6159273	2017			correct_baseline
+6159273	2018			correct_baseline
+6369140	2016			correct_baseline
+6369140	2017			correct_baseline
+6369140	2018			correct_baseline
+6369819	2016	3	1.0780079062894454	correct_baseline
+6369819	2017	3	1.0813536712094869	correct_baseline
+6369819	2018	3	1.0834476063832716	correct_baseline
+6376216	2016			correct_baseline
+6376216	2017			correct_baseline
+6376216	2018			correct_baseline
+6387033	2016			correct_baseline
+6387033	2017			correct_baseline
+6387033	2018			correct_baseline
+6391417	2016	1	0.9874991489195958	correct_baseline
+6391417	2017	1	0.9862529392357755	correct_baseline
+6391417	2018	1	0.9849794426428669	correct_baseline
+6432925	2016			correct_baseline
+6432925	2017			correct_baseline
+6432925	2018			correct_baseline
+6931186	2016			correct_baseline
+6931186	2017			correct_baseline
+6931186	2018			correct_baseline
+7062200	2016	1	0.8151685375111164	correct_baseline
+7062200	2017	1	0.7487734809029254	correct_baseline
+7062200	2018	1	0.6860292932435184	correct_baseline
+7068732	2016	1	0.9348199264715813	correct_baseline
+7068732	2017	1	0.9274209413606714	correct_baseline
+7068732	2018	1	0.919934847432841	correct_baseline
+7102937	2016			correct_baseline
+7102937	2017			correct_baseline
+7102937	2018			correct_baseline
+7116158	2016			correct_baseline
+7116158	2017			correct_baseline
+7116158	2018			correct_baseline
+7127354	2016			correct_baseline
+7127354	2017			correct_baseline
+7127354	2018			correct_baseline
+7127810	2016	3	1.2608214816214454	correct_baseline
+7127810	2017	3	1.2546977091056737	correct_baseline
+7127810	2018	3	1.2413375889265241	correct_baseline
+7135755	2016	2	1.0690768868305958	correct_baseline
+7135755	2017	2	1.0250495238796862	correct_baseline
+7135755	2018	0	0.9786764919915774	correct_baseline
+7136543	2016			correct_baseline
+7136543	2017			correct_baseline
+7136543	2018			correct_baseline
+7156971	2016			correct_baseline
+7156971	2017			correct_baseline
+7156971	2018			correct_baseline
+7157952	2016			correct_baseline
+7157952	2017			correct_baseline
+7157952	2018			correct_baseline
+7158449	2016			correct_baseline
+7158449	2017			correct_baseline
+7158449	2018			correct_baseline
+7161168	2016			correct_baseline
+7161168	2017			correct_baseline
+7161168	2018			correct_baseline
+7190901	2016			correct_baseline
+7190901	2017			correct_baseline
+7190901	2018			correct_baseline
+7224157	2016	3	1.0039789880848653	correct_baseline
+7224157	2017	3	1.0041750301439467	correct_baseline
+7224157	2018	3	1.004369862221342	correct_baseline
+7227181	2016			correct_baseline
+7227181	2017			correct_baseline
+7227181	2018			correct_baseline
+7230699	2016			correct_baseline
+7230699	2017			correct_baseline
+7230699	2018			correct_baseline
+7262908	2016			correct_baseline
+7262908	2017			correct_baseline
+7262908	2018			correct_baseline
+7262958	2016			correct_baseline
+7262958	2017			correct_baseline
+7262958	2018			correct_baseline
+7263145	2016			correct_baseline
+7263145	2017			correct_baseline
+7263145	2018			correct_baseline
+7270761	2016	1	0.9435526234947799	correct_baseline
+7270761	2017	1	0.9305498356598005	correct_baseline
+7270761	2018	1	0.917478945048262	correct_baseline
+7271631	2016			correct_baseline
+7271631	2017			correct_baseline
+7271631	2018			correct_baseline
+7277286	2016			correct_baseline
+7277286	2017			correct_baseline
+7277286	2018			correct_baseline
+7278926	2016			correct_baseline
+7278926	2017			correct_baseline
+7278926	2018			correct_baseline
+7291264	2016			correct_baseline
+7291264	2017			correct_baseline
+7291264	2018			correct_baseline
+7294681	2016			correct_baseline
+7294681	2017			correct_baseline
+7294681	2018			correct_baseline
+7294771	2016			correct_baseline
+7294771	2017			correct_baseline
+7294771	2018			correct_baseline
+7303117	2016			correct_baseline
+7303117	2017			correct_baseline
+7303117	2018			correct_baseline
+7307327	2016			correct_baseline
+7307327	2017			correct_baseline
+7307327	2018			correct_baseline
+7307829	2016			correct_baseline
+7307829	2017			correct_baseline
+7307829	2018			correct_baseline
+7309012	2016			correct_baseline
+7309012	2017			correct_baseline
+7309012	2018			correct_baseline
+7315030	2016			correct_baseline
+7315030	2017			correct_baseline
+7315030	2018			correct_baseline
+7315072	2016	3	1.0443950484370217	correct_baseline
+7315072	2017	3	1.0397970307967848	correct_baseline
+7315072	2018	3	1.035064247479718	correct_baseline
+7318448	2016			correct_baseline
+7318448	2017			correct_baseline
+7318448	2018			correct_baseline
+7319302	2016			correct_baseline
+7319302	2017			correct_baseline
+7319302	2018			correct_baseline
+7322143	2016			correct_baseline
+7322143	2017			correct_baseline
+7322143	2018			correct_baseline
+7322292	2016			correct_baseline
+7322292	2017			correct_baseline
+7322292	2018			correct_baseline
+7322373	2016			correct_baseline
+7322373	2017			correct_baseline
+7322373	2018			correct_baseline
+7322738	2016			correct_baseline
+7322738	2017			correct_baseline
+7322738	2018			correct_baseline
+7323906	2016			correct_baseline
+7323906	2017			correct_baseline
+7323906	2018			correct_baseline
+7324046	2016			correct_baseline
+7324046	2017			correct_baseline
+7324046	2018			correct_baseline
+7331240	2016			correct_baseline
+7331240	2017			correct_baseline
+7331240	2018			correct_baseline
+7331666	2016			correct_baseline
+7331666	2017			correct_baseline
+7331666	2018			correct_baseline
+7333320	2016			correct_baseline
+7333320	2017			correct_baseline
+7333320	2018			correct_baseline
+7334368	2016			correct_baseline
+7334368	2017			correct_baseline
+7334368	2018			correct_baseline
+7335777	2016	2	0.9409133274115253	correct_baseline
+7335777	2017	3	1.041132858181938	correct_baseline
+7335777	2018	3	1.1214169113654604	correct_baseline
+7346102	2016	3	1.0130561345281568	correct_baseline
+7346102	2017	3	1.0012151872078918	correct_baseline
+7346102	2018	1	0.9892013440745449	correct_baseline
+7351929	2016			correct_baseline
+7351929	2017			correct_baseline
+7351929	2018			correct_baseline
+7358948	2016	0	0.6126667318051527	correct_baseline
+7358948	2017	0	0.5832331703762197	correct_baseline
+7358948	2018	0	0.5539704759861197	correct_baseline
+7415922	2016			correct_baseline
+7415922	2017			correct_baseline
+7415922	2018			correct_baseline
+7433196	2016			correct_baseline
+7433196	2017			correct_baseline
+7433196	2018			correct_baseline
+7437751	2016			correct_baseline
+7437751	2017			correct_baseline
+7437751	2018			correct_baseline
+7443846	2016	1	0.860647806274467	correct_baseline
+7443846	2017	1	0.8497990989218185	correct_baseline
+7443846	2018	1	0.839057096997595	correct_baseline
+7455425	2016			correct_baseline
+7455425	2017			correct_baseline
+7455425	2018			correct_baseline
+7461690	2016			correct_baseline
+7461690	2017			correct_baseline
+7461690	2018			correct_baseline
+7501634	2016	1	0.8055679209218813	correct_baseline
+7501634	2017	1	0.7917273702050108	correct_baseline
+7501634	2018	1	0.7778016003846576	correct_baseline
+7504215	2016			correct_baseline
+7504215	2017			correct_baseline
+7504215	2018			correct_baseline
+7519710	2016			correct_baseline
+7519710	2017			correct_baseline
+7519710	2018			correct_baseline
+7520678	2016			correct_baseline
+7520678	2017			correct_baseline
+7520678	2018			correct_baseline
+7523432	2016			correct_baseline
+7523432	2017			correct_baseline
+7523432	2018			correct_baseline
+7540164	2016	0	0.9761028589081504	correct_baseline
+7540164	2017	0	0.9042513162808904	correct_baseline
+7540164	2018	0	0.8362327469692721	correct_baseline
+7560711	2016			correct_baseline
+7560711	2017			correct_baseline
+7560711	2018			correct_baseline
+7564934	2016			correct_baseline
+7564934	2017			correct_baseline
+7564934	2018			correct_baseline
+7572133	2016			correct_baseline
+7572133	2017			correct_baseline
+7572133	2018			correct_baseline
+7636833	2016			correct_baseline
+7636833	2017			correct_baseline
+7636833	2018			correct_baseline
+7645931	2016			correct_baseline
+7645931	2017			correct_baseline
+7645931	2018			correct_baseline
+7664179	2016			correct_baseline
+7664179	2017			correct_baseline
+7664179	2018			correct_baseline
+7681436	2016			correct_baseline
+7681436	2017			correct_baseline
+7681436	2018			correct_baseline
+7683374	2016			correct_baseline
+7683374	2017			correct_baseline
+7683374	2018			correct_baseline
+7690055	2016			correct_baseline
+7690055	2017			correct_baseline
+7690055	2018			correct_baseline
+7694392	2016			correct_baseline
+7694392	2017			correct_baseline
+7694392	2018			correct_baseline
+7697298	2016	1	0.6631196009460191	correct_baseline
+7697298	2017	1	0.6310339481320807	correct_baseline
+7697298	2018	1	0.6001191233821104	correct_baseline
+7740617	2016			correct_baseline
+7740617	2017			correct_baseline
+7740617	2018			correct_baseline
+7752288	2016	1	0.8569633110008787	correct_baseline
+7752288	2017	1	0.8417162951706282	correct_baseline
+7752288	2018	1	0.8266846216339376	correct_baseline
+7777960	2016			correct_baseline
+7777960	2017			correct_baseline
+7777960	2018			correct_baseline
+7802465	2016	3	1.1289690565762598	correct_baseline
+7802465	2017	3	1.121982197793854	correct_baseline
+7802465	2018	3	1.0804050114095565	correct_baseline
+7818643	2016			correct_baseline
+7818643	2017			correct_baseline
+7818643	2018			correct_baseline
+7820753	2016	1	0.8382931259111969	correct_baseline
+7820753	2017	1	0.8122277614329165	correct_baseline
+7820753	2018	1	0.7851109803774793	correct_baseline
+7823272	2016			correct_baseline
+7823272	2017			correct_baseline
+7823272	2018			correct_baseline
+7832723	2016			correct_baseline
+7832723	2017			correct_baseline
+7832723	2018			correct_baseline
+7855120	2016	1	0.9603502385844235	correct_baseline
+7855120	2017	1	0.934978441966269	correct_baseline
+7855120	2018	1	0.9094191501440246	correct_baseline
+7862391	2016			correct_baseline
+7862391	2017			correct_baseline
+7862391	2018			correct_baseline
+7881150	2016			correct_baseline
+7881150	2017			correct_baseline
+7881150	2018			correct_baseline
+7882646	2016			correct_baseline
+7882646	2017			correct_baseline
+7882646	2018			correct_baseline
+7901010	2016			correct_baseline
+7901010	2017			correct_baseline
+7901010	2018			correct_baseline
+7902463	2016			correct_baseline
+7902463	2017			correct_baseline
+7902463	2018			correct_baseline
+7911993	2016			correct_baseline
+7911993	2017			correct_baseline
+7911993	2018			correct_baseline
+7912328	2016			correct_baseline
+7912328	2017			correct_baseline
+7912328	2018			correct_baseline
+7915783	2016	1	0.8642533458549764	correct_baseline
+7915783	2017	1	0.8587659714952784	correct_baseline
+7915783	2018	1	0.8530712848950822	correct_baseline
+7938233	2016			correct_baseline
+7938233	2017			correct_baseline
+7938233	2018			correct_baseline
+7961815	2016			correct_baseline
+7961815	2017			correct_baseline
+7961815	2018			correct_baseline
+7963687	2016			correct_baseline
+7963687	2017			correct_baseline
+7963687	2018			correct_baseline
+7978544	2016	0	0.7825167248791697	correct_baseline
+7978544	2017	0	0.752718302902553	correct_baseline
+7978544	2018	0	0.7238846381866414	correct_baseline
+7988337	2016			correct_baseline
+7988337	2017			correct_baseline
+7988337	2018			correct_baseline
+7989836	2016			correct_baseline
+7989836	2017			correct_baseline
+7989836	2018			correct_baseline
+8010851	2016			correct_baseline
+8010851	2017			correct_baseline
+8010851	2018			correct_baseline
+8014966	2016			correct_baseline
+8014966	2017			correct_baseline
+8014966	2018			correct_baseline
+8021567	2016			correct_baseline
+8021567	2017			correct_baseline
+8021567	2018			correct_baseline
+8022932	2016			correct_baseline
+8022932	2017			correct_baseline
+8022932	2018			correct_baseline
+8035075	2016	2	0.9649862743176244	correct_baseline
+8035075	2017	2	0.9968688457897544	correct_baseline
+8035075	2018	3	1.0251773770288999	correct_baseline
+8044946	2016			correct_baseline
+8044946	2017			correct_baseline
+8044946	2018			correct_baseline
+8049400	2016			correct_baseline
+8049400	2017			correct_baseline
+8049400	2018			correct_baseline
+8060423	2016			correct_baseline
+8060423	2017			correct_baseline
+8060423	2018			correct_baseline
+8080743	2016	3	1.0746958216410973	correct_baseline
+8080743	2017	3	1.036198888745501	correct_baseline
+8080743	2018	1	0.9904687178317476	correct_baseline
+8104460	2016			correct_baseline
+8104460	2017			correct_baseline
+8104460	2018			correct_baseline
+8133114	2016			correct_baseline
+8133114	2017			correct_baseline
+8133114	2018			correct_baseline
+8144599	2016			correct_baseline
+8144599	2017			correct_baseline
+8144599	2018			correct_baseline
+8190077	2016	0	0.8233940692802973	correct_baseline
+8190077	2017	0	0.8035360592694509	correct_baseline
+8190077	2018	0	0.7840052875879422	correct_baseline
+8190231	2016	3	1.261354100523063	correct_baseline
+8190231	2017	3	1.2769349469132583	correct_baseline
+8190231	2018	3	1.2925827918825432	correct_baseline
+8207952	2016			correct_baseline
+8207952	2017			correct_baseline
+8207952	2018			correct_baseline
+8214730	2016			correct_baseline
+8214730	2017			correct_baseline
+8214730	2018			correct_baseline
+8242349	2016			correct_baseline
+8242349	2017			correct_baseline
+8242349	2018			correct_baseline
+8242651	2016			correct_baseline
+8242651	2017			correct_baseline
+8242651	2018			correct_baseline
+8313153	2016	1	0.9822306274631513	correct_baseline
+8313153	2017	1	0.9695201520594333	correct_baseline
+8313153	2018	1	0.9568012106951242	correct_baseline
+8323119	2016			correct_baseline
+8323119	2017			correct_baseline
+8323119	2018			correct_baseline
+8323485	2016			correct_baseline
+8323485	2017			correct_baseline
+8323485	2018			correct_baseline
+8342911	2016	1	0.9008210460915038	correct_baseline
+8342911	2017	1	0.8807286466329689	correct_baseline
+8342911	2018	1	0.8607330502898876	correct_baseline
+8358048	2016			correct_baseline
+8358048	2017			correct_baseline
+8358048	2018			correct_baseline
+8362005	2016			correct_baseline
+8362005	2017			correct_baseline
+8362005	2018			correct_baseline
+8369366	2016			correct_baseline
+8369366	2017			correct_baseline
+8369366	2018			correct_baseline
+8402586	2016			correct_baseline
+8402586	2017			correct_baseline
+8402586	2018			correct_baseline
+8421432	2016			correct_baseline
+8421432	2017			correct_baseline
+8421432	2018			correct_baseline
+8485639	2016	1	0.9902673540338571	correct_baseline
+8485639	2017	1	0.9757952247732985	correct_baseline
+8485639	2018	1	0.9603071514230627	correct_baseline
+8510990	2016			correct_baseline
+8510990	2017			correct_baseline
+8510990	2018			correct_baseline
+8537667	2016	1	0.8886154496671249	correct_baseline
+8537667	2017	1	0.8892825929993708	correct_baseline
+8537667	2018	1	0.8887376517900757	correct_baseline
+8599762	2016			correct_baseline
+8599762	2017			correct_baseline
+8599762	2018			correct_baseline
+8745918	2016	2	1.0537766704581604	correct_baseline
+8745918	2017	2	1.0074203128263342	correct_baseline
+8745918	2018	0	0.9558023366672398	correct_baseline
+8765358	2016			correct_baseline
+8765358	2017			correct_baseline
+8765358	2018			correct_baseline
+8773480	2016			correct_baseline
+8773480	2017			correct_baseline
+8773480	2018			correct_baseline
+8946295	2016			correct_baseline
+8946295	2017			correct_baseline
+8946295	2018			correct_baseline
+8969026	2016			correct_baseline
+8969026	2017			correct_baseline
+8969026	2018			correct_baseline
+8993502	2016			correct_baseline
+8993502	2017			correct_baseline
+8993502	2018			correct_baseline
+9018536	2016			correct_baseline
+9018536	2017			correct_baseline
+9018536	2018			correct_baseline
+9153437	2016	3	1.0577303345604747	correct_baseline
+9153437	2017	3	1.0709676300739732	correct_baseline
+9153437	2018	3	1.0840839978223578	correct_baseline
+9185677	2016			correct_baseline
+9185677	2017			correct_baseline
+9185677	2018			correct_baseline
+9188840	2016	3	1.0193735371377564	correct_baseline
+9188840	2017	3	1.0218009880115826	correct_baseline
+9188840	2018	3	1.024165484692418	correct_baseline
+9291405	2016			correct_baseline
+9291405	2017			correct_baseline
+9291405	2018			correct_baseline
+9326020	2016	0	0.9046128531846479	correct_baseline
+9326020	2017	0	0.8225213607779777	correct_baseline
+9326020	2018	0	0.7466295900961911	correct_baseline
+9350124	2016			correct_baseline
+9350124	2017			correct_baseline
+9350124	2018			correct_baseline
+9376410	2016			correct_baseline
+9376410	2017			correct_baseline
+9376410	2018			correct_baseline
+9450106	2016	0	0.8050281127488477	correct_baseline
+9450106	2017	0	0.7850539520853412	correct_baseline
+9450106	2018	0	0.7654840881828167	correct_baseline
+9451184	2016	3	1.1958472281125834	correct_baseline
+9451184	2017	3	1.2222432403220511	correct_baseline
+9451184	2018	3	1.2464343754667966	correct_baseline
+9521148	2016	1	0.33018640268882504	correct_baseline
+9521148	2017	1	0.29423569555589624	correct_baseline
+9521148	2018	1	0.2619375760360556	correct_baseline
+9540191	2016	1	0.7588471096246366	correct_baseline
+9540191	2017	1	0.7396799261937982	correct_baseline
+9540191	2018	1	0.720898457394175	correct_baseline
+9567226	2016	1	0.774746791549871	correct_baseline
+9567226	2017	1	0.7337235604045682	correct_baseline
+9567226	2018	1	0.6935101505420683	correct_baseline
+9606290	2016			correct_baseline
+9606290	2017			correct_baseline
+9606290	2018			correct_baseline
+9685907	2016			correct_baseline
+9685907	2017			correct_baseline
+9685907	2018			correct_baseline
+9691034	2016			correct_baseline
+9691034	2017			correct_baseline
+9691034	2018			correct_baseline
+9733080	2016			correct_baseline
+9733080	2017			correct_baseline
+9733080	2018			correct_baseline
+9738098	2016			correct_baseline
+9738098	2017			correct_baseline
+9738098	2018			correct_baseline
+9791464	2016			correct_baseline
+9791464	2017			correct_baseline
+9791464	2018			correct_baseline
+10172912	2016			correct_baseline
+10172912	2017			correct_baseline
+10172912	2018			correct_baseline
+10173593	2016			correct_baseline
+10173593	2017			correct_baseline
+10173593	2018			correct_baseline
+10269496	2016			correct_baseline
+10269496	2017			correct_baseline
+10269496	2018			correct_baseline
+10661581	2016			correct_baseline
+10661581	2017			correct_baseline
+10661581	2018			correct_baseline
