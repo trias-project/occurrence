@@ -53,14 +53,14 @@ Preview:
 ```{r preview_ts}
 # Get a taxon
 taxon <-
-  df_ts$taxonKey[5]
+  df_ts$taxonKey[10]
 
 # Preview
 df_ts %>%
   filter(
     taxonKey == taxon,
     year %in% c(2016, 2017),
-    eea_cell_code %in% c("1kmE3814N3108", "1kmE3894N3090")
+    eea_cell_code == "1kmE3924N3102"
   )
 ```
 
