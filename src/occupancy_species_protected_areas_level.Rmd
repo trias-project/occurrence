@@ -419,7 +419,7 @@ We remove metadata of areas without observations:
 ```{r filter_protected_areas_metadata}
 protected_areas_metadata <-
   protected_areas_metadata %>%
-  filter(sitecode %in% occs_prot_areas$sitecode)
+  filter(SITECODE %in% occs_prot_areas$SITECODE)
 ```
 
 We save the metadata as output:
