@@ -142,6 +142,42 @@ evaluation_years <- seq(first_year, last_year)
 evaluation_years
 ```
 
+We remove data from actual year due to publishing delay. Underestimation of the number of observations would sensibly affect the GAM output. Remember that GAM is applied on a timeseries and that the evaluation years may not be at the end of such timeseries. 
+
+```{r remove_actual_year}
+df_ts_compact <-
+  df_ts_compact %>%
+  filter(year < lubridate::year(Sys.Date()))
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  filter(year < lubridate::year(Sys.Date()))
+```
+
+## Remove appearing taxa
+
+Taxa appearing after the very first evalution year should be removed as no trend can be assesed for them. See [analysis of appearing and reappearing taxa](https://trias-project.github.io/indicators/occurrence_indicators_appearing_taxa.html).
+
+```{r remove_appearing_taxa}
+appearing_taxa_to_remove <-
+  df_ts_compact %>%
+  group_by(taxonKey) %>%
+  summarize(begin_year = min(year)) %>%
+  filter(begin_year > min(evaluation_years)) %>%
+  pull(taxonKey)
+
+df_ts_compact <-
+  df_ts_compact %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+spec_names <-
+  spec_names %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+```
+
 ## Decision rules
 
 We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules` from project package `trias`.
