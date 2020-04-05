@@ -13,7 +13,7 @@
 <meta name="author" content="Toon Van Daele" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-04-05" />
+<meta name="date" content="2020-04-06" />
 
 <title>Emerging status: modelling</title>
 
@@ -409,6 +409,9 @@ div.tocify {
     <li>
       <a href="occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
     </li>
+    <li>
+      <a href="occurrence_species_protected_areas_level.html">Species in Belgian protected areas</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -440,7 +443,7 @@ div.tocify {
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Toon Van Daele</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2020-04-05</h4>
+<h4 class="date">2020-04-06</h4>
 
 </div>
 
@@ -575,7 +578,7 @@ spec_names &lt;-
 </div>
 <div id="decision-rules" class="section level2">
 <h2><span class="header-section-number">3.3</span> Decision rules</h2>
-<p>We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function <code>apply_decision_rules</code> from project package <code>trias</code>.</p>
+<p>We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function <code>apply_decision_rules()</code> from project package <code>trias</code>.</p>
 <div id="observations" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Observations</h3>
 <div id="belgium" class="section level4">
@@ -661,7 +664,7 @@ spec_names &lt;-
 </div>
 <div id="generalized-additive-model-gam" class="section level2">
 <h2><span class="header-section-number">3.4</span> Generalized additive model (GAM)</h2>
-<p>We apply GAM to observations and occupancy in all Belgium and in protected areas using function <code>apply_gam</code> from project package <code>trias</code>.</p>
+<p>We apply GAM to observations and occupancy in all Belgium and in protected areas using function <code>apply_gam()</code> from project package <code>trias</code>.</p>
 <p>Plots are saved in:</p>
 <pre class="r"><code>dir_name &lt;- here::here(&quot;data&quot;, &quot;output&quot;, &quot;GAM_outputs&quot;)</code></pre>
 <div id="observations-1" class="section level3">
