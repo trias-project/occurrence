@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Damiano Oldoni" />
+
+<meta name="date" content="2020-04-05" />
+
+<title>Get cells of Belgian EEA reference grid containing protected areas</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="static\css\trias.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TrIAS pipeline</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Occurrence-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
+    </li>
+    <li>
+      <a href="occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
+    </li>
+    <li>
+      <a href="ranking_emerging_status.html">Ranking species by emerging status</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Appendix
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
+    </li>
+    <li>
+      <a href="occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Get cells of Belgian EEA reference grid containing protected areas</h1>
+<h4 class="author">Damiano Oldoni</h4>
+<h4 class="date">2020-04-05</h4>
+
+</div>
+
+
+<div id="goal" class="section level1">
+<h1>Goal</h1>
+<p>Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura2000 protected areas, this document assesses the cells covering the protected areas.</p>
+</div>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<pre class="r"><code>library(tidyverse)
+library(tidylog)
+library(sf)
+library(here)</code></pre>
+</div>
+<div id="read-input-data" class="section level1">
+<h1>Read input data</h1>
+<div id="import-eea-reference-grid" class="section level2">
+<h2>Import EEA reference grid</h2>
+<p>We import UTM grid data of Belgium at 1 by 1 km resolution. All grids have CRS (Coordinate Reference System) equal to <em>Belge Lambert 1972</em>:</p>
+<pre class="r"><code>be_grid &lt;- st_read(here::here(&quot;data&quot;, &quot;external&quot;, &quot;utm1_bel&quot;))</code></pre>
+<pre><code>## Reading layer `be_1km&#39; from data source `C:\Users\damiano_oldoni\Documents\INBO\repositories\pipeline\data\external\utm1_bel&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 51726 features and 3 fields
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: 3768000 ymin: 2926000 xmax: 4080000 ymax: 3237000
+## CRS:            3035</code></pre>
+<pre class="r"><code>be_grid_crs &lt;- st_crs(be_grid)
+be_grid_crs</code></pre>
+<pre><code>## Coordinate Reference System:
+##   User input: 3035 
+##   wkt:
+## PROJCS[&quot;ETRS89 / ETRS-LAEA&quot;,
+##     GEOGCS[&quot;ETRS89&quot;,
+##         DATUM[&quot;European_Terrestrial_Reference_System_1989&quot;,
+##             SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],
+##             TOWGS84[0,0,0,0,0,0,0],
+##             AUTHORITY[&quot;EPSG&quot;,&quot;6258&quot;]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+##         UNIT[&quot;degree&quot;,0.01745329251994328,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+##         AUTHORITY[&quot;EPSG&quot;,&quot;4258&quot;]],
+##     UNIT[&quot;metre&quot;,1,
+##         AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+##     PROJECTION[&quot;Lambert_Azimuthal_Equal_Area&quot;],
+##     PARAMETER[&quot;latitude_of_center&quot;,52],
+##     PARAMETER[&quot;longitude_of_center&quot;,10],
+##     PARAMETER[&quot;false_easting&quot;,4321000],
+##     PARAMETER[&quot;false_northing&quot;,3210000],
+##     AUTHORITY[&quot;EPSG&quot;,&quot;3035&quot;],
+##     AXIS[&quot;X&quot;,EAST],
+##     AXIS[&quot;Y&quot;,NORTH]]</code></pre>
+</div>
+<div id="read-belgian-protected-areas-natura2000" class="section level2">
+<h2>Read Belgian protected areas Natura2000</h2>
+<p>GIS data of protected areas as defined in Natura2000 can be found on related webpage of <a href="https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data">European Environment Agency</a>. We downloaded the GIS data as shapefile in folder <code>data/external/protected_aras_natura2000_20190528</code>:</p>
+<pre class="r"><code>path_natura2000 &lt;- here::here(
+  &quot;data&quot;,
+  &quot;external&quot;,
+  &quot;protected_areas_natura2000_20190528&quot;
+)
+if (!file.exists(path_natura2000)) {
+  temp &lt;- tempfile()
+  download.file(
+    &quot;http://ftp.eea.europa.eu/www/natura2000/Natura2000_end2018_Shapefile.zip&quot;,
+    temp
+  )
+  unzip(temp, exdir = path_natura2000)
+  unlink(temp)
+}</code></pre>
+<p>We read the shapefile:</p>
+<pre class="r"><code>protected_areas &lt;- st_read(path_natura2000)</code></pre>
+<pre><code>## Reading layer `Natura2000_end2018_epsg3035&#39; from data source `C:\Users\damiano_oldoni\Documents\INBO\repositories\pipeline\data\external\protected_areas_natura2000_20190528&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 27856 features and 5 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 746551.8 ymin: 905053.4 xmax: 6506130 ymax: 5298655
+## CRS:            3035</code></pre>
+<pre class="r"><code>protected_areas_crs &lt;- st_crs(protected_areas)</code></pre>
+<p>Check whether grid and protected areas have same CRS:</p>
+<pre class="r"><code>be_grid_crs == protected_areas_crs</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div id="select-belgian-protected-areas" class="section level3">
+<h3>Select Belgian protected areas</h3>
+<p>We are interested in protected areas in Belgium:</p>
+<pre class="r"><code>protected_areas &lt;-
+  protected_areas %&gt;%
+  filter(MS == &quot;BE&quot;)</code></pre>
+<pre><code>## filter: removed 27,546 rows (99%), 310 rows remaining</code></pre>
+<p>Summary by site type:</p>
+<pre class="r"><code>protected_areas %&gt;%
+  as_tibble() %&gt;%
+  group_by(SITETYPE) %&gt;%
+  count()</code></pre>
+<pre><code>## group_by: one grouping variable (SITETYPE)</code></pre>
+<pre><code>## count: now 3 rows and 2 columns, one group variable remaining (SITETYPE)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["SITETYPE"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"A","2":"29"},{"1":"B","2":"55"},{"1":"C","2":"226"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="define-bird-and-habitat-directive-areas" class="section level2">
+<h2>Define Bird and Habitat directive areas</h2>
+<div id="bird-directive-areas" class="section level3">
+<h3>Bird directive areas</h3>
+<p>Bird directive areas (SPA areas) are defined as the areas with <code>SITETYPE</code>: A and C.</p>
+<pre class="r"><code>protected_areas_bird &lt;-
+  protected_areas %&gt;%
+  filter(SITETYPE %in% c(&quot;A&quot;, &quot;C&quot;))</code></pre>
+<pre><code>## filter: removed 55 rows (18%), 255 rows remaining</code></pre>
+</div>
+<div id="habitat-directive-areas" class="section level3">
+<h3>Habitat directive areas</h3>
+<p>Habitat directive areas (SAC areas) are defined as the protected areas with <code>SITETYPE</code> values B and C.</p>
+<pre class="r"><code>protected_areas_habitat &lt;-
+  protected_areas %&gt;%
+  filter(SITETYPE %in% c(&quot;B&quot;, &quot;C&quot;))</code></pre>
+<pre><code>## filter: removed 29 rows (9%), 281 rows remaining</code></pre>
+</div>
+</div>
+</div>
+<div id="intersect-grid-of-belgium-with-protected-areas" class="section level1">
+<h1>Intersect grid of Belgium with protected areas</h1>
+<div id="interset-grid-with-protected-areas" class="section level2">
+<h2>Interset grid with protected areas</h2>
+<p>Intersect cells of the grid and protected areas:</p>
+<pre class="r"><code>grid_intersects_areas &lt;- st_intersects(be_grid, protected_areas,
+  sparse = FALSE
+)
+grid_intersects_areas &lt;- as_tibble(grid_intersects_areas,
+  .name_repair = &quot;universal&quot;
+)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; ...1
+## * `` -&gt; ...2
+## * `` -&gt; ...3
+## * `` -&gt; ...4
+## * `` -&gt; ...5
+## * ...</code></pre>
+<pre class="r"><code># Assign column names based on protected areas code
+prot_areas_sitecode &lt;- as.character(droplevels(protected_areas$SITECODE))
+names(grid_intersects_areas) &lt;- prot_areas_sitecode
+# Add 1x1km grid cellcode as new column
+grid_intersects_areas &lt;-
+  grid_intersects_areas %&gt;%
+  mutate(CELLCODE = as.character(droplevels(be_grid$CELLCODE))) %&gt;%
+  select(CELLCODE, everything())</code></pre>
+<pre><code>## mutate: new variable &#39;CELLCODE&#39; with 51,726 unique values and 0% NA</code></pre>
+</div>
+<div id="natura2000-protected-areas" class="section level2">
+<h2>Natura2000 protected areas</h2>
+<p>Select cells which intersect any of the protected areas:</p>
+<pre class="r"><code>cells_protected &lt;-
+  grid_intersects_areas %&gt;%
+  filter_at(vars(starts_with(&quot;BE&quot;)), any_vars(. == TRUE))</code></pre>
+<pre><code>## filter_at: removed 38,988 rows (75%), 12,738 rows remaining</code></pre>
+</div>
+<div id="get-grid-cells-for-each-protected-area" class="section level2">
+<h2>Get grid cells for each protected area</h2>
+<p>For each protected area we can get the list of intersecting cells:</p>
+<pre class="r"><code>cells_of_prot_areas &lt;-
+  map_dfr(
+    prot_areas_sitecode,
+    function(pa_cell_code) {
+      site_type &lt;-
+        protected_areas %&gt;%
+        dplyr::filter(SITECODE == pa_cell_code) %&gt;%
+        dplyr::pull(SITETYPE)
+      cells &lt;-
+        cells_protected %&gt;%
+        # avoid long logs by using dplyr functions instead of tidylog
+        dplyr::select(CELLCODE, !!sym(pa_cell_code)) %&gt;%
+        dplyr::filter(!!sym(pa_cell_code) == TRUE) %&gt;%
+        dplyr::mutate(
+          SITECODE = pa_cell_code,
+          SITETYPE = as.character(droplevels(site_type))
+        ) %&gt;%
+        dplyr::select(SITECODE, SITETYPE, CELLCODE)
+    }
+  )</code></pre>
+<p>For example, grid cells intersecting protected area <code>BE1000003</code>:</p>
+<pre class="r"><code>cells_of_prot_areas %&gt;%
+  filter(SITECODE == &quot;BE1000003&quot;)</code></pre>
+<pre><code>## filter: removed 14,806 rows (&gt;99%), 8 rows remaining</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["SITECODE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SITETYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CELLCODE"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"BE1000003","2":"B","3":"1kmE3919N3101"},{"1":"BE1000003","2":"B","3":"1kmE3919N3102"},{"1":"BE1000003","2":"B","3":"1kmE3920N3100"},{"1":"BE1000003","2":"B","3":"1kmE3920N3101"},{"1":"BE1000003","2":"B","3":"1kmE3920N3102"},{"1":"BE1000003","2":"B","3":"1kmE3921N3100"},{"1":"BE1000003","2":"B","3":"1kmE3921N3101"},{"1":"BE1000003","2":"B","3":"1kmE3922N3101"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Distribution of the number of cells covering the protected areas:</p>
+<pre class="r"><code>cells_of_prot_areas %&gt;%
+  group_by(SITECODE) %&gt;%
+  count() %&gt;%
+  arrange(desc(n)) %&gt;%
+  ggplot() +
+  geom_histogram(aes(x = n), bins = 30) +
+  scale_x_log10() +
+  xlab(&quot;Number of cells (km2)&quot;) +
+  ylab(&quot;Number of protected areas&quot;)</code></pre>
+<pre><code>## group_by: one grouping variable (SITECODE)</code></pre>
+<pre><code>## count: now 310 rows and 2 columns, one group variable remaining (SITECODE)</code></pre>
+<p><img src="define_overlay_grid_belgium_with_protected_areas_files/figure-html/distribution_n_cells_protected_areas-1.png" width="672" /></p>
+</div>
+<div id="natura2000" class="section level2">
+<h2>Natura2000</h2>
+<p>We can now define whether a cell of the reference grid interesects a protected area as defined by Natura2000. We add this information in column <code>natura2000</code>:</p>
+<pre class="r"><code>cellcode_protected_natura2000 &lt;-
+  cells_protected %&gt;%
+  as_tibble() %&gt;%
+  pull(CELLCODE)
+
+be_grid_membership_protected_areas &lt;-
+  be_grid %&gt;%
+  mutate(natura2000 = ifelse(CELLCODE %in% cellcode_protected_natura2000,
+    TRUE,
+    FALSE
+  ))</code></pre>
+<pre><code>## mutate: new variable &#39;natura2000&#39; with 2 unique values and 0% NA</code></pre>
+<div id="spa-areas" class="section level3">
+<h3>SPA areas</h3>
+<p>We add also a column, <code>spa</code>, assessing whether the cell intersects a SPA area:</p>
+<pre class="r"><code>cells_protected_spa &lt;-
+  cells_protected %&gt;%
+  select(
+    CELLCODE,
+    one_of(as.character(protected_areas_bird$SITECODE))
+  ) %&gt;%
+  filter_at(vars(starts_with(&quot;BE&quot;)), any_vars(. == TRUE)) %&gt;%
+  as_tibble() %&gt;%
+  pull(CELLCODE)</code></pre>
+<pre><code>## select: dropped 55 variables (BE2200043, BE2100017, BE2200032, BE2100024, BE2400008, …)</code></pre>
+<pre><code>## filter_at: removed 3,387 rows (27%), 9,351 rows remaining</code></pre>
+<pre class="r"><code>be_grid_membership_protected_areas &lt;-
+  be_grid_membership_protected_areas %&gt;%
+  mutate(spa = ifelse(CELLCODE %in% cells_protected_spa,
+    TRUE,
+    FALSE
+  ))</code></pre>
+<pre><code>## mutate: new variable &#39;spa&#39; with 2 unique values and 0% NA</code></pre>
+</div>
+<div id="habitat-directive-areas-1" class="section level3">
+<h3>Habitat directive areas</h3>
+<p>We add also a column, <code>habitat</code>, assessing whether the cell intersects a habitat directive area:</p>
+<pre class="r"><code>cells_protected_hab &lt;-
+  cells_protected %&gt;%
+  select(
+    CELLCODE,
+    one_of(as.character(protected_areas_habitat$SITECODE))
+  ) %&gt;%
+  filter_at(vars(starts_with(&quot;BE&quot;)), any_vars(. == TRUE)) %&gt;%
+  as_tibble() %&gt;%
+  pull(CELLCODE)</code></pre>
+<pre><code>## select: dropped 29 variables (BE2500121, BE2101437, BE2219312, BE2500831, BE2100323, …)</code></pre>
+<pre><code>## filter_at: removed 904 rows (7%), 11,834 rows remaining</code></pre>
+<pre class="r"><code>be_grid_membership_protected_areas &lt;-
+  be_grid_membership_protected_areas %&gt;%
+  mutate(habitat = ifelse(CELLCODE %in% cells_protected_hab,
+    TRUE,
+    FALSE
+  ))</code></pre>
+<pre><code>## mutate: new variable &#39;habitat&#39; with 2 unique values and 0% NA</code></pre>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>How many cells contain/intersect protected areas?</p>
+<pre class="r"><code>be_grid_membership_protected_areas &lt;-
+  be_grid_membership_protected_areas %&gt;%
+  as_tibble()
+be_grid_membership_protected_areas %&gt;%
+  group_by(natura2000) %&gt;%
+  count()</code></pre>
+<pre><code>## group_by: one grouping variable (natura2000)</code></pre>
+<pre><code>## count: now 2 rows and 2 columns, one group variable remaining (natura2000)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["natura2000"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"38988"},{"1":"TRUE","2":"12738"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>How many cells contain/intersect SPA areas?</p>
+<pre class="r"><code>be_grid_membership_protected_areas %&gt;%
+  group_by(spa) %&gt;%
+  count()</code></pre>
+<pre><code>## group_by: one grouping variable (spa)</code></pre>
+<pre><code>## count: now 2 rows and 2 columns, one group variable remaining (spa)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["spa"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"42375"},{"1":"TRUE","2":"9351"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>How many cells contain/intersect habitat directive areas?</p>
+<pre class="r"><code>be_grid_membership_protected_areas %&gt;%
+  group_by(habitat) %&gt;%
+  count()</code></pre>
+<pre><code>## group_by: one grouping variable (habitat)</code></pre>
+<pre><code>## count: now 2 rows and 2 columns, one group variable remaining (habitat)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["habitat"],"name":[1],"type":["lgl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"FALSE","2":"39892"},{"1":"TRUE","2":"11834"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="save-data" class="section level2">
+<h2>Save data</h2>
+<p>We save <code>be_grid_membership_protected_areas</code> as tab-separated file (tsv):</p>
+<pre class="r"><code>write_tsv(be_grid_membership_protected_areas,
+  path = here::here(
+    &quot;data&quot;,
+    &quot;interim&quot;,
+    &quot;intersect_EEA_ref_grid_protected_areas.tsv&quot;
+  ),
+  na = &quot;&quot;
+)</code></pre>
+<p>We also save <code>cells_of_prot_areas</code> in same format:</p>
+<pre class="r"><code>write_tsv(cells_of_prot_areas,
+  path = here::here(
+    &quot;data&quot;,
+    &quot;interim&quot;,
+    &quot;EEA_ref_grid_cells_covering_protected_areas.tsv&quot;
+  ),
+  na = &quot;&quot;
+)</code></pre>
+<p>We are also interested in saving basic information about protected areas:</p>
+<pre class="r"><code>protected_areas_metadata &lt;-
+  protected_areas %&gt;%
+  st_drop_geometry() %&gt;%
+  select(SITECODE, SITENAME, SITETYPE)</code></pre>
+<pre><code>## select: dropped 2 variables (RELEASE_DA, MS)</code></pre>
+<pre class="r"><code>protected_areas_metadata</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["SITECODE"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["SITENAME"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["SITETYPE"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"BE31001C0","2":"Affluents brabançons de la Senne","3":"C","_rn_":"1"},{"1":"BE32007C0","2":"Bois de la Houssière","3":"C","_rn_":"2"},{"1":"BE2200043","2":"Bosbeekvallei en aangrenzende bos- en heidegebieden te As-Opglabbeek-Maaseik","3":"B","_rn_":"3"},{"1":"BE34061C0","2":"Vallées de Laclaireau et du Rabais","3":"C","_rn_":"4"},{"1":"BE35008C0","2":"Vallée du Burnot","3":"C","_rn_":"5"},{"1":"BE35010C0","2":"Vallée du Bocq","3":"C","_rn_":"6"},{"1":"BE35014C0","2":"Bois de Famenne à Waillet","3":"C","_rn_":"7"},{"1":"BE35018C0","2":"Bassin de l'Hermeton en aval de Vodelée","3":"C","_rn_":"8"},{"1":"BE34039C0","2":"Haute-Sûre","3":"C","_rn_":"9"},{"1":"BE34048C0","2":"Bassin de la Semois de Jamoigne à Chiny","3":"C","_rn_":"10"},{"1":"BE2500121","2":"Westkust","3":"A","_rn_":"11"},{"1":"BE32029C0","2":"Haute vallée de la Thure","3":"C","_rn_":"12"},{"1":"BE35046C0","2":"Vallée du Ruisseau de Gros Fays","3":"C","_rn_":"13"},{"1":"BE34034C0","2":"Sources du Ruisseau de Tavigny","3":"C","_rn_":"14"},{"1":"BE34038C0","2":"Bassin supérieur de l'Ourthe occidentale","3":"C","_rn_":"15"},{"1":"BE34030C0","2":"Forêt de Freyr","3":"C","_rn_":"16"},{"1":"BE34033C0","2":"Etangs de Longchamps et de Noville","3":"C","_rn_":"17"},{"1":"BE2100017","2":"Bos- en heidegebieden ten oosten van Antwerpen","3":"B","_rn_":"18"},{"1":"BE2200032","2":"Hageven met Dommelvallei, Beverbeekse Heide, Warmbeek en Wateringen","3":"B","_rn_":"19"},{"1":"BE32006C0","2":"Bois d'Enghien et de Silly","3":"C","_rn_":"20"},{"1":"BE34050C0","2":"Bassin de la Semois entre Tintigny et Jamoigne","3":"C","_rn_":"21"},{"1":"BE2100024","2":"Vennen, heiden en moerassen rond Turnhout","3":"B","_rn_":"22"},{"1":"BE2400008","2":"Zoniënwoud","3":"B","_rn_":"23"},{"1":"BE2200030","2":"Mangelbeek en heide- en vengebieden tussen Houthalen en Gruitrode","3":"B","_rn_":"24"},{"1":"BE2200037","2":"Uiterwaarden langs de Limburgse Maas met Vijverbroek","3":"B","_rn_":"25"},{"1":"BE2200041","2":"Jekervallei en bovenloop van de Demervallei","3":"B","_rn_":"26"},{"1":"BE2200042","2":"Overgang Kempen-Haspengouw","3":"B","_rn_":"27"},{"1":"BE2200038","2":"Bossen en kalkgraslanden van Haspengouw","3":"B","_rn_":"28"},{"1":"BE2101437","2":"De Maatjes, Wuustwezelheide en Groot Schietveld","3":"A","_rn_":"29"},{"1":"BE2219312","2":"Vijvercomplex van Midden Limburg","3":"A","_rn_":"30"},{"1":"BE2500831","2":"Ijzervallei","3":"A","_rn_":"31"},{"1":"BE32008B0","2":"Bois d'Arpes et de l'Hôpital","3":"B","_rn_":"32"},{"1":"BE32037C0","2":"Massifs forestiers entre Momignies et Chimay","3":"C","_rn_":"33"},{"1":"BE2100323","2":"Kalmthoutse Heide","3":"A","_rn_":"34"},{"1":"BE33005C0","2":"Vallée du Ruisseau de Bolland","3":"C","_rn_":"35"},{"1":"BE32002C0","2":"Vallée de l'Escaut en aval de Tournai","3":"C","_rn_":"36"},{"1":"BE32004C0","2":"Vallée de la Rhosnes","3":"C","_rn_":"37"},{"1":"BE32015B0","2":"Canal souterrain de la Bête Refaite","3":"B","_rn_":"38"},{"1":"BE32034C0","2":"Bois Massart et forêts de Sivry-Rance","3":"C","_rn_":"39"},{"1":"BE34044C0","2":"Vallée du Ruisseau des Aleines","3":"C","_rn_":"40"},{"1":"BE33013C0","2":"Bois de la Neuville et de la Vecquée","3":"C","_rn_":"41"},{"1":"BE32042B0","2":"Vallée du Ruisseau d'Erpion","3":"B","_rn_":"42"},{"1":"BE33022C0","2":"La Gileppe","3":"C","_rn_":"43"},{"1":"BE32046C0","2":"Vallée du Piéton","3":"C","_rn_":"44"},{"1":"BE33045C0","2":"Sources de la Warchenne","3":"C","_rn_":"45"},{"1":"BE33039C0","2":"Vallée de l'Olefbach","3":"C","_rn_":"46"},{"1":"BE33040C0","2":"Fagnes de Stavelot et vallée de l'Eau Rouge","3":"C","_rn_":"47"},{"1":"BE33053C0","2":"Noir Ru et Vallée du Rechterbach","3":"C","_rn_":"48"},{"1":"BE33049C0","2":"Mardelles d'Arbrefontaine et vallons fangeux de Fosse","3":"C","_rn_":"49"},{"1":"BE33060C0","2":"Haute vallée de la Lienne","3":"C","_rn_":"50"},{"1":"BE33006C0","2":"Vallée de la Gueule en aval de Kelmis","3":"C","_rn_":"51"},{"1":"BE33057C0","2":"Vallée du Kolvenderbach","3":"C","_rn_":"52"},{"1":"BE33059C0","2":"Sources de l'Our et de l'Ensebach","3":"C","_rn_":"53"},{"1":"BE33064C0","2":"Vallée de l'Ulf","3":"C","_rn_":"54"},{"1":"BE33008C0","2":"Vallée de la Burdinale","3":"C","_rn_":"55"},{"1":"BE33010C0","2":"Vallée de la Meuse à Huy et vallon de la Solières","3":"C","_rn_":"56"},{"1":"BE33047C0","2":"Vallée de la Holzwarche","3":"C","_rn_":"57"},{"1":"BE33052C0","2":"Ma Campagne au sud de Malmedy","3":"C","_rn_":"58"},{"1":"BE34024C0","2":"Bassin inférieur de l'Ourthe orientale","3":"C","_rn_":"59"},{"1":"BE34025C0","2":"Haute-Wimbe","3":"C","_rn_":"60"},{"1":"BE33055C0","2":"Vallée de l'Emmels","3":"C","_rn_":"61"},{"1":"BE34010C0","2":"Plaine de Ny","3":"A","_rn_":"62"},{"1":"BE34014C0","2":"Fagne de la Crépale et prairies de Malempré","3":"C","_rn_":"63"},{"1":"BE34001C0","2":"Vallée et affluents du Néblon","3":"C","_rn_":"64"},{"1":"BE33023C0","2":"Vallée de la Soor","3":"C","_rn_":"65"},{"1":"BE33036C0","2":"Fagnes de la Roer","3":"C","_rn_":"66"},{"1":"BE33067C0","2":"Bois de Staneux","3":"C","_rn_":"67"},{"1":"BE34051C0","2":"Vallées du Ruisseau de Mellier et de la Mandebras","3":"C","_rn_":"68"},{"1":"BE34035C0","2":"Bassin supérieur de la Wiltz","3":"C","_rn_":"69"},{"1":"BE35025C0","2":"La Famenne entre Eprave et Havrenne","3":"C","_rn_":"70"},{"1":"BE35026C0","2":"Massif forestier de Cerfontaine","3":"C","_rn_":"71"},{"1":"BE35011C0","2":"Vallée de la Molignée","3":"C","_rn_":"72"},{"1":"BE35021C0","2":"Vallée de la Lesse en aval de Houyet","3":"C","_rn_":"73"},{"1":"BE34054C0","2":"Bassin de la Marche","3":"C","_rn_":"74"},{"1":"BE34059C0","2":"Vallées de l'Eisch et de Clairefontaine","3":"C","_rn_":"75"},{"1":"BE34063C0","2":"Vallées de la Chevratte","3":"C","_rn_":"76"},{"1":"BE35019C0","2":"Vallée de la Meuse en amont d'Hastière","3":"C","_rn_":"77"},{"1":"BE34053C0","2":"Bassin de l'Attert","3":"C","_rn_":"78"},{"1":"BE34056C0","2":"Bassin de la Semois de Etalle à Tintigny","3":"C","_rn_":"79"},{"1":"BE35029C0","2":"Bassin fagnard de l'Hermeton","3":"C","_rn_":"80"},{"1":"BE35037C0","2":"Vallée de la Wimbe","3":"C","_rn_":"81"},{"1":"BE35033B0","2":"Vallée du Ruisseau d'Alisse","3":"B","_rn_":"82"},{"1":"BE35042C0","2":"Vallée de l'Almache en amont de Gembes","3":"C","_rn_":"83"},{"1":"BE35023C0","2":"Vallée de la Lesse entre Villers-sur-Lesse et Houyet","3":"C","_rn_":"84"},{"1":"BE35048C0","2":"Vallée du Ruisseau de la Goutelle","3":"C","_rn_":"85"},{"1":"BE35031C0","2":"Bassin ardennais de l'Eau Noire","3":"C","_rn_":"86"},{"1":"BE35045C0","2":"Vallée de la Semois en aval d'Alle","3":"C","_rn_":"87"},{"1":"BEMNZ0005","2":"Vlakte van de Raan","3":"B","_rn_":"88"},{"1":"BE1000002","2":"Zones boisées et ouvertes au Sud de la Région bruxelloise - complexe Verrewinkel - Kinsendael","3":"B","_rn_":"89"},{"1":"BE2100045","2":"Historische fortengordels van Antwerpen als vleermuizenhabitat.","3":"B","_rn_":"90"},{"1":"BE2100020","2":"Heesbossen, Vallei van Marke en Merkske en Ringven met valleigronden langs de Heerlese Loop","3":"B","_rn_":"91"},{"1":"BE2200028","2":"De Maten","3":"B","_rn_":"92"},{"1":"BE2400009","2":"Hallerbos en nabije boscomplexen met brongebieden en heiden","3":"B","_rn_":"93"},{"1":"BE2200033","2":"Abeek met aangrenzende moerasgebieden","3":"B","_rn_":"94"},{"1":"BE2300044","2":"Bossen van het zuidoosten van de Zandleemstreek","3":"B","_rn_":"95"},{"1":"BE2400012","2":"Valleien van de Winge en de Motte met valleihellingen.","3":"B","_rn_":"96"},{"1":"BE2200626","2":"De Maten","3":"A","_rn_":"97"},{"1":"BE2200727","2":"De Mechelse Heide en de Vallei van de Ziepbeek","3":"A","_rn_":"98"},{"1":"BE2200029","2":"Vallei- en brongebied van de Zwarte Beek, Bolisserbeek en Dommel met heide en vengebieden.","3":"B","_rn_":"99"},{"1":"BE2400010","2":"Valleigebied tussen Melsbroek, Kampenhout, Kortemberg en Veltem.","3":"B","_rn_":"100"},{"1":"BE2223316","2":"De Demervallei","3":"A","_rn_":"101"},{"1":"BE2301235","2":"Durme en Middenloop van de Schelde","3":"A","_rn_":"102"},{"1":"BE2301336","2":"Schorren en Polders van de Beneden-Schelde","3":"A","_rn_":"103"},{"1":"BE2300007","2":"Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen.","3":"B","_rn_":"104"},{"1":"BE2422315","2":"De Dijlevallei","3":"A","_rn_":"105"},{"1":"BE2524317","2":"Kustbroedvogels te Zeebrugge-Heist","3":"A","_rn_":"106"},{"1":"BE31010C0","2":"Sources de la Dyle","3":"C","_rn_":"107"},{"1":"BE31003C0","2":"Vallée de la Lasne","3":"C","_rn_":"108"},{"1":"BE31007C0","2":"Vallée du Train","3":"C","_rn_":"109"},{"1":"BE31002C0","2":"Vallées de l'Argentine et de la Lasne","3":"C","_rn_":"110"},{"1":"BE31006C0","2":"Vallée de la Dyle à Ottignies","3":"C","_rn_":"111"},{"1":"BE31008C0","2":"Carrière de Dongelberg","3":"C","_rn_":"112"},{"1":"BE32001C0","2":"Vallée de la Lys","3":"C","_rn_":"113"},{"1":"BE32023C0","2":"Vallée du Ruisseau d'Acoz","3":"C","_rn_":"114"},{"1":"BE32021C0","2":"Haute-Sambre en aval de Thuin","3":"C","_rn_":"115"},{"1":"BE32026C0","2":"Haute-Sambre en amont de Thuin","3":"C","_rn_":"116"},{"1":"BE32031C0","2":"Bois de Vieux Sart et de Montbliart","3":"C","_rn_":"117"},{"1":"BE32038C0","2":"Bois de Bourlers et de Baileux","3":"C","_rn_":"118"},{"1":"BE32041B0","2":"Trou aux Feuilles","3":"B","_rn_":"119"},{"1":"BE33003C0","2":"Montagne Saint-Pierre","3":"C","_rn_":"120"},{"1":"BE32035C0","2":"La Fagne entre Bailièvre et Robechies","3":"C","_rn_":"121"},{"1":"BE32025C0","2":"Haut-Pays des Honnelles","3":"C","_rn_":"122"},{"1":"BE33009C0","2":"Vallée de la Mehaigne","3":"C","_rn_":"123"},{"1":"BE33012C0","2":"Affluents de la Meuse entre Huy et Flémalle","3":"C","_rn_":"124"},{"1":"BE32036C0","2":"Vallée de l'Eau Blanche à Virelles","3":"C","_rn_":"125"},{"1":"BE32044C0","2":"Bassin de l'Escaut en amont de Tournai","3":"C","_rn_":"126"},{"1":"BE32045C0","2":"Vallée de l'Aubrecheuil","3":"C","_rn_":"127"},{"1":"BE33007C0","2":"Vallée de la Gueule en amont de Kelmis","3":"C","_rn_":"128"},{"1":"BE33027C0","2":"Vallée de la Lembrée et affluents","3":"C","_rn_":"129"},{"1":"BE33017C0","2":"Basse vallée de l'Amblève","3":"C","_rn_":"130"},{"1":"BE33034C0","2":"Vallée de la Hoëgne","3":"C","_rn_":"131"},{"1":"BE33035C0","2":"Plateau des Hautes-Fagnes","3":"C","_rn_":"132"},{"1":"BE33041C0","2":"Fagnes de la Polleur et de Malmedy","3":"C","_rn_":"133"},{"1":"BE33019C0","2":"Vallée de la Vesdre entre Eupen et Verviers","3":"C","_rn_":"134"},{"1":"BE34006C0","2":"La Calestienne entre Oppagne et Barvaux","3":"C","_rn_":"135"},{"1":"BE34005C0","2":"La Calestienne entre Barvaux et Bomal","3":"C","_rn_":"136"},{"1":"BE34007C0","2":"Basse vallée de l'Aisne","3":"C","_rn_":"137"},{"1":"BE34008C0","2":"Camp militaire de Marche-en-Famenne","3":"C","_rn_":"138"},{"1":"BE33037C0","2":"Camp militaire d'Elsenborn","3":"C","_rn_":"139"},{"1":"BE34020C0","2":"Bassin supérieur de la Salm","3":"C","_rn_":"140"},{"1":"BE34023C0","2":"Vallée de l'Ourthe entre Nisramont et La Roche","3":"C","_rn_":"141"},{"1":"BE34017C0","2":"Fagnes de Bihain","3":"C","_rn_":"142"},{"1":"BE34021B0","2":"La Calestienne à Marche en Famenne","3":"B","_rn_":"143"},{"1":"BE34016C0","2":"Fagnes de Samrée et de Tailles","3":"C","_rn_":"144"},{"1":"BE34029C0","2":"Haute-Wamme et Masblette","3":"C","_rn_":"145"},{"1":"BE34028C0","2":"Vallée de la Lomme de Grupont à Rochefort","3":"C","_rn_":"146"},{"1":"BE34036C0","2":"Haute-Lesse","3":"C","_rn_":"147"},{"1":"BE34026C0","2":"Massif forestier de Daverdisse","3":"C","_rn_":"148"},{"1":"BE34064C0","2":"Vallées de la Vire et du Ton","3":"C","_rn_":"149"},{"1":"BE34065C0","2":"Bassin supérieur de la Vire et du Ton","3":"C","_rn_":"150"},{"1":"BE34060C0","2":"Bassin supérieur de la Chevratte","3":"C","_rn_":"151"},{"1":"BE34062C0","2":"Bassin du Ruisseau du Messancy","3":"C","_rn_":"152"},{"1":"BE34067C0","2":"Forêts et marais bajociens de Baranzy à Athus","3":"C","_rn_":"153"},{"1":"BE35004C0","2":"Vallée de la Meuse de Dave à Marche-les-Dames","3":"C","_rn_":"154"},{"1":"BE35007C0","2":"Forêts et lac de Bambois","3":"C","_rn_":"155"},{"1":"BE35009C0","2":"Vallée de la Meuse d'Yvoir à Dave","3":"C","_rn_":"156"},{"1":"BE35005C0","2":"Bassin du Samson","3":"C","_rn_":"157"},{"1":"BE34068C0","2":"Bois de Famenne à Humain et Aye","3":"C","_rn_":"158"},{"1":"BE35001A0","2":"Etangs de Boneffe","3":"A","_rn_":"159"},{"1":"BE35002C0","2":"Vallée de l'Orneau","3":"C","_rn_":"160"},{"1":"BE35012C0","2":"Vallée de la Meuse de Dinant à Yvoir","3":"C","_rn_":"161"},{"1":"BE35027C0","2":"Vallée de l'Eau Blanche entre Aublain et Mariembourg","3":"C","_rn_":"162"},{"1":"BE35030C0","2":"La Calestienne entre Frasnes et Doische","3":"C","_rn_":"163"},{"1":"BE35015C0","2":"Vallée du Flavion","3":"C","_rn_":"164"},{"1":"BEMNZ0004","2":"SBZ 3 / ZPS 3","3":"A","_rn_":"165"},{"1":"BE35038C0","2":"Bassin de la Lesse entre Villers-sur-Lesse et Chanly","3":"C","_rn_":"166"},{"1":"BE35034C0","2":"Vallées des Ruisseaux de Rempeine et de la Scheloupe","3":"C","_rn_":"167"},{"1":"BE35044C0","2":"Bassin du Ruisseau du Ru au Moulin","3":"C","_rn_":"168"},{"1":"BE1000003","2":"Zones boisées et zones humides de la Vallée du Molenbeek dans le Nord-Ouest de la Région bruxelloise","3":"B","_rn_":"169"},{"1":"BE2100026","2":"Valleigebied van de Kleine Nete met brongebieden, moerassen en heiden","3":"B","_rn_":"170"},{"1":"BE2100040","2":"Bovenloop van de Grote Nete met Zammelsbroek, Langdonken en Goor.","3":"B","_rn_":"171"},{"1":"BE2200031","2":"Valleien van de Laambeek, Zonderikbeek, Slangebeek en Roosterbeek met vijvergebieden.","3":"B","_rn_":"172"},{"1":"BE2500003","2":"Westvlaams Heuvelland","3":"B","_rn_":"173"},{"1":"BE2200034","2":"Itterbeek met Brand, Jagersborg en Schootsheide en Bergerven","3":"B","_rn_":"174"},{"1":"BE2100424","2":"De Zegge","3":"A","_rn_":"175"},{"1":"BE2400014","2":"Demervallei","3":"B","_rn_":"176"},{"1":"BE32003C0","2":"Pays des Collines","3":"C","_rn_":"177"},{"1":"BE2101538","2":"Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout","3":"A","_rn_":"178"},{"1":"BE2200039","2":"Voerstreek","3":"B","_rn_":"179"},{"1":"BE2500932","2":"Poldercomplex","3":"A","_rn_":"180"},{"1":"BE31012C0","2":"Vallée de la Dyle de Wavre à Archennes","3":"C","_rn_":"181"},{"1":"BE32018C0","2":"Bois de Colfontaine","3":"C","_rn_":"182"},{"1":"BE2500001","2":"Duingebieden inclusief Ijzermonding en Zwin.","3":"B","_rn_":"183"},{"1":"BE2218311","2":"Militair domein en vallei van de Zwarte Beek","3":"A","_rn_":"184"},{"1":"BE32019C0","2":"Vallée de la Trouille","3":"C","_rn_":"185"},{"1":"BE2300006","2":"Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent","3":"B","_rn_":"186"},{"1":"BE2101639","2":"Ronde Put","3":"A","_rn_":"187"},{"1":"BE2217310","2":"Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer","3":"A","_rn_":"188"},{"1":"BE2300222","2":"Kuifeend en Blokkersdijk","3":"A","_rn_":"189"},{"1":"BE32027C0","2":"Vallée de la Biesmelle","3":"C","_rn_":"190"},{"1":"BE32032C0","2":"Forêts de Rance","3":"C","_rn_":"191"},{"1":"BE33002B0","2":"Basse vallée du Geer","3":"B","_rn_":"192"},{"1":"BE33015C0","2":"Bois d'Anthisnes et d'Esneux","3":"C","_rn_":"193"},{"1":"BE33018C0","2":"Coteaux calcaires de Theux et le Rocheux","3":"C","_rn_":"194"},{"1":"BE33025C0","2":"Fagnes du Nord-Est","3":"C","_rn_":"195"},{"1":"BE2400011","2":"Valleien van de Dijle, Laan en IJse met aangrenzende bos- en moerasgebieden","3":"B","_rn_":"196"},{"1":"BE2500002","2":"Polders","3":"B","_rn_":"197"},{"1":"BE31004C0","2":"Vallée de la Dyle en aval d'Archennes","3":"C","_rn_":"198"},{"1":"BE32012C0","2":"Bord nord du bassin de la Haine","3":"C","_rn_":"199"},{"1":"BE32016C0","2":"Forêt de Mariemont","3":"C","_rn_":"200"},{"1":"BE33062C0","2":"Vallée supérieure de l'Our et ses affluents","3":"C","_rn_":"201"},{"1":"BE2220313","2":"Houthalen-Helchteren, Meeuwen-Gruitrode en Peer","3":"A","_rn_":"202"},{"1":"BE32010C0","2":"Marais de la Verne","3":"C","_rn_":"203"},{"1":"BE32022B0","2":"Trou des Sarrazins à Loverval","3":"B","_rn_":"204"},{"1":"BE32024C0","2":"Basse-Sambre","3":"C","_rn_":"205"},{"1":"BE33014C0","2":"Vallée de l'Ourthe entre Comblain-au-Pont et Angleur","3":"C","_rn_":"206"},{"1":"BE33026C0","2":"Vallée de l'Ourthe entre Hamoir et Comblain-au-Pont","3":"C","_rn_":"207"},{"1":"BE33029C0","2":"Basse vallée de la Lienne","3":"C","_rn_":"208"},{"1":"BE33030C0","2":"Vallée de l'Amblève de Chêneu au Pont de Targnon","3":"C","_rn_":"209"},{"1":"BE33031C0","2":"Bois de la Géronstère","3":"C","_rn_":"210"},{"1":"BE34009C0","2":"La Calestienne entre Marenne et Hotton","3":"C","_rn_":"211"},{"1":"BE33042C0","2":"Vallées de la Warche et du Bayehon en aval du barrage de Robertville","3":"C","_rn_":"212"},{"1":"BE33033C0","2":"Vallée du Wayai et affluents","3":"C","_rn_":"213"},{"1":"BE34012C0","2":"Vallée de l'Ourthe entre La Roche et Hotton","3":"C","_rn_":"214"},{"1":"BE34013C0","2":"Haute vallée de l'Aisne","3":"C","_rn_":"215"},{"1":"BE33058C0","2":"Vallée du Medemberbach","3":"C","_rn_":"216"},{"1":"BE34002C0","2":"Vallée de l'Ourthe entre Bomal et Hamoir","3":"C","_rn_":"217"},{"1":"BE34015C0","2":"Fanges des sources de l'Aisne","3":"C","_rn_":"218"},{"1":"BE33028C0","2":"Vallée de l'Amblève du Pont de Targnon à Remouchamps","3":"C","_rn_":"219"},{"1":"BE33044C0","2":"Sources de l'Amblève","3":"C","_rn_":"220"},{"1":"BE33051C0","2":"Vallée de l'Amblève entre Wanne et Coo","3":"C","_rn_":"221"},{"1":"BE33063C0","2":"Vallée et affluents du Braunlauf","3":"C","_rn_":"222"},{"1":"BE34019C0","2":"Ennal et Grand Fond","3":"C","_rn_":"223"},{"1":"BE34032C0","2":"Bassin inférieur de l'Ourthe occidentale","3":"C","_rn_":"224"},{"1":"BE1000001","2":"La Forêt de Soignes avec lisières et domaines boisés avoisinants et la Vallée de la Woluwe - complexe Forêt de Soignes - Vallée de la Woluwe","3":"B","_rn_":"225"},{"1":"BE34027C0","2":"Bassin de la Lomme de Poix-Saint-Hubert à Grupont","3":"C","_rn_":"226"},{"1":"BE2200035","2":"Mechelse Heide en vallei van de Ziepbeek","3":"B","_rn_":"227"},{"1":"BE34057C0","2":"Marais de la Haute-Semois et Bois de Heinsch","3":"C","_rn_":"228"},{"1":"BE34040C0","2":"Vallée de Villers-la-Bonne-Eau","3":"C","_rn_":"229"},{"1":"BE34069B0","2":"Mare de Frassem","3":"B","_rn_":"230"},{"1":"BE35013C0","2":"Bois calcaires de Nettinne","3":"C","_rn_":"231"},{"1":"BE35016C0","2":"Vallée de la Chinelle","3":"C","_rn_":"232"},{"1":"BE34041C0","2":"Sûre frontalière","3":"C","_rn_":"233"},{"1":"BE2100015","2":"Kalmthoutse Heide","3":"B","_rn_":"234"},{"1":"BE2300005","2":"Bossen en heiden van zandig Vlaanderen: oostelijk deel","3":"B","_rn_":"235"},{"1":"BE2301134","2":"Krekengebied","3":"A","_rn_":"236"},{"1":"BE2100016","2":"Klein en Groot Schietveld","3":"B","_rn_":"237"},{"1":"BE34052C0","2":"Forêt d'Anlier","3":"C","_rn_":"238"},{"1":"BE35017C0","2":"Vallée du Ruisseau de Féron","3":"C","_rn_":"239"},{"1":"BE32011C0","2":"Forêt de Bon-Secours","3":"C","_rn_":"240"},{"1":"BE34042C0","2":"Bassin de la Semois de Bouillon à Alle","3":"C","_rn_":"241"},{"1":"BE34066C0","2":"Vallée du Ton et Côte bajocienne de Montquintin à Ruette","3":"C","_rn_":"242"},{"1":"BE2100019","2":"Het Blak, Kievitsheide, Ekstergoor en nabijgelegen Kamsalamanderhabitats","3":"B","_rn_":"243"},{"1":"BE2200036","2":"Plateau van Caestert met hellingbossen en mergelgrotten.","3":"B","_rn_":"244"},{"1":"BE31011C0","2":"Vallée de la Thyle","3":"C","_rn_":"245"},{"1":"BE2500004","2":"Bossen, heiden en valleigebieden van zandig Vlaanderen: westelijk deel","3":"B","_rn_":"246"},{"1":"BE2200525","2":"Bokrijk en omgeving","3":"A","_rn_":"247"},{"1":"BE2501033","2":"Het Zwin","3":"A","_rn_":"248"},{"1":"BE31005C0","2":"Vallée de la Nethen","3":"C","_rn_":"249"},{"1":"BE31009B0","2":"Carrières souterraines d'Orp-Jauche","3":"B","_rn_":"250"},{"1":"BE32005C0","2":"Vallées de la Dendre et de la Marcq","3":"C","_rn_":"251"},{"1":"BE2221314","2":"Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof","3":"A","_rn_":"252"},{"1":"BE32017C0","2":"Vallée de la Haine en aval de Mons","3":"C","_rn_":"253"},{"1":"BE35040C0","2":"Vallée de la Hulle","3":"C","_rn_":"254"},{"1":"BE35047C0","2":"Vallée du Ruisseau de Rebais","3":"C","_rn_":"255"},{"1":"BE32030C0","2":"Vallée de la Hante","3":"C","_rn_":"256"},{"1":"BE32020C0","2":"Vallée de la Princesse","3":"C","_rn_":"257"},{"1":"BE32033C0","2":"Sources de la Hante","3":"C","_rn_":"258"},{"1":"BE35043C0","2":"Vallée du Ruisseau de Saint-Jean","3":"C","_rn_":"259"},{"1":"BE35049C0","2":"Vallée du Ruisseau de Fairoul","3":"C","_rn_":"260"},{"1":"BE32039C0","2":"Vallées de l'Oise et de la Wartoise","3":"C","_rn_":"261"},{"1":"BE32014C0","2":"Vallée de la Haine en amont de Mons","3":"C","_rn_":"262"},{"1":"BE35035C0","2":"Vallée de l'Ilèwe","3":"C","_rn_":"263"},{"1":"BEMNZ0001","2":"Vlaamse Banken","3":"B","_rn_":"264"},{"1":"BE32047C0","2":"Vallée de la Thure","3":"C","_rn_":"265"},{"1":"BE33043C0","2":"Vallée de la Warche entre Butgenbach et Robertville","3":"C","_rn_":"266"},{"1":"BE33046C0","2":"Vallée de la Warche en amont de Butgenbach","3":"C","_rn_":"267"},{"1":"BE33050C0","2":"Fagne de la Gotale et affluents du Ruisseau de Chavanne","3":"C","_rn_":"268"},{"1":"BE33011C0","2":"Vallées du Hoyoux et du Triffoy","3":"C","_rn_":"269"},{"1":"BE33021C0","2":"Osthertogenwald autour de Raeren","3":"C","_rn_":"270"},{"1":"BE33032C0","2":"Fagnes de Malchamps et de Stoumont","3":"C","_rn_":"271"},{"1":"BE33038C0","2":"Vallée de la Schwalm","3":"C","_rn_":"272"},{"1":"BE33048C0","2":"Vallée de la Lienne et affluents entre Les Trous de Bras et Habiémont","3":"C","_rn_":"273"},{"1":"BE33001B0","2":"Sources du Geer","3":"B","_rn_":"274"},{"1":"BE33004C0","2":"Basse Meuse et Meuse mitoyenne","3":"C","_rn_":"275"},{"1":"BE33016C0","2":"Basse vallée de la Vesdre","3":"C","_rn_":"276"},{"1":"BE33020C0","2":"Affluents du lac d'Eupen","3":"C","_rn_":"277"},{"1":"BE33024C0","2":"Vallée de la Helle","3":"C","_rn_":"278"},{"1":"BE32040C0","2":"Haute vallée de l'Eau Noire","3":"C","_rn_":"279"},{"1":"BE34004C0","2":"Massifs forestiers famenniens entre Hotton et Barvaux-sur-Ourthe","3":"C","_rn_":"280"},{"1":"BE34049C0","2":"Basse-Vierre","3":"C","_rn_":"281"},{"1":"BE33065C0","2":"Vallée inférieure de l'Our et ses affluents","3":"C","_rn_":"282"},{"1":"BE33056C0","2":"Haute vallée de l'Amblève entre Heppenbach et Montenau","3":"C","_rn_":"283"},{"1":"BE33066B0","2":"Grotte Jaminon","3":"B","_rn_":"284"},{"1":"BE34003C0","2":"Vallée de l'Ourthe entre Hotton et Barvaux-sur-Ourthe","3":"C","_rn_":"285"},{"1":"BE33054C0","2":"Vallée de l'Amblève entre Montenau et Baugné","3":"C","_rn_":"286"},{"1":"BE33061C0","2":"Affluents de l'Our entre Setz et Schoenberg","3":"C","_rn_":"287"},{"1":"BE34022C0","2":"Basse vallée de la Wamme","3":"C","_rn_":"288"},{"1":"BE34011C0","2":"La Calestienne entre Hotton et Oppagne","3":"C","_rn_":"289"},{"1":"BE34031C0","2":"Bassin moyen de l'Ourthe occidentale","3":"C","_rn_":"290"},{"1":"BE34018C0","2":"Sources de la Lienne","3":"C","_rn_":"291"},{"1":"BE34047C0","2":"Haute-Vierre","3":"C","_rn_":"292"},{"1":"BE34043C0","2":"Bassin de la Semois du Maka à Bouillon","3":"C","_rn_":"293"},{"1":"BE34037C0","2":"Haute-Lomme","3":"C","_rn_":"294"},{"1":"BE34045C0","2":"Forêts de Muno","3":"C","_rn_":"295"},{"1":"BE35036C0","2":"Vallée du Biran","3":"C","_rn_":"296"},{"1":"BE35039C0","2":"Vallée de la Houille en aval de Gedinne","3":"C","_rn_":"297"},{"1":"BE34046C0","2":"Bassin de la Semois de Florenville à Auby","3":"C","_rn_":"298"},{"1":"BE35006C0","2":"Vallée de la Meuse de Marche-les-Dames à Andenne","3":"C","_rn_":"299"},{"1":"BE35020C0","2":"Vallée de la Meuse d'Hastière à Dinant","3":"C","_rn_":"300"},{"1":"BE35024C0","2":"Vallées des Ruisseaux de Fenffe et du Vachau","3":"C","_rn_":"301"},{"1":"BE34055C0","2":"Vallée du Ruisseau de Breuvanne","3":"C","_rn_":"302"},{"1":"BE35041C0","2":"Bassin de la Houille en amont de Gedinne","3":"C","_rn_":"303"},{"1":"BE34058C0","2":"Camp militaire de Lagland","3":"C","_rn_":"304"},{"1":"BEMNZ0002","2":"SBZ 1 / ZPS 1","3":"A","_rn_":"305"},{"1":"BE35003C0","2":"Vallée de la Sambre en aval de la confluence avec l'Orneau","3":"C","_rn_":"306"},{"1":"BE35028C0","2":"Bassin fagnard de l'Eau Blanche en aval de Mariembourg","3":"C","_rn_":"307"},{"1":"BEMNZ0003","2":"SBZ 2 / ZPS 2","3":"A","_rn_":"308"},{"1":"BE35022C0","2":"Bassin de l'Iwène","3":"C","_rn_":"309"},{"1":"BE35032C0","2":"Bassin ardennais du Viroin","3":"C","_rn_":"310"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We save these metadata:</p>
+<pre class="r"><code>protected_areas_metadata %&gt;%
+  write_tsv(
+    path = here::here(
+      &quot;data&quot;,
+      &quot;interim&quot;,
+      &quot;protected_areas_metadata.tsv&quot;
+    ),
+    na = &quot;&quot;
+  )</code></pre>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
