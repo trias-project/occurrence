@@ -262,10 +262,10 @@ spec_names <-
   left_join(kingdom_class, by = c("kingdomKey", "classKey"))
 ```
 
-So, these are the covered alien species:
+Preview:
 
-```{r review_species}
-spec_names
+```{r preview_species}
+spec_names %>% head(10)
 ```
 
 Taxa not assigned to any class:
