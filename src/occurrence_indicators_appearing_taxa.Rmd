@@ -96,12 +96,12 @@ Lump geographic information:
 ```{r df_ts_compact}
 df_ts_compact <-
   df_ts %>%
-  group_by(taxonKey, year) %>%
+  group_by(taxonKey, year, classKey) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
@@ -235,9 +235,9 @@ df_ts_compact_prot_areas <-
   group_by(taxonKey, year) %>%
   summarise(
     obs = sum(obs),
-    native_obs = sum(native_obs),
-    ncells = sum(pa_obs),
-    native_ncells = sum(pa_native_obs)
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
 ```
