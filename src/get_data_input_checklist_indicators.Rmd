@@ -287,12 +287,12 @@ merged_info <-
   ungroup() %>%
   mutate(pathway_level1 = ifelse(
     pathway_level1 == "natural",
-    "natural_dispersal",
+    "unaided",
     pathway_level1
   )) %>%
   mutate(pathway_level2 = ifelse(
     pathway_level2 == "dispersal",
-    "",
+    "natural_dispersal",
     pathway_level2
   )) %>%
   select(-pathway)
