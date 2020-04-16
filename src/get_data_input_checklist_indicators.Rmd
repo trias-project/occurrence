@@ -255,7 +255,7 @@ merged_info %>%
 
 ### Split column `pathway`
 
-The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels)
+The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels as it is a level 2 pathway of level 1 `unaided`):
 
 ```{r pathway_levels_example, echo = FALSE}
 merged_info %>%
@@ -264,7 +264,27 @@ merged_info %>%
   head(10)
 ```
 
-We split this column in `pathway_level1` and `pathway_level2`
+Exceptions:
+
+```{r exceptions_no_cbd}
+merged_info %>%
+  filter(!str_starts(pathway, pattern = "cbd_2014_pathway:")) %>%
+  distinct(key, pathway) %>%
+  group_by(pathway) %>%
+  count()
+```
+
+We assign pathway `cbd_2014_pathway:unknown` to them:
+
+```{r exception_to_unwknon}
+merged_info <-
+  merged_info %>%
+  mutate(pathway = ifelse(!str_starts(pathway, pattern = "cbd_2014_pathway:"),
+                          "cbd_2014_pathway:unknown",
+                          pathway))
+```
+
+We split `pathway` in `pathway_level1` and `pathway_level2` assigning value `unknown` if pathway is empty (`NA`) or a zero-length string (`""`). We also assign level 2 `natural_dispersal` to taxa with pathway level 1 `unaided`, as suggested by Tim Adriaens in [trias-project/indicators#61 (comment)](https://github.com/trias-project/indicators/issues/61#issuecomment-611704751):
 
 ```{r split_pathway}
 merged_info <-
@@ -285,16 +305,33 @@ merged_info <-
       )[[2]][1]
   ) %>%
   ungroup() %>%
-  mutate(pathway_level1 = ifelse(
-    pathway_level1 == "natural",
-    "unaided",
-    pathway_level1
-  )) %>%
-  mutate(pathway_level2 = ifelse(
-    pathway_level2 == "dispersal",
-    "natural_dispersal",
-    pathway_level2
-  )) %>%
+  mutate(pathway_level2 = ifelse(pathway_level1 == "unaided" & 
+                                   (pathway_level2 == "" |
+                                      is.na(pathway_level2)),
+                                 "natural_dispersal",
+                                 pathway_level2)) %>%
+  mutate(pathway_level2 = ifelse(pathway_level1 == "unknown",
+                                 "unknown",
+                                 pathway_level2)) %>%
+  mutate(
+    pathway_level1 = ifelse(is.na(pathway_level1) | pathway_level1 == "",
+                            "unknown",
+                            pathway_level1),
+    pathway_level2 = ifelse(is.na(pathway_level2) | pathway_level2 == "",
+                            "unknown",
+                            pathway_level2)
+  ) %>%
+  mutate(
+    pathway_level1 = ifelse(
+      pathway_level1 == "natural",
+      "unaided",
+      pathway_level1
+    ),
+    pathway_level2 = ifelse(
+      pathway_level2 == "dispersal",
+      "natural_dispersal",
+      pathway_level2
+    )) %>%
   select(-pathway)
 ```
 
@@ -302,7 +339,8 @@ Full mapping:
 
 ```{r example_split_pathway, echo = FALSE}
 merged_info %>%
-  distinct(pathway_level1, pathway_level2)
+  distinct(pathway_level1, pathway_level2) %>%
+  arrange(pathway_level1)
 ```
 
 ## Save data output
