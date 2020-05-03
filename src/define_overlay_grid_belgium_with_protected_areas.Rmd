@@ -95,7 +95,7 @@ protected_areas %>%
 
 The Belgian regions are available by package `BelgiumMaps.StatBel`:
 
-```{r be_regions}
+```{r be_regions, cache = TRUE}
 data(BE_ADMIN_REGION)
 BE_ADMIN_REGION <- st_as_sf(BE_ADMIN_REGION)
 
@@ -327,7 +327,7 @@ We show the protected areas for each of the three regions separately.
 
 Protected areas of Flemish region:
 
-```{r leaflet_prot_areas_flanders, hide = TRUE}
+```{r leaflet_prot_areas_flanders, hide = TRUE, cache = TRUE}
 # Transform to wgs84
 protected_areas_wgs84 <- 
   protected_areas %>%
@@ -352,7 +352,7 @@ leaflet(protected_areas_wgs84 %>%
 
 Protected areas of Wallonia region:
 
-```{r leaflet_prot_areas_wa, hide = TRUE}
+```{r leaflet_prot_areas_wa, hide = TRUE, cache = TRUE}
 prot_area_wa_palette <- colorFactor(
   topo.colors(nrow(protected_areas_wallonia)),
   protected_areas_wallonia$SITECODE)
@@ -372,7 +372,7 @@ leaflet(protected_areas_wgs84 %>%
 
 Protected areas of Brussels region:
 
-```{r leaflet_prot_areas_br, hide = TRUE}
+```{r leaflet_prot_areas_br, hide = TRUE, cache = TRUE}
 prot_area_br_palette <- colorFactor(
   topo.colors(nrow(protected_areas_brussels)),
   protected_areas_brussels$SITECODE)
@@ -392,7 +392,7 @@ leaflet(protected_areas_wgs84 %>%
 
 Protected areas under federal administration:
 
-```{r leaflet_prot_areas_fed_admin, hide = TRUE} 
+```{r leaflet_prot_areas_fed_admin, hide = TRUE, cache = TRUE} 
 prot_area_fed_palette <- colorFactor(
   topo.colors(nrow(protected_areas_federal)),
   protected_areas_federal$SITECODE)
@@ -424,7 +424,7 @@ protected_areas_bird <-
 
 Map of SPA areas:
 
-```{r leaflet_SPA, hide = TRUE}
+```{r leaflet_SPA, hide = TRUE, cache = TRUE}
 # Transform to WGS84
 protected_areas_bird_wgs84 <-
   protected_areas_bird %>%
@@ -460,7 +460,7 @@ protected_areas_habitat <-
 
 Map of habitat directive areas:
 
-```{r leaflet_SAC, hide = TRUE}
+```{r leaflet_SAC, hide = TRUE, cache = TRUE}
 # Transform to WGS84
 protected_areas_habitat_wgs84 <-
   protected_areas_habitat %>%
@@ -583,7 +583,7 @@ be_grid_membership_protected_areas <-
   ))
 ```
 
-### SPA areas
+### Bird directive areas
 
 We add also a column, `spa`, assessing whether the cell intersects a SPA area:
 
