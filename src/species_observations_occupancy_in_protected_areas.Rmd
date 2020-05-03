@@ -342,7 +342,7 @@ occs_prot_areas %>%
 
 # Save data and metadata
 
-## Save protected area analysis 
+## Save data about protected area 
 
 We finalize the data.frame containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
 
@@ -373,7 +373,7 @@ occs_prot_areas %>%
     path = here::here(
       "data",
       "output",
-      "_protected_areas.csv"
+      "occurrences_occupancy_protected_areas.csv"
     ),
     na = ""
   )
