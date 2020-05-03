@@ -1,0 +1,36 @@
+scientificName,n_prot_areas,mean_coverage,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
+"Alopochen aegyptiaca (Linnaeus, 1766)",62,0.24814494442775573,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
+Heracleum mantegazzianum Sommier & Levier,59,0.030350371933090058,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier
+Impatiens glandulifera Royle,57,0.051523469977933646,2891770,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens glandulifera,SPECIES,2891770: Impatiens glandulifera Royle | 2891771: Impatiens roylei Walpers
+"Pseudorasbora parva (Temminck & Schlegel, 1846)",52,0.0335396516654388,2362868,Animalia,Chordata,Cypriniformes,Actinopterygii,Pseudorasbora,Cyprinidae,Pseudorasbora parva,SPECIES,"2362868: Pseudorasbora parva (Temminck & Schlegel, 1846)"
+Hydrocotyle ranunculoides L.f.,52,0.026886475815860553,7978544,Plantae,Tracheophyta,Apiales,Magnoliopsida,Hydrocotyle,Apiaceae,Hydrocotyle ranunculoides,SPECIES,7978544: Hydrocotyle ranunculoides L.f.
+"Lepomis gibbosus (Linnaeus, 1758)",50,0.03510378018848057,2394486,Animalia,Chordata,Perciformes,Actinopterygii,Lepomis,Centrarchidae,Lepomis gibbosus,SPECIES,"2394486: Lepomis gibbosus (Linnaeus, 1758)"
+Elodea nuttallii St.John,49,0.02916149137546508,5329212,Plantae,Tracheophyta,Alismatales,Liliopsida,Elodea,Hydrocharitaceae,Elodea nuttallii,SPECIES,5329212: Elodea nuttallii St.John
+Myriophyllum aquaticum (Vell.) Verdc.,47,0.03301417700070814,5361785,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Myriophyllum,Haloragaceae,Myriophyllum aquaticum,SPECIES,5361785: Myriophyllum aquaticum (Vell.) Verdc.
+"Ondatra zibethicus (Linnaeus, 1766)",42,0.02333226603331924,5219858,Animalia,Chordata,Rodentia,Mammalia,Ondatra,Cricetidae,Ondatra zibethicus,SPECIES,"5219858: Ondatra zibethicus (Linnaeus, 1766)"
+Ludwigia grandiflora (Michx.) Greuter & Burdet,35,0.029924850681417828,5421039,Plantae,Tracheophyta,Myrtales,Magnoliopsida,Ludwigia,Onagraceae,Ludwigia grandiflora,SPECIES,5421039: Ludwigia grandiflora (Michx.) Greuter & Burdet
+"Threskiornis aethiopicus (Latham, 1790)",34,0.03636357661692444,2480764,Animalia,Chordata,Pelecaniformes,Aves,Threskiornis,Threskiornithidae,Threskiornis aethiopicus,SPECIES,"2480764: Threskiornis aethiopicus (Latham, 1790)"
+"Oxyura jamaicensis (Gmelin, 1789)",33,0.06435206763899595,2498305,Animalia,Chordata,Anseriformes,Aves,Oxyura,Anatidae,Oxyura jamaicensis,SPECIES,"2498305: Oxyura jamaicensis (Gmelin, 1789)"
+"Orconectes limosus (Rafinesque, 1817)",32,0.023566149196650222,2227000,Animalia,Arthropoda,Decapoda,Malacostraca,Orconectes,Cambaridae,Orconectes limosus,SPECIES,"2227000: Orconectes limosus (Rafinesque, 1817)"
+"Eriocheir sinensis H.Milne Edwards, 1853",26,0.03620675115518674,2225776,Animalia,Arthropoda,Decapoda,Malacostraca,Eriocheir,Varunidae,Eriocheir sinensis,SPECIES,"2225776: Eriocheir sinensis H.Milne Edwards, 1853"
+Ailanthus altissima (Mill.) Swingle,23,0.021452239917538078,3190653,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Ailanthus,Simaroubaceae,Ailanthus altissima,SPECIES,3190653: Ailanthus altissima (Mill.) Swingle
+"Muntiacus reevesi (Ogilby, 1839)",21,0.02316033342967838,2440946,Animalia,Chordata,Artiodactyla,Mammalia,Muntiacus,Cervidae,Muntiacus reevesi,SPECIES,"2440946: Muntiacus reevesi (Ogilby, 1839)"
+"Lithobates catesbeianus (Shaw, 1802)",18,0.03852042869976593,2427091,Animalia,Chordata,Anura,Amphibia,Lithobates,Ranidae,Lithobates catesbeianus,SPECIES,"2427091: Lithobates catesbeianus (Shaw, 1802)"
+"Myocastor coypus (Molina, 1782)",17,0.02205316029029668,4264680,Animalia,Chordata,Rodentia,Mammalia,Myocastor,Myocastoridae,Myocastor coypus,SPECIES,"4264680: Myocastor coypus (Molina, 1782)"
+"Procyon lotor (Linnaeus, 1758)",16,0.014611808560740984,5218786,Animalia,Chordata,Carnivora,Mammalia,Procyon,Procyonidae,Procyon lotor,SPECIES,"5218786: Procyon lotor (Linnaeus, 1758)"
+"Tamias sibiricus (Laxmann, 1769)",13,0.05399233792501082,2437450,Animalia,Chordata,Rodentia,Mammalia,Tamias,Sciuridae,Tamias sibiricus,SPECIES,"2437450: Tamias sibiricus (Laxmann, 1769) | 10602587: Eutamias sibiricus (Laxmann, 1769)"
+"Procambarus clarkii (Girard, 1852)",11,0.01484985445204764,2227300,Animalia,Arthropoda,Decapoda,Malacostraca,Procambarus,Cambaridae,Procambarus clarkii,SPECIES,"2227300: Procambarus clarkii (Girard, 1852)"
+Baccharis halimifolia L.,10,0.04482524937099007,3129663,Plantae,Tracheophyta,Asterales,Magnoliopsida,Baccharis,Asteraceae,Baccharis halimifolia,SPECIES,3129663: Baccharis halimifolia L.
+Myriophyllum heterophyllum Michx.,9,,5361762,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Myriophyllum,Haloragaceae,Myriophyllum heterophyllum,SPECIES,5361762: Myriophyllum heterophyllum Michx.
+Eichhornia crassipes Solms,8,,2765940,Plantae,Tracheophyta,Commelinales,Liliopsida,Eichhornia,Pontederiaceae,Eichhornia crassipes,SPECIES,2765940: Eichhornia crassipes Solms
+Lagarosiphon major (Ridl.) Moss,8,,2865565,Plantae,Tracheophyta,Alismatales,Liliopsida,Lagarosiphon,Hydrocharitaceae,Lagarosiphon major,SPECIES,2865565: Lagarosiphon major (Ridl.) Moss
+Ludwigia peploides (Kunth) P.H.Raven,6,,5420991,Plantae,Tracheophyta,Myrtales,Magnoliopsida,Ludwigia,Onagraceae,Ludwigia peploides,SPECIES,5420991: Ludwigia peploides (Kunth) P.H.Raven
+Lysichiton americanus Hultén & H.St.John,6,,2869311,Plantae,Tracheophyta,Alismatales,Liliopsida,Lysichiton,Araceae,Lysichiton americanus,SPECIES,2869311: Lysichiton americanus Hultén & H.St.John
+"Acridotheres tristis (Linnaeus, 1766)",4,,2489005,Animalia,Chordata,Passeriformes,Aves,Acridotheres,Sturnidae,Acridotheres tristis,SPECIES,"2489005: Acridotheres tristis (Linnaeus, 1766)"
+Asclepias syriaca L.,4,,3170247,Plantae,Tracheophyta,Gentianales,Magnoliopsida,Asclepias,Apocynaceae,Asclepias syriaca,SPECIES,3170247: Asclepias syriaca L.
+Cabomba caroliniana A.Gray,4,,2882443,Plantae,Tracheophyta,Nymphaeales,Magnoliopsida,Cabomba,Cabombaceae,Cabomba caroliniana,SPECIES,2882443: Cabomba caroliniana A.Gray
+"Sciurus carolinensis Gmelin, 1788",3,,5219681,Animalia,Chordata,Rodentia,Mammalia,Sciurus,Sciuridae,Sciurus carolinensis,SPECIES,"5219681: Sciurus carolinensis Gmelin, 1788"
+"Callosciurus erythraeus (Pallas, 1779)",2,,2437394,Animalia,Chordata,Rodentia,Mammalia,Callosciurus,Sciuridae,Callosciurus erythraeus,SPECIES,"2437394: Callosciurus erythraeus (Pallas, 1779)"
+"Pacifastacus leniusculus (Dana, 1852)",2,,2226990,Animalia,Arthropoda,Decapoda,Malacostraca,Pacifastacus,Astacidae,Pacifastacus leniusculus,SPECIES,"2226990: Pacifastacus leniusculus (Dana, 1852)"
+"Nyctereutes procyonoides (Gray, 1834)",1,,2434552,Animalia,Chordata,Carnivora,Mammalia,Nyctereutes,Canidae,Nyctereutes procyonoides,SPECIES,"2434552: Nyctereutes procyonoides (Gray, 1834)"
+"Sciurus niger Linnaeus, 1758",1,,5219683,Animalia,Chordata,Rodentia,Mammalia,Sciurus,Sciuridae,Sciurus niger,SPECIES,"5219683: Sciurus niger Linnaeus, 1758"
