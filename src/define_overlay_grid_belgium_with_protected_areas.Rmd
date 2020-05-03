@@ -17,10 +17,13 @@ Given the EEA reference grid of Belgium at 1km resolution and the Belgian Natura
 # Setup 
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(tidylog)
-library(sf)
-library(here)
+library(tidyverse)  # To do datascience
+library(tidylog) # To provide feedback on dplyr functions
+library(here) # To find files
+library(sf) # To work with geospatial data
+library(BelgiumMaps.StatBel)  # To load Belgian administrative boundaries
+library(INBOtheme)  # To apply INBO style to plots
+library(leaflet)  # To make interactive maps
 ```
 
 # Read input data
@@ -88,9 +91,328 @@ protected_areas %>%
   count()
 ```
 
-## Define Bird and Habitat directive areas
+## Read Belgian regions
 
-### Bird directive areas
+The Belgian regions are available by package `BelgiumMaps.StatBel`:
+
+```{r be_regions}
+data(BE_ADMIN_REGION)
+BE_ADMIN_REGION <- st_as_sf(BE_ADMIN_REGION)
+
+regions_palette <- colorFactor(topo.colors(3), BE_ADMIN_REGION$CD_RGN_REFNIS)
+leaflet(BE_ADMIN_REGION) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~regions_palette(CD_RGN_REFNIS),
+              color = "black",
+              weight = 1,
+              opacity = 0.3,
+              label = ~paste(TX_RGN_DESCR_NL,TX_RGN_DESCR_FR, ", "))
+```
+
+## Add regional information to Belgian proteted areas
+
+In this section we add three columns to know whether a protected area belong to one or more Belgian regions.
+
+### Flemish protected areas
+
+Add column `flanders` to indicate whether the protected area is a Flemish protected areas (`TRUE`/`FALSE`):
+
+```{r flemis_areas_sitecode}
+protected_areas_flanders <- tibble(
+  SITECODE = c(
+    "BE2200043",
+    "BE2200032",
+    "BE2100017",
+    "BE2300006",
+    "BE2500121",
+    "BE2100024",
+    "BE2400008",
+    "BE2200030",
+    "BE2200037",
+    "BE2200041",
+    "BE2200042",
+    "BE2200038",
+    "BE2101437",
+    "BE2219312",
+    "BE2500831",
+    "BE2100323",
+    "BE2100045",
+    "BE2100020",
+    "BE2200028",
+    "BE2400009",
+    "BE2200033",
+    "BE2300044",
+    "BE2400012",
+    "BE2200626",
+    "BE2200727",
+    "BE2200029",
+    "BE2400010",
+    "BE2223316",
+    "BE2301235",
+    "BE2301336",
+    "BE2300007",
+    "BE2422315",
+    "BE2524317",
+    "BE2100026",
+    "BE2100040",
+    "BE2200031",
+    "BE2500003",
+    "BE2200034",
+    "BE2100424",
+    "BE2400014",
+    "BE2101538",
+    "BE2200039",
+    "BE2500932",
+    "BE2500001",
+    "BE2218311",
+    "BE2101639",
+    "BE2217310",
+    "BE2300222",
+    "BE2400011",
+    "BE2500002",
+    "BE2220313",
+    "BE2200035",
+    "BE2100015",
+    "BE2300005",
+    "BE2301134",
+    "BE2100016",
+    "BE2100019",
+    "BE2200036",
+    "BE2500004",
+    "BE2200525",
+    "BE2501033",
+    "BE2221314"
+  )) %>%
+  mutate(flanders = TRUE,
+         wallonia = FALSE,
+         brussels = FALSE)
+```
+
+### Brussels protected areas
+
+Add column `brussels` to indicate whether the protected area is located in Brussels region (`TRUE`/`FALSE`):
+
+```{r Brussels_areas_sitecode}
+protected_areas_brussels <- tibble(
+  SITECODE = c("BE1000001",
+               "BE1000002",
+               "BE1000003")) %>%
+  mutate(flanders = FALSE,
+         wallonia = FALSE,
+         brussels = TRUE)
+  
+```
+
+### Protected areas under federal administration
+
+Areas not belonging to any region as they are under federal administration:
+
+```{r federal_areas}
+protected_areas_federal <- tibble(
+  SITECODE = c("BEMNZ0001",
+               "BEMNZ0002",
+               "BEMNZ0003",
+               "BEMNZ0004",
+               "BEMNZ0005")) %>%
+  mutate(flanders = FALSE,
+         wallonia = FALSE,
+         brussels = FALSE)
+```
+
+### Wallonia protected areas
+
+All the other protected areas are in Wallonia (`wallonia` = `TRUE`):
+
+```{r Wallonia_areas_sitecode}
+protected_areas_wallonia <- tibble(
+  SITECODE = as.character(protected_areas$SITECODE[
+    !protected_areas$SITECODE %in% c(protected_areas_flanders$SITECODE,
+                                     protected_areas_brussels$SITECODE,
+                                     protected_areas_federal$SITECODE)
+  ])) %>%
+  mutate(flanders = FALSE,
+         wallonia = TRUE,
+         brussels = FALSE)
+```
+
+### Add regional information
+
+We can now merge the regional information
+
+```{r protected_areas_regional_info}
+protected_areas_regional_info <-
+  bind_rows(protected_areas_flanders,
+            protected_areas_wallonia,
+            protected_areas_brussels,
+            protected_areas_federal) %>%
+  mutate(SITECODE = as.factor(SITECODE))
+```
+
+to add it to `protected_areas`:
+
+```{r add_regional_membership}
+protected_areas <- 
+  protected_areas %>%
+  left_join(protected_areas_regional_info,
+            by = "SITECODE")
+```
+
+Preview:
+
+```{r preview_regions}
+protected_areas %>%
+  as_tibble() %>%
+  select(SITECODE, SITENAME, SITETYPE, flanders, wallonia, brussels) %>%
+  head()
+```
+
+### Distribution protected areas
+
+Number of protected areas per type:
+
+```{r n_prot_area_per_type}
+protected_areas %>%
+  st_drop_geometry() %>%
+  group_by(SITETYPE) %>%
+  count()
+```
+
+In Flanders:
+
+```{r n_prot_area_per_type_flanders}
+protected_areas %>%
+  filter(flanders == TRUE) %>%
+  st_drop_geometry() %>%
+  group_by(SITETYPE) %>%
+  count()
+```
+
+In Wallonia:
+
+```{r n_prot_area_per_type_wallonia}
+protected_areas %>%
+  filter(wallonia == TRUE) %>%
+  st_drop_geometry() %>%
+  group_by(SITETYPE) %>%
+  count()
+```
+
+In Brussels:
+
+```{r n_prot_area_per_type_brussels}
+protected_areas %>%
+  filter(brussels == TRUE) %>%
+  st_drop_geometry() %>%
+  group_by(SITETYPE) %>%
+  count()
+```
+
+Areas under federal administration
+
+```{r n_prot_area_per_type_fed}
+protected_areas %>%
+  filter(flanders == FALSE,
+         wallonia == FALSE,
+         brussels == FALSE) %>%
+  st_drop_geometry() %>%
+  group_by(SITETYPE) %>%
+  count()
+```
+
+## Protected areas map
+
+We show the protected areas for each of the three regions separately.
+
+### Flemish protected areas
+
+Protected areas of Flemish region:
+
+```{r leaflet_prot_areas_flanders, hide = TRUE}
+# Transform to wgs84
+protected_areas_wgs84 <- 
+  protected_areas %>%
+          st_transform(crs = 4326)
+
+prot_area_fl_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_flanders)),
+  protected_areas_flanders$SITECODE)
+leaflet(protected_areas_wgs84 %>%
+          filter(flanders == TRUE)) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_fl_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE)
+```
+
+### Wallonia protected areas
+
+Protected areas of Wallonia region:
+
+```{r leaflet_prot_areas_wa, hide = TRUE}
+prot_area_wa_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_wallonia)),
+  protected_areas_wallonia$SITECODE)
+leaflet(protected_areas_wgs84 %>%
+          filter(wallonia == TRUE)) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_wa_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE)
+```
+
+### Brussels protected aras
+
+Protected areas of Brussels region:
+
+```{r leaflet_prot_areas_br, hide = TRUE}
+prot_area_br_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_brussels)),
+  protected_areas_brussels$SITECODE)
+leaflet(protected_areas_wgs84 %>%
+          filter(brussels == TRUE)) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_br_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE)
+```
+
+### Protected aras under federal administration
+
+Protected areas under federal administration:
+
+```{r leaflet_prot_areas_fed_admin, hide = TRUE} 
+prot_area_fed_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_federal)),
+  protected_areas_federal$SITECODE)
+leaflet(protected_areas_wgs84 %>%
+          filter(flanders == FALSE,
+                 wallonia == FALSE,
+                 brussels == FALSE)) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_fed_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE)
+```
+
+# Define Bird and Habitat directive areas
+
+## Bird directive areas
 
 Bird directive areas (SPA areas) are defined as the areas with `SITETYPE`: A and C.
 
@@ -100,7 +422,33 @@ protected_areas_bird <-
   filter(SITETYPE %in% c("A", "C"))
 ```
 
-### Habitat directive areas
+Map of SPA areas:
+
+```{r leaflet_SPA, hide = TRUE}
+# Transform to WGS84
+protected_areas_bird_wgs84 <-
+  protected_areas_bird %>%
+  st_transform(crs = 4326)
+
+prot_area_type_palette <- colorFactor(
+  topo.colors(2),
+  protected_areas_bird_wgs84$SITETYPE)
+leaflet(protected_areas_bird_wgs84) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_type_palette(SITETYPE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE) %>%
+  addLegend(pal = prot_area_type_palette,
+            values = ~SITETYPE,
+            title = "SITETYPE",
+            opacity = 1)
+```
+
+## Habitat directive areas
 
 Habitat directive areas (SAC areas) are defined as the protected areas with `SITETYPE` values B and C.
 
@@ -108,6 +456,32 @@ Habitat directive areas (SAC areas) are defined as the protected areas with `SIT
 protected_areas_habitat <-
   protected_areas %>%
   filter(SITETYPE %in% c("B", "C"))
+```
+
+Map of habitat directive areas:
+
+```{r leaflet_SAC, hide = TRUE}
+# Transform to WGS84
+protected_areas_habitat_wgs84 <-
+  protected_areas_habitat %>%
+  st_transform(crs = 4326)
+
+prot_area_type_palette <- colorFactor(
+  topo.colors(2),
+  protected_areas_habitat_wgs84$SITETYPE)
+leaflet(protected_areas_habitat_wgs84) %>%
+  addTiles() %>%
+  addPolygons(fillColor = ~prot_area_type_palette(SITETYPE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE) %>%
+  addLegend(pal = prot_area_type_palette,
+            values = ~SITETYPE,
+            title = "SITETYPE",
+            opacity = 1)
 ```
 
 # Intersect grid of Belgium with protected areas
@@ -124,7 +498,7 @@ grid_intersects_areas <- as_tibble(grid_intersects_areas,
   .name_repair = "universal"
 )
 # Assign column names based on protected areas code
-prot_areas_sitecode <- as.character(droplevels(protected_areas$SITECODE))
+prot_areas_sitecode <- as.character(protected_areas$SITECODE)
 names(grid_intersects_areas) <- prot_areas_sitecode
 # Add 1x1km grid cellcode as new column
 grid_intersects_areas <-
@@ -299,7 +673,7 @@ write_tsv(be_grid_membership_protected_areas,
 )
 ```
 
-We also save `cells_of_prot_areas` in same format:
+We also save `cells_of_prot_areas` in the same format:
 
 ```{r save_cells_of_prot_areas}
 write_tsv(cells_of_prot_areas,
@@ -318,7 +692,12 @@ We are also interested in saving basic information about protected areas:
 protected_areas_metadata <-
   protected_areas %>%
   st_drop_geometry() %>%
-  select(SITECODE, SITENAME, SITETYPE)
+  select(SITECODE,
+         SITENAME,
+         SITETYPE,
+         flanders,
+         wallonia,
+         brussels)
 protected_areas_metadata
 ```
 
@@ -335,5 +714,3 @@ protected_areas_metadata %>%
     na = ""
   )
 ```
-
-
