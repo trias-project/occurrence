@@ -34,6 +34,7 @@ library(tidylog) # To provide feedback on dplyr functions
 library(here) # To find files
 library(trias) # To use functions developed for TrIAS
 library(kableExtra) # To customize tables
+library(INBOtheme)  # INBO graph style
 ```
 
 # Get data
@@ -88,7 +89,80 @@ if ("Animalia" %in% categories$category) {
 categories
 ```
 
-## Pathways associated with alien species introductions
+## Pathway analysis level 1
+
+Total number of taxa introduced for each pathway level 1:
+
+```{r pathway_level1_anaysis}
+visualize_pathways_level1(df = data)
+```
+
+Per category:
+
+```{r pathway_level1_anaysis_per_kingdom}
+map(categories$category, function(x) {
+  visualize_pathways_level1(df = data,
+                            category = x,
+                            title = x)}
+)
+```
+
+## Pathways analysis level 2
+
+Total number of taxa introduced for pathways level 2:
+
+```{r pathway_level2_anaysis}
+pathways_level1 <- 
+  data %>%
+  distinct(pathway_level1) %>%
+  filter(pathway_level1 != "unknown") %>%
+  pull()
+map(pathways_level1,
+    function(x) {
+      visualize_pathways_level2(df = data,
+                                chosen_pathway_level1 = x,
+                                title = x)
+    }
+)
+    
+```
+
+Per category:
+
+```{r pathway_level2_anaysis_per_kingdom}
+categories_path_lev1 <- expand_grid(categories, pathways_level1)
+map2(categories_path_lev1$category,
+     categories_path_lev1$pathways_level1,
+     function(x, y) {
+       visualize_pathways_level2(df = data,
+                                 chosen_pathway_level1 = y,
+                                 category = x,
+                                 title = paste(x, y, collapse = ": "))}
+)
+```
+
+## Pathways level 1 evolution
+
+We show the evolution in time of the patwhays level 1. 
+
+First, considering all taxa:
+
+```{r visualize_pathways_year_level1_all}
+visualize_pathways_year_level1(data)
+```
+
+and now splitting them by category:
+
+```{r visualize_pathways_year_level1_category}
+map(categories$category, function(x) {
+  visualize_pathways_year_level1(df = data,
+                                 category = x,
+                                 title = x)}
+)
+```
+
+
+## Pathways analysis: tables
 
 Function `get_table_pathways` from `trias` library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided. 
 
