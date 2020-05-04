@@ -756,12 +756,44 @@ n_prot_areas_per_species_concern_brussels_habitat
 
 ## Save state of invasion data
 
-We save the analysis of the state of the invasion of the protected areas at national level as retrieving analysis at regional level and for bird or habitat directive areas is trivial:
+We save the analysis of the state of the invasion of the protected areas:
 
 ```{r save_state_of_invasion_data}
 n_taxa_obs_per_area_dfs <- list(
+  # Belgium
   n_taxa_obs_per_area = n_taxa_obs_per_area,
-  n_taxa_obs_per_area_concern = n_taxa_obs_per_area_concern
+  n_taxa_obs_per_area_concern = n_taxa_obs_per_area_concern,
+  n_taxa_obs_per_area_bird = n_taxa_obs_per_area_bird,
+  n_taxa_obs_per_area_concern_bird = n_taxa_obs_per_area_concern_bird,
+  n_taxa_obs_per_area_habitat = n_taxa_obs_per_area_habitat,
+  n_taxa_obs_per_area_concern_habitat = n_taxa_obs_per_area_concern_habitat,
+  # Flanders
+  n_taxa_obs_per_area_flanders = n_taxa_obs_per_area_flanders,
+  n_taxa_obs_per_area_concern_flanders = n_taxa_obs_per_area_concern_flanders,
+  n_taxa_obs_per_area_flanders_bird = n_taxa_obs_per_area_flanders_bird,
+  n_taxa_obs_per_area_concern_flanders_bird = 
+    n_taxa_obs_per_area_concern_flanders_bird,
+  n_taxa_obs_per_area_flanders_habitat = n_taxa_obs_per_area_flanders_habitat,
+  n_taxa_obs_per_area_concern_flanders_habitat = 
+    n_taxa_obs_per_area_concern_flanders_habitat,
+  # Wallonia
+  n_taxa_obs_per_area_wallonia = n_taxa_obs_per_area_wallonia,
+  n_taxa_obs_per_area_concern_wallonia = n_taxa_obs_per_area_concern_wallonia,
+  n_taxa_obs_per_area_wallonia_bird = n_taxa_obs_per_area_wallonia_bird,
+  n_taxa_obs_per_area_concern_wallonia_bird = 
+    n_taxa_obs_per_area_concern_wallonia_bird,
+  n_taxa_obs_per_area_wallonia_habitat = n_taxa_obs_per_area_wallonia_habitat,
+  n_taxa_obs_per_area_concern_wallonia_habitat = 
+    n_taxa_obs_per_area_concern_wallonia_habitat,
+  # Brussels
+  n_taxa_obs_per_area_brussels = n_taxa_obs_per_area_brussels,
+  n_taxa_obs_per_area_concern_brussels = n_taxa_obs_per_area_concern_brussels,
+  n_taxa_obs_per_area_brussels_bird = n_taxa_obs_per_area_brussels_bird,
+  n_taxa_obs_per_area_concern_brussels_bird = 
+    n_taxa_obs_per_area_concern_brussels_bird,
+  n_taxa_obs_per_area_brussels_habitat = n_taxa_obs_per_area_brussels_habitat,
+  n_taxa_obs_per_area_concern_brussels_habitat = 
+    n_taxa_obs_per_area_concern_brussels_habitat
 )
 map2(n_taxa_obs_per_area_dfs,
      names(n_taxa_obs_per_area_dfs),
@@ -777,7 +809,7 @@ map2(n_taxa_obs_per_area_dfs,
 
 ## Save spreading data
 
-We save the analysis of the spreading of alien taxa over protected areas. As the mean coverage depends on the number of protected areas, we save all subsets apart:
+We save the analysis of the spreading of alien taxa over protected areas:
 
 ```{r save_spreading_data}
 n_prot_areas_per_species_dfs <-

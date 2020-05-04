@@ -95,18 +95,9 @@ protected_areas %>%
 
 The Belgian regions are available by package `BelgiumMaps.StatBel`:
 
-```{r be_regions, cache = TRUE}
+```{r be_regions}
 data(BE_ADMIN_REGION)
 BE_ADMIN_REGION <- st_as_sf(BE_ADMIN_REGION)
-
-regions_palette <- colorFactor(topo.colors(3), BE_ADMIN_REGION$CD_RGN_REFNIS)
-leaflet(BE_ADMIN_REGION) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~regions_palette(CD_RGN_REFNIS),
-              color = "black",
-              weight = 1,
-              opacity = 0.3,
-              label = ~paste(TX_RGN_DESCR_NL,TX_RGN_DESCR_FR, ", "))
 ```
 
 ## Add regional information to Belgian proteted areas
@@ -287,6 +278,46 @@ protected_areas %>%
   count()
 ```
 
+```{r leaflet_prot_areas_flanders, hide = TRUE, cache = TRUE}
+# Transform to wgs84
+protected_areas_wgs84 <- 
+  protected_areas %>%
+          st_transform(crs = 4326)
+# Flemish protected areas
+protected_areas_wgs84_flanders <- 
+  protected_areas_wgs84 %>%
+  filter(flanders == TRUE)
+
+prot_area_fl_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_flanders)),
+  protected_areas_flanders$SITECODE)
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = protected_areas_wgs84_flanders %>%
+                filter(SITETYPE == "A"),
+              fillColor = ~prot_area_fl_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type A") %>%
+  addPolygons(data = protected_areas_wgs84_flanders %>%
+                filter(SITETYPE == "B"),
+              fillColor = ~prot_area_fl_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type B") %>%
+  addLayersControl(
+    overlayGroups = c("type A", "type B"),
+    options = layersControlOptions(collapsed = FALSE))
+```
+
 In Wallonia:
 
 ```{r n_prot_area_per_type_wallonia}
@@ -297,6 +328,51 @@ protected_areas %>%
   count()
 ```
 
+```{r leaflet_prot_areas_wa, hide = TRUE, cache = TRUE}
+protected_areas_wgs84_wallonia <- 
+  protected_areas_wgs84 %>%
+  filter(wallonia == TRUE)
+
+prot_area_wallonia_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_wallonia)),
+  protected_areas_wallonia$SITECODE)
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = protected_areas_wgs84_wallonia %>%
+                filter(SITETYPE == "A"),
+              fillColor = ~prot_area_wallonia_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type A") %>%
+  addPolygons(data = protected_areas_wgs84_wallonia %>%
+                filter(SITETYPE == "B"),
+              fillColor = ~prot_area_wallonia_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type B") %>%
+  addPolygons(data = protected_areas_wgs84_wallonia %>%
+                filter(SITETYPE == "C"),
+              fillColor = ~prot_area_wallonia_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type C") %>%
+  addLayersControl(
+    overlayGroups = c("type A", "type B", "type C"),
+    options = layersControlOptions(collapsed = FALSE))
+```
+
 In Brussels:
 
 ```{r n_prot_area_per_type_brussels}
@@ -305,6 +381,31 @@ protected_areas %>%
   st_drop_geometry() %>%
   group_by(SITETYPE) %>%
   count()
+```
+
+```{r leaflet_prot_areas_br, hide = TRUE, cache = TRUE}
+protected_areas_wgs84_brussels <- 
+  protected_areas_wgs84 %>%
+  filter(brussels == TRUE)
+
+prot_area_brussels_palette <- colorFactor(
+  topo.colors(nrow(protected_areas_brussels)),
+  protected_areas_brussels$SITECODE)
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = protected_areas_wgs84_brussels %>%
+                filter(SITETYPE == "B"),
+              fillColor = ~prot_area_brussels_palette(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type B") %>%
+  addLayersControl(
+    overlayGroups = c("type B"),
+    options = layersControlOptions(collapsed = FALSE))
 ```
 
 Areas under federal administration
@@ -319,95 +420,42 @@ protected_areas %>%
   count()
 ```
 
-## Protected areas map
+```{r leaflet_prot_areas_fed_admin, hide = TRUE, cache = TRUE}
+# Protected areas under federal administration
+protected_areas_wgs84_federal <- 
+  protected_areas_wgs84 %>%
+  filter(flanders == FALSE,
+         wallonia == FALSE,
+         brussels == FALSE)
 
-We show the protected areas for each of the three regions separately.
-
-### Flemish protected areas
-
-Protected areas of Flemish region:
-
-```{r leaflet_prot_areas_flanders, hide = TRUE, cache = TRUE}
-# Transform to wgs84
-protected_areas_wgs84 <- 
-  protected_areas %>%
-          st_transform(crs = 4326)
-
-prot_area_fl_palette <- colorFactor(
-  topo.colors(nrow(protected_areas_flanders)),
-  protected_areas_flanders$SITECODE)
-leaflet(protected_areas_wgs84 %>%
-          filter(flanders == TRUE)) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~prot_area_fl_palette(SITECODE),
-              fillOpacity = 0.7,
-              color = "black",
-              weight = 0.5,
-              opacity = 1,
-              label = ~SITENAME,
-              popup = ~SITECODE)
-```
-
-### Wallonia protected areas
-
-Protected areas of Wallonia region:
-
-```{r leaflet_prot_areas_wa, hide = TRUE, cache = TRUE}
-prot_area_wa_palette <- colorFactor(
-  topo.colors(nrow(protected_areas_wallonia)),
-  protected_areas_wallonia$SITECODE)
-leaflet(protected_areas_wgs84 %>%
-          filter(wallonia == TRUE)) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~prot_area_wa_palette(SITECODE),
-              fillOpacity = 0.7,
-              color = "black",
-              weight = 0.5,
-              opacity = 1,
-              label = ~SITENAME,
-              popup = ~SITECODE)
-```
-
-### Brussels protected aras
-
-Protected areas of Brussels region:
-
-```{r leaflet_prot_areas_br, hide = TRUE, cache = TRUE}
-prot_area_br_palette <- colorFactor(
-  topo.colors(nrow(protected_areas_brussels)),
-  protected_areas_brussels$SITECODE)
-leaflet(protected_areas_wgs84 %>%
-          filter(brussels == TRUE)) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~prot_area_br_palette(SITECODE),
-              fillOpacity = 0.7,
-              color = "black",
-              weight = 0.5,
-              opacity = 1,
-              label = ~SITENAME,
-              popup = ~SITECODE)
-```
-
-### Protected aras under federal administration
-
-Protected areas under federal administration:
-
-```{r leaflet_prot_areas_fed_admin, hide = TRUE, cache = TRUE} 
-prot_area_fed_palette <- colorFactor(
+prot_area_palette_federal <- colorFactor(
   topo.colors(nrow(protected_areas_federal)),
   protected_areas_federal$SITECODE)
-leaflet(protected_areas_wgs84 %>%
-          filter(flanders == FALSE,
-                 wallonia == FALSE,
-                 brussels == FALSE)) %>%
+leaflet() %>%
   addTiles() %>%
-  addPolygons(fillColor = ~prot_area_fed_palette(SITECODE),
+  addPolygons(data = protected_areas_wgs84_federal %>%
+                filter(SITETYPE == "A"),
+              fillColor = ~prot_area_palette_federal(SITECODE),
               fillOpacity = 0.7,
               color = "black",
               weight = 0.5,
               opacity = 1,
               label = ~SITENAME,
-              popup = ~SITECODE)
+              popup = ~SITECODE,
+              group = "type A") %>%
+  addPolygons(data = protected_areas_wgs84_federal %>%
+                filter(SITETYPE == "B"),
+              fillColor = ~prot_area_palette_federal(SITECODE),
+              fillOpacity = 0.7,
+              color = "black",
+              weight = 0.5,
+              opacity = 1,
+              label = ~SITENAME,
+              popup = ~SITECODE,
+              group = "type B") %>%
+  addLayersControl(
+    overlayGroups = c("type A", "type B"),
+    options = layersControlOptions(collapsed = FALSE))
 ```
 
 # Define Bird and Habitat directive areas
@@ -422,32 +470,6 @@ protected_areas_bird <-
   filter(SITETYPE %in% c("A", "C"))
 ```
 
-Map of SPA areas:
-
-```{r leaflet_SPA, hide = TRUE, cache = TRUE}
-# Transform to WGS84
-protected_areas_bird_wgs84 <-
-  protected_areas_bird %>%
-  st_transform(crs = 4326)
-
-prot_area_type_palette <- colorFactor(
-  topo.colors(2),
-  protected_areas_bird_wgs84$SITETYPE)
-leaflet(protected_areas_bird_wgs84) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~prot_area_type_palette(SITETYPE),
-              fillOpacity = 0.7,
-              color = "black",
-              weight = 0.5,
-              opacity = 1,
-              label = ~SITENAME,
-              popup = ~SITECODE) %>%
-  addLegend(pal = prot_area_type_palette,
-            values = ~SITETYPE,
-            title = "SITETYPE",
-            opacity = 1)
-```
-
 ## Habitat directive areas
 
 Habitat directive areas (SAC areas) are defined as the protected areas with `SITETYPE` values B and C.
@@ -456,32 +478,6 @@ Habitat directive areas (SAC areas) are defined as the protected areas with `SIT
 protected_areas_habitat <-
   protected_areas %>%
   filter(SITETYPE %in% c("B", "C"))
-```
-
-Map of habitat directive areas:
-
-```{r leaflet_SAC, hide = TRUE, cache = TRUE}
-# Transform to WGS84
-protected_areas_habitat_wgs84 <-
-  protected_areas_habitat %>%
-  st_transform(crs = 4326)
-
-prot_area_type_palette <- colorFactor(
-  topo.colors(2),
-  protected_areas_habitat_wgs84$SITETYPE)
-leaflet(protected_areas_habitat_wgs84) %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~prot_area_type_palette(SITETYPE),
-              fillOpacity = 0.7,
-              color = "black",
-              weight = 0.5,
-              opacity = 1,
-              label = ~SITENAME,
-              popup = ~SITECODE) %>%
-  addLegend(pal = prot_area_type_palette,
-            values = ~SITETYPE,
-            title = "SITETYPE",
-            opacity = 1)
 ```
 
 # Intersect grid of Belgium with protected areas
