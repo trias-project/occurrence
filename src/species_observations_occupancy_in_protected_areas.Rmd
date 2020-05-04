@@ -14,7 +14,10 @@ output:
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(echo = TRUE)
+opts_chunk$set(echo = TRUE,
+               warning = FALSE,
+               message = FALSE,
+               results = TRUE)
 ```
 
 # Goal
