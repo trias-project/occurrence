@@ -1,6 +1,8 @@
 ---
 title: "Species observations and occupancy in Belgian protected areas"
-author: "Damiano Oldoni"
+author: 
+  - Damiano Oldoni
+  - Tim Adriaens
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -12,14 +14,14 @@ opts_chunk$set(echo = TRUE)
 
 # Goal
 
-This document aims to calculate the species occupancy and the number of obsrvations in Belgian natura2000 protected areas. Data are aggregated per year, species and at a resolution of 1 km x 1km as we use the EEA reference grid for Belgium.
+In this document we calculate the area of occupancy (AOO), the coverage and the number of observations in Belgian natura2000 protected areas. Data are aggregated per year, species and at a resolution of 1 km x 1km as we use the EEA reference grid for Belgium.
 
 # Setup 
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(tidylog)
-library(here)
+library(tidyverse)  # To do datascience
+library(tidylog)  # To provide feedback on dplyr functions
+library(here) # To find files
 library(inborutils)
 library(rgbif)
 ```
@@ -130,7 +132,7 @@ infraspecific_alien <-
 
 ## EEA cells containing the Natura2000 protected areas
 
-We download also the file containing the intersection of protected areas and the EEA grid as produced in :
+We read also the file containing the intersection of protected areas and the EEA grid as produced in :
 
 ```{r read_cells_of_prot_areas}
 cells_of_prot_areas <- read_tsv(
@@ -179,7 +181,7 @@ protected_areas_metadata <- read_tsv(
 )
 ```
 
-# Calculate number of observations, occupancy and coverage of Belgian protected areas
+# Calculate number of observations, AOO and coverage of Belgian protected areas
 
 Get values from occurrence cube related to cells covering the protected areas:
 
@@ -197,7 +199,7 @@ Preview:
 be_prot_areas_cube %>% head(10)
 ```
 
-For each taxon, year and protected area, calculate the number of observations, the area of occupancy and minimum coordinate uncertainty:
+For each taxon, year and protected area, calculate the number of observations, the area of occupancy and the minimum coordinate uncertainty:
 
 ```{r occs_prot_areas}
 occs_prot_areas <-
@@ -211,7 +213,7 @@ occs_prot_areas <-
   ungroup()
 ```
 
-Previewing the 10 highest area of occupancies:
+Preview with the 10 highest area of occupancies:
 
 ```{r preview_occs_prot_areas}
 occs_prot_areas %>%
@@ -221,7 +223,7 @@ occs_prot_areas %>%
 
 ## Add coverage of protected areas
 
-To add the coverage of each protected area, we divide the area of occupancy by the area of each protected area defined as the number of cells totally covering the protected area:
+To add the coverage of each protected area, we divide AOO by the area of each protected area defined as the number of cells totally covering the protected area:
 
 ```{r add_coverage}
 occs_prot_areas <-
@@ -233,12 +235,12 @@ occs_prot_areas <-
   select(-n_cells)
 ```
 
-The coverage is a number between 0 (species not present) and 1 (species present in the entire protected area). Preview the 10 highest coverage values:
+The coverage is a number between 0 (species not present) and 1 (species present in the entire protected area). Species/year/area with highest coverage value (1):
 
 ```{r preview_coverage}
 occs_prot_areas %>%
   arrange(desc(coverage)) %>%
-  head(10)
+  filter(coverage == max(coverage))
 ```
 
 ## Retrieve taxonomic metadata from GBIF
@@ -340,7 +342,7 @@ occs_prot_areas %>%
 
 # Save data and metadata
 
-## Save protected area analysis 
+## Save data about protected area 
 
 We finalize the data.frame containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
 
@@ -367,11 +369,11 @@ Save data:
 
 ```{r save_occs_prot_areas}
 occs_prot_areas %>%
-  write_tsv(
+  write_csv(
     path = here::here(
       "data",
       "output",
-      "analysis_protected_areas.tsv"
+      "occurrences_occupancy_protected_areas.csv"
     ),
     na = ""
   )
@@ -403,7 +405,7 @@ taxonomic_metadata <-
 
 ```{r save_taxonomic_metadata}
 taxonomic_metadata %>%
-  write_tsv(here::here(
+  write_csv(here::here(
     "data",
     "output",
     "protected_areas_species_info.csv"
@@ -426,11 +428,11 @@ We save the metadata as output:
 
 ```{r save_final_protected_areas_metadata}
 protected_areas_metadata %>%
-  write_tsv(
+  write_csv(
     path = here::here(
       "data",
       "output",
-      "protected_areas_metadata.tsv"
+      "protected_areas_metadata.csv"
     ),
     na = ""
   )

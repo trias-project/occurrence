@@ -7,6 +7,8 @@ navbar:
     - text: "Checklist-based indicators"
       href: ""
       menu:
+      - text: "Preprocessing for checklist-based indicators"
+        href: get_data_input_checklist_indicators.html
       - text: "New species introductions"
         href: indicator_introductions_per_year.html
       - text: "Cumulative number of species"
@@ -16,21 +18,24 @@ navbar:
     - text: "Occurrence-based indicators"
       href: ""
       menu:
-      - text: "Appearing-reappearing species"
-        href: occurrence_indicators_appearing_taxa.html
-      - text: "Assessing emerging status of alien species"
-        href: occurrence_indicators_modelling.html
-      - text: "Ranking species by emerging status"
-        href: ranking_emerging_status.html
-    - text: "Appendix"
-      href: ""
-      menu:
-      - text: "Preprocessing for checklist-based indicators"
-        href: get_data_input_checklist_indicators.html
       - text: "Preprocessing for occurrence-based indicators"
         href: occurrence_indicators_preprocessing.html
-      - text: "Species in Belgian protected areas"
-        href: occurrence_species_protected_areas_level.html
+      - text: "Appearing-reappearing species"
+        href: occurrence_indicators_appearing_taxa.html
+      - text: "Emerging status analysis"
+        href: ""
+        menu:
+        - text: "Assessing emerging status of alien species"
+          href: occurrence_indicators_modelling.html
+        - text: "Ranking species by emerging status"
+          href: ranking_emerging_status.html
+      - text: "Protected areas analysis"
+        href: ""
+        menu:
+        - text: "Belgian protected areas: observations and occupancy"
+          href: species_observations_occupancy_in_protected_areas.html
+        - text: "Status of invasion of Belgian protected areas"
+          href: status_alien_species_in_protected_areas.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/trias-project/pipeline

@@ -11,8 +11,9 @@
 
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Stijn Van Hoey" />
+<meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-04-16" />
+<meta name="date" content="2020-05-04" />
 
 <title>Indicator: Pathways associated with alien species introductions</title>
 
@@ -364,6 +365,9 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
+    </li>
+    <li>
       <a href="indicator_introductions_per_year.html">New species introductions</a>
     </li>
     <li>
@@ -382,31 +386,32 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
-    </li>
-    <li>
-      <a href="occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
-    </li>
-    <li>
-      <a href="ranking_emerging_status.html">Ranking species by emerging status</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Appendix
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
-    </li>
-    <li>
       <a href="occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
     </li>
     <li>
-      <a href="occurrence_species_protected_areas_level.html">Species in Belgian protected areas</a>
+      <a href="occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emerging status analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
+        </li>
+        <li>
+          <a href="ranking_emerging_status.html">Ranking species by emerging status</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Protected areas analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="species_observations_occupancy_in_protected_areas.html">Belgian protected areas: observations and occupancy</a>
+        </li>
+        <li>
+          <a href="status_alien_species_in_protected_areas.html">Status of invasion of Belgian protected areas</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </li>
@@ -430,7 +435,8 @@ div.tocify {
 <h1 class="title toc-ignore">Indicator: Pathways associated with alien species introductions</h1>
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Stijn Van Hoey</h4>
-<h4 class="date">2020-04-16</h4>
+<h4 class="author">Tim Adriaens</h4>
+<h4 class="date">2020-05-04</h4>
 
 </div>
 
@@ -443,7 +449,8 @@ div.tocify {
 library(tidylog) # To provide feedback on dplyr functions
 library(here) # To find files
 library(trias) # To use functions developed for TrIAS
-library(kableExtra) # To customize tables</code></pre>
+library(kableExtra) # To customize tables
+library(INBOtheme)  # INBO graph style</code></pre>
 </div>
 <div id="get-data" class="section level1">
 <h1><span class="header-section-number">2</span> Get data</h1>
@@ -457,8 +464,8 @@ data &lt;- read_tsv(data_file,
   guess_max = 5000
 )</code></pre>
 </div>
-<div id="build-pathway-indicator" class="section level1">
-<h1><span class="header-section-number">3</span> Build pathway indicator</h1>
+<div id="pathway-indicators" class="section level1">
+<h1><span class="header-section-number">3</span> Pathway indicators</h1>
 <div id="find-categories" class="section level2">
 <h2><span class="header-section-number">3.1</span> Find categories</h2>
 <p>We divide the species in categories. Each kingdom, except <em>Animalia</em>, is a category. If animal species are present, they are separated in two categories: vertebrates (phylum <code>Chordata</code>) and invertebrates (phylum other than <code>Chordata</code>, defined as <code>Not Chordata</code>).</p>
@@ -469,8 +476,63 @@ data &lt;- read_tsv(data_file,
   </script>
 </div>
 </div>
-<div id="pathways-associated-with-alien-species-introductions" class="section level2">
-<h2><span class="header-section-number">3.2</span> Pathways associated with alien species introductions</h2>
+<div id="pathway-analysis-level-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> Pathway analysis level 1</h2>
+<p>Total number of taxa introduced for each pathway level 1:</p>
+<pre class="r"><code>visualize_pathways_level1(df = data)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis-1.png" width="672" /></p>
+<p>Per category:</p>
+<pre class="r"><code>map(categories$category, function(x) {
+  visualize_pathways_level1(df = data,
+                            category = x,
+                            title = x)}
+)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-1.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-2.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-3.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-4.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-5.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level1_anaysis_per_kingdom-6.png" width="672" /></p>
+</div>
+<div id="pathways-analysis-level-2" class="section level2">
+<h2><span class="header-section-number">3.3</span> Pathways analysis level 2</h2>
+<p>Total number of taxa introduced for pathways level 2:</p>
+<pre class="r"><code>pathways_level1 &lt;- 
+  data %&gt;%
+  distinct(pathway_level1) %&gt;%
+  filter(pathway_level1 != &quot;unknown&quot;) %&gt;%
+  pull()
+map(pathways_level1,
+    function(x) {
+      visualize_pathways_level2(df = data,
+                                chosen_pathway_level1 = x,
+                                title = x)
+    }
+)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-1.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-2.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-3.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-4.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-5.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis-6.png" width="672" /></p>
+<p>Per category:</p>
+<pre class="r"><code>categories_path_lev1 &lt;- expand_grid(categories, pathways_level1)
+map2(categories_path_lev1$category,
+     categories_path_lev1$pathways_level1,
+     function(x, y) {
+       visualize_pathways_level2(df = data,
+                                 chosen_pathway_level1 = y,
+                                 category = x,
+                                 title = paste(x, y, collapse = &quot;: &quot;))}
+)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-1.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-2.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-3.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-4.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-5.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-6.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-7.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-8.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-9.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-10.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-11.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-12.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-13.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-14.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-15.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-16.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-17.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-18.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-19.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-20.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-21.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-22.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-23.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-24.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-25.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-26.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-27.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-28.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-29.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-30.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-31.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-32.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-33.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-34.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-35.png" width="672" /><img src="indicator_pathways_files/figure-html/pathway_level2_anaysis_per_kingdom-36.png" width="672" /></p>
+</div>
+<div id="pathways-level-1-evolution" class="section level2">
+<h2><span class="header-section-number">3.4</span> Pathways level 1 evolution</h2>
+<p>We show the evolution in time of the patwhays level 1.</p>
+<p>First, considering all taxa:</p>
+<pre class="r"><code>visualize_pathways_year_level1(data)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_all-1.png" width="672" /></p>
+<p>and now splitting them by category:</p>
+<pre class="r"><code>map(categories$category, function(x) {
+  visualize_pathways_year_level1(df = data,
+                                 category = x,
+                                 title = x)}
+)</code></pre>
+<p><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-1.png" width="672" /><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-2.png" width="672" /><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-3.png" width="672" /><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-4.png" width="672" /><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-5.png" width="672" /><img src="indicator_pathways_files/figure-html/visualize_pathways_year_level1_category-6.png" width="672" /></p>
+</div>
+<div id="pathways-analysis-tables" class="section level2">
+<h2><span class="header-section-number">3.5</span> Pathways analysis: tables</h2>
 <p>Function <code>get_table_pathways</code> from <code>trias</code> library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided.</p>
 <p>Number of species returned in table as examples of the group:</p>
 <pre class="r"><code>n_species &lt;- 5</code></pre>
@@ -484,12 +546,11 @@ get_table_pathways(data,
   n_species = n_species
 ))
 names(tables) &lt;- categories$category</code></pre>
-</div>
-<div id="pathways-per-category" class="section level2">
-<h2><span class="header-section-number">3.3</span> Pathways per category</h2>
+<div id="pathways-per-category" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Pathways per category</h3>
 <p>Intentionality of introduction is mapped by cell color background: white for intentional introduction (pathway value: <code>release</code>), light orange for unintentional introduction.</p>
-<div id="plantae" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Plantae</h3>
+<div id="plantae" class="section level4">
+<h4><span class="header-section-number">3.5.1.1</span> Plantae</h4>
 <p>Pathways associated to plants (category <code>Plantae</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -711,6 +772,7 @@ Akebia quinata, Eichhornia crassipes, Cortaderia selloana
 unknown
 </td>
 <td style="text-align:left;background-color: #faf0e6 !important;">
+unknown
 </td>
 <td style="text-align:right;background-color: #faf0e6 !important;">
 51
@@ -723,8 +785,8 @@ Oenothera rubricauloides, Cornus sanguinea hungarica, Rumex confusus, Ammannia c
 </table>
 </div>
 </div>
-<div id="vertebrates" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Vertebrates</h3>
+<div id="vertebrates" class="section level4">
+<h4><span class="header-section-number">3.5.1.2</span> Vertebrates</h4>
 <p>Pathways associated to vertebrates (category <code>Chordata</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -988,6 +1050,7 @@ Neogobius melanostomus, Procyon lotor, Oxyura jamaicensis, Proterorhinus semilun
 unknown
 </td>
 <td style="text-align:left;background-color: #faf0e6 !important;">
+unknown
 </td>
 <td style="text-align:right;background-color: #faf0e6 !important;">
 16
@@ -1000,8 +1063,8 @@ Cervus nippon, Vimba vimba, Dama dama, Xenopus laevis, Lacerta viridis
 </table>
 </div>
 </div>
-<div id="invertebrates" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Invertebrates</h3>
+<div id="invertebrates" class="section level4">
+<h4><span class="header-section-number">3.5.1.3</span> Invertebrates</h4>
 <p>Pathways associated to invertebrates (category <code>Not Chordata</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1321,6 +1384,7 @@ Vespa velutina, Dreissena bugensis, Hygromia cinctella
 unknown
 </td>
 <td style="text-align:left;background-color: #faf0e6 !important;">
+unknown
 </td>
 <td style="text-align:right;background-color: #faf0e6 !important;">
 94
@@ -1333,8 +1397,8 @@ Sceliphron caementarium, Phoneutria boliviensis, Leucothrips nigripennis, Otiorh
 </table>
 </div>
 </div>
-<div id="fungi" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Fungi</h3>
+<div id="fungi" class="section level4">
+<h4><span class="header-section-number">3.5.1.4</span> Fungi</h4>
 <p>Pathways associated to fungi (category <code>Fungi</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1374,6 +1438,7 @@ Batrachochytrium dendrobatidis, Batrachochytrium salamandrivorans
 unknown
 </td>
 <td style="text-align:left;background-color: #faf0e6 !important;">
+unknown
 </td>
 <td style="text-align:right;background-color: #faf0e6 !important;">
 8
@@ -1388,8 +1453,9 @@ Tranzschelia discolor, Stropholoma aurantiacum, Thecaphora oxalidis, Phragmidium
 <p>Note: add sections for other kingdoms if needed in the future.</p>
 </div>
 </div>
-<div id="pathways-related-to-eu-policy-relevant-species" class="section level2">
-<h2><span class="header-section-number">3.4</span> Pathways related to EU policy relevant species</h2>
+</div>
+<div id="table-of-pathways-related-to-eu-policy-relevant-species" class="section level2">
+<h2><span class="header-section-number">3.6</span> Table of pathways related to EU policy relevant species</h2>
 <p>It is important to focus our attention also to a intercategory group of species which is of particular policy importance: the <em>List of Invasive Alien Species of Union concern</em> (see more info about <a href="http://ec.europa.eu/environment/nature/invasivealien/list/index_en.htm">here</a>).</p>
 <p>We import this list of species:</p>
 <pre class="r"><code>eu_concern_file &lt;- here::here(&quot;data&quot;, &quot;input&quot;, &quot;eu_concern_species.tsv&quot;)
@@ -1397,11 +1463,6 @@ eu_concern_species &lt;- read_tsv(eu_concern_file)</code></pre>
 <p>Check which species from this subgroup are not present in <code>data</code>:</p>
 <pre class="r"><code>eu_concern_species %&gt;%
   filter(!backbone_taxonKey %in% data$nubKey)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["checklist_scientificName"],"name":[1],"type":["chr"],"align":["left"]},{"label":["english_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["entry_into_force"],"name":[3],"type":["date"],"align":["right"]},{"label":["checklist_kingdom"],"name":[4],"type":["chr"],"align":["left"]},{"label":["backbone_taxonKey"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["backbone_taxonomicStatus"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Alternanthera philoxeroides","2":"Alligator weed","3":"2017-08-02","4":"Plantae","5":"3084923","6":"ACCEPTED"},{"1":"Gunnera tinctoria","2":"Chilean rhubarb","3":"2017-08-02","4":"Plantae","5":"2984306","6":"ACCEPTED"},{"1":"Heracleum persicum","2":"Persian hogweed","3":"2016-08-03","4":"Plantae","5":"3628745","6":"ACCEPTED"},{"1":"Heracleum sosnowskyi","2":"Sosnowsky's hogweed","3":"2016-08-03","4":"Plantae","5":"3642949","6":"ACCEPTED"},{"1":"Microstegium vimineum","2":"Japanese stiltgrass","3":"2017-08-02","4":"Plantae","5":"5289808","6":"ACCEPTED"},{"1":"Pennisetum setaceum","2":"Crimson fountaingrass","3":"2017-08-02","4":"Plantae","5":"2706134","6":"SYNONYM"},{"1":"Persicaria perfoliata","2":"Asiatic tearthumb","3":"2016-08-03","4":"Plantae","5":"4033648","6":"ACCEPTED"},{"1":"Pueraria lobata","2":"Kudzu vine","3":"2016-08-03","4":"Plantae","5":"9035634","6":"ACCEPTED"},{"1":"Herpestes javanicus","2":"Small Asian mongoose","3":"2016-08-03","4":"Animalia","5":"8858565","6":"ACCEPTED"},{"1":"Orconectes virilis","2":"Virile crayfish","3":"2016-08-03","4":"Animalia","5":"2227064","6":"ACCEPTED"},{"1":"Percottus glenii","2":"Amur sleeper","3":"2016-08-03","4":"Animalia","5":"2390064","6":"ACCEPTED"},{"1":"Procambarus fallax f. virginalis","2":"Marbled crayfish","3":"2016-08-03","4":"Animalia","5":"8879526","6":"SYNONYM"},{"1":"Trachemys scripta","2":"Red-eared, yellow-bellied and Cumberland sliders","3":"2016-08-03","4":"Animalia","5":"2443002","6":"ACCEPTED"},{"1":"Vespa velutina nigrithorax","2":"Asian hornet","3":"2016-08-03","4":"Animalia","5":"6247411","6":"ACCEPTED"},{"1":"Humulus scandens","2":"Japanese hop","3":"2019-08-15","4":"Plantae","5":"2984537","6":"SYNONYM"},{"1":"Andropogon virginicus","2":"Broomsedge bluestem","3":"2019-08-15","4":"Plantae","5":"2706080","6":"ACCEPTED"},{"1":"Arthurdendyus triangulatus","2":"New Zealand flatworm","3":"2019-08-15","4":"Animalia","5":"2502792","6":"ACCEPTED"},{"1":"Cardiospermum grandiflorum","2":"Balloon vine","3":"2019-08-15","4":"Plantae","5":"9685025","6":"DOUBTFUL"},{"1":"Cortaderia jubata","2":"Purple pampas grass","3":"2019-08-15","4":"Plantae","5":"2704521","6":"ACCEPTED"},{"1":"Acacia saligna","2":"Coojong","3":"2019-08-15","4":"Plantae","5":"8790482","6":"DOUBTFUL"},{"1":"Gymnocoronis spilanthoides","2":"Spadeleaf plant","3":"2019-08-15","4":"Plantae","5":"6063677","6":"ACCEPTED"},{"1":"Triadica sebifera","2":"Chinese tallow","3":"2019-08-15","4":"Plantae","5":"3054399","6":"ACCEPTED"},{"1":"Lespedeza cuneata","2":"Chinese bushclover","3":"2019-08-15","4":"Plantae","5":"8114276","6":"SYNONYM"},{"1":"Lygodium japonicum","2":"Japanese climbing fern","3":"2019-08-15","4":"Plantae","5":"2650436","6":"ACCEPTED"},{"1":"Plotosus lineatus","2":"Striped eel catfish","3":"2019-08-15","4":"Animalia","5":"7965247","6":"ACCEPTED"},{"1":"Prosopis juliflora","2":"Mesquite","3":"2019-08-15","4":"Plantae","5":"5358460","6":"ACCEPTED"},{"1":"Salvinia molesta","2":"Giant salvinia","3":"2019-08-15","4":"Plantae","5":"5274863","6":"ACCEPTED"},{"1":"Ehrharta calycina","2":"Perennial veldtgrass","3":"2019-08-15","4":"Plantae","5":"7644403","6":"SYNONYM"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
 <p>Categories present in this subgroup:</p>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -1419,7 +1480,7 @@ n_species = n_species
 ))
 names(tables_eu_concern) &lt;- categories_eu_concern$category</code></pre>
 <div id="plantae-1" class="section level3">
-<h3><span class="header-section-number">3.4.1</span> Plantae</h3>
+<h3><span class="header-section-number">3.6.1</span> Plantae</h3>
 <p>Pathways associated to plants (category <code>Plantae</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1515,7 +1576,7 @@ Eichhornia crassipes
 </div>
 </div>
 <div id="chordata" class="section level3">
-<h3><span class="header-section-number">3.4.2</span> Chordata</h3>
+<h3><span class="header-section-number">3.6.2</span> Chordata</h3>
 <p>Pathways associated to vertebrates (category <code>Chordata</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1639,7 +1700,7 @@ Nyctereutes procyonoides, Oxyura jamaicensis, Procyon lotor, Ondatra zibethicus
 </div>
 </div>
 <div id="not-chordata" class="section level3">
-<h3><span class="header-section-number">3.4.3</span> Not Chordata</h3>
+<h3><span class="header-section-number">3.6.3</span> Not Chordata</h3>
 <p>Pathways associated to invertebrates (category <code>Not Chordata</code>):</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:10cm; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
