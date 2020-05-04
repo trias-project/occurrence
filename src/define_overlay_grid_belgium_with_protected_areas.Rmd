@@ -1,13 +1,23 @@
 ---
 title: "Get cells of Belgian EEA reference grid containing protected areas"
-author: "Damiano Oldoni"
+author: 
+  - Damiano Oldoni
+  - Tim Adriaens
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(echo = TRUE)
+opts_chunk$set(echo = TRUE,
+               warning = FALSE,
+               message = FALSE,
+               results = TRUE)
 ```
 
 # Goal
@@ -278,7 +288,7 @@ protected_areas %>%
   count()
 ```
 
-```{r leaflet_prot_areas_flanders, hide = TRUE, cache = TRUE}
+```{r leaflet_prot_areas_flanders, cache = TRUE}
 # Transform to wgs84
 protected_areas_wgs84 <- 
   protected_areas %>%
@@ -328,7 +338,7 @@ protected_areas %>%
   count()
 ```
 
-```{r leaflet_prot_areas_wa, hide = TRUE, cache = TRUE}
+```{r leaflet_prot_areas_wa, cache = TRUE}
 protected_areas_wgs84_wallonia <- 
   protected_areas_wgs84 %>%
   filter(wallonia == TRUE)
@@ -383,7 +393,7 @@ protected_areas %>%
   count()
 ```
 
-```{r leaflet_prot_areas_br, hide = TRUE, cache = TRUE}
+```{r leaflet_prot_areas_br, cache = TRUE}
 protected_areas_wgs84_brussels <- 
   protected_areas_wgs84 %>%
   filter(brussels == TRUE)

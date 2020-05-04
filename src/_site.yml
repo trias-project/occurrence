@@ -32,6 +32,8 @@ navbar:
       - text: "Protected areas analysis"
         href: ""
         menu:
+        - text: "Belgian protected areas and EEA grid of Belgium"
+          href: define_overlay_grid_belgium_with_protected_areas.html
         - text: "Belgian protected areas: observations and occupancy"
           href: species_observations_occupancy_in_protected_areas.html
         - text: "Status of invasion of Belgian protected areas"

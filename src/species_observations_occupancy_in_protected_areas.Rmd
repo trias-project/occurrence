@@ -4,12 +4,20 @@ author:
   - Damiano Oldoni
   - Tim Adriaens
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(echo = TRUE)
+opts_chunk$set(echo = TRUE,
+               warning = FALSE,
+               message = FALSE,
+               results = TRUE)
 ```
 
 # Goal
