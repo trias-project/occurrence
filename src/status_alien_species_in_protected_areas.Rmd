@@ -32,10 +32,10 @@ Read data related to species distribution in protected areas:
 
 ```{r read_occs_prot_areas}
 occs_prot_areas <-
-  read_tsv(here::here(
+  read_csv(here::here(
     "data",
     "output",
-    "analysis_protected_areas.tsv"
+    "occurrences_occupancy_protected_areas.csv"
   ), na = ""
 )
 ```
@@ -306,7 +306,7 @@ We show the results for habitat directive areas (SAC areas), i.e. areas of `SITE
 
 Number of alien taxa and number of observations of alien taxa in each SAC area from 2000 up to now:
 
-```{r n_taxa_obs_per_area_bird}
+```{r n_taxa_obs_per_area_habitat}
 n_taxa_obs_per_area_habitat <-
   n_taxa_obs_per_area %>%
   filter(SITETYPE %in% c("B", "C"))
@@ -534,7 +534,7 @@ We show the results for the bird directive areas (SPA areas), i.e. areas of `SIT
 
 Number of SPA protected areas and their mean coverage for each alien species:
 
-```{r n_prot_areas_per_species}
+```{r n_prot_areas_per_species_bird}
 n_prot_areas_per_species_bird <-
   occs_prot_areas %>%
   left_join(protected_areas_metadata,
@@ -758,7 +758,7 @@ n_prot_areas_per_species_concern_brussels_habitat
 
 We save the analysis of the state of the invasion of the protected areas at national level as retrieving analysis at regional level and for bird or habitat directive areas is trivial:
 
-```{r save_spreading_data}
+```{r save_state_of_invasion_data}
 n_taxa_obs_per_area_dfs <- list(
   n_taxa_obs_per_area = n_taxa_obs_per_area,
   n_taxa_obs_per_area_concern = n_taxa_obs_per_area_concern
