@@ -60,7 +60,7 @@ src/*.html
 _site
 
 # natura200 shapefiles
-data/external/protected_areas_natura2000_20190528/*
+data/external/Natura2000_end2019_Shapefile/*
 
 # timeseries
 data/interim/df_timeseries.tsv
