@@ -1,311 +1,311 @@
 SITECODE	SITENAME	SITETYPE	flanders	wallonia	brussels
-BE31001C0	Affluents brabançons de la Senne	C	FALSE	TRUE	FALSE
-BE32007C0	Bois de la Houssière	C	FALSE	TRUE	FALSE
-BE2200043	Bosbeekvallei en aangrenzende bos- en heidegebieden te As-Opglabbeek-Maaseik	B	TRUE	FALSE	FALSE
-BE34061C0	Vallées de Laclaireau et du Rabais	C	FALSE	TRUE	FALSE
-BE35008C0	Vallée du Burnot	C	FALSE	TRUE	FALSE
-BE35010C0	Vallée du Bocq	C	FALSE	TRUE	FALSE
-BE35014C0	Bois de Famenne à Waillet	C	FALSE	TRUE	FALSE
-BE35018C0	Bassin de l'Hermeton en aval de Vodelée	C	FALSE	TRUE	FALSE
-BE34039C0	Haute-Sûre	C	FALSE	TRUE	FALSE
-BE34048C0	Bassin de la Semois de Jamoigne à Chiny	C	FALSE	TRUE	FALSE
-BE2500121	Westkust	A	TRUE	FALSE	FALSE
-BE32029C0	Haute vallée de la Thure	C	FALSE	TRUE	FALSE
-BE35046C0	Vallée du Ruisseau de Gros Fays	C	FALSE	TRUE	FALSE
-BE34034C0	Sources du Ruisseau de Tavigny	C	FALSE	TRUE	FALSE
-BE34038C0	Bassin supérieur de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
-BE34030C0	Forêt de Freyr	C	FALSE	TRUE	FALSE
-BE34033C0	Etangs de Longchamps et de Noville	C	FALSE	TRUE	FALSE
-BE2100017	Bos- en heidegebieden ten oosten van Antwerpen	B	TRUE	FALSE	FALSE
-BE2200032	Hageven met Dommelvallei, Beverbeekse Heide, Warmbeek en Wateringen	B	TRUE	FALSE	FALSE
-BE32006C0	Bois d'Enghien et de Silly	C	FALSE	TRUE	FALSE
-BE34050C0	Bassin de la Semois entre Tintigny et Jamoigne	C	FALSE	TRUE	FALSE
-BE2100024	Vennen, heiden en moerassen rond Turnhout	B	TRUE	FALSE	FALSE
-BE2400008	Zoniënwoud	B	TRUE	FALSE	FALSE
-BE2200030	Mangelbeek en heide- en vengebieden tussen Houthalen en Gruitrode	B	TRUE	FALSE	FALSE
+BE33036C0	Fagnes de la Roer	C	FALSE	TRUE	FALSE
+BE35029C0	Bassin fagnard de l'Hermeton	C	FALSE	TRUE	FALSE
 BE2200037	Uiterwaarden langs de Limburgse Maas met Vijverbroek	B	TRUE	FALSE	FALSE
-BE2200041	Jekervallei en bovenloop van de Demervallei	B	TRUE	FALSE	FALSE
-BE2200042	Overgang Kempen-Haspengouw	B	TRUE	FALSE	FALSE
 BE2200038	Bossen en kalkgraslanden van Haspengouw	B	TRUE	FALSE	FALSE
+BE2200041	Jekervallei en bovenloop van de Demervallei	B	TRUE	FALSE	FALSE
+BE33010C0	Vallée de la Meuse à Huy et vallon de la Solières	C	FALSE	TRUE	FALSE
+BE33022C0	La Gileppe	C	FALSE	TRUE	FALSE
+BE33023C0	Vallée de la Soor	C	FALSE	TRUE	FALSE
+BE35013C0	Bois calcaires de Nettinne	C	FALSE	TRUE	FALSE
+BE35033B0	Vallée du Ruisseau d'Alisse	B	FALSE	TRUE	FALSE
+BE35037C0	Vallée de la Wimbe	C	FALSE	TRUE	FALSE
+BE35042C0	Vallée de l'Almache en amont de Gembes	C	FALSE	TRUE	FALSE
+BE33044C0	Sources de l'Amblève	C	FALSE	TRUE	FALSE
+BE33055C0	Vallée de l'Emmels	C	FALSE	TRUE	FALSE
+BE35031C0	Bassin ardennais de l'Eau Noire	C	FALSE	TRUE	FALSE
+BE2200033	Abeek met aangrenzende moerasgebieden	B	TRUE	FALSE	FALSE
+BE32035C0	La Fagne entre Bailièvre et Robechies	C	FALSE	TRUE	FALSE
+BE33060C0	Haute vallée de la Lienne	C	FALSE	TRUE	FALSE
+BE33064C0	Vallée de l'Ulf	C	FALSE	TRUE	FALSE
+BE33067C0	Bois de Staneux	C	FALSE	TRUE	FALSE
+BE35017C0	Vallée du Ruisseau de Féron	C	FALSE	TRUE	FALSE
+BE34001C0	Vallée et affluents du Néblon	C	FALSE	TRUE	FALSE
+BE34010C0	Plaine de Ny	A	FALSE	TRUE	FALSE
+BE2100024	Vennen, heiden en moerassen rond Turnhout	B	TRUE	FALSE	FALSE
+BE32042B0	Vallée du Ruisseau d'Erpion	B	FALSE	TRUE	FALSE
+BE2200030	Mangelbeek en heide- en vengebieden tussen Houthalen en Gruitrode	B	TRUE	FALSE	FALSE
+BE2200042	Overgang Kempen-Haspengouw	B	TRUE	FALSE	FALSE
+BE2200043	Bosbeekvallei en aangrenzende bos- en heidegebieden te As-Opglabbeek-Maaseik	B	TRUE	FALSE	FALSE
+BE2400008	Zoniënwoud	B	TRUE	FALSE	FALSE
+BE2100323	Kalmthoutse Heide	A	TRUE	FALSE	FALSE
 BE2101437	De Maatjes, Wuustwezelheide en Groot Schietveld	A	TRUE	FALSE	FALSE
 BE2219312	Vijvercomplex van Midden Limburg	A	TRUE	FALSE	FALSE
+BE31001C0	Affluents brabançons de la Senne	C	FALSE	TRUE	FALSE
 BE2500831	Ijzervallei	A	TRUE	FALSE	FALSE
-BE32008B0	Bois d'Arpes et de l'Hôpital	B	FALSE	TRUE	FALSE
-BE32037C0	Massifs forestiers entre Momignies et Chimay	C	FALSE	TRUE	FALSE
-BE2100323	Kalmthoutse Heide	A	TRUE	FALSE	FALSE
-BE33005C0	Vallée du Ruisseau de Bolland	C	FALSE	TRUE	FALSE
 BE32002C0	Vallée de l'Escaut en aval de Tournai	C	FALSE	TRUE	FALSE
 BE32004C0	Vallée de la Rhosnes	C	FALSE	TRUE	FALSE
+BE32007C0	Bois de la Houssière	C	FALSE	TRUE	FALSE
+BE32008B0	Bois d'Arpes et de l'Hôpital	B	FALSE	TRUE	FALSE
 BE32015B0	Canal souterrain de la Bête Refaite	B	FALSE	TRUE	FALSE
 BE32034C0	Bois Massart et forêts de Sivry-Rance	C	FALSE	TRUE	FALSE
-BE34044C0	Vallée du Ruisseau des Aleines	C	FALSE	TRUE	FALSE
-BE33013C0	Bois de la Neuville et de la Vecquée	C	FALSE	TRUE	FALSE
-BE32042B0	Vallée du Ruisseau d'Erpion	B	FALSE	TRUE	FALSE
-BE33022C0	La Gileppe	C	FALSE	TRUE	FALSE
+BE32037C0	Massifs forestiers entre Momignies et Chimay	C	FALSE	TRUE	FALSE
+BE33008C0	Vallée de la Burdinale	C	FALSE	TRUE	FALSE
 BE32046C0	Vallée du Piéton	C	FALSE	TRUE	FALSE
-BE33045C0	Sources de la Warchenne	C	FALSE	TRUE	FALSE
+BE33013C0	Bois de la Neuville et de la Vecquée	C	FALSE	TRUE	FALSE
+BE33005C0	Vallée du Ruisseau de Bolland	C	FALSE	TRUE	FALSE
+BE33006C0	Vallée de la Gueule en aval de Kelmis	C	FALSE	TRUE	FALSE
+BE33007C0	Vallée de la Gueule en amont de Kelmis	C	FALSE	TRUE	FALSE
+BE33009C0	Vallée de la Mehaigne	C	FALSE	TRUE	FALSE
 BE33039C0	Vallée de l'Olefbach	C	FALSE	TRUE	FALSE
 BE33040C0	Fagnes de Stavelot et vallée de l'Eau Rouge	C	FALSE	TRUE	FALSE
-BE33053C0	Noir Ru et Vallée du Rechterbach	C	FALSE	TRUE	FALSE
+BE33045C0	Sources de la Warchenne	C	FALSE	TRUE	FALSE
+BE33047C0	Vallée de la Holzwarche	C	FALSE	TRUE	FALSE
 BE33049C0	Mardelles d'Arbrefontaine et vallons fangeux de Fosse	C	FALSE	TRUE	FALSE
-BE33060C0	Haute vallée de la Lienne	C	FALSE	TRUE	FALSE
-BE33006C0	Vallée de la Gueule en aval de Kelmis	C	FALSE	TRUE	FALSE
+BE33052C0	Ma Campagne au sud de Malmedy	C	FALSE	TRUE	FALSE
+BE33053C0	Noir Ru et Vallée du Rechterbach	C	FALSE	TRUE	FALSE
 BE33057C0	Vallée du Kolvenderbach	C	FALSE	TRUE	FALSE
 BE33059C0	Sources de l'Our et de l'Ensebach	C	FALSE	TRUE	FALSE
-BE33064C0	Vallée de l'Ulf	C	FALSE	TRUE	FALSE
-BE33008C0	Vallée de la Burdinale	C	FALSE	TRUE	FALSE
-BE33010C0	Vallée de la Meuse à Huy et vallon de la Solières	C	FALSE	TRUE	FALSE
-BE33047C0	Vallée de la Holzwarche	C	FALSE	TRUE	FALSE
-BE33052C0	Ma Campagne au sud de Malmedy	C	FALSE	TRUE	FALSE
+BE34014C0	Fagne de la Crépale et prairies de Malempré	C	FALSE	TRUE	FALSE
 BE34024C0	Bassin inférieur de l'Ourthe orientale	C	FALSE	TRUE	FALSE
 BE34025C0	Haute-Wimbe	C	FALSE	TRUE	FALSE
-BE33055C0	Vallée de l'Emmels	C	FALSE	TRUE	FALSE
-BE34010C0	Plaine de Ny	A	FALSE	TRUE	FALSE
-BE34014C0	Fagne de la Crépale et prairies de Malempré	C	FALSE	TRUE	FALSE
-BE34001C0	Vallée et affluents du Néblon	C	FALSE	TRUE	FALSE
-BE33023C0	Vallée de la Soor	C	FALSE	TRUE	FALSE
-BE33036C0	Fagnes de la Roer	C	FALSE	TRUE	FALSE
-BE33067C0	Bois de Staneux	C	FALSE	TRUE	FALSE
-BE34051C0	Vallées du Ruisseau de Mellier et de la Mandebras	C	FALSE	TRUE	FALSE
 BE34035C0	Bassin supérieur de la Wiltz	C	FALSE	TRUE	FALSE
-BE35025C0	La Famenne entre Eprave et Havrenne	C	FALSE	TRUE	FALSE
-BE35026C0	Massif forestier de Cerfontaine	C	FALSE	TRUE	FALSE
-BE35011C0	Vallée de la Molignée	C	FALSE	TRUE	FALSE
-BE35021C0	Vallée de la Lesse en aval de Houyet	C	FALSE	TRUE	FALSE
-BE34054C0	Bassin de la Marche	C	FALSE	TRUE	FALSE
-BE34059C0	Vallées de l'Eisch et de Clairefontaine	C	FALSE	TRUE	FALSE
-BE34063C0	Vallées de la Chevratte	C	FALSE	TRUE	FALSE
-BE35019C0	Vallée de la Meuse en amont d'Hastière	C	FALSE	TRUE	FALSE
+BE34039C0	Haute-Sûre	C	FALSE	TRUE	FALSE
+BE34044C0	Vallée du Ruisseau des Aleines	C	FALSE	TRUE	FALSE
+BE2200032	Hageven met Dommelvallei, Beverbeekse Heide, Warmbeek en Wateringen	B	TRUE	FALSE	FALSE
+BE2200035	Mechelse Heide en vallei van de Ziepbeek	B	TRUE	FALSE	FALSE
+BE34048C0	Bassin de la Semois de Jamoigne à Chiny	C	FALSE	TRUE	FALSE
+BE34051C0	Vallées du Ruisseau de Mellier et de la Mandebras	C	FALSE	TRUE	FALSE
 BE34053C0	Bassin de l'Attert	C	FALSE	TRUE	FALSE
+BE34054C0	Bassin de la Marche	C	FALSE	TRUE	FALSE
 BE34056C0	Bassin de la Semois de Etalle à Tintigny	C	FALSE	TRUE	FALSE
-BE35029C0	Bassin fagnard de l'Hermeton	C	FALSE	TRUE	FALSE
-BE35037C0	Vallée de la Wimbe	C	FALSE	TRUE	FALSE
-BE35033B0	Vallée du Ruisseau d'Alisse	B	FALSE	TRUE	FALSE
-BE35042C0	Vallée de l'Almache en amont de Gembes	C	FALSE	TRUE	FALSE
+BE34059C0	Vallées de l'Eisch et de Clairefontaine	C	FALSE	TRUE	FALSE
+BE34061C0	Vallées de Laclaireau et du Rabais	C	FALSE	TRUE	FALSE
+BE34063C0	Vallées de la Chevratte	C	FALSE	TRUE	FALSE
+BE35008C0	Vallée du Burnot	C	FALSE	TRUE	FALSE
+BE1000001	La Forêt de Soignes avec lisières et domaines boisés avoisinants et la Vallée de la Woluwe - complexe Forêt de Soignes - Vallée de la Woluwe	B	FALSE	FALSE	TRUE
+BE35010C0	Vallée du Bocq	C	FALSE	TRUE	FALSE
+BE2100015	Kalmthoutse Heide	B	TRUE	FALSE	FALSE
+BE35011C0	Vallée de la Molignée	C	FALSE	TRUE	FALSE
+BE2200525	Bokrijk en omgeving	A	TRUE	FALSE	FALSE
+BE2221314	Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof	A	TRUE	FALSE	FALSE
+BE2301134	Krekengebied	A	TRUE	FALSE	FALSE
+BE2501033	Het Zwin	A	TRUE	FALSE	FALSE
+BE31005C0	Vallée de la Nethen	C	FALSE	TRUE	FALSE
+BE2100016	Klein en Groot Schietveld	B	TRUE	FALSE	FALSE
+BE2100017	Bos- en heidegebieden ten oosten van Antwerpen	B	TRUE	FALSE	FALSE
+BE2100019	Het Blak, Kievitsheide, Ekstergoor en nabijgelegen Kamsalamanderhabitats	B	TRUE	FALSE	FALSE
+BE2200036	Plateau van Caestert met hellingbossen en mergelgrotten.	B	TRUE	FALSE	FALSE
+BE2300005	Bossen en heiden van zandig Vlaanderen: oostelijk deel	B	TRUE	FALSE	FALSE
+BE2500004	Bossen, heiden en valleigebieden van zandig Vlaanderen: westelijk deel	B	TRUE	FALSE	FALSE
+BE31009B0	Carrières souterraines d'Orp-Jauche	B	FALSE	TRUE	FALSE
+BE31011C0	Vallée de la Thyle	C	FALSE	TRUE	FALSE
+BE32005C0	Vallées de la Dendre et de la Marcq	C	FALSE	TRUE	FALSE
+BE32011C0	Forêt de Bon-Secours	C	FALSE	TRUE	FALSE
+BE32047C0	Vallée de la Thure	C	FALSE	TRUE	FALSE
+BE32014C0	Vallée de la Haine en amont de Mons	C	FALSE	TRUE	FALSE
+BE32017C0	Vallée de la Haine en aval de Mons	C	FALSE	TRUE	FALSE
+BE32020C0	Vallée de la Princesse	C	FALSE	TRUE	FALSE
+BE35026C0	Massif forestier de Cerfontaine	C	FALSE	TRUE	FALSE
+BE32030C0	Vallée de la Hante	C	FALSE	TRUE	FALSE
+BE32033C0	Sources de la Hante	C	FALSE	TRUE	FALSE
+BE32039C0	Vallées de l'Oise et de la Wartoise	C	FALSE	TRUE	FALSE
+BE32040C0	Haute vallée de l'Eau Noire	C	FALSE	TRUE	FALSE
+BE33001B0	Sources du Geer	B	FALSE	TRUE	FALSE
+BE33004C0	Basse Meuse et Meuse mitoyenne	C	FALSE	TRUE	FALSE
+BE33011C0	Vallées du Hoyoux et du Triffoy	C	FALSE	TRUE	FALSE
+BE35014C0	Bois de Famenne à Waillet	C	FALSE	TRUE	FALSE
+BE33021C0	Osthertogenwald autour de Raeren	C	FALSE	TRUE	FALSE
+BE35018C0	Bassin de l'Hermeton en aval de Vodelée	C	FALSE	TRUE	FALSE
+BE33016C0	Basse vallée de la Vesdre	C	FALSE	TRUE	FALSE
+BE33020C0	Affluents du lac d'Eupen	C	FALSE	TRUE	FALSE
+BE35019C0	Vallée de la Meuse en amont d'Hastière	C	FALSE	TRUE	FALSE
+BE33024C0	Vallée de la Helle	C	FALSE	TRUE	FALSE
+BE33032C0	Fagnes de Malchamps et de Stoumont	C	FALSE	TRUE	FALSE
+BE33038C0	Vallée de la Schwalm	C	FALSE	TRUE	FALSE
+BE35021C0	Vallée de la Lesse en aval de Houyet	C	FALSE	TRUE	FALSE
 BE35023C0	Vallée de la Lesse entre Villers-sur-Lesse et Houyet	C	FALSE	TRUE	FALSE
-BE35048C0	Vallée du Ruisseau de la Goutelle	C	FALSE	TRUE	FALSE
-BE35031C0	Bassin ardennais de l'Eau Noire	C	FALSE	TRUE	FALSE
+BE35025C0	La Famenne entre Eprave et Havrenne	C	FALSE	TRUE	FALSE
 BE35045C0	Vallée de la Semois en aval d'Alle	C	FALSE	TRUE	FALSE
+BE35048C0	Vallée du Ruisseau de la Goutelle	C	FALSE	TRUE	FALSE
 BEMNZ0005	Vlakte van de Raan	B	FALSE	FALSE	FALSE
-BE1000002	Zones boisées et ouvertes au Sud de la Région bruxelloise - complexe Verrewinkel - Kinsendael	B	FALSE	FALSE	TRUE
-BE2100045	Historische fortengordels van Antwerpen als vleermuizenhabitat.	B	TRUE	FALSE	FALSE
-BE2100020	Heesbossen, Vallei van Marke en Merkske en Ringven met valleigronden langs de Heerlese Loop	B	TRUE	FALSE	FALSE
-BE2200028	De Maten	B	TRUE	FALSE	FALSE
-BE2400009	Hallerbos en nabije boscomplexen met brongebieden en heiden	B	TRUE	FALSE	FALSE
-BE2200033	Abeek met aangrenzende moerasgebieden	B	TRUE	FALSE	FALSE
-BE2300044	Bossen van het zuidoosten van de Zandleemstreek	B	TRUE	FALSE	FALSE
-BE2400012	Valleien van de Winge en de Motte met valleihellingen.	B	TRUE	FALSE	FALSE
-BE2200626	De Maten	A	TRUE	FALSE	FALSE
-BE2200727	De Mechelse Heide en de Vallei van de Ziepbeek	A	TRUE	FALSE	FALSE
-BE2200029	Vallei- en brongebied van de Zwarte Beek, Bolisserbeek en Dommel met heide en vengebieden.	B	TRUE	FALSE	FALSE
-BE2400010	Valleigebied tussen Melsbroek, Kampenhout, Kortemberg en Veltem.	B	TRUE	FALSE	FALSE
-BE2223316	De Demervallei	A	TRUE	FALSE	FALSE
-BE2301235	Durme en Middenloop van de Schelde	A	TRUE	FALSE	FALSE
-BE2301336	Schorren en Polders van de Beneden-Schelde	A	TRUE	FALSE	FALSE
-BE2300007	Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen.	B	TRUE	FALSE	FALSE
-BE2422315	De Dijlevallei	A	TRUE	FALSE	FALSE
-BE2524317	Kustbroedvogels te Zeebrugge-Heist	A	TRUE	FALSE	FALSE
-BE31010C0	Sources de la Dyle	C	FALSE	TRUE	FALSE
-BE31003C0	Vallée de la Lasne	C	FALSE	TRUE	FALSE
-BE31007C0	Vallée du Train	C	FALSE	TRUE	FALSE
-BE31002C0	Vallées de l'Argentine et de la Lasne	C	FALSE	TRUE	FALSE
-BE31006C0	Vallée de la Dyle à Ottignies	C	FALSE	TRUE	FALSE
-BE31008C0	Carrière de Dongelberg	C	FALSE	TRUE	FALSE
-BE32001C0	Vallée de la Lys	C	FALSE	TRUE	FALSE
-BE32023C0	Vallée du Ruisseau d'Acoz	C	FALSE	TRUE	FALSE
-BE32021C0	Haute-Sambre en aval de Thuin	C	FALSE	TRUE	FALSE
-BE32026C0	Haute-Sambre en amont de Thuin	C	FALSE	TRUE	FALSE
-BE32031C0	Bois de Vieux Sart et de Montbliart	C	FALSE	TRUE	FALSE
-BE32038C0	Bois de Bourlers et de Baileux	C	FALSE	TRUE	FALSE
-BE32041B0	Trou aux Feuilles	B	FALSE	TRUE	FALSE
-BE33003C0	Montagne Saint-Pierre	C	FALSE	TRUE	FALSE
-BE32035C0	La Fagne entre Bailièvre et Robechies	C	FALSE	TRUE	FALSE
-BE32025C0	Haut-Pays des Honnelles	C	FALSE	TRUE	FALSE
-BE33009C0	Vallée de la Mehaigne	C	FALSE	TRUE	FALSE
-BE33012C0	Affluents de la Meuse entre Huy et Flémalle	C	FALSE	TRUE	FALSE
-BE32036C0	Vallée de l'Eau Blanche à Virelles	C	FALSE	TRUE	FALSE
-BE32044C0	Bassin de l'Escaut en amont de Tournai	C	FALSE	TRUE	FALSE
-BE32045C0	Vallée de l'Aubrecheuil	C	FALSE	TRUE	FALSE
-BE33007C0	Vallée de la Gueule en amont de Kelmis	C	FALSE	TRUE	FALSE
-BE33027C0	Vallée de la Lembrée et affluents	C	FALSE	TRUE	FALSE
-BE33017C0	Basse vallée de l'Amblève	C	FALSE	TRUE	FALSE
-BE33034C0	Vallée de la Hoëgne	C	FALSE	TRUE	FALSE
-BE33035C0	Plateau des Hautes-Fagnes	C	FALSE	TRUE	FALSE
-BE33041C0	Fagnes de la Polleur et de Malmedy	C	FALSE	TRUE	FALSE
-BE33019C0	Vallée de la Vesdre entre Eupen et Verviers	C	FALSE	TRUE	FALSE
-BE34006C0	La Calestienne entre Oppagne et Barvaux	C	FALSE	TRUE	FALSE
-BE34005C0	La Calestienne entre Barvaux et Bomal	C	FALSE	TRUE	FALSE
-BE34007C0	Basse vallée de l'Aisne	C	FALSE	TRUE	FALSE
-BE34008C0	Camp militaire de Marche-en-Famenne	C	FALSE	TRUE	FALSE
-BE33037C0	Camp militaire d'Elsenborn	C	FALSE	TRUE	FALSE
-BE34020C0	Bassin supérieur de la Salm	C	FALSE	TRUE	FALSE
-BE34023C0	Vallée de l'Ourthe entre Nisramont et La Roche	C	FALSE	TRUE	FALSE
-BE34017C0	Fagnes de Bihain	C	FALSE	TRUE	FALSE
-BE34021B0	La Calestienne à Marche en Famenne	B	FALSE	TRUE	FALSE
-BE34016C0	Fagnes de Samrée et de Tailles	C	FALSE	TRUE	FALSE
-BE34029C0	Haute-Wamme et Masblette	C	FALSE	TRUE	FALSE
-BE34028C0	Vallée de la Lomme de Grupont à Rochefort	C	FALSE	TRUE	FALSE
-BE34036C0	Haute-Lesse	C	FALSE	TRUE	FALSE
-BE34026C0	Massif forestier de Daverdisse	C	FALSE	TRUE	FALSE
-BE34064C0	Vallées de la Vire et du Ton	C	FALSE	TRUE	FALSE
-BE34065C0	Bassin supérieur de la Vire et du Ton	C	FALSE	TRUE	FALSE
-BE34060C0	Bassin supérieur de la Chevratte	C	FALSE	TRUE	FALSE
-BE34062C0	Bassin du Ruisseau du Messancy	C	FALSE	TRUE	FALSE
+BE33043C0	Vallée de la Warche entre Butgenbach et Robertville	C	FALSE	TRUE	FALSE
+BE33046C0	Vallée de la Warche en amont de Butgenbach	C	FALSE	TRUE	FALSE
+BE33048C0	Vallée de la Lienne et affluents entre Les Trous de Bras et Habiémont	C	FALSE	TRUE	FALSE
+BE33050C0	Fagne de la Gotale et affluents du Ruisseau de Chavanne	C	FALSE	TRUE	FALSE
+BE33054C0	Vallée de l'Amblève entre Montenau et Baugné	C	FALSE	TRUE	FALSE
+BE33056C0	Haute vallée de l'Amblève entre Heppenbach et Montenau	C	FALSE	TRUE	FALSE
+BE33061C0	Affluents de l'Our entre Setz et Schoenberg	C	FALSE	TRUE	FALSE
+BE33065C0	Vallée inférieure de l'Our et ses affluents	C	FALSE	TRUE	FALSE
+BE33066B0	Grotte Jaminon	B	FALSE	TRUE	FALSE
+BE34003C0	Vallée de l'Ourthe entre Hotton et Barvaux-sur-Ourthe	C	FALSE	TRUE	FALSE
+BE34004C0	Massifs forestiers famenniens entre Hotton et Barvaux-sur-Ourthe	C	FALSE	TRUE	FALSE
+BE34011C0	La Calestienne entre Hotton et Oppagne	C	FALSE	TRUE	FALSE
+BE34018C0	Sources de la Lienne	C	FALSE	TRUE	FALSE
+BE34022C0	Basse vallée de la Wamme	C	FALSE	TRUE	FALSE
+BE34031C0	Bassin moyen de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
+BE34037C0	Haute-Lomme	C	FALSE	TRUE	FALSE
+BE34043C0	Bassin de la Semois du Maka à Bouillon	C	FALSE	TRUE	FALSE
+BE34045C0	Forêts de Muno	C	FALSE	TRUE	FALSE
+BE34046C0	Bassin de la Semois de Florenville à Auby	C	FALSE	TRUE	FALSE
+BE34047C0	Haute-Vierre	C	FALSE	TRUE	FALSE
+BE34049C0	Basse-Vierre	C	FALSE	TRUE	FALSE
+BE34050C0	Bassin de la Semois entre Tintigny et Jamoigne	C	FALSE	TRUE	FALSE
+BE34055C0	Vallée du Ruisseau de Breuvanne	C	FALSE	TRUE	FALSE
+BE34058C0	Camp militaire de Lagland	C	FALSE	TRUE	FALSE
+BE35003C0	Vallée de la Sambre en aval de la confluence avec l'Orneau	C	FALSE	TRUE	FALSE
+BE35006C0	Vallée de la Meuse de Marche-les-Dames à Andenne	C	FALSE	TRUE	FALSE
+BE35020C0	Vallée de la Meuse d'Hastière à Dinant	C	FALSE	TRUE	FALSE
+BE35022C0	Bassin de l'Iwène	C	FALSE	TRUE	FALSE
+BE35024C0	Vallées des Ruisseaux de Fenffe et du Vachau	C	FALSE	TRUE	FALSE
+BE35028C0	Bassin fagnard de l'Eau Blanche en aval de Mariembourg	C	FALSE	TRUE	FALSE
+BE35032C0	Bassin ardennais du Viroin	C	FALSE	TRUE	FALSE
+BE35036C0	Vallée du Biran	C	FALSE	TRUE	FALSE
 BE34067C0	Forêts et marais bajociens de Baranzy à Athus	C	FALSE	TRUE	FALSE
-BE35004C0	Vallée de la Meuse de Dave à Marche-les-Dames	C	FALSE	TRUE	FALSE
-BE35007C0	Forêts et lac de Bambois	C	FALSE	TRUE	FALSE
-BE35009C0	Vallée de la Meuse d'Yvoir à Dave	C	FALSE	TRUE	FALSE
-BE35005C0	Bassin du Samson	C	FALSE	TRUE	FALSE
-BE34068C0	Bois de Famenne à Humain et Aye	C	FALSE	TRUE	FALSE
-BE35001A0	Etangs de Boneffe	A	FALSE	TRUE	FALSE
-BE35002C0	Vallée de l'Orneau	C	FALSE	TRUE	FALSE
-BE35012C0	Vallée de la Meuse de Dinant à Yvoir	C	FALSE	TRUE	FALSE
-BE35027C0	Vallée de l'Eau Blanche entre Aublain et Mariembourg	C	FALSE	TRUE	FALSE
-BE35030C0	La Calestienne entre Frasnes et Doische	C	FALSE	TRUE	FALSE
-BE35015C0	Vallée du Flavion	C	FALSE	TRUE	FALSE
-BEMNZ0004	SBZ 3 / ZPS 3	A	FALSE	FALSE	FALSE
-BE35038C0	Bassin de la Lesse entre Villers-sur-Lesse et Chanly	C	FALSE	TRUE	FALSE
-BE35034C0	Vallées des Ruisseaux de Rempeine et de la Scheloupe	C	FALSE	TRUE	FALSE
-BE35044C0	Bassin du Ruisseau du Ru au Moulin	C	FALSE	TRUE	FALSE
+BE35039C0	Vallée de la Houille en aval de Gedinne	C	FALSE	TRUE	FALSE
+BE35041C0	Bassin de la Houille en amont de Gedinne	C	FALSE	TRUE	FALSE
+BEMNZ0002	SBZ 1 / ZPS 1	A	FALSE	FALSE	FALSE
+BEMNZ0003	SBZ 2 / ZPS 2	A	FALSE	FALSE	FALSE
+BE34030C0	Forêt de Freyr	C	FALSE	TRUE	FALSE
+BE34032C0	Bassin inférieur de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
+BE34033C0	Etangs de Longchamps et de Noville	C	FALSE	TRUE	FALSE
+BE2300006	Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent	B	TRUE	FALSE	FALSE
+BE2400011	Valleien van de Dijle, Laan en IJse met aangrenzende bos- en moerasgebieden	B	TRUE	FALSE	FALSE
+BE2400014	Demervallei	B	TRUE	FALSE	FALSE
+BE2100424	De Zegge	A	TRUE	FALSE	FALSE
+BE34057C0	Marais de la Haute-Semois et Bois de Heinsch	C	FALSE	TRUE	FALSE
 BE1000003	Zones boisées et zones humides de la Vallée du Molenbeek dans le Nord-Ouest de la Région bruxelloise	B	FALSE	FALSE	TRUE
 BE2100026	Valleigebied van de Kleine Nete met brongebieden, moerassen en heiden	B	TRUE	FALSE	FALSE
 BE2100040	Bovenloop van de Grote Nete met Zammelsbroek, Langdonken en Goor.	B	TRUE	FALSE	FALSE
 BE2200031	Valleien van de Laambeek, Zonderikbeek, Slangebeek en Roosterbeek met vijvergebieden.	B	TRUE	FALSE	FALSE
-BE2500003	Westvlaams Heuvelland	B	TRUE	FALSE	FALSE
 BE2200034	Itterbeek met Brand, Jagersborg en Schootsheide en Bergerven	B	TRUE	FALSE	FALSE
-BE2100424	De Zegge	A	TRUE	FALSE	FALSE
-BE2400014	Demervallei	B	TRUE	FALSE	FALSE
-BE32003C0	Pays des Collines	C	FALSE	TRUE	FALSE
-BE2101538	Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout	A	TRUE	FALSE	FALSE
 BE2200039	Voerstreek	B	TRUE	FALSE	FALSE
-BE2500932	Poldercomplex	A	TRUE	FALSE	FALSE
-BE31012C0	Vallée de la Dyle de Wavre à Archennes	C	FALSE	TRUE	FALSE
-BE32018C0	Bois de Colfontaine	C	FALSE	TRUE	FALSE
 BE2500001	Duingebieden inclusief Ijzermonding en Zwin.	B	TRUE	FALSE	FALSE
-BE2218311	Militair domein en vallei van de Zwarte Beek	A	TRUE	FALSE	FALSE
-BE32019C0	Vallée de la Trouille	C	FALSE	TRUE	FALSE
-BE2300006	Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent	B	TRUE	FALSE	FALSE
+BE2500002	Polders	B	TRUE	FALSE	FALSE
+BE2500003	Westvlaams Heuvelland	B	TRUE	FALSE	FALSE
+BE2101538	Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout	A	TRUE	FALSE	FALSE
 BE2101639	Ronde Put	A	TRUE	FALSE	FALSE
 BE2217310	Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer	A	TRUE	FALSE	FALSE
+BE2218311	Militair domein en vallei van de Zwarte Beek	A	TRUE	FALSE	FALSE
+BE2220313	Houthalen-Helchteren, Meeuwen-Gruitrode en Peer	A	TRUE	FALSE	FALSE
 BE2300222	Kuifeend en Blokkersdijk	A	TRUE	FALSE	FALSE
-BE32027C0	Vallée de la Biesmelle	C	FALSE	TRUE	FALSE
-BE32032C0	Forêts de Rance	C	FALSE	TRUE	FALSE
-BE33002B0	Basse vallée du Geer	B	FALSE	TRUE	FALSE
+BE2500932	Poldercomplex	A	TRUE	FALSE	FALSE
+BE31004C0	Vallée de la Dyle en aval d'Archennes	C	FALSE	TRUE	FALSE
+BE31012C0	Vallée de la Dyle de Wavre à Archennes	C	FALSE	TRUE	FALSE
+BE32003C0	Pays des Collines	C	FALSE	TRUE	FALSE
+BE32010C0	Marais de la Verne	C	FALSE	TRUE	FALSE
+BE32012C0	Bord nord du bassin de la Haine	C	FALSE	TRUE	FALSE
+BE32016C0	Forêt de Mariemont	C	FALSE	TRUE	FALSE
+BE32018C0	Bois de Colfontaine	C	FALSE	TRUE	FALSE
 BE33015C0	Bois d'Anthisnes et d'Esneux	C	FALSE	TRUE	FALSE
 BE33018C0	Coteaux calcaires de Theux et le Rocheux	C	FALSE	TRUE	FALSE
 BE33025C0	Fagnes du Nord-Est	C	FALSE	TRUE	FALSE
-BE2400011	Valleien van de Dijle, Laan en IJse met aangrenzende bos- en moerasgebieden	B	TRUE	FALSE	FALSE
-BE2500002	Polders	B	TRUE	FALSE	FALSE
-BE31004C0	Vallée de la Dyle en aval d'Archennes	C	FALSE	TRUE	FALSE
-BE32012C0	Bord nord du bassin de la Haine	C	FALSE	TRUE	FALSE
-BE32016C0	Forêt de Mariemont	C	FALSE	TRUE	FALSE
-BE33062C0	Vallée supérieure de l'Our et ses affluents	C	FALSE	TRUE	FALSE
-BE2220313	Houthalen-Helchteren, Meeuwen-Gruitrode en Peer	A	TRUE	FALSE	FALSE
-BE32010C0	Marais de la Verne	C	FALSE	TRUE	FALSE
+BE33026C0	Vallée de l'Ourthe entre Hamoir et Comblain-au-Pont	C	FALSE	TRUE	FALSE
+BE32019C0	Vallée de la Trouille	C	FALSE	TRUE	FALSE
 BE32022B0	Trou des Sarrazins à Loverval	B	FALSE	TRUE	FALSE
 BE32024C0	Basse-Sambre	C	FALSE	TRUE	FALSE
+BE32027C0	Vallée de la Biesmelle	C	FALSE	TRUE	FALSE
+BE32032C0	Forêts de Rance	C	FALSE	TRUE	FALSE
+BE33002B0	Basse vallée du Geer	B	FALSE	TRUE	FALSE
 BE33014C0	Vallée de l'Ourthe entre Comblain-au-Pont et Angleur	C	FALSE	TRUE	FALSE
-BE33026C0	Vallée de l'Ourthe entre Hamoir et Comblain-au-Pont	C	FALSE	TRUE	FALSE
+BE33028C0	Vallée de l'Amblève du Pont de Targnon à Remouchamps	C	FALSE	TRUE	FALSE
 BE33029C0	Basse vallée de la Lienne	C	FALSE	TRUE	FALSE
 BE33030C0	Vallée de l'Amblève de Chêneu au Pont de Targnon	C	FALSE	TRUE	FALSE
-BE33031C0	Bois de la Géronstère	C	FALSE	TRUE	FALSE
+BE33051C0	Vallée de l'Amblève entre Wanne et Coo	C	FALSE	TRUE	FALSE
+BE33058C0	Vallée du Medemberbach	C	FALSE	TRUE	FALSE
+BE33062C0	Vallée supérieure de l'Our et ses affluents	C	FALSE	TRUE	FALSE
+BE33063C0	Vallée et affluents du Braunlauf	C	FALSE	TRUE	FALSE
+BE34002C0	Vallée de l'Ourthe entre Bomal et Hamoir	C	FALSE	TRUE	FALSE
+BE34019C0	Ennal et Grand Fond	C	FALSE	TRUE	FALSE
 BE34009C0	La Calestienne entre Marenne et Hotton	C	FALSE	TRUE	FALSE
-BE33042C0	Vallées de la Warche et du Bayehon en aval du barrage de Robertville	C	FALSE	TRUE	FALSE
-BE33033C0	Vallée du Wayai et affluents	C	FALSE	TRUE	FALSE
 BE34012C0	Vallée de l'Ourthe entre La Roche et Hotton	C	FALSE	TRUE	FALSE
 BE34013C0	Haute vallée de l'Aisne	C	FALSE	TRUE	FALSE
-BE33058C0	Vallée du Medemberbach	C	FALSE	TRUE	FALSE
-BE34002C0	Vallée de l'Ourthe entre Bomal et Hamoir	C	FALSE	TRUE	FALSE
 BE34015C0	Fanges des sources de l'Aisne	C	FALSE	TRUE	FALSE
-BE33028C0	Vallée de l'Amblève du Pont de Targnon à Remouchamps	C	FALSE	TRUE	FALSE
-BE33044C0	Sources de l'Amblève	C	FALSE	TRUE	FALSE
-BE33051C0	Vallée de l'Amblève entre Wanne et Coo	C	FALSE	TRUE	FALSE
-BE33063C0	Vallée et affluents du Braunlauf	C	FALSE	TRUE	FALSE
-BE34019C0	Ennal et Grand Fond	C	FALSE	TRUE	FALSE
-BE34032C0	Bassin inférieur de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
-BE1000001	La Forêt de Soignes avec lisières et domaines boisés avoisinants et la Vallée de la Woluwe - complexe Forêt de Soignes - Vallée de la Woluwe	B	FALSE	FALSE	TRUE
 BE34027C0	Bassin de la Lomme de Poix-Saint-Hubert à Grupont	C	FALSE	TRUE	FALSE
-BE2200035	Mechelse Heide en vallei van de Ziepbeek	B	TRUE	FALSE	FALSE
-BE34057C0	Marais de la Haute-Semois et Bois de Heinsch	C	FALSE	TRUE	FALSE
+BE34034C0	Sources du Ruisseau de Tavigny	C	FALSE	TRUE	FALSE
+BE34038C0	Bassin supérieur de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
 BE34040C0	Vallée de Villers-la-Bonne-Eau	C	FALSE	TRUE	FALSE
-BE34069B0	Mare de Frassem	B	FALSE	TRUE	FALSE
-BE35013C0	Bois calcaires de Nettinne	C	FALSE	TRUE	FALSE
-BE35016C0	Vallée de la Chinelle	C	FALSE	TRUE	FALSE
-BE34041C0	Sûre frontalière	C	FALSE	TRUE	FALSE
-BE2100015	Kalmthoutse Heide	B	TRUE	FALSE	FALSE
-BE2300005	Bossen en heiden van zandig Vlaanderen: oostelijk deel	B	TRUE	FALSE	FALSE
-BE2301134	Krekengebied	A	TRUE	FALSE	FALSE
-BE2100016	Klein en Groot Schietveld	B	TRUE	FALSE	FALSE
-BE34052C0	Forêt d'Anlier	C	FALSE	TRUE	FALSE
-BE35017C0	Vallée du Ruisseau de Féron	C	FALSE	TRUE	FALSE
-BE32011C0	Forêt de Bon-Secours	C	FALSE	TRUE	FALSE
 BE34042C0	Bassin de la Semois de Bouillon à Alle	C	FALSE	TRUE	FALSE
+BE34041C0	Sûre frontalière	C	FALSE	TRUE	FALSE
+BE34052C0	Forêt d'Anlier	C	FALSE	TRUE	FALSE
 BE34066C0	Vallée du Ton et Côte bajocienne de Montquintin à Ruette	C	FALSE	TRUE	FALSE
-BE2100019	Het Blak, Kievitsheide, Ekstergoor en nabijgelegen Kamsalamanderhabitats	B	TRUE	FALSE	FALSE
-BE2200036	Plateau van Caestert met hellingbossen en mergelgrotten.	B	TRUE	FALSE	FALSE
-BE31011C0	Vallée de la Thyle	C	FALSE	TRUE	FALSE
-BE2500004	Bossen, heiden en valleigebieden van zandig Vlaanderen: westelijk deel	B	TRUE	FALSE	FALSE
-BE2200525	Bokrijk en omgeving	A	TRUE	FALSE	FALSE
-BE2501033	Het Zwin	A	TRUE	FALSE	FALSE
-BE31005C0	Vallée de la Nethen	C	FALSE	TRUE	FALSE
-BE31009B0	Carrières souterraines d'Orp-Jauche	B	FALSE	TRUE	FALSE
-BE32005C0	Vallées de la Dendre et de la Marcq	C	FALSE	TRUE	FALSE
-BE2221314	Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof	A	TRUE	FALSE	FALSE
-BE32017C0	Vallée de la Haine en aval de Mons	C	FALSE	TRUE	FALSE
-BE35040C0	Vallée de la Hulle	C	FALSE	TRUE	FALSE
-BE35047C0	Vallée du Ruisseau de Rebais	C	FALSE	TRUE	FALSE
-BE32030C0	Vallée de la Hante	C	FALSE	TRUE	FALSE
-BE32020C0	Vallée de la Princesse	C	FALSE	TRUE	FALSE
-BE32033C0	Sources de la Hante	C	FALSE	TRUE	FALSE
-BE35043C0	Vallée du Ruisseau de Saint-Jean	C	FALSE	TRUE	FALSE
-BE35049C0	Vallée du Ruisseau de Fairoul	C	FALSE	TRUE	FALSE
-BE32039C0	Vallées de l'Oise et de la Wartoise	C	FALSE	TRUE	FALSE
-BE32014C0	Vallée de la Haine en amont de Mons	C	FALSE	TRUE	FALSE
+BE34069B0	Mare de Frassem	B	FALSE	TRUE	FALSE
+BE35016C0	Vallée de la Chinelle	C	FALSE	TRUE	FALSE
 BE35035C0	Vallée de l'Ilèwe	C	FALSE	TRUE	FALSE
+BE35040C0	Vallée de la Hulle	C	FALSE	TRUE	FALSE
+BE35043C0	Vallée du Ruisseau de Saint-Jean	C	FALSE	TRUE	FALSE
+BE35047C0	Vallée du Ruisseau de Rebais	C	FALSE	TRUE	FALSE
+BE35049C0	Vallée du Ruisseau de Fairoul	C	FALSE	TRUE	FALSE
 BEMNZ0001	Vlaamse Banken	B	FALSE	FALSE	FALSE
-BE32047C0	Vallée de la Thure	C	FALSE	TRUE	FALSE
-BE33043C0	Vallée de la Warche entre Butgenbach et Robertville	C	FALSE	TRUE	FALSE
-BE33046C0	Vallée de la Warche en amont de Butgenbach	C	FALSE	TRUE	FALSE
-BE33050C0	Fagne de la Gotale et affluents du Ruisseau de Chavanne	C	FALSE	TRUE	FALSE
-BE33011C0	Vallées du Hoyoux et du Triffoy	C	FALSE	TRUE	FALSE
-BE33021C0	Osthertogenwald autour de Raeren	C	FALSE	TRUE	FALSE
-BE33032C0	Fagnes de Malchamps et de Stoumont	C	FALSE	TRUE	FALSE
-BE33038C0	Vallée de la Schwalm	C	FALSE	TRUE	FALSE
-BE33048C0	Vallée de la Lienne et affluents entre Les Trous de Bras et Habiémont	C	FALSE	TRUE	FALSE
-BE33001B0	Sources du Geer	B	FALSE	TRUE	FALSE
-BE33004C0	Basse Meuse et Meuse mitoyenne	C	FALSE	TRUE	FALSE
-BE33016C0	Basse vallée de la Vesdre	C	FALSE	TRUE	FALSE
-BE33020C0	Affluents du lac d'Eupen	C	FALSE	TRUE	FALSE
-BE33024C0	Vallée de la Helle	C	FALSE	TRUE	FALSE
-BE32040C0	Haute vallée de l'Eau Noire	C	FALSE	TRUE	FALSE
-BE34004C0	Massifs forestiers famenniens entre Hotton et Barvaux-sur-Ourthe	C	FALSE	TRUE	FALSE
-BE34049C0	Basse-Vierre	C	FALSE	TRUE	FALSE
-BE33065C0	Vallée inférieure de l'Our et ses affluents	C	FALSE	TRUE	FALSE
-BE33056C0	Haute vallée de l'Amblève entre Heppenbach et Montenau	C	FALSE	TRUE	FALSE
-BE33066B0	Grotte Jaminon	B	FALSE	TRUE	FALSE
-BE34003C0	Vallée de l'Ourthe entre Hotton et Barvaux-sur-Ourthe	C	FALSE	TRUE	FALSE
-BE33054C0	Vallée de l'Amblève entre Montenau et Baugné	C	FALSE	TRUE	FALSE
-BE33061C0	Affluents de l'Our entre Setz et Schoenberg	C	FALSE	TRUE	FALSE
-BE34022C0	Basse vallée de la Wamme	C	FALSE	TRUE	FALSE
-BE34011C0	La Calestienne entre Hotton et Oppagne	C	FALSE	TRUE	FALSE
-BE34031C0	Bassin moyen de l'Ourthe occidentale	C	FALSE	TRUE	FALSE
-BE34018C0	Sources de la Lienne	C	FALSE	TRUE	FALSE
-BE34047C0	Haute-Vierre	C	FALSE	TRUE	FALSE
-BE34043C0	Bassin de la Semois du Maka à Bouillon	C	FALSE	TRUE	FALSE
-BE34037C0	Haute-Lomme	C	FALSE	TRUE	FALSE
-BE34045C0	Forêts de Muno	C	FALSE	TRUE	FALSE
-BE35036C0	Vallée du Biran	C	FALSE	TRUE	FALSE
-BE35039C0	Vallée de la Houille en aval de Gedinne	C	FALSE	TRUE	FALSE
-BE34046C0	Bassin de la Semois de Florenville à Auby	C	FALSE	TRUE	FALSE
-BE35006C0	Vallée de la Meuse de Marche-les-Dames à Andenne	C	FALSE	TRUE	FALSE
-BE35020C0	Vallée de la Meuse d'Hastière à Dinant	C	FALSE	TRUE	FALSE
-BE35024C0	Vallées des Ruisseaux de Fenffe et du Vachau	C	FALSE	TRUE	FALSE
-BE34055C0	Vallée du Ruisseau de Breuvanne	C	FALSE	TRUE	FALSE
-BE35041C0	Bassin de la Houille en amont de Gedinne	C	FALSE	TRUE	FALSE
-BE34058C0	Camp militaire de Lagland	C	FALSE	TRUE	FALSE
-BEMNZ0002	SBZ 1 / ZPS 1	A	FALSE	FALSE	FALSE
-BE35003C0	Vallée de la Sambre en aval de la confluence avec l'Orneau	C	FALSE	TRUE	FALSE
-BE35028C0	Bassin fagnard de l'Eau Blanche en aval de Mariembourg	C	FALSE	TRUE	FALSE
-BEMNZ0003	SBZ 2 / ZPS 2	A	FALSE	FALSE	FALSE
-BE35022C0	Bassin de l'Iwène	C	FALSE	TRUE	FALSE
-BE35032C0	Bassin ardennais du Viroin	C	FALSE	TRUE	FALSE
+BE33012C0	Affluents de la Meuse entre Huy et Flémalle	C	FALSE	TRUE	FALSE
+BE33034C0	Vallée de la Hoëgne	C	FALSE	TRUE	FALSE
+BE35034C0	Vallées des Ruisseaux de Rempeine et de la Scheloupe	C	FALSE	TRUE	FALSE
+BE2200029	Vallei- en brongebied van de Zwarte Beek, Bolisserbeek en Dommel met heide en vengebieden.	B	TRUE	FALSE	FALSE
+BE1000002	Zones boisées et ouvertes au Sud de la Région bruxelloise - complexe Verrewinkel - Kinsendael	B	FALSE	FALSE	TRUE
+BE2100020	Heesbossen, Vallei van Marke en Merkske en Ringven met valleigronden langs de Heerlese Loop	B	TRUE	FALSE	FALSE
+BE2100045	Historische fortengordels van Antwerpen als vleermuizenhabitat.	B	TRUE	FALSE	FALSE
+BE2200028	De Maten	B	TRUE	FALSE	FALSE
+BE2300007	Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen.	B	TRUE	FALSE	FALSE
+BE2200626	De Maten	A	TRUE	FALSE	FALSE
+BE2200727	De Mechelse Heide en de Vallei van de Ziepbeek	A	TRUE	FALSE	FALSE
+BE2223316	De Demervallei	A	TRUE	FALSE	FALSE
+BE2300044	Bossen van het zuidoosten van de Zandleemstreek	B	TRUE	FALSE	FALSE
+BE2400009	Hallerbos en nabije boscomplexen met brongebieden en heiden	B	TRUE	FALSE	FALSE
+BE2400010	Valleigebied tussen Melsbroek, Kampenhout, Kortemberg en Veltem.	B	TRUE	FALSE	FALSE
+BE2400012	Valleien van de Winge en de Motte met valleihellingen.	B	TRUE	FALSE	FALSE
+BE2301235	Durme en Middenloop van de Schelde	A	TRUE	FALSE	FALSE
+BE2301336	Schorren en Polders van de Beneden-Schelde	A	TRUE	FALSE	FALSE
+BE2422315	De Dijlevallei	A	TRUE	FALSE	FALSE
+BE2500121	Westkust	A	TRUE	FALSE	FALSE
+BE2524317	Kustbroedvogels te Zeebrugge-Heist	A	TRUE	FALSE	FALSE
+BE31002C0	Vallées de l'Argentine et de la Lasne	C	FALSE	TRUE	FALSE
+BE31003C0	Vallée de la Lasne	C	FALSE	TRUE	FALSE
+BE31006C0	Vallée de la Dyle à Ottignies	C	FALSE	TRUE	FALSE
+BE33017C0	Basse vallée de l'Amblève	C	FALSE	TRUE	FALSE
+BE33019C0	Vallée de la Vesdre entre Eupen et Verviers	C	FALSE	TRUE	FALSE
+BE31007C0	Vallée du Train	C	FALSE	TRUE	FALSE
+BE31008C0	Carrière de Dongelberg	C	FALSE	TRUE	FALSE
+BE35038C0	Bassin de la Lesse entre Villers-sur-Lesse et Chanly	C	FALSE	TRUE	FALSE
+BE35044C0	Bassin du Ruisseau du Ru au Moulin	C	FALSE	TRUE	FALSE
+BE31010C0	Sources de la Dyle	C	FALSE	TRUE	FALSE
+BE32001C0	Vallée de la Lys	C	FALSE	TRUE	FALSE
+BE32006C0	Bois d'Enghien et de Silly	C	FALSE	TRUE	FALSE
+BE32031C0	Bois de Vieux Sart et de Montbliart	C	FALSE	TRUE	FALSE
+BE32021C0	Haute-Sambre en aval de Thuin	C	FALSE	TRUE	FALSE
+BE32023C0	Vallée du Ruisseau d'Acoz	C	FALSE	TRUE	FALSE
+BE32025C0	Haut-Pays des Honnelles	C	FALSE	TRUE	FALSE
+BE32036C0	Vallée de l'Eau Blanche à Virelles	C	FALSE	TRUE	FALSE
+BE32038C0	Bois de Bourlers et de Baileux	C	FALSE	TRUE	FALSE
+BE32026C0	Haute-Sambre en amont de Thuin	C	FALSE	TRUE	FALSE
+BE32029C0	Haute vallée de la Thure	C	FALSE	TRUE	FALSE
+BE32041B0	Trou aux Feuilles	B	FALSE	TRUE	FALSE
+BE32044C0	Bassin de l'Escaut en amont de Tournai	C	FALSE	TRUE	FALSE
+BE32045C0	Vallée de l'Aubrecheuil	C	FALSE	TRUE	FALSE
+BE33003C0	Montagne Saint-Pierre	C	FALSE	TRUE	FALSE
+BE34006C0	La Calestienne entre Oppagne et Barvaux	C	FALSE	TRUE	FALSE
+BE34007C0	Basse vallée de l'Aisne	C	FALSE	TRUE	FALSE
+BE33027C0	Vallée de la Lembrée et affluents	C	FALSE	TRUE	FALSE
+BE33035C0	Plateau des Hautes-Fagnes	C	FALSE	TRUE	FALSE
+BE33037C0	Camp militaire d'Elsenborn	C	FALSE	TRUE	FALSE
+BE33041C0	Fagnes de la Polleur et de Malmedy	C	FALSE	TRUE	FALSE
+BE34005C0	La Calestienne entre Barvaux et Bomal	C	FALSE	TRUE	FALSE
+BE34008C0	Camp militaire de Marche-en-Famenne	C	FALSE	TRUE	FALSE
+BE34016C0	Fagnes de Samrée et de Tailles	C	FALSE	TRUE	FALSE
+BE34017C0	Fagnes de Bihain	C	FALSE	TRUE	FALSE
+BE34020C0	Bassin supérieur de la Salm	C	FALSE	TRUE	FALSE
+BE34021B0	La Calestienne à Marche en Famenne	B	FALSE	TRUE	FALSE
+BE34023C0	Vallée de l'Ourthe entre Nisramont et La Roche	C	FALSE	TRUE	FALSE
+BE34026C0	Massif forestier de Daverdisse	C	FALSE	TRUE	FALSE
+BE34028C0	Vallée de la Lomme de Grupont à Rochefort	C	FALSE	TRUE	FALSE
+BE34029C0	Haute-Wamme et Masblette	C	FALSE	TRUE	FALSE
+BE34036C0	Haute-Lesse	C	FALSE	TRUE	FALSE
+BE34060C0	Bassin supérieur de la Chevratte	C	FALSE	TRUE	FALSE
+BE34062C0	Bassin du Ruisseau du Messancy	C	FALSE	TRUE	FALSE
+BE34064C0	Vallées de la Vire et du Ton	C	FALSE	TRUE	FALSE
+BE34065C0	Bassin supérieur de la Vire et du Ton	C	FALSE	TRUE	FALSE
+BE34068C0	Bois de Famenne à Humain et Aye	C	FALSE	TRUE	FALSE
+BE35001A0	Etangs de Boneffe	A	FALSE	TRUE	FALSE
+BE35002C0	Vallée de l'Orneau	C	FALSE	TRUE	FALSE
+BE35004C0	Vallée de la Meuse de Dave à Marche-les-Dames	C	FALSE	TRUE	FALSE
+BE35005C0	Bassin du Samson	C	FALSE	TRUE	FALSE
+BE35007C0	Forêts et lac de Bambois	C	FALSE	TRUE	FALSE
+BE35009C0	Vallée de la Meuse d'Yvoir à Dave	C	FALSE	TRUE	FALSE
+BE35012C0	Vallée de la Meuse de Dinant à Yvoir	C	FALSE	TRUE	FALSE
+BE35015C0	Vallée du Flavion	C	FALSE	TRUE	FALSE
+BE35027C0	Vallée de l'Eau Blanche entre Aublain et Mariembourg	C	FALSE	TRUE	FALSE
+BE35030C0	La Calestienne entre Frasnes et Doische	C	FALSE	TRUE	FALSE
+BE35046C0	Vallée du Ruisseau de Gros Fays	C	FALSE	TRUE	FALSE
+BEMNZ0004	SBZ 3 / ZPS 3	A	FALSE	FALSE	FALSE
+BE33031C0	Bois de la Géronstère	C	FALSE	TRUE	FALSE
+BE33033C0	Vallée du Wayai et affluents	C	FALSE	TRUE	FALSE
+BE33042C0	Vallées de la Warche et du Bayehon en aval du barrage de Robertville	C	FALSE	TRUE	FALSE
