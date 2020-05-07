@@ -741,14 +741,12 @@ taxonKey	canonicalName	kingdom	class	em_pts	mean_growth	year_2018_em_status_occu
 3025617	Cotoneaster horizontalis	Plantae	Magnoliopsida	13.5	0.9021663950847228	1	0	1	0	1	0	1	0	1	0	1	0	6	220
 5284884	Picea abies	Plantae	Pinopsida	13.5	0.8765671858485987	1	0	1	0	1	0	1	0	1	0	1	0	6	194
 2498090	Anas bahamensis	Animalia	Aves	13.5	0.8748332158912228	1	1	0	0	1	1	0	0	1	1	0	0	1	212
-2498036	Anser anser	Animalia	Aves	13.5	0.870058708035974	1	0	1	0	1	0	1	0	1	0	1	0	1	212
 2957408	Senna obtusifolia	Plantae	Magnoliopsida	13.5	0.8420213800773034			2	1			2	1			0	1	6	220
 2498305	Oxyura jamaicensis	Animalia	Aves	13.5	0.8389107439300582	1	0	1	0	1	0	1	0	1	0	1	0	1	212
 2891774	Impatiens capensis	Plantae	Magnoliopsida	13.5	0.8255751700543806	1	0	1	0	1	0	1	0	1	0	1	0	6	220
 2287249	Ensis directus	Animalia	Bivalvia	13.5	0.820427788527882	1	0	1	0	1	0	1	0	1	0	1	0	1	137
 2498165	Chen caerulescens	Animalia	Aves	13.5	0.8125775950936792	1	0	1	0	1	0	1	0	1	0	1	0	1	212
 8190077	Populus canadensis	Plantae	Magnoliopsida	13.5	0.8036451387125635	1	0	1	0	1	0	1	0	1	0	1	0	6	220
-2498027	Anser fabalis	Animalia	Aves	13.5	0.794493740386309	1	0	1	0	1	0	1	0	1	0	1	0	1	212
 3146683	Erigeron sumatrensis	Plantae	Magnoliopsida	13.5	0.7666111116178093	1	0	1	0	1	0	1	0	1	0	1	0	6	220
 7978544	Hydrocotyle ranunculoides	Plantae	Magnoliopsida	13.5	0.7530398886561214	1	0	1	0	1	0	1	0	1	0	1	0	6	220
 5285565	Pinus pinaster	Plantae	Pinopsida	13.5	0.7219884235448958	1	0	1	0	1	0	1	0	1	0	1	0	6	194
@@ -871,7 +869,6 @@ taxonKey	canonicalName	kingdom	class	em_pts	mean_growth	year_2018_em_status_occu
 2683866	Chamaecyparis lawsoniana	Plantae	Pinopsida	7.5	0.9706600972060179	1	0	0	0	1	0	0	0	1	0	0	0	6	194
 3040185	Populus canescens	Plantae	Magnoliopsida	7.5	0.8732585723400077	1	0	0	0	1	0	0	0	1	0	0	0	6	220
 6157026	Trachemys scripta elegans	Animalia	Reptilia	7.5	0.8551218733607655	1	0	0	0	1	0	0	0	1	0	0	0	1	358
-5232464	Branta leucopsis	Animalia	Aves	7.5	0.7798024490029954	1	0	0	0	1	0	0	0	1	0	0	0	1	212
 5217334	Xenopus laevis	Animalia	Amphibia	6.5	NaN				1				1				3	1	131
 2685796	Pseudotsuga menziesii	Plantae	Pinopsida	6	0.8639704745071848	0	0	1	0	0	0	1	0	0	0	1	0	6	194
 2337607	Silurus glanis	Animalia	Actinopterygii	6	0.7735647113586591	0	0	1	0	0	0	1	0	0	0	1	0	1	204
