@@ -187,7 +187,7 @@ speciesProfiles <- taxa %>%
 head(speciesProfiles)
 ```
 
-## Merge data
+# Merge data
 
 Merge distribution, description and species profile information:
 
@@ -207,11 +207,11 @@ merged_info <- left_join(taxa, merged_extensions,
 merged_extensions %>% head(n = 100)
 ```
 
-## Tidy data
+# Tidy data
 
 Some columns should be splitted in order to make the data.frame completely tidy: `temporal` and `pathway`.
 
-### Split column `temporal`
+## Split column `temporal`
 
 The column `temporal` contains one or two datums:
 
@@ -253,7 +253,7 @@ merged_info %>%
   head(10)
 ```
 
-### Split column `pathway`
+## Split column `pathway`
 
 The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels as it is a level 2 pathway of level 1 `unaided`):
 
@@ -343,9 +343,9 @@ merged_info %>%
   arrange(pathway_level1)
 ```
 
-## Save data output
+# Save data
 
-### Remove some taxa
+## Remove some taxa
 
 We remove the following species:
 
