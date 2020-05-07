@@ -1,39 +1,39 @@
 SITECODE,SITENAME,SITETYPE,n_taxa,n_obs,flanders,wallonia,brussels
-BE2300006,Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent,B,821,4499,TRUE,FALSE,FALSE
-BE2500001,Duingebieden inclusief Ijzermonding en Zwin.,B,617,3498,TRUE,FALSE,FALSE
-BE2300007,Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen.,B,467,2588,TRUE,FALSE,FALSE
-BE2500002,Polders,B,430,1827,TRUE,FALSE,FALSE
-BE2100017,Bos- en heidegebieden ten oosten van Antwerpen,B,403,1851,TRUE,FALSE,FALSE
-BE2100026,"Valleigebied van de Kleine Nete met brongebieden, moerassen en heiden",B,401,2087,TRUE,FALSE,FALSE
-BE2400014,Demervallei,B,393,2017,TRUE,FALSE,FALSE
-BE2100045,Historische fortengordels van Antwerpen als vleermuizenhabitat.,B,384,1696,TRUE,FALSE,FALSE
-BE2500004,"Bossen, heiden en valleigebieden van zandig Vlaanderen: westelijk deel",B,373,1495,TRUE,FALSE,FALSE
-BE2300005,Bossen en heiden van zandig Vlaanderen: oostelijk deel,B,371,1773,TRUE,FALSE,FALSE
-BE2200037,Uiterwaarden langs de Limburgse Maas met Vijverbroek,B,361,1807,TRUE,FALSE,FALSE
-BE2300044,Bossen van het zuidoosten van de Zandleemstreek,B,357,1689,TRUE,FALSE,FALSE
-BE2100040,"Bovenloop van de Grote Nete met Zammelsbroek, Langdonken en Goor.",B,345,1662,TRUE,FALSE,FALSE
-BE2400011,"Valleien van de Dijle, Laan en IJse met aangrenzende bos- en moerasgebieden",B,337,1564,TRUE,FALSE,FALSE
-BE2400012,Valleien van de Winge en de Motte met valleihellingen.,B,335,1405,TRUE,FALSE,FALSE
-BE2200031,"Valleien van de Laambeek, Zonderikbeek, Slangebeek en Roosterbeek met vijvergebieden.",B,319,1568,TRUE,FALSE,FALSE
-BE2100024,"Vennen, heiden en moerassen rond Turnhout",B,283,1205,TRUE,FALSE,FALSE
-BE2200038,Bossen en kalkgraslanden van Haspengouw,B,252,1169,TRUE,FALSE,FALSE
-BE2200029,"Vallei- en brongebied van de Zwarte Beek, Bolisserbeek en Dommel met heide en vengebieden.",B,246,1127,TRUE,FALSE,FALSE
-BE2200032,"Hageven met Dommelvallei, Beverbeekse Heide, Warmbeek en Wateringen",B,246,1057,TRUE,FALSE,FALSE
-BE2400009,Hallerbos en nabije boscomplexen met brongebieden en heiden,B,242,1094,TRUE,FALSE,FALSE
-BE2100016,Klein en Groot Schietveld,B,230,961,TRUE,FALSE,FALSE
-BE2500003,Westvlaams Heuvelland,B,212,804,TRUE,FALSE,FALSE
-BE2400010,"Valleigebied tussen Melsbroek, Kampenhout, Kortemberg en Veltem.",B,207,838,TRUE,FALSE,FALSE
-BE2200035,Mechelse Heide en vallei van de Ziepbeek,B,199,737,TRUE,FALSE,FALSE
-BE2200033,Abeek met aangrenzende moerasgebieden,B,193,812,TRUE,FALSE,FALSE
-BE2200042,Overgang Kempen-Haspengouw,B,187,757,TRUE,FALSE,FALSE
-BE2400008,Zoniënwoud,B,186,740,TRUE,FALSE,FALSE
-BE2100019,"Het Blak, Kievitsheide, Ekstergoor en nabijgelegen Kamsalamanderhabitats",B,183,697,TRUE,FALSE,FALSE
-BE2100015,Kalmthoutse Heide,B,175,771,TRUE,FALSE,FALSE
-BE2200039,Voerstreek,B,175,754,TRUE,FALSE,FALSE
-BE2200028,De Maten,B,172,619,TRUE,FALSE,FALSE
-BE2200034,"Itterbeek met Brand, Jagersborg en Schootsheide en Bergerven",B,166,535,TRUE,FALSE,FALSE
-BE2200041,Jekervallei en bovenloop van de Demervallei,B,165,666,TRUE,FALSE,FALSE
-BE2200030,Mangelbeek en heide- en vengebieden tussen Houthalen en Gruitrode,B,159,690,TRUE,FALSE,FALSE
-BE2200036,Plateau van Caestert met hellingbossen en mergelgrotten.,B,159,482,TRUE,FALSE,FALSE
-BE2200043,Bosbeekvallei en aangrenzende bos- en heidegebieden te As-Opglabbeek-Maaseik,B,152,530,TRUE,FALSE,FALSE
-BE2100020,"Heesbossen, Vallei van Marke en Merkske en Ringven met valleigronden langs de Heerlese Loop",B,130,533,TRUE,FALSE,FALSE
+BE2300006,Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent,B,847,4625,TRUE,FALSE,FALSE
+BE2500001,Duingebieden inclusief Ijzermonding en Zwin.,B,638,3588,TRUE,FALSE,FALSE
+BE2300007,Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen.,B,480,2656,TRUE,FALSE,FALSE
+BE2500002,Polders,B,444,1825,TRUE,FALSE,FALSE
+BE2100017,Bos- en heidegebieden ten oosten van Antwerpen,B,415,1875,TRUE,FALSE,FALSE
+BE2100026,"Valleigebied van de Kleine Nete met brongebieden, moerassen en heiden",B,411,2095,TRUE,FALSE,FALSE
+BE2400014,Demervallei,B,408,2068,TRUE,FALSE,FALSE
+BE2100045,Historische fortengordels van Antwerpen als vleermuizenhabitat.,B,396,1726,TRUE,FALSE,FALSE
+BE2300005,Bossen en heiden van zandig Vlaanderen: oostelijk deel,B,385,1812,TRUE,FALSE,FALSE
+BE2500004,"Bossen, heiden en valleigebieden van zandig Vlaanderen: westelijk deel",B,384,1520,TRUE,FALSE,FALSE
+BE2200037,Uiterwaarden langs de Limburgse Maas met Vijverbroek,B,376,1827,TRUE,FALSE,FALSE
+BE2300044,Bossen van het zuidoosten van de Zandleemstreek,B,371,1717,TRUE,FALSE,FALSE
+BE2100040,"Bovenloop van de Grote Nete met Zammelsbroek, Langdonken en Goor.",B,357,1685,TRUE,FALSE,FALSE
+BE2400011,"Valleien van de Dijle, Laan en IJse met aangrenzende bos- en moerasgebieden",B,348,1602,TRUE,FALSE,FALSE
+BE2400012,Valleien van de Winge en de Motte met valleihellingen.,B,346,1430,TRUE,FALSE,FALSE
+BE2200031,"Valleien van de Laambeek, Zonderikbeek, Slangebeek en Roosterbeek met vijvergebieden.",B,330,1593,TRUE,FALSE,FALSE
+BE2100024,"Vennen, heiden en moerassen rond Turnhout",B,294,1197,TRUE,FALSE,FALSE
+BE2200038,Bossen en kalkgraslanden van Haspengouw,B,261,1199,TRUE,FALSE,FALSE
+BE2200029,"Vallei- en brongebied van de Zwarte Beek, Bolisserbeek en Dommel met heide en vengebieden.",B,254,1148,TRUE,FALSE,FALSE
+BE2200032,"Hageven met Dommelvallei, Beverbeekse Heide, Warmbeek en Wateringen",B,254,1067,TRUE,FALSE,FALSE
+BE2400009,Hallerbos en nabije boscomplexen met brongebieden en heiden,B,251,1132,TRUE,FALSE,FALSE
+BE2100016,Klein en Groot Schietveld,B,236,953,TRUE,FALSE,FALSE
+BE2500003,Westvlaams Heuvelland,B,220,819,TRUE,FALSE,FALSE
+BE2400010,"Valleigebied tussen Melsbroek, Kampenhout, Kortemberg en Veltem.",B,216,855,TRUE,FALSE,FALSE
+BE2200035,Mechelse Heide en vallei van de Ziepbeek,B,209,753,TRUE,FALSE,FALSE
+BE2200033,Abeek met aangrenzende moerasgebieden,B,198,803,TRUE,FALSE,FALSE
+BE2200042,Overgang Kempen-Haspengouw,B,195,774,TRUE,FALSE,FALSE
+BE2400008,Zoniënwoud,B,191,762,TRUE,FALSE,FALSE
+BE2100019,"Het Blak, Kievitsheide, Ekstergoor en nabijgelegen Kamsalamanderhabitats",B,188,671,TRUE,FALSE,FALSE
+BE2200039,Voerstreek,B,184,790,TRUE,FALSE,FALSE
+BE2100015,Kalmthoutse Heide,B,182,773,TRUE,FALSE,FALSE
+BE2200028,De Maten,B,179,605,TRUE,FALSE,FALSE
+BE2200041,Jekervallei en bovenloop van de Demervallei,B,173,701,TRUE,FALSE,FALSE
+BE2200034,"Itterbeek met Brand, Jagersborg en Schootsheide en Bergerven",B,168,514,TRUE,FALSE,FALSE
+BE2200036,Plateau van Caestert met hellingbossen en mergelgrotten.,B,167,494,TRUE,FALSE,FALSE
+BE2200030,Mangelbeek en heide- en vengebieden tussen Houthalen en Gruitrode,B,165,694,TRUE,FALSE,FALSE
+BE2200043,Bosbeekvallei en aangrenzende bos- en heidegebieden te As-Opglabbeek-Maaseik,B,162,546,TRUE,FALSE,FALSE
+BE2100020,"Heesbossen, Vallei van Marke en Merkske en Ringven met valleigronden langs de Heerlese Loop",B,138,530,TRUE,FALSE,FALSE

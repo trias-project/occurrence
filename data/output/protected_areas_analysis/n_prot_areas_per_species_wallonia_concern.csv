@@ -1,4 +1,4 @@
-scientificName,n_prot_areas,mean_coverage,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
+scientificName,n_prot_areas,mean_coverage,taxonKey,kingdom,phylum,order,class,genus,family,species,rank,includes
 "Alopochen aegyptiaca (Linnaeus, 1766)",198,0.12533113237969476,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
 Impatiens glandulifera Royle,161,0.06117583069209832,2891770,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens glandulifera,SPECIES,2891770: Impatiens glandulifera Royle | 2891771: Impatiens roylei Walpers
 "Procyon lotor (Linnaeus, 1758)",157,0.060564657566409455,5218786,Animalia,Chordata,Carnivora,Mammalia,Procyon,Procyonidae,Procyon lotor,SPECIES,"5218786: Procyon lotor (Linnaeus, 1758)"

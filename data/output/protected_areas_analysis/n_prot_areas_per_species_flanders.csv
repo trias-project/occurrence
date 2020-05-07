@@ -1,5 +1,4 @@
-scientificName,n_prot_areas,mean_coverage,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
-"Anser anser (Linnaeus, 1758)",62,0.32598757385540555,2498036,Animalia,Chordata,Anseriformes,Aves,Anser,Anatidae,Anser anser,SPECIES,"2498036: Anser anser (Linnaeus, 1758) | 6178331: Anser anser rubrirostris Swinhoe, 1871 | 7061271: Anser anser anser | 9384117: Anser anser f. domesticus"
+scientificName,n_prot_areas,mean_coverage,taxonKey,kingdom,phylum,order,class,genus,family,species,rank,includes
 "Alopochen aegyptiaca (Linnaeus, 1766)",62,0.24814494442775573,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
 "Branta canadensis (Linnaeus, 1758)",62,0.23754832948567137,5232437,Animalia,Chordata,Anseriformes,Aves,Branta,Anatidae,Branta canadensis,SPECIES,"5232437: Branta canadensis (Linnaeus, 1758) | 5232443: Branta canadensis parvipes (Cassin, 1852) | 7191098: Branta canadensis canadensis"
 "Phasianus colchicus Linnaeus, 1758",62,0.19595939991569436,9752149,Animalia,Chordata,Galliformes,Aves,Phasianus,Phasianidae,Phasianus colchicus,SPECIES,"5227796: Phasianus colchicus torquatus Gmelin, 1789 | 9208710: Phasianus colchicus colchicus | 9752149: Phasianus colchicus Linnaeus, 1758"
@@ -30,9 +29,9 @@ Datura stramonium L.,60,0.02963577906114142,2928751,Plantae,Tracheophyta,Solanal
 Pilosella aurantiaca (L.) F.W.Schultz & Sch.Bip.,60,0.02690858903725902,3122924,Plantae,Tracheophyta,Asterales,Magnoliopsida,Pilosella,Asteraceae,Pilosella aurantiaca,SPECIES,3122924: Pilosella aurantiaca (L.) F.W.Schultz & Sch.Bip. | 3136120: Hieracium aurantiacum L.
 Digitaria sanguinalis (L.) Scop.,60,0.026754910528637512,5289972,Plantae,Tracheophyta,Poales,Liliopsida,Digitaria,Poaceae,Digitaria sanguinalis,SPECIES,5289972: Digitaria sanguinalis (L.) Scop. | 5675253: Digitaria sanguinalis subsp. pectiniformis Henrard | 7931699: Digitaria sanguinalis var. sanguinalis
 Alnus incana (L.) Moench,60,0.025677133549964957,9148577,Plantae,Tracheophyta,Fagales,Magnoliopsida,Alnus,Betulaceae,Alnus incana,SPECIES,9148577: Alnus incana (L.) Moench
-"Branta leucopsis (Bechstein, 1803)",59,0.14988342889692663,5232464,Animalia,Chordata,Anseriformes,Aves,Branta,Anatidae,Branta leucopsis,SPECIES,"5232464: Branta leucopsis (Bechstein, 1803)"
 Pinus sylvestris L.,59,0.06437632655237235,5285637,Plantae,Tracheophyta,Pinales,Pinopsida,Pinus,Pinaceae,Pinus sylvestris,SPECIES,5285637: Pinus sylvestris L.
 "Aix galericulata (Linnaeus, 1758)",59,0.06064674405935381,2498388,Animalia,Chordata,Anseriformes,Aves,Aix,Anatidae,Aix galericulata,SPECIES,"2498388: Aix galericulata (Linnaeus, 1758)"
+Lamium galeobdolon subsp. argentatum (Smejkal) J.Duvign.,59,0.05220554517576933,6411098,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Lamium,Lamiaceae,Lamium galeobdolon,SUBSPECIES,6411098: Lamium galeobdolon subsp. argentatum (Smejkal) J.Duvign. | 3894182: Lamiastrum galeobdolon subsp. argentatum (Smejkal) Stace
 Bidens frondosa L.,59,0.047710005975927276,5392174,Plantae,Tracheophyta,Asterales,Magnoliopsida,Bidens,Asteraceae,Bidens frondosa,SPECIES,5392174: Bidens frondosa L. | 5700912: Bidens frondosa var. anomala Porter ex Fern. | 7872129: Bidens frondosa var. frondosa
 Heracleum mantegazzianum Sommier & Levier,59,0.030350371933090058,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier
 Symphoricarpos albus (L.) C.Koch,59,0.029606998541023017,7523753,Plantae,Tracheophyta,Dipsacales,Magnoliopsida,Symphoricarpos,Caprifoliaceae,Symphoricarpos albus,SPECIES,2888634: Symphoricarpos albus (L.) S.F.Blake | 6369607: Symphoricarpos albus var. laevigatus S.F.Blake | 7523753: Symphoricarpos albus (L.) C.Koch
@@ -56,6 +55,7 @@ Lunaria annua L.,57,0.023573177294257033,5373324,Plantae,Tracheophyta,Brassicale
 Setaria viridis (L.) P.Beauv.,57,0.020932935992413998,5289684,Plantae,Tracheophyta,Poales,Liliopsida,Setaria,Poaceae,Setaria viridis,SPECIES,5289684: Setaria viridis (L.) P.Beauv. | 5708237: Setaria viridis var. viridis | 8348897: Setaria viridis var. major (Gaudin) Posp.
 "Anser indicus (Latham, 1790)",56,0.06525529691019183,2498035,Animalia,Chordata,Anseriformes,Aves,Anser,Anatidae,Anser indicus,SPECIES,"2498035: Anser indicus (Latham, 1790)"
 "Campylopus introflexus Bridel, 1819",56,0.04017628769595135,5281901,Plantae,Bryophyta,Dicranales,Bryopsida,Campylopus,Dicranaceae,Campylopus introflexus,SPECIES,"5281901: Campylopus introflexus Bridel, 1819"
+"Trachemys scripta elegans (Wied, 1838)",56,0.039619312835111074,6157026,Animalia,Chordata,Testudines,Reptilia,Trachemys,Emydidae,Trachemys scripta,SUBSPECIES,"6157026: Trachemys scripta elegans (Wied, 1838)"
 "Cyprinus carpio Linnaeus, 1758",56,0.03350202162006487,4286975,Animalia,Chordata,Cypriniformes,Actinopterygii,Cyprinus,Cyprinidae,Cyprinus carpio,SPECIES,"4286975: Cyprinus carpio Linnaeus, 1758 | 7059109: Cyprinus carpio carpio | 8732936: Cyprinus carpio var. carpio"
 Solidago canadensis L.,56,0.026017976233346864,5389029,Plantae,Tracheophyta,Asterales,Magnoliopsida,Solidago,Asteraceae,Solidago canadensis,SPECIES,5389029: Solidago canadensis L.
 Geranium pyrenaicum Burm.f.,55,0.03022951291879592,2890122,Plantae,Tracheophyta,Geraniales,Magnoliopsida,Geranium,Geraniaceae,Geranium pyrenaicum,SPECIES,2890122: Geranium pyrenaicum Burm.f.
@@ -67,6 +67,8 @@ Tanacetum parthenium Sch.Bip.,55,0.017456320849913144,3118430,Plantae,Tracheophy
 Fagopyrum esculentum Moench,55,0.015476628790163606,2889373,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Fagopyrum,Polygonaceae,Fagopyrum esculentum,SPECIES,2889373: Fagopyrum esculentum Moench | 5334482: Polygonum fagopyrum L.
 Amelanchier lamarckii F.G.Schroed.,54,0.02857490265632816,3024109,Plantae,Tracheophyta,Rosales,Magnoliopsida,Amelanchier,Rosaceae,Amelanchier lamarckii,SPECIES,3024109: Amelanchier lamarckii F.G.Schroed.
 Setaria verticillata (L.) P.Beauv.,54,0.021774851831682263,5289686,Plantae,Tracheophyta,Poales,Liliopsida,Setaria,Poaceae,Setaria verticillata,SPECIES,5289670: Setaria adhaerens (Forssk.) Chiov. | 5289686: Setaria verticillata (L.) P.Beauv. | 7226776: Setaria verticillata var. verticillata | 7908347: Setaria verticillata var. ambigua (Guss.) Parl.
+Carex pendula Huds.,53,0.03454739412105917,2722051,Plantae,Tracheophyta,Poales,Liliopsida,Carex,Cyperaceae,Carex pendula,SPECIES,2722051: Carex pendula Huds.
+Pastinaca sativa subsp. sativa,53,0.030391302504895443,7224157,Plantae,Tracheophyta,Apiales,Magnoliopsida,Pastinaca,Apiaceae,Pastinaca sativa,SUBSPECIES,7224157: Pastinaca sativa subsp. sativa
 Prunus laurocerasus L.,53,0.02920841340930059,3021496,Plantae,Tracheophyta,Rosales,Magnoliopsida,Prunus,Rosaceae,Prunus laurocerasus,SPECIES,3021496: Prunus laurocerasus L.
 Picea abies (L.) H.Karst.,53,0.02795503556623051,5284884,Plantae,Tracheophyta,Pinales,Pinopsida,Picea,Pinaceae,Picea abies,SPECIES,5284884: Picea abies (L.) H.Karst.
 Lemna minuta Kunth,53,0.02750723261446445,2867614,Plantae,Tracheophyta,Alismatales,Liliopsida,Lemna,Araceae,Lemna minuta,SPECIES,2867614: Lemna minuta Kunth
@@ -77,9 +79,11 @@ Syringa vulgaris L.,52,0.05071818974914921,5415039,Plantae,Tracheophyta,Lamiales
 "Pseudorasbora parva (Temminck & Schlegel, 1846)",52,0.0335396516654388,2362868,Animalia,Chordata,Cypriniformes,Actinopterygii,Pseudorasbora,Cyprinidae,Pseudorasbora parva,SPECIES,"2362868: Pseudorasbora parva (Temminck & Schlegel, 1846)"
 Hydrocotyle ranunculoides L.f.,52,0.026886475815860553,7978544,Plantae,Tracheophyta,Apiales,Magnoliopsida,Hydrocotyle,Apiaceae,Hydrocotyle ranunculoides,SPECIES,7978544: Hydrocotyle ranunculoides L.f.
 Vinca major L.,52,0.022521688699840153,3169708,Plantae,Tracheophyta,Gentianales,Magnoliopsida,Vinca,Apocynaceae,Vinca major,SPECIES,3169708: Vinca major L.
+"Trachemys scripta troostii (Holbrook, 1836)",52,0.018714194443553232,6157035,Animalia,Chordata,Testudines,Reptilia,Trachemys,Emydidae,Trachemys scripta,SUBSPECIES,"6157035: Trachemys scripta troostii (Holbrook, 1836)"
 Impatiens parviflora DC.,51,0.037591926465944545,2891782,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens parviflora,SPECIES,2891782: Impatiens parviflora DC.
 Rhododendron ponticum L.,51,0.037269487509312096,7327990,Plantae,Tracheophyta,Ericales,Magnoliopsida,Rhododendron,Ericaceae,Rhododendron ponticum,SPECIES,7327990: Rhododendron ponticum L.
 "Aix sponsa (Linnaeus, 1758)",51,0.027692575688538116,2498387,Animalia,Chordata,Anseriformes,Aves,Aix,Anatidae,Aix sponsa,SPECIES,"2498387: Aix sponsa (Linnaeus, 1758)"
+Vicia sativa subsp. sativa,51,0.026381254311397477,7068379,Plantae,Tracheophyta,Fabales,Magnoliopsida,Vicia,Fabaceae,Vicia sativa,SUBSPECIES,7068379: Vicia sativa subsp. sativa
 "Physella acuta (Draparnaud, 1805)",51,0.024487402233894034,5189806,Animalia,Mollusca,,Gastropoda,Physella,Physidae,Physella acuta,SPECIES,"2291118: Physa acuta Draparnaud, 1805 | 5189806: Physella acuta (Draparnaud, 1805) | 7790194: Haitia acuta (Draparnaud, 1805)"
 Berberis aquifolium Pursh,50,0.0384054409158895,3033868,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Berberis,Berberidaceae,Berberis aquifolium,SPECIES,3033865: Mahonia aquifolium (Pursh) Nutt. | 3033868: Berberis aquifolium Pursh
 Galanthus nivalis L.,50,0.03514547845148481,2855356,Plantae,Tracheophyta,Asparagales,Liliopsida,Galanthus,Amaryllidaceae,Galanthus nivalis,SPECIES,2855356: Galanthus nivalis L. | 2855358: Galanthus nivalis var. scharlockii Casp. | 2855360: Galanthus scharlokii (Casp.) Baker | 7316133: Galanthus nivalis subsp. nivalis | 7316135: Galanthus nivalis f. nivalis
@@ -91,8 +95,8 @@ Elodea nuttallii St.John,49,0.02916149137546508,5329212,Plantae,Tracheophyta,Ali
 Brassica rapa L.,49,0.017255262702037436,7903057,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Brassica,Brassicaceae,Brassica rapa,SPECIES,3042702: Brassica rapa subsp. chinensis (L.) P.Hanelt | 3042723: Brassica rapa subsp. campestris (L.) A.R.Clapham | 7225636: Brassica rapa subsp. rapa | 7903057: Brassica rapa L.
 Eragrostis pilosa P.Beauv.,49,0.01685529467544637,2705400,Plantae,Tracheophyta,Poales,Liliopsida,Eragrostis,Poaceae,Eragrostis pilosa,SPECIES,2705400: Eragrostis pilosa P.Beauv. | 7226830: Eragrostis pilosa subsp. pilosa
 Melissa officinalis L.,49,0.01610039610140654,5341501,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Melissa,Lamiaceae,Melissa officinalis,SPECIES,5341501: Melissa officinalis L.
-"Anser fabalis (Latham, 1787)",48,0.03681677224544359,2498027,Animalia,Chordata,Anseriformes,Aves,Anser,Anatidae,Anser fabalis,SPECIES,"2498027: Anser fabalis (Latham, 1787) | 6178318: Anser fabalis serrirostris Swinhoe, 1871 | 6178319: Anser fabalis rossicus Buturlin, 1933 | 7191106: Anser fabalis fabalis"
 "Dama dama (Linnaeus, 1758)",48,0.027724854276612535,5220136,Animalia,Chordata,Artiodactyla,Mammalia,Dama,Cervidae,Dama dama,SPECIES,"5220136: Dama dama (Linnaeus, 1758)"
+Trifolium hybridum subsp. hybridum,48,0.01899077654206307,7224427,Plantae,Tracheophyta,Fabales,Magnoliopsida,Trifolium,Fabaceae,Trifolium hybridum,SUBSPECIES,7224427: Trifolium hybridum subsp. hybridum
 Myriophyllum aquaticum (Vell.) Verdc.,47,0.03301417700070814,5361785,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Myriophyllum,Haloragaceae,Myriophyllum aquaticum,SPECIES,5361785: Myriophyllum aquaticum (Vell.) Verdc.
 Berteroa incana DC.,47,0.03195949383942379,3053522,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Berteroa,Brassicaceae,Berteroa incana,SPECIES,3053522: Berteroa incana DC. | 3053529: Alyssum incanum L.
 Lepidium virginicum L.,47,0.029290351346209966,5376648,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Lepidium,Brassicaceae,Lepidium virginicum,SPECIES,5376648: Lepidium virginicum L.
@@ -122,6 +126,7 @@ Quercus palustris Münchh.,44,0.02416103029257751,8313153,Plantae,Tracheophyta,F
 Populus canescens Sm.,44,0.02235849213681239,3040185,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Populus,Salicaceae,Populus canescens,SPECIES,3040185: Populus canescens Sm.
 Parthenocissus vitacea (Knerr) Hitchc.,44,0.020874564919917845,3039193,Plantae,Tracheophyta,Vitales,Magnoliopsida,Parthenocissus,Vitaceae,Parthenocissus vitacea,SPECIES,3039203: Parthenocissus inserta (A.Kerner) Fritsch
 Amaranthus hybridus L.,44,0.01378518262026882,5384364,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Amaranthus,Amaranthaceae,Amaranthus hybridus,SPECIES,5384364: Amaranthus hybridus L. | 5547885: Amaranthus hybridus var. erythrostachys Moq. | 5547889: Amaranthus hybridus var. chlorostachys (Willd.) Thell. | 7323184: Amaranthus hybridus var. hybridus | 7323185: Amaranthus hybridus subsp. hybridus
+Trachemys scripta scripta,43,0.020499213478505238,7062200,Animalia,Chordata,Testudines,Reptilia,Trachemys,Emydidae,Trachemys scripta,SUBSPECIES,7062200: Trachemys scripta scripta
 "Nymphicus hollandicus (Kerr, 1792)",43,0.018250178829246823,2479977,Animalia,Chordata,Psittaciformes,Aves,Nymphicus,Psittacidae,Nymphicus hollandicus,SPECIES,"2479977: Nymphicus hollandicus (Kerr, 1792)"
 "Anser cygnoides (Linnaeus, 1758)",43,0.016666104305865053,2498034,Animalia,Chordata,Anseriformes,Aves,Anser,Anatidae,Anser cygnoides,SPECIES,"2498034: Anser cygnoides (Linnaeus, 1758) | 9576332: Anser cygnoides f. domesticus"
 Rhus typhina L.,43,0.015055008007713063,3190538,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Rhus,Anacardiaceae,Rhus typhina,SPECIES,3190535: Rhus hirta (L.) Sudw. | 3190538: Rhus typhina L.
@@ -131,6 +136,7 @@ Pseudosasa japonica Makino,42,0.023869158329057557,2706209,Plantae,Tracheophyta,
 Phytolacca acinosa Roxb.,42,0.016331858993851964,3084022,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Phytolacca,Phytolaccaceae,Phytolacca acinosa,SPECIES,3084022: Phytolacca acinosa Roxb. | 4192546: Phytolacca esculenta Van Houtte
 Arum italicum Mill.,41,0.03527841524784455,5330661,Plantae,Tracheophyta,Alismatales,Liliopsida,Arum,Araceae,Arum italicum,SPECIES,5330661: Arum italicum Mill. | 5330664: Arum italicum subsp. neglectum (F.Towns.) Prime | 7228304: Arum italicum subsp. italicum
 Nymphaea marliacea Hort.Latour-Marliac,41,0.021998133304239827,7802465,Plantae,Tracheophyta,Nymphaeales,Magnoliopsida,Nymphaea,Nymphaeaceae,Nymphaea marliacea,SPECIES,7802465: Nymphaea marliacea Hort.Latour-Marliac
+Pinus nigra subsp. laricio (Poir.) Maire,41,0.019185983519151403,5825913,Plantae,Tracheophyta,Pinales,Pinopsida,Pinus,Pinaceae,Pinus nigra,SUBSPECIES,5825913: Pinus nigra subsp. laricio (Poir.) Maire | 5686683: Pinus nigra var. maritima (Aiton) Melville
 Ligustrum ovalifolium Hassk.,41,0.01793113623750134,3172291,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Ligustrum,Oleaceae,Ligustrum ovalifolium,SPECIES,3172291: Ligustrum ovalifolium Hassk.
 "Melopsittacus undulatus (Shaw, 1805)",41,0.017656740308904774,2479798,Animalia,Chordata,Psittaciformes,Aves,Melopsittacus,Psittacidae,Melopsittacus undulatus,SPECIES,"2479798: Melopsittacus undulatus (Shaw, 1805)"
 Lupinus polyphyllus Lindl.,41,0.016793670457976913,2964355,Plantae,Tracheophyta,Fabales,Magnoliopsida,Lupinus,Fabaceae,Lupinus polyphyllus,SPECIES,2964355: Lupinus polyphyllus Lindl.
@@ -207,12 +213,16 @@ Anthoxanthum aristatum Boiss.,31,0.024954615483761794,2705972,Plantae,Tracheophy
 "Dendrocygna bicolor (Vieillot, 1816)",31,0.02269335008567876,2498402,Animalia,Chordata,Anseriformes,Aves,Dendrocygna,Anatidae,Dendrocygna bicolor,SPECIES,"2498402: Dendrocygna bicolor (Vieillot, 1816)"
 Symphyotrichum lanceolatum (Willd.) G.L.Nesom,31,0.022254612332005028,9202318,Plantae,Tracheophyta,Asterales,Magnoliopsida,Symphyotrichum,Asteraceae,Symphyotrichum lanceolatum,SPECIES,"5406285: Aster lanceolatus Willd. | 8066155: Aster paniculatus Lam., 1783 | 9202318: Symphyotrichum lanceolatum (Willd.) G.L.Nesom"
 Chamaecyparis lawsoniana Parl.,31,0.019691163260335584,2683866,Plantae,Tracheophyta,Pinales,Pinopsida,Chamaecyparis,Cupressaceae,Chamaecyparis lawsoniana,SPECIES,2683866: Chamaecyparis lawsoniana Parl.
+Pastinaca sativa subsp. urens (Req. ex Godr.) Celak.,31,0.019416808352918983,7466434,Plantae,Tracheophyta,Apiales,Magnoliopsida,Pastinaca,Apiaceae,Pastinaca sativa,SUBSPECIES,7466434: Pastinaca sativa subsp. urens (Req. ex Godr.) Celak.
 Sorbaria sorbifolia (L.) A.Braun,31,0.015984165828579103,3012089,Plantae,Tracheophyta,Rosales,Magnoliopsida,Sorbaria,Rosaceae,Sorbaria sorbifolia,SPECIES,3012089: Sorbaria sorbifolia (L.) A.Braun
+Vicia villosa subsp. varia (Host) Corb.,31,0.015693424419381298,2974921,Plantae,Tracheophyta,Fabales,Magnoliopsida,Vicia,Fabaceae,Vicia villosa,SUBSPECIES,2974922: Vicia dasycarpa Ten. | 2974921: Vicia villosa subsp. varia (Host) Corb. | 2974925: Vicia villosa subsp. dasycarpa (Ten.) Cav. | 2974926: Vicia varia Host
 "Serinus canaria (Linnaeus, 1758)",31,0.014200504027176741,2494303,Animalia,Chordata,Passeriformes,Aves,Serinus,Fringillidae,Serinus canaria,SPECIES,"2494303: Serinus canaria (Linnaeus, 1758)"
 Cotoneaster horizontalis Decne.,30,0.024106972162836617,3025617,Plantae,Tracheophyta,Rosales,Magnoliopsida,Cotoneaster,Rosaceae,Cotoneaster horizontalis,SPECIES,3025617: Cotoneaster horizontalis Decne.
+Cornus sanguinea subsp. australis (C.A.Mey.) Jáv.,30,0.021091806262546024,3663237,Plantae,Tracheophyta,Cornales,Magnoliopsida,Cornus,Cornaceae,Cornus sanguinea,SUBSPECIES,3663237: Cornus sanguinea subsp. australis (C.A.Mey.) Jáv. | 3663151: Cornus australis C.A.Mey.
 Geranium phaeum L.,30,0.015856679513331823,2891390,Plantae,Tracheophyta,Geraniales,Magnoliopsida,Geranium,Geraniaceae,Geranium phaeum,SPECIES,2891390: Geranium phaeum L.
 Potentilla norvegica L.,29,0.025047863113226737,5365305,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla norvegica,SPECIES,5365305: Potentilla norvegica L. | 5365312: Potentilla norvegica subsp. hirsuta (Michx.) Hyl. | 5365321: Potentilla norvegica subsp. monspeliensis (L.) Aschers. & Graebn. | 8042863: Potentilla norvegica var. norvegica
 Eschscholzia californica Cham.,29,0.020356706588810787,2888380,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Eschscholzia,Papaveraceae,Eschscholzia californica,SPECIES,2888380: Eschscholzia californica Cham.
+Vicia villosa subsp. villosa,29,0.018357635540550102,7225471,Plantae,Tracheophyta,Fabales,Magnoliopsida,Vicia,Fabaceae,Vicia villosa,SUBSPECIES,7225471: Vicia villosa subsp. villosa
 Veronica longifolia L.,29,0.01674854872467072,3172118,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Veronica,Plantaginaceae,Veronica longifolia,SPECIES,3172118: Veronica longifolia L.
 Parthenocissus quinquefolia (L.) Planch.,29,0.015562210191219538,3039194,Plantae,Tracheophyta,Vitales,Magnoliopsida,Parthenocissus,Vitaceae,Parthenocissus quinquefolia,SPECIES,3039194: Parthenocissus quinquefolia (L.) Planch.
 Panicum dichotomiflorum Michx.,29,0.015127021718208586,2705144,Plantae,Tracheophyta,Poales,Liliopsida,Panicum,Poaceae,Panicum dichotomiflorum,SPECIES,2705144: Panicum dichotomiflorum Michx. | 8357651: Panicum chloroticum Nees ex Trin.
@@ -224,6 +234,7 @@ Hordeum vulgare L.,28,0.01720560341587969,2706056,Plantae,Tracheophyta,Poales,Li
 Claytonia sibirica L.,28,0.01614612658162512,3084742,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Claytonia,Montiaceae,Claytonia sibirica,SPECIES,3084742: Claytonia sibirica L.
 Cynodon dactylon (L.) Pers.,28,0.015907819233033235,6109637,Plantae,Tracheophyta,Poales,Liliopsida,Cynodon,Poaceae,Cynodon dactylon,SPECIES,6109637: Cynodon dactylon (L.) Pers.
 "Chen caerulescens (Linnaeus, 1758)",27,0.03878310615083951,2498165,Animalia,Chordata,Anseriformes,Aves,Chen,Anatidae,Chen caerulescens,SPECIES,"2498167: Anser caerulescens (Linnaeus, 1758) | 8191839: Anser caerulescens caerulescens"
+Ballota nigra subsp. nigra,27,0.03601383472658763,6409536,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Ballota,Lamiaceae,Ballota nigra,SUBSPECIES,7411167: Ballota nigra subsp. meridionalis (Bég.) Bég. | 6409536: Ballota nigra subsp. nigra
 "Anas bahamensis Linnaeus, 1758",27,0.034541324269388295,2498090,Animalia,Chordata,Anseriformes,Aves,Anas,Anatidae,Anas bahamensis,SPECIES,"2498090: Anas bahamensis Linnaeus, 1758"
 Guizotia abyssinica (L.f.) Cass.,27,0.018953352573774358,8584304,Plantae,Tracheophyta,Asterales,Magnoliopsida,Guizotia,Asteraceae,Guizotia abyssinica,SPECIES,8584304: Guizotia abyssinica (L.f.) Cass.
 Phedimus spurius (M.Bieb.) 't Hart,27,0.018373220915012207,4201607,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Phedimus,Crassulaceae,Phedimus spurius,SPECIES,4201607: Phedimus spurius (M.Bieb.) 't Hart | 5362018: Sedum spurium Bieb.
@@ -311,6 +322,7 @@ Rhododendron luteum Sweet,18,0.01911566411221227,7135755,Plantae,Tracheophyta,Er
 Hemerocallis fulva L.,18,0.017721592303873802,2781074,Plantae,Tracheophyta,Asparagales,Liliopsida,Hemerocallis,Asphodelaceae,Hemerocallis fulva,SPECIES,2781074: Hemerocallis fulva L.
 Trifolium resupinatum L.,18,0.016954252000128008,5359175,Plantae,Tracheophyta,Fabales,Magnoliopsida,Trifolium,Fabaceae,Trifolium resupinatum,SPECIES,5359175: Trifolium resupinatum L. | 5359177: Trifolium resupinatum var. majus Boiss.
 Silene gallica L.,18,0.01671990074810143,5384848,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Silene,Caryophyllaceae,Silene gallica,SPECIES,5384848: Silene gallica L.
+Setaria verticillata var. verticillata,18,0.016059849701415517,7226776,Plantae,Tracheophyta,Poales,Liliopsida,Setaria,Poaceae,Setaria verticillata,VARIETY,7226776: Setaria verticillata var. verticillata
 Sagittaria latifolia Willd.,18,0.014907076640943004,5328909,Plantae,Tracheophyta,Alismatales,Liliopsida,Sagittaria,Alismataceae,Sagittaria latifolia,SPECIES,5328909: Sagittaria latifolia Willd.
 Chaenomeles japonica (Thunb.) Lindl. ex Spach,18,0.014023259143880468,3000610,Plantae,Tracheophyta,Rosales,Magnoliopsida,Chaenomeles,Rosaceae,Chaenomeles japonica,SPECIES,3000610: Chaenomeles japonica (Thunb.) Lindl. ex Spach
 Brunnera macrophylla I.M.Johnst.,18,0.011165146518619443,2926045,Plantae,Tracheophyta,Boraginales,Magnoliopsida,Brunnera,Boraginaceae,Brunnera macrophylla,SPECIES,2926045: Brunnera macrophylla I.M.Johnst.
@@ -337,13 +349,13 @@ Narcissus poeticus L.,16,0.02205021486569133,2858581,Plantae,Tracheophyta,Aspara
 "Syrmaticus reevesii (J.E.Gray, 1829)",16,0.01333721076163717,2473477,Animalia,Chordata,Galliformes,Aves,Syrmaticus,Phasianidae,Syrmaticus reevesii,SPECIES,"2473477: Syrmaticus reevesii (J.E.Gray, 1829)"
 Polypogon viridis (Gouan) Breistr.,16,0.013297481888386142,5289919,Plantae,Tracheophyta,Poales,Liliopsida,Polypogon,Poaceae,Polypogon viridis,SPECIES,5289919: Polypogon viridis (Gouan) Breistr.
 Juglans nigra L.,16,0.013028802412710932,3054357,Plantae,Tracheophyta,Fagales,Magnoliopsida,Juglans,Juglandaceae,Juglans nigra,SPECIES,3054357: Juglans nigra L.
+Equisetum hyemale subsp. affine (Engelm.) Calder & Roy L.Taylor,16,0.01255661618492632,6387033,Plantae,Tracheophyta,Equisetales,Polypodiopsida,Equisetum,Equisetaceae,Equisetum hyemale,SUBSPECIES,6387033: Equisetum hyemale subsp. affine (Engelm.) Calder & Roy L.Taylor
 Salvia nemorosa L.,16,0.012402516310538857,2927028,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Salvia,Lamiaceae,Salvia nemorosa,SPECIES,2927028: Salvia nemorosa L.
 Salix pentandra L.,16,0.011925299413321391,5372647,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Salix,Salicaceae,Salix pentandra,SPECIES,5372647: Salix pentandra L.
 Myrrhis odorata Scop.,16,0.011651938025829745,3034681,Plantae,Tracheophyta,Apiales,Magnoliopsida,Myrrhis,Apiaceae,Myrrhis odorata,SPECIES,3034681: Myrrhis odorata Scop.
 Reynoutria bohemica Chrtek & Chrtková,16,0.010140417308483585,4038485,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Reynoutria,Polygonaceae,Reynoutria bohemica,SPECIES,4038485: Reynoutria bohemica Chrtek & Chrtková | 5652296: Fallopia bohemica (Chrtek & Chrtková) J.P.Bailey
 Anethum graveolens L.,16,0.009100364040729034,3034646,Plantae,Tracheophyta,Apiales,Magnoliopsida,Anethum,Apiaceae,Anethum graveolens,SPECIES,3034646: Anethum graveolens L.
 Geranium ×oxonianum Yeo,16,0.009037408352006386,2890035,Plantae,Tracheophyta,Geraniales,Magnoliopsida,Geranium,Geraniaceae,Geranium oxonianum,SPECIES,2890035: Geranium ×oxonianum Yeo
-"Cernuella virgata (da Costa, 1778)",15,0.07268596101468654,9805907,Animalia,Mollusca,Stylommatophora,Gastropoda,Cernuella,Geomitridae,Cernuella virgata,SPECIES,"9805907: Cernuella virgata (da Costa, 1778)"
 Lemna turionifera E.Landolt,15,0.02395385531884858,2867631,Plantae,Tracheophyta,Alismatales,Liliopsida,Lemna,Araceae,Lemna turionifera,SPECIES,2867631: Lemna turionifera E.Landolt
 Alnus cordata (Loisel.) Duby,15,0.017825752028410403,2876607,Plantae,Tracheophyta,Fagales,Magnoliopsida,Alnus,Betulaceae,Alnus cordata,SPECIES,2876607: Alnus cordata (Loisel.) Duby
 "Silurus glanis Linnaeus, 1758",15,0.017735862805013682,2337607,Animalia,Chordata,Siluriformes,Actinopterygii,Silurus,Siluridae,Silurus glanis,SPECIES,"2337607: Silurus glanis Linnaeus, 1758"
@@ -381,6 +393,7 @@ Cardamine occulta Hornem.,13,0.01742536039728054,3690997,Plantae,Tracheophyta,Br
 Pilosella caespitosa (Dumort.) P.D.Sell & C.West,13,0.01711535193458232,3123663,Plantae,Tracheophyta,Asterales,Magnoliopsida,Pilosella,Asteraceae,Pilosella caespitosa,SPECIES,3123663: Pilosella caespitosa (Dumort.) P.D.Sell & C.West | 3135273: Hieracium caespitosum Dumort.
 Tilia tomentosa Moench,13,0.01692319799435117,4259350,Plantae,Tracheophyta,Malvales,Magnoliopsida,Tilia,Malvaceae,Tilia tomentosa,SPECIES,4259350: Tilia tomentosa Moench
 Erigeron karvinskianus DC.,13,0.015610366998919413,3147168,Plantae,Tracheophyta,Asterales,Magnoliopsida,Erigeron,Asteraceae,Erigeron karvinskianus,SPECIES,3147168: Erigeron karvinskianus DC.
+Arabidopsis arenosa subsp. arenosa,13,0.014326843821041536,7068732,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Arabidopsis,Brassicaceae,Arabidopsis arenosa,SUBSPECIES,7292249: Cardaminopsis arenosa subsp. arenosa | 3052513: Cardaminopsis arenosa (L.) Hayek | 5377115: Arabis arenosa (L.) Scop. | 7068732: Arabidopsis arenosa subsp. arenosa
 Bromus inermis Leyss.,13,0.013148559133210417,2703670,Plantae,Tracheophyta,Poales,Liliopsida,Bromus,Poaceae,Bromus inermis,SPECIES,2703670: Bromus inermis Leyss. | 4112404: Bromopsis inermis (Leyss.) Holub | 6084941: Bromopsis inermis subsp. inermis
 Bromus sitchensis Trin.,13,0.013107508903674592,2703698,Plantae,Tracheophyta,Poales,Liliopsida,Bromus,Poaceae,Bromus sitchensis,SPECIES,2703698: Bromus sitchensis Trin.
 Hordeum jubatum L.,13,0.013070722317911034,2706052,Plantae,Tracheophyta,Poales,Liliopsida,Hordeum,Poaceae,Hordeum jubatum,SPECIES,2706052: Hordeum jubatum L.
@@ -407,7 +420,9 @@ Carduus acanthoides L.,11,0.07858070279674052,3114643,Plantae,Tracheophyta,Aster
 Corispermum pallasii Steven,11,0.037206698748520894,3083975,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Corispermum,Amaranthaceae,Corispermum pallasii,SPECIES,3083975: Corispermum pallasii Steven | 3083977: Corispermum leptopterum (Ascherson) Iljin
 Juncus foliosus Desf.,11,0.03591056436595806,2701578,Plantae,Tracheophyta,Poales,Liliopsida,Juncus,Juncaceae,Juncus foliosus,SPECIES,2701578: Juncus foliosus Desf.
 Prunus fruticans Weihe,11,0.032444202301628,3022203,Plantae,Tracheophyta,Rosales,Magnoliopsida,Prunus,Rosaceae,Prunus fruticans,SPECIES,3022203: Prunus fruticans Weihe
+Solanum triflorum var. triflorum,11,0.02773128008118997,9288303,Plantae,Tracheophyta,Solanales,Magnoliopsida,Solanum,Solanaceae,Solanum triflorum,VARIETY,9288303: Solanum triflorum var. triflorum
 "Chen rossii (Cassin, 1861)",11,0.025862351223531487,2498160,Animalia,Chordata,Anseriformes,Aves,Chen,Anatidae,Chen rossii,SPECIES,"2498161: Anser rossii Cassin, 1861"
+Solanum physalifolium var. nitidibaccatum (Bitter) J.M.Edmonds,11,0.0229816750701213,2932146,Plantae,Tracheophyta,Solanales,Magnoliopsida,Solanum,Solanaceae,Solanum physalifolium,VARIETY,2932146: Solanum physalifolium var. nitidibaccatum (Bitter) J.M.Edmonds
 Elaeagnus umbellata C.P.Thunb. ex A.Murray,11,0.022653523486624035,7752288,Plantae,Tracheophyta,Rosales,Magnoliopsida,Elaeagnus,Elaeagnaceae,Elaeagnus umbellata,SPECIES,3039267: Elaeagnus umbellata Thunb. | 7752288: Elaeagnus umbellata C.P.Thunb. ex A.Murray
 Euphorbia palustris L.,11,0.022281395241638323,3064056,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Euphorbia,Euphorbiaceae,Euphorbia palustris,SPECIES,3064056: Euphorbia palustris L.
 "Phoenicopterus chilensis Molina, 1782",11,0.021436518625509562,2481110,Animalia,Chordata,Phoenicopteriformes,Aves,Phoenicopterus,Phoenicopteridae,Phoenicopterus chilensis,SPECIES,"2481110: Phoenicopterus chilensis Molina, 1782"
@@ -422,6 +437,7 @@ Pistia stratiotes L.,11,0.012506243757751678,2870583,Plantae,Tracheophyta,Alisma
 "Phasianus versicolor Vieillot, 1825",11,0.012460029383124942,5227775,Animalia,Chordata,Galliformes,Aves,Phasianus,Phasianidae,Phasianus versicolor,SPECIES,"5227775: Phasianus versicolor Vieillot, 1825"
 Sasa palmata E.G.Camus,11,0.012395699701213167,8362005,Plantae,Tracheophyta,Poales,Liliopsida,Sasa,Poaceae,Sasa palmata,SPECIES,8362005: Sasa palmata E.G.Camus
 Tragopogon porrifolius L.,11,0.011928194651725677,5386938,Plantae,Tracheophyta,Asterales,Magnoliopsida,Tragopogon,Asteraceae,Tragopogon porrifolius,SPECIES,5386938: Tragopogon porrifolius L.
+Beta vulgaris subsp. vulgaris,11,0.011130887668111523,7068845,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Beta,Amaranthaceae,Beta vulgaris,SUBSPECIES,7068845: Beta vulgaris subsp. vulgaris
 Oxalis debilis Kunth,11,0.011094535630249583,2891707,Plantae,Tracheophyta,Oxalidales,Magnoliopsida,Oxalis,Oxalidaceae,Oxalis debilis,SPECIES,2891707: Oxalis debilis Kunth | 3626865: Oxalis corymbosa DC.
 Eryngium planum L.,11,0.009934818417111302,3034393,Plantae,Tracheophyta,Apiales,Magnoliopsida,Eryngium,Apiaceae,Eryngium planum,SPECIES,3034393: Eryngium planum L.
 Bergenia crassifolia Fritsch,11,0.0095816982532942,5567694,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Bergenia,Saxifragaceae,Bergenia crassifolia,SPECIES,5567694: Bergenia crassifolia Fritsch | 5567698: Bergenia cordifolia (Haw.) Sternb.
@@ -433,6 +449,7 @@ Lycium barbarum L.,10,0.059973057819647506,2928835,Plantae,Tracheophyta,Solanale
 Baccharis halimifolia L.,10,0.04482524937099007,3129663,Plantae,Tracheophyta,Asterales,Magnoliopsida,Baccharis,Asteraceae,Baccharis halimifolia,SPECIES,3129663: Baccharis halimifolia L.
 "Sinanodonta woodiana (I.Lea, 1834)",10,0.035610480426493014,4559541,Animalia,Mollusca,Unionida,Bivalvia,Sinanodonta,Unionidae,Sinanodonta woodiana,SPECIES,"4559541: Sinanodonta woodiana (I.Lea, 1834)"
 Oenothera rubricaulis Kleb.,10,0.028541363234111914,7322529,Plantae,Tracheophyta,Myrtales,Magnoliopsida,Oenothera,Onagraceae,Oenothera rubricaulis,SPECIES,7322529: Oenothera rubricaulis Kleb.
+Euphorbia esula subsp. tommasiniana (Bertol.) Kuzmanov,10,0.02638073594126102,3064269,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Euphorbia,Euphorbiaceae,Euphorbia esula,SUBSPECIES,3064269: Euphorbia esula subsp. tommasiniana (Bertol.) Kuzmanov
 Apera interrupta (L.) P.Beauv.,10,0.025926661894815278,5289643,Plantae,Tracheophyta,Poales,Liliopsida,Apera,Poaceae,Apera interrupta,SPECIES,5289643: Apera interrupta (L.) P.Beauv.
 Medicago polymorpha L.,10,0.02350911536908195,2965531,Plantae,Tracheophyta,Fabales,Magnoliopsida,Medicago,Fabaceae,Medicago polymorpha,SPECIES,2965531: Medicago polymorpha L. | 2965537: Medicago polymorpha var. vulgaris (Benth.) Shinners | 2965545: Medicago denticulata Willd.
 Goodyera repens R.Br.,10,0.022264680577524325,2840931,Plantae,Tracheophyta,Asparagales,Liliopsida,Goodyera,Orchidaceae,Goodyera repens,SPECIES,2840931: Goodyera repens R.Br.
@@ -470,7 +487,6 @@ Bromus diandrus Roth,9,,2703760,Plantae,Tracheophyta,Poales,Liliopsida,Bromus,Po
 "Chrysolophus amherstiae (Leadbeater, 1829)",9,,5228033,Animalia,Chordata,Galliformes,Aves,Chrysolophus,Phasianidae,Chrysolophus amherstiae,SPECIES,"5228033: Chrysolophus amherstiae (Leadbeater, 1829)"
 Coreopsis tinctoria Nutt.,9,,3133950,Plantae,Tracheophyta,Asterales,Magnoliopsida,Coreopsis,Asteraceae,Coreopsis tinctoria,SPECIES,3133950: Coreopsis tinctoria Nutt.
 Cortaderia selloana Asch. & Graebn.,9,,2704523,Plantae,Tracheophyta,Poales,Liliopsida,Cortaderia,Poaceae,Cortaderia selloana,SPECIES,2704523: Cortaderia selloana Asch. & Graebn.
-"Cryptorchestia cavimana (Heller, 1865)",9,,7563173,Animalia,Arthropoda,Amphipoda,Malacostraca,Cryptorchestia,Talitridae,Cryptorchestia cavimana,SPECIES,"2218567: Orchestia cavimana Heller, 1865 | 7563173: Cryptorchestia cavimana (Heller, 1865)"
 Dicentra formosa Walp.,9,,2888553,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Dicentra,Papaveraceae,Dicentra formosa,SPECIES,2888553: Dicentra formosa Walp.
 "Geopelia cuneata (Latham, 1802)",9,,2495494,Animalia,Chordata,Columbiformes,Aves,Geopelia,Columbidae,Geopelia cuneata,SPECIES,"2495494: Geopelia cuneata (Latham, 1802)"
 Ginkgo biloba L.,9,,2687885,Plantae,Tracheophyta,Ginkgoales,Ginkgoopsida,Ginkgo,Ginkgoaceae,Ginkgo biloba,SPECIES,2687885: Ginkgo biloba L.
@@ -575,6 +591,7 @@ Physocarpus opulifolius (L.) Maxim.,7,,2988354,Plantae,Tracheophyta,Rosales,Magn
 "Plegadis ridgwayi (Allen, 1876)",7,,2480772,Animalia,Chordata,Pelecaniformes,Aves,Plegadis,Threskiornithidae,Plegadis ridgwayi,SPECIES,"2480772: Plegadis ridgwayi (Allen, 1876)"
 Poa infirma Kunth,7,,2704194,Plantae,Tracheophyta,Poales,Liliopsida,Poa,Poaceae,Poa infirma,SPECIES,2704194: Poa infirma Kunth
 Prunus lusitanica L.,7,,3020871,Plantae,Tracheophyta,Rosales,Magnoliopsida,Prunus,Rosaceae,Prunus lusitanica,SPECIES,3020871: Prunus lusitanica L.
+Raphanus raphanistrum subsp. landra (Moretti ex DC.) Bonnier & Layens,7,,3040999,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Raphanus,Brassicaceae,Raphanus raphanistrum,SUBSPECIES,3040999: Raphanus raphanistrum subsp. landra (Moretti ex DC.) Bonnier & Layens | 3041004: Raphanus raphanistrum subsp. maritimus (Sm.) Thell.
 Rumex thyrsiflorus Fingerh.,7,,6391417,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Rumex,Polygonaceae,Rumex thyrsiflorus,SPECIES,6391417: Rumex thyrsiflorus Fingerh.
 Salix eriocephala Michx.,7,,5372614,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Salix,Salicaceae,Salix eriocephala,SPECIES,5372614: Salix eriocephala Michx.
 Salix udensis Trautv.,7,,5582033,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Salix,Salicaceae,Salix udensis,SPECIES,5582033: Salix udensis Trautv. | 5582602: Salix sachalinensis F.Schmidt
@@ -596,6 +613,7 @@ Cardamine corymbosa Hook.f.,6,,3046015,Plantae,Tracheophyta,Brassicales,Magnolio
 Cenchrus alopecuroides Thunb.,6,,5671747,Plantae,Tracheophyta,Poales,Liliopsida,Cenchrus,Poaceae,Cenchrus alopecuroides,SPECIES,2706156: Pennisetum alopecuroides (L.) Spreng.
 Cenchrus flaccidus (Griseb.) Morrone,6,,5828216,Plantae,Tracheophyta,Poales,Liliopsida,Cenchrus,Poaceae,Cenchrus flaccidus,SPECIES,2706137: Pennisetum flaccidum Griseb.
 Cotula australis Hook.f.,6,,8542672,Plantae,Tracheophyta,Asterales,Magnoliopsida,Cotula,Asteraceae,Cotula australis,SPECIES,8542672: Cotula australis Hook.f.
+Crepis foetida subsp. rhoeadifolia (M.Bieb.) Celak.,6,,5831060,Plantae,Tracheophyta,Asterales,Magnoliopsida,Crepis,Asteraceae,Crepis foetida,SUBSPECIES,5831060: Crepis foetida subsp. rhoeadifolia (M.Bieb.) Celak.
 Cyrtomium fortunei J.Sm.,6,,2650827,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Cyrtomium,Dryopteridaceae,Cyrtomium fortunei,SPECIES,2650827: Cyrtomium fortunei J.Sm.
 Dittrichia graveolens (L.) Greuter,6,,3101193,Plantae,Tracheophyta,Asterales,Magnoliopsida,Dittrichia,Asteraceae,Dittrichia graveolens,SPECIES,3101193: Dittrichia graveolens (L.) Greuter
 Echinochloa frumentacea Link,6,,2702822,Plantae,Tracheophyta,Poales,Liliopsida,Echinochloa,Poaceae,Echinochloa frumentacea,SPECIES,2702822: Echinochloa frumentacea Link
@@ -615,6 +633,7 @@ Parthenocissus tricuspidata Planch.,6,,3039209,Plantae,Tracheophyta,Vitales,Magn
 Picea omorika (Pančić) Purk.,6,,5284950,Plantae,Tracheophyta,Pinales,Pinopsida,Picea,Pinaceae,Picea omorika,SPECIES,5284950: Picea omorika (Pančić) Purk.
 Polemonium caeruleum L.,6,,2927850,Plantae,Tracheophyta,Ericales,Magnoliopsida,Polemonium,Polemoniaceae,Polemonium caeruleum,SPECIES,2927850: Polemonium caeruleum L.
 "Prokelisia marginata (Van Duzee, 1897)",6,,2053954,Animalia,Arthropoda,Hemiptera,Insecta,Prokelisia,Delphacidae,Prokelisia marginata,SPECIES,"2053954: Prokelisia marginata (Van Duzee, 1897)"
+Prunus domestica subsp. domestica,6,,6369140,Plantae,Tracheophyta,Rosales,Magnoliopsida,Prunus,Rosaceae,Prunus domestica,SUBSPECIES,6369140: Prunus domestica subsp. domestica
 Rheum rhabarbarum L.,6,,2888867,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Rheum,Polygonaceae,Rheum rhabarbarum,SPECIES,2888867: Rheum rhabarbarum L. | 4038039: Rheum ×cultorum Thorsrud & Reisaeter
 Rosa glauca Pourr.,6,,3003709,Plantae,Tracheophyta,Rosales,Magnoliopsida,Rosa,Rosaceae,Rosa glauca,SPECIES,3003709: Rosa glauca Pourr.
 Ruscus aculeatus L.,6,,2769766,Plantae,Tracheophyta,Asparagales,Liliopsida,Ruscus,Asparagaceae,Ruscus aculeatus,SPECIES,2769766: Ruscus aculeatus L.
@@ -679,7 +698,9 @@ Oenothera oakesiana Robbins ex S.Watson,5,,3188884,Plantae,Tracheophyta,Myrtales
 Oenothera subterminalis R.R.Gates,5,,3664677,Plantae,Tracheophyta,Myrtales,Magnoliopsida,Oenothera,Onagraceae,Oenothera subterminalis,SPECIES,3664677: Oenothera subterminalis R.R.Gates
 Oenothera victorinii R.R.Gates & Catches.,5,,7322143,Plantae,Tracheophyta,Myrtales,Magnoliopsida,Oenothera,Onagraceae,Oenothera victorinii,SPECIES,7322143: Oenothera victorinii R.R.Gates & Catches.
 Onoclea sensibilis L.,5,,2650903,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Onoclea,Onocleaceae,Onoclea sensibilis,SPECIES,2650903: Onoclea sensibilis L.
+Panicum miliaceum subsp. miliaceum,5,,6449041,Plantae,Tracheophyta,Poales,Liliopsida,Panicum,Poaceae,Panicum miliaceum,SUBSPECIES,6449041: Panicum miliaceum subsp. miliaceum
 Papaver setiferum Goldblatt,5,,8342911,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Papaver,Papaveraceae,Papaver setiferum,SPECIES,2888438: Papaver pseudoorientale (Fedde) Medw.
+Papaver somniferum subsp. somniferum,5,,3602069,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Papaver,Papaveraceae,Papaver somniferum,SUBSPECIES,3602069: Papaver somniferum subsp. somniferum
 Passiflora caerulea L.,5,,2874199,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Passiflora,Passifloraceae,Passiflora caerulea,SPECIES,2874199: Passiflora caerulea L.
 Petrorhagia saxifraga Link,5,,3085623,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Petrorhagia,Caryophyllaceae,Petrorhagia saxifraga,SPECIES,3085623: Petrorhagia saxifraga Link
 Petunia punctata Paxton,5,,3802845,Plantae,Tracheophyta,Solanales,Magnoliopsida,Petunia,Solanaceae,Petunia punctata,SPECIES,3802845: Petunia punctata Paxton | 3802845: Petunia x punctata Paxton
@@ -769,16 +790,18 @@ Medicago truncatula Gaertn.,4,,2965280,Plantae,Tracheophyta,Fabales,Magnoliopsid
 "Mycteria ibis (Linnaeus, 1766)",4,,2481936,Animalia,Chordata,Ciconiiformes,Aves,Mycteria,Ciconiidae,Mycteria ibis,SPECIES,"2481936: Mycteria ibis (Linnaeus, 1766)"
 Oxalis articulata Savign.,4,,2891664,Plantae,Tracheophyta,Oxalidales,Magnoliopsida,Oxalis,Oxalidaceae,Oxalis articulata,SPECIES,2891664: Oxalis articulata Savign.
 Oxalis triangularis A.St.-Hil.,4,,7156971,Plantae,Tracheophyta,Oxalidales,Magnoliopsida,Oxalis,Oxalidaceae,Oxalis triangularis,SPECIES,7156971: Oxalis triangularis A.St.-Hil.
+Oxybasis glauca var. salina (Standl.) Verloove,4,,9567226,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Oxybasis,Amaranthaceae,Oxybasis glauca,VARIETY,6285650: Chenopodium glaucum var. salinum (Standl.) B.Boivin
 Persicaria capitata (Buch.-Ham. ex D.Don) H.Gross,4,,2889304,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Persicaria,Polygonaceae,Persicaria capitata,SPECIES,2889304: Persicaria capitata (Buch.-Ham. ex D.Don) H.Gross | 5334454: Polygonum capitatum Buch.-Ham. ex D.Don
 "Phoenicopterus ruber Linnaeus, 1758",4,,9691034,Animalia,Chordata,Phoenicopteriformes,Aves,Phoenicopterus,Phoenicopteridae,Phoenicopterus ruber,SPECIES,"9691034: Phoenicopterus ruber Linnaeus, 1758"
-"Pholcus phalangioides (Fuesslin, 1775)",4,,2149937,Animalia,Arthropoda,Araneae,Arachnida,Pholcus,Pholcidae,Pholcus phalangioides,SPECIES,"2149937: Pholcus phalangioides (Fuesslin, 1775)"
 Physostegia virginiana Benth.,4,,2926572,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Physostegia,Lamiaceae,Physostegia virginiana,SPECIES,2926572: Physostegia virginiana Benth.
+Pinus nigra subsp. nigra,4,,7230699,Plantae,Tracheophyta,Pinales,Pinopsida,Pinus,Pinaceae,Pinus nigra,SUBSPECIES,7230699: Pinus nigra subsp. nigra | 8184740: Pinus nigra var. austriaca (Höss) Badoux | 5709570: Pinus nigra var. austriaca (Hoess) Asch. & Graebn.
 "Platalea alba Scopoli, 1786",4,,2480800,Animalia,Chordata,Pelecaniformes,Aves,Platalea,Threskiornithidae,Platalea alba,SPECIES,"2480800: Platalea alba Scopoli, 1786"
 Polypogon maritimus Willd.,4,,5289913,Plantae,Tracheophyta,Poales,Liliopsida,Polypogon,Poaceae,Polypogon maritimus,SPECIES,5289913: Polypogon maritimus Willd.
 Populus deltoides W.Bartram ex Marshall,4,,3040232,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Populus,Salicaceae,Populus deltoides,SPECIES,3040232: Populus deltoides W.Bartram ex Marshall
 Prunus armeniaca L.,4,,7818643,Plantae,Tracheophyta,Rosales,Magnoliopsida,Prunus,Rosaceae,Prunus armeniaca,SPECIES,7818643: Prunus armeniaca L.
 Ranunculus parviflorus L.,4,,3033434,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Ranunculus,Ranunculaceae,Ranunculus parviflorus,SPECIES,3033434: Ranunculus parviflorus L.
 Silene dichotoma Ehrh.,4,,5384818,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Silene,Caryophyllaceae,Silene dichotoma,SPECIES,5384818: Silene dichotoma Ehrh.
+Sisymbrium austriacum subsp. chrysanthum (Jord.) Rouy & Foucaud,4,,3046925,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Sisymbrium,Brassicaceae,Sisymbrium austriacum,SUBSPECIES,3046925: Sisymbrium austriacum subsp. chrysanthum (Jord.) Rouy & Foucaud | 3046929: Sisymbrium chrysanthum Jord.
 Spartium junceum L.,4,,5355395,Plantae,Tracheophyta,Fabales,Magnoliopsida,Spartium,Fabaceae,Spartium junceum,SPECIES,5355395: Spartium junceum L.
 Spinacia oleracea L.,4,,3083647,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Spinacia,Amaranthaceae,Spinacia oleracea,SPECIES,3083647: Spinacia oleracea L.
 "Streptopelia roseogrisea (Sundevall, 1857)",4,,2495688,Animalia,Chordata,Columbiformes,Aves,Streptopelia,Columbidae,Streptopelia roseogrisea,SPECIES,"2495688: Streptopelia roseogrisea (Sundevall, 1857)"
@@ -820,6 +843,7 @@ Clerodendrum bungei Steud.,3,,2925351,Plantae,Tracheophyta,Lamiales,Magnoliopsid
 Clethra alnifolia L.,3,,2888323,Plantae,Tracheophyta,Ericales,Magnoliopsida,Clethra,Clethraceae,Clethra alnifolia,SPECIES,2888323: Clethra alnifolia L.
 Commelina communis L.,3,,2764179,Plantae,Tracheophyta,Commelinales,Liliopsida,Commelina,Commelinaceae,Commelina communis,SPECIES,2764179: Commelina communis L.
 Coreopsis verticillata L.,3,,3133887,Plantae,Tracheophyta,Asterales,Magnoliopsida,Coreopsis,Asteraceae,Coreopsis verticillata,SPECIES,3133887: Coreopsis verticillata L.
+Cornus sanguinea subsp. hungarica (Kárpáti) Soó,3,,8421432,Plantae,Tracheophyta,Cornales,Magnoliopsida,Cornus,Cornaceae,Cornus sanguinea,SUBSPECIES,8421432: Cornus sanguinea subsp. hungarica (Kárpáti) Soó
 Corylus maxima Mill.,3,,2876049,Plantae,Tracheophyta,Fagales,Magnoliopsida,Corylus,Betulaceae,Corylus maxima,SPECIES,2876049: Corylus maxima Mill. | 2876058: Corylus maxima f. atropurpurea Dochnahl
 Cuscuta lupuliformis Krock.,3,,3678256,Plantae,Tracheophyta,Solanales,Magnoliopsida,Cuscuta,Convolvulaceae,Cuscuta lupuliformis,SPECIES,3678256: Cuscuta lupuliformis Krock.
 "Cyanopica cooki Bonaparte, 1850",3,,5844936,Animalia,Chordata,Passeriformes,Aves,Cyanopica,Corvidae,Cyanopica cooki,SPECIES,"5844936: Cyanopica cooki Bonaparte, 1850"
@@ -833,6 +857,7 @@ Erysimum repandum L.,3,,3048166,Plantae,Tracheophyta,Brassicales,Magnoliopsida,E
 Euphorbia prostrata Aiton,3,,3067891,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Euphorbia,Euphorbiaceae,Euphorbia prostrata,SPECIES,3067891: Euphorbia prostrata Aiton | 3069518: Chamaesyce prostrata (Aiton) Small
 "Falco sparverius Linnaeus, 1758",3,,9685907,Animalia,Chordata,Falconiformes,Aves,Falco,Falconidae,Falco sparverius,SPECIES,"9685907: Falco sparverius Linnaeus, 1758"
 Festuca glauca Vill.,3,,2705031,Plantae,Tracheophyta,Poales,Liliopsida,Festuca,Poaceae,Festuca glauca,SPECIES,2705031: Festuca glauca Vill.
+Galium verum subsp. wirtgenii (F.W.Schultz) Oborny,3,,2914404,Plantae,Tracheophyta,Gentianales,Magnoliopsida,Galium,Rubiaceae,Galium verum,SUBSPECIES,2914404: Galium verum subsp. wirtgenii (F.W.Schultz) Oborny
 "Grus japonensis (Statius Muller, 1776)",3,,2474944,Animalia,Chordata,Gruiformes,Aves,Grus,Gruidae,Grus japonensis,SPECIES,"2474944: Grus japonensis (Statius Muller, 1776)"
 Helichrysum italicum (Roth) G.Don,3,,3131614,Plantae,Tracheophyta,Asterales,Magnoliopsida,Helichrysum,Asteraceae,Helichrysum italicum,SPECIES,3131614: Helichrysum italicum (Roth) G.Don
 Hibiscus trionum L.,3,,3152560,Plantae,Tracheophyta,Malvales,Magnoliopsida,Hibiscus,Malvaceae,Hibiscus trionum,SPECIES,3152560: Hibiscus trionum L.
@@ -866,9 +891,11 @@ Pimpinella anisum L.,3,,8080300,Plantae,Tracheophyta,Apiales,Magnoliopsida,Pimpi
 "Ploceus melanocephalus (Linnaeus, 1758)",3,,2494070,Animalia,Chordata,Passeriformes,Aves,Ploceus,Ploceidae,Ploceus melanocephalus,SPECIES,"2494070: Ploceus melanocephalus (Linnaeus, 1758)"
 Polystichum luctuosum T.Moore,3,,4046493,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Polystichum,Dryopteridaceae,Polystichum luctuosum,SPECIES,2651108: Polystichum tsus-simense (Hook.) J.Sm.
 "Polytelis anthopeplus (Lear, 1831)",3,,2479498,Animalia,Chordata,Psittaciformes,Aves,Polytelis,Psittacidae,Polytelis anthopeplus,SPECIES,"2479498: Polytelis anthopeplus (Lear, 1831)"
+Potentilla recta subsp. recta,3,,7272439,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla recta,SUBSPECIES,7272439: Potentilla recta subsp. recta
 Quercus ilex L.,3,,2879098,Plantae,Tracheophyta,Fagales,Magnoliopsida,Quercus,Fagaceae,Quercus ilex,SPECIES,2879098: Quercus ilex L.
 Rhodotypos scandens Makino,3,,3032442,Plantae,Tracheophyta,Rosales,Magnoliopsida,Rhodotypos,Rosaceae,Rhodotypos scandens,SPECIES,3032442: Rhodotypos scandens Makino
 Rostraria cristata (L.) Tzvelev,3,,5289906,Plantae,Tracheophyta,Poales,Liliopsida,Rostraria,Poaceae,Rostraria cristata,SPECIES,2705915: Koeleria cristata (L.) Bertol. | 5289906: Rostraria cristata (L.) Tzvelev
+Rumex obtusifolius subsp. sylvestris (Lam.) Celak.,3,,7901010,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Rumex,Polygonaceae,Rumex obtusifolius,SUBSPECIES,7901010: Rumex obtusifolius subsp. sylvestris (Lam.) Celak.
 Rumex rugosus Campd.,3,,2889037,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Rumex,Polygonaceae,Rumex rugosus,SPECIES,2889037: Rumex rugosus Campd.
 Salix irrorata Andersson,3,,5372827,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Salix,Salicaceae,Salix irrorata,SPECIES,5372827: Salix irrorata Andersson
 Sauromatum venosum (Aiton) Kunth,3,,2869597,Plantae,Tracheophyta,Alismatales,Liliopsida,Sauromatum,Araceae,Sauromatum venosum,SPECIES,2869586: Typhonium venosum (Dryand. ex Aiton) Hett. & P.C.Boyce
@@ -902,9 +929,11 @@ Ambrosia trifida L.,2,,3110588,Plantae,Tracheophyta,Asterales,Magnoliopsida,Ambr
 Amelanchier spicata K.Koch,2,,3023852,Plantae,Tracheophyta,Rosales,Magnoliopsida,Amelanchier,Rosaceae,Amelanchier spicata,SPECIES,3023852: Amelanchier spicata K.Koch
 "Anas castanea (Eyton, 1838)",2,,2498097,Animalia,Chordata,Anseriformes,Aves,Anas,Anatidae,Anas castanea,SPECIES,"2498097: Anas castanea (Eyton, 1838)"
 "Anas versicolor Vieillot, 1816",2,,2498114,Animalia,Chordata,Anseriformes,Aves,Anas,Anatidae,Anas versicolor,SPECIES,"2498114: Anas versicolor Vieillot, 1816"
+Anchusa officinalis subsp. officinalis,2,,7295374,Plantae,Tracheophyta,Boraginales,Magnoliopsida,Anchusa,Boraginaceae,Anchusa officinalis,SUBSPECIES,7295374: Anchusa officinalis subsp. officinalis
 Anemone apennina L.,2,,3927746,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Anemone,Ranunculaceae,Anemone apennina,SPECIES,3927746: Anemone apennina L.
 Anemone coronaria L.,2,,3033261,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Anemone,Ranunculaceae,Anemone coronaria,SPECIES,3033261: Anemone coronaria L.
 Aponogeton distachyos L.f.,2,,5328593,Plantae,Tracheophyta,Alismatales,Liliopsida,Aponogeton,Aponogetonaceae,Aponogeton distachyos,SPECIES,5328593: Aponogeton distachyos L.f.
+Artemisia campestris subsp. maritima (DC.) Arcang.,2,,6077549,Plantae,Tracheophyta,Asterales,Magnoliopsida,Artemisia,Asteraceae,Artemisia campestris,SUBSPECIES,6077549: Artemisia campestris subsp. maritima (DC.) Arcang.
 "Bostrychia hagedash (Latham, 1790)",2,,5229203,Animalia,Chordata,Pelecaniformes,Aves,Bostrychia,Threskiornithidae,Bostrychia hagedash,SPECIES,"5229203: Bostrychia hagedash (Latham, 1790)"
 "Branta sandvicensis (Vigors, 1834)",2,,5232445,Animalia,Chordata,Anseriformes,Aves,Branta,Anatidae,Branta sandvicensis,SPECIES,"5232445: Branta sandvicensis (Vigors, 1834)"
 Bromus lepidus Holmb.,2,,2703711,Plantae,Tracheophyta,Poales,Liliopsida,Bromus,Poaceae,Bromus lepidus,SPECIES,2703711: Bromus lepidus Holmb.
@@ -959,6 +988,7 @@ Elaeagnus submacrophylla Serv.,2,,4048240,Plantae,Tracheophyta,Rosales,Magnoliop
 Epimedium alpinum L.,2,,7695021,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Epimedium,Berberidaceae,Epimedium alpinum,SPECIES,7695021: Epimedium alpinum L.
 Eriobotrya japonica (Thunb.) Lindl.,2,,3024146,Plantae,Tracheophyta,Rosales,Magnoliopsida,Eriobotrya,Rosaceae,Eriobotrya japonica,SPECIES,3024146: Eriobotrya japonica (Thunb.) Lindl.
 Erodium manescavii Coss.,2,,4934105,Plantae,Tracheophyta,Geraniales,Magnoliopsida,Erodium,Geraniaceae,Erodium manescavii,SPECIES,4934105: Erodium manescavii Coss.
+Eruca vesicaria subsp. sativa (Mill.) Thell.,2,,5375925,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Eruca,Brassicaceae,Eruca vesicaria,SUBSPECIES,5375925: Eruca vesicaria subsp. sativa (Mill.) Thell.
 "Eumodicogryllus bordigalensis (Latreille, 1804)",2,,1722140,Animalia,Arthropoda,Orthoptera,Insecta,Eumodicogryllus,Gryllidae,Eumodicogryllus bordigalensis,SPECIES,"1722140: Eumodicogryllus bordigalensis (Latreille, 1804)"
 Euonymus alatus (Thunb.) Siebold,2,,3169120,Plantae,Tracheophyta,Celastrales,Magnoliopsida,Euonymus,Celastraceae,Euonymus alatus,SPECIES,3169120: Euonymus alatus (Thunb.) Siebold
 Euphorbia oblongata Griseb.,2,,3069460,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Euphorbia,Euphorbiaceae,Euphorbia oblongata,SPECIES,3069460: Euphorbia oblongata Griseb.
@@ -1015,6 +1045,7 @@ Philadelphus pubescens Loisel.,2,,2986022,Plantae,Tracheophyta,Cornales,Magnolio
 Platanus orientalis L.,2,,3152816,Plantae,Tracheophyta,Proteales,Magnoliopsida,Platanus,Platanaceae,Platanus orientalis,SPECIES,3152816: Platanus orientalis L.
 "Platycercus icterotis (Temminck & Kuhl, 1820)",2,,2479320,Animalia,Chordata,Psittaciformes,Aves,Platycercus,Psittacidae,Platycercus icterotis,SPECIES,"2479320: Platycercus icterotis (Temminck & Kuhl, 1820)"
 "Poicephalus senegalus (Linnaeus, 1766)",2,,2479964,Animalia,Chordata,Psittaciformes,Aves,Poicephalus,Psittacidae,Poicephalus senegalus,SPECIES,"2479964: Poicephalus senegalus (Linnaeus, 1766)"
+Polygonum aviculare subsp. rurivagum (Jord. ex Boreau) Berher,2,,5652131,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Polygonum,Polygonaceae,Polygonum aviculare,SUBSPECIES,5334432: Polygonum rurivagum Jord. ex Boreau | 5652131: Polygonum aviculare subsp. rurivagum (Jord. ex Boreau) Berher
 Polystichum polyblepharum C.Presl,2,,7158449,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Polystichum,Dryopteridaceae,Polystichum polyblepharum,SPECIES,7158449: Polystichum polyblepharum C.Presl
 Populus jackii Sarg.,2,,3040241,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Populus,Salicaceae,Populus jackii,SPECIES,3040241: Populus jackii Sarg.
 Primula florindae Kingdon-Ward,2,,5640518,Plantae,Tracheophyta,Ericales,Magnoliopsida,Primula,Primulaceae,Primula florindae,SPECIES,5640518: Primula florindae Kingdon-Ward
@@ -1048,6 +1079,7 @@ Tolmiea menziesii Torr. & A.Gray,2,,5371605,Plantae,Tracheophyta,Saxifragales,Ma
 Tradescantia fluminensis Vell.,2,,2765156,Plantae,Tracheophyta,Commelinales,Liliopsida,Tradescantia,Commelinaceae,Tradescantia fluminensis,SPECIES,2765156: Tradescantia fluminensis Vell.
 Trifolium suffocatum L.,2,,5359099,Plantae,Tracheophyta,Fabales,Magnoliopsida,Trifolium,Fabaceae,Trifolium suffocatum,SPECIES,5359099: Trifolium suffocatum L.
 Trifolium tomentosum L.,2,,5359510,Plantae,Tracheophyta,Fabales,Magnoliopsida,Trifolium,Fabaceae,Trifolium tomentosum,SPECIES,5359510: Trifolium tomentosum L.
+Triticum aestivum subsp. spelta (L.) Thell.,2,,2706403,Plantae,Tracheophyta,Poales,Liliopsida,Triticum,Poaceae,Triticum aestivum,SUBSPECIES,2706402: Triticum spelta L.
 Triticum monococcum L.,2,,7883427,Plantae,Tracheophyta,Poales,Liliopsida,Triticum,Poaceae,Triticum monococcum,SPECIES,7883427: Triticum monococcum L.
 Tulipa gesneriana L.,2,,5299675,Plantae,Tracheophyta,Liliales,Liliopsida,Tulipa,Liliaceae,Tulipa gesneriana,SPECIES,5299675: Tulipa gesneriana L.
 Umbilicus rupestris (Salisb.) Dandy,2,,7334368,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Umbilicus,Crassulaceae,Umbilicus rupestris,SPECIES,5689273: Umbilicus pendulinus (DC.) DC. | 7334368: Umbilicus rupestris (Salisb.) Dandy
@@ -1058,6 +1090,7 @@ Zizania latifolia Turcz. ex Stapf,2,,2703231,Plantae,Tracheophyta,Poales,Liliops
 Acanthus spinosus L.,1,,5415453,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Acanthus,Acanthaceae,Acanthus spinosus,SPECIES,5415453: Acanthus spinosus L.
 Acer cappadocicum Gleditsch,1,,7262908,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Acer,Sapindaceae,Acer cappadocicum,SPECIES,7262908: Acer cappadocicum Gleditsch
 Acer rufinerve Siebold & Zucc.,1,,7263145,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Acer,Sapindaceae,Acer rufinerve,SPECIES,7263145: Acer rufinerve Siebold & Zucc.
+Acer tataricum subsp. ginnala (Maxim.) Wesmael,1,,4925890,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Acer,Sapindaceae,Acer tataricum,SUBSPECIES,4925890: Acer tataricum subsp. ginnala (Maxim.) Wesmael
 Adonis annua L.,1,,5371709,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Adonis,Ranunculaceae,Adonis annua,SPECIES,5371709: Adonis annua L. | 5371710: Adonis autumnalis L.
 "Aedes albopictus Skuse, 1894",1,,1651430,Animalia,Arthropoda,Diptera,Insecta,Aedes,Culicidae,Aedes albopictus,SPECIES,"1651430: Aedes albopictus Skuse, 1894"
 Aegilops cylindrica Host,1,,5289783,Plantae,Tracheophyta,Poales,Liliopsida,Aegilops,Poaceae,Aegilops cylindrica,SPECIES,5289783: Aegilops cylindrica Host
@@ -1084,6 +1117,7 @@ Asarum europaeum L.,1,,7313595,Plantae,Tracheophyta,Piperales,Magnoliopsida,Asar
 Asperula arvensis L.,1,,2916662,Plantae,Tracheophyta,Gentianales,Magnoliopsida,Asperula,Rubiaceae,Asperula arvensis,SPECIES,2916662: Asperula arvensis L.
 Aster ageratoides Turcz.,1,,5387639,Plantae,Tracheophyta,Asterales,Magnoliopsida,Aster,Asteraceae,Aster ageratoides,SPECIES,5387639: Aster ageratoides Turcz.
 Avena nuda L.,1,,8174035,Plantae,Tracheophyta,Poales,Liliopsida,Avena,Poaceae,Avena nuda,SPECIES,8174035: Avena nuda L.
+Avena sterilis subsp. sterilis,1,,7226804,Plantae,Tracheophyta,Poales,Liliopsida,Avena,Poaceae,Avena sterilis,SUBSPECIES,7226804: Avena sterilis subsp. sterilis
 Avena strigosa Schreb.,1,,2705295,Plantae,Tracheophyta,Poales,Liliopsida,Avena,Poaceae,Avena strigosa,SPECIES,2705295: Avena strigosa Schreb.
 Axyris amaranthoides L.,1,,6447806,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Axyris,Amaranthaceae,Axyris amaranthoides,SPECIES,6447806: Axyris amaranthoides L.
 "Balanus tintinnabulum (Linnaeus, 1758)",1,,2115692,Animalia,Arthropoda,Sessilia,Maxillopoda,Balanus,Balanidae,Balanus tintinnabulum,SPECIES,"2115692: Balanus tintinnabulum (Linnaeus, 1758) | 5166487: Megabalanus tintinnabulum (Linnaeus, 1758)"
@@ -1146,6 +1180,7 @@ Cucumis melo L.,1,,2874570,Plantae,Tracheophyta,Cucurbitales,Magnoliopsida,Cucum
 Cucumis sativus L.,1,,2874569,Plantae,Tracheophyta,Cucurbitales,Magnoliopsida,Cucumis,Cucurbitaceae,Cucumis sativus,SPECIES,2874569: Cucumis sativus L.
 "Cyanochen cyanoptera (Ruppell, 1845)",1,,2498380,Animalia,Chordata,Anseriformes,Aves,Cyanochen,Anatidae,Cyanochen cyanoptera,SPECIES,"2498380: Cyanochen cyanoptera (Ruppell, 1845)"
 Cyclachaena xanthiifolia Fresen.,1,,3141890,Plantae,Tracheophyta,Asterales,Magnoliopsida,Cyclachaena,Asteraceae,Cyclachaena xanthiifolia,SPECIES,5696453: Iva xanthifolia Nutt.
+Cyperus longus subsp. longus,1,,7070211,Plantae,Tracheophyta,Poales,Liliopsida,Cyperus,Cyperaceae,Cyperus longus,SUBSPECIES,7070211: Cyperus longus subsp. longus
 Cyrtomium falcatum (L.f.) C.Presl,1,,2650829,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Cyrtomium,Dryopteridaceae,Cyrtomium falcatum,SPECIES,2650829: Cyrtomium falcatum (L.f.) C.Presl
 Dactyloctenium aegyptium (L.) Willd.,1,,2706188,Plantae,Tracheophyta,Poales,Liliopsida,Dactyloctenium,Poaceae,Dactyloctenium aegyptium,SPECIES,2706188: Dactyloctenium aegyptium (L.) Willd.
 Dasypyrum villosum (L.) P.Candargy,1,,7810452,Plantae,Tracheophyta,Poales,Liliopsida,Dasypyrum,Poaceae,Dasypyrum villosum,SPECIES,7810452: Dasypyrum villosum (L.) P.Candargy
@@ -1156,6 +1191,7 @@ Decaisnea insignis Hook.f. & Thomson,1,,5686494,Plantae,Tracheophyta,Ranunculale
 "Diadumene lineata (Verrill, 1869)",1,,4283395,Animalia,Cnidaria,Actiniaria,Anthozoa,Diadumene,Diadumenidae,Diadumene lineata,SPECIES,"4283395: Diadumene lineata (Verrill, 1869)"
 Dianthus superbus L.,1,,6363496,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Dianthus,Caryophyllaceae,Dianthus superbus,SPECIES,6363496: Dianthus superbus L.
 Dichondra argentea Willd.,1,,2928668,Plantae,Tracheophyta,Solanales,Magnoliopsida,Dichondra,Convolvulaceae,Dichondra argentea,SPECIES,2928668: Dichondra argentea Willd.
+Diplachne fusca subsp. fascicularis (Lam.) P.M.Peterson & N.Snow,1,,8257546,Plantae,Tracheophyta,Poales,Liliopsida,Diplachne,Poaceae,Diplachne fusca,SUBSPECIES,8257546: Diplachne fusca subsp. fascicularis (Lam.) P.M.Peterson & N.Snow
 Doronicum columnae Ten.,1,,3143034,Plantae,Tracheophyta,Asterales,Magnoliopsida,Doronicum,Asteraceae,Doronicum columnae,SPECIES,3143034: Doronicum columnae Ten.
 Dryopteris cycadina (Franch. & Sav.) C.Chr.,1,,7319302,Plantae,Tracheophyta,Polypodiales,Polypodiopsida,Dryopteris,Dryopteridaceae,Dryopteris cycadina,SPECIES,7319302: Dryopteris cycadina (Franch. & Sav.) C.Chr.
 Dysphania schraderiana (Schult.) Mosyakin & Clemants,1,,5568322,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Dysphania,Amaranthaceae,Dysphania schraderiana,SPECIES,3083909: Chenopodium schraderianum Roem. ex Schult.
@@ -1189,6 +1225,7 @@ Glandularia aristigera (S.Moore) Tronc.,1,,5667614,Plantae,Tracheophyta,Lamiales
 Glyceria canadensis Trin.,1,,2705512,Plantae,Tracheophyta,Poales,Liliopsida,Glyceria,Poaceae,Glyceria canadensis,SPECIES,2705512: Glyceria canadensis Trin.
 Glycine max (L.) Merr.,1,,5359660,Plantae,Tracheophyta,Fabales,Magnoliopsida,Glycine,Fabaceae,Glycine max,SPECIES,5359660: Glycine max (L.) Merr.
 "Gracupica nigricollis (Paykull, 1807)",1,,5845390,Animalia,Chordata,Passeriformes,Aves,Gracupica,Sturnidae,Gracupica nigricollis,SPECIES,"5845390: Gracupica nigricollis (Paykull, 1807)"
+Graptemys pseudogeographica pseudogeographica,1,,7190901,Animalia,Chordata,Testudines,Reptilia,Graptemys,Emydidae,Graptemys pseudogeographica,SUBSPECIES,7190901: Graptemys pseudogeographica pseudogeographica
 Grindelia squarrosa (Pursh) Dunal,1,,3146219,Plantae,Tracheophyta,Asterales,Magnoliopsida,Grindelia,Asteraceae,Grindelia squarrosa,SPECIES,3146219: Grindelia squarrosa (Pursh) Dunal
 "Gryllus bimaculatus De Geer, 1773",1,,1713034,Animalia,Arthropoda,Orthoptera,Insecta,Gryllus,Gryllidae,Gryllus bimaculatus,SPECIES,"1713034: Gryllus bimaculatus De Geer, 1773"
 "Gyrodactylus proterorhini Ergens, 1967",1,,5740285,Animalia,Platyhelminthes,Gyrodactylidea,Monogenea,Gyrodactylus,Gyrodactylidae,Gyrodactylus proterorhini,SPECIES,"5740285: Gyrodactylus proterorhini Ergens, 1967"
@@ -1221,6 +1258,7 @@ Leonurus quinquelobatus Gilib.,1,,7307492,Plantae,Tracheophyta,Lamiales,Magnolio
 Lepidium bonariense L.,1,,5376925,Plantae,Tracheophyta,Brassicales,Magnoliopsida,Lepidium,Brassicaceae,Lepidium bonariense,SPECIES,5376925: Lepidium bonariense L.
 Linaria triornithophora (L.) Willd.,1,,7848321,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Linaria,Plantaginaceae,Linaria triornithophora,SPECIES,7538068: Linaria triornithophora (L.) Cav.
 "Linepithema humile (Mayr, 1868)",1,,1316908,Animalia,Arthropoda,Hymenoptera,Insecta,Linepithema,Formicidae,Linepithema humile,SPECIES,"1316908: Linepithema humile (Mayr, 1868)"
+Linum austriacum subsp. austriacum,1,,7293222,Plantae,Tracheophyta,Malpighiales,Magnoliopsida,Linum,Linaceae,Linum austriacum,SUBSPECIES,7293222: Linum austriacum subsp. austriacum
 Lobelia siphilitica L.,1,,5409120,Plantae,Tracheophyta,Asterales,Magnoliopsida,Lobelia,Campanulaceae,Lobelia siphilitica,SPECIES,5409120: Lobelia siphilitica L.
 Lolium rigidum Gaudin,1,,2706218,Plantae,Tracheophyta,Poales,Liliopsida,Lolium,Poaceae,Lolium rigidum,SPECIES,2706218: Lolium rigidum Gaudin | 9231612: Lolium subulatum Vis.
 Lomelosia stellata Raf.,1,,4102909,Plantae,Tracheophyta,Dipsacales,Magnoliopsida,Lomelosia,Caprifoliaceae,Lomelosia stellata,SPECIES,2888804: Scabiosa stellata L.
@@ -1277,6 +1315,7 @@ Phalaris paradoxa L.,1,,5289758,Plantae,Tracheophyta,Poales,Liliopsida,Phalaris,
 Phlox subulata L.,1,,2927727,Plantae,Tracheophyta,Ericales,Magnoliopsida,Phlox,Polemoniaceae,Phlox subulata,SPECIES,2927727: Phlox subulata L.
 Phoenix dactylifera L.,1,,6109699,Plantae,Tracheophyta,Arecales,Liliopsida,Phoenix,Arecaceae,Phoenix dactylifera,SPECIES,6109699: Phoenix dactylifera L.
 Pimpinella peregrina L.,1,,5538946,Plantae,Tracheophyta,Apiales,Magnoliopsida,Pimpinella,Apiaceae,Pimpinella peregrina,SPECIES,5538946: Pimpinella peregrina L.
+Pisum sativum var. arvense (L.) Poir.,1,,7393432,Plantae,Tracheophyta,Fabales,Magnoliopsida,Pisum,Fabaceae,Pisum sativum,VARIETY,7393432: Pisum sativum var. arvense (L.) Poir.
 Plantago afra L.,1,,7303104,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Plantago,Plantaginaceae,Plantago afra,SPECIES,7303104: Plantago afra L.
 Plantago lagopus L.,1,,8022932,Plantae,Tracheophyta,Lamiales,Magnoliopsida,Plantago,Plantaginaceae,Plantago lagopus,SPECIES,8022932: Plantago lagopus L.
 Platycodon grandiflorus A.DC.,1,,3164340,Plantae,Tracheophyta,Asterales,Magnoliopsida,Platycodon,Campanulaceae,Platycodon grandiflorus,SPECIES,3164340: Platycodon grandiflorus A.DC.
@@ -1285,7 +1324,9 @@ Platycodon grandiflorus A.DC.,1,,3164340,Plantae,Tracheophyta,Asterales,Magnolio
 "Poicephalus cryptoxanthus (W.Peters, 1854)",1,,2479955,Animalia,Chordata,Psittaciformes,Aves,Poicephalus,Psittacidae,Poicephalus cryptoxanthus,SPECIES,"2479955: Poicephalus cryptoxanthus (W.Peters, 1854)"
 Polygonum bellardii All.,1,,5334430,Plantae,Tracheophyta,Caryophyllales,Magnoliopsida,Polygonum,Polygonaceae,Polygonum bellardii,SPECIES,5334430: Polygonum bellardii All.
 Potentilla nepalensis Hook.,1,,5367214,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla nepalensis,SPECIES,5367214: Potentilla nepalensis Hook.
+Potentilla recta subsp. obscura (Willd.) Arcang.,1,,8358048,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla recta,SUBSPECIES,8358048: Potentilla recta subsp. obscura (Willd.) Arcang.
 Potentilla rivalis Torr.,1,,5367186,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla rivalis,SPECIES,5367186: Potentilla rivalis Torr.
+Potentilla supina subsp. costata Soják,1,,8045533,Plantae,Tracheophyta,Rosales,Magnoliopsida,Potentilla,Rosaceae,Potentilla supina,SUBSPECIES,8045533: Potentilla supina subsp. costata Soják
 Pseudofumaria alba (Miller) Lidén,1,,7315063,Plantae,Tracheophyta,Ranunculales,Magnoliopsida,Pseudofumaria,Papaveraceae,Pseudofumaria alba,SPECIES,7315063: Pseudofumaria alba (Miller) Lidén
 "Psyllipsocus ramburii Selys-Longchamps, 1872",1,,1031737,Animalia,Arthropoda,Psocodea,Insecta,Psyllipsocus,Psyllipsocidae,Psyllipsocus ramburii,SPECIES,"1031737: Psyllipsocus ramburii Selys-Longchamps, 1872"
 Ptelea trifoliata L.,1,,3190411,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Ptelea,Rutaceae,Ptelea trifoliata,SPECIES,3190411: Ptelea trifoliata L.
@@ -1332,6 +1373,7 @@ Trigonella caerulea Ser.,1,,5360498,Plantae,Tracheophyta,Fabales,Magnoliopsida,T
 Tripleurospermum decipiens (Fisch. & Mey.) Bornm.,1,,3104150,Plantae,Tracheophyta,Asterales,Magnoliopsida,Tripleurospermum,Asteraceae,Tripleurospermum decipiens,SPECIES,3104150: Tripleurospermum decipiens (Fisch. & Mey.) Bornm.
 Triticum turgidum L.,1,,2706406,Plantae,Tracheophyta,Poales,Liliopsida,Triticum,Poaceae,Triticum turgidum,SPECIES,2706389: Triticum durum Desf. | 2706406: Triticum turgidum L. | 8168170: Triticum dicoccum Schrank ex Schübl.
 Ulex gallii Planch.,1,,2951998,Plantae,Tracheophyta,Fabales,Magnoliopsida,Ulex,Fabaceae,Ulex gallii,SPECIES,2951998: Ulex gallii Planch.
+Valerianella locusta var. oleracea (Schltdl.) Breistr.,1,,7988337,Plantae,Tracheophyta,Dipsacales,Magnoliopsida,Valerianella,Caprifoliaceae,Valerianella locusta,VARIETY,7988337: Valerianella locusta var. oleracea (Schltdl.) Breistr.
 "Vanellus armatus (Burchell, 1822)",1,,5229136,Animalia,Chordata,Charadriiformes,Aves,Vanellus,Charadriidae,Vanellus armatus,SPECIES,"5229136: Vanellus armatus (Burchell, 1822)"
 Vicia monantha Retz.,1,,2975416,Plantae,Tracheophyta,Fabales,Magnoliopsida,Vicia,Fabaceae,Vicia monantha,SPECIES,2975416: Vicia monantha Retz.
 Vigna radiata (L.) R.Wilczek,1,,2982380,Plantae,Tracheophyta,Fabales,Magnoliopsida,Vigna,Fabaceae,Vigna radiata,SPECIES,2982380: Vigna radiata (L.) R.Wilczek

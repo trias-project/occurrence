@@ -1,4 +1,4 @@
-scientificName,n_prot_areas,mean_coverage,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
+scientificName,n_prot_areas,mean_coverage,taxonKey,kingdom,phylum,order,class,genus,family,species,rank,includes
 Ailanthus altissima (Mill.) Swingle,3,,3190653,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Ailanthus,Simaroubaceae,Ailanthus altissima,SPECIES,3190653: Ailanthus altissima (Mill.) Swingle
 "Alopochen aegyptiaca (Linnaeus, 1766)",3,,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
 Heracleum mantegazzianum Sommier & Levier,3,,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier

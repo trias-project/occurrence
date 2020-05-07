@@ -1,4 +1,4 @@
-scientificName,n_prot_areas,mean_coverage,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
+scientificName,n_prot_areas,mean_coverage,taxonKey,kingdom,phylum,order,class,genus,family,species,rank,includes
 "Alopochen aegyptiaca (Linnaeus, 1766)",221,0.1660968627230714,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
 Impatiens glandulifera Royle,178,0.05801381458304965,2891770,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens glandulifera,SPECIES,2891770: Impatiens glandulifera Royle | 2891771: Impatiens roylei Walpers
 Heracleum mantegazzianum Sommier & Levier,172,0.05277437940429149,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier
