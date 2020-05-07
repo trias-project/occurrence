@@ -75,51 +75,66 @@ Preview taxonomic metadata of occurrence cube:
 be_species_info %>% head(10)
 ```
 
-## Global Register of Introduced and Invasive Species - Belgium
+## Occurrence cube of alien species
 
-We also retrieve the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e) from GBIF, which is sometimes called the [unified checklist](https://github.com/trias-project/unified-checklist):
+Read the occurrence cubes of alien taxa as published on Zenodo (https://zenodo.org/record/3637911). It is based on GBIF occurrence data of taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e), shortly called the [unified checklist](https://github.com/trias-project/unified-checklist). Attention: It can take a long time:
 
-```{r griis_Belgium}
-alien_taxa <- name_usage(
-  datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
-  return = "data",
-  limit = 10000
-) %>%
-  filter(origin == "SOURCE")
+```{r read_cube_from_zenodo_alien}
+if (!"be_alientaxa_cube.csv" %in%
+  list.files(here::here("data", "interim"))) {
+  download_zenodo(
+    doi = "10.5281/zenodo.3635510",
+    path = here::here("data", "interim")
+  )
+}
 ```
 
-Preview:
+We are interested in the alien taxa cube (`be_alientaxa_cube.csv`) and its metadata (`be_alientaxa_info.csv`):
 
-```{r preview_alien_taxa}
-alien_taxa %>% head(10)
+```{r read_be_species_cube_alien}
+be_alientaxa_cube <- read_csv(
+  file = here::here("data", "interim", "be_alientaxa_cube.csv"),
+  na = ""
+)
+be_alientaxa_info <- read_csv(
+  file = here::here("data", "interim", "be_alientaxa_info.csv"),
+  na = ""
+)
+```
+
+Preview occurrence cube:
+
+```{r preview_cube_alien}
+be_alientaxa_cube %>% head(10)
+```
+
+Preview taxonomic metadata of occurrence cube with alien taxa:
+
+```{r preview_cube_metadata_alien}
+be_alientaxa_info %>% head(10)
 ```
 
 Number of taxa per rank:
 
 ```{r rank_alien}
-alien_taxa %>%
+be_alientaxa_info %>%
+  distinct(rank, taxonKey) %>%
   group_by(rank) %>%
   count()
-```
-
-Alien genera:
-
-```{r alien_genus}
-genus_alien <-
-  alien_taxa %>%
-  filter(rank == "GENUS")
 ```
 
 Infraspecific alien taxa:
 
 ```{r species_with_alien_infraspecific_taxa, cache = TRUE}
 infraspecific_alien <-
-  alien_taxa %>%
-  filter(rank %in% c("SUBSPECIES", "VARIETY")) %>%
-  select(-starts_with("species"))
+  be_alientaxa_info %>%
+  distinct(rank, taxonKey) %>%
+  filter(rank %in% c("SUBSPECIES",
+                     "VARIETY",
+                     "FORM"))
 infraspecific_alien <-
   map_dfr(
-    infraspecific_alien$nubKey,
+    infraspecific_alien$taxonKey,
     function(x) {
       name_usage(x, return = "data")
     }
@@ -133,9 +148,21 @@ infraspecific_alien <-
     ),
     speciesKey = if_else(is.na(speciesKey),
       parentKey,
-      speciesKey
-    )
-  )
+      speciesKey)) %>%
+  select(taxonKey = key,
+         kingdom,
+         phylum,
+         order,
+         class,
+         family,
+         genusKey,
+         genus,
+         speciesKey,
+         species)
+infraspecific_alien <-
+  infraspecific_alien %>%
+  left_join(be_alientaxa_info,
+            by = c("taxonKey"))
 ```
 
 ## EEA cells containing the Natura2000 protected areas
@@ -261,7 +288,7 @@ prot_areas_species_info <-
   filter(speciesKey %in% occs_prot_areas$speciesKey)
 ```
 
-We retrieve taxonomic information from GBIF:
+We retrieve taxonomic tree from GBIF:
 
 ```{r taxonomic_info_species_cube, cache = TRUE}
 prot_areas_species_taxon_info <-
@@ -303,17 +330,9 @@ prot_areas_species_taxon_info %>% head(10)
 We would also like to indicate whether the species is alien. We add a boolean column indicating whether the species is alien or not based on the unified checklist:
 
 ```{r add_is_alien}
-# add genusKey to species
 occs_prot_areas <-
   occs_prot_areas %>%
-  left_join(prot_areas_species_info %>%
-    select(speciesKey, genusKey),
-  by = c("speciesKey")
-  )
-occs_prot_areas <-
-  occs_prot_areas %>%
-  mutate(is_alien = speciesKey %in% alien_taxa$nubKey |
-    genusKey %in% alien_taxa$nubKey)
+  mutate(is_alien = speciesKey %in% be_alientaxa_info$taxonKey)
 ```
 
 As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:
@@ -321,12 +340,12 @@ As the Belgian list of alien taxa contains infraspecific taxa, it can occur that
 ```{r add_remarks}
 species_infraspecific_alien <-
   infraspecific_alien %>%
-  select(speciesKey, scientificName, key) %>%
+  select(speciesKey, scientificName, taxonKey) %>%
   filter(speciesKey %in% occs_prot_areas$speciesKey) %>%
   group_by(speciesKey) %>%
   summarize(remarks = paste0(
     "Infraspecific alien taxa present. ",
-    paste(key,
+    paste(taxonKey,
       scientificName,
       sep = ":",
       collapse = ","
@@ -348,6 +367,54 @@ occs_prot_areas %>%
   head(10)
 ```
 
+## Include infraspecific alien taxa
+
+To better study the spread of alien taxa we also add information about infraspecific taxa:
+
+```{r be_prot_areas_cube_infraspecific}
+# Select cells with occurrences of infraspecific alien taxa
+be_prot_areas_cube_infraspecific <-
+  cells_of_prot_areas %>%
+  inner_join(
+    be_alientaxa_cube %>%
+      filter(taxonKey %in% infraspecific_alien$taxonKey),
+    by = c("CELLCODE" = "eea_cell_code")
+  )
+# Calculate n observations, aoo, min_coord_uncertainty
+occs_prot_areas_infraspecific <-
+  be_prot_areas_cube_infraspecific %>%
+  group_by(SITECODE, SITETYPE, year, taxonKey) %>%
+  summarize(
+    aoo = n(),
+    n = sum(n),
+    min_coord_uncertainty = min(min_coord_uncertainty)
+  ) %>%
+  ungroup()
+# Add coverage and is_alien
+occs_prot_areas_infraspecific <-
+  occs_prot_areas_infraspecific %>%
+  left_join(n_cells_prot_areas,
+    by = c("SITECODE")
+  ) %>%
+  mutate(coverage = aoo / n_cells,
+         is_alien = TRUE) %>%
+  select(-n_cells)
+# Remove taxa which are not present in protected areas
+prot_areas_infraspecific_taxon_info <-
+  infraspecific_alien %>%
+  filter(taxonKey %in% occs_prot_areas_infraspecific$taxonKey)
+# Merge data
+occs_prot_areas <-
+  occs_prot_areas %>%
+  rename(taxonKey = speciesKey) %>%
+  bind_rows(occs_prot_areas_infraspecific)
+# Merge metadata
+prot_areas_taxon_info <-
+  prot_areas_species_info %>%
+  rename(taxonKey = speciesKey) %>%
+  bind_rows(prot_areas_infraspecific_taxon_info)
+```
+
 # Save data and metadata
 
 ## Save data about protected area 
@@ -363,7 +430,7 @@ occs_prot_areas <-
     SITECODE,
     SITETYPE,
     year,
-    speciesKey,
+    taxonKey,
     n,
     aoo,
     coverage,
@@ -395,9 +462,9 @@ Select taxonomic metadata we are interested to:
 
 ```{r selection_taxon_metadata}
 taxonomic_metadata <-
-  prot_areas_species_info %>%
+  prot_areas_taxon_info %>%
   select(
-    speciesKey,
+    taxonKey,
     scientificName,
     kingdom,
     phylum,
