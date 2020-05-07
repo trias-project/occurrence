@@ -56,6 +56,8 @@ df <- read_csv(
 )
 ```
 
+Nota: these data have been also published on [Zenodo](https://zenodo.org/record/3635510).
+
 We remove columns we will never use:
 
 ```{r remove_coords_uncertainty}
@@ -89,6 +91,8 @@ df_bl <- read_csv(
   na = ""
 )
 ```
+
+Nota: these data have been also published on [Zenodo](https://zenodo.org/record/3635510).
 
 We remove columns we will never use:
 
@@ -634,6 +638,8 @@ df_ts <-
 ```
 
 # Save data
+
+## Save timeseries and taxonomic metadata
 
 Save `df_ts` as it will be used as start point of modelling pipelines:
 
