@@ -126,6 +126,36 @@ taxa_df <-
   filter(locationId == "ISO_3166:BE")
 ```
 
+## Remove some taxa
+
+We remove the following species:
+
+- [Anser fabalis (Latham, 1787)](https://www.gbif.org/species/2498027)
+- [Anser anser (Linnaeus, 1758)](https://www.gbif.org/species/2498036)
+- [Branta leucopsis (Bechstein, 1803)](https://www.gbif.org/species/5232464)
+
+as discussed in [issue #32](https://github.com/trias-project/unified-checklist/issues/32).
+
+```{r taxa_to_remove}
+taxa_to_remove_speciesKey <- c(
+  # Anser fabalis (Latham, 1787)
+  2498027, 
+  # Anser anser (Linnaeus, 1758)
+  2498036,
+  # Branta leucopsis (Bechstein, 1803)
+  5232464
+)
+```
+
+Important: this step is a patch waiting for a new version of the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
+
+```{r remove_taxa}
+# Remove from occurrence data
+df <-
+  df %>%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)
+```
+
 ### Taxa in unified checklist without occurrences
 
 There is a group of taxa defined in the unified checklist which are not present in the occurrence data, i.e. the presence of these taxa, although confirmed by authoritative's checklists, is still not sustained by observations:

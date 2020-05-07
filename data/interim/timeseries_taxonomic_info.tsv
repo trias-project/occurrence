@@ -65,7 +65,6 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 5376692	Lepidium latifolium	6	220	Magnoliopsida	Plantae
 2879098	Quercus ilex	6	220	Magnoliopsida	Plantae
 3033227	Eranthis hyemalis	6	220	Magnoliopsida	Plantae
-2498027	Anser fabalis	1	212	Aves	Animalia
 5341204	Pulmonaria officinalis	6	220	Magnoliopsida	Plantae
 5377060	Lepidium didymum	6	220	Magnoliopsida	Plantae
 3172118	Veronica longifolia	6	220	Magnoliopsida	Plantae
@@ -143,7 +142,6 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 5365888	Potentilla inclinata	6	220	Magnoliopsida	Plantae
 3085438	Cerastium tomentosum	6	220	Magnoliopsida	Plantae
 3042416	Camelina microcarpa	6	220	Magnoliopsida	Plantae
-5232464	Branta leucopsis	1	212	Aves	Animalia
 5289917	Polypogon monspeliensis	6	196	Liliopsida	Plantae
 5341198	Anchusa azurea	6	220	Magnoliopsida	Plantae
 2965232	Medicago carstiensis	6	220	Magnoliopsida	Plantae
@@ -231,7 +229,6 @@ taxonKey	canonicalName	kingdomKey	classKey	class	kingdom
 5568361	Dysphania multifida	6	220	Magnoliopsida	Plantae
 7523753	Symphoricarpos albus	6	220	Magnoliopsida	Plantae
 5377064	Lepidium densiflorum	6	220	Magnoliopsida	Plantae
-2498036	Anser anser	1	212	Aves	Animalia
 2889934	Tropaeolum majus	6	220	Magnoliopsida	Plantae
 2930262	Solanum tuberosum	6	220	Magnoliopsida	Plantae
 5359378	Trifolium incarnatum	6	220	Magnoliopsida	Plantae
