@@ -50,18 +50,18 @@ be_grid_crs
 
 ## Read Belgian protected areas Natura2000
 
-GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-10#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/protected_aras_natura2000_20190528`:
+GIS data of protected areas as defined in Natura2000 can be found on related webpage of [European Environment Agency](https://www.eea.europa.eu/data-and-maps/data/natura-11#tab-gis-data). We downloaded the GIS data as shapefile in folder `data/external/Natura2000_end2019_Shapefile`:
 
 ```{r download_data}
 path_natura2000 <- here::here(
   "data",
   "external",
-  "protected_areas_natura2000_20190528"
+  "Natura2000_end2019_Shapefile"
 )
 if (!file.exists(path_natura2000)) {
   temp <- tempfile()
   download.file(
-    "http://ftp.eea.europa.eu/www/natura2000/Natura2000_end2018_Shapefile.zip",
+    "https://cmshare.eea.europa.eu/s/n5L8Lrs9aYD775S/download",
     temp
   )
   unzip(temp, exdir = path_natura2000)
@@ -267,7 +267,7 @@ protected_areas %>%
   head()
 ```
 
-### Distribution protected areas
+### Distribution of Belgian protected areas
 
 Number of protected areas per type:
 
