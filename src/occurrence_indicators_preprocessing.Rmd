@@ -225,7 +225,7 @@ df_prot_areas <-
 
 ## Add informative columns
 
-For better interpretation of the data, we retrieve sqcientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+For better interpretation of the data, we retrieve scientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
 
 ```{r get_canonical_names}
 taxon_key <-
