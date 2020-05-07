@@ -417,6 +417,38 @@ prot_areas_taxon_info <-
 
 # Save data and metadata
 
+## Remove erroneous taxa
+
+As discussed in [issue #32](https://github.com/trias-project/unified-checklist/issues/32) we remove the following species:
+
+- [Anser fabalis (Latham, 1787)](https://www.gbif.org/species/2498027)
+- [Anser anser (Linnaeus, 1758)](https://www.gbif.org/species/2498036)
+- [Branta leucopsis (Bechstein, 1803)](https://www.gbif.org/species/5232464)
+
+```{r taxa_to_remove}
+taxa_to_remove_speciesKey <- c(
+  # Anser fabalis (Latham, 1787)
+  2498027, 
+  # Anser anser (Linnaeus, 1758)
+  2498036,
+  # Branta leucopsis (Bechstein, 1803)
+  5232464
+)
+```
+
+Important: this step is a patch waiting for a new version of the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
+
+```{r remove_taxa}
+# Remove from data
+occs_prot_areas <-
+  occs_prot_areas %>%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)
+# Remove from metadata
+prot_areas_taxon_info <-
+  prot_areas_taxon_info %>%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)
+```
+
 ## Save data about protected area 
 
 We finalize the data.frame containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.
