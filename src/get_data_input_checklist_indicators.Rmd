@@ -345,6 +345,32 @@ merged_info %>%
 
 ## Save data output
 
+### Remove some taxa
+
+We remove the following species:
+
+- [Anser fabalis (Latham, 1787)](https://www.gbif.org/species/2498027)
+- [Anser anser (Linnaeus, 1758)](https://www.gbif.org/species/2498036)
+- [Branta leucopsis (Bechstein, 1803)](https://www.gbif.org/species/5232464)
+
+as discussed in [issue #32](https://github.com/trias-project/unified-checklist/issues/32).
+
+```{r taxa_to_remove}
+taxa_to_remove <- 
+  taxa %>%
+  filter(nubKey %in% c(2498027, 2498036, 5232464)) %>%
+  distinct(key, nubKey, scientificName)
+taxa_to_remove
+```
+
+Important: this step is a patch waiting for a new version of the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
+
+```{r remove_taxa}
+merged_info <-
+  merged_info %>%
+  filter(!key %in% taxa_to_remove$key)
+```
+
 The data.frame `merged_info` is saved as output file:
 
 ```{r save_data_output}
