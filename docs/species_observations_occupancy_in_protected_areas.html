@@ -12,7 +12,7 @@
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-05-04" />
+<meta name="date" content="2020-05-08" />
 
 <title>Species observations and occupancy in Belgian protected areas</title>
 
@@ -436,7 +436,7 @@ div.tocify {
 <h1 class="title toc-ignore">Species observations and occupancy in Belgian protected areas</h1>
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2020-05-04</h4>
+<h4 class="date">2020-05-08</h4>
 
 </div>
 
@@ -489,43 +489,59 @@ be_species_info &lt;- read_csv(
   </script>
 </div>
 </div>
-<div id="global-register-of-introduced-and-invasive-species---belgium" class="section level2">
-<h2><span class="header-section-number">3.2</span> Global Register of Introduced and Invasive Species - Belgium</h2>
-<p>We also retrieve the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a> from GBIF, which is sometimes called the <a href="https://github.com/trias-project/unified-checklist">unified checklist</a>:</p>
-<pre class="r"><code>alien_taxa &lt;- name_usage(
-  datasetKey = &quot;6d9e952f-948c-4483-9807-575348147c7e&quot;,
-  return = &quot;data&quot;,
-  limit = 10000
-) %&gt;%
-  filter(origin == &quot;SOURCE&quot;)</code></pre>
-<p>Preview:</p>
-<pre class="r"><code>alien_taxa %&gt;% head(10)</code></pre>
+<div id="occurrence-cube-of-alien-species" class="section level2">
+<h2><span class="header-section-number">3.2</span> Occurrence cube of alien species</h2>
+<p>Read the occurrence cubes of alien taxa as published on Zenodo (<a href="https://zenodo.org/record/3637911" class="uri">https://zenodo.org/record/3637911</a>). It is based on GBIF occurrence data of taxa published in the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a>, shortly called the <a href="https://github.com/trias-project/unified-checklist">unified checklist</a>. Attention: It can take a long time:</p>
+<pre class="r"><code>if (!&quot;be_alientaxa_cube.csv&quot; %in%
+  list.files(here::here(&quot;data&quot;, &quot;interim&quot;))) {
+  download_zenodo(
+    doi = &quot;10.5281/zenodo.3635510&quot;,
+    path = here::here(&quot;data&quot;, &quot;interim&quot;)
+  )
+}</code></pre>
+<p>We are interested in the alien taxa cube (<code>be_alientaxa_cube.csv</code>) and its metadata (<code>be_alientaxa_info.csv</code>):</p>
+<pre class="r"><code>be_alientaxa_cube &lt;- read_csv(
+  file = here::here(&quot;data&quot;, &quot;interim&quot;, &quot;be_alientaxa_cube.csv&quot;),
+  na = &quot;&quot;
+)
+be_alientaxa_info &lt;- read_csv(
+  file = here::here(&quot;data&quot;, &quot;interim&quot;, &quot;be_alientaxa_info.csv&quot;),
+  na = &quot;&quot;
+)</code></pre>
+<p>Preview occurrence cube:</p>
+<pre class="r"><code>be_alientaxa_cube %&gt;% head(10)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["nubKey"],"name":[2],"type":["int"],"align":["right"]},{"label":["nameKey"],"name":[3],"type":["int"],"align":["right"]},{"label":["taxonID"],"name":[4],"type":["chr"],"align":["left"]},{"label":["kingdom"],"name":[5],"type":["chr"],"align":["left"]},{"label":["phylum"],"name":[6],"type":["chr"],"align":["left"]},{"label":["order"],"name":[7],"type":["chr"],"align":["left"]},{"label":["family"],"name":[8],"type":["chr"],"align":["left"]},{"label":["genus"],"name":[9],"type":["chr"],"align":["left"]},{"label":["species"],"name":[10],"type":["chr"],"align":["left"]},{"label":["kingdomKey"],"name":[11],"type":["int"],"align":["right"]},{"label":["phylumKey"],"name":[12],"type":["int"],"align":["right"]},{"label":["classKey"],"name":[13],"type":["int"],"align":["right"]},{"label":["orderKey"],"name":[14],"type":["int"],"align":["right"]},{"label":["familyKey"],"name":[15],"type":["int"],"align":["right"]},{"label":["genusKey"],"name":[16],"type":["int"],"align":["right"]},{"label":["speciesKey"],"name":[17],"type":["int"],"align":["right"]},{"label":["datasetKey"],"name":[18],"type":["chr"],"align":["left"]},{"label":["parentKey"],"name":[19],"type":["int"],"align":["right"]},{"label":["parent"],"name":[20],"type":["chr"],"align":["left"]},{"label":["scientificName"],"name":[21],"type":["chr"],"align":["left"]},{"label":["canonicalName"],"name":[22],"type":["chr"],"align":["left"]},{"label":["authorship"],"name":[23],"type":["chr"],"align":["left"]},{"label":["nameType"],"name":[24],"type":["chr"],"align":["left"]},{"label":["rank"],"name":[25],"type":["chr"],"align":["left"]},{"label":["origin"],"name":[26],"type":["chr"],"align":["left"]},{"label":["taxonomicStatus"],"name":[27],"type":["chr"],"align":["left"]},{"label":["nomenclaturalStatus"],"name":[28],"type":["lgl"],"align":["right"]},{"label":["remarks"],"name":[29],"type":["chr"],"align":["left"]},{"label":["numDescendants"],"name":[30],"type":["int"],"align":["right"]},{"label":["references"],"name":[31],"type":["chr"],"align":["left"]},{"label":["lastCrawled"],"name":[32],"type":["chr"],"align":["left"]},{"label":["lastInterpreted"],"name":[33],"type":["chr"],"align":["left"]},{"label":["issues"],"name":[34],"type":["chr"],"align":["left"]},{"label":["synonym"],"name":[35],"type":["lgl"],"align":["right"]},{"label":["class"],"name":[36],"type":["chr"],"align":["left"]},{"label":["acceptedKey"],"name":[37],"type":["int"],"align":["right"]},{"label":["accepted"],"name":[38],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"5740285","3":"18184572","4":"https://www.gbif.org/species/5740285","5":"Animalia","6":"Platyhelminthes","7":"Gyrodactylidea","8":"Gyrodactylidae","9":"Gyrodactylus","10":"Gyrodactylus proterorhini","11":"163636831","12":"163636848","13":"163636850","14":"163636851","15":"163636853","16":"163636855","17":"152543101","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636855","20":"Gyrodactylus","21":"Gyrodactylus proterorhini Ergens, 1967","22":"Gyrodactylus proterorhini","23":"Ergens, 1967","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/5740285","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.821+0000","34":"","35":"FALSE","36":"Monogenea","37":"NA","38":"NA"},{"1":"152543102","2":"3202936","3":"806823","4":"https://www.gbif.org/species/3202936","5":"Chromista","6":"Oomycota","7":"Saprolegniales","8":"Leptolegniaceae","9":"Aphanomyces","10":"Aphanomyces astaci","11":"163636832","12":"163636846","13":"163636847","14":"163636849","15":"163636852","16":"163636854","17":"152543102","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636854","20":"Aphanomyces","21":"Aphanomyces astaci Schikora","22":"Aphanomyces astaci","23":"Schikora","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/3202936","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.818+0000","34":"","35":"FALSE","36":"Peronosporea","37":"NA","38":"NA"},{"1":"152543110","2":"5179027","3":"15411920","4":"https://www.gbif.org/species/5179027","5":"Animalia","6":"Arthropoda","7":"Scutigeromorpha","8":"Scutigeridae","9":"Scutigera","10":"Scutigera coleoptrata","11":"163636831","12":"163637714","13":"163637723","14":"163637725","15":"163637726","16":"163637728","17":"152543110","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163637728","20":"Scutigera","21":"Scutigera coleoptrata Linnaeus, 1758","22":"Scutigera coleoptrata","23":"Linnaeus, 1758","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/5179027","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:12.828+0000","34":"","35":"FALSE","36":"Chilopoda","37":"NA","38":"NA"},{"1":"152543115","2":"5250069","3":"17244014","4":"https://www.gbif.org/species/5250069","5":"Fungi","6":"Basidiomycota","7":"Urocystidales","8":"Glomosporiaceae","9":"Thecaphora","10":"Thecaphora oxalidis","11":"163636856","12":"163636867","13":"163636869","14":"163636870","15":"163636872","16":"163636874","17":"152543115","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636874","20":"Thecaphora","21":"Thecaphora oxalidis (Ellis & Tracy) M.Lutz, R.Bauer & Piatek","22":"Thecaphora oxalidis","23":"M.Lutz, R.Bauer & Piatek (Ellis & Tracy)","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/5250069","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.890+0000","34":"","35":"FALSE","36":"Ustilaginomycetes","37":"NA","38":"NA"},{"1":"152543120","2":"4985072","3":"11388843","4":"https://www.gbif.org/species/4985072","5":"Animalia","6":"Bryozoa","7":"Cheilostomatida","8":"Candidae","9":"Tricellaria","10":"Tricellaria inopinata","11":"163636831","12":"163638166","13":"163638167","14":"163638173","15":"163638174","16":"163638176","17":"152543120","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163638176","20":"Tricellaria","21":"Tricellaria inopinata d'Hondt & Occhipinti Ambrogi, 1985","22":"Tricellaria inopinata","23":"d'Hondt & Occhipinti Ambrogi, 1985","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.14284/347, https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/4985072","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:14.339+0000","34":"","35":"FALSE","36":"Gymnolaemata","37":"NA","38":"NA"},{"1":"152543121","2":"5250090","3":"11643170","4":"https://www.gbif.org/species/5250090","5":"Fungi","6":"Basidiomycota","7":"Urocystidales","8":"Urocystidaceae","9":"Urocystis","10":"Urocystis trollii","11":"163636856","12":"163636867","13":"163636869","14":"163636870","15":"163636877","16":"163636879","17":"152543121","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636879","20":"Urocystis","21":"Urocystis trollii Nannf.","22":"Urocystis trollii","23":"Nannf.","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/5250090","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.909+0000","34":"","35":"FALSE","36":"Ustilaginomycetes","37":"NA","38":"NA"},{"1":"152543128","2":"2557730","3":"10621933","4":"https://www.gbif.org/species/2557730","5":"Fungi","6":"Basidiomycota","7":"Ustilaginales","8":"Ustilaginaceae","9":"Sporisorium","10":"Sporisorium destruens","11":"163636856","12":"163636867","13":"163636869","14":"163636882","15":"163636883","16":"163636889","17":"152543128","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636889","20":"Sporisorium","21":"Sporisorium destruens (Schltdl.) Vánky","22":"Sporisorium destruens","23":"Vánky (Schltdl.)","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/2557730","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.942+0000","34":"","35":"FALSE","36":"Ustilaginomycetes","37":"NA","38":"NA"},{"1":"152543131","2":"2557469","3":"11667261","4":"https://www.gbif.org/species/2557469","5":"Fungi","6":"Basidiomycota","7":"Ustilaginales","8":"Ustilaginaceae","9":"Ustilago","10":"Ustilago maydis","11":"163636856","12":"163636867","13":"163636869","14":"163636882","15":"163636883","16":"163636885","17":"152543131","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636885","20":"Ustilago","21":"Ustilago maydis (DC.) Corda","22":"Ustilago maydis","23":"Corda (DC.)","24":"SCIENTIFIC","25":"SPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/2557469","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.932+0000","34":"","35":"FALSE","36":"Ustilaginomycetes","37":"NA","38":"NA"},{"1":"152543132","2":"6157050","3":"16703179","4":"https://www.gbif.org/species/6157050","5":"Animalia","6":"Chordata","7":"Testudines","8":"Emydidae","9":"Graptemys","10":"NA","11":"163636831","12":"163636884","13":"163636886","14":"163636887","15":"163636888","16":"163636893","17":"NA","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636893","20":"Graptemys","21":"Graptemys pseudogeographica kohnii (Baur, 1890)","22":"Graptemys pseudogeographica kohnii","23":"(Baur, 1890)","24":"SCIENTIFIC","25":"SUBSPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/6157050","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.958+0000","34":"","35":"FALSE","36":"Reptilia","37":"NA","38":"NA"},{"1":"152543136","2":"7190901","3":"16703176","4":"https://www.gbif.org/species/7190901","5":"Animalia","6":"Chordata","7":"Testudines","8":"Emydidae","9":"Graptemys","10":"NA","11":"163636831","12":"163636884","13":"163636886","14":"163636887","15":"163636888","16":"163636893","17":"NA","18":"6d9e952f-948c-4483-9807-575348147c7e","19":"163636893","20":"Graptemys","21":"Graptemys pseudogeographica pseudogeographica","22":"Graptemys pseudogeographica pseudogeographica","23":"","24":"SCIENTIFIC","25":"SUBSPECIES","26":"SOURCE","27":"ACCEPTED","28":"NA","29":"Sources considered for this taxon: https://doi.org/10.15468/3pmlxs","30":"0","31":"https://www.gbif.org/species/7190901","32":"2020-04-15T11:14:58.165+0000","33":"2020-04-15T11:15:08.963+0000","34":"","35":"FALSE","36":"Reptilia","37":"NA","38":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["eea_cell_code"],"name":[2],"type":["chr"],"align":["left"]},{"label":["taxonKey"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min_coord_uncertainty"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1700","2":"1kmE3802N3133","3":"2287615","4":"1","5":"301"},{"1":"1700","2":"1kmE3802N3133","3":"2296807","4":"1","5":"301"},{"1":"1700","2":"1kmE3802N3133","3":"4562917","4":"1","5":"301"},{"1":"1700","2":"1kmE3826N3147","3":"5192789","4":"1","5":"301"},{"1":"1700","2":"1kmE3827N3146","3":"4564944","4":"1","5":"301"},{"1":"1700","2":"1kmE3827N3146","3":"5192789","4":"1","5":"301"},{"1":"1700","2":"1kmE3848N3148","3":"7791733","4":"1","5":"301"},{"1":"1700","2":"1kmE3858N3070","3":"2287072","4":"1","5":"301"},{"1":"1700","2":"1kmE3912N3122","3":"2294277","4":"1","5":"301"},{"1":"1700","2":"1kmE3930N3137","3":"2287072","4":"2","5":"301"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Preview taxonomic metadata of occurrence cube with alien taxa:</p>
+<pre class="r"><code>be_alientaxa_info %&gt;% head(10)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["scientificName"],"name":[2],"type":["chr"],"align":["left"]},{"label":["rank"],"name":[3],"type":["chr"],"align":["left"]},{"label":["taxonomicStatus"],"name":[4],"type":["chr"],"align":["left"]},{"label":["includes"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"1008955","2":"Fenestrulina delicia Winston, Hayward & Craig, 2000","3":"SPECIES","4":"ACCEPTED","5":"1008955: Fenestrulina delicia Winston, Hayward & Craig, 2000"},{"1":"1031394","2":"Ectopsocus petersi Smithers, 1978","3":"SPECIES","4":"ACCEPTED","5":"1031394: Ectopsocus petersi Smithers, 1978"},{"1":"1031400","2":"Ectopsocus briggsi McLachlan, 1899","3":"SPECIES","4":"ACCEPTED","5":"1031400: Ectopsocus briggsi McLachlan, 1899"},{"1":"1031684","2":"Lepinotus patruelis Pearman & J.V., 1931","3":"SPECIES","4":"ACCEPTED","5":"1031684: Lepinotus patruelis Pearman & J.V., 1931"},{"1":"1031737","2":"Psyllipsocus ramburii Selys-Longchamps, 1872","3":"SPECIES","4":"ACCEPTED","5":"1031737: Psyllipsocus ramburii Selys-Longchamps, 1872"},{"1":"1031742","2":"Dorypteryx domestica (Smithers & Courtenay, 1958)","3":"SPECIES","4":"ACCEPTED","5":"1031742: Dorypteryx domestica (Smithers & Courtenay, 1958)"},{"1":"1043717","2":"Cryptolaemus montrouzieri Mulsant, 1853","3":"SPECIES","4":"ACCEPTED","5":"1043717: Cryptolaemus montrouzieri Mulsant, 1853"},{"1":"1152186","2":"Callidiellum rufipennis (Motschulsky, 1861)","3":"SPECIES","4":"ACCEPTED","5":"1152188: Callidiellum rufipenne N.Ohbayashi, Kimura & Satô, 1994"},{"1":"1311477","2":"Vespa velutina Lepeletier, 1836","3":"SPECIES","4":"ACCEPTED","5":"1311477: Vespa velutina Lepeletier, 1836 | 6247411: Vespa velutina nigrithorax Buysson, 1905"},{"1":"1313740","2":"Camponotus vagus (Scopoli, 1763)","3":"SPECIES","4":"ACCEPTED","5":"1313740: Camponotus vagus (Scopoli, 1763)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Number of taxa per rank:</p>
-<pre class="r"><code>alien_taxa %&gt;%
+<pre class="r"><code>be_alientaxa_info %&gt;%
+  distinct(rank, taxonKey) %&gt;%
   group_by(rank) %&gt;%
   count()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["rank"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"GENUS","2":"11"},{"1":"SPECIES","2":"2749"},{"1":"SUBSPECIES","2":"103"},{"1":"VARIETY","2":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["rank"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"SPECIES","2":"1970"},{"1":"SUBSPECIES","2":"71"},{"1":"VARIETY","2":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Alien genera:</p>
-<pre class="r"><code>genus_alien &lt;-
-  alien_taxa %&gt;%
-  filter(rank == &quot;GENUS&quot;)</code></pre>
 <p>Infraspecific alien taxa:</p>
 <pre class="r"><code>infraspecific_alien &lt;-
-  alien_taxa %&gt;%
-  filter(rank %in% c(&quot;SUBSPECIES&quot;, &quot;VARIETY&quot;)) %&gt;%
-  select(-starts_with(&quot;species&quot;))
+  be_alientaxa_info %&gt;%
+  distinct(rank, taxonKey) %&gt;%
+  filter(rank %in% c(&quot;SUBSPECIES&quot;,
+                     &quot;VARIETY&quot;,
+                     &quot;FORM&quot;))
 infraspecific_alien &lt;-
   map_dfr(
-    infraspecific_alien$nubKey,
+    infraspecific_alien$taxonKey,
     function(x) {
       name_usage(x, return = &quot;data&quot;)
     }
@@ -539,9 +555,21 @@ infraspecific_alien &lt;-
     ),
     speciesKey = if_else(is.na(speciesKey),
       parentKey,
-      speciesKey
-    )
-  )</code></pre>
+      speciesKey)) %&gt;%
+  select(taxonKey = key,
+         kingdom,
+         phylum,
+         order,
+         class,
+         family,
+         genusKey,
+         genus,
+         speciesKey,
+         species)
+infraspecific_alien &lt;-
+  infraspecific_alien %&gt;%
+  left_join(be_alientaxa_info,
+            by = c(&quot;taxonKey&quot;))</code></pre>
 </div>
 <div id="eea-cells-containing-the-natura2000-protected-areas" class="section level2">
 <h2><span class="header-section-number">3.3</span> EEA cells containing the Natura2000 protected areas</h2>
@@ -558,7 +586,7 @@ infraspecific_alien &lt;-
 <pre class="r"><code>cells_of_prot_areas %&gt;% head(10)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["SITECODE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SITETYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CELLCODE"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"BE31001C0","2":"C","3":"1kmE3913N3077"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3075"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3076"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3077"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3078"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3079"},{"1":"BE31001C0","2":"C","3":"1kmE3914N3080"},{"1":"BE31001C0","2":"C","3":"1kmE3915N3076"},{"1":"BE31001C0","2":"C","3":"1kmE3915N3077"},{"1":"BE31001C0","2":"C","3":"1kmE3915N3078"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["SITECODE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SITETYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CELLCODE"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"BE33036C0","2":"C","3":"1kmE4045N3047"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3048"},{"1":"BE33036C0","2":"C","3":"1kmE4046N3047"},{"1":"BE33036C0","2":"C","3":"1kmE4046N3048"},{"1":"BE33036C0","2":"C","3":"1kmE4046N3049"},{"1":"BE33036C0","2":"C","3":"1kmE4046N3050"},{"1":"BE33036C0","2":"C","3":"1kmE4047N3047"},{"1":"BE33036C0","2":"C","3":"1kmE4047N3048"},{"1":"BE33036C0","2":"C","3":"1kmE4047N3049"},{"1":"BE33036C0","2":"C","3":"1kmE4047N3050"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Number of cells per protected area:</p>
@@ -599,7 +627,7 @@ infraspecific_alien &lt;-
 <pre class="r"><code>be_prot_areas_cube %&gt;% head(10)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["SITECODE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SITETYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CELLCODE"],"name":[3],"type":["chr"],"align":["left"]},{"label":["year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["speciesKey"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["min_coord_uncertainty"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1916","5":"8044896","6":"1","7":"10000"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"2703250","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"2722602","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"2975287","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"3107361","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"5331235","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"5341308","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"5372605","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"7693914","6":"1","7":"2800"},{"1":"BE31001C0","2":"C","3":"1kmE3913N3077","4":"1940","5":"9039392","6":"1","7":"2800"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["SITECODE"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SITETYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CELLCODE"],"name":[3],"type":["chr"],"align":["left"]},{"label":["year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["speciesKey"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["min_coord_uncertainty"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1921","5":"1340308","6":"1","7":"3535.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1934","5":"1354773","6":"1","7":"3500.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1934","5":"10480031","6":"1","7":"3536.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1935","5":"1136888","6":"1","7":"3536.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1935","5":"10480031","6":"1","7":"3536.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1951","5":"8603399","6":"1","7":"3536.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1956","5":"1354773","6":"1","7":"3535.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1960","5":"1043472","6":"1","7":"707.1"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1961","5":"1335903","6":"1","7":"3535.0"},{"1":"BE33036C0","2":"C","3":"1kmE4045N3047","4":"1961","5":"1337179","6":"1","7":"3535.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>For each taxon, year and protected area, calculate the number of observations, the area of occupancy and the minimum coordinate uncertainty:</p>
@@ -647,7 +675,7 @@ infraspecific_alien &lt;-
 <pre class="r"><code>prot_areas_species_info &lt;-
   be_species_info %&gt;%
   filter(speciesKey %in% occs_prot_areas$speciesKey)</code></pre>
-<p>We retrieve taxonomic information from GBIF:</p>
+<p>We retrieve taxonomic tree from GBIF:</p>
 <pre class="r"><code>prot_areas_species_taxon_info &lt;-
   map_dfr(
     prot_areas_species_info$speciesKey,
@@ -685,26 +713,18 @@ prot_areas_species_info &lt;-
 <div id="add-alien-status" class="section level2">
 <h2><span class="header-section-number">4.3</span> Add alien status</h2>
 <p>We would also like to indicate whether the species is alien. We add a boolean column indicating whether the species is alien or not based on the unified checklist:</p>
-<pre class="r"><code># add genusKey to species
-occs_prot_areas &lt;-
+<pre class="r"><code>occs_prot_areas &lt;-
   occs_prot_areas %&gt;%
-  left_join(prot_areas_species_info %&gt;%
-    select(speciesKey, genusKey),
-  by = c(&quot;speciesKey&quot;)
-  )
-occs_prot_areas &lt;-
-  occs_prot_areas %&gt;%
-  mutate(is_alien = speciesKey %in% alien_taxa$nubKey |
-    genusKey %in% alien_taxa$nubKey)</code></pre>
+  mutate(is_alien = speciesKey %in% be_alientaxa_info$taxonKey)</code></pre>
 <p>As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:</p>
 <pre class="r"><code>species_infraspecific_alien &lt;-
   infraspecific_alien %&gt;%
-  select(speciesKey, scientificName, key) %&gt;%
+  select(speciesKey, scientificName, taxonKey) %&gt;%
   filter(speciesKey %in% occs_prot_areas$speciesKey) %&gt;%
   group_by(speciesKey) %&gt;%
   summarize(remarks = paste0(
     &quot;Infraspecific alien taxa present. &quot;,
-    paste(key,
+    paste(taxonKey,
       scientificName,
       sep = &quot;:&quot;,
       collapse = &quot;,&quot;
@@ -722,15 +742,86 @@ occs_prot_areas &lt;-
   head(10)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["speciesKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["is_alien"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["remarks"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"3065239","2":"FALSE","3":"Infraspecific alien taxa present. 3065244:Euphorbia amygdaloides subsp. robbiae (Turrill) Stace"},{"1":"3170819","2":"FALSE","3":"Infraspecific alien taxa present. 7482178:Kickxia elatine subsp. crinita (Mabille) W.Greuter"},{"1":"9040863","2":"FALSE","3":"Infraspecific alien taxa present. 7225621:Neslia paniculata subsp. paniculata"},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"},{"1":"5341197","2":"FALSE","3":"Infraspecific alien taxa present. 8167990:Lycopsis arvensis subsp. orientalis (L.) Kuzn."},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"},{"1":"2687927","2":"FALSE","3":"Infraspecific alien taxa present. 6387033:Equisetum hyemale subsp. affine (Engelm.) Calder & Roy L.Taylor"},{"1":"3170819","2":"FALSE","3":"Infraspecific alien taxa present. 7482178:Kickxia elatine subsp. crinita (Mabille) W.Greuter"},{"1":"5352367","2":"FALSE","3":"Infraspecific alien taxa present. 5352372:Anthyllis vulneraria subsp. polyphylla (DC.) Nyman,5352425:Anthyllis vulneraria subsp. carpatica (Pant.) Nyman"},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["speciesKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["is_alien"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["remarks"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"3065239","2":"FALSE","3":"Infraspecific alien taxa present. 3065244:Euphorbia amygdaloides subsp. robbiae (Turrill) Stace"},{"1":"9040863","2":"FALSE","3":"Infraspecific alien taxa present. 7225621:Neslia paniculata subsp. paniculata"},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"},{"1":"5341197","2":"FALSE","3":"Infraspecific alien taxa present. 8167990:Lycopsis arvensis subsp. orientalis (L.) Kuzn."},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"},{"1":"2687927","2":"FALSE","3":"Infraspecific alien taxa present. 6387033:Equisetum hyemale subsp. affine (Engelm.) Calder & Roy L.Taylor"},{"1":"5352367","2":"FALSE","3":"Infraspecific alien taxa present. 5352425:Anthyllis vulneraria subsp. carpatica (Pant.) Nyman"},{"1":"9063248","2":"FALSE","3":"Infraspecific alien taxa present. 2914404:Galium verum subsp. wirtgenii (F.W.Schultz) Oborny"},{"1":"2687927","2":"FALSE","3":"Infraspecific alien taxa present. 6387033:Equisetum hyemale subsp. affine (Engelm.) Calder & Roy L.Taylor"},{"1":"2703777","2":"FALSE","3":"Infraspecific alien taxa present. 4131042:Bromus hordeaceus subsp. longipedicellatus Spalton"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+</div>
+<div id="include-infraspecific-alien-taxa" class="section level2">
+<h2><span class="header-section-number">4.4</span> Include infraspecific alien taxa</h2>
+<p>To better study the spread of alien taxa we also add information about infraspecific taxa:</p>
+<pre class="r"><code># Select cells with occurrences of infraspecific alien taxa
+be_prot_areas_cube_infraspecific &lt;-
+  cells_of_prot_areas %&gt;%
+  inner_join(
+    be_alientaxa_cube %&gt;%
+      filter(taxonKey %in% infraspecific_alien$taxonKey),
+    by = c(&quot;CELLCODE&quot; = &quot;eea_cell_code&quot;)
+  )
+# Calculate n observations, aoo, min_coord_uncertainty
+occs_prot_areas_infraspecific &lt;-
+  be_prot_areas_cube_infraspecific %&gt;%
+  group_by(SITECODE, SITETYPE, year, taxonKey) %&gt;%
+  summarize(
+    aoo = n(),
+    n = sum(n),
+    min_coord_uncertainty = min(min_coord_uncertainty)
+  ) %&gt;%
+  ungroup()
+# Add coverage and is_alien
+occs_prot_areas_infraspecific &lt;-
+  occs_prot_areas_infraspecific %&gt;%
+  left_join(n_cells_prot_areas,
+    by = c(&quot;SITECODE&quot;)
+  ) %&gt;%
+  mutate(coverage = aoo / n_cells,
+         is_alien = TRUE) %&gt;%
+  select(-n_cells)
+# Remove taxa which are not present in protected areas
+prot_areas_infraspecific_taxon_info &lt;-
+  infraspecific_alien %&gt;%
+  filter(taxonKey %in% occs_prot_areas_infraspecific$taxonKey)
+# Merge data
+occs_prot_areas &lt;-
+  occs_prot_areas %&gt;%
+  rename(taxonKey = speciesKey) %&gt;%
+  bind_rows(occs_prot_areas_infraspecific)
+# Merge metadata
+prot_areas_taxon_info &lt;-
+  prot_areas_species_info %&gt;%
+  rename(taxonKey = speciesKey) %&gt;%
+  bind_rows(prot_areas_infraspecific_taxon_info)</code></pre>
 </div>
 </div>
 <div id="save-data-and-metadata" class="section level1">
 <h1><span class="header-section-number">5</span> Save data and metadata</h1>
+<div id="remove-erroneous-taxa" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remove erroneous taxa</h2>
+<p>As discussed in <a href="https://github.com/trias-project/unified-checklist/issues/32">issue #32</a> we remove the following species:</p>
+<ul>
+<li><a href="https://www.gbif.org/species/2498027">Anser fabalis (Latham, 1787)</a></li>
+<li><a href="https://www.gbif.org/species/2498036">Anser anser (Linnaeus, 1758)</a></li>
+<li><a href="https://www.gbif.org/species/5232464">Branta leucopsis (Bechstein, 1803)</a></li>
+</ul>
+<pre class="r"><code>taxa_to_remove_speciesKey &lt;- c(
+  # Anser fabalis (Latham, 1787)
+  2498027, 
+  # Anser anser (Linnaeus, 1758)
+  2498036,
+  # Branta leucopsis (Bechstein, 1803)
+  5232464
+)</code></pre>
+<p>Important: this step is a patch waiting for a new version of the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a>.</p>
+<pre class="r"><code># Remove from data
+occs_prot_areas &lt;-
+  occs_prot_areas %&gt;%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)
+# Remove from metadata
+prot_areas_taxon_info &lt;-
+  prot_areas_taxon_info %&gt;%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)</code></pre>
+</div>
 <div id="save-data-about-protected-area" class="section level2">
-<h2><span class="header-section-number">5.1</span> Save data about protected area</h2>
+<h2><span class="header-section-number">5.2</span> Save data about protected area</h2>
 <p>We finalize the data.frame containing the information about number of observations, occupancy, coverage and alien status in Belgian protected areas.</p>
 <p>Select column of interest and set columns order:</p>
 <pre class="r"><code>occs_prot_areas &lt;-
@@ -739,7 +830,7 @@ occs_prot_areas &lt;-
     SITECODE,
     SITETYPE,
     year,
-    speciesKey,
+    taxonKey,
     n,
     aoo,
     coverage,
@@ -759,14 +850,14 @@ occs_prot_areas &lt;-
   )</code></pre>
 </div>
 <div id="finalize-en-save-metadata" class="section level2">
-<h2><span class="header-section-number">5.2</span> Finalize en save metadata</h2>
+<h2><span class="header-section-number">5.3</span> Finalize en save metadata</h2>
 <div id="taxonomic-metadata" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Taxonomic metadata</h3>
+<h3><span class="header-section-number">5.3.1</span> Taxonomic metadata</h3>
 <p>Select taxonomic metadata we are interested to:</p>
 <pre class="r"><code>taxonomic_metadata &lt;-
-  prot_areas_species_info %&gt;%
+  prot_areas_taxon_info %&gt;%
   select(
-    speciesKey,
+    taxonKey,
     scientificName,
     kingdom,
     phylum,
@@ -788,7 +879,7 @@ occs_prot_areas &lt;-
   )</code></pre>
 </div>
 <div id="protected-areas-metadata-1" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Protected areas metadata</h3>
+<h3><span class="header-section-number">5.3.2</span> Protected areas metadata</h3>
 <p>We remove metadata of areas without observations:</p>
 <pre class="r"><code>protected_areas_metadata &lt;-
   protected_areas_metadata %&gt;%

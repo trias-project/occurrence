@@ -13,7 +13,7 @@
 <meta name="author" content="Toon Van Daele" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-05-04" />
+<meta name="date" content="2020-05-08" />
 
 <title>Occurrence indicators: pre-processing</title>
 
@@ -438,7 +438,7 @@ div.tocify {
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Toon Van Daele</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2020-05-04</h4>
+<h4 class="date">2020-05-08</h4>
 
 </div>
 
@@ -473,6 +473,7 @@ library(rgbif) # To get taxa from publisehd unified checklist</code></pre>
   ),
   na = &quot;&quot;
 )</code></pre>
+<p>Nota: these data have been also published on <a href="https://zenodo.org/record/3635510">Zenodo</a>.</p>
 <p>We remove columns we will never use:</p>
 <pre class="r"><code>df &lt;-
   df %&gt;%
@@ -496,6 +497,7 @@ library(rgbif) # To get taxa from publisehd unified checklist</code></pre>
   ),
   na = &quot;&quot;
 )</code></pre>
+<p>Nota: these data have been also published on <a href="https://zenodo.org/record/3635510">Zenodo</a>.</p>
 <p>We remove columns we will never use:</p>
 <pre class="r"><code>df_bl &lt;-
   df_bl %&gt;%
@@ -522,8 +524,31 @@ taxa_df &lt;-
 taxa_df &lt;-
   taxa_df %&gt;%
   filter(locationId == &quot;ISO_3166:BE&quot;)</code></pre>
+</div>
+<div id="remove-some-taxa" class="section level2">
+<h2><span class="header-section-number">2.3</span> Remove some taxa</h2>
+<p>We remove the following species:</p>
+<ul>
+<li><a href="https://www.gbif.org/species/2498027">Anser fabalis (Latham, 1787)</a></li>
+<li><a href="https://www.gbif.org/species/2498036">Anser anser (Linnaeus, 1758)</a></li>
+<li><a href="https://www.gbif.org/species/5232464">Branta leucopsis (Bechstein, 1803)</a></li>
+</ul>
+<p>as discussed in <a href="https://github.com/trias-project/unified-checklist/issues/32">issue #32</a>.</p>
+<pre class="r"><code>taxa_to_remove_speciesKey &lt;- c(
+  # Anser fabalis (Latham, 1787)
+  2498027, 
+  # Anser anser (Linnaeus, 1758)
+  2498036,
+  # Branta leucopsis (Bechstein, 1803)
+  5232464
+)</code></pre>
+<p>Important: this step is a patch waiting for a new version of the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a>.</p>
+<pre class="r"><code># Remove from occurrence data
+df &lt;-
+  df %&gt;%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)</code></pre>
 <div id="taxa-in-unified-checklist-without-occurrences" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Taxa in unified checklist without occurrences</h3>
+<h3><span class="header-section-number">2.3.1</span> Taxa in unified checklist without occurrences</h3>
 <p>There is a group of taxa defined in the unified checklist which are not present in the occurrence data, i.e. the presence of these taxa, although confirmed by authoritative’s checklists, is still not sustained by observations:</p>
 <pre class="r"><code>alien_taxa_without_occs &lt;-
   taxa_df %&gt;%
@@ -553,7 +578,7 @@ alien_taxa_without_occs</code></pre>
 </div>
 </div>
 <div id="grid-cells-intersecting-protected-areas" class="section level2">
-<h2><span class="header-section-number">2.3</span> Grid cells intersecting protected areas</h2>
+<h2><span class="header-section-number">2.4</span> Grid cells intersecting protected areas</h2>
 <p>We get information about intersection of grid cells with Belgian protected areas by reading file <code>intersect_EEA_ref_grid_protected_areas.tsv</code> in <code>data/output</code>:</p>
 <pre class="r"><code>df_prot_areas &lt;- read_tsv(
   here::here(
@@ -584,7 +609,7 @@ alien_taxa_without_occs</code></pre>
 <h1><span class="header-section-number">3</span> Pre-processing</h1>
 <div id="add-informative-columns" class="section level2">
 <h2><span class="header-section-number">3.1</span> Add informative columns</h2>
-<p>For better interpretation of the data, we retrieve sqcientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:</p>
+<p>For better interpretation of the data, we retrieve scientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:</p>
 <pre class="r"><code>taxon_key &lt;-
   df %&gt;%
   distinct(taxonKey) %&gt;%
@@ -725,7 +750,7 @@ recent_alien_species &lt;-
   )</code></pre>
 <p>Number of taxa recently introduced or whose introduction year is not specified:</p>
 <pre class="r"><code>nrow(recent_alien_species)</code></pre>
-<pre><code>## [1] 1191</code></pre>
+<pre><code>## [1] 1188</code></pre>
 <p>List of alien species excluded as first introduction date is earlier than 1950:</p>
 <pre class="r"><code>old_introductions_taxa &lt;-
   taxa_df %&gt;%
@@ -923,6 +948,8 @@ df_ts &lt;-
 </div>
 <div id="save-data" class="section level1">
 <h1><span class="header-section-number">4</span> Save data</h1>
+<div id="save-timeseries-and-taxonomic-metadata" class="section level2">
+<h2><span class="header-section-number">4.1</span> Save timeseries and taxonomic metadata</h2>
 <p>Save <code>df_ts</code> as it will be used as start point of modelling pipelines:</p>
 <pre class="r"><code>write_tsv(df_ts, 
           path = here::here(&quot;data&quot;, &quot;interim&quot;, &quot;df_timeseries.tsv&quot;), 
@@ -935,6 +962,7 @@ df_ts &lt;-
                             &quot;timeseries_taxonomic_info.tsv&quot;),
           na = &quot;&quot;
 )</code></pre>
+</div>
 </div>
 
 
