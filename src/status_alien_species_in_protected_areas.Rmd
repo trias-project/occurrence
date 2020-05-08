@@ -119,7 +119,7 @@ n_taxa_obs_per_area <-
            flanders,
            wallonia,
            brussels) %>%
-  summarize(n_taxa =  length(unique(speciesKey)),
+  summarize(n_taxa =  length(unique(taxonKey)),
             n_obs = n()) %>%
   ungroup() %>%
   arrange(desc(n_taxa), desc(n_obs)) %>%
@@ -137,7 +137,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_taxa_obs_per_area_concern}
 n_taxa_obs_per_area_concern <-
   occs_prot_areas %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey) %>%
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey) %>%
     left_join(protected_areas_metadata,
               by = c("SITECODE", "SITETYPE")) %>%
   filter(is_alien == TRUE) %>%
@@ -148,7 +148,7 @@ n_taxa_obs_per_area_concern <-
            flanders,
            wallonia,
            brussels) %>%
-  summarize(n_taxa =  length(unique(speciesKey)),
+  summarize(n_taxa =  length(unique(taxonKey)),
             n_obs = n()) %>%
   ungroup() %>%
   arrange(desc(n_taxa), desc(n_obs)) %>%
@@ -407,20 +407,20 @@ We define first a help function:
 ```{r define_n_areas_mean_coverage}
 n_areas_mean_coverage <- function(df) {
   df %>%
-    group_by(speciesKey) %>%
+    group_by(taxonKey) %>%
     summarize(n_prot_areas = length(unique(SITECODE)),
               mean_coverage = if_else(length(unique(SITECODE)) >= 10,
                                       mean(coverage, na.rm = TRUE),
                                       NA_real_)) %>%
     ungroup() %>%
-    left_join(taxonomic_metadata, by = "speciesKey")  %>%
+    left_join(taxonomic_metadata, by = "taxonKey")  %>%
     arrange(desc(n_prot_areas),
             desc(mean_coverage),
             scientificName) %>%
     select(scientificName,
            n_prot_areas,
            mean_coverage,
-           speciesKey,
+           taxonKey,
            everything())
 }
 ```
@@ -450,7 +450,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern}
 n_prot_areas_per_species_concern <-
   n_prot_areas_per_species %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern
 ```
 
@@ -478,7 +478,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_flanders_concern}
 n_prot_areas_per_species_flanders_concern <-
   n_prot_areas_per_species_flanders %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_flanders_concern
 ```
 
@@ -504,7 +504,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_wallonia_concern}
 n_prot_areas_per_species_wallonia_concern <-
   n_prot_areas_per_species_wallonia %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_wallonia_concern
 ```
 
@@ -530,7 +530,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_brussels_concern}
 n_prot_areas_per_species_brussels_concern <-
   n_prot_areas_per_species_brussels %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_brussels_concern
 ```
 
@@ -560,7 +560,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_bird}
 n_prot_areas_per_species_concern_bird <-
   n_prot_areas_per_species_bird %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_bird
 ```
 
@@ -589,7 +589,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_flanders_bird}
 n_prot_areas_per_species_concern_flanders_bird <-
   n_prot_areas_per_species_flanders_bird %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_flanders_bird
 ```
 
@@ -616,7 +616,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_wallonia_bird}
 n_prot_areas_per_species_concern_wallonia_bird <-
   n_prot_areas_per_species_wallonia_bird %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_wallonia_bird
 ```
 
@@ -643,7 +643,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_brussels_bird}
 n_prot_areas_per_species_concern_brussels_bird <-
   n_prot_areas_per_species_brussels_bird %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_brussels_bird
 ```
 
@@ -673,7 +673,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_habitat}
 n_prot_areas_per_species_concern_habitat <-
   n_prot_areas_per_species_habitat %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_habitat
 ```
 
@@ -702,7 +702,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_flanders_habitat}
 n_prot_areas_per_species_concern_flanders_habitat <-
   n_prot_areas_per_species_flanders_habitat %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_flanders_habitat
 ```
 
@@ -729,7 +729,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_wallonia_habitat}
 n_prot_areas_per_species_concern_wallonia_habitat <-
   n_prot_areas_per_species_wallonia_habitat %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_wallonia_habitat
 ```
 
@@ -756,7 +756,7 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_prot_areas_per_species_concern_brussels_habitat}
 n_prot_areas_per_species_concern_brussels_habitat <-
   n_prot_areas_per_species_brussels_habitat %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey)
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey)
 n_prot_areas_per_species_concern_brussels_habitat
 ```
 

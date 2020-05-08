@@ -164,7 +164,7 @@ map(categories$category, function(x) {
 
 ## Pathways analysis: tables
 
-Function `get_table_pathways` from `trias` library is used for creating tables based on checklist data. Species category and number of species returned as example per each pathway modality are provided. 
+We also summarize pathway information in one table per category. Number of species for each pathway level 2 and some species as example are provided.
 
 Number of species returned in table as examples of the group:
 

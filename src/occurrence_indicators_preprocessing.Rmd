@@ -56,6 +56,8 @@ df <- read_csv(
 )
 ```
 
+Nota: these data have been also published on [Zenodo](https://zenodo.org/record/3635510).
+
 We remove columns we will never use:
 
 ```{r remove_coords_uncertainty}
@@ -89,6 +91,8 @@ df_bl <- read_csv(
   na = ""
 )
 ```
+
+Nota: these data have been also published on [Zenodo](https://zenodo.org/record/3635510).
 
 We remove columns we will never use:
 
@@ -124,6 +128,36 @@ taxa_df <-
 taxa_df <-
   taxa_df %>%
   filter(locationId == "ISO_3166:BE")
+```
+
+## Remove some taxa
+
+We remove the following species:
+
+- [Anser fabalis (Latham, 1787)](https://www.gbif.org/species/2498027)
+- [Anser anser (Linnaeus, 1758)](https://www.gbif.org/species/2498036)
+- [Branta leucopsis (Bechstein, 1803)](https://www.gbif.org/species/5232464)
+
+as discussed in [issue #32](https://github.com/trias-project/unified-checklist/issues/32).
+
+```{r taxa_to_remove}
+taxa_to_remove_speciesKey <- c(
+  # Anser fabalis (Latham, 1787)
+  2498027, 
+  # Anser anser (Linnaeus, 1758)
+  2498036,
+  # Branta leucopsis (Bechstein, 1803)
+  5232464
+)
+```
+
+Important: this step is a patch waiting for a new version of the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
+
+```{r remove_taxa}
+# Remove from occurrence data
+df <-
+  df %>%
+  filter(!taxonKey %in% taxa_to_remove_speciesKey)
 ```
 
 ### Taxa in unified checklist without occurrences
@@ -195,7 +229,7 @@ df_prot_areas <-
 
 ## Add informative columns
 
-For better interpretation of the data, we retrieve sqcientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
+For better interpretation of the data, we retrieve scientific names (without authorship) of the species whose data we are going to analyze. We also retrieve the class of each alien species to link occurrence data with the related baseline data:
 
 ```{r get_canonical_names}
 taxon_key <-
@@ -604,6 +638,8 @@ df_ts <-
 ```
 
 # Save data
+
+## Save timeseries and taxonomic metadata
 
 Save `df_ts` as it will be used as start point of modelling pipelines:
 

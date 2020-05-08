@@ -11,7 +11,7 @@
 
 <meta name="author" content="Damiano Oldoni" />
 
-<meta name="date" content="2020-05-04" />
+<meta name="date" content="2020-05-08" />
 
 <title>Get input data for checklist-based indicators</title>
 
@@ -434,7 +434,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Get input data for checklist-based indicators</h1>
 <h4 class="author">Damiano Oldoni</h4>
-<h4 class="date">2020-05-04</h4>
+<h4 class="date">2020-05-08</h4>
 
 </div>
 
@@ -597,8 +597,9 @@ head(speciesProfiles)</code></pre>
   </script>
 </div>
 </div>
-<div id="merge-data" class="section level2">
-<h2><span class="header-section-number">2.5</span> Merge data</h2>
+</div>
+<div id="merge-data" class="section level1">
+<h1><span class="header-section-number">3</span> Merge data</h1>
 <p>Merge distribution, description and species profile information:</p>
 <pre class="r"><code>merged_extensions &lt;-
   full_join(distribution,
@@ -619,11 +620,11 @@ merged_extensions %&gt;% head(n = 100)</code></pre>
   </script>
 </div>
 </div>
-<div id="tidy-data" class="section level2">
-<h2><span class="header-section-number">2.6</span> Tidy data</h2>
+<div id="tidy-data" class="section level1">
+<h1><span class="header-section-number">4</span> Tidy data</h1>
 <p>Some columns should be splitted in order to make the data.frame completely tidy: <code>temporal</code> and <code>pathway</code>.</p>
-<div id="split-column-temporal" class="section level3">
-<h3><span class="header-section-number">2.6.1</span> Split column <code>temporal</code></h3>
+<div id="split-column-temporal" class="section level2">
+<h2><span class="header-section-number">4.1</span> Split column <code>temporal</code></h2>
 <p>The column <code>temporal</code> contains one or two datums:</p>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -652,8 +653,8 @@ merged_extensions %&gt;% head(n = 100)</code></pre>
   </script>
 </div>
 </div>
-<div id="split-column-pathway" class="section level3">
-<h3><span class="header-section-number">2.6.2</span> Split column <code>pathway</code></h3>
+<div id="split-column-pathway" class="section level2">
+<h2><span class="header-section-number">4.2</span> Split column <code>pathway</code></h2>
 <p>The column <code>pathway</code> contains a prefix, <code>cbd_2014_pathway:</code> and two different pathway levels divided by symbol <code>_</code> (Note: this is not valid for pathway <code>natural_dispersal</code>, which should not be divided in two levels as it is a level 2 pathway of level 1 <code>unaided</code>):</p>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -732,8 +733,31 @@ merged_extensions %&gt;% head(n = 100)</code></pre>
 </div>
 </div>
 </div>
-<div id="save-data-output" class="section level2">
-<h2><span class="header-section-number">2.7</span> Save data output</h2>
+<div id="save-data" class="section level1">
+<h1><span class="header-section-number">5</span> Save data</h1>
+<div id="remove-some-taxa" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remove some taxa</h2>
+<p>We remove the following species:</p>
+<ul>
+<li><a href="https://www.gbif.org/species/2498027">Anser fabalis (Latham, 1787)</a></li>
+<li><a href="https://www.gbif.org/species/2498036">Anser anser (Linnaeus, 1758)</a></li>
+<li><a href="https://www.gbif.org/species/5232464">Branta leucopsis (Bechstein, 1803)</a></li>
+</ul>
+<p>as discussed in <a href="https://github.com/trias-project/unified-checklist/issues/32">issue #32</a>.</p>
+<pre class="r"><code>taxa_to_remove &lt;- 
+  taxa %&gt;%
+  filter(nubKey %in% c(2498027, 2498036, 5232464)) %&gt;%
+  distinct(key, nubKey, scientificName)
+taxa_to_remove</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["nubKey"],"name":[2],"type":["int"],"align":["right"]},{"label":["scientificName"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"152543205","2":"5232464","3":"Branta leucopsis (Bechstein, 1803)"},{"1":"152543231","2":"2498027","3":"Anser fabalis (Latham, 1787)"},{"1":"152543234","2":"2498036","3":"Anser anser (Linnaeus, 1758)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Important: this step is a patch waiting for a new version of the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a>.</p>
+<pre class="r"><code>merged_info &lt;-
+  merged_info %&gt;%
+  filter(!key %in% taxa_to_remove$key)</code></pre>
 <p>The data.frame <code>merged_info</code> is saved as output file:</p>
 <pre class="r"><code>write_tsv(merged_info,
   path = here::here(

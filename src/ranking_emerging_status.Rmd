@@ -19,7 +19,7 @@ This document follows the [modelling pipeline](https://trias-project.github.io/i
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
 Load libraries:

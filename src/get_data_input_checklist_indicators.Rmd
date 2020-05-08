@@ -187,7 +187,7 @@ speciesProfiles <- taxa %>%
 head(speciesProfiles)
 ```
 
-## Merge data
+# Merge data
 
 Merge distribution, description and species profile information:
 
@@ -207,11 +207,11 @@ merged_info <- left_join(taxa, merged_extensions,
 merged_extensions %>% head(n = 100)
 ```
 
-## Tidy data
+# Tidy data
 
 Some columns should be splitted in order to make the data.frame completely tidy: `temporal` and `pathway`.
 
-### Split column `temporal`
+## Split column `temporal`
 
 The column `temporal` contains one or two datums:
 
@@ -253,7 +253,7 @@ merged_info %>%
   head(10)
 ```
 
-### Split column `pathway`
+## Split column `pathway`
 
 The column `pathway` contains a prefix, `cbd_2014_pathway:` and two different pathway levels divided by symbol `_` (Note: this is not valid for pathway `natural_dispersal`, which should not be divided in two levels as it is a level 2 pathway of level 1 `unaided`):
 
@@ -343,7 +343,33 @@ merged_info %>%
   arrange(pathway_level1)
 ```
 
-## Save data output
+# Save data
+
+## Remove some taxa
+
+We remove the following species:
+
+- [Anser fabalis (Latham, 1787)](https://www.gbif.org/species/2498027)
+- [Anser anser (Linnaeus, 1758)](https://www.gbif.org/species/2498036)
+- [Branta leucopsis (Bechstein, 1803)](https://www.gbif.org/species/5232464)
+
+as discussed in [issue #32](https://github.com/trias-project/unified-checklist/issues/32).
+
+```{r taxa_to_remove}
+taxa_to_remove <- 
+  taxa %>%
+  filter(nubKey %in% c(2498027, 2498036, 5232464)) %>%
+  distinct(key, nubKey, scientificName)
+taxa_to_remove
+```
+
+Important: this step is a patch waiting for a new version of the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
+
+```{r remove_taxa}
+merged_info <-
+  merged_info %>%
+  filter(!key %in% taxa_to_remove$key)
+```
 
 The data.frame `merged_info` is saved as output file:
 
