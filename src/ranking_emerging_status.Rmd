@@ -408,49 +408,6 @@ ranking_pts <-
 ranking_pts
 ```
 
-```{r}
-ranking_pts <-
-  em_df %>%
-  rowwise() %>%
-  mutate(em_pts = sum(
-    year_2018_em_status_occupancy_pa * 3,
-    year_2018_em_status_observations_pa * 2.5,
-    year_2018_em_status_occupancy_BE * 2.5,
-    year_2018_em_status_observations_BE * 2,
-    year_2017_em_status_occupancy_pa * 2.5,
-    year_2017_em_status_observations_pa * 2,
-    year_2017_em_status_occupancy_BE * 2,
-    year_2017_em_status_observations_BE * 1.5,
-    year_2016_em_status_occupancy_pa * 2,
-    year_2016_em_status_observations_pa * 1.5,
-    year_2016_em_status_occupancy_BE * 1.5,
-    year_2016_em_status_observations_BE,
-    na.rm = TRUE
-  )) %>%
-  arrange(
-    desc(em_pts),
-    desc(mean_growth)
-  ) %>%
-  select(
-    taxonKey, canonicalName, kingdom, class,
-    em_pts, mean_growth,
-    year_2018_em_status_occupancy_pa,
-    year_2018_em_status_observations_pa,
-    year_2018_em_status_occupancy_BE,
-    year_2018_em_status_observations_BE,
-    year_2017_em_status_occupancy_pa,
-    year_2017_em_status_observations_pa,
-    year_2017_em_status_occupancy_BE,
-    year_2017_em_status_observations_BE,
-    year_2016_em_status_occupancy_pa,
-    year_2016_em_status_observations_pa,
-    year_2016_em_status_occupancy_BE,
-    year_2016_em_status_observations_BE,
-    everything()
-  )
-ranking_pts
-```
-
 # Save results
 
 Save both rankings.
