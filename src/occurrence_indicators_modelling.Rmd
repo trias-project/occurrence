@@ -444,12 +444,8 @@ names(gam_occupancy_BE) <- taxon_keys
 Show some results:
 
 ```{r preview_gam_occupancy_BE, message=FALSE}
-map(
-  gam_occupancy_BE[1:10],
-  function(t) {
-    if (!is.null(t$plot)) t$plot
-  }
-)
+taxon_keys_examples <- c(8035075, 6157026)
+map(taxon_keys_examples, ~ gam_occupancy_BE[[.]]$plot)
 ```
 
 #### Protected aras
@@ -501,12 +497,9 @@ names(gam_occupancy_pa) <- taxon_keys
 Show some results:
 
 ```{r preview_gam_occupancy_PA, message=FALSE}
-map(
-  gam_occupancy_pa[1:10],
-  function(t) {
-    if (!is.null(t$plot)) t$plot
-  }
-)
+taxon_keys_examples <- c(8035075, 6157026)
+map(taxon_keys_examples, ~ gam_occupancy_pa[[.]]$plot)
+
 ```
 
 # Save results
