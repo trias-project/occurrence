@@ -692,6 +692,17 @@ write_tsv(cells_of_prot_areas,
 )
 ```
 
+We save the Belgian protected areas as a geopackage as it will be used elsewhere:
+
+```{r save_protected_areas}
+protected_areas %>%
+  st_write(
+    here::here("data",
+               "output",
+               "Belgian_Natura2000_protected_areas.gpkg")
+)
+```
+
 We are also interested in saving basic information about protected areas:
 
 ```{r save_metadata_prot_areas}
