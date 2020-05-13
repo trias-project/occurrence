@@ -177,8 +177,7 @@ infraspecific_alien_status_species <-
 infraspecific_alien_status_species
 ```
 
-where `key` is the key of the taxon as published in the unified checklist,  `nubKey` is the key of the corresponding taxon in the GBIF Backbone. Also the columns `speciesKey`, `species`, `scientificName` and  `kingdom` The latter provides also the information other 
-
+where `key` is the key of the taxon as published in the unified checklist,  `nubKey` is the key of the corresponding taxon in the GBIF Backbone. Also the columns `speciesKey`, `species`, `scientificName` and  `kingdom` contain information coming from the GBIF Backbone.
 
 ## EEA cells containing the Natura2000 protected areas
 
@@ -355,7 +354,7 @@ occs_prot_areas <-
            speciesKey %in% infraspecific_alien_and_species$speciesKey)
 ```
 
-As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:
+As the Belgian list of alien taxa contains infraspecific taxa, we add a remark for the corresponding species:
 
 ```{r add_remarks}
 species_infraspecific_alien <-
