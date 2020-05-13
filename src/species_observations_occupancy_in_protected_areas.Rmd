@@ -348,10 +348,19 @@ infraspecific_alien_and_species <-
   infraspecific_alien_status_species %>%
   filter(species_is_alien == TRUE)
 
+infraspecific_alien_species_unknown <-
+  infraspecific_alien_status_species %>%
+  filter(is.na(species_is_alien))
+
 occs_prot_areas <-
   occs_prot_areas %>%
-  mutate(is_alien = speciesKey %in% be_alientaxa_info$taxonKey |
-           speciesKey %in% infraspecific_alien_and_species$speciesKey)
+  mutate(is_alien = case_when(
+    speciesKey %in% be_alientaxa_info$taxonKey |
+      speciesKey %in% infraspecific_alien_and_species$speciesKey ~ TRUE,
+    speciesKey %in% 
+      infraspecific_alien_species_unknown$speciesKey ~ NA,
+    TRUE ~ FALSE
+  ))
 ```
 
 As the Belgian list of alien taxa contains infraspecific taxa, we add a remark for the corresponding species:
