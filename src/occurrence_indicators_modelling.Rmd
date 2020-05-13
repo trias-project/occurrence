@@ -280,7 +280,6 @@ Plots are saved in:
 dir_name <- here::here("data", "output", "GAM_outputs")
 ```
 
-
 ### Observations
 
 #### Belgium
@@ -421,7 +420,8 @@ gam_occupancy_BE <- map2(
         name = n,
         baseline_var = "c_ncells",
         dir_name = dir_name,
-        saveplot = TRUE
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
       )
     } else {
       apply_gam(
@@ -432,7 +432,8 @@ gam_occupancy_BE <- map2(
         taxon_key = t,
         name = n,
         dir_name = dir_name,
-        saveplot = TRUE
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
       )
     }
   }
@@ -475,7 +476,8 @@ gam_occupancy_pa <- map2(
         baseline_var = "c_ncells",
         df_title = "Natura2000",
         dir_name = dir_name,
-        saveplot = TRUE
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
       )
     } else {
       apply_gam(
@@ -487,7 +489,8 @@ gam_occupancy_pa <- map2(
         name = n,
         df_title = "Natura2000",
         dir_name = dir_name,
-        saveplot = TRUE
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
       )
     }
   }
