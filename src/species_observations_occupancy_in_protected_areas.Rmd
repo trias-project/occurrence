@@ -75,7 +75,7 @@ Preview taxonomic metadata of occurrence cube:
 be_species_info %>% head(10)
 ```
 
-## Occurrence cube of alien species
+## Occurrence cube of alien taxa
 
 Read the occurrence cubes of alien taxa as published on Zenodo (https://zenodo.org/record/3637911). It is based on GBIF occurrence data of taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e), shortly called the [unified checklist](https://github.com/trias-project/unified-checklist). Attention: It can take a long time:
 
@@ -163,7 +163,22 @@ infraspecific_alien <-
   infraspecific_alien %>%
   left_join(be_alientaxa_info,
             by = c("taxonKey"))
+infraspecific_alien
 ```
+
+## Assessment alien species with alien infraspecific taxa
+
+The unified checklist contains some infraspecific alien taxa belonging to alien species as well. The assessment whether the species is alien or not is at the moment based on a reference file maintained by TrIAS experts. We read it:
+
+```{r infraspecific_alien_status_species}
+infraspecific_alien_status_species <-
+  read_tsv(here::here("reference",                      "assessment_alien_status_species_with_alien_infraspecific_taxa.tsv"),
+            na = "")
+infraspecific_alien_status_species
+```
+
+where `key` is the key of the taxon as published in the unified checklist,  `nubKey` is the key of the corresponding taxon in the GBIF Backbone. Also the columns `speciesKey`, `species`, `scientificName` and  `kingdom` The latter provides also the information other 
+
 
 ## EEA cells containing the Natura2000 protected areas
 
@@ -301,7 +316,7 @@ prot_areas_species_taxon_info <-
 prot_areas_species_taxon_info <-
   prot_areas_species_taxon_info %>%
   select(
-    key,
+    speciesKey,
     kingdom,
     phylum,
     order,
@@ -309,7 +324,6 @@ prot_areas_species_taxon_info <-
     family,
     genusKey,
     genus,
-    speciesKey,
     species
   )
 prot_areas_species_info <-
@@ -330,9 +344,15 @@ prot_areas_species_taxon_info %>% head(10)
 We would also like to indicate whether the species is alien. We add a boolean column indicating whether the species is alien or not based on the unified checklist:
 
 ```{r add_is_alien}
+# alien species based on alien infraspecific taxa in unified
+infraspecific_alien_and_species <- 
+  infraspecific_alien_status_species %>%
+  filter(species_is_alien == TRUE)
+
 occs_prot_areas <-
   occs_prot_areas %>%
-  mutate(is_alien = speciesKey %in% be_alientaxa_info$taxonKey)
+  mutate(is_alien = speciesKey %in% be_alientaxa_info$taxonKey |
+           speciesKey %in% infraspecific_alien_and_species$speciesKey)
 ```
 
 As the Belgian list of alien taxa contains infraspecific taxa, it can occur that some of them contribute to the number of observations of species which are considered native. We add a remark for species where this could happen:
@@ -358,13 +378,23 @@ occs_prot_areas <-
   )
 ```
 
-Example of native species with alien infraspecific taxa:
+Species with alien infraspecific taxa. Notice they can be considered alien as well:
 
 ```{r example_alien_infraspecific}
 occs_prot_areas %>%
   filter(!is.na(remarks)) %>%
-  select(speciesKey, is_alien, remarks) %>%
-  head(10)
+  distinct(speciesKey, is_alien, remarks)
+```
+
+Finally we add a column, `taxonKey` containing the key of all taxa in GBIF Backbone. It is by definition equal to `speciesKey`.
+
+```{r add_species_key}
+occs_prot_areas <-
+  occs_prot_areas %>%
+  mutate(taxonKey = speciesKey)
+prot_areas_species_info <-
+  prot_areas_species_info %>%
+  mutate(taxonKey = speciesKey)
 ```
 
 ## Include infraspecific alien taxa
@@ -403,15 +433,19 @@ occs_prot_areas_infraspecific <-
 prot_areas_infraspecific_taxon_info <-
   infraspecific_alien %>%
   filter(taxonKey %in% occs_prot_areas_infraspecific$taxonKey)
+# Add speciesKey
+occs_prot_areas_infraspecific <-
+  occs_prot_areas_infraspecific %>%
+  left_join(infraspecific_alien %>%
+              select(taxonKey, speciesKey),
+            by = "taxonKey")
 # Merge data
 occs_prot_areas <-
   occs_prot_areas %>%
-  rename(taxonKey = speciesKey) %>%
   bind_rows(occs_prot_areas_infraspecific)
 # Merge metadata
 prot_areas_taxon_info <-
   prot_areas_species_info %>%
-  rename(taxonKey = speciesKey) %>%
   bind_rows(prot_areas_infraspecific_taxon_info)
 ```
 
@@ -463,6 +497,7 @@ occs_prot_areas <-
     SITETYPE,
     year,
     taxonKey,
+    speciesKey,
     n,
     aoo,
     coverage,
@@ -470,6 +505,12 @@ occs_prot_areas <-
     is_alien,
     remarks
   )
+```
+
+Preview:
+
+```{r preview_occs_prot_areas_before_saving}
+occs_prot_areas %>% head(10)
 ```
 
 Save data:
@@ -497,6 +538,7 @@ taxonomic_metadata <-
   prot_areas_taxon_info %>%
   select(
     taxonKey,
+    speciesKey,
     scientificName,
     kingdom,
     phylum,
@@ -509,6 +551,14 @@ taxonomic_metadata <-
     includes
   )
 ```
+
+Preview:
+
+```{r preview_taxonomic_metadata_before_saving}
+taxonomic_metadata %>% head(10)
+```
+
+Save taxonomic metadata:
 
 ```{r save_taxonomic_metadata}
 taxonomic_metadata %>%
@@ -523,12 +573,18 @@ taxonomic_metadata %>%
 
 ### Protected areas metadata
 
-We remove metadata of areas without observations:
+We remove metadata of areas without observations, if any:
 
 ```{r filter_protected_areas_metadata}
 protected_areas_metadata <-
   protected_areas_metadata %>%
   filter(SITECODE %in% occs_prot_areas$SITECODE)
+```
+
+Preview:
+
+```{r preview_protected_areas_metadata_before_saving}
+protected_areas_metadata %>% head(10)
 ```
 
 We save the metadata as output:
