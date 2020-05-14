@@ -19,7 +19,9 @@ This document follows the [modelling pipeline](https://trias-project.github.io/i
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
 Load libraries:
@@ -201,10 +203,10 @@ em_decision_rules_list <- list(
   ))
 ```
 
-Preview:
+Previewing output of decision rules for occupancy in protected areas:
 
 ```{r preview_dr_list}
-map(em_decision_rules_list, ~ head(., n = 10))
+em_decision_rules_list$decision_rules_occupancy_pa %>% head(10)
 ```
 
 ## Scientific names
