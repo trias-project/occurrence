@@ -134,6 +134,7 @@ n_taxa_obs_per_area <-
   # avoid to count alien species with infraspecific alien taxa
   filter(n == 1 | taxonKey != speciesKey) %>%
   ungroup() %>%
+  select(-n) %>%
   group_by(SITECODE,
            SITENAME,
            SITETYPE,
@@ -558,23 +559,14 @@ We define first a help function:
 ```{r define_n_areas_mean_coverage}
 #' Calculate number of protected areas a taxon is present
 #'
-#' Thiss function calculates the number of protected areas a species or taxon is
-#' present. If it is present in more than or equal to 10 areas the mean coverage is
-#' also calculated.
+#' This function calculates in how many protected areas a taxon is
+#' present. If it is present in more than or equal to 10 protected 
+#' areas the mean coverage (`mean_coverage`) is also calculated.
 #' @param df data.frame. A data.frame.
 n_areas_mean_coverage <- function(df) {
-  # assertthat::assert_that(is.character(level) && level %in% c("taxon", "species"),
-  #                         msg = "level must be one of: taxon, species.")
-  # if (level == "taxon") {
-    df <- 
-      df %>%
-      group_by(taxonKey)
-  # } else {
-  #   df <- 
-  #     df %>%
-  #     group_by(speciesKey)
-  # }
-  # 
+  df <- 
+    df %>%
+    group_by(taxonKey)
   df <- 
     df %>%
     summarize(n_prot_areas = length(unique(SITECODE)),
@@ -583,32 +575,17 @@ n_areas_mean_coverage <- function(df) {
                                       NA_real_)) %>%
     ungroup()
   
-  # if (level == "taxon") {
-    df <- 
-      df %>%
-      left_join(taxonomic_metadata, by = "taxonKey")  %>%
-      arrange(desc(n_prot_areas),
-              desc(mean_coverage),
-              scientificName) %>%
-      select(scientificName,
-             n_prot_areas,
-             mean_coverage,
-             taxonKey,
-             everything())
-  # } else {
-  #   df <- 
-  #     df %>%
-  #     left_join(taxonomic_metadata %>%
-  #                 distinct(speciesKey, species), by = "speciesKey")  %>%
-  #     arrange(desc(n_prot_areas),
-  #             desc(mean_coverage),
-  #             species) %>%
-  #     select(species,
-  #            n_prot_areas,
-  #            mean_coverage,
-  #            speciesKey,
-  #            everything())
-  # }
+  df <- 
+    df %>%
+    left_join(taxonomic_metadata, by = "taxonKey")  %>%
+    arrange(desc(n_prot_areas),
+            desc(mean_coverage),
+            scientificName) %>%
+    select(scientificName,
+           n_prot_areas,
+           mean_coverage,
+           taxonKey,
+           everything())
 }
 ```
 
