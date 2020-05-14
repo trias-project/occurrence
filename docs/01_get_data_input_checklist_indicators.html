@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Damiano Oldoni" />
+
+<meta name="date" content="2020-05-14" />
+
+<title>Get input data for checklist-based indicators</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="static\css\trias.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TrIAS indicators</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01_get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
+    </li>
+    <li>
+      <a href="02_indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="03_indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="04_indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Occurrence-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="05_occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
+    </li>
+    <li>
+      <a href="06_occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emerging status analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="07_occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
+        </li>
+        <li>
+          <a href="08_ranking_emerging_status.html">Ranking species by emerging status</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Protected areas analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="09_define_overlay_grid_belgium_with_protected_areas.html">Belgian protected areas and EEA grid of Belgium</a>
+        </li>
+        <li>
+          <a href="10_species_observations_occupancy_in_protected_areas.html">Belgian protected areas: observations and occupancy</a>
+        </li>
+        <li>
+          <a href="11_status_alien_species_in_protected_areas.html">Status of invasion of Belgian protected areas</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Get input data for checklist-based indicators</h1>
+<h4 class="author">Damiano Oldoni</h4>
+<h4 class="date">2020-05-14</h4>
+
+</div>
+
+
+<p>This document describes how to get and manipulate data from <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">unified checklist</a> for checklist-based indicators.</p>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<p>Load libraries:</p>
+<pre class="r"><code>library(tidyverse) # To do data science
+library(tidylog) # To provide feedback on dplyr functions
+library(janitor) # To clean column names
+library(here) # To find files
+library(rgbif) # To get taxa from publisehd unified checklist
+library(trias) # To get indicator functionalities</code></pre>
+</div>
+<div id="get-data" class="section level1">
+<h1><span class="header-section-number">2</span> Get data</h1>
+<div id="get-taxonomic-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Get taxonomic data</h2>
+<p>Get taxa from the published unified checklist, the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e"><em>Global Register of Introduced and Invasive Species - Belgium</em></a>:</p>
+<pre class="r"><code>taxa &lt;- name_usage(
+  datasetKey = &quot;6d9e952f-948c-4483-9807-575348147c7e&quot;,
+  return = &quot;data&quot;,
+  limit = 10000
+) %&gt;%
+  filter(origin == &quot;SOURCE&quot;)</code></pre>
+<p>Select columns we are interested to:</p>
+<pre class="r"><code>checklist_info &lt;- c(
+  &quot;key&quot;, &quot;nubKey&quot;, &quot;scientificName&quot;, &quot;datasetKey&quot;,
+  &quot;canonicalName&quot;, &quot;species&quot;, &quot;genus&quot;, &quot;family&quot;,
+  &quot;order&quot;, &quot;class&quot;, &quot;phylum&quot;, &quot;kingdom&quot;,
+  &quot;rank&quot;, &quot;speciesKey&quot;, &quot;taxonomicStatus&quot;,
+  &quot;acceptedKey&quot;, &quot;accepted&quot;
+)
+taxa &lt;-
+  taxa %&gt;%
+  select(one_of(checklist_info))</code></pre>
+</div>
+<div id="get-distribution" class="section level2">
+<h2><span class="header-section-number">2.2</span> Get distribution</h2>
+<p>Extract distribution information</p>
+<pre class="r"><code>distribution &lt;- taxa %&gt;%
+  pull(key) %&gt;%
+  map_dfr(~ name_usage(.,
+    return = &quot;data&quot;,
+    data = &quot;distribution&quot;
+  )) %&gt;%
+  select(-source)
+head(distribution)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["locationId"],"name":[2],"type":["chr"],"align":["left"]},{"label":["locality"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["temporal"],"name":[6],"type":["chr"],"align":["left"]},{"label":["establishmentMeans"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2011/2018","7":"INTRODUCED"},{"1":"152543101","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2011/2018","7":"INTRODUCED"},{"1":"152543102","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED"},{"1":"152543110","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1830/2018","7":"INTRODUCED"},{"1":"152543110","2":"ISO_3166:BE-WAL","3":"Walloon Region","4":"BE","5":"PRESENT","6":"1830/2018","7":"INTRODUCED"},{"1":"152543115","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2014/2018","7":"INTRODUCED"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="get-description" class="section level2">
+<h2><span class="header-section-number">2.3</span> Get description</h2>
+<p>Extract description information</p>
+<pre class="r"><code>description &lt;- taxa %&gt;%
+  pull(key) %&gt;%
+  map_dfr(~ name_usage(.,
+    return = &quot;data&quot;,
+    data = &quot;description&quot;
+  )) %&gt;%
+  select(-c(key, language, source))
+head(description, n = 10)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["description"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"pathway","3":"cbd_2014_pathway:contaminant_animal_parasite"},{"1":"152543101","2":"invasion stage","3":"established"},{"1":"152543102","2":"native range","3":"Northern America"},{"1":"152543102","2":"pathway","3":"cbd_2014_pathway:contaminant_animal_parasite"},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Belgian part of the North Sea : Fisheries: accidental with deliberate translocations of fish or shellfish<br/>In Europe, the sites where T. inopinata has been found are often near sites of oyster culture (Pacific Oyster, Crassostrea gigas), though secondary transport by recreational and fishing boats is likely (Galil and Occhipinti Ambrogi 2006)"},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Belgian part of the North Sea : Recreational equipment: accidental with recreational equipment<br/>In Europe, the sites where T. inopinata has been found are often near sites of oyster culture (Pacific Oyster, Crassostrea gigas), though secondary transport by recreational and fishing boats is likely (Galil and Occhipinti Ambrogi 2006)."},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Belgian part of the North Sea: Aquaculture: accidental"},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Belgian part of the North Sea: Ships: accidental as attached or free-living fouling organisms"},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Celtic Sea (IHO Sea Area) : May have been introduced recently on leisure or commercial craft travelling to and from the UK and mainland Europe."},{"1":"152543120","2":"Introduced species vector dispersal","3":"in Dutch part of the North Sea : Fisheries: accidental with deliberate translocations of fish or shellfish<br/>In Europe, the sites where T. inopinata has been found are often near sites of oyster culture (Pacific Oyster, Crassostrea gigas), though secondary transport by recreational and fishing boats is likely (Galil and Occhipinti Ambrogi 2006)."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Description contains a column <code>type</code> with the following descriptors:</p>
+<pre class="r"><code>description %&gt;% distinct(type)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["type"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"pathway"},{"1":"invasion stage"},{"1":"native range"},{"1":"Introduced species vector dispersal"},{"1":"Introduced species abundance"},{"1":"Introduced species impact"},{"1":"degree of establishment"},{"1":"Introduced species remark"},{"1":"Introduced species management"},{"1":"Introduced species population trend"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We are interested to the following types:</p>
+<pre class="r"><code>types &lt;- c(
+  &quot;invasion stage&quot;,
+  &quot;native range&quot;,
+  &quot;degree of establishment&quot;,
+  &quot;pathway&quot;
+)</code></pre>
+<p>We filter out the other types:</p>
+<pre class="r"><code>description &lt;-
+  description %&gt;%
+  filter(type %in% types)</code></pre>
+<p>We <em>tidy</em> this data.frame, thus having different descriptors as different columns:</p>
+<pre class="r"><code>description &lt;-
+  description %&gt;%
+  as_tibble() %&gt;%
+  pivot_wider(
+    names_from = type,
+    values_from = description,
+    values_fn = list(name = list)
+  ) %&gt;%
+  unnest_longer(types[1]) %&gt;%
+  unnest_longer(types[2]) %&gt;%
+  unnest_longer(types[3]) %&gt;%
+  unnest_longer(types[4])
+description %&gt;% head(n = 20)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["pathway"],"name":[2],"type":["chr"],"align":["left"]},{"label":["invasion stage"],"name":[3],"type":["chr"],"align":["left"]},{"label":["native range"],"name":[4],"type":["chr"],"align":["left"]},{"label":["degree of establishment"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"cbd_2014_pathway:contaminant_animal_parasite","3":"established","4":"NA","5":"NA"},{"1":"152543102","2":"cbd_2014_pathway:contaminant_animal_parasite","3":"NA","4":"Northern America","5":"NA"},{"1":"152543131","2":"NA","3":"established","4":"NA","5":"NA"},{"1":"152543132","2":"cbd_2014_pathway:escape_pet","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543132","2":"cbd_2014_pathway:release_other","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543136","2":"cbd_2014_pathway:escape_pet","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543136","2":"cbd_2014_pathway:release_other","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543139","2":"cbd_2014_pathway:escape_pet","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543139","2":"cbd_2014_pathway:release_other","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543140","2":"cbd_2014_pathway:escape_pet","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543140","2":"cbd_2014_pathway:release_other","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543141","2":"cbd_2014_pathway:escape_pet","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543141","2":"cbd_2014_pathway:release_other","3":"introduced","4":"Northern America","5":"NA"},{"1":"152543142","2":"NA","3":"NA","4":"Eastern Asia","5":"NA"},{"1":"152543147","2":"cbd_2014_pathway:release_conservation","3":"established","4":"Europe","5":"NA"},{"1":"152543147","2":"cbd_2014_pathway:release_landscape_improvement","3":"established","4":"Europe","5":"NA"},{"1":"152543155","2":"cbd_2014_pathway:escape_pet","3":"established","4":"Asia","5":"NA"},{"1":"152543163","2":"NA","3":"introduced","4":"Southern Europe","5":"NA"},{"1":"152543168","2":"NA","3":"introduced","4":"Southern Europe","5":"NA"},{"1":"152543169","2":"NA","3":"established","4":"Europe","5":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We also clean column names by standardizing column names:</p>
+<pre class="r"><code>description &lt;-
+  description %&gt;%
+  janitor::clean_names(case = &quot;snake&quot;) %&gt;%
+  rename(taxonKey = taxon_key)
+names(description)</code></pre>
+<pre><code>## [1] &quot;taxonKey&quot;                &quot;pathway&quot;                
+## [3] &quot;invasion_stage&quot;          &quot;native_range&quot;           
+## [5] &quot;degree_of_establishment&quot;</code></pre>
+<div id="mapping-degree-of-establishment" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Mapping <code>degree of establishment</code></h3>
+<p>Values in column <code>degree_of_establishment</code>:</p>
+<pre class="r"><code>description %&gt;%
+  distinct(degree_of_establishment)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["degree_of_establishment"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"NA"},{"1":"established (blackburn_2011:C3)"},{"1":"blackburn_et_al_2011:E"},{"1":"blackburn_et_al_2011:C0"},{"1":"blackburn_et_al_2011:C3"},{"1":"blackburn_et_al_2011:B2"},{"1":"casual (blackburn_2011:C1)"},{"1":"released (blackburn_2011:B3)"},{"1":"colonizing (blackburn_2011:D1)"},{"1":"reproducing (blackburn_2011:C2)"},{"1":"captive (blackburn_2011:B1)"},{"1":"blackburn_et_al_2011:D2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We map them as follows:</p>
+<pre class="r"><code>description &lt;-
+  description %&gt;%
+  mutate(degree_of_establishment = recode(
+    degree_of_establishment,
+    &quot;captive (blackburn_2011:B1)&quot; = &quot;captive&quot;,
+    &quot;blackburn_et_al_2011:B2&quot; = &quot;cultivated&quot;,
+    &quot;released (blackburn_2011:B3)&quot; = &quot;released&quot;,
+    &quot;blackburn_et_al_2011:C0&quot; = &quot;failing&quot;,
+    &quot;casual (blackburn_2011:C1)&quot; = &quot;casual&quot;,
+    &quot;reproducing (blackburn_2011:C2)&quot; = &quot;reproducing&quot;,
+    &quot;established (blackburn_2011:C3)&quot; = &quot;established&quot;,
+    &quot;blackburn_et_al_2011:C3&quot; = &quot;established&quot;,
+    &quot;colonizing (blackburn_2011:D1)&quot; = &quot;colonizing&quot;,
+    &quot;blackburn_et_al_2011:D2&quot; = &quot;invasive&quot;,
+    &quot;blackburn_et_al_2011:E&quot; = &quot;widespreadInvasive&quot;
+  ))</code></pre>
+</div>
+</div>
+<div id="species-profile" class="section level2">
+<h2><span class="header-section-number">2.4</span> Species profile</h2>
+<p>Extract species profile</p>
+<pre class="r"><code>speciesProfiles &lt;- taxa %&gt;%
+  pull(key) %&gt;%
+  map_dfr(~ name_usage(.,
+    return = &quot;data&quot;,
+    data = &quot;speciesProfiles&quot;
+  ))
+head(speciesProfiles)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["habitat"],"name":[2],"type":["chr"],"align":["left"]},{"label":["marine"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["freshwater"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["terrestrial"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"freshwater","3":"FALSE","4":"TRUE","5":"FALSE","6":"https://www.gbif.org/species/148437718: Gyrodactylus proterorhini Ergens, 1967 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543102","2":"freshwater","3":"FALSE","4":"TRUE","5":"FALSE","6":"https://www.gbif.org/species/148437689: Aphanomyces astaci Schikora in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543110","2":"terrestrial","3":"FALSE","4":"FALSE","5":"TRUE","6":"https://www.gbif.org/species/148437991: Scutigera coleoptrata (Linnaeus 1758) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543115","2":"terrestrial","3":"FALSE","4":"FALSE","5":"TRUE","6":"https://www.gbif.org/species/148437775: Thecaphora oxalidis (Ellis & Tracy) M. Lutz, R. Bauer & Piatek in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543120","2":"marine","3":"TRUE","4":"FALSE","5":"FALSE","6":"https://www.gbif.org/species/157131005: Tricellaria inopinata d'Hondt & Occhipinti Ambrogi, 1985 in Flanders Marine Institute (2020). World Register of Introduced Marine Species (WRiMS). Checklist dataset https://doi.org/10.14284/347"},{"1":"152543121","2":"terrestrial","3":"FALSE","4":"FALSE","5":"TRUE","6":"https://www.gbif.org/species/148437729: Urocystis trollii Nannf. in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="merge-data" class="section level1">
+<h1><span class="header-section-number">3</span> Merge data</h1>
+<p>Merge distribution, description and species profile information:</p>
+<pre class="r"><code>merged_extensions &lt;-
+  full_join(distribution,
+    description,
+    by = &quot;taxonKey&quot;
+  ) %&gt;%
+  full_join(speciesProfiles,
+    by = &quot;taxonKey&quot;
+  )
+
+merged_info &lt;- left_join(taxa, merged_extensions,
+  by = c(&quot;key&quot; = &quot;taxonKey&quot;)
+)
+merged_extensions %&gt;% head(n = 100)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["int"],"align":["right"]},{"label":["locationId"],"name":[2],"type":["chr"],"align":["left"]},{"label":["locality"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["temporal"],"name":[6],"type":["chr"],"align":["left"]},{"label":["establishmentMeans"],"name":[7],"type":["chr"],"align":["left"]},{"label":["pathway"],"name":[8],"type":["chr"],"align":["left"]},{"label":["invasion_stage"],"name":[9],"type":["chr"],"align":["left"]},{"label":["native_range"],"name":[10],"type":["chr"],"align":["left"]},{"label":["degree_of_establishment"],"name":[11],"type":["chr"],"align":["left"]},{"label":["habitat"],"name":[12],"type":["chr"],"align":["left"]},{"label":["marine"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["freshwater"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["terrestrial"],"name":[15],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[16],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2011/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"established","10":"NA","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437718: Gyrodactylus proterorhini Ergens, 1967 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543101","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2011/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"established","10":"NA","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437718: Gyrodactylus proterorhini Ergens, 1967 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543102","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"NA","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437689: Aphanomyces astaci Schikora in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543110","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1830/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437991: Scutigera coleoptrata (Linnaeus 1758) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543110","2":"ISO_3166:BE-WAL","3":"Walloon Region","4":"BE","5":"PRESENT","6":"1830/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437991: Scutigera coleoptrata (Linnaeus 1758) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543115","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2014/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437775: Thecaphora oxalidis (Ellis & Tracy) M. Lutz, R. Bauer & Piatek in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543120","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2000/2000","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"marine","13":"TRUE","14":"FALSE","15":"FALSE","16":"https://www.gbif.org/species/157131005: Tricellaria inopinata d'Hondt & Occhipinti Ambrogi, 1985 in Flanders Marine Institute (2020). World Register of Introduced Marine Species (WRiMS). Checklist dataset https://doi.org/10.14284/347"},{"1":"152543120","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"marine","13":"TRUE","14":"FALSE","15":"FALSE","16":"https://www.gbif.org/species/157131005: Tricellaria inopinata d'Hondt & Occhipinti Ambrogi, 1985 in Flanders Marine Institute (2020). World Register of Introduced Marine Species (WRiMS). Checklist dataset https://doi.org/10.14284/347"},{"1":"152543121","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1894/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437729: Urocystis trollii Nannf. in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543128","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1899/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437761: Sporisorium destruens (Schltdl.) Vánky in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543131","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1968/2010","7":"INTRODUCED","8":"NA","9":"established","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437766: Ustilago maydis (DC.) Corda in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543132","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437889: Graptemys pseudogeographica subsp. kohnii (Baur, 1890) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543132","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437889: Graptemys pseudogeographica subsp. kohnii (Baur, 1890) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543132","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437889: Graptemys pseudogeographica subsp. kohnii (Baur, 1890) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543132","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437889: Graptemys pseudogeographica subsp. kohnii (Baur, 1890) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543136","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437888: Graptemys pseudogeographica subsp. pseudogeographica (Gray, 1831) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543136","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437888: Graptemys pseudogeographica subsp. pseudogeographica (Gray, 1831) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543136","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437888: Graptemys pseudogeographica subsp. pseudogeographica (Gray, 1831) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543136","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2005/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437888: Graptemys pseudogeographica subsp. pseudogeographica (Gray, 1831) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543139","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2003/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437886: Trachemys scripta subsp. troostii (Holbrook, 1836) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543139","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2003/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437886: Trachemys scripta subsp. troostii (Holbrook, 1836) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543139","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2003/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437886: Trachemys scripta subsp. troostii (Holbrook, 1836) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543139","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2003/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437886: Trachemys scripta subsp. troostii (Holbrook, 1836) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543140","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1975/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437884: Trachemys scripta subsp. elegans (Wied, 1838) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543140","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1975/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437884: Trachemys scripta subsp. elegans (Wied, 1838) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543140","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1975/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437884: Trachemys scripta subsp. elegans (Wied, 1838) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543140","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1975/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437884: Trachemys scripta subsp. elegans (Wied, 1838) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543141","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437885: Trachemys scripta subsp. scripta (Schoepff, 1792) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543141","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437885: Trachemys scripta subsp. scripta (Schoepff, 1792) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543141","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437885: Trachemys scripta subsp. scripta (Schoepff, 1792) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543141","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_other","9":"introduced","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437885: Trachemys scripta subsp. scripta (Schoepff, 1792) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543142","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"Eastern Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437737: Lentinula edodes (Berk.) Pegler in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543142","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"NA","9":"NA","10":"Eastern Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437737: Lentinula edodes (Berk.) Pegler in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543147","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1968/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_conservation","9":"established","10":"Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437871: Natrix helvetica Lacépède, 1789 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543147","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1968/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_landscape_improvement","9":"established","10":"Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437871: Natrix helvetica Lacépède, 1789 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543147","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1968/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_conservation","9":"established","10":"Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437871: Natrix helvetica Lacépède, 1789 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543147","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1968/2018","7":"INTRODUCED","8":"cbd_2014_pathway:release_landscape_improvement","9":"established","10":"Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437871: Natrix helvetica Lacépède, 1789 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543152","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2000/2000","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543155","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2006/2017","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"established","10":"Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437874: Orthriophis taeniurus (Cope, 1861) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543155","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2006/2017","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"established","10":"Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437874: Orthriophis taeniurus (Cope, 1861) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543157","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2000/2005","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543162","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1852/1852","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543163","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2006/2017","7":"INTRODUCED","8":"NA","9":"introduced","10":"Southern Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437877: Lacerta viridis (Laurenti, 1768) s.l. in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543163","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2006/2017","7":"INTRODUCED","8":"NA","9":"introduced","10":"Southern Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437877: Lacerta viridis (Laurenti, 1768) s.l. in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543166","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1879/1882","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543167","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1878/2008","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543168","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2004/2017","7":"INTRODUCED","8":"NA","9":"introduced","10":"Southern Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437879: Podarcis siculus (Rafinesque-schmaltz, 1810) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543168","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2004/2017","7":"INTRODUCED","8":"NA","9":"introduced","10":"Southern Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437879: Podarcis siculus (Rafinesque-schmaltz, 1810) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543169","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2004/2018","7":"INTRODUCED","8":"NA","9":"established","10":"Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437880: Podarcis muralis (Laurenti, 1768) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543169","2":"ISO_3166:BE-BRU","3":"Brussels-Capital Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"NA","9":"established","10":"Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437880: Podarcis muralis (Laurenti, 1768) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543169","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2004/2018","7":"INTRODUCED","8":"NA","9":"established","10":"Europe","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437880: Podarcis muralis (Laurenti, 1768) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543171","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1996/2004","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543176","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1895/1895","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543178","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2001/2016","7":"INTRODUCED","8":"cbd_2014_pathway:corridor_water","9":"established","10":"Eastern Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/140562918: Dendrocoelum romanodanubiale in Boets P, Lock K, Mertens J, Goethals P, Adriaens T, Groom Q, Brosens D, Desmet P, Reyserhove L (2018). Inventory of alien macroinvertebrates in Flanders, Belgium. Version 1.5. Ghent University. Checklist dataset https://doi.org/10.15468/yxcq07"},{"1":"152543178","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2001/2016","7":"INTRODUCED","8":"cbd_2014_pathway:corridor_water","9":"established","10":"Eastern Europe","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/140562918: Dendrocoelum romanodanubiale in Boets P, Lock K, Mertens J, Goethals P, Adriaens T, Groom Q, Brosens D, Desmet P, Reyserhove L (2018). Inventory of alien macroinvertebrates in Flanders, Belgium. Version 1.5. Ghent University. Checklist dataset https://doi.org/10.15468/yxcq07"},{"1":"152543179","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543181","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"NA","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543183","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1947/1947","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543184","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"NA","10":"Australia and New Zealand","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437723: Marionfyfea adventor Jones & Sluys, 2016 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543184","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"NA","10":"Australia and New Zealand","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437723: Marionfyfea adventor Jones & Sluys, 2016 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543185","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2009/2009","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543187","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1997/1997","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA"},{"1":"152543188","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2015/2017","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"introduced","10":"Australia and New Zealand","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437730: Caenoplana bicolor (Graff, 1899) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543188","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2015/2017","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"introduced","10":"Australia and New Zealand","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437730: Caenoplana bicolor (Graff, 1899) in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543192","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"NA","10":"Southeastern Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437727: Bipalium kewense Moseley, 1878 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543192","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_habitat_material","9":"NA","10":"Southeastern Asia","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437727: Bipalium kewense Moseley, 1878 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543197","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1900/1902","7":"INTRODUCED","8":"NA","9":"NA","10":"NA","11":"NA","12":"terrestrial","13":"FALSE","14":"FALSE","15":"TRUE","16":"https://www.gbif.org/species/148437750: Entyloma calendulae (Oudem.) de Bary in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543200","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543200","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543200","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543200","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543200","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543200","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1993/1993","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"South America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498581: Chloephaga picta (Gmelin, 1789) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Asia","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Asia","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Europe","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Europe","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Northern America","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543205","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1960/2017","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Northern America","11":"NA","12":"freshwater|terrestrial","13":"FALSE","14":"TRUE","15":"TRUE","16":"https://www.gbif.org/species/146042267: Branta leucopsis (Bechstein 1803) in Zieritz A, Gallardo B, Baker S J, Britton R, van Valkenburg J L, Verreycken H, Aldridge D, Desmet P, Reyserhove L (2019). RINSE - Pathways and vectors of biological invasions in Northwest Europe. Version 1.3. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/guejza"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:corridor","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape_farm","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:natural_dispersal","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:release_hunting","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:corridor","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape_farm","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:natural_dispersal","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543206","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"1950/2019","7":"INTRODUCED","8":"cbd_2014_pathway:release_hunting","9":"NA","10":"Northern America","11":"established","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498565: Branta canadensis (Linnaeus, 1758) in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543207","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2013/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"NA","10":"Asia","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437713: Batrachochytrium salamandrivorans A. Martel, Blooi, Bossuyt & Pasmans, 2013 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543207","2":"ISO_3166:BE-WAL","3":"Walloon Region","4":"BE","5":"PRESENT","6":"2013/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"NA","10":"Asia","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437713: Batrachochytrium salamandrivorans A. Martel, Blooi, Bossuyt & Pasmans, 2013 in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543209","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"NA","10":"NA","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437715: Batrachochytrium dendrobatidis Longcore, Pessier & D.K. Nichols in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543209","2":"ISO_3166:BE-VLG","3":"Flemish Region","4":"BE","5":"PRESENT","6":"2018/2018","7":"INTRODUCED","8":"cbd_2014_pathway:contaminant_animal_parasite","9":"NA","10":"NA","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/148437715: Batrachochytrium dendrobatidis Longcore, Pessier & D.K. Nichols in Reyserhove L, Groom Q, Adriaens T, Desmet P, Dekoninck W, Van Keer K, Lock K (2018). Ad hoc checklist of alien species in Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/3pmlxs"},{"1":"152543210","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1957/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape","9":"NA","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498577: Aix sponsa Linnaeus, 1758 in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543210","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1957/2019","7":"INTRODUCED","8":"cbd_2014_pathway:escape_pet","9":"NA","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498577: Aix sponsa Linnaeus, 1758 in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"},{"1":"152543210","2":"ISO_3166:BE","3":"Belgium","4":"BE","5":"PRESENT","6":"1957/2019","7":"INTRODUCED","8":"cbd_2014_pathway:release","9":"NA","10":"Northern America","11":"NA","12":"freshwater","13":"FALSE","14":"TRUE","15":"FALSE","16":"https://www.gbif.org/species/159498577: Aix sponsa Linnaeus, 1758 in Preda C, Adriaens T, Strubbe D, Desmet P, Reyserhove L (2019). Checklist of alien birds of Belgium. Version 1.2. Research Institute for Nature and Forest (INBO). Checklist dataset https://doi.org/10.15468/wr3gis"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="tidy-data" class="section level1">
+<h1><span class="header-section-number">4</span> Tidy data</h1>
+<p>Some columns should be splitted in order to make the data.frame completely tidy: <code>temporal</code> and <code>pathway</code>.</p>
+<div id="split-column-temporal" class="section level2">
+<h2><span class="header-section-number">4.1</span> Split column <code>temporal</code></h2>
+<p>The column <code>temporal</code> contains one or two datums:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["temporal"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"152543101","2":"2011/2018"},{"1":"152543102","2":"2018/2018"},{"1":"152543110","2":"1830/2018"},{"1":"152543115","2":"2014/2018"},{"1":"152543120","2":"2000/2000"},{"1":"152543121","2":"1894/2018"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>In case there are two datums, we split them in <code>first_observed</code> and <code>last_observed</code>. If only a datum is present, then it is used for both <code>first_observed</code>and <code>last_observed</code>.</p>
+<pre class="r"><code>merged_info &lt;-
+  merged_info %&gt;%
+  separate(
+    col = temporal,
+    sep = &quot;/&quot;,
+    into = c(&quot;first_observed&quot;, &quot;last_observed&quot;),
+    convert = TRUE,
+    fill = &quot;right&quot;,
+    remove = TRUE
+  ) %&gt;%
+  mutate(last_observed = ifelse(is.na(last_observed),
+    first_observed,
+    last_observed
+  ))</code></pre>
+<p>An example:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["first_observed"],"name":[2],"type":["int"],"align":["right"]},{"label":["last_observed"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"152543101","2":"2011","3":"2018"},{"1":"152543102","2":"2018","3":"2018"},{"1":"152543110","2":"1830","3":"2018"},{"1":"152543115","2":"2014","3":"2018"},{"1":"152543120","2":"2000","3":"2000"},{"1":"152543121","2":"1894","3":"2018"},{"1":"152543128","2":"1899","3":"2018"},{"1":"152543131","2":"1968","3":"2010"},{"1":"152543132","2":"2005","3":"2018"},{"1":"152543136","2":"2005","3":"2018"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="split-column-pathway" class="section level2">
+<h2><span class="header-section-number">4.2</span> Split column <code>pathway</code></h2>
+<p>The column <code>pathway</code> contains a prefix, <code>cbd_2014_pathway:</code> and two different pathway levels divided by symbol <code>_</code> (Note: this is not valid for pathway <code>natural_dispersal</code>, which should not be divided in two levels as it is a level 2 pathway of level 1 <code>unaided</code>):</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pathway"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"cbd_2014_pathway:contaminant_animal_parasite"},{"1":"cbd_2014_pathway:escape_pet"},{"1":"cbd_2014_pathway:release_other"},{"1":"cbd_2014_pathway:release_conservation"},{"1":"cbd_2014_pathway:release_landscape_improvement"},{"1":"cbd_2014_pathway:corridor_water"},{"1":"cbd_2014_pathway:contaminant_habitat_material"},{"1":"cbd_2014_pathway:escape"},{"1":"cbd_2014_pathway:release"},{"1":"cbd_2014_pathway:corridor"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Exceptions:</p>
+<pre class="r"><code>merged_info %&gt;%
+  filter(!str_starts(pathway, pattern = &quot;cbd_2014_pathway:&quot;)) %&gt;%
+  distinct(key, pathway) %&gt;%
+  group_by(pathway) %&gt;%
+  count()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pathway"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"unintentional","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>We assign pathway <code>cbd_2014_pathway:unknown</code> to them:</p>
+<pre class="r"><code>merged_info &lt;-
+  merged_info %&gt;%
+  mutate(pathway = ifelse(!str_starts(pathway, pattern = &quot;cbd_2014_pathway:&quot;),
+                          &quot;cbd_2014_pathway:unknown&quot;,
+                          pathway))</code></pre>
+<p>We split <code>pathway</code> in <code>pathway_level1</code> and <code>pathway_level2</code> assigning value <code>unknown</code> if pathway is empty (<code>NA</code>) or a zero-length string (<code>&quot;&quot;</code>). We also assign level 2 <code>natural_dispersal</code> to taxa with pathway level 1 <code>unaided</code>, as suggested by Tim Adriaens in <a href="https://github.com/trias-project/indicators/issues/61#issuecomment-611704751">trias-project/indicators#61 (comment)</a>:</p>
+<pre class="r"><code>merged_info &lt;-
+  merged_info %&gt;%
+  rowwise() %&gt;%
+  mutate(
+    pathway_level1 =
+      str_split_fixed(
+        str_split(pathway,
+          pattern = &quot;pathway:&quot;
+        )[[1]][2],
+        pattern = &quot;_&quot;, n = 2
+      )[[1]][1],
+    pathway_level2 =
+      str_split_fixed(
+        str_split(pathway, pattern = &quot;pathway:&quot;)[[1]][2],
+        pattern = &quot;_&quot;, n = 2
+      )[[2]][1]
+  ) %&gt;%
+  ungroup() %&gt;%
+  mutate(pathway_level2 = ifelse(pathway_level1 == &quot;unaided&quot; &amp; 
+                                   (pathway_level2 == &quot;&quot; |
+                                      is.na(pathway_level2)),
+                                 &quot;natural_dispersal&quot;,
+                                 pathway_level2)) %&gt;%
+  mutate(pathway_level2 = ifelse(pathway_level1 == &quot;unknown&quot;,
+                                 &quot;unknown&quot;,
+                                 pathway_level2)) %&gt;%
+  mutate(
+    pathway_level1 = ifelse(is.na(pathway_level1) | pathway_level1 == &quot;&quot;,
+                            &quot;unknown&quot;,
+                            pathway_level1),
+    pathway_level2 = ifelse(is.na(pathway_level2) | pathway_level2 == &quot;&quot;,
+                            &quot;unknown&quot;,
+                            pathway_level2)
+  ) %&gt;%
+  mutate(
+    pathway_level1 = ifelse(
+      pathway_level1 == &quot;natural&quot;,
+      &quot;unaided&quot;,
+      pathway_level1
+    ),
+    pathway_level2 = ifelse(
+      pathway_level2 == &quot;dispersal&quot;,
+      &quot;natural_dispersal&quot;,
+      pathway_level2
+    )) %&gt;%
+  select(-pathway)</code></pre>
+<p>Full mapping:</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pathway_level1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pathway_level2"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"contaminant","2":"animal_parasite"},{"1":"contaminant","2":"habitat_material"},{"1":"contaminant","2":"on_animals"},{"1":"contaminant","2":"unknown"},{"1":"contaminant","2":"seed"},{"1":"contaminant","2":"timber"},{"1":"contaminant","2":"on_plants"},{"1":"contaminant","2":"nursery"},{"1":"contaminant","2":"food"},{"1":"corridor","2":"water"},{"1":"corridor","2":"unknown"},{"1":"escape","2":"pet"},{"1":"escape","2":"unknown"},{"1":"escape","2":"farm"},{"1":"escape","2":"zoo"},{"1":"escape","2":"horticulture"},{"1":"escape","2":"food_bait"},{"1":"escape","2":"aquaculture"},{"1":"escape","2":"ornamental"},{"1":"escape","2":"agriculture"},{"1":"escape","2":"fur_farm"},{"1":"escape","2":"research"},{"1":"release","2":"other"},{"1":"release","2":"conservation"},{"1":"release","2":"landscape_improvement"},{"1":"release","2":"unknown"},{"1":"release","2":"hunting"},{"1":"release","2":"biological_control"},{"1":"stowaway","2":"unknown"},{"1":"stowaway","2":"ballast_water"},{"1":"stowaway","2":"hull_fouling"},{"1":"stowaway","2":"other"},{"1":"stowaway","2":"people_luggage"},{"1":"stowaway","2":"vehicles"},{"1":"stowaway","2":"container"},{"1":"stowaway","2":"organic_packing"},{"1":"stowaway","2":"ship"},{"1":"unaided","2":"natural_dispersal"},{"1":"unknown","2":"unknown"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="save-data" class="section level1">
+<h1><span class="header-section-number">5</span> Save data</h1>
+<div id="remove-some-taxa" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remove some taxa</h2>
+<p>We remove the following species:</p>
+<ul>
+<li><a href="https://www.gbif.org/species/2498027">Anser fabalis (Latham, 1787)</a></li>
+<li><a href="https://www.gbif.org/species/2498036">Anser anser (Linnaeus, 1758)</a></li>
+<li><a href="https://www.gbif.org/species/5232464">Branta leucopsis (Bechstein, 1803)</a></li>
+</ul>
+<p>as discussed in <a href="https://github.com/trias-project/unified-checklist/issues/32">issue #32</a>.</p>
+<pre class="r"><code>taxa_to_remove &lt;- 
+  taxa %&gt;%
+  filter(nubKey %in% c(2498027, 2498036, 5232464)) %&gt;%
+  distinct(key, nubKey, scientificName)
+taxa_to_remove</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["key"],"name":[1],"type":["int"],"align":["right"]},{"label":["nubKey"],"name":[2],"type":["int"],"align":["right"]},{"label":["scientificName"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"152543205","2":"5232464","3":"Branta leucopsis (Bechstein, 1803)"},{"1":"152543231","2":"2498027","3":"Anser fabalis (Latham, 1787)"},{"1":"152543234","2":"2498036","3":"Anser anser (Linnaeus, 1758)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Important: this step is a patch waiting for a new version of the <a href="https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e">Global Register of Introduced and Invasive Species - Belgium</a>.</p>
+<pre class="r"><code>merged_info &lt;-
+  merged_info %&gt;%
+  filter(!key %in% taxa_to_remove$key)</code></pre>
+<p>The data.frame <code>merged_info</code> is saved as output file:</p>
+<pre class="r"><code>write_tsv(merged_info,
+  path = here::here(
+    &quot;data&quot;,
+    &quot;interim&quot;,
+    &quot;data_input_checklist_indicators.tsv&quot;
+  ),
+  na = &quot;&quot;
+)</code></pre>
+<p>This file is the start point for building checklist-based indicators.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
