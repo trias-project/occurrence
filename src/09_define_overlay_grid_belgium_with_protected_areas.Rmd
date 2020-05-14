@@ -699,7 +699,8 @@ protected_areas %>%
   st_write(
     here::here("data",
                "output",
-               "Belgian_Natura2000_protected_areas.gpkg")
+               "Belgian_Natura2000_protected_areas.gpkg"),
+    delete_dsn =TRUE
 )
 ```
 

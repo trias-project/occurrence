@@ -105,9 +105,9 @@ eu_concern_species <-
 ```
 
 
-# State of invasion of protected areas
+# Stage of invasion of protected areas
 
-We analyze the state of invasion of protected areas based on observations from 2000.
+We analyze the stage of invasion of protected areas based on observations from 2000.
 
 ```{r begin_year}
 begin_year <- 2000
@@ -928,11 +928,11 @@ n_prot_areas_per_species_concern_brussels_habitat
 
 # Save data
 
-## Save state of invasion data
+## Save stage of invasion data
 
-We save the analysis of the state of the invasion of the protected areas:
+We save the analysis of the stage of the invasion of the protected areas:
 
-```{r save_state_of_invasion_data}
+```{r save_stage_of_invasion_data}
 n_taxa_obs_per_area_dfs <- list(
   # Belgium
   n_taxa_obs_per_area = n_taxa_obs_per_area,

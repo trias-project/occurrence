@@ -15,10 +15,7 @@ output:
 ---
 
 This document describes how to build indicators of Invasive Alien Species based 
-on checklist data. In particular, this document takes into account:
-
-1. number of new introductions of alien species per year in Belgium (see GitHub 
-issue [#17](https://github.com/trias-project/pipeline/issues/17))
+on checklist data. In particular, this document takes into account the number of new introductions of alien species per year in Belgium.
 
 # Setup
 

@@ -2,42 +2,42 @@ name: "TrIAS data processing pipeline"
 output_dir: "../docs"
 include: "static"
 navbar:
-  title: "TrIAS pipeline"
+  title: "TrIAS indicators"
   left:
     - text: "Checklist-based indicators"
       href: ""
       menu:
       - text: "Preprocessing for checklist-based indicators"
-        href: get_data_input_checklist_indicators.html
+        href: 01_get_data_input_checklist_indicators.html
       - text: "New species introductions"
-        href: indicator_introductions_per_year.html
+        href: 02_indicator_introductions_per_year.html
       - text: "Cumulative number of species"
-        href: indicator_cumulative_number.html
+        href: 03_indicator_cumulative_number.html
       - text: "Introduction pathways"
-        href: indicator_pathways.html
+        href: 04_indicator_pathways.html
     - text: "Occurrence-based indicators"
       href: ""
       menu:
       - text: "Preprocessing for occurrence-based indicators"
-        href: occurrence_indicators_preprocessing.html
+        href: 05_occurrence_indicators_preprocessing.html
       - text: "Appearing-reappearing species"
-        href: occurrence_indicators_appearing_taxa.html
+        href: 06_occurrence_indicators_appearing_taxa.html
       - text: "Emerging status analysis"
         href: ""
         menu:
         - text: "Assessing emerging status of alien species"
-          href: occurrence_indicators_modelling.html
+          href: 07_occurrence_indicators_modelling.html
         - text: "Ranking species by emerging status"
-          href: ranking_emerging_status.html
+          href: 08_ranking_emerging_status.html
       - text: "Protected areas analysis"
         href: ""
         menu:
         - text: "Belgian protected areas and EEA grid of Belgium"
-          href: define_overlay_grid_belgium_with_protected_areas.html
+          href: 09_define_overlay_grid_belgium_with_protected_areas.html
         - text: "Belgian protected areas: observations and occupancy"
-          href: species_observations_occupancy_in_protected_areas.html
+          href: 10_species_observations_occupancy_in_protected_areas.html
         - text: "Status of invasion of Belgian protected areas"
-          href: status_alien_species_in_protected_areas.html
+          href: 11_status_alien_species_in_protected_areas.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/trias-project/pipeline

@@ -19,7 +19,7 @@ This document describes the modelling to assess the emerging status of alien spe
 # Setup
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, result = FALSE)
 ```
 
 Load libraries:
@@ -142,20 +142,20 @@ evaluation_years <- seq(first_year, last_year)
 evaluation_years
 ```
 
-We remove data from actual year due to publishing delay. Underestimation of the number of observations would sensibly affect the GAM output. Remember that GAM is applied on a timeseries and that the evaluation years may not be at the end of such timeseries. 
+We remove recent data due to publishing delay. Underestimation of the number of observations would sensibly affect the GAM output.
 
 ```{r remove_actual_year}
 df_ts_compact <-
   df_ts_compact %>%
-  filter(year < lubridate::year(Sys.Date()))
+  filter(year <= last_year)
 df_ts_compact_prot_areas <-
   df_ts_compact_prot_areas %>%
-  filter(year < lubridate::year(Sys.Date()))
+  filter(year <= last_year)
 ```
 
 ## Remove appearing taxa
 
-Taxa appearing after the very first evalution year should be removed as no trend can be assesed for them. See [analysis of appearing and reappearing taxa](https://trias-project.github.io/indicators/occurrence_indicators_appearing_taxa.html).
+Taxa appearing after the very first evalution year should be removed as no trend can be assesed for them. See [analysis of appearing and reappearing taxa](https://trias-project.github.io/indicators/06_occurrence_indicators_appearing_taxa.html).
 
 ```{r remove_appearing_taxa}
 appearing_taxa_to_remove <-
@@ -274,7 +274,7 @@ em_decision_rules_occupancy_pa %>% head()
 
 We apply GAM to observations and occupancy in all Belgium and in protected areas using function `apply_gam()` from project package `trias`.
 
-Plots are saved in:
+Plots are saved in `./data/output/GAM_outputs`:
 
 ```{r plots_dir}
 dir_name <- here::here("data", "output", "GAM_outputs")
@@ -306,8 +306,7 @@ gam_occs_BE <- map2(
         name = n,
         baseline_var = "cobs",
         dir_name = dir_name,
-        saveplot = TRUE,
-        verbose = TRUE
+        saveplot = TRUE
       )
     } else {
       results_gam <- apply_gam(
@@ -318,7 +317,6 @@ gam_occs_BE <- map2(
         taxon_key = t,
         name = n,
         dir_name = dir_name,
-        verbose = TRUE,
         saveplot = TRUE
       )
     }
@@ -328,15 +326,11 @@ gam_occs_BE <- map2(
 names(gam_occs_BE) <- taxon_keys
 ```
 
-Show some results:
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
 
 ```{r show_results_preview_occs_BE, message=FALSE}
-map(
-  gam_occs_BE[1:20],
-  function(t) {
-    if (!is.null(t$plot)) t$plot
-  }
-)
+gam_occs_BE$`8035075`$plot
+gam_occs_BE$`6157026`$plot
 ```
 
 #### Protected aras
@@ -383,15 +377,11 @@ gam_occs_pa <- map2(
 names(gam_occs_pa) <- taxon_keys
 ```
 
-Show some results:
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
 
 ```{r preview_gam_occs_PA, message=FALSE}
-map(
-  gam_occs_pa[1:10],
-  function(t) {
-    if (!is.null(t$plot)) t$plot
-  }
-)
+gam_occs_pa$`8035075`$plot
+gam_occs_pa$`6157026`$plot
 ```
 
 ### Occupancy
@@ -441,11 +431,11 @@ gam_occupancy_BE <- map2(
 names(gam_occupancy_BE) <- taxon_keys
 ```
 
-Show some results:
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
 
 ```{r preview_gam_occupancy_BE, message=FALSE}
-taxon_keys_examples <- c(8035075, 6157026)
-map(taxon_keys_examples, ~ gam_occupancy_BE[[.]]$plot)
+gam_occupancy_BE$`8035075`$plot
+gam_occupancy_BE$`6157026`$plot
 ```
 
 #### Protected aras
@@ -494,12 +484,10 @@ gam_occupancy_pa <- map2(
 names(gam_occupancy_pa) <- taxon_keys
 ```
 
-Show some results:
+Show results for _Crassula helmsii_ (for _Trachemys scripta elegans_ GAM  could not be applied or didn't converged):
 
 ```{r preview_gam_occupancy_PA, message=FALSE}
-taxon_keys_examples <- c(8035075, 6157026)
-map(taxon_keys_examples, ~ gam_occupancy_pa[[.]]$plot)
-
+gam_occupancy_pa$`8035075`$plot
 ```
 
 # Save results

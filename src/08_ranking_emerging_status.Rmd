@@ -14,7 +14,7 @@ output:
     code_folding: hide
 ---
 
-This document follows the [modelling pipeline](https://trias-project.github.io/indicators/occurrence_indicators_modelling.html) to produce a list of introduced species ranked by emerging status.
+This document follows the [modelling pipeline](https://trias-project.github.io/indicators/07_occurrence_indicators_modelling.html) to produce a list of introduced species ranked by emerging status.
 
 # Setup
 
@@ -36,7 +36,7 @@ library(here) # To find files
 
 ## GAM outputs
 
-We read the emerging status based on GAM, saved as one of the outputs of [modelling pipeline](https://trias-project.github.io/indicators/):
+We read the emerging status based on GAM, saved as one of the outputs of [modelling pipeline](https://trias-project.github.io/indicators/07_occurrence_indicators_modelling.html):
 
 ```{r read_em_summary}
 method_gam <- "correct_baseline"
@@ -144,7 +144,7 @@ In these cases we will use the emerging status as assessed by applying decision 
 
 ## Decision rules outputs
 
-We read the emerging status based on decision rules, saved as one of the outputs of [modelling pipeline](https://trias-project.github.io/indicators/):
+We read the emerging status based on decision rules, saved as one of the outputs of [modelling pipeline](https://trias-project.github.io/indicators/07_occurrence_indicators_modelling.html):
 
 ```{r read_dr_results}
 em_decision_rules_occs_BE <- read_tsv(

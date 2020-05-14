@@ -13,7 +13,7 @@ output:
     number_sections: true
 ---
 
-This document describes how to build indicators based on checklist data. In particular, this document focuses on pathways of introduction. See  [#19](https://github.com/trias-project/pipeline/issues/19) for more details and discussion about this indicator.
+This document describes how to build indicators based on checklist data. In particular, this document focuses on pathways of introduction.
 
 # Setup
 
