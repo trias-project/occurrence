@@ -407,7 +407,7 @@ prot_areas_species_info <-
 
 ## Include infraspecific alien taxa
 
-To better study the spread of alien taxa we also add information about infraspecific taxa:
+To better study the spread of alien taxa we also add information about infraspecific alien taxa:
 
 ```{r be_prot_areas_cube_infraspecific}
 # Select cells with occurrences of infraspecific alien taxa
