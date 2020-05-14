@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 Load libraries:
 
-```{r load_libraries, message = FALSE}
+```{r load_libraries}
 library(tidyverse) # To do data science
 library(tidylog) # To provide feedback on dplyr functions
 library(here) # To find files
@@ -412,7 +412,7 @@ ranking_pts
 
 # Save results
 
-Save both rankings.
+We save both rankings.
 
 Ranking based on hierarchical strategy is saved in `data/output/ranking_emerging_status_hierarchical_strategy.tsv`:
 
