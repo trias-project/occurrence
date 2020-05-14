@@ -164,7 +164,7 @@ n_taxa_obs_per_area
 
 Map with number of alien taxa per protected area:
 
-```{r leaflet_n_taxa_in_prot_aras}
+```{r leaflet_n_taxa_in_prot_aras, echo = FALSE}
 # Transform to wgs84
 protected_areas_wgs84 <- 
   protected_areas %>%
@@ -254,7 +254,7 @@ n_species_obs_per_area_concern
 
 Map of the protected areas with number of species included in the concern list:
 
-```{r leaflet_n_species_in_prot_aras_union_list}
+```{r leaflet_n_species_in_prot_aras_union_list, echo = FALSE}
 # Transform to wgs84
 protected_areas_wgs84_concern <- 
   protected_areas %>%
