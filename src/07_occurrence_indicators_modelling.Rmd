@@ -1,0 +1,671 @@
+---
+title: 'Emerging status: modelling'
+author:
+- Damiano Oldoni
+- Toon Van Daele
+- Tim Adriaens
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+---
+
+This document describes the modelling to assess the emerging status of alien species.
+
+# Setup
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, result = FALSE)
+```
+
+Load libraries:
+
+```{r load_libraries, message = FALSE}
+library(tidyverse) # To do data science
+library(tidyselect) # To help tidyverse functions
+library(tidylog) # To provide feedback on dplyr functions
+library(rgbif) # To get information from GBIF
+library(lubridate) # To work with dates
+library(here) # To find files
+library(trias)
+library(INBOtheme) # To load graphic INBO theme
+```
+
+# Get data
+
+We read the time series data, output of preprocessing pipeline:
+
+```{r read_preprocessed_data, message=FALSE}
+df_ts <- read_tsv(
+  here::here("data", "interim", "df_timeseries.tsv"),
+  na = ""
+)
+```
+
+Columns `pa_obs` and `pa_cobs` indicate the presence (1) or absence (0) of the specific taxon and any other taxa within same class respectively.
+
+Preview:
+
+```{r preview_ts}
+# Get a taxon
+taxon <-
+  df_ts$taxonKey[10]
+
+# Preview
+df_ts %>%
+  filter(
+    taxonKey == taxon,
+    year %in% c(2016, 2017),
+    eea_cell_code == "1kmE3924N3102"
+  )
+```
+
+Retrieve scientific names which will be useful to better discuss the results.
+
+```{r taxon_names, message=FALSE}
+spec_names <- read_tsv(
+  file = here::here("data", "interim", "timeseries_taxonomic_info.tsv"),
+  na = ""
+) %>%
+  select(taxonKey, canonicalName) %>%
+  filter(taxonKey %in% df_ts$taxonKey)
+```
+
+Lump geographic information:
+
+```{r df_ts_compact}
+df_ts_compact <-
+  df_ts %>%
+  group_by(taxonKey, year, classKey) %>%
+  summarise(
+    obs = sum(obs),
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
+  ) %>%
+  ungroup()
+```
+
+We create a similar data.frame specific to protected areas (Natura2000):
+
+```{r df_ts_compact_protected_areas}
+df_ts_compact_prot_areas <-
+  df_ts %>%
+  filter(natura2000 == TRUE) %>%
+  group_by(taxonKey, year, classKey) %>%
+  summarise(
+    obs = sum(obs),
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
+  ) %>%
+  ungroup()
+```
+
+Add canonical names:
+
+```{r add_canonicalName}
+df_ts_compact <-
+  df_ts_compact %>%
+  left_join(spec_names, by = "taxonKey")
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  left_join(spec_names, by = "taxonKey")
+```
+
+# Modelling
+
+In this section we evaluate the emergenging status by applying a decision rule strategy or, where possible, a statical model called GAM (Generalized Additive Models).  For each evaluation year (see below) the output of both models is one of the following emerging status codes:
+
+- `3`: emerging
+- `2`: potentially emerging
+- `1`: unclear
+- `0`: not emerging
+
+## Define evaluation period 
+
+We define the time window (in years) we want to assess the emerging status:
+
+```{r eval_years}
+# Last evaluation year
+last_year <- lubridate::year(Sys.Date()) - 2
+
+# First evalution year
+first_year <- last_year - 2
+
+# Evaluation years
+evaluation_years <- seq(first_year, last_year)
+evaluation_years
+```
+
+We remove recent data due to publishing delay. Underestimation of the number of observations would sensibly affect the GAM output.
+
+```{r remove_actual_year}
+df_ts_compact <-
+  df_ts_compact %>%
+  filter(year <= last_year)
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  filter(year <= last_year)
+```
+
+## Remove appearing taxa
+
+Taxa appearing after the very first evalution year should be removed as no trend can be assesed for them. See [analysis of appearing and reappearing taxa](https://trias-project.github.io/indicators/06_occurrence_indicators_appearing_taxa.html).
+
+```{r remove_appearing_taxa}
+appearing_taxa_to_remove <-
+  df_ts_compact %>%
+  group_by(taxonKey) %>%
+  summarize(begin_year = min(year)) %>%
+  filter(begin_year > min(evaluation_years)) %>%
+  pull(taxonKey)
+
+df_ts_compact <-
+  df_ts_compact %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+df_ts_compact_prot_areas <-
+  df_ts_compact_prot_areas %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+spec_names <-
+  spec_names %>%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+```
+
+## Decision rules
+
+We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function `apply_decision_rules()` from project package `trias`.
+
+### Observations
+
+#### Belgium
+
+We apply function `apply_decision_rules()` to observations for all Belgium:
+
+```{r apply_decision_rules_occs_be, message=FALSE}
+em_decision_rules_occs_BE <- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = "obs",
+    eval_year = .
+  )
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_BE}
+em_decision_rules_occs_BE %>% head()
+```
+
+#### Protected areas
+
+We apply function `apply_decision_rules()` to observations for protected areas:
+
+```{r apply_decision_rules_occs_pa, message=FALSE}
+em_decision_rules_occs_pa <- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = "obs",
+    eval_year = .
+  )
+)
+```
+
+Examples:
+
+```{r example_dec_rules_occs_pa}
+em_decision_rules_occs_pa %>% head()
+```
+
+### Occupancy
+
+#### Belgium
+
+We apply function `apply_decision_rules()` to occupancy for all Belgium:
+
+```{r apply_decision_rules_occupancy_BE, message=FALSE}
+em_decision_rules_occupancy_BE <- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = "ncells",
+    eval_year = .
+  )
+)
+```
+
+Examples:
+
+```{r example_decision_rules}
+em_decision_rules_occupancy_BE %>% head()
+```
+
+#### Protected areas
+
+We apply function `apply_decision_rules()` to occupancy in protected areas:
+
+```{r apply_dec_rules_occupancy_pa, message=FALSE}
+em_decision_rules_occupancy_pa <- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = "ncells",
+    eval_year = .
+  )
+)
+```
+
+Examples:
+
+```{r example_dr_occupancy_pa}
+em_decision_rules_occupancy_pa %>% head()
+```
+
+## Generalized additive model (GAM)
+
+We apply GAM to observations and occupancy in all Belgium and in protected areas using function `apply_gam()` from project package `trias`.
+
+Plots are saved in `./data/output/GAM_outputs`:
+
+```{r plots_dir}
+dir_name <- here::here("data", "output", "GAM_outputs")
+```
+
+### Observations
+
+#### Belgium
+
+Apply GAM for observation data in all Belgium:
+
+```{r apply_gam_to_all_taxa, message=FALSE, cache=TRUE}
+taxon_keys <- unique(df_ts_compact$taxonKey)
+taxon_names <- unique(df_ts_compact$canonicalName)
+gam_occs_BE <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact %>%
+      filter(taxonKey == t)
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      results_gam <- apply_gam(
+        df = df_key,
+        y_var = "obs",
+        taxonKey = "taxonKey",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        baseline_var = "cobs",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      results_gam <- apply_gam(
+        df = df_key,
+        y_var = "obs",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
+    return(results_gam)
+  }
+)
+names(gam_occs_BE) <- taxon_keys
+```
+
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
+
+```{r show_results_preview_occs_BE, message=FALSE}
+gam_occs_BE$`8035075`$plot
+gam_occs_BE$`6157026`$plot
+```
+
+#### Protected aras
+
+Apply GAM for observation data in protected areas:
+
+```{r apply_gam_observations_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
+taxon_keys <- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names <- unique(df_ts_compact_prot_areas$canonicalName)
+gam_occs_pa <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact_prot_areas %>%
+      dplyr::filter(taxonKey == t)
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "obs",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        baseline_var = "cobs",
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "obs",
+        eval_years = evaluation_years,
+        type_indicator = "observations",
+        taxon_key = t,
+        name = n,
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
+  }
+)
+names(gam_occs_pa) <- taxon_keys
+```
+
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
+
+```{r preview_gam_occs_PA, message=FALSE}
+gam_occs_pa$`8035075`$plot
+gam_occs_pa$`6157026`$plot
+```
+
+### Occupancy
+
+#### Belgium
+
+Apply GAM for occupancy data (number of occupied cells) in all Belgium:
+
+```{r apply_gam_occupancy_to_all_taxa, message=FALSE, cache=TRUE}
+taxon_keys <- unique(df_ts_compact$taxonKey)
+taxon_names <- unique(df_ts_compact$canonicalName)
+gam_occupancy_BE <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact %>%
+      filter(taxonKey == t) %>%
+      filter(year <= max(evaluation_years))
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        baseline_var = "c_ncells",
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
+      )
+    }
+  }
+)
+names(gam_occupancy_BE) <- taxon_keys
+```
+
+Show results for _Crassula helmsii_ and _Trachemys scripta elegans_:
+
+```{r preview_gam_occupancy_BE, message=FALSE}
+gam_occupancy_BE$`8035075`$plot
+gam_occupancy_BE$`6157026`$plot
+```
+
+#### Protected aras
+
+Apply GAM for occupancy in protected areas:
+
+```{r apply_gam_occupancy_to_all_taxa_protected_areas, message=FALSE, cache=TRUE}
+taxon_keys <- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names <- unique(df_ts_compact_prot_areas$canonicalName)
+gam_occupancy_pa <- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key <- df_ts_compact_prot_areas %>%
+      dplyr::filter(taxonKey == t)
+    class_key <- unique(df_key[["classKey"]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        baseline_var = "c_ncells",
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = "ncells",
+        eval_years = evaluation_years,
+        type_indicator = "occupancy",
+        taxon_key = t,
+        name = n,
+        df_title = "Natura2000",
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = "occupancy (km2)"
+      )
+    }
+  }
+)
+names(gam_occupancy_pa) <- taxon_keys
+```
+
+Show results for _Crassula helmsii_ (for _Trachemys scripta elegans_ GAM  could not be applied or didn't converged):
+
+```{r preview_gam_occupancy_PA, message=FALSE}
+gam_occupancy_pa$`8035075`$plot
+```
+
+# Save results
+
+## Decision rules
+
+Save emerging status based on decision rules:
+
+```{r save_decisionrules_results}
+write_tsv(em_decision_rules_occs_BE,
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_belgium.tsv"
+  ),
+  na = ""
+)
+write_tsv(em_decision_rules_occs_pa,
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occs_pa.tsv"
+  ),
+  na = ""
+)
+write_tsv(em_decision_rules_occupancy_BE,
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_belgium.tsv"
+  ),
+  na = ""
+)
+write_tsv(em_decision_rules_occupancy_pa,
+  path = here::here(
+    "data", "output",
+    "decision_rules_outputs",
+    "output_decision_rules_occupancy_pa.tsv"
+  ),
+  na = ""
+)
+```
+
+
+## GAM models
+
+Save complete outputs:
+
+```{r  save_outputs}
+method_em <- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$output
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_observations_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$output
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_observations_pa_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$output
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_occupancy_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$output
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_occupancy_pa_",
+    method_em, ".tsv"
+  )
+)
+)
+```
+
+Save summary of results limited to the years included in evaluation:
+
+```{r save_em_summary}
+method_em <- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_observations_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_observations_pa_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_occupancy_belgium_",
+    method_em, ".tsv"
+  )
+)
+)
+
+method_em <- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$em_summary
+}),
+na = "",
+path = here::here(
+  "data",
+  "output",
+  "GAM_outputs",
+  paste0(
+    "output_GAM_occupancy_pa_",
+    method_em, ".tsv"
+  )
+)
+)
+```

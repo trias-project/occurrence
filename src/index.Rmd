@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "TrIAS indicators"
 ---
 
 ```{r, child = "../README.md"}

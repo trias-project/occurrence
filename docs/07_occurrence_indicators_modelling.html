@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Damiano Oldoni" />
+<meta name="author" content="Toon Van Daele" />
+<meta name="author" content="Tim Adriaens" />
+
+<meta name="date" content="2020-05-14" />
+
+<title>Emerging status: modelling</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="static\css\trias.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TrIAS indicators</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Checklist-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01_get_data_input_checklist_indicators.html">Preprocessing for checklist-based indicators</a>
+    </li>
+    <li>
+      <a href="02_indicator_introductions_per_year.html">New species introductions</a>
+    </li>
+    <li>
+      <a href="03_indicator_cumulative_number.html">Cumulative number of species</a>
+    </li>
+    <li>
+      <a href="04_indicator_pathways.html">Introduction pathways</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Occurrence-based indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="05_occurrence_indicators_preprocessing.html">Preprocessing for occurrence-based indicators</a>
+    </li>
+    <li>
+      <a href="06_occurrence_indicators_appearing_taxa.html">Appearing-reappearing species</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emerging status analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="07_occurrence_indicators_modelling.html">Assessing emerging status of alien species</a>
+        </li>
+        <li>
+          <a href="08_ranking_emerging_status.html">Ranking species by emerging status</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Protected areas analysis</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="09_define_overlay_grid_belgium_with_protected_areas.html">Belgian protected areas and EEA grid of Belgium</a>
+        </li>
+        <li>
+          <a href="10_species_observations_occupancy_in_protected_areas.html">Belgian protected areas: observations and occupancy</a>
+        </li>
+        <li>
+          <a href="11_status_alien_species_in_protected_areas.html">Status of invasion of Belgian protected areas</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/trias-project/pipeline">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Emerging status: modelling</h1>
+<h4 class="author">Damiano Oldoni</h4>
+<h4 class="author">Toon Van Daele</h4>
+<h4 class="author">Tim Adriaens</h4>
+<h4 class="date">2020-05-14</h4>
+
+</div>
+
+
+<p>This document describes the modelling to assess the emerging status of alien species.</p>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<p>Load libraries:</p>
+<pre class="r"><code>library(tidyverse) # To do data science
+library(tidyselect) # To help tidyverse functions
+library(tidylog) # To provide feedback on dplyr functions
+library(rgbif) # To get information from GBIF
+library(lubridate) # To work with dates
+library(here) # To find files
+library(trias)
+library(INBOtheme) # To load graphic INBO theme</code></pre>
+</div>
+<div id="get-data" class="section level1">
+<h1><span class="header-section-number">2</span> Get data</h1>
+<p>We read the time series data, output of preprocessing pipeline:</p>
+<pre class="r"><code>df_ts &lt;- read_tsv(
+  here::here(&quot;data&quot;, &quot;interim&quot;, &quot;df_timeseries.tsv&quot;),
+  na = &quot;&quot;
+)</code></pre>
+<p>Columns <code>pa_obs</code> and <code>pa_cobs</code> indicate the presence (1) or absence (0) of the specific taxon and any other taxa within same class respectively.</p>
+<p>Preview:</p>
+<pre class="r"><code># Get a taxon
+taxon &lt;-
+  df_ts$taxonKey[10]
+
+# Preview
+df_ts %&gt;%
+  filter(
+    taxonKey == taxon,
+    year %in% c(2016, 2017),
+    eea_cell_code == &quot;1kmE3924N3102&quot;
+  )</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["eea_cell_code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["obs"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pa_obs"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["cobs"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["pa_cobs"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["classKey"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["natura2000"],"name":[9],"type":["lgl"],"align":["right"]}],"data":[{"1":"5411453","2":"2016","3":"1kmE3924N3102","4":"1","5":"1","6":"51","7":"1","8":"220","9":"FALSE"},{"1":"5411453","2":"2017","3":"1kmE3924N3102","4":"0","5":"0","6":"0","7":"0","8":"220","9":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Retrieve scientific names which will be useful to better discuss the results.</p>
+<pre class="r"><code>spec_names &lt;- read_tsv(
+  file = here::here(&quot;data&quot;, &quot;interim&quot;, &quot;timeseries_taxonomic_info.tsv&quot;),
+  na = &quot;&quot;
+) %&gt;%
+  select(taxonKey, canonicalName) %&gt;%
+  filter(taxonKey %in% df_ts$taxonKey)</code></pre>
+<p>Lump geographic information:</p>
+<pre class="r"><code>df_ts_compact &lt;-
+  df_ts %&gt;%
+  group_by(taxonKey, year, classKey) %&gt;%
+  summarise(
+    obs = sum(obs),
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
+  ) %&gt;%
+  ungroup()</code></pre>
+<p>We create a similar data.frame specific to protected areas (Natura2000):</p>
+<pre class="r"><code>df_ts_compact_prot_areas &lt;-
+  df_ts %&gt;%
+  filter(natura2000 == TRUE) %&gt;%
+  group_by(taxonKey, year, classKey) %&gt;%
+  summarise(
+    obs = sum(obs),
+    cobs = sum(cobs),
+    ncells = sum(pa_cobs),
+    c_ncells = sum(pa_cobs)
+  ) %&gt;%
+  ungroup()</code></pre>
+<p>Add canonical names:</p>
+<pre class="r"><code>df_ts_compact &lt;-
+  df_ts_compact %&gt;%
+  left_join(spec_names, by = &quot;taxonKey&quot;)
+df_ts_compact_prot_areas &lt;-
+  df_ts_compact_prot_areas %&gt;%
+  left_join(spec_names, by = &quot;taxonKey&quot;)</code></pre>
+</div>
+<div id="modelling" class="section level1">
+<h1><span class="header-section-number">3</span> Modelling</h1>
+<p>In this section we evaluate the emergenging status by applying a decision rule strategy or, where possible, a statical model called GAM (Generalized Additive Models). For each evaluation year (see below) the output of both models is one of the following emerging status codes:</p>
+<ul>
+<li><code>3</code>: emerging</li>
+<li><code>2</code>: potentially emerging</li>
+<li><code>1</code>: unclear</li>
+<li><code>0</code>: not emerging</li>
+</ul>
+<div id="define-evaluation-period" class="section level2">
+<h2><span class="header-section-number">3.1</span> Define evaluation period</h2>
+<p>We define the time window (in years) we want to assess the emerging status:</p>
+<pre class="r"><code># Last evaluation year
+last_year &lt;- lubridate::year(Sys.Date()) - 2
+
+# First evalution year
+first_year &lt;- last_year - 2
+
+# Evaluation years
+evaluation_years &lt;- seq(first_year, last_year)
+evaluation_years</code></pre>
+<pre><code>## [1] 2016 2017 2018</code></pre>
+<p>We remove recent data due to publishing delay. Underestimation of the number of observations would sensibly affect the GAM output.</p>
+<pre class="r"><code>df_ts_compact &lt;-
+  df_ts_compact %&gt;%
+  filter(year &lt;= last_year)
+df_ts_compact_prot_areas &lt;-
+  df_ts_compact_prot_areas %&gt;%
+  filter(year &lt;= last_year)</code></pre>
+</div>
+<div id="remove-appearing-taxa" class="section level2">
+<h2><span class="header-section-number">3.2</span> Remove appearing taxa</h2>
+<p>Taxa appearing after the very first evalution year should be removed as no trend can be assesed for them. See <a href="https://trias-project.github.io/indicators/06_occurrence_indicators_appearing_taxa.html">analysis of appearing and reappearing taxa</a>.</p>
+<pre class="r"><code>appearing_taxa_to_remove &lt;-
+  df_ts_compact %&gt;%
+  group_by(taxonKey) %&gt;%
+  summarize(begin_year = min(year)) %&gt;%
+  filter(begin_year &gt; min(evaluation_years)) %&gt;%
+  pull(taxonKey)
+
+df_ts_compact &lt;-
+  df_ts_compact %&gt;%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+df_ts_compact_prot_areas &lt;-
+  df_ts_compact_prot_areas %&gt;%
+  filter(!taxonKey %in% appearing_taxa_to_remove)
+
+spec_names &lt;-
+  spec_names %&gt;%
+  filter(!taxonKey %in% appearing_taxa_to_remove)</code></pre>
+</div>
+<div id="decision-rules" class="section level2">
+<h2><span class="header-section-number">3.3</span> Decision rules</h2>
+<p>We define and apply some decision rules for occupancy and observations in all Belgium and in protected areas using function <code>apply_decision_rules()</code> from project package <code>trias</code>.</p>
+<div id="observations" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Observations</h3>
+<div id="belgium" class="section level4">
+<h4><span class="header-section-number">3.3.1.1</span> Belgium</h4>
+<p>We apply function <code>apply_decision_rules()</code> to observations for all Belgium:</p>
+<pre class="r"><code>em_decision_rules_occs_BE &lt;- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = &quot;obs&quot;,
+    eval_year = .
+  )
+)</code></pre>
+<p>Examples:</p>
+<pre class="r"><code>em_decision_rules_occs_BE %&gt;% head()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1008955","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1043717","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="protected-areas" class="section level4">
+<h4><span class="header-section-number">3.3.1.2</span> Protected areas</h4>
+<p>We apply function <code>apply_decision_rules()</code> to observations for protected areas:</p>
+<pre class="r"><code>em_decision_rules_occs_pa &lt;- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = &quot;obs&quot;,
+    eval_year = .
+  )
+)</code></pre>
+<p>Examples:</p>
+<pre class="r"><code>em_decision_rules_occs_pa %&gt;% head()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1008955","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"TRUE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"TRUE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1152186","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="occupancy" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Occupancy</h3>
+<div id="belgium-1" class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> Belgium</h4>
+<p>We apply function <code>apply_decision_rules()</code> to occupancy for all Belgium:</p>
+<pre class="r"><code>em_decision_rules_occupancy_BE &lt;- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact,
+    y_var = &quot;ncells&quot;,
+    eval_year = .
+  )
+)</code></pre>
+<p>Examples:</p>
+<pre class="r"><code>em_decision_rules_occupancy_BE %&gt;% head()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1043717","2":"2016","3":"1","4":"TRUE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1152186","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="protected-areas-1" class="section level4">
+<h4><span class="header-section-number">3.3.2.2</span> Protected areas</h4>
+<p>We apply function <code>apply_decision_rules()</code> to occupancy in protected areas:</p>
+<pre class="r"><code>em_decision_rules_occupancy_pa &lt;- map_dfr(
+  evaluation_years,
+  ~ apply_decision_rules(
+    df = df_ts_compact_prot_areas,
+    y_var = &quot;ncells&quot;,
+    eval_year = .
+  )
+)</code></pre>
+<p>Examples:</p>
+<pre class="r"><code>em_decision_rules_occupancy_pa %&gt;% head()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"TRUE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"TRUE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1152186","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1313740","2":"2016","3":"1","4":"TRUE","5":"TRUE","6":"FALSE","7":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+<div id="generalized-additive-model-gam" class="section level2">
+<h2><span class="header-section-number">3.4</span> Generalized additive model (GAM)</h2>
+<p>We apply GAM to observations and occupancy in all Belgium and in protected areas using function <code>apply_gam()</code> from project package <code>trias</code>.</p>
+<p>Plots are saved in <code>./data/output/GAM_outputs</code>:</p>
+<pre class="r"><code>dir_name &lt;- here::here(&quot;data&quot;, &quot;output&quot;, &quot;GAM_outputs&quot;)</code></pre>
+<div id="observations-1" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Observations</h3>
+<div id="belgium-2" class="section level4">
+<h4><span class="header-section-number">3.4.1.1</span> Belgium</h4>
+<p>Apply GAM for observation data in all Belgium:</p>
+<pre class="r"><code>taxon_keys &lt;- unique(df_ts_compact$taxonKey)
+taxon_names &lt;- unique(df_ts_compact$canonicalName)
+gam_occs_BE &lt;- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key &lt;- df_ts_compact %&gt;%
+      filter(taxonKey == t)
+    class_key &lt;- unique(df_key[[&quot;classKey&quot;]])
+    if (!is.na(class_key)) {
+      results_gam &lt;- apply_gam(
+        df = df_key,
+        y_var = &quot;obs&quot;,
+        taxonKey = &quot;taxonKey&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;observations&quot;,
+        taxon_key = t,
+        name = n,
+        baseline_var = &quot;cobs&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      results_gam &lt;- apply_gam(
+        df = df_key,
+        y_var = &quot;obs&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;observations&quot;,
+        taxon_key = t,
+        name = n,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
+    return(results_gam)
+  }
+)
+names(gam_occs_BE) &lt;- taxon_keys</code></pre>
+<p>Show results for <em>Crassula helmsii</em> and <em>Trachemys scripta elegans</em>:</p>
+<pre class="r"><code>gam_occs_BE$`8035075`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/show_results_preview_occs_BE-1.png" width="672" /></p>
+<pre class="r"><code>gam_occs_BE$`6157026`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/show_results_preview_occs_BE-2.png" width="672" /></p>
+</div>
+<div id="protected-aras" class="section level4">
+<h4><span class="header-section-number">3.4.1.2</span> Protected aras</h4>
+<p>Apply GAM for observation data in protected areas:</p>
+<pre class="r"><code>taxon_keys &lt;- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names &lt;- unique(df_ts_compact_prot_areas$canonicalName)
+gam_occs_pa &lt;- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key &lt;- df_ts_compact_prot_areas %&gt;%
+      dplyr::filter(taxonKey == t)
+    class_key &lt;- unique(df_key[[&quot;classKey&quot;]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;obs&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;observations&quot;,
+        taxon_key = t,
+        name = n,
+        baseline_var = &quot;cobs&quot;,
+        df_title = &quot;Natura2000&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;obs&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;observations&quot;,
+        taxon_key = t,
+        name = n,
+        df_title = &quot;Natura2000&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE
+      )
+    }
+  }
+)
+names(gam_occs_pa) &lt;- taxon_keys</code></pre>
+<p>Show results for <em>Crassula helmsii</em> and <em>Trachemys scripta elegans</em>:</p>
+<pre class="r"><code>gam_occs_pa$`8035075`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-1.png" width="672" /></p>
+<pre class="r"><code>gam_occs_pa$`6157026`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/preview_gam_occs_PA-2.png" width="672" /></p>
+</div>
+</div>
+<div id="occupancy-1" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Occupancy</h3>
+<div id="belgium-3" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> Belgium</h4>
+<p>Apply GAM for occupancy data (number of occupied cells) in all Belgium:</p>
+<pre class="r"><code>taxon_keys &lt;- unique(df_ts_compact$taxonKey)
+taxon_names &lt;- unique(df_ts_compact$canonicalName)
+gam_occupancy_BE &lt;- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key &lt;- df_ts_compact %&gt;%
+      filter(taxonKey == t) %&gt;%
+      filter(year &lt;= max(evaluation_years))
+    class_key &lt;- unique(df_key[[&quot;classKey&quot;]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;ncells&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;occupancy&quot;,
+        taxon_key = t,
+        name = n,
+        baseline_var = &quot;c_ncells&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = &quot;occupancy (km2)&quot;
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;ncells&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;occupancy&quot;,
+        taxon_key = t,
+        name = n,
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = &quot;occupancy (km2)&quot;
+      )
+    }
+  }
+)
+names(gam_occupancy_BE) &lt;- taxon_keys</code></pre>
+<p>Show results for <em>Crassula helmsii</em> and <em>Trachemys scripta elegans</em>:</p>
+<pre class="r"><code>gam_occupancy_BE$`8035075`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-1.png" width="672" /></p>
+<pre class="r"><code>gam_occupancy_BE$`6157026`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_BE-2.png" width="672" /></p>
+</div>
+<div id="protected-aras-1" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> Protected aras</h4>
+<p>Apply GAM for occupancy in protected areas:</p>
+<pre class="r"><code>taxon_keys &lt;- unique(df_ts_compact_prot_areas$taxonKey)
+taxon_names &lt;- unique(df_ts_compact_prot_areas$canonicalName)
+gam_occupancy_pa &lt;- map2(
+  taxon_keys, taxon_names,
+  function(t, n) {
+    df_key &lt;- df_ts_compact_prot_areas %&gt;%
+      dplyr::filter(taxonKey == t)
+    class_key &lt;- unique(df_key[[&quot;classKey&quot;]])
+    if (!is.na(class_key)) {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;ncells&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;occupancy&quot;,
+        taxon_key = t,
+        name = n,
+        baseline_var = &quot;c_ncells&quot;,
+        df_title = &quot;Natura2000&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = &quot;occupancy (km2)&quot;
+      )
+    } else {
+      apply_gam(
+        df = df_key,
+        y_var = &quot;ncells&quot;,
+        eval_years = evaluation_years,
+        type_indicator = &quot;occupancy&quot;,
+        taxon_key = t,
+        name = n,
+        df_title = &quot;Natura2000&quot;,
+        dir_name = dir_name,
+        saveplot = TRUE,
+        y_label = &quot;occupancy (km2)&quot;
+      )
+    }
+  }
+)
+names(gam_occupancy_pa) &lt;- taxon_keys</code></pre>
+<p>Show results for <em>Crassula helmsii</em> (for <em>Trachemys scripta elegans</em> GAM could not be applied or didn’t converged):</p>
+<pre class="r"><code>gam_occupancy_pa$`8035075`$plot</code></pre>
+<p><img src="07_occurrence_indicators_modelling_files/figure-html/preview_gam_occupancy_PA-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
+<div id="save-results" class="section level1">
+<h1><span class="header-section-number">4</span> Save results</h1>
+<div id="decision-rules-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Decision rules</h2>
+<p>Save emerging status based on decision rules:</p>
+<pre class="r"><code>write_tsv(em_decision_rules_occs_BE,
+  path = here::here(
+    &quot;data&quot;, &quot;output&quot;,
+    &quot;decision_rules_outputs&quot;,
+    &quot;output_decision_rules_occs_belgium.tsv&quot;
+  ),
+  na = &quot;&quot;
+)
+write_tsv(em_decision_rules_occs_pa,
+  path = here::here(
+    &quot;data&quot;, &quot;output&quot;,
+    &quot;decision_rules_outputs&quot;,
+    &quot;output_decision_rules_occs_pa.tsv&quot;
+  ),
+  na = &quot;&quot;
+)
+write_tsv(em_decision_rules_occupancy_BE,
+  path = here::here(
+    &quot;data&quot;, &quot;output&quot;,
+    &quot;decision_rules_outputs&quot;,
+    &quot;output_decision_rules_occupancy_belgium.tsv&quot;
+  ),
+  na = &quot;&quot;
+)
+write_tsv(em_decision_rules_occupancy_pa,
+  path = here::here(
+    &quot;data&quot;, &quot;output&quot;,
+    &quot;decision_rules_outputs&quot;,
+    &quot;output_decision_rules_occupancy_pa.tsv&quot;
+  ),
+  na = &quot;&quot;
+)</code></pre>
+</div>
+<div id="gam-models" class="section level2">
+<h2><span class="header-section-number">4.2</span> GAM models</h2>
+<p>Save complete outputs:</p>
+<pre class="r"><code>method_em &lt;- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$output
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_observations_belgium_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$output
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_observations_pa_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$output
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_occupancy_belgium_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$output
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_occupancy_pa_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)</code></pre>
+<p>Save summary of results limited to the years included in evaluation:</p>
+<pre class="r"><code>method_em &lt;- gam_occs_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_BE, function(x) {
+  x$em_summary
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_observations_belgium_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occs_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occs_pa, function(x) {
+  x$em_summary
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_observations_pa_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occupancy_BE[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_BE, function(x) {
+  x$em_summary
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_occupancy_belgium_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)
+
+method_em &lt;- gam_occupancy_pa[[1]]$em_summary$method[1]
+write_tsv(map_dfr(gam_occupancy_pa, function(x) {
+  x$em_summary
+}),
+na = &quot;&quot;,
+path = here::here(
+  &quot;data&quot;,
+  &quot;output&quot;,
+  &quot;GAM_outputs&quot;,
+  paste0(
+    &quot;output_GAM_occupancy_pa_&quot;,
+    method_em, &quot;.tsv&quot;
+  )
+)
+)</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

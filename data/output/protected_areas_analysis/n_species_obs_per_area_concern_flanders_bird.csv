@@ -1,0 +1,25 @@
+SITECODE,SITENAME,SITETYPE,n_species,n_obs,flanders,wallonia,brussels
+BE2223316,De Demervallei,A,23,7496,TRUE,FALSE,FALSE
+BE2221314,"Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof",A,22,4221,TRUE,FALSE,FALSE
+BE2301235,Durme en Middenloop van de Schelde,A,21,10946,TRUE,FALSE,FALSE
+BE2500932,Poldercomplex,A,18,4121,TRUE,FALSE,FALSE
+BE2301336,Schorren en Polders van de Beneden-Schelde,A,17,5802,TRUE,FALSE,FALSE
+BE2101538,"Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout",A,17,1845,TRUE,FALSE,FALSE
+BE2219312,Vijvercomplex van Midden Limburg,A,16,4612,TRUE,FALSE,FALSE
+BE2422315,De Dijlevallei,A,15,3591,TRUE,FALSE,FALSE
+BE2500831,Ijzervallei,A,15,2026,TRUE,FALSE,FALSE
+BE2101437,"De Maatjes, Wuustwezelheide en Groot Schietveld",A,15,922,TRUE,FALSE,FALSE
+BE2101639,Ronde Put,A,15,688,TRUE,FALSE,FALSE
+BE2500121,Westkust,A,14,538,TRUE,FALSE,FALSE
+BE2200626,De Maten,A,13,1055,TRUE,FALSE,FALSE
+BE2100323,Kalmthoutse Heide,A,13,809,TRUE,FALSE,FALSE
+BE2300222,Kuifeend en Blokkersdijk,A,12,5117,TRUE,FALSE,FALSE
+BE2217310,"Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer",A,12,911,TRUE,FALSE,FALSE
+BE2200525,Bokrijk en omgeving,A,12,394,TRUE,FALSE,FALSE
+BE2100424,De Zegge,A,12,118,TRUE,FALSE,FALSE
+BE2218311,Militair domein en vallei van de Zwarte Beek,A,11,642,TRUE,FALSE,FALSE
+BE2200727,De Mechelse Heide en de Vallei van de Ziepbeek,A,9,385,TRUE,FALSE,FALSE
+BE2501033,Het Zwin,A,8,686,TRUE,FALSE,FALSE
+BE2301134,Krekengebied,A,6,3767,TRUE,FALSE,FALSE
+BE2220313,"Houthalen-Helchteren, Meeuwen-Gruitrode en Peer",A,6,153,TRUE,FALSE,FALSE
+BE2524317,Kustbroedvogels te Zeebrugge-Heist,A,2,48,TRUE,FALSE,FALSE

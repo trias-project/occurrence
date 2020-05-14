@@ -9,28 +9,47 @@ This repository contains pipelines to generate alien species _indicators_, i.e. 
 
 Checklist based indicators developed within the TrIAS project are:
 
-1. [number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_introductions_per_year.html) shown as graphs
-2. [cumulative number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/indicator_cumulative_number.html) shown as graphs
-3. [pathways of introduction](https://trias-project.github.io/indicators/indicator_pathways.html) shown as tables
+1. [number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/02_indicator_introductions_per_year.html) shown as graphs
+2. [cumulative number of introduced species present in Belgium as function of time](https://trias-project.github.io/indicators/03_indicator_cumulative_number.html) shown as graphs
+3. [pathways of introduction](https://trias-project.github.io/indicators/04_indicator_pathways.html) shown as graphs and tables
 
-The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd). For the data manipulation of the taxonomic information, see Appendix [Preprocessing for checklist-based indicators](https://trias-project.github.io/indicators/get_data_input_checklist_indicators.html).
+The indicators are built upon the taxa published in the [Global Register of Introduced and Invasive Species - Belgium](https://doi.org/10.15468/xoidmd).
 
 ## Occurrence-based indicators
+
+Occurrence-based indicators can be divided in three groups:
+
+1. assessment of appearing and reappearing alien taxa during the last year
+2. ranking of alien taxa based on an emerging status assessment
+3. state of invasion of protected areas
+
+All of them start from data as preprocessed in pipeline [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/05_occurrence_indicators_preprocessing.html). The starting point are the *occurrence cube at species level* as produced in TrIAS repository [occ-cube](https://github.com/trias-project/occ-cube) and published on [Zenodo](https://zenodo.org/record/3637911) and the *occurrence cube of alien taxa* as produced in TrIAS repository [occ-cube-alien](https://github.com/trias-project/occ-cube-alien) and published on [Zenodo](https://zenodo.org/record/3635510).
+
+### Appearing and reappearing alien taxa 
+
+This analysis is performed in pipeline [Appearing-reappearing species](https://trias-project.github.io/indicators/06_occurrence_indicators_appearing_taxa.html).
+
+### Ranking of alien taxa based on an emerging status assessment
 
 In order to calculate an emergency index, we take into account:
 
 1. number of occurrences per year, or simply _occurrences_
 2. area of occupancy (AOO), or simply _occupancy_
 
-The workflow is divded in the following pipelines:
+The workflow is divided in two steps:
 
-1. [Appearing or reappearing taxa in current year](https://trias-project.github.io/indicators/occurrence_indicators_appearing_taxa.html)
-2. [Assessing partial emerging statuses of alien taxa](https://trias-project.github.io/indicators/occurrence_indicators_modelling.html)
-3. [Assessing emerging status and ranking](https://trias-project.github.io/indicators/ranking_emerging_status.html)
+1 [Assessing emerging status of alien species](https://trias-project.github.io/indicators/07_occurrence_indicators_modelling.html)
+2. [Ranking species by emerging status](https://trias-project.github.io/indicators/08_ranking_emerging_status.html)
 
-We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species. This part is still work in progress, although all workflow steps are now completed. Follow [issue #49](https://github.com/trias-project/indicators/issues/49) for more discussions about the different choices we took at every step of the workflow.
+We work with GAM (Generalized Additive Models) and decision rules to assess the emerging status of a species.
 
-For the data preparation of the taxonomic and occurrence information, see Appendix [Preprocessing for occurrence-based indicators](https://trias-project.github.io/indicators/occurrence_indicators_preprocessing.html). The starting point is the *occurrence cube* as produced in TrIAS repository [occ-cube](https://github.com/trias-project/occ-cube) and published on [Zenodo](https://zenodo.org/record/3637911). The output of this appendix is the starting point of the pipelines described above.
+### Protected areas analysis 
+
+This analysis is divided in three steps:
+
+1. [Belgian protected areas and EEA grid of Belgium](https://trias-project.github.io/indicators/09_define_overlay_grid_belgium_with_protected_areas.html) to preprocess geospatial data, visualize the Natura2000 protected areas and overlay the EEA 1kmx1km reference grid to protected areas
+2. [Belgian protected areas: observations and occupancy](https://trias-project.github.io/indicators/10_species_observations_occupancy_in_protected_areas.html) to assess the number of observations, the area of occupancy and the coverage of Belgian protected areas for all species and year
+3. [Status of invasion of Belgian protected areas](https://trias-project.github.io/indicators/11_status_alien_species_in_protected_areas.html)
 
 ## Repo structure
 
@@ -48,8 +67,12 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │   ├── interim
 |       ├── data_input_checklist_indicators.tsv : Data for making checklist indicators. Output of 'get_data_input_checklist_indicators.Rmd'
 │   └── output
+|   |   ├── GAM_outputs                         : Output and graphs with GAM modelling for occurrence and occupancy in both entire Belgium and Belgian protected areas 
+|   |   ├── decision_rules_outputs              : Output of decision rules for occurrence and occupancy in both entire Belgium and Belgian protected areas
+|   |   ├── protected_areas_analysis            : Files generated by protected areas analysis
 |       ├── gbif_downloads.csv                  : List of triggered GBIF occurrence downloads 
 |       └── intersect_EEA_ref_grid_protected_areas.tsv  : Membership of reference grid cells to (one or more) protected areas.
+│   │   ├── Belgian_Natura2000_protected_areas.gpkg: Geopackage containing the Belgian Natura2000 protected areas with added regional distribution 
 │   ├── external
 │   |   ├── utm_1_bel       : Belgian reference grid of European Environmental Agency (EEA) at 1km<sup>2</sup> resolution
 │   |   ├── utm_10_bel      : Belgian reference grid of European Environmental Agency (EEA) at 10km<sup>2</sup> resolution
@@ -57,16 +80,18 @@ The repository structure is based on [Cookiecutter Data Science](http://drivenda
 │   |   └── utm_5_bel     : Belgian reference grid at 5km<sup>2</sup> resolution created by INBO
 │
 └── src
-    ├── gbif_download.Rmd         : Script to trigger and verify a GBIF occurrence download
-    ├── get_data_input_checklist_indicators.Rmd : Script to manipulate taxonomic data from the Global Register of Introduced and Invasive Species - Belgium
-    ├── indicator_introductions_per_year.Rmd : Script to generate graphs with number of new introduced species per year
-    ├── indicator_cumulative_number.Rmd: Script to generate graphs with cumulative number of introduced species per year
-    └── indicator_pathways.Rmd    : Script to generate tables with pathways of introduction
-    ├── occurrence_indicators_preprocessing.Rmd    : Script to produce time series from the occurrence cube
-    ├── occurrence_indicators_modelling.Rmd    : Apply GAM and decision rules models to assess partial emerging scores
-    ├── ranking_emerging_status.Rmd    : Rank alien taxa based on their emerging status derived by the emerging scores
-    ├── occurrence_indicators_appearing_taxa.Rmd    : Find appearing and reappearing taxa in the last years
-    ├── occurrence_species_protected_areas_level.Rmd    : Assess number of observations, area of occupancy, coverage of Belgian protected areas for all  species and year
+│   ├── gbif_download.Rmd         : Script to trigger and verify a GBIF occurrence download
+│   ├── 01_get_data_input_checklist_indicators.Rmd : Script to manipulate taxonomic data from the Global Register of Introduced and Invasive Species - Belgium
+│   ├── 02_indicator_introductions_per_year.Rmd : Script to generate graphs with number of new introduced species per year
+│   ├── 03_indicator_cumulative_number.Rmd: Script to generate graphs with cumulative number of introduced species per year
+│   ├── 04_indicator_pathways.Rmd    : Script to generate tables with pathways of introduction
+│   ├── 05_occurrence_indicators_preprocessing.Rmd    : Script to produce time series from the occurrence cube
+│   ├── 06_occurrence_indicators_appearing_taxa.Rmd    : Find appearing and reappearing taxa in the last years
+│   ├── 07_occurrence_indicators_modelling.Rmd    : Apply GAM and decision rules models to assess partial emerging scores
+│   ├── 08_ranking_emerging_status.Rmd    : Rank alien taxa based on their emerging status derived by the emerging scores
+│   ├── 09_define_overlay_grid_belgium_with_protected_areas.Rmd  : Visualize Belgian protected areas, superimpose the EEA reference grid and the protected areas
+│   ├── 10_occurrence_species_protected_areas_level.Rmd    : Assess number of observations, area of occupancy, coverage of Belgian protected areas for all species and year
+│   └── 11_status_alien_species_in_protected_areas.Rmd : to find number of alien taxa and observations in protected areas and number of protected areas each alien taxon is present
 ```
 
 ## Contributors
