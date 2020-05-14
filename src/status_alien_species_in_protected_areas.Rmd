@@ -129,9 +129,17 @@ n_taxa_obs_per_area <-
               by = "SITECODE") %>%
   filter(is_alien == TRUE) %>%
   filter(year >= begin_year) %>%
-  group_by(taxonKey, speciesKey) %>%
+  rename(n_obs = n) %>%
+  group_by(speciesKey,
+           year,
+           SITECODE,
+           SITENAME,
+           SITETYPE,
+           flanders,
+           wallonia,
+           brussels) %>%
   add_tally() %>%
-  # avoid to count alien species with infraspecific alien taxa
+  # avoid to count alien species when infraspecific alien taxa are present
   filter(n == 1 | taxonKey != speciesKey) %>%
   ungroup() %>%
   select(-n) %>%
@@ -142,7 +150,7 @@ n_taxa_obs_per_area <-
            wallonia,
            brussels) %>%
   summarize(n_taxa =  length(unique(taxonKey)),
-            n_obs = n()) %>%
+            n_obs = sum(n_obs)) %>%
   ungroup() %>%
   arrange(desc(n_taxa), desc(n_obs)) %>%
   select(SITECODE,
@@ -238,7 +246,7 @@ n_species_obs_per_area_concern <-
            wallonia,
            brussels) %>%
   summarize(n_species =  length(unique(speciesKey)),
-            n_obs = n()) %>%
+            n_obs = sum(n_obs)) %>%
   ungroup() %>%
   arrange(desc(n_species), desc(n_obs)) %>%
   select(SITECODE,
