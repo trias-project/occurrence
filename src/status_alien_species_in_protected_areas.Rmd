@@ -227,18 +227,12 @@ Limited to species included in the list of invasive alien species of Union conce
 ```{r n_species_obs_per_area_concern}
 n_species_obs_per_area_concern <-
   occs_prot_areas %>%
-  filter(speciesKey %in% eu_concern_species$backbone_taxonKey) %>%
+  filter(taxonKey %in% eu_concern_species$backbone_taxonKey) %>%
     left_join(protected_areas_metadata,
               by = c("SITECODE", "SITETYPE")) %>%
   filter(is_alien == TRUE) %>%
   filter(year >= begin_year) %>%
-  distinct(speciesKey,
-           SITECODE,
-           SITENAME,
-           SITETYPE,
-           flanders,
-           wallonia,
-           brussels) %>%
+  rename(n_obs = n) %>%
   group_by(SITECODE,
            SITENAME,
            SITETYPE,
