@@ -1,25 +1,25 @@
 SITECODE,SITENAME,SITETYPE,n_taxa,n_obs,flanders,wallonia,brussels
-BE2301235,Durme en Middenloop van de Schelde,A,525,2697,TRUE,FALSE,FALSE
-BE2500121,Westkust,A,463,2349,TRUE,FALSE,FALSE
-BE2500932,Poldercomplex,A,420,1805,TRUE,FALSE,FALSE
-BE2301336,Schorren en Polders van de Beneden-Schelde,A,377,1607,TRUE,FALSE,FALSE
-BE2223316,De Demervallei,A,371,1836,TRUE,FALSE,FALSE
-BE2221314,"Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof",A,352,1686,TRUE,FALSE,FALSE
-BE2101538,"Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout",A,293,1198,TRUE,FALSE,FALSE
-BE2101639,Ronde Put,A,251,870,TRUE,FALSE,FALSE
-BE2101437,"De Maatjes, Wuustwezelheide en Groot Schietveld",A,244,958,TRUE,FALSE,FALSE
-BE2219312,Vijvercomplex van Midden Limburg,A,239,1078,TRUE,FALSE,FALSE
-BE2422315,De Dijlevallei,A,237,955,TRUE,FALSE,FALSE
-BE2218311,Militair domein en vallei van de Zwarte Beek,A,235,1033,TRUE,FALSE,FALSE
-BE2217310,"Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer",A,225,912,TRUE,FALSE,FALSE
-BE2300222,Kuifeend en Blokkersdijk,A,215,747,TRUE,FALSE,FALSE
-BE2500831,Ijzervallei,A,210,768,TRUE,FALSE,FALSE
-BE2501033,Het Zwin,A,206,727,TRUE,FALSE,FALSE
-BE2100323,Kalmthoutse Heide,A,198,850,TRUE,FALSE,FALSE
-BE2200525,Bokrijk en omgeving,A,196,706,TRUE,FALSE,FALSE
-BE2200626,De Maten,A,179,620,TRUE,FALSE,FALSE
-BE2301134,Krekengebied,A,169,576,TRUE,FALSE,FALSE
-BE2200727,De Mechelse Heide en de Vallei van de Ziepbeek,A,161,532,TRUE,FALSE,FALSE
-BE2524317,Kustbroedvogels te Zeebrugge-Heist,A,150,529,TRUE,FALSE,FALSE
-BE2220313,"Houthalen-Helchteren, Meeuwen-Gruitrode en Peer",A,115,425,TRUE,FALSE,FALSE
-BE2100424,De Zegge,A,77,194,TRUE,FALSE,FALSE
+BE2301235,Durme en Middenloop van de Schelde,A,529,38719,TRUE,FALSE,FALSE
+BE2500121,Westkust,A,466,12226,TRUE,FALSE,FALSE
+BE2500932,Poldercomplex,A,422,18354,TRUE,FALSE,FALSE
+BE2301336,Schorren en Polders van de Beneden-Schelde,A,380,39418,TRUE,FALSE,FALSE
+BE2223316,De Demervallei,A,374,24047,TRUE,FALSE,FALSE
+BE2221314,"Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof",A,355,17383,TRUE,FALSE,FALSE
+BE2101538,"Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout",A,296,9705,TRUE,FALSE,FALSE
+BE2101639,Ronde Put,A,254,3891,TRUE,FALSE,FALSE
+BE2101437,"De Maatjes, Wuustwezelheide en Groot Schietveld",A,246,5040,TRUE,FALSE,FALSE
+BE2219312,Vijvercomplex van Midden Limburg,A,242,12163,TRUE,FALSE,FALSE
+BE2218311,Militair domein en vallei van de Zwarte Beek,A,239,3951,TRUE,FALSE,FALSE
+BE2422315,De Dijlevallei,A,238,12567,TRUE,FALSE,FALSE
+BE2217310,"Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer",A,227,3708,TRUE,FALSE,FALSE
+BE2300222,Kuifeend en Blokkersdijk,A,217,26329,TRUE,FALSE,FALSE
+BE2500831,Ijzervallei,A,212,5981,TRUE,FALSE,FALSE
+BE2501033,Het Zwin,A,208,4720,TRUE,FALSE,FALSE
+BE2100323,Kalmthoutse Heide,A,202,5870,TRUE,FALSE,FALSE
+BE2200525,Bokrijk en omgeving,A,198,2363,TRUE,FALSE,FALSE
+BE2200626,De Maten,A,182,3243,TRUE,FALSE,FALSE
+BE2301134,Krekengebied,A,171,10225,TRUE,FALSE,FALSE
+BE2200727,De Mechelse Heide en de Vallei van de Ziepbeek,A,165,2146,TRUE,FALSE,FALSE
+BE2524317,Kustbroedvogels te Zeebrugge-Heist,A,152,1426,TRUE,FALSE,FALSE
+BE2220313,"Houthalen-Helchteren, Meeuwen-Gruitrode en Peer",A,118,1465,TRUE,FALSE,FALSE
+BE2100424,De Zegge,A,77,526,TRUE,FALSE,FALSE

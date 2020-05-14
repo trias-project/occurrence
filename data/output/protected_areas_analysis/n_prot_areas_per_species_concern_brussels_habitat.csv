@@ -1,12 +1,13 @@
-scientificName,n_prot_areas,mean_coverage,taxonKey,kingdom,phylum,order,class,genus,family,species,rank,includes
-Ailanthus altissima (Mill.) Swingle,3,,3190653,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Ailanthus,Simaroubaceae,Ailanthus altissima,SPECIES,3190653: Ailanthus altissima (Mill.) Swingle
-"Alopochen aegyptiaca (Linnaeus, 1766)",3,,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
-Heracleum mantegazzianum Sommier & Levier,3,,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier
-Impatiens glandulifera Royle,3,,2891770,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens glandulifera,SPECIES,2891770: Impatiens glandulifera Royle | 2891771: Impatiens roylei Walpers
-Elodea nuttallii St.John,2,,5329212,Plantae,Tracheophyta,Alismatales,Liliopsida,Elodea,Hydrocharitaceae,Elodea nuttallii,SPECIES,5329212: Elodea nuttallii St.John
-Myriophyllum aquaticum (Vell.) Verdc.,2,,5361785,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Myriophyllum,Haloragaceae,Myriophyllum aquaticum,SPECIES,5361785: Myriophyllum aquaticum (Vell.) Verdc.
-"Orconectes limosus (Rafinesque, 1817)",1,,2227000,Animalia,Arthropoda,Decapoda,Malacostraca,Orconectes,Cambaridae,Orconectes limosus,SPECIES,"2227000: Orconectes limosus (Rafinesque, 1817)"
-"Oxyura jamaicensis (Gmelin, 1789)",1,,2498305,Animalia,Chordata,Anseriformes,Aves,Oxyura,Anatidae,Oxyura jamaicensis,SPECIES,"2498305: Oxyura jamaicensis (Gmelin, 1789)"
-"Procyon lotor (Linnaeus, 1758)",1,,5218786,Animalia,Chordata,Carnivora,Mammalia,Procyon,Procyonidae,Procyon lotor,SPECIES,"5218786: Procyon lotor (Linnaeus, 1758)"
-"Pseudorasbora parva (Temminck & Schlegel, 1846)",1,,2362868,Animalia,Chordata,Cypriniformes,Actinopterygii,Pseudorasbora,Cyprinidae,Pseudorasbora parva,SPECIES,"2362868: Pseudorasbora parva (Temminck & Schlegel, 1846)"
-"Tamias sibiricus (Laxmann, 1769)",1,,2437450,Animalia,Chordata,Rodentia,Mammalia,Tamias,Sciuridae,Tamias sibiricus,SPECIES,"2437450: Tamias sibiricus (Laxmann, 1769) | 10602587: Eutamias sibiricus (Laxmann, 1769)"
+scientificName,n_prot_areas,mean_coverage,taxonKey,speciesKey,kingdom,phylum,order,class,genus,family,species,rank,includes
+Ailanthus altissima (Mill.) Swingle,3,,3190653,3190653,Plantae,Tracheophyta,Sapindales,Magnoliopsida,Ailanthus,Simaroubaceae,Ailanthus altissima,SPECIES,3190653: Ailanthus altissima (Mill.) Swingle
+"Alopochen aegyptiaca (Linnaeus, 1766)",3,,2498252,2498252,Animalia,Chordata,Anseriformes,Aves,Alopochen,Anatidae,Alopochen aegyptiaca,SPECIES,"2498252: Alopochen aegyptiaca (Linnaeus, 1766)"
+Heracleum mantegazzianum Sommier & Levier,3,,3034825,3034825,Plantae,Tracheophyta,Apiales,Magnoliopsida,Heracleum,Apiaceae,Heracleum mantegazzianum,SPECIES,3034825: Heracleum mantegazzianum Sommier & Levier
+Impatiens glandulifera Royle,3,,2891770,2891770,Plantae,Tracheophyta,Ericales,Magnoliopsida,Impatiens,Balsaminaceae,Impatiens glandulifera,SPECIES,2891770: Impatiens glandulifera Royle | 2891771: Impatiens roylei Walpers
+"Trachemys scripta (Thunberg In Schoepff, 1792)",3,,2443002,2443002,Animalia,Chordata,Testudines,Reptilia,Trachemys,Emydidae,Trachemys scripta,SPECIES,"2443002: Trachemys scripta (Thunberg In Schoepff, 1792) | 6157026: Trachemys scripta elegans (Wied, 1838) | 6157035: Trachemys scripta troostii (Holbrook, 1836) | 7062200: Trachemys scripta scripta"
+Elodea nuttallii St.John,2,,5329212,5329212,Plantae,Tracheophyta,Alismatales,Liliopsida,Elodea,Hydrocharitaceae,Elodea nuttallii,SPECIES,5329212: Elodea nuttallii St.John
+Myriophyllum aquaticum (Vell.) Verdc.,2,,5361785,5361785,Plantae,Tracheophyta,Saxifragales,Magnoliopsida,Myriophyllum,Haloragaceae,Myriophyllum aquaticum,SPECIES,5361785: Myriophyllum aquaticum (Vell.) Verdc.
+"Orconectes limosus (Rafinesque, 1817)",1,,2227000,2227000,Animalia,Arthropoda,Decapoda,Malacostraca,Orconectes,Cambaridae,Orconectes limosus,SPECIES,"2227000: Orconectes limosus (Rafinesque, 1817)"
+"Oxyura jamaicensis (Gmelin, 1789)",1,,2498305,2498305,Animalia,Chordata,Anseriformes,Aves,Oxyura,Anatidae,Oxyura jamaicensis,SPECIES,"2498305: Oxyura jamaicensis (Gmelin, 1789)"
+"Procyon lotor (Linnaeus, 1758)",1,,5218786,5218786,Animalia,Chordata,Carnivora,Mammalia,Procyon,Procyonidae,Procyon lotor,SPECIES,"5218786: Procyon lotor (Linnaeus, 1758)"
+"Pseudorasbora parva (Temminck & Schlegel, 1846)",1,,2362868,2362868,Animalia,Chordata,Cypriniformes,Actinopterygii,Pseudorasbora,Cyprinidae,Pseudorasbora parva,SPECIES,"2362868: Pseudorasbora parva (Temminck & Schlegel, 1846)"
+"Tamias sibiricus (Laxmann, 1769)",1,,2437450,2437450,Animalia,Chordata,Rodentia,Mammalia,Tamias,Sciuridae,Tamias sibiricus,SPECIES,"2437450: Tamias sibiricus (Laxmann, 1769) | 10602587: Eutamias sibiricus (Laxmann, 1769)"

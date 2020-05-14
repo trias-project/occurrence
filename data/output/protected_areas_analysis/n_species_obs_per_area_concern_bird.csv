@@ -1,0 +1,253 @@
+SITECODE,SITENAME,SITETYPE,n_species,n_obs,flanders,wallonia,brussels
+BE2223316,De Demervallei,A,23,7496,TRUE,FALSE,FALSE
+BE2221314,"Hamonterheide, Hageven, Buitenheide, Stamprooierbroek en Mariahof",A,22,4221,TRUE,FALSE,FALSE
+BE2301235,Durme en Middenloop van de Schelde,A,21,10946,TRUE,FALSE,FALSE
+BE2500932,Poldercomplex,A,18,4121,TRUE,FALSE,FALSE
+BE2301336,Schorren en Polders van de Beneden-Schelde,A,17,5802,TRUE,FALSE,FALSE
+BE2101538,"Arendonk, Merksplas, Oud-Turnhout, Ravels en Turnhout",A,17,1845,TRUE,FALSE,FALSE
+BE2219312,Vijvercomplex van Midden Limburg,A,16,4612,TRUE,FALSE,FALSE
+BE31002C0,Vallées de l'Argentine et de la Lasne,C,16,590,FALSE,TRUE,FALSE
+BE2422315,De Dijlevallei,A,15,3591,TRUE,FALSE,FALSE
+BE2500831,Ijzervallei,A,15,2026,TRUE,FALSE,FALSE
+BE2101437,"De Maatjes, Wuustwezelheide en Groot Schietveld",A,15,922,TRUE,FALSE,FALSE
+BE2101639,Ronde Put,A,15,688,TRUE,FALSE,FALSE
+BE32017C0,Vallée de la Haine en aval de Mons,C,14,2117,FALSE,TRUE,FALSE
+BE2500121,Westkust,A,14,538,TRUE,FALSE,FALSE
+BE33014C0,Vallée de l'Ourthe entre Comblain-au-Pont et Angleur,C,14,537,FALSE,TRUE,FALSE
+BE2200626,De Maten,A,13,1055,TRUE,FALSE,FALSE
+BE34050C0,Bassin de la Semois entre Tintigny et Jamoigne,C,13,856,FALSE,TRUE,FALSE
+BE2100323,Kalmthoutse Heide,A,13,809,TRUE,FALSE,FALSE
+BE35030C0,La Calestienne entre Frasnes et Doische,C,13,175,FALSE,TRUE,FALSE
+BE2300222,Kuifeend en Blokkersdijk,A,12,5117,TRUE,FALSE,FALSE
+BE2217310,"Bocholt, Hechtel-Eksel, Meeuwen-Gruitrode, Neerpelt en Peer",A,12,911,TRUE,FALSE,FALSE
+BE2200525,Bokrijk en omgeving,A,12,394,TRUE,FALSE,FALSE
+BE2100424,De Zegge,A,12,118,TRUE,FALSE,FALSE
+BE2218311,Militair domein en vallei van de Zwarte Beek,A,11,642,TRUE,FALSE,FALSE
+BE32005C0,Vallées de la Dendre et de la Marcq,C,11,191,FALSE,TRUE,FALSE
+BE34003C0,Vallée de l'Ourthe entre Hotton et Barvaux-sur-Ourthe,C,11,185,FALSE,TRUE,FALSE
+BE33016C0,Basse vallée de la Vesdre,C,11,162,FALSE,TRUE,FALSE
+BE33009C0,Vallée de la Mehaigne,C,11,137,FALSE,TRUE,FALSE
+BE31006C0,Vallée de la Dyle à Ottignies,C,11,121,FALSE,TRUE,FALSE
+BE32044C0,Bassin de l'Escaut en amont de Tournai,C,11,97,FALSE,TRUE,FALSE
+BE31004C0,Vallée de la Dyle en aval d'Archennes,C,10,1636,FALSE,TRUE,FALSE
+BE34056C0,Bassin de la Semois de Etalle à Tintigny,C,10,493,FALSE,TRUE,FALSE
+BE34046C0,Bassin de la Semois de Florenville à Auby,C,10,346,FALSE,TRUE,FALSE
+BE32014C0,Vallée de la Haine en amont de Mons,C,10,149,FALSE,TRUE,FALSE
+BE32021C0,Haute-Sambre en aval de Thuin,C,10,138,FALSE,TRUE,FALSE
+BE33004C0,Basse Meuse et Meuse mitoyenne,C,10,137,FALSE,TRUE,FALSE
+BE35045C0,Vallée de la Semois en aval d'Alle,C,10,114,FALSE,TRUE,FALSE
+BE34042C0,Bassin de la Semois de Bouillon à Alle,C,10,110,FALSE,TRUE,FALSE
+BE33003C0,Montagne Saint-Pierre,C,10,108,FALSE,TRUE,FALSE
+BE34004C0,Massifs forestiers famenniens entre Hotton et Barvaux-sur-Ourthe,C,10,67,FALSE,TRUE,FALSE
+BE35026C0,Massif forestier de Cerfontaine,C,10,30,FALSE,TRUE,FALSE
+BE31010C0,Sources de la Dyle,C,9,493,FALSE,TRUE,FALSE
+BE2200727,De Mechelse Heide en de Vallei van de Ziepbeek,A,9,385,TRUE,FALSE,FALSE
+BE32036C0,Vallée de l'Eau Blanche à Virelles,C,9,357,FALSE,TRUE,FALSE
+BE35003C0,Vallée de la Sambre en aval de la confluence avec l'Orneau,C,9,313,FALSE,TRUE,FALSE
+BE32012C0,Bord nord du bassin de la Haine,C,9,284,FALSE,TRUE,FALSE
+BE35010C0,Vallée du Bocq,C,9,220,FALSE,TRUE,FALSE
+BE35004C0,Vallée de la Meuse de Dave à Marche-les-Dames,C,9,198,FALSE,TRUE,FALSE
+BE35012C0,Vallée de la Meuse de Dinant à Yvoir,C,9,188,FALSE,TRUE,FALSE
+BE34048C0,Bassin de la Semois de Jamoigne à Chiny,C,9,180,FALSE,TRUE,FALSE
+BE34031C0,Bassin moyen de l'Ourthe occidentale,C,9,161,FALSE,TRUE,FALSE
+BE35020C0,Vallée de la Meuse d'Hastière à Dinant,C,9,144,FALSE,TRUE,FALSE
+BE35038C0,Bassin de la Lesse entre Villers-sur-Lesse et Chanly,C,9,138,FALSE,TRUE,FALSE
+BE32002C0,Vallée de l'Escaut en aval de Tournai,C,9,112,FALSE,TRUE,FALSE
+BE35005C0,Bassin du Samson,C,9,103,FALSE,TRUE,FALSE
+BE34007C0,Basse vallée de l'Aisne,C,9,58,FALSE,TRUE,FALSE
+BE33021C0,Osthertogenwald autour de Raeren,C,9,42,FALSE,TRUE,FALSE
+BE34044C0,Vallée du Ruisseau des Aleines,C,9,37,FALSE,TRUE,FALSE
+BE2501033,Het Zwin,A,8,686,TRUE,FALSE,FALSE
+BE34038C0,Bassin supérieur de l'Ourthe occidentale,C,8,531,FALSE,TRUE,FALSE
+BE34024C0,Bassin inférieur de l'Ourthe orientale,C,8,339,FALSE,TRUE,FALSE
+BE32001C0,Vallée de la Lys,C,8,289,FALSE,TRUE,FALSE
+BE34066C0,Vallée du Ton et Côte bajocienne de Montquintin à Ruette,C,8,190,FALSE,TRUE,FALSE
+BE33010C0,Vallée de la Meuse à Huy et vallon de la Solières,C,8,186,FALSE,TRUE,FALSE
+BE34012C0,Vallée de l'Ourthe entre La Roche et Hotton,C,8,185,FALSE,TRUE,FALSE
+BE34033C0,Etangs de Longchamps et de Noville,C,8,184,FALSE,TRUE,FALSE
+BE34064C0,Vallées de la Vire et du Ton,C,8,183,FALSE,TRUE,FALSE
+BE34023C0,Vallée de l'Ourthe entre Nisramont et La Roche,C,8,174,FALSE,TRUE,FALSE
+BE35007C0,Forêts et lac de Bambois,C,8,166,FALSE,TRUE,FALSE
+BE33006C0,Vallée de la Gueule en aval de Kelmis,C,8,151,FALSE,TRUE,FALSE
+BE34052C0,Forêt d'Anlier,C,8,135,FALSE,TRUE,FALSE
+BE32026C0,Haute-Sambre en amont de Thuin,C,8,134,FALSE,TRUE,FALSE
+BE33028C0,Vallée de l'Amblève du Pont de Targnon à Remouchamps,C,8,104,FALSE,TRUE,FALSE
+BE31011C0,Vallée de la Thyle,C,8,101,FALSE,TRUE,FALSE
+BE34049C0,Basse-Vierre,C,8,83,FALSE,TRUE,FALSE
+BE35023C0,Vallée de la Lesse entre Villers-sur-Lesse et Houyet,C,8,82,FALSE,TRUE,FALSE
+BE33043C0,Vallée de la Warche entre Butgenbach et Robertville,C,8,79,FALSE,TRUE,FALSE
+BE35029C0,Bassin fagnard de l'Hermeton,C,8,70,FALSE,TRUE,FALSE
+BE35037C0,Vallée de la Wimbe,C,8,66,FALSE,TRUE,FALSE
+BE33011C0,Vallées du Hoyoux et du Triffoy,C,8,55,FALSE,TRUE,FALSE
+BE35041C0,Bassin de la Houille en amont de Gedinne,C,8,54,FALSE,TRUE,FALSE
+BE32019C0,Vallée de la Trouille,C,8,51,FALSE,TRUE,FALSE
+BE32024C0,Basse-Sambre,C,8,48,FALSE,TRUE,FALSE
+BE32037C0,Massifs forestiers entre Momignies et Chimay,C,8,42,FALSE,TRUE,FALSE
+BE35039C0,Vallée de la Houille en aval de Gedinne,C,8,41,FALSE,TRUE,FALSE
+BE32025C0,Haut-Pays des Honnelles,C,8,32,FALSE,TRUE,FALSE
+BE31005C0,Vallée de la Nethen,C,7,189,FALSE,TRUE,FALSE
+BE32003C0,Pays des Collines,C,7,183,FALSE,TRUE,FALSE
+BE35028C0,Bassin fagnard de l'Eau Blanche en aval de Mariembourg,C,7,162,FALSE,TRUE,FALSE
+BE33012C0,Affluents de la Meuse entre Huy et Flémalle,C,7,140,FALSE,TRUE,FALSE
+BE33036C0,Fagnes de la Roer,C,7,140,FALSE,TRUE,FALSE
+BE34043C0,Bassin de la Semois du Maka à Bouillon,C,7,106,FALSE,TRUE,FALSE
+BE34032C0,Bassin inférieur de l'Ourthe occidentale,C,7,105,FALSE,TRUE,FALSE
+BE34008C0,Camp militaire de Marche-en-Famenne,C,7,84,FALSE,TRUE,FALSE
+BE35006C0,Vallée de la Meuse de Marche-les-Dames à Andenne,C,7,83,FALSE,TRUE,FALSE
+BE31007C0,Vallée du Train,C,7,68,FALSE,TRUE,FALSE
+BE34029C0,Haute-Wamme et Masblette,C,7,64,FALSE,TRUE,FALSE
+BE35011C0,Vallée de la Molignée,C,7,63,FALSE,TRUE,FALSE
+BE35019C0,Vallée de la Meuse en amont d'Hastière,C,7,60,FALSE,TRUE,FALSE
+BE34051C0,Vallées du Ruisseau de Mellier et de la Mandebras,C,7,55,FALSE,TRUE,FALSE
+BE33051C0,Vallée de l'Amblève entre Wanne et Coo,C,7,53,FALSE,TRUE,FALSE
+BE33026C0,Vallée de l'Ourthe entre Hamoir et Comblain-au-Pont,C,7,50,FALSE,TRUE,FALSE
+BE34061C0,Vallées de Laclaireau et du Rabais,C,7,40,FALSE,TRUE,FALSE
+BE33054C0,Vallée de l'Amblève entre Montenau et Baugné,C,7,37,FALSE,TRUE,FALSE
+BE35024C0,Vallées des Ruisseaux de Fenffe et du Vachau,C,7,35,FALSE,TRUE,FALSE
+BE35040C0,Vallée de la Hulle,C,7,28,FALSE,TRUE,FALSE
+BE33018C0,Coteaux calcaires de Theux et le Rocheux,C,7,21,FALSE,TRUE,FALSE
+BE35001A0,Etangs de Boneffe,A,7,20,FALSE,TRUE,FALSE
+BE2301134,Krekengebied,A,6,3767,TRUE,FALSE,FALSE
+BE35009C0,Vallée de la Meuse d'Yvoir à Dave,C,6,335,FALSE,TRUE,FALSE
+BE2220313,"Houthalen-Helchteren, Meeuwen-Gruitrode en Peer",A,6,153,TRUE,FALSE,FALSE
+BE31003C0,Vallée de la Lasne,C,6,137,FALSE,TRUE,FALSE
+BE31001C0,Affluents brabançons de la Senne,C,6,101,FALSE,TRUE,FALSE
+BE34020C0,Bassin supérieur de la Salm,C,6,85,FALSE,TRUE,FALSE
+BE35021C0,Vallée de la Lesse en aval de Houyet,C,6,79,FALSE,TRUE,FALSE
+BE33065C0,Vallée inférieure de l'Our et ses affluents,C,6,74,FALSE,TRUE,FALSE
+BE33046C0,Vallée de la Warche en amont de Butgenbach,C,6,64,FALSE,TRUE,FALSE
+BE34002C0,Vallée de l'Ourthe entre Bomal et Hamoir,C,6,62,FALSE,TRUE,FALSE
+BE33017C0,Basse vallée de l'Amblève,C,6,59,FALSE,TRUE,FALSE
+BE34053C0,Bassin de l'Attert,C,6,58,FALSE,TRUE,FALSE
+BE35025C0,La Famenne entre Eprave et Havrenne,C,6,58,FALSE,TRUE,FALSE
+BE33053C0,Noir Ru et Vallée du Rechterbach,C,6,56,FALSE,TRUE,FALSE
+BE34027C0,Bassin de la Lomme de Poix-Saint-Hubert à Grupont,C,6,50,FALSE,TRUE,FALSE
+BE35018C0,Bassin de l'Hermeton en aval de Vodelée,C,6,35,FALSE,TRUE,FALSE
+BE34041C0,Sûre frontalière,C,6,31,FALSE,TRUE,FALSE
+BE35022C0,Bassin de l'Iwène,C,6,30,FALSE,TRUE,FALSE
+BE34035C0,Bassin supérieur de la Wiltz,C,6,25,FALSE,TRUE,FALSE
+BE34005C0,La Calestienne entre Barvaux et Bomal,C,6,24,FALSE,TRUE,FALSE
+BE35031C0,Bassin ardennais de l'Eau Noire,C,6,24,FALSE,TRUE,FALSE
+BE35008C0,Vallée du Burnot,C,6,20,FALSE,TRUE,FALSE
+BE35032C0,Bassin ardennais du Viroin,C,6,20,FALSE,TRUE,FALSE
+BE33013C0,Bois de la Neuville et de la Vecquée,C,6,19,FALSE,TRUE,FALSE
+BE34015C0,Fanges des sources de l'Aisne,C,6,19,FALSE,TRUE,FALSE
+BE35042C0,Vallée de l'Almache en amont de Gembes,C,6,16,FALSE,TRUE,FALSE
+BE33059C0,Sources de l'Our et de l'Ensebach,C,6,9,FALSE,TRUE,FALSE
+BE33064C0,Vallée de l'Ulf,C,5,283,FALSE,TRUE,FALSE
+BE34047C0,Haute-Vierre,C,5,248,FALSE,TRUE,FALSE
+BE33007C0,Vallée de la Gueule en amont de Kelmis,C,5,146,FALSE,TRUE,FALSE
+BE34039C0,Haute-Sûre,C,5,130,FALSE,TRUE,FALSE
+BE32046C0,Vallée du Piéton,C,5,116,FALSE,TRUE,FALSE
+BE33022C0,La Gileppe,C,5,113,FALSE,TRUE,FALSE
+BE35002C0,Vallée de l'Orneau,C,5,106,FALSE,TRUE,FALSE
+BE33055C0,Vallée de l'Emmels,C,5,81,FALSE,TRUE,FALSE
+BE34057C0,Marais de la Haute-Semois et Bois de Heinsch,C,5,64,FALSE,TRUE,FALSE
+BE35016C0,Vallée de la Chinelle,C,5,48,FALSE,TRUE,FALSE
+BE33037C0,Camp militaire d'Elsenborn,C,5,47,FALSE,TRUE,FALSE
+BE35044C0,Bassin du Ruisseau du Ru au Moulin,C,5,40,FALSE,TRUE,FALSE
+BE34013C0,Haute vallée de l'Aisne,C,5,39,FALSE,TRUE,FALSE
+BE34054C0,Bassin de la Marche,C,5,39,FALSE,TRUE,FALSE
+BE35036C0,Vallée du Biran,C,5,39,FALSE,TRUE,FALSE
+BE33067C0,Bois de Staneux,C,5,37,FALSE,TRUE,FALSE
+BE33062C0,Vallée supérieure de l'Our et ses affluents,C,5,36,FALSE,TRUE,FALSE
+BE33056C0,Haute vallée de l'Amblève entre Heppenbach et Montenau,C,5,33,FALSE,TRUE,FALSE
+BE34036C0,Haute-Lesse,C,5,30,FALSE,TRUE,FALSE
+BEMNZ0003,SBZ 2 / ZPS 2,A,5,30,FALSE,FALSE,FALSE
+BE34065C0,Bassin supérieur de la Vire et du Ton,C,5,29,FALSE,TRUE,FALSE
+BE32030C0,Vallée de la Hante,C,5,24,FALSE,TRUE,FALSE
+BE35027C0,Vallée de l'Eau Blanche entre Aublain et Mariembourg,C,5,23,FALSE,TRUE,FALSE
+BE34022C0,Basse vallée de la Wamme,C,5,22,FALSE,TRUE,FALSE
+BE35047C0,Vallée du Ruisseau de Rebais,C,5,18,FALSE,TRUE,FALSE
+BE35034C0,Vallées des Ruisseaux de Rempeine et de la Scheloupe,C,5,17,FALSE,TRUE,FALSE
+BE33060C0,Haute vallée de la Lienne,C,5,16,FALSE,TRUE,FALSE
+BE33058C0,Vallée du Medemberbach,C,5,14,FALSE,TRUE,FALSE
+BEMNZ0002,SBZ 1 / ZPS 1,A,5,14,FALSE,FALSE,FALSE
+BE34067C0,Forêts et marais bajociens de Baranzy à Athus,C,5,11,FALSE,TRUE,FALSE
+BE33061C0,Affluents de l'Our entre Setz et Schoenberg,C,5,9,FALSE,TRUE,FALSE
+BE32034C0,Bois Massart et forêts de Sivry-Rance,C,5,8,FALSE,TRUE,FALSE
+BE31012C0,Vallée de la Dyle de Wavre à Archennes,C,4,115,FALSE,TRUE,FALSE
+BE33030C0,Vallée de l'Amblève de Chêneu au Pont de Targnon,C,4,73,FALSE,TRUE,FALSE
+BE34055C0,Vallée du Ruisseau de Breuvanne,C,4,58,FALSE,TRUE,FALSE
+BE33027C0,Vallée de la Lembrée et affluents,C,4,46,FALSE,TRUE,FALSE
+BE33063C0,Vallée et affluents du Braunlauf,C,4,42,FALSE,TRUE,FALSE
+BE33015C0,Bois d'Anthisnes et d'Esneux,C,4,37,FALSE,TRUE,FALSE
+BE33029C0,Basse vallée de la Lienne,C,4,31,FALSE,TRUE,FALSE
+BE34030C0,Forêt de Freyr,C,4,28,FALSE,TRUE,FALSE
+BE34017C0,Fagnes de Bihain,C,4,25,FALSE,TRUE,FALSE
+BE32039C0,Vallées de l'Oise et de la Wartoise,C,4,23,FALSE,TRUE,FALSE
+BE34060C0,Bassin supérieur de la Chevratte,C,4,22,FALSE,TRUE,FALSE
+BE32040C0,Haute vallée de l'Eau Noire,C,4,21,FALSE,TRUE,FALSE
+BE34028C0,Vallée de la Lomme de Grupont à Rochefort,C,4,21,FALSE,TRUE,FALSE
+BE34001C0,Vallée et affluents du Néblon,C,4,18,FALSE,TRUE,FALSE
+BE32038C0,Bois de Bourlers et de Baileux,C,4,17,FALSE,TRUE,FALSE
+BE33020C0,Affluents du lac d'Eupen,C,4,16,FALSE,TRUE,FALSE
+BE32045C0,Vallée de l'Aubrecheuil,C,4,15,FALSE,TRUE,FALSE
+BE33044C0,Sources de l'Amblève,C,4,15,FALSE,TRUE,FALSE
+BE34019C0,Ennal et Grand Fond,C,4,13,FALSE,TRUE,FALSE
+BE33049C0,Mardelles d'Arbrefontaine et vallons fangeux de Fosse,C,4,12,FALSE,TRUE,FALSE
+BE32027C0,Vallée de la Biesmelle,C,4,10,FALSE,TRUE,FALSE
+BE32032C0,Forêts de Rance,C,4,9,FALSE,TRUE,FALSE
+BE34010C0,Plaine de Ny,A,4,9,FALSE,TRUE,FALSE
+BE34034C0,Sources du Ruisseau de Tavigny,C,4,9,FALSE,TRUE,FALSE
+BE33042C0,Vallées de la Warche et du Bayehon en aval du barrage de Robertville,C,3,75,FALSE,TRUE,FALSE
+BEMNZ0004,SBZ 3 / ZPS 3,A,3,44,FALSE,FALSE,FALSE
+BE34016C0,Fagnes de Samrée et de Tailles,C,3,37,FALSE,TRUE,FALSE
+BE32010C0,Marais de la Verne,C,3,32,FALSE,TRUE,FALSE
+BE33038C0,Vallée de la Schwalm,C,3,27,FALSE,TRUE,FALSE
+BE33019C0,Vallée de la Vesdre entre Eupen et Verviers,C,3,22,FALSE,TRUE,FALSE
+BE32007C0,Bois de la Houssière,C,3,20,FALSE,TRUE,FALSE
+BE33008C0,Vallée de la Burdinale,C,3,20,FALSE,TRUE,FALSE
+BE34025C0,Haute-Wimbe,C,3,19,FALSE,TRUE,FALSE
+BE35035C0,Vallée de l'Ilèwe,C,3,17,FALSE,TRUE,FALSE
+BE33034C0,Vallée de la Hoëgne,C,3,14,FALSE,TRUE,FALSE
+BE34009C0,La Calestienne entre Marenne et Hotton,C,3,14,FALSE,TRUE,FALSE
+BE34018C0,Sources de la Lienne,C,3,14,FALSE,TRUE,FALSE
+BE35015C0,Vallée du Flavion,C,3,14,FALSE,TRUE,FALSE
+BE33047C0,Vallée de la Holzwarche,C,3,13,FALSE,TRUE,FALSE
+BE32004C0,Vallée de la Rhosnes,C,3,12,FALSE,TRUE,FALSE
+BE34037C0,Haute-Lomme,C,3,12,FALSE,TRUE,FALSE
+BE34068C0,Bois de Famenne à Humain et Aye,C,3,12,FALSE,TRUE,FALSE
+BE33057C0,Vallée du Kolvenderbach,C,3,11,FALSE,TRUE,FALSE
+BE34062C0,Bassin du Ruisseau du Messancy,C,3,11,FALSE,TRUE,FALSE
+BE32018C0,Bois de Colfontaine,C,3,10,FALSE,TRUE,FALSE
+BE33040C0,Fagnes de Stavelot et vallée de l'Eau Rouge,C,3,10,FALSE,TRUE,FALSE
+BE34063C0,Vallées de la Chevratte,C,3,10,FALSE,TRUE,FALSE
+BE35014C0,Bois de Famenne à Waillet,C,3,9,FALSE,TRUE,FALSE
+BE32033C0,Sources de la Hante,C,3,8,FALSE,TRUE,FALSE
+BE35017C0,Vallée du Ruisseau de Féron,C,3,8,FALSE,TRUE,FALSE
+BE34011C0,La Calestienne entre Hotton et Oppagne,C,3,7,FALSE,TRUE,FALSE
+BE32006C0,Bois d'Enghien et de Silly,C,3,5,FALSE,TRUE,FALSE
+BE32031C0,Bois de Vieux Sart et de Montbliart,C,3,5,FALSE,TRUE,FALSE
+BE33050C0,Fagne de la Gotale et affluents du Ruisseau de Chavanne,C,3,5,FALSE,TRUE,FALSE
+BE32035C0,La Fagne entre Bailièvre et Robechies,C,3,4,FALSE,TRUE,FALSE
+BE33041C0,Fagnes de la Polleur et de Malmedy,C,3,4,FALSE,TRUE,FALSE
+BE34059C0,Vallées de l'Eisch et de Clairefontaine,C,3,4,FALSE,TRUE,FALSE
+BE34045C0,Forêts de Muno,C,3,3,FALSE,TRUE,FALSE
+BE2524317,Kustbroedvogels te Zeebrugge-Heist,A,2,48,TRUE,FALSE,FALSE
+BE34026C0,Massif forestier de Daverdisse,C,2,31,FALSE,TRUE,FALSE
+BE33035C0,Plateau des Hautes-Fagnes,C,2,24,FALSE,TRUE,FALSE
+BE31008C0,Carrière de Dongelberg,C,2,23,FALSE,TRUE,FALSE
+BE34058C0,Camp militaire de Lagland,C,2,20,FALSE,TRUE,FALSE
+BE33025C0,Fagnes du Nord-Est,C,2,13,FALSE,TRUE,FALSE
+BE33048C0,Vallée de la Lienne et affluents entre Les Trous de Bras et Habiémont,C,2,10,FALSE,TRUE,FALSE
+BE33024C0,Vallée de la Helle,C,2,9,FALSE,TRUE,FALSE
+BE32011C0,Forêt de Bon-Secours,C,2,7,FALSE,TRUE,FALSE
+BE34014C0,Fagne de la Crépale et prairies de Malempré,C,2,7,FALSE,TRUE,FALSE
+BE33032C0,Fagnes de Malchamps et de Stoumont,C,2,6,FALSE,TRUE,FALSE
+BE35046C0,Vallée du Ruisseau de Gros Fays,C,2,6,FALSE,TRUE,FALSE
+BE33023C0,Vallée de la Soor,C,2,5,FALSE,TRUE,FALSE
+BE34006C0,La Calestienne entre Oppagne et Barvaux,C,2,5,FALSE,TRUE,FALSE
+BE35013C0,Bois calcaires de Nettinne,C,2,5,FALSE,TRUE,FALSE
+BE32016C0,Forêt de Mariemont,C,2,4,FALSE,TRUE,FALSE
+BE33045C0,Sources de la Warchenne,C,2,4,FALSE,TRUE,FALSE
+BE34040C0,Vallée de Villers-la-Bonne-Eau,C,2,4,FALSE,TRUE,FALSE
+BE32020C0,Vallée de la Princesse,C,2,2,FALSE,TRUE,FALSE
+BE32047C0,Vallée de la Thure,C,2,2,FALSE,TRUE,FALSE
+BE33039C0,Vallée de l'Olefbach,C,1,10,FALSE,TRUE,FALSE
+BE33005C0,Vallée du Ruisseau de Bolland,C,1,6,FALSE,TRUE,FALSE
+BE33031C0,Bois de la Géronstère,C,1,4,FALSE,TRUE,FALSE
+BE35049C0,Vallée du Ruisseau de Fairoul,C,1,2,FALSE,TRUE,FALSE
+BE32029C0,Haute vallée de la Thure,C,1,1,FALSE,TRUE,FALSE
+BE33033C0,Vallée du Wayai et affluents,C,1,1,FALSE,TRUE,FALSE
+BE35043C0,Vallée du Ruisseau de Saint-Jean,C,1,1,FALSE,TRUE,FALSE
