@@ -54,11 +54,7 @@ Related taxonomic metadata:
 
 ```{r read_taxonomic_metadata}
 taxonomic_metadata <-
-  read_csv(here::here(
-    "data",
-    "output",
-    "protected_areas_species_info.csv"
-  ),
+  read_csv("https://raw.githubusercontent.com/trias-project/indicators/master/data/output/protected_areas_species_info.csv",
   na = "",
   col_types = cols(
     speciesKey = col_double()
@@ -588,6 +584,7 @@ n_areas_mean_coverage <- function(df) {
            mean_coverage,
            taxonKey,
            everything())
+  return(df)
 }
 ```
 
