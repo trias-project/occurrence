@@ -12,7 +12,7 @@
 <meta name="author" content="Damiano Oldoni" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-05-15" />
+<meta name="date" content="2020-06-02" />
 
 <title>Species observations and occupancy in Belgian protected areas</title>
 
@@ -436,7 +436,7 @@ div.tocify {
 <h1 class="title toc-ignore">Species observations and occupancy in Belgian protected areas</h1>
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2020-05-15</h4>
+<h4 class="date">2020-06-02</h4>
 
 </div>
 
@@ -581,8 +581,9 @@ infraspecific_alien</code></pre>
 <h2><span class="header-section-number">3.3</span> Assessment alien species with alien infraspecific taxa</h2>
 <p>The unified checklist contains some infraspecific alien taxa belonging to alien species as well. The assessment whether the species is alien or not is at the moment based on a reference file maintained by TrIAS experts. We read it:</p>
 <pre class="r"><code>infraspecific_alien_status_species &lt;-
-  read_tsv(here::here(&quot;reference&quot;,                      &quot;assessment_alien_status_species_with_alien_infraspecific_taxa.tsv&quot;),
-            na = &quot;&quot;)
+  read_tsv(here::here(&quot;reference&quot;,
+                      &quot;species_of_infraspecific_alien_taxa.tsv&quot;),
+           na = &quot;&quot;)
 infraspecific_alien_status_species</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -896,7 +897,7 @@ prot_areas_taxon_info &lt;-
     path = here::here(
       &quot;data&quot;,
       &quot;output&quot;,
-      &quot;occurrences_occupancy_protected_areas.csv&quot;
+      &quot;protected_areas_species_occurrence.csv&quot;
     ),
     na = &quot;&quot;
   )</code></pre>
