@@ -172,8 +172,9 @@ The unified checklist contains some infraspecific alien taxa belonging to alien 
 
 ```{r infraspecific_alien_status_species}
 infraspecific_alien_status_species <-
-  read_tsv(here::here("reference",                      "assessment_alien_status_species_with_alien_infraspecific_taxa.tsv"),
-            na = "")
+  read_tsv(here::here("reference",
+                      "species_of_infraspecific_alien_taxa.tsv"),
+           na = "")
 infraspecific_alien_status_species
 ```
 
@@ -529,7 +530,7 @@ occs_prot_areas %>%
     path = here::here(
       "data",
       "output",
-      "occurrences_occupancy_protected_areas.csv"
+      "protected_areas_species_occurrence.csv"
     ),
     na = ""
   )

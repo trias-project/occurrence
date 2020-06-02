@@ -70,4 +70,4 @@ data/interim/be_alientaxa_*.csv
 data/interim/eu_modellingtaxa_*.csv
 data/interim/*_classes_*.csv
 # Analysis of data about protected areas
-data/output/occurrences_occupancy_protected_areas.csv
+data/output/protected_areas_species_occurrence.csv
