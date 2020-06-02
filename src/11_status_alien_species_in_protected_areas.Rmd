@@ -45,7 +45,7 @@ occs_prot_areas <-
   read_csv(here::here(
     "data",
     "output",
-    "occurrences_occupancy_protected_areas.csv"
+    "protected_areas_species_occurrence.csv"
   ), na = ""
 )
 ```
