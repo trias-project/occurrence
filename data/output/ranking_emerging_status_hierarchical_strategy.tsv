@@ -4,20 +4,19 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3170247	Asclepias syriaca	Plantae	Magnoliopsida	3	3	3	3	3	3	3	3	1	3	3	3	NaN	6	220
 3172266	Jasminum nudiflorum	Plantae	Magnoliopsida	3	3	3	3	3	3	3	3	1	1	2	2	NaN	6	220
 3112364	Cynara cardunculus	Plantae	Magnoliopsida	3	3	3	3	3	3	3	3	1	1	1	1	NaN	6	220
-2495688	Streptopelia roseogrisea	Animalia	Aves	3	3	3	3	3	3	3	3	0	0	2	3	1.1867474794593909	1	212
 2440946	Muntiacus reevesi	Animalia	Mammalia	3	3	3	3	3	3	3	2	2	3	3	2	NaN	1	359
-2959443	Gleditsia triacanthos	Plantae	Magnoliopsida	3	3	3	3	3	3	3	2	1	1	3	3	NaN	6	220
 1031400	Ectopsocus briggsi	Animalia	Insecta	3	3	3	3	3	3	2	2	3	3	3	3	NaN	1	216
 3147815	Verbesina alternifolia	Plantae	Magnoliopsida	3	3	3	3	3	3	2	2	1	3	2	2	NaN	6	220
+2959443	Gleditsia triacanthos	Plantae	Magnoliopsida	3	3	3	3	3	3	2	2	1	1	3	3	NaN	6	220
 7989836	Symphytum caucasicum	Plantae	Magnoliopsida	3	3	3	3	3	3	2	2	1	1	2	2	NaN	6	220
 2927744	Phlox paniculata	Plantae	Magnoliopsida	3	3	3	3	3	3	1	2	1	1	3	3	NaN	6	220
 4486365	Nysius huttoni	Animalia	Insecta	3	3	3	3	3	2	3	3	2	2	2	2	NaN	1	216
 8599762	Aproceros leucopoda	Animalia	Insecta	3	3	3	3	3	2	3	3	1	3	1	1	NaN	1	216
 5598598	Lonicera acuminata	Plantae	Magnoliopsida	3	3	3	3	3	2	3	3	1	1	1	1	NaN	6	220
-6387033	Equisetum hyemale affine	Plantae	Polypodiopsida	3	3	3	3	3	2	3	2	3	3	3	2	NaN	6	7228684
+6387033	Equisetum hyemale affine	Plantae	Polypodiopsida	3	3	3	3	3	2	2	2	3	3	2	2	NaN	6	7228684
 2684191	Taxodium distichum	Plantae	Pinopsida	3	3	3	3	2	3	3	3	3	3	3	3	NaN	6	194
+4264680	Myocastor coypus	Animalia	Mammalia	3	3	3	3	2	3	3	3	2	3	2	3	1.0767497057335536	1	359
 5284982	Pinus strobus	Plantae	Pinopsida	3	3	3	3	2	3	2	3	3	3	3	3	1.0098722347125495	6	194
-4264680	Myocastor coypus	Animalia	Mammalia	3	3	3	3	2	3	2	3	2	3	2	3	1.0767497057335536	1	359
 3003709	Rosa glauca	Plantae	Magnoliopsida	3	3	3	3	2	3	2	3	2	3	2	3	1.0176397502502397	6	220
 5414239	Ilex crenata	Plantae	Magnoliopsida	3	3	3	3	2	3	2	2	3	3	3	3	NaN	6	220
 3690997	Cardamine occulta	Plantae	Magnoliopsida	3	3	3	3	2	3	2	2	2	2	2	2	NaN	6	220
@@ -28,20 +27,20 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 4567717	Boettgerilla pallens	Animalia	Gastropoda	3	3	3	3	2	2	2	2	3	3	3	3	NaN	1	225
 4933624	Inula racemosa	Plantae	Magnoliopsida	3	3	3	3	2	2	2	2	2	2	2	2	NaN	6	220
 5284950	Picea omorika	Plantae	Pinopsida	3	3	3	3	2	2	1	1	2	2	2	2	NaN	6	194
-7322143	Oenothera victorinii	Plantae	Magnoliopsida	3	3	3	3	1	3	3	3		0	3	2	NaN	6	220
-2684984	Araucaria araucana	Plantae	Pinopsida	3	3	3	3	1	3	1	2	1	1	3	3	NaN	6	194
+7322143	Oenothera victorinii	Plantae	Magnoliopsida	3	3	3	3	1	3	3	3		0	2	2	NaN	6	220
+2684984	Araucaria araucana	Plantae	Pinopsida	3	3	3	3	1	3	3	2	1	1	3	3	NaN	6	194
 2650829	Cyrtomium falcatum	Plantae	Polypodiopsida	3	3	3	3	1	1	3	3	1	1	3	3	NaN	6	7228684
 4048240	Elaeagnus submacrophylla	Plantae	Magnoliopsida	3	3	3	3	1	1	3	3	1	1	1	1	NaN	6	220
 5384931	Houttuynia cordata	Plantae	Magnoliopsida	3	3	3	3	1	1	3	3	1	1	1	1	NaN	6	220
+1311477	Vespa velutina	Animalia	Insecta	3	3	3	3	1	1	3	3			3	3	NaN	1	216
+5284237	Cryptomeria japonica	Plantae	Pinopsida	3	3	3	3	1	1	3	2	1	1	3	2	NaN	6	194
 3067353	Euphorbia characias	Plantae	Magnoliopsida	3	3	3	3	1	1	2	3	1	1	3	3	1.1119594285901626	6	220
 2489010	Acridotheres cristatellus	Animalia	Aves	3	3	3	3	1	1	2	3	1	1	1	1	NaN	1	212
 7102937	Euonymus japonicus	Plantae	Magnoliopsida	3	3	3	3	1	1	2	2	3	3	2	2	NaN	6	220
 3664589	Oenothera lindheimeri	Plantae	Magnoliopsida	3	3	3	3	1	1	2	2	1	1	1	1	NaN	6	220
 5228080	Callipepla californica	Animalia	Aves	3	3	3	3	1	1	2	2	1	1	1	1	NaN	1	212
-1311477	Vespa velutina	Animalia	Insecta	3	3	3	3	1	1	1	3				3	NaN	1	216
-5284237	Cryptomeria japonica	Plantae	Pinopsida	3	3	3	3	1	1	1	2	1	1	3	2	NaN	6	194
 3133887	Coreopsis verticillata	Plantae	Magnoliopsida	3	3	3	3	1	1	1	1	3	3	3	3	NaN	6	220
-2498411	Amazonetta brasiliensis	Animalia	Aves	3	3	3	3	1	1	1	1	3	2	3	2	NaN	1	212
+2498411	Amazonetta brasiliensis	Animalia	Aves	3	3	3	3	1	1	1	1	3	2	2	2	NaN	1	212
 3026105	Cotoneaster integrifolius	Plantae	Magnoliopsida	3	3	3	3	1	1	1	1	1	1	3	2	NaN	6	220
 1031684	Lepinotus patruelis	Animalia	Insecta	3	3	3	3	1	1	1	1	1	1	1	1	NaN	1	216
 1031742	Dorypteryx domestica	Animalia	Insecta	3	3	3	3	1	1	1	1	1	1	1	1	NaN	1	216
@@ -49,110 +48,110 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2857679	Allium macleanii	Plantae	Liliopsida	3	3	3	3	1	1	1	1	1	1	1	1	NaN	6	196
 3169120	Euonymus alatus	Plantae	Magnoliopsida	3	3	3	3	1	1	1	1	1	1	1	1	NaN	6	220
 5959231	Ara ararauna	Animalia	Aves	3	3	3	3	1	1	1	1	1	1	1	1	NaN	1	212
-2985994	Hydrangea macrophylla	Plantae	Magnoliopsida	3	3	3	3	1	1	1	1			3	1	NaN	6	220
+2985994	Hydrangea macrophylla	Plantae	Magnoliopsida	3	3	3	3	1	1	1	1			1	1	NaN	6	220
 6369140	Prunus domestica domestica	Plantae	Magnoliopsida	3	3	3	3	0	1	2	2	1	1	1	1	NaN	6	220
+2683894	Xanthocyparis nootkatensis	Plantae	Pinopsida	3	3	3	3	0	0	1	1	0	0	1	1	NaN	6	194
 5332120	Betula papyrifera	Plantae	Magnoliopsida	3	3	3	3	0	0	1	1	0	0	1	1	NaN	6	220
 7262908	Acer cappadocicum	Plantae	Magnoliopsida	3	3	3	3	0	0	1	1	0	0	1	1	NaN	6	220
-2683894	Xanthocyparis nootkatensis	Plantae	Pinopsida	3	3	3	3	0	0	0	1	0	0	0	1	NaN	6	194
 2484628	Vidua macroura	Animalia	Aves	3	3	3	3	0	0	0	0	0	0	0	0	NaN	1	212
 5959227	Ara macao	Animalia	Aves	3	3	3	3	0	0	0	0	0	0	0	0	NaN	1	212
 7777960	Vaccinium macrocarpum	Plantae	Magnoliopsida	3	3	3	3	0	0	0	0	0	0	0	0	NaN	6	220
 2925816	Cynoglossum amabile	Plantae	Magnoliopsida	3	3	3	2	3	3	3	3	1	1	1	1	NaN	6	220
-2437619	Dolichotis patagonum	Animalia	Mammalia	3	3	3	2	3	3	3	2	1	1	1	2	NaN	1	359
 2703041	Arundo donax	Plantae	Liliopsida	3	3	3	2	3	3	1	1	1	1	3	2	NaN	6	196
 3663237	Cornus sanguinea australis	Plantae	Magnoliopsida	3	3	3	2	2	2	3	3	2	2	2	2	NaN	6	220
 7645931	Salix acutifolia	Plantae	Magnoliopsida	3	3	3	2	2	2	2	3	1	1	1	1	NaN	6	220
-2142456	Uloborus plumipes	Animalia	Arachnida	3	3	3	2	1	3	3	2	1	3	2	2	NaN	1	367
+2142456	Uloborus plumipes	Animalia	Arachnida	3	3	3	2	1	3	2	2	1	3	2	2	NaN	1	367
 3064669	Euphorbia myrsinites	Plantae	Magnoliopsida	3	3	3	2	1	1	3	3	1	1	3	3	NaN	6	220
 2914404	Galium verum wirtgenii	Plantae	Magnoliopsida	3	3	3	2	0	0	3	3	0	0	1	1	NaN	6	220
-5328909	Sagittaria latifolia	Plantae	Liliopsida	3	3	3	1	3	3	2	1	2	2	2	1	0.9677709393392502	6	196
+5328909	Sagittaria latifolia	Plantae	Liliopsida	3	3	3	1	3	3	3	1	2	2	2	1	0.9677709393392502	6	196
 7270761	Actinidia deliciosa	Plantae	Magnoliopsida	3	3	3	1	3	3	2	1	1	1	2	1	0.8333235406244512	6	220
 2891755	Oxalis latifolia	Plantae	Magnoliopsida	3	3	3	1	1	1	3	1	1	1	2	1	0.805659998752616	6	220
 3085357	Saponaria ocymoides	Plantae	Magnoliopsida	3	3	3	1	1	1	2	1	1	1	1	1	0.7061338795590993	6	220
 3172615	Catalpa bignonioides	Plantae	Magnoliopsida	3	3	3	0	1	1	3	0	3	3	1	0	0.7901922339910351	6	220
 5227775	Phasianus versicolor	Animalia	Aves	3	3	2	3	3	3	3	3	3	3	3	3	NaN	1	212
 2880580	Quercus cerris	Plantae	Magnoliopsida	3	3	2	3	3	3	3	3	2	2	2	3	1.1127823786954203	6	220
+2495688	Streptopelia roseogrisea	Animalia	Aves	3	3	2	3	3	3	3	3	0	0	2	3	1.1867474794593909	1	212
 2498335	Cygnus melancoryphus	Animalia	Aves	3	3	2	3	3	3	2	3	1	1	1	3	1.128792599845709	1	212
 3039046	Fatsia japonica	Plantae	Magnoliopsida	3	3	2	3	1	1	3	3	1	1	3	2	NaN	6	220
 4127352	Sasaella ramosa	Plantae	Liliopsida	3	3	2	3	1	1	1	1	3	3	3	3	NaN	6	196
-4046493	Polystichum luctuosum	Plantae	Polypodiopsida	3	3	2	2	1	2	3	3	1	3	3	3	NaN	6	7228684
+2437619	Dolichotis patagonum	Animalia	Mammalia	3	3	2	2	3	3	2	2	1	1	2	2	NaN	1	359
+4046493	Polystichum luctuosum	Plantae	Polypodiopsida	3	3	2	2	1	2	3	3	1	3	2	3	NaN	6	7228684
 2926992	Salvia hispanica	Plantae	Magnoliopsida	3	3	2	2	1	1	3	3			3	1	NaN	6	220
-1749449	Cameraria ohridella	Animalia	Insecta	3	3	2	2	1	1	2	2	1	1	2	1	NaN	1	216
-2857697	Allium cepa	Plantae	Liliopsida	3	3	2	1	3	3	3	3	1	1	1	2	NaN	6	196
-5676646	Digitaria aequiglumis	Plantae	Liliopsida	3	3	2	1	3	2	2	1	0	0	2	1	0.9087904991410652	6	196
+1749449	Cameraria ohridella	Animalia	Insecta	3	3	2	2	1	1	2	2	1	1	1	1	NaN	1	216
+5676646	Digitaria aequiglumis	Plantae	Liliopsida	3	3	2	1	3	2	3	1	0	0	2	1	0.9087904991410652	6	196
 2480181	Psittacus erithacus	Animalia	Aves	3	3	2	1	2	2	2	1	2	2	2	1	0.9510040148369927	1	212
 5406741	Sida spinosa	Plantae	Magnoliopsida	3	3	2	1	1	1	2	1	3	3	2	1	0.929164042608672	6	220
 2480410	Parabuteo unicinctus	Animalia	Aves	3	3	2	0	2	3	2	0	1	3	2	2	0.9138872857812688	1	212
 3039194	Parthenocissus quinquefolia	Plantae	Magnoliopsida	3	3	1	3	2	3	1	3	2	3	1	3	1.0680583432310071	6	220
 2479544	Agapornis fischeri	Animalia	Aves	3	3	1	2	3	3	3	3	3	3	2	2	NaN	1	212
+2857697	Allium cepa	Plantae	Liliopsida	3	3	1	1	3	3	3	3	1	1	2	2	NaN	6	196
 3026024	Cotoneaster ascendens	Plantae	Magnoliopsida	3	3	1	1	1	1	1	3	1	1	1	1	NaN	6	220
 3170823	Paulownia tomentosa	Plantae	Magnoliopsida	3	3	0	1	3	3	0	1	3	3	0	1	0.59557537419808	6	220
 2775619	Yucca gloriosa	Plantae	Liliopsida	3	3	0	0	2	3	0	0	3	3	0	0	0.41925054977580717	6	196
 3131614	Helichrysum italicum	Plantae	Magnoliopsida	3	2	3	3	3	3	3	3	3	3	3	3	NaN	6	220
 7127354	Cyclamen coum	Plantae	Magnoliopsida	3	2	3	3	3	3	3	3	0	0	1	3	NaN	6	220
-2227300	Procambarus clarkii	Animalia	Malacostraca	3	2	3	2	2	2	2	2	3	3	3	3	NaN	1	229
-3188926	Oenothera pycnocarpa	Plantae	Magnoliopsida	3	2	3	2	1	3	3	3	3	2	3	2	NaN	6	220
+2739071	Trachycarpus fortunei	Plantae	Liliopsida	3	2	3	2	1	1	3	3	3	2	3	3	NaN	6	196
 3190522	Cotinus coggygria	Plantae	Magnoliopsida	3	2	3	2	1	1	2	2	3	3	3	3	NaN	6	220
-2685552	Abies nordmanniana	Plantae	Pinopsida	3	2	3	2	1	1	2	1	3	2	3	3	NaN	6	194
-8946295	Pontastacus leptodactylus	Animalia	Malacostraca	3	2	3	2	1	1	1	1	1	1	1	2	NaN	1	229
 5559837	Cymbalaria pallida	Plantae	Magnoliopsida	3	2	3	2	1	1	1	1	1	1	1	1	NaN	6	220
-2115769	Austrominius modestus	Animalia	Maxillopoda	3	2	3	2	0	2	3	2	0	2	0	3	NaN	1	203
 2876049	Corylus maxima	Plantae	Magnoliopsida	3	2	3	1	3	3	3	1	1	1	2	1	0.9698044766130591	6	220
 5372614	Salix eriocephala	Plantae	Magnoliopsida	3	2	3	1	3	2	2	1	1	1	1	1	0.4672950898621394	6	220
 4067302	Symphytum grandiflorum	Plantae	Magnoliopsida	3	2	3	1	2	2	2	1	3	3	3	3	0.9938168486890273	6	220
 2867631	Lemna turionifera	Plantae	Liliopsida	3	2	3	1	2	2	2	1	2	2	2	1	0.646531280590807	6	196
-2427091	Lithobates catesbeianus	Animalia	Amphibia	3	2	3	0	2	2	3	0	1	2	2	0	0.8645918966714251	1	131
 2685484	Abies alba	Plantae	Pinopsida	3	2	2	3	2	2	2	3	3	2	3	3	1.179013429277249	6	194
 2888579	Leycesteria formosa	Plantae	Magnoliopsida	3	2	2	2	3	3	3	3	1	1	1	1	NaN	6	220
 5298765	Iris foetidissima	Plantae	Liliopsida	3	2	2	2	2	2	3	3	3	2	3	3	NaN	6	196
+2227300	Procambarus clarkii	Animalia	Malacostraca	3	2	2	2	2	2	2	2	3	3	3	3	NaN	1	229
 2379089	Neogobius melanostomus	Animalia	Actinopterygii	3	2	2	2	2	2	2	2	2	3	3	3	NaN	1	204
-2434552	Nyctereutes procyonoides	Animalia	Mammalia	3	2	2	2	1	3	1	3	1	2	1	2	NaN	1	359
-2739071	Trachycarpus fortunei	Plantae	Liliopsida	3	2	2	2	1	1	3	3	3	2	3	3	NaN	6	196
+3188926	Oenothera pycnocarpa	Plantae	Magnoliopsida	3	2	2	2	1	3	3	3	3	2	2	2	NaN	6	220
+2434552	Nyctereutes procyonoides	Animalia	Mammalia	3	2	2	2	1	3	3	3	1	2	2	2	NaN	1	359
+2685552	Abies nordmanniana	Plantae	Pinopsida	3	2	2	2	1	1	1	1	3	2	3	3	NaN	6	194
 2489004	Acridotheres ginginianus	Animalia	Aves	3	2	2	2	1	1	1	1	1	1	3	3	NaN	1	212
+8946295	Pontastacus leptodactylus	Animalia	Malacostraca	3	2	2	2	1	1	1	1	1	1	2	2	NaN	1	229
+2115769	Austrominius modestus	Animalia	Maxillopoda	3	2	2	2	0	2	2	2	0	2	3	3	NaN	1	203
 2480800	Platalea alba	Animalia	Aves	3	2	2	2	0	0	0	0	1	1	1	1	NaN	1	212
 5420991	Ludwigia peploides	Plantae	Magnoliopsida	3	2	2	1	3	3	2	1	3	3	3	1	0.8638937859019259	6	220
 7315072	Papaver atlanticum	Plantae	Magnoliopsida	3	2	2	1	3	2	3	1	1	1	2	1	0.9768603405048782	6	220
-5189713	Menetus dilatatus	Animalia	Gastropoda	3	2	2	1	0	3	2	3	0	3	1	2	NaN	1	225
 7443846	Dipsacus strigosus	Plantae	Magnoliopsida	3	2	2	0	3	3	2	0	1	1	2	0	0.6303633947987822	6	220
 3033242	Anemone blanda	Plantae	Magnoliopsida	3	2	2	0	2	2	3	0	3	3	3	2	0.9560749242909047	6	220
+2427091	Lithobates catesbeianus	Animalia	Amphibia	3	2	2	0	2	2	2	0	1	2	2	0	0.8645918966714251	1	131
 5828216	Cenchrus flaccidus	Plantae	Liliopsida	3	2	1	1	1	1	1	1	1	1	1	1	NaN	6	196
+5189713	Menetus dilatatus	Animalia	Gastropoda	3	2	1	1	0	3	3	3	0	3	2	2	NaN	1	225
 5851603	Leuciscus aspius	Animalia	Actinopterygii	3	1	3	1	2	1	2	1	1	1	1	1	0.9005768849553223	1	204
 7752288	Elaeagnus umbellata	Plantae	Magnoliopsida	3	1	2	1	3	1	3	1	1	1	1	1	0.8445173851240252	6	220
-5361762	Myriophyllum heterophyllum	Plantae	Magnoliopsida	3	1	2	0	3	1	3	0	2	1	3	0	0.45571328711202275	6	220
+5361762	Myriophyllum heterophyllum	Plantae	Magnoliopsida	3	1	2	0	3	1	2	0	2	1	2	0	0.45571328711202275	6	220
 5232452	Branta hutchinsii	Animalia	Aves	3	1	1	2	2	1	1	2	2	1	1	2	0.8646458327302986	1	212
+5410411	Campanula portenschlagiana	Plantae	Magnoliopsida	3	1	1	1	3	1	1	1	2	1	1	1	0.8956734584740058	6	220
 2686157	Larix kaempferi	Plantae	Pinopsida	3	1	1	1	2	1	1	1	3	1	1	1	0.9597737340075324	6	194
 3026092	Cotoneaster hjelmqvistii	Plantae	Magnoliopsida	3	1	1	0	2	1	1	0	3	1	1	0	0.6417054569099232	6	220
-3067119	Euphorbia maculata	Plantae	Magnoliopsida	3	1	1	0	2	1	1	0	2	1	1	0	0.7375872136808198	6	220
 2996525	Rubus armeniacus	Plantae	Magnoliopsida	3	1	1	0	2	1	1	0	2	1	1	0	0.6951309612595095	6	220
-5410411	Campanula portenschlagiana	Plantae	Magnoliopsida	3	1	0	1	3	1	0	1	2	1	0	1	0.8956734584740058	6	220
+3067119	Euphorbia maculata	Plantae	Magnoliopsida	3	1	1	0	2	1	1	0	2	1	0	0	0.7375872136808198	6	220
 3054357	Juglans nigra	Plantae	Magnoliopsida	3	1	0	1	2	3	0	1	3	3	0	1	0.9750440632298629	6	220
 3033077	Aucuba japonica	Plantae	Magnoliopsida	3	1	0	1	2	1	0	3	2	1	0	3	1.0022150805464827	6	220
-5281901	Campylopus introflexus	Plantae	Bryopsida	3	0	3	0	3	0	2	0	3	0	3	0	0.8586106260228152	6	327
+2426661	Pelophylax ridibundus	Animalia	Amphibia	3	0	3	3	2	0	3	3	1	0	3	3	1.1835511619308792	1	131
+5281901	Campylopus introflexus	Plantae	Bryopsida	3	0	3	0	3	0	3	0	3	0	3	0	0.8586106260228152	6	327
 2775530	Yucca flaccida	Plantae	Liliopsida	3	0	2	0	2	0	2	0	2	0	2	0	0.36222472612548706	6	196
 6157035	Trachemys scripta troostii	Animalia	Reptilia	3	0	1	3	3	0	1	3	3	0	1	3	1.234035942804971	1	358
-2706209	Pseudosasa japonica	Plantae	Liliopsida	3	0	1	3	2	2	1	3	2	2	1	3	1.324025556302478	6	196
-2426661	Pelophylax ridibundus	Animalia	Amphibia	3	0	1	3	2	0	1	3	1	0	1	3	1.1835511619308792	1	131
 7135755	Rhododendron luteum	Plantae	Magnoliopsida	3	0	1	0	2	0	1	0	3	0	1	0	0.35000496992935776	6	220
 5415012	Linaria purpurea	Plantae	Magnoliopsida	3	0	1	0	2	0	1	0	2	0	1	0	0.6423943425912356	6	220
+2706209	Pseudosasa japonica	Plantae	Liliopsida	3	0	0	3	2	2	0	3	2	2	0	3	1.324025556302478	6	196
+8190231	Corbicula fluminea	Animalia	Bivalvia	2	3	3	3	3	3	3	3	3	3	3	3	1.1884039439618257	1	137
 8323485	Haemorhous mexicanus	Animalia	Aves	2	3	3	3	3	3	2	2	3	3	3	3	NaN	1	212
 2888585	Viburnum tinus	Plantae	Magnoliopsida	2	3	3	3	2	3	3	3	2	3	2	2	NaN	6	220
 4565039	Hygromia cinctella	Animalia	Gastropoda	2	3	3	3	2	2	3	3	3	3	3	3	NaN	1	225
 5671747	Cenchrus alopecuroides	Plantae	Liliopsida	2	3	3	3	1	1	2	2	3	3	3	3	NaN	6	196
+5232437	Branta canadensis	Animalia	Aves	2	3	3	2	2	3	3	2	2	3	3	2	0.9586168237634881	1	212
+4565061	Cernuella neglecta	Animalia	Gastropoda	2	3	3	2	2	2	3	2	3	3	3	3	NaN	1	225
 3113637	Cirsium rivulare	Plantae	Magnoliopsida	2	3	2	3	1	3	1	3	2	3	2	3	1.194898027989975	6	220
 6077549	Artemisia campestris maritima	Plantae	Magnoliopsida	2	3	2	3	1	1	1	1	2	2	2	2	NaN	6	220
 3026154	Cotoneaster sternianus	Plantae	Magnoliopsida	2	3	2	2	3	3	2	2	2	3	2	2	0.9258436328688835	6	220
-5232437	Branta canadensis	Animalia	Aves	2	3	2	2	2	3	2	2	2	3	2	2	0.9586168237634881	1	212
-4565061	Cernuella neglecta	Animalia	Gastropoda	2	3	2	2	2	2	2	2	3	3	3	3	NaN	1	225
 5328593	Aponogeton distachyos	Plantae	Liliopsida	2	3	2	2	2	1	1	1	1	1	1	1	NaN	6	196
 6369819	Sambucus canadensis	Plantae	Magnoliopsida	2	3	2	2	1	1	1	1	3	3	2	2	NaN	6	220
-8190231	Corbicula fluminea	Animalia	Bivalvia	2	3	1	3	3	3	1	3	3	3	1	3	1.1884039439618257	1	137
+3083680	Atriplex micrantha	Plantae	Magnoliopsida	2	3	2	1	2	2	2	1	1	1	2	1	0.6317744141379129	6	220
 2747567	Crocus vernus	Plantae	Liliopsida	2	3	1	3	2	3	1	3	2	3	1	3	1.0357814002090222	6	196
-3083680	Atriplex micrantha	Plantae	Magnoliopsida	2	3	1	1	2	2	1	1	1	1	1	1	0.6317744141379129	6	220
 3026334	Cotoneaster divaricatus	Plantae	Magnoliopsida	2	3	1	1	1	3	1	1	2	3	1	1	0.6397179740738448	6	220
 4259350	Tilia tomentosa	Plantae	Magnoliopsida	2	2	3	3	3	3	3	3	2	3	3	3	1.0253278873815024	6	220
 5334194	Macleaya cordata	Plantae	Magnoliopsida	2	2	3	3	3	3	3	3	1	1	1	1	NaN	6	220
-4568269	Paralaoma servilis	Animalia	Gastropoda	2	2	3	3	3	3	3	2	2	2	2	2	NaN	1	225
-2765156	Tradescantia fluminensis	Plantae	Liliopsida	2	2	3	3	3	3	2	2	2	2	2	1	NaN	6	196
+4568269	Paralaoma servilis	Animalia	Gastropoda	2	2	3	3	3	3	2	2	2	2	2	2	NaN	1	225
 2985965	Deutzia scabra	Plantae	Magnoliopsida	2	2	3	3	2	3	2	3	3	3	3	3	1.2088386339296993	6	220
 7156971	Oxalis triangularis	Plantae	Magnoliopsida	2	2	3	3	2	2	3	1	1	1	1	3	NaN	6	220
 2772666	Hyacinthus orientalis	Plantae	Liliopsida	2	2	3	3	2	2	2	3	3	3	3	3	1.0142156749370674	6	196
@@ -162,35 +161,35 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 1450317	Telmatogeton japonicus	Animalia	Insecta	2	2	3	3	1	1	2	2	2	2	2	2	NaN	1	216
 5421180	Koelreuteria paniculata	Plantae	Magnoliopsida	2	2	3	2	3	2	3	3	1	1	1	1	NaN	6	220
 5372827	Salix irrorata	Plantae	Magnoliopsida	2	2	3	2	1	1	3	3			3	3	NaN	6	220
-5329260	Egeria densa	Plantae	Liliopsida	2	2	3	2	1	1	2	2	1	1	3	2	NaN	6	196
 7818643	Prunus armeniaca	Plantae	Magnoliopsida	2	2	3	2	1	1	1	1	1	1	1	1	NaN	6	220
 8537667	Chondrilla juncea	Plantae	Magnoliopsida	2	2	3	1	2	2	2	1	2	2	2	1	0.721944598394894	6	220
 2704523	Cortaderia selloana	Plantae	Liliopsida	2	2	3	0	2	3	2	0	3	3	3	0	0.6259167078406144	6	196
 3664677	Oenothera subterminalis	Plantae	Magnoliopsida	2	2	2	3	3	3	3	3	3	3	3	3	1.177288058686437	6	220
 2493660	Estrilda astrild	Animalia	Aves	2	2	2	3	3	3	2	3	3	3	2	3	1.1576585504750243	1	212
+2765156	Tradescantia fluminensis	Plantae	Liliopsida	2	2	2	3	3	3	2	2	2	2	2	1	NaN	6	196
 9153437	Salix daphnoides	Plantae	Magnoliopsida	2	2	2	3	2	2	2	2	1	1	1	1	NaN	6	220
 5229205	Eudocimus albus	Animalia	Aves	2	2	2	3	1	1	2	3	1	1	2	3	1.0463928450467213	1	212
 2498156	Anas undulata	Animalia	Aves	2	2	2	2	3	3	3	3	3	3	3	3	NaN	1	212
 7127810	Cyclamen hederifolium	Plantae	Magnoliopsida	2	2	2	2	3	3	3	3	2	2	3	3	NaN	6	220
 9606290	Meleagris gallopavo	Animalia	Aves	2	2	2	2	3	3	3	3	1	1	3	3	NaN	1	212
 5384932	Saururus cernuus	Plantae	Magnoliopsida	2	2	2	2	3	3	2	2	1	1	1	1	NaN	6	220
-2474936	Anthropoides virgo	Animalia	Aves	2	2	2	2	3	2	3	3	1	1	1	1	NaN	1	212
+2474936	Anthropoides virgo	Animalia	Aves	2	2	2	2	3	2	2	3	1	1	1	1	NaN	1	212
 2473341	Numida meleagris	Animalia	Aves	2	2	2	2	3	2	2	2	1	1	2	2	NaN	1	212
-2685361	Abies grandis	Plantae	Pinopsida	2	2	2	2	2	3	2	3	3	3	3	3	NaN	6	194
+2685361	Abies grandis	Plantae	Pinopsida	2	2	2	2	2	3	3	3	3	3	3	3	NaN	6	194
 2882849	Vaccinium corymbosum	Plantae	Magnoliopsida	2	2	2	2	2	2	2	2	3	3	3	3	NaN	6	220
 3036033	Hedera colchica	Plantae	Magnoliopsida	2	2	2	2	2	2	2	2	3	3	3	3	NaN	6	220
 7291264	Bistorta amplexicaulis	Plantae	Magnoliopsida	2	2	2	2	2	2	2	2	3	3	3	3	NaN	6	220
 3020871	Prunus lusitanica	Plantae	Magnoliopsida	2	2	2	2	2	2	2	2	3	3	2	2	NaN	6	220
 2718302	Bolboschoenus yagara	Plantae	Liliopsida	2	2	2	2	2	2	2	2	2	2	2	2	NaN	6	196
 5228033	Chrysolophus amherstiae	Animalia	Aves	2	2	2	2	2	2	2	2	1	1	2	2	NaN	1	212
-3170040	Gentiana lutea	Plantae	Magnoliopsida	2	2	2	2	2	1	2	1	3	3	3	3	NaN	6	220
 5371605	Tolmiea menziesii	Plantae	Magnoliopsida	2	2	2	2	1	2	1	2	3	3	3	3	NaN	6	220
 3026162	Cotoneaster franchetii	Plantae	Magnoliopsida	2	2	2	2	1	2	1	1	2	2	2	2	NaN	6	220
 3033261	Anemone coronaria	Plantae	Magnoliopsida	2	2	2	2	1	1	2	2	1	1	3	3	NaN	6	220
 2433652	Neovison vison	Animalia	Mammalia	2	2	2	2	1	1	2	2	1	1	2	2	NaN	1	359
+5329260	Egeria densa	Plantae	Liliopsida	2	2	2	2	1	1	2	2	1	1	2	2	NaN	6	196
 4285968	Ponticola kessleri	Animalia	Actinopterygii	2	2	2	2	1	1	1	1	3	2	3	3	NaN	1	204
 5582033	Salix udensis	Plantae	Magnoliopsida	2	2	2	2	1	1	1	1	1	1	2	2	NaN	6	220
-4416920	Synurella ambulans	Animalia	Malacostraca	2	2	2	2	0	2	0	2	0	3	0	3	NaN	1	229
+4416920	Synurella ambulans	Animalia	Malacostraca	2	2	2	2	0	2	2	2	0	3	2	3	NaN	1	229
 5231398	Leiothrix lutea	Animalia	Aves	2	2	2	2	0	0	1	1	0	1	1	1	NaN	1	212
 2481936	Mycteria ibis	Animalia	Aves	2	2	2	2	0	0	0	0	0	0	0	0	NaN	1	212
 2498107	Anas formosa	Animalia	Aves	2	2	2	1	2	2	2	1	1	1	1	1	0.6782119547414938	1	212
@@ -204,92 +203,92 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3088310	Petasites japonicus	Plantae	Magnoliopsida	2	2	2	0	3	2	2	0	1	1	2	0	0.7809124669662433	6	220
 3098912	Cosmos bipinnatus	Plantae	Magnoliopsida	2	2	2	0	2	3	3	0	1	1	2	2	0.9977521613323294	6	220
 2362030	Ctenopharyngodon idella	Animalia	Actinopterygii	2	2	2	0	2	3	2	0	1	1	2	0	0.8321477441315335	1	204
-2687210	Tsuga heterophylla	Plantae	Pinopsida	2	2	2	0	2	2	2	0	3	2	3	0	0.5789154194851481	6	194
-2684171	Thuja plicata	Plantae	Pinopsida	2	2	2	0	2	2	2	0	2	2	2	0	0.9282454738150964	6	194
+2684171	Thuja plicata	Plantae	Pinopsida	2	2	2	0	2	2	3	0	2	2	2	0	0.9282454738150964	6	194
+2687210	Tsuga heterophylla	Plantae	Pinopsida	2	2	2	0	2	2	2	0	3	2	2	0	0.5789154194851481	6	194
 5228034	Chrysolophus pictus	Animalia	Aves	2	2	2	0	1	1	2	0	2	2	2	0	0.8271704155204537	1	212
 6100996	Crithagra mozambica	Animalia	Aves	2	2	2	0	0	0	2	0	0	0	2	0	0.6661269544367096	1	212
 5356541	Lathyrus heterophyllus	Plantae	Magnoliopsida	2	2	1	2	3	3	3	3	1	1	3	3	NaN	6	220
+3170040	Gentiana lutea	Plantae	Magnoliopsida	2	2	1	2	2	1	1	1	3	3	3	3	NaN	6	220
 2650827	Cyrtomium fortunei	Plantae	Polypodiopsida	2	2	1	1	3	2	1	1	1	1	1	1	0.9091078937473851	6	7228684
-2985863	Hylotelephium spectabile	Plantae	Magnoliopsida	2	2	1	1	2	3	1	1	1	1	2	1	0.9382241444444902	6	220
+2985863	Hylotelephium spectabile	Plantae	Magnoliopsida	2	2	1	1	2	3	2	1	1	1	2	1	0.9382241444444902	6	220
 2498393	Dendrocygna autumnalis	Animalia	Aves	2	2	1	1	1	1	1	1	3	3	3	1	0.8906220120805566	1	212
 5538946	Pimpinella peregrina	Plantae	Magnoliopsida	2	2	1	1	1	1	1	1	3	3	2	1	0.8112974321696437	6	220
 2891707	Oxalis debilis	Plantae	Magnoliopsida	2	2	1	0	2	2	1	0	3	3	1	0	0.6333744470873189	6	220
 3728734	Sutera cordata	Plantae	Magnoliopsida	2	2	1	0	1	1	1	0	1	1	1	0	0.6833895053761776	6	220
 6157026	Trachemys scripta elegans	Animalia	Reptilia	2	2	0	0	3	2	0	0	2	2	0	0	0.8413840350980243	1	358
-7540164	Arion vulgaris	Animalia	Gastropoda	2	2	0	0	2	2	0	2	3	2	0	2	1.0421635076514362	1	225
+7540164	Arion vulgaris	Animalia	Gastropoda	2	2	0	0	2	2	0	2	3	2	2	2	1.0421635076514362	1	225
 8342911	Papaver setiferum	Plantae	Magnoliopsida	2	1	3	1	2	1	2	1	1	1	1	1	0.8457497693418345	6	220
-2473477	Syrmaticus reevesii	Animalia	Aves	2	1	3	1	1	1	2	1	2	1	3	1	0.8423778847867853	1	212
+2473477	Syrmaticus reevesii	Animalia	Aves	2	1	3	1	1	1	2	1	2	1	2	1	0.8423778847867853	1	212
+2493633	Taeniopygia guttata	Animalia	Aves	2	1	3	0	3	1	3	0	2	1	2	0	0.8405696623104627	1	212
 5284827	Picea sitchensis	Plantae	Pinopsida	2	1	2	3	2	1	2	3	3	1	3	3	1.0790344002418426	6	194
 2875968	Corylus colurna	Plantae	Magnoliopsida	2	1	2	3	1	1	3	3	2	1	2	2	NaN	6	220
 2865565	Lagarosiphon major	Plantae	Liliopsida	2	1	2	1	3	3	3	1	1	1	2	1	0.9643908192577344	6	196
 7501634	Rosa multiflora	Plantae	Magnoliopsida	2	1	2	1	3	1	3	1	2	1	2	1	0.8198146213506402	6	220
-2870583	Pistia stratiotes	Plantae	Liliopsida	2	1	2	1	3	1	3	1	1	1	1	1	0.965800933827286	6	196
-5189032	Corbicula fluminalis	Animalia	Bivalvia	2	1	2	1	2	1	2	1	2	1	3	1	0.7824940686964693	1	137
+2870583	Pistia stratiotes	Plantae	Liliopsida	2	1	2	1	3	1	3	1	1	1	2	1	0.965800933827286	6	196
+5189032	Corbicula fluminalis	Animalia	Bivalvia	2	1	2	1	2	1	2	1	2	1	2	1	0.7824940686964693	1	137
 2480350	Pelecanus onocrotalus	Animalia	Aves	2	1	2	1	2	1	2	1	2	1	2	1	0.7207250062849941	1	212
 5362004	Sedum sarmentosum	Plantae	Magnoliopsida	2	1	2	1	2	1	2	1	1	1	2	1	0.9851520498701629	6	220
 2701578	Juncus foliosus	Plantae	Liliopsida	2	1	2	1	1	1	1	1	1	1	1	1	0.758498353872712	6	196
-2493633	Taeniopygia guttata	Animalia	Aves	2	1	2	0	3	1	3	0	2	1	2	0	0.8405696623104627	1	212
 3033896	Berberis thunbergii	Plantae	Magnoliopsida	2	1	2	0	3	1	2	0	3	1	2	0	0.8259349168513401	6	220
 3026294	Cotoneaster bullatus	Plantae	Magnoliopsida	2	1	2	0	2	1	2	0	2	1	2	0	0.9026212640425166	6	220
 2498181	Netta peposaca	Animalia	Aves	2	1	2	0	2	1	2	0	2	1	2	0	0.44713243391104684	1	212
-5289666	Setaria faberi	Plantae	Liliopsida	2	1	1	1	3	1	1	1	2	1	1	1	0.8832235595336563	6	196
 3000610	Chaenomeles japonica	Plantae	Magnoliopsida	2	1	1	1	2	1	1	1	3	1	1	1	0.9484839832038704	6	220
-3147018	Erigeron floribundus	Plantae	Magnoliopsida	2	1	1	1	2	1	1	1	3	1	1	1	0.860350849802283	6	220
 3147168	Erigeron karvinskianus	Plantae	Magnoliopsida	2	1	1	1	2	1	1	1	3	1	1	1	0.847504013674382	6	220
 3026074	Cotoneaster salicifolius	Plantae	Magnoliopsida	2	1	1	1	2	1	1	1	2	1	1	1	0.7626586647583403	6	220
 2498160	Chen rossii	Animalia	Aves	2	1	1	1	2	1	1	1	1	1	1	1	0.8660673333232809	1	212
 4315705	Dikerogammarus villosus	Animalia	Malacostraca	2	1	1	1	1	1	1	1	2	1	1	1	0.9529446978412942	1	229
 3036892	Aralia elata	Plantae	Magnoliopsida	2	1	1	0	3	1	1	0	3	1	1	0	0.8838138536653101	6	220
 2498408	Lophodytes cucullatus	Animalia	Aves	2	1	1	0	2	1	1	0	1	1	1	0	0.8203379613893159	1	212
+5289666	Setaria faberi	Plantae	Liliopsida	2	1	0	1	3	1	0	1	2	1	0	1	0.8832235595336563	6	196
 7062200	Trachemys scripta scripta	Animalia	Reptilia	2	1	0	1	3	1	0	1	2	1	0	1	0.7423399079708608	1	358
 2479798	Melopsittacus undulatus	Animalia	Aves	2	1	0	1	2	1	0	3	2	1	0	3	1.004179670030552	1	212
+3147018	Erigeron floribundus	Plantae	Magnoliopsida	2	1	0	1	2	1	0	1	3	1	0	1	0.860350849802283	6	220
 3152583	Hibiscus syriacus	Plantae	Magnoliopsida	2	1	0	1	1	1	0	1	1	1	0	3	0.9861946281597803	6	220
 2889934	Tropaeolum majus	Plantae	Magnoliopsida	2	1	0	0	2	1	0	0	2	1	0	0	0.8518028344597163	6	220
 5304294	Hyacinthoides massartiana	Plantae	Liliopsida	2	0	3	1	3	0	3	1	3	0	3	1	0.9222994065551804	6	196
 2747564	Crocus tommasinianus	Plantae	Liliopsida	2	0	3	1	3	0	3	1	3	0	2	1	0.47369930102780294	6	196
+3152861	Liriodendron tulipifera	Plantae	Magnoliopsida	2	0	3	1	2	0	2	1	2	0	3	1	0.8598549529415128	6	220
 8080743	Scilla siberica	Plantae	Liliopsida	2	0	3	1	2	0	2	1	1	0	2	1	0.6563288328358398	6	196
 7855120	Odontites luteus	Plantae	Magnoliopsida	2	0	3	0	2	0	2	0	2	0	3	0	0.8719426393735134	6	220
-3152861	Liriodendron tulipifera	Plantae	Magnoliopsida	2	0	2	1	2	0	2	1	2	0	3	1	0.8598549529415128	6	220
 2481110	Phoenicopterus chilensis	Animalia	Aves	2	0	2	0	2	0	3	0	2	0	2	0	0.76089929837222825	1	212
-5355395	Spartium junceum	Plantae	Magnoliopsida	2	0	2	0	2	0	3	0	1	0	2	0	0.7670266881888795	6	220
+2995149	Rubus phoenicolasius	Plantae	Magnoliopsida	2	0	2	0	2	0	3	0	2	0	2	0	0.7318933652748562	6	220
 2498001	Sarkidiornis melanotos	Animalia	Aves	2	0	2	0	2	0	2	0	3	0	2	0	0.7558009109446595	1	212
 4352332	Phoenicopterus roseus	Animalia	Aves	2	0	2	0	2	0	2	0	2	0	2	0	0.8028053546293092	1	212
-2995149	Rubus phoenicolasius	Plantae	Magnoliopsida	2	0	2	0	2	0	2	0	2	0	2	0	0.7318933652748562	6	220
+5355395	Spartium junceum	Plantae	Magnoliopsida	2	0	2	0	2	0	2	0	1	0	2	0	0.7670266881888795	6	220
 3026107	Cotoneaster simonsii	Plantae	Magnoliopsida	2	0	2	0	1	0	1	0	2	0	2	0	0.5508701631174264	6	220
 5384361	Amaranthus bouchonii	Plantae	Magnoliopsida	2	0	1	3	2	0	1	3	2	0	1	3	1.0186618485925416	6	220
 3084015	Phytolacca americana	Plantae	Magnoliopsida	2	0	1	1	3	0	1	1	2	0	1	3	0.9756577548138216	6	220
 2474051	Alectoris rufa	Animalia	Aves	2	0	1	0	3	0	1	0	3	0	1	0	0.8122908816863614	1	212
 2498010	Tadorna cana	Animalia	Aves	2	0	1	0	2	0	2	0	2	0	2	0	0.6825468365292336	1	212
+8745918	Deroceras invadens	Animalia	Gastropoda	2	0	1	0	2	0	1	0	2	0	1	2	0.999136115529848	1	225
 2494303	Serinus canaria	Animalia	Aves	2	0	1	0	2	0	1	0	2	0	1	0	0.9496143760097354	1	212
 2876607	Alnus cordata	Plantae	Magnoliopsida	2	0	1	0	2	0	1	0	2	0	1	0	0.861474309647668	6	220
 2479407	Myiopsitta monachus	Animalia	Aves	2	0	1	0	2	0	1	0	2	0	1	0	0.6334267633846752	1	212
 3022203	Prunus fruticans	Plantae	Magnoliopsida	2	0	1	0	1	0	1	0	2	0	2	0	0.8533935158292454	6	220
-4038485	Reynoutria bohemica	Plantae	Magnoliopsida	2	0	1	0	1	0	1	0	2	0	1	0	0.7091008800241129	6	220
 5410151	Campanula poscharskyana	Plantae	Magnoliopsida	2	0	0	1	3	0	0	1	2	0	0	1	0.5678186344910677	6	220
 5218786	Procyon lotor	Animalia	Mammalia	2	0	0	0	3	0	0	0	3	0	0	0	0.7892708015648376	1	359
 2683866	Chamaecyparis lawsoniana	Plantae	Pinopsida	2	0	0	0	2	0	0	0	3	0	0	0	0.9594689247094278	6	194
-8745918	Deroceras invadens	Animalia	Gastropoda	2	0	0	0	2	0	0	0	2	0	0	2	0.999136115529848	1	225
 3189837	Acer saccharinum	Plantae	Magnoliopsida	2	0	0	0	2	0	0	0	1	0	0	0	0.7468444492580409	6	220
+4038485	Reynoutria bohemica	Plantae	Magnoliopsida	2	0	0	0	1	0	0	0	2	0	0	0	0.7091008800241129	6	220
+4409643	Leuciscus idus	Animalia	Actinopterygii	1	3	3	3	1	3	3	3	1	3	3	3	1.3460299049069697	1	204
+2226990	Pacifastacus leniusculus	Animalia	Malacostraca	1	3	3	3	1	3	3	3	1	3	3	3	1.0432776784729354	1	229
 2053954	Prokelisia marginata	Animalia	Insecta	1	3	3	3	1	1	1	1	1	1	1	1	NaN	1	216
-2440954	Cervus nippon	Animalia	Mammalia	1	3	3	3		1	1	2		1	1	1	NaN	1	359
+2440954	Cervus nippon	Animalia	Mammalia	1	3	3	3		1	2	2		1	1	1	NaN	1	359
+2767229	Scilla sardensis	Plantae	Liliopsida	1	3	3	3		0	0	0		0	0	0	NaN	6	196
+2362868	Pseudorasbora parva	Animalia	Actinopterygii	1	3	3	1	1	3	3	1	1	3	3	1	0.950647675698046	1	204
 5358907	Trifolium alexandrinum	Plantae	Magnoliopsida	1	3	2	3	2	3	2	3	3	3	3	3	1.0787159597178477	6	220
 3054368	Juglans regia	Plantae	Magnoliopsida	1	3	2	1	1	3	2	1	1	3	2	1	0.9755051132248612	6	220
 2498396	Dendrocygna viduata	Animalia	Aves	1	3	1	3	3	3	2	3	3	3	3	3	1.0509368328278077	1	212
-4409643	Leuciscus idus	Animalia	Actinopterygii	1	3	1	3	1	3	1	3	1	3	1	3	1.3460299049069697	1	204
 3171888	Lindernia dubia	Plantae	Magnoliopsida	1	3	1	3	1	3	1	3	1	3	1	3	1.2782239397721933	6	220
 3021730	Prunus cerasifera	Plantae	Magnoliopsida	1	3	1	3	1	3	1	3	1	3	1	3	1.1060091151796245	6	220
 2701986	Juncus canadensis	Plantae	Liliopsida	1	3	1	3	1	3	1	3	1	3	1	3	1.1052890675059446	6	196
 2227000	Orconectes limosus	Animalia	Malacostraca	1	3	1	3	1	3	1	3	1	3	1	3	1.1028790346411992	1	229
-2437450	Tamias sibiricus	Animalia	Mammalia	1	3	1	3	1	3	1	3	1	3	1	3	1.0810343018440756	1	359
-2226990	Pacifastacus leniusculus	Animalia	Malacostraca	1	3	1	3	1	3	1	3	1	3	1	3	1.0432776784729354	1	229
 3189815	Aesculus hippocastanum	Plantae	Magnoliopsida	1	3	1	3	1	3	1	3	1	3	1	3	1.0432274893725788	6	220
 2481092	Phalcoboenus megalopterus	Animalia	Aves	1	3	1	3	1	1	1	1	1	1	1	1	NaN	1	212
-2767229	Scilla sardensis	Plantae	Liliopsida	1	3	1	3		0		0		0		0	NaN	6	196
 4034001	Persicaria nepalensis	Plantae	Magnoliopsida	1	3	1	2	1	1	1	1	1	1	1	1	NaN	6	220
-2402129	Acipenser gueldenstaedtii	Animalia	Actinopterygii	1	3	1	1	3	3	3	1	1	1	3	1	NaN	1	204
+2402129	Acipenser gueldenstaedtii	Animalia	Actinopterygii	1	3	1	1	3	3	1	1	1	1	1	1	NaN	1	204
 2217982	Crangonyx pseudogracilis	Animalia	Malacostraca	1	3	1	1	1	3	1	1	2	3	1	1	0.9030977694317429	1	229
 2716226	Cyperus esculentus	Plantae	Liliopsida	1	3	1	1	1	3	1	1	1	3	1	1	0.9898897136121448	6	196
-2362868	Pseudorasbora parva	Animalia	Actinopterygii	1	3	1	1	1	3	1	1	1	3	1	1	0.950647675698046	1	204
 8485639	Ensis leei	Animalia	Bivalvia	1	3	1	1	1	3	1	1	1	3	1	1	0.922523488689766	1	137
 3040233	Populus alba	Plantae	Magnoliopsida	1	3	1	1	1	3	1	1	1	3	1	1	0.8885165591642672	6	220
 3040184	Populus balsamifera	Plantae	Magnoliopsida	1	3	1	1	1	3	1	1	1	3	1	1	0.8344681408380783	6	220
@@ -298,26 +297,28 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 7346102	Erythranthe guttata	Plantae	Magnoliopsida	1	3	1	0	1	3	1	0	1	3	1	0	0.9542506570089018	6	220
 2867614	Lemna minuta	Plantae	Liliopsida	1	3	1	0	1	3	1	0	1	3	1	0	0.905001863607199	6	196
 2479977	Nymphicus hollandicus	Animalia	Aves	1	3	0	3	1	3	0	3	1	3	0	3	1.1975342174156838	1	212
+2437450	Tamias sibiricus	Animalia	Mammalia	1	3	0	3	1	3	0	3	1	3	0	3	1.0810343018440756	1	359
 3189866	Acer negundo	Plantae	Magnoliopsida	1	3	0	3	1	3	0	3	1	3	0	3	1.008277803495067	6	220
 3021496	Prunus laurocerasus	Plantae	Magnoliopsida	1	3	0	1	1	3	0	1	1	3	0	1	0.9706802941489632	6	220
-2297108	Milax gagates	Animalia	Gastropoda	1	2	3	3	1	1	1	2	3	3	2	3	NaN	1	225
+2297108	Milax gagates	Animalia	Gastropoda	1	2	3	3	1	1	3	2	3	3	2	3	NaN	1	225
 2479553	Agapornis personatus	Animalia	Aves	1	2	3	3	1	1	1	1	1	1	1	1	NaN	1	212
-2469188	Podarcis muralis	Animalia	Reptilia	1	2	2	3	1	2	1	2	3	3	2	3	NaN	1	358
+2225772	Hemigrapsus sanguineus	Animalia	Malacostraca	1	2	3	2	1	2	3	2	1	1	1	1	NaN	1	229
+2331942	Styela clava	Animalia	Ascidiacea	1	2	3	2	1	1	1	1	1	1	1	2	NaN	1	356
+2469188	Podarcis muralis	Animalia	Reptilia	1	2	2	3	1	2	2	2	3	3	2	3	NaN	1	358
 2426640	Pelophylax bedriagae	Animalia	Amphibia	1	2	2	3	1	1	1	1	1	1	1	1	NaN	1	131
 2479329	Platycercus eximius	Animalia	Aves	1	2	2	2	2	2	2	2	1	1	1	1	NaN	1	212
-2331942	Styela clava	Animalia	Ascidiacea	1	2	2	2	1	1	1	1	1	1	1	2	NaN	1	356
+2687182	Tsuga canadensis	Plantae	Pinopsida	1	2	2	2	1	1	1	1	3	3	3	3	NaN	6	194
 2227663	Rhithropanopeus harrisii	Animalia	Malacostraca	1	2	1	3	2	2	1	3	3	2	1	3	1.7089862878033977	1	229
 5219858	Ondatra zibethicus	Animalia	Mammalia	1	2	1	3	1	2	1	3	1	2	1	3	1.1016656603294273	1	359
-2225772	Hemigrapsus sanguineus	Animalia	Malacostraca	1	2	1	2	1	2	1	2	1	1	1	1	NaN	1	229
-2687182	Tsuga canadensis	Plantae	Pinopsida	1	2	1	2	1	1	1	1	3	3	3	3	NaN	6	194
 7335777	Doryopteris raddiana	Plantae	Polypodiopsida	1	2	1	1	3	3	2	1	3	2	1	1	0.803131964809501	6	7228684
-2498162	Chen canagica	Animalia	Aves	1	2	1	0	2	2	1	0	2	2	1	0	0.583600046113053	1	212
+2498162	Chen canagica	Animalia	Aves	1	2	0	0	2	2	0	0	2	2	0	0	0.583600046113053	1	212
 2498252	Alopochen aegyptiaca	Animalia	Aves	1	2	0	0	1	2	0	0	1	2	0	0	0.929380047578667	1	212
-5408682	Lobelia pedunculata	Plantae	Magnoliopsida	1	1	3	3	3	3	3	3	1	1	2	3	NaN	6	220
+5408682	Lobelia pedunculata	Plantae	Magnoliopsida	1	1	3	3	3	3	3	3	1	1	3	3	NaN	6	220
 3067891	Euphorbia prostrata	Plantae	Magnoliopsida	1	1	3	3	3	1	2	3	1	1	3	3	NaN	6	220
 4938160	Berberis gagnepainii	Plantae	Magnoliopsida	1	1	3	3	2	2	3	3	1	1	1	1	NaN	6	220
 5831060	Crepis foetida rhoeadifolia	Plantae	Magnoliopsida	1	1	3	3	2	2	3	3	1	1	1	1	NaN	6	220
-2767271	Scilla luciliae	Plantae	Liliopsida	1	1	3	3	2	1	1	3	1	1	1	1	NaN	6	196
+2767271	Scilla luciliae	Plantae	Liliopsida	1	1	3	3	2	1	3	3	1	1	1	1	NaN	6	196
+5219681	Sciurus carolinensis	Animalia	Mammalia	1	1	3	3	1	2	2	2	1	1	1	1	NaN	1	359
 3886505	Phlomis russeliana	Plantae	Magnoliopsida	1	1	3	3	1	1	3	3	3	2	3	3	NaN	6	220
 7307327	Agastache rugosa	Plantae	Magnoliopsida	1	1	3	3	1	1	2	2	1	1	3	3	NaN	6	220
 7309012	Callicarpa bodinieri	Plantae	Magnoliopsida	1	1	3	3	1	1	1	1	1	1	1	1	NaN	6	220
@@ -325,7 +326,7 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 5387639	Aster ageratoides	Plantae	Magnoliopsida	1	1	3	3	1	1	1	1			1	1	NaN	6	220
 7322292	Oenothera cambrica	Plantae	Magnoliopsida	1	1	3	3			3	3			2	2	NaN	6	220
 3172613	Catalpa ovata	Plantae	Magnoliopsida	1	1	3	3			3	3			1	1	NaN	6	220
-7157952	Dryopteris erythrosora	Plantae	Polypodiopsida	1	1	3	3			3	3			1	1	NaN	6	7228684
+7157952	Dryopteris erythrosora	Plantae	Polypodiopsida	1	1	3	3			1	3			1	1	NaN	6	7228684
 2890651	Geranium psilostemon	Plantae	Magnoliopsida	1	1	3	3			1	1			1	1	NaN	6	220
 2928668	Dichondra argentea	Plantae	Magnoliopsida	1	1	3	3			1	1			1	1	NaN	6	220
 5229072	Psittacula derbiana	Animalia	Aves	1	1	3	3			1	1			1	1	NaN	1	212
@@ -334,64 +335,60 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2495342	Oena capensis	Animalia	Aves	1	1	3	3			0	0			0	0	NaN	1	212
 3064495	Euphorbia heterophylla	Plantae	Magnoliopsida	1	1	3	3			0	0			0	0	NaN	6	220
 7681436	Cytisus multiflorus	Plantae	Magnoliopsida	1	1	3	3			0	0			0	0	NaN	6	220
-2874199	Passiflora caerulea	Plantae	Magnoliopsida	1	1	3	2	3	3	3	3	1	1	2	2	NaN	6	220
-1152186	Callidiellum rufipennis	Animalia	Insecta	1	1	3	2	3	3	1	1	1	1	2	1	NaN	1	216
-2859597	Ipheion uniflorum	Plantae	Liliopsida	1	1	3	2	3	3	1	1	1	1	1	3	NaN	6	196
+2498387	Aix sponsa	Animalia	Aves	1	1	3	2	1	1	3	2	1	1	2	2	0.9843668213676762	1	212
 2879504	Quercus frainetto	Plantae	Magnoliopsida	1	1	3	2	1	1	1	1	3	3	3	2	NaN	6	220
 1713034	Gryllus bimaculatus	Animalia	Insecta	1	1	3	2			3	3			0	0	NaN	1	216
 2888806	Scabiosa ochroleuca	Plantae	Magnoliopsida	1	1	3	2			1	1			1	3	NaN	6	220
 5584240	Silene schafta	Plantae	Magnoliopsida	1	1	3	2			1	1			1	1	NaN	6	220
-5289503	Typha laxmannii	Plantae	Liliopsida	1	1	3	1	2	2	3	2	3	3	3	3	NaN	6	196
 3133938	Coreopsis lanceolata	Plantae	Magnoliopsida	1	1	3	1	2	2	3	1	1	1	1	1	0.8923063939765015	6	220
-5219681	Sciurus carolinensis	Animalia	Mammalia	1	1	2	3	1	2	1	2	1	1	1	1	NaN	1	359
+4989904	Harmonia axyridis	Animalia	Insecta	1	1	3	0	1	1	3	0	1	1	3	0	0.6561495370987631	1	216
 3096529	Mauranthemum paludosum	Plantae	Magnoliopsida	1	1	2	3	1	1	2	3	3	3	3	3	1.0276975375732225	6	220
 2498390	Marmaronetta angustirostris	Animalia	Aves	1	1	2	3	1	1	1	3	1	1	1	3	1.167079155995976	1	212
 3188829	Oenothera elata	Plantae	Magnoliopsida	1	1	2	2	3	3	3	3	1	1	3	3	NaN	6	220
+2874199	Passiflora caerulea	Plantae	Magnoliopsida	1	1	2	2	3	3	3	3	1	1	2	2	NaN	6	220
 4102952	Knautia macedonica	Plantae	Magnoliopsida	1	1	2	2	3	3	3	3	1	1	1	1	NaN	6	220
 7912328	Acer palmatum	Plantae	Magnoliopsida	1	1	2	2	3	3	3	3	1	1	1	1	NaN	6	220
-3032653	Heuchera sanguinea	Plantae	Magnoliopsida	1	1	2	2	3	3	3	2	3	3	2	2	NaN	6	220
+3032653	Heuchera sanguinea	Plantae	Magnoliopsida	1	1	2	2	3	3	3	2	3	3	3	2	NaN	6	220
 4133390	Lolium boucheanum	Plantae	Liliopsida	1	1	2	2	3	3	3	2	0	0	0	0	NaN	6	196
 8362005	Sasa palmata	Plantae	Liliopsida	1	1	2	2	3	3	2	2	1	3	3	3	NaN	6	196
 5930559	Ilex altaclerensis	Plantae	Magnoliopsida	1	1	2	2	3	3	2	2	1	1	3	3	NaN	6	220
 5370006	Geum ternatum	Plantae	Magnoliopsida	1	1	2	2	3	3	2	2	1	1	1	2	NaN	6	220
+2859597	Ipheion uniflorum	Plantae	Liliopsida	1	1	2	2	3	3	1	1	1	1	3	3	NaN	6	196
+1152186	Callidiellum rufipennis	Animalia	Insecta	1	1	2	2	3	3	1	1	1	1	2	1	NaN	1	216
 2474162	Coturnix japonica	Animalia	Aves	1	1	2	2	3	2	3	3	0	1	3	2	NaN	1	212
 3026049	Cotoneaster dammeri	Plantae	Magnoliopsida	1	1	2	2	2	3	3	3	2	2	3	3	NaN	6	220
 5358774	Trifolium nigrescens	Plantae	Magnoliopsida	1	1	2	2	2	2	2	2	3	3	3	3	NaN	6	220
 5415455	Acanthus mollis	Plantae	Magnoliopsida	1	1	2	2	2	2	2	2	1	1	2	2	NaN	6	220
-2703231	Zizania latifolia	Plantae	Liliopsida	1	1	2	2	1	3	2	3	1	1	1	1	NaN	6	196
+2287073	Dreissena bugensis	Animalia	Bivalvia	1	1	2	2	2	2	2	1	3	3	3	3	NaN	1	137
+2703231	Zizania latifolia	Plantae	Liliopsida	1	1	2	2	1	3	3	3	1	1	1	1	NaN	6	196
 2927303	Lavandula stoechas	Plantae	Magnoliopsida	1	1	2	2	1	1	3	3	1	1	3	3	NaN	6	220
 1722299	Gryllodes sigillatus	Animalia	Insecta	1	1	2	2	1	1	3	3	1	1	1	1	NaN	1	216
 3889056	Perovskia atriplicifolia	Plantae	Magnoliopsida	1	1	2	2	1	1	3	3			3	3	NaN	6	220
 2498064	Anas erythrorhyncha	Animalia	Aves	1	1	2	2	1	1	3	3			1	1	NaN	1	212
 7319302	Dryopteris cycadina	Plantae	Polypodiopsida	1	1	2	2	1	1	2	2	1	1	3	2	NaN	6	7228684
-2498387	Aix sponsa	Animalia	Aves	1	1	2	2	1	1	2	2	1	1	2	2	0.9843668213676762	1	212
 3040232	Populus deltoides	Plantae	Magnoliopsida	1	1	2	2	1	1	2	2	1	1	1	1	NaN	6	220
-2925366	Clerodendrum trichotomum	Plantae	Magnoliopsida	1	1	2	2	1	1	1	1	1	1	2	3	NaN	6	220
+2220312	Hemimysis anomala	Animalia	Malacostraca	1	1	2	2	1	1	1	1	2	2	2	2	NaN	1	229
+2925366	Clerodendrum trichotomum	Plantae	Magnoliopsida	1	1	2	2	1	1	1	1	1	1	3	3	NaN	6	220
 4925890	Acer tataricum ginnala	Plantae	Magnoliopsida	1	1	2	2	1	1	1	1	1	1	2	2	NaN	6	220
 3032646	Heuchera micrantha	Plantae	Magnoliopsida	1	1	2	2			1	1			3	3	NaN	6	220
-2495494	Geopelia cuneata	Animalia	Aves	1	1	2	1	3	3	3	1	1	1	1	1	0.9513210797735632	1	212
-2869311	Lysichiton americanus	Plantae	Liliopsida	1	1	2	1	3	2	3	2	3	2	1	2	NaN	6	196
-5361888	Morus nigra	Plantae	Magnoliopsida	1	1	2	1	2	2	3	1	1	1	2	1	0.5011129945915954	6	220
-2891783	Impatiens balfourii	Plantae	Magnoliopsida	1	1	2	1	2	2	2	1	2	2	2	1	0.8056815441533193	6	220
+2495494	Geopelia cuneata	Animalia	Aves	1	1	2	1	3	3	3	1	1	1	3	1	0.9513210797735632	1	212
+2891783	Impatiens balfourii	Plantae	Magnoliopsida	1	1	2	1	2	2	2	1	2	2	3	1	0.8056815441533193	6	220
+5361888	Morus nigra	Plantae	Magnoliopsida	1	1	2	1	2	2	2	1	1	1	2	1	0.5011129945915954	6	220
 3040999	Raphanus raphanistrum landra	Plantae	Magnoliopsida	1	1	2	1	2	1	2	1	2	1	2	1	0.7194051912359346	6	220
 3069460	Euphorbia oblongata	Plantae	Magnoliopsida	1	1	2	1	1	1	2	2	3	2	3	3	NaN	6	220
-2702822	Echinochloa frumentacea	Plantae	Liliopsida	1	1	2	1	1	1	2	1	3	2	2	1	0.818013916647019	6	196
-2367742	Pimephales promelas	Animalia	Actinopterygii	1	1	2	1	1	1	2	1	2	2	2	1	0.4346634026266963	1	204
+2702822	Echinochloa frumentacea	Plantae	Liliopsida	1	1	2	1	1	1	2	1	3	2	1	1	0.818013916647019	6	196
 3172059	Veronica spicata	Plantae	Magnoliopsida	1	1	2	1	1	1	2	1	2	1	2	1	0.9890240897601332	6	220
 2494097	Euplectes afer	Animalia	Aves	1	1	2	0	3	1	2	0	2	1	2	0	0.5658596756646294	1	212
 5341497	Nepeta racemosa	Plantae	Magnoliopsida	1	1	2	0	2	2	2	0	3	2	2	0	0.549702465677459	6	220
 2889037	Rumex rugosus	Plantae	Magnoliopsida	1	1	2	0	1	1	2	0	3	3	2	0	0.6683636325047698	6	220
-2495414	Columba livia	Animalia	Aves	1	1	1	3	1	3	1	3	1	3	1	3	1.1906392474879546	1	212
 3189073	Epilobium brachycarpum	Plantae	Magnoliopsida	1	1	1	3	1	1	3	3			3	1	NaN	6	220
-2287073	Dreissena bugensis	Animalia	Bivalvia	1	1	1	2	2	2	2	1	3	3	3	3	NaN	1	137
 3033396	Ranunculus marginatus	Plantae	Magnoliopsida	1	1	1	2	1	1	1	2	1	1	2	2	NaN	6	220
 2889304	Persicaria capitata	Plantae	Magnoliopsida	1	1	1	2	1	1	1	2	1	1	1	2	0.9109100438182116	6	220
-2220312	Hemimysis anomala	Animalia	Malacostraca	1	1	1	2	1	1	1	1	2	2	2	2	NaN	1	229
 2765940	Eichhornia crassipes	Plantae	Liliopsida	1	1	1	1	3	3	3	3	2	2	3	3	NaN	6	196
 2493598	Lonchura punctulata	Animalia	Aves	1	1	1	1	3	3	3	3	1	1	1	1	NaN	1	212
 3768287	Acer cissifolium	Plantae	Magnoliopsida	1	1	1	1	3	3	3	3	1	1	1	1	NaN	6	220
 5410826	Campanula carpatica	Plantae	Magnoliopsida	1	1	1	1	3	3	3	3	1	1	1	1	NaN	6	220
-3741446	Erinus alpinus	Plantae	Magnoliopsida	1	1	1	1	3	3	3	3	0	3	0	3	NaN	6	220
+3741446	Erinus alpinus	Plantae	Magnoliopsida	1	1	1	1	3	3	3	3	0	3	3	3	NaN	6	220
 3027791	Alchemilla micans	Plantae	Magnoliopsida	1	1	1	1	3	3	3	3	0	0	0	0	NaN	6	220
 2498313	Nettapus auritus	Animalia	Aves	1	1	1	1	3	3	2	2	3	3	2	2	NaN	1	212
 3190411	Ptelea trifoliata	Plantae	Magnoliopsida	1	1	1	1	3	3	2	2	1	1	1	1	NaN	6	220
@@ -399,7 +396,9 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 9521148	Chenopodium probstii	Plantae	Magnoliopsida	1	1	1	1	3	3	2	1	1	1	1	1	0.29742677297789155	6	220
 8421432	Cornus sanguinea hungarica	Plantae	Magnoliopsida	1	1	1	1	3	3	1	1	1	1	1	1	NaN	6	220
 3139003	Melampodium montanum	Plantae	Magnoliopsida	1	1	1	1	3	3	1	1	0	0	1	1	NaN	6	220
+2869311	Lysichiton americanus	Plantae	Liliopsida	1	1	1	1	3	2	3	2	3	2	2	2	NaN	6	196
 5584611	Silene chalcedonica	Plantae	Magnoliopsida	1	1	1	1	3	2	2	2	3	3	2	3	NaN	6	220
+5289503	Typha laxmannii	Plantae	Liliopsida	1	1	1	1	2	2	3	2	3	3	3	3	NaN	6	196
 2489005	Acridotheres tristis	Animalia	Aves	1	1	1	1	2	2	3	2	3	3	3	2	NaN	1	212
 5395475	Ligularia dentata	Plantae	Magnoliopsida	1	1	1	1	2	2	3	2	2	2	1	1	NaN	6	220
 2874706	Tamarix parviflora	Plantae	Magnoliopsida	1	1	1	1	2	2	2	2	2	2	2	2	NaN	6	220
@@ -409,8 +408,8 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3054117	Aubrieta deltoidea	Plantae	Magnoliopsida	1	1	1	1	2	2	1	1	2	2	2	2	NaN	6	220
 2874515	Cucurbita maxima	Plantae	Magnoliopsida	1	1	1	1	2	2	1	1	2	2	1	1	0.8326943274287026	6	220
 3046015	Cardamine corymbosa	Plantae	Magnoliopsida	1	1	1	1	2	1	2	2	2	2	2	2	NaN	6	220
-2402168	Acipenser ruthenus	Animalia	Actinopterygii	1	1	1	1	2	1	2	1	2	1	2	1	NaN	1	204
 2498139	Anas cyanoptera	Animalia	Aves	1	1	1	1	2	1	2	1	2	1	1	1	0.9332879715093061	1	212
+2402168	Acipenser ruthenus	Animalia	Actinopterygii	1	1	1	1	2	1	1	1	2	1	1	1	NaN	1	204
 3171304	Mazus pumilus	Plantae	Magnoliopsida	1	1	1	1	1	3	3	3	1	1	1	1	NaN	6	220
 7263145	Acer rufinerve	Plantae	Magnoliopsida	1	1	1	1	1	3	3	3	1	1	1	1	NaN	6	220
 3171952	Verbascum speciosum	Plantae	Magnoliopsida	1	1	1	1	1	3	2	2	1	1	2	3	NaN	6	220
@@ -421,24 +420,25 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 5401007	Leucanthemum superbum	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3	1	1	1	1	NaN	6	220
 5701337	Dahlia cultorum	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3	1	1	1	1	NaN	6	220
 7740617	Skimmia japonica	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3	1	1	1	1	NaN	6	220
+9291405	Massylaea vermiculata	Animalia	Gastropoda	1	1	1	1	1	1	3	3	1	1	1	1	NaN	1	225
 10661581	Geranium dalmaticum x macrorrhizum	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3	1	1	1	1	NaN	6	220
 3636471	Hydrocotyle novae-zeelandiae	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3			3	3	NaN	6	220
 3172068	Veronica cymbalaria	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3			1	1	NaN	6	220
 7277286	Thalictrum speciosissimum	Plantae	Magnoliopsida	1	1	1	1	1	1	3	3			1	1	NaN	6	220
+2705622	Paspalum distichum	Plantae	Liliopsida	1	1	1	1	1	1	3	3			0	0	NaN	6	196
 8214730	Elaeagnus pungens	Plantae	Magnoliopsida	1	1	1	1	1	1	3	2			1	1	NaN	6	220
 2704194	Poa infirma	Plantae	Liliopsida	1	1	1	1	1	1	3	1	1	1	1	1	NaN	6	196
 2891664	Oxalis articulata	Plantae	Magnoliopsida	1	1	1	1	1	1	2	2	3	3	3	3	NaN	6	220
-2177741	Hasarius adansoni	Animalia	Arachnida	1	1	1	1	1	1	2	2	1	1	2	2	NaN	1	367
-5602664	Canna generalis	Plantae	Liliopsida	1	1	1	1	1	1	2	2	1	1	1	2	NaN	6	196
+5602664	Canna generalis	Plantae	Liliopsida	1	1	1	1	1	1	2	2	1	1	2	2	NaN	6	196
+2177741	Hasarius adansoni	Animalia	Arachnida	1	1	1	1	1	1	2	2	1	1	1	2	NaN	1	367
 2888636	Symphoricarpos orbiculatus	Plantae	Magnoliopsida	1	1	1	1	1	1	2	2	1	1	1	1	NaN	6	220
 3088488	Tagetes erecta	Plantae	Magnoliopsida	1	1	1	1	1	1	2	2	1	1	1	1	NaN	6	220
 3138195	Eutrochium maculatum	Plantae	Magnoliopsida	1	1	1	1	1	1	2	2	1	1	1	1	NaN	6	220
 8021567	Hypericum olympicum	Plantae	Magnoliopsida	1	1	1	1	1	1	2	2			1	1	NaN	6	220
-6391417	Rumex thyrsiflorus	Plantae	Magnoliopsida	1	1	1	1	1	1	2	1	2	1	2	1	0.9812670937459295	6	220
+2367742	Pimephales promelas	Animalia	Actinopterygii	1	1	1	1	1	1	2	1	2	2	2	1	0.4346634026266963	1	204
+6391417	Rumex thyrsiflorus	Plantae	Magnoliopsida	1	1	1	1	1	1	2	1	2	1	1	1	0.9812670937459295	6	220
 5227966	Lophura nycthemera	Animalia	Aves	1	1	1	1	1	1	2	1	1	1	1	1	0.8069991643901671	1	212
 5406735	Sida rhombifolia	Plantae	Magnoliopsida	1	1	1	1	1	1	2	1			2	1	0.8205436569579456	6	220
-9291405	Massylaea vermiculata	Animalia	Gastropoda	1	1	1	1	1	1	1	3	1	1	1	1	NaN	1	225
-2705622	Paspalum distichum	Plantae	Liliopsida	1	1	1	1	1	1	1	3				0	NaN	6	196
 2717467	Eleocharis obtusa	Plantae	Liliopsida	1	1	1	1	1	1	1	2	2	2	2	2	NaN	6	196
 8993502	Silene italica	Plantae	Magnoliopsida	1	1	1	1	1	1	1	2	1	1	2	2	NaN	6	220
 2480446	Haliaeetus leucocephalus	Animalia	Aves	1	1	1	1	1	1	1	1	3	3	3	3	NaN	1	212
@@ -455,20 +455,21 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3034523	Caucalis platycarpos	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	3	2	3	3	NaN	6	220
 2994120	Rubus cockburnianus	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	3	2	3	2	NaN	6	220
 5232445	Branta sandvicensis	Animalia	Aves	1	1	1	1	1	1	1	1	3	2	1	1	0.6074321808080739	1	212
+2700768	Luzula nivea	Plantae	Liliopsida	1	1	1	1	1	1	1	1	3	1	3	1	NaN	6	196
 3112361	Cynara scolymus	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	3	1	3	1	NaN	6	220
-2700768	Luzula nivea	Plantae	Liliopsida	1	1	1	1	1	1	1	1	3	1	1	1	NaN	6	196
 2480985	Caracara cheriway	Animalia	Aves	1	1	1	1	1	1	1	1	2	2	2	2	NaN	1	212
 2498007	Tadorna tadornoides	Animalia	Aves	1	1	1	1	1	1	1	1	2	2	2	2	NaN	1	212
 7230699	Pinus nigra nigra	Plantae	Pinopsida	1	1	1	1	1	1	1	1	2	2	2	2	NaN	6	194
 2479311	Platycercus elegans	Animalia	Aves	1	1	1	1	1	1	1	1	2	2	1	1	NaN	1	212
 5396474	Heliopsis helianthoides	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	2	2	1	1	NaN	6	220
 5177089	Jaera istri	Animalia	Malacostraca	1	1	1	1	1	1	1	1	2	1	2	1	0.9636868940701373	1	229
-2717402	Eleocharis mamillata austriaca	Plantae	Liliopsida	1	1	1	1	1	1	1	1	1	3	1	3	NaN	6	196
+2717402	Eleocharis mamillata austriaca	Plantae	Liliopsida	1	1	1	1	1	1	1	1	1	3	3	3	NaN	6	196
 2435035	Felis catus	Animalia	Mammalia	1	1	1	1	1	1	1	1	1	3	1	1	0.6774646987682279	1	359
 2928761	Nicotiana alata	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	3	1	1	NaN	6	220
 4845776	Lonchura oryzivora	Animalia	Aves	1	1	1	1	1	1	1	1	1	3	1	1	NaN	1	212
-5178057	Caprella mutica	Animalia	Malacostraca	1	1	1	1	1	1	1	1	1	2	1	2	NaN	1	229
+5178057	Caprella mutica	Animalia	Malacostraca	1	1	1	1	1	1	1	1	1	2	2	2	NaN	1	229
 2489080	Lamprotornis purpureus	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	3	3	NaN	1	212
+2869597	Sauromatum venosum	Plantae	Liliopsida	1	1	1	1	1	1	1	1	1	1	3	3	NaN	6	196
 2888797	Cephalaria gigantea	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	3	3	NaN	6	220
 2986022	Philadelphus pubescens	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	3	3	NaN	6	220
 5392271	Cichorium calvum	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	3	3	NaN	6	220
@@ -476,11 +477,9 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 8242349	Lonicera chrysantha	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	3	3	NaN	6	220
 9685907	Falco sparverius	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	3	3	NaN	1	212
 2475648	Dacelo novaeguineae	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	3	2	NaN	1	212
+1313740	Camponotus vagus	Animalia	Insecta	1	1	1	1	1	1	1	1	1	1	2	2	NaN	1	216
 2493698	Amandava amandava	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	2	2	NaN	1	212
-2869597	Sauromatum venosum	Plantae	Liliopsida	1	1	1	1	1	1	1	1	1	1	1	3	NaN	6	196
-1313740	Camponotus vagus	Animalia	Insecta	1	1	1	1	1	1	1	1	1	1	1	2	NaN	1	216
 3678256	Cuscuta lupuliformis	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	1	2	NaN	6	220
-2686212	Larix decidua	Plantae	Pinopsida	1	1	1	1	1	1	1	1	1	1	1	1	0.9552013600478552	6	194
 2498110	Anas sibilatrix	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	1	1	0.9493679602768912	1	212
 8313153	Quercus palustris	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	1	1	0.9374722420590212	6	220
 2498388	Aix galericulata	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	1	1	0.9332097421231841	1	212
@@ -490,7 +489,6 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2705090	Panicum miliaceum	Plantae	Liliopsida	1	1	1	1	1	1	1	1	1	1	1	1	0.899400444486335	6	196
 2480764	Threskiornis aethiopicus	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	1	1	0.8757638683160738	1	212
 2498065	Anas flavirostris	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	1	1	0.8630478355440382	1	212
-5285637	Pinus sylvestris	Plantae	Pinopsida	1	1	1	1	1	1	1	1	1	1	1	1	0.8332149227314801	6	194
 3012089	Sorbaria sorbifolia	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	1	1	0.8223612185820248	6	220
 2498329	Bucephala albeola	Animalia	Aves	1	1	1	1	1	1	1	1	1	1	1	1	0.8108909268127446	1	212
 7820753	Magallana gigas	Animalia	Bivalvia	1	1	1	1	1	1	1	1	1	1	1	1	0.8094361342592766	1	137
@@ -566,10 +564,11 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 9567226	Oxybasis glauca salina	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	1	1	NaN	6	220
 10172912	Cerastium arvense subsp. arvense x tomentosum	Plantae	Magnoliopsida	1	1	1	1	1	1	1	1	1	1	1	1	NaN	6	220
 2220347	Limnomysis benedeni	Animalia	Malacostraca	1	1	1	1	0	1	1	1	1	1	1	1	NaN	1	229
+2437282	Tamiasciurus hudsonicus	Animalia	Mammalia	1	1	1	1			3	3			1	1	NaN	1	359
 2495134	Dromaius novaehollandiae	Animalia	Aves	1	1	1	1			1	1			1	1	NaN	1	212
 2888859	Muehlenbeckia complexa	Plantae	Magnoliopsida	1	1	1	1			1	1			1	1	NaN	6	220
 3902360	Mentha cervina	Plantae	Magnoliopsida	1	1	1	1			1	1			1	1	NaN	6	220
-2437282	Tamiasciurus hudsonicus	Animalia	Mammalia	1	1	1	1				3				1	NaN	1	359
+2706026	Miscanthus sinensis	Plantae	Liliopsida	1	1	1	0	2	2	1	0	2	2	1	0	0.671701973059211	6	196
 5392145	Bidens radiata	Plantae	Magnoliopsida	1	1	1	0	2	1	2	0	2	1	2	0	0.4973913685807949	6	220
 5567694	Bergenia crassifolia	Plantae	Magnoliopsida	1	1	1	0	1	1	1	0	2	2	2	0	0.24738040740761746	6	220
 3042845	Brassica oleracea	Plantae	Magnoliopsida	1	1	1	0	1	1	1	0	2	1	1	0	0.8568937183857903	6	220
@@ -584,16 +583,19 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2498402	Dendrocygna bicolor	Animalia	Aves	1	1	1	0	1	1	1	0	1	1	1	0	0.7372538536567078	1	212
 5229055	Psittacula eupatria	Animalia	Aves	1	1	1	0	1	1	1	0	1	1	1	0	0.7125121410201979	1	212
 5330661	Arum italicum	Plantae	Liliopsida	1	1	1	0	1	1	1	0	1	1	1	0	0.6740145256725467	6	196
-4989904	Harmonia axyridis	Animalia	Insecta	1	1	1	0	1	1	1	0	1	1	1	0	0.6561495370987631	1	216
 3025896	Cotoneaster dielsianus	Plantae	Magnoliopsida	1	1	1	0	1	1	1	0	1	1	1	0	0.6558553423864044	6	220
 2772174	Muscari armeniacum	Plantae	Liliopsida	1	1	1	0	1	1	1	0	1	1	1	0	0.5783331630223216	6	196
 3015457	Crataegus persimilis	Plantae	Magnoliopsida	1	1	1	0	1	1	1	0	1	1	1	0	0.44235848952388995	6	220
 2926572	Physostegia virginiana	Plantae	Magnoliopsida	1	1	1	0	1	1	1	0	1	1	1	0	0.10087258511725962	6	220
-2706026	Miscanthus sinensis	Plantae	Liliopsida	1	1	0	0	2	2	0	0	2	2	0	0	0.671701973059211	6	196
+2495414	Columba livia	Animalia	Aves	1	1	0	3	1	3	0	3	1	3	0	3	1.1906392474879546	1	212
+2686212	Larix decidua	Plantae	Pinopsida	1	1	0	1	1	1	0	1	1	1	0	1	0.9552013600478552	6	194
+5285637	Pinus sylvestris	Plantae	Pinopsida	1	1	0	1	1	1	0	1	1	1	0	1	0.8332149227314801	6	194
 2498090	Anas bahamensis	Animalia	Aves	1	1	0	0	1	1	0	0	1	1	0	0	0.8452295261958895	1	212
 5598915	Lonicera pileata	Plantae	Magnoliopsida	1	1	0	0	1	1	0	0	1	1	0	0	0.830274661441889	6	220
-2498035	Anser indicus	Animalia	Aves	1	0	3	2	1	0	3	2	1	0	2	2	0.9710330278496336	1	212
-9188840	Epilobium ciliatum	Plantae	Magnoliopsida	1	0	2	0	1	0	2	0	1	0	2	0	0.8728273485898355	6	220
+5361785	Myriophyllum aquaticum	Plantae	Magnoliopsida	1	0	3	0	1	0	3	0	1	0	3	0	0.6410814538974737	6	220
+9188840	Epilobium ciliatum	Plantae	Magnoliopsida	1	0	3	0	1	0	2	0	1	0	2	0	0.8728273485898355	6	220
+2498035	Anser indicus	Animalia	Aves	1	0	2	2	1	0	2	2	1	0	2	2	0.9710330278496336	1	212
+7978544	Hydrocotyle ranunculoides	Plantae	Magnoliopsida	1	0	2	0	1	0	2	0	1	0	2	0	0.6985052828239564	6	220
 4382841	Hemigrapsus takanoi	Animalia	Malacostraca	1	0	2	0	1	0	1	0	2	0	2	0	0.7798494517104124	1	229
 7802465	Nymphaea marliacea	Plantae	Magnoliopsida	1	0	1	3	1	2	1	3	1	2	1	3	1.1389482507688404	6	220
 3146683	Erigeron sumatrensis	Plantae	Magnoliopsida	1	0	1	2	1	0	1	2	1	0	1	2	0.8603676798562787	6	220
@@ -601,10 +603,8 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2337607	Silurus glanis	Animalia	Actinopterygii	1	0	1	1	1	0	1	1	1	0	1	1	0.9009042760411342	1	204
 2498165	Chen caerulescens	Animalia	Aves	1	0	1	1	1	0	1	1	1	0	1	1	0.8809516530744359	1	212
 9450106	Anas poecilorhyncha	Animalia	Aves	1	0	1	0	1	0	1	0	3	0	3	0	0.6185018045455352	1	212
-3084022	Phytolacca acinosa	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.9571649620436481	6	220
 3025617	Cotoneaster horizontalis	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.8978853205555252	6	220
 5365705	Potentilla intermedia	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.894187687838642	6	220
-5284884	Picea abies	Plantae	Pinopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.8741953877915595	6	194
 2498034	Anser cygnoides	Animalia	Aves	1	0	1	0	1	0	1	0	1	0	1	0	0.8221695754315957	1	212
 2287249	Ensis directus	Animalia	Bivalvia	1	0	1	0	1	0	1	0	1	0	1	0	0.8182725966440617	1	137
 8190077	Populus canadensis	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.8147640541002354	6	220
@@ -612,44 +612,45 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2891774	Impatiens capensis	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.7525926430276962	6	220
 9326020	Gallus gallus	Animalia	Aves	1	0	1	0	1	0	1	0	1	0	1	0	0.73248800744981	1	212
 1690429	Meconema meridionale	Animalia	Insecta	1	0	1	0	1	0	1	0	1	0	1	0	0.7073751200135456	1	216
-7978544	Hydrocotyle ranunculoides	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.6985052828239564	6	220
 5285565	Pinus pinaster	Plantae	Pinopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.6929742648191342	6	194
-5361785	Myriophyllum aquaticum	Plantae	Magnoliopsida	1	0	1	0	1	0	1	0	1	0	1	0	0.6410814538974737	6	220
 5232428	Chloephaga picta	Animalia	Aves	1	0	1	0	1	0	1	0	1	0	1	0	0.6019671537948313	1	212
 3028528	Alchemilla mollis	Plantae	Magnoliopsida	1	0	0	0	1	2	0	0	1	2	0	2	0.9393059067524292	6	220
+3084022	Phytolacca acinosa	Plantae	Magnoliopsida	1	0	0	0	1	0	0	0	1	0	0	0	0.9571649620436481	6	220
 3040185	Populus canescens	Plantae	Magnoliopsida	1	0	0	0	1	0	0	0	1	0	0	0	0.8845244975841758	6	220
+5284884	Picea abies	Plantae	Pinopsida	1	0	0	0	1	0	0	0	1	0	0	0	0.8741953877915595	6	194
 2219863	Gammarus tigrinus	Animalia	Malacostraca	1	0	0	0	1	0	0	0	1	0	0	0	0.6695685800040844	1	229
-2772885	Ornithogalum pyramidale	Plantae	Liliopsida	0	3	1	3	1	1	3	3	1	3	1	3	NaN	6	196
+2772885	Ornithogalum pyramidale	Plantae	Liliopsida	0	3	3	3	1	1	3	3	1	3	3	3	NaN	6	196
+2501248	Mnemiopsis leidyi	Animalia	Tentaculata	0	3	3	3	0	1	1	1	0	1	3	3	NaN	1	365
+2327735	Ficopomatus enigmaticus	Animalia	Polychaeta	0	3	2	3	0	1	2	2	0	1	1	1	NaN	1	256
 2890541	Geranium purpureum	Plantae	Magnoliopsida	0	3	1	1	0	3	1	3	0	3	1	3	1.0223093452729521	6	220
 5421039	Ludwigia grandiflora	Plantae	Magnoliopsida	0	3	1	1	0	3	1	1	0	3	1	1	0.934952149361655	6	220
 2479226	Psittacula krameri	Animalia	Aves	0	3	1	1	0	3	1	1	0	3	1	1	0.8911184950470007	1	212
-2327735	Ficopomatus enigmaticus	Animalia	Polychaeta	0	3	0	3	0	1	0	2	0	1	0	1	NaN	1	256
-2501248	Mnemiopsis leidyi	Animalia	Tentaculata	0	3	0	3	0	1	0	1	0	1	0	3	NaN	1	365
-2266561	Nemopsis bachei	Animalia	Hydrozoa	0	2	0	2	0	1	0	1	0	1	0	2	NaN	1	205
-2476041	Bucorvus leadbeateri	Animalia	Aves	0	1	2	2	0	1	0	1	0	1	1	1	NaN	1	212
+2266561	Nemopsis bachei	Animalia	Hydrozoa	0	2	2	2	0	1	2	1	0	1	1	2	NaN	1	205
+5199161	Hypania invalida	Animalia	Polychaeta	0	1	2	2	0	1	1	1	1	1	1	1	NaN	1	256
+2476041	Bucorvus leadbeateri	Animalia	Aves	0	1	2	2	0	1	1	1	0	1	1	1	NaN	1	212
 5285074	Pinus wallichiana	Plantae	Pinopsida	0	1	1	1	1	1	1	1	1	3	1	1	NaN	6	194
-7294681	Pulmonaria longifolia	Plantae	Magnoliopsida	0	1	1	1	0	3	1	2	0	3	1	2	NaN	6	220
-3666323	Epilobium dodonaei	Plantae	Magnoliopsida	0	1	1	1	0	1	2	2	0	2	0	2	NaN	6	220
+7294681	Pulmonaria longifolia	Plantae	Magnoliopsida	0	1	1	1	0	3	2	2	0	3	2	2	NaN	6	220
+3666323	Epilobium dodonaei	Plantae	Magnoliopsida	0	1	1	1	0	1	2	2	0	2	2	2	NaN	6	220
 2781103	Hemerocallis lilioasphodelus	Plantae	Liliopsida	0	1	1	1	0	1	2	2	0	1	2	2	NaN	6	196
+5369784	Geum macrophyllum	Plantae	Magnoliopsida	0	1	1	1	0	1	1	1	0	3	1	1	0.9209226822643366	6	220
 8035075	Crassula helmsii	Plantae	Magnoliopsida	0	1	1	1	0	1	1	1	0	3	1	1	0.4784488505722928	6	220
+2362473	Hypophthalmichthys molitrix	Animalia	Actinopterygii	0	1	1	1	0	1	1	1	0	1	2	2	NaN	1	204
 2888625	Viburnum rhytidophyllum	Plantae	Magnoliopsida	0	1	1	1	0	1	1	1	0	1	1	1	0.9333877808488568	6	220
 2436940	Oryctolagus cuniculus	Animalia	Mammalia	0	1	1	1	0	1	1	1	0	1	1	1	0.8399157127249591	1	359
-2439261	Rattus norvegicus	Animalia	Mammalia	0	1	1	0	0	1	1	0	0	1	1	0	0.9523148461964975	1	359
+2705512	Glyceria canadensis	Plantae	Liliopsida	0	1	1	1	0	1	1	1	0	1	1	1	NaN	6	196
 2685796	Pseudotsuga menziesii	Plantae	Pinopsida	0	1	1	0	0	1	1	0	0	1	1	0	0.8648271372421764	6	194
+2205951	Proasellus coxalis	Animalia	Malacostraca	0	1	1	0	0	1	1	0	0	1	1	0	0.4756425616599491	1	229
 2498384	Callonetta leucophrys	Animalia	Aves	0	1	1	0	0	0	1	0	0	0	1	0	0.7004450880030545	1	212
-5199161	Hypania invalida	Animalia	Polychaeta	0	1	0	2	0	1	0	1	1	1	1	1	NaN	1	256
-2362473	Hypophthalmichthys molitrix	Animalia	Actinopterygii	0	1	0	1	0	1	1	1	0	1	1	2	NaN	1	204
-5369784	Geum macrophyllum	Plantae	Magnoliopsida	0	1	0	1	0	1	0	1	0	3	0	1	0.9209226822643366	6	220
-2705512	Glyceria canadensis	Plantae	Liliopsida	0	1	0	1	0	1	0	1	0	1	0	1	NaN	6	196
-2205951	Proasellus coxalis	Animalia	Malacostraca	0	1	0	0	0	1	0	0	0	1	0	0	0.4756425616599491	1	229
+2439261	Rattus norvegicus	Animalia	Mammalia	0	1	0	0	0	1	0	0	0	1	0	0	0.9523148461964975	1	359
 3033965	Akebia quinata	Plantae	Magnoliopsida	0	0	3	3	1	1	3	3	1	1	1	1	NaN	6	220
 2925496	Verbena rigida	Plantae	Magnoliopsida	0	0	3	3	1	1	1	1	1	1	1	1	NaN	6	220
 4532122	Cydalima perspectalis	Animalia	Insecta	0	0	3	3	0	0	3	3	1	1	3	3	NaN	1	216
 5359660	Glycine max	Plantae	Magnoliopsida	0	0	3	3	0	0	2	3	0	0	2	3	1.0255675919069822	6	220
+8010851	Acer japonicum	Plantae	Magnoliopsida	0	0	3	3	0	0	2	2	1	1	1	1	NaN	6	220
 5361944	Broussonetia papyrifera	Plantae	Magnoliopsida	0	0	3	3	0	0	1	1	0	0	3	3	NaN	6	220
 3111758	Zinnia violacea	Plantae	Magnoliopsida	0	0	3	3	0	0	1	1	0	0	1	1	NaN	6	220
 5414959	Collinsia heterophylla	Plantae	Magnoliopsida	0	0	3	3	0	0	0	0	1	1	1	1	NaN	6	220
-5363819	Photinia villosa	Plantae	Magnoliopsida	0	0	3	3	0	0	0	0	0	1	0	1	NaN	6	220
+5363819	Photinia villosa	Plantae	Magnoliopsida	0	0	3	3	0	0	0	0	0	1	1	1	NaN	6	220
 2474055	Alectoris graeca	Animalia	Aves	0	0	3	3	0	0	0	0	0	0	0	0	NaN	1	212
 2498405	Dendrocygna eytoni	Animalia	Aves	0	0	3	3	0	0	0	0	0	0	0	0	NaN	1	212
 3033905	Berberis darwinii	Plantae	Magnoliopsida	0	0	3	3	0	0	0	0	0	0	0	0	NaN	6	220
@@ -659,11 +660,13 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3046744	Sisymbrium volgense	Plantae	Magnoliopsida	0	0	2	3	0	0	1	3	0	0	1	3	1.0642692944400354	6	220
 2928034	Nemophila maculata	Plantae	Magnoliopsida	0	0	2	2	1	1	3	3	1	1	1	1	NaN	6	220
 5359411	Trifolium pallidum	Plantae	Magnoliopsida	0	0	2	2	1	1	1	1	1	1	1	1	NaN	6	220
-5232432	Cereopsis novaehollandiae	Animalia	Aves	0	0	2	2	0	1	0	1	0	1	0	1	NaN	1	212
+5232432	Cereopsis novaehollandiae	Animalia	Aves	0	0	2	2	0	1	1	1	0	1	1	1	NaN	1	212
 2888323	Clethra alnifolia	Plantae	Magnoliopsida	0	0	2	2	0	0	3	3	0	0	3	3	NaN	6	220
 7303117	Plantago sempervirens	Plantae	Magnoliopsida	0	0	2	2	0	0	3	3	0	0	3	3	NaN	6	220
+5182343	Haliclona xena	Animalia	Demospongiae	0	0	2	2	0	0	2	2	0	0	2	2	NaN	1	199
 3152816	Platanus orientalis	Plantae	Magnoliopsida	0	0	2	2	0	0	1	1	1	1	1	2	NaN	6	220
 2928861	Petunia integrifolia	Plantae	Magnoliopsida	0	0	2	2	0	0	1	1	0	0	2	2	NaN	6	220
+5229203	Bostrychia hagedash	Animalia	Aves	0	0	2	2	0	0	1	1	0	0	2	2	NaN	1	212
 2481034	Falco cherrug	Animalia	Aves	0	0	2	2	0	0	0	0	0	0	1	1	NaN	1	212
 5228229	Balearica regulorum	Animalia	Aves	0	0	2	1	1	1	2	1	1	1	2	1	0.9137313042950899	1	212
 5384390	Amaranthus cruentus	Plantae	Magnoliopsida	0	0	2	1	0	0	2	1	0	0	2	1	0.9043090069793878	6	220
@@ -671,12 +674,12 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2928538	Ipomoea hederacea	Plantae	Magnoliopsida	0	0	2	1	0	0	2	1	0	0	1	1	0.882189555837619	6	220
 2479964	Poicephalus senegalus	Animalia	Aves	0	0	2	1	0	0	1	1	0	0	2	1	0.9042067403389958	1	212
 7358948	Lasius neglectus	Animalia	Insecta	0	0	2	1	0	0	1	1	0	0	2	1	0.6218558255024882	1	216
-8010851	Acer japonicum	Plantae	Magnoliopsida	0	0	1	3	0	0	2	2	1	1	1	1	NaN	6	220
-5229203	Bostrychia hagedash	Animalia	Aves	0	0	1	2	0	0	1	1	0	0	2	2	NaN	1	212
 5232423	Chloephaga poliocephala	Animalia	Aves	0	0	1	1	1	1	3	3	1	1	1	1	NaN	1	212
 2480766	Threskiornis spinicollis	Animalia	Aves	0	0	1	1	1	1	2	2	1	1	1	1	NaN	1	212
 5341394	Perilla frutescens	Plantae	Magnoliopsida	0	0	1	1	1	1	2	2	1	1	1	1	NaN	6	220
 2747939	Crocosmia crocosmiiflora	Plantae	Liliopsida	0	0	1	1	1	1	1	1	1	1	1	1	NaN	6	196
+2437394	Callosciurus erythraeus	Animalia	Mammalia	0	0	1	1	0	1	1	1	0	1	1	1	NaN	1	359
+3054352	Juglans cinerea	Plantae	Magnoliopsida	0	0	1	1	0	0	3	3	1	1	1	1	NaN	6	220
 2927727	Phlox subulata	Plantae	Magnoliopsida	0	0	1	1	0	0	3	3	0	0	3	3	NaN	6	220
 2482519	Corvus albus	Animalia	Aves	0	0	1	1	0	0	3	3	0	0	2	2	NaN	1	212
 2747489	Crocus chrysanthus	Plantae	Liliopsida	0	0	1	1	0	0	3	3	0	0	1	1	NaN	6	196
@@ -685,7 +688,6 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3586046	Gladiolus hortulanus	Plantae	Liliopsida	0	0	1	1	0	0	3	3	0	0	0	0	NaN	6	196
 5229154	Scopus umbretta	Animalia	Aves	0	0	1	1	0	0	3	3	0	0	0	0	NaN	1	212
 3083935	Chenopodium quinoa	Plantae	Magnoliopsida	0	0	1	1	0	0	3	2	0	0	3	3	NaN	6	220
-3054352	Juglans cinerea	Plantae	Magnoliopsida	0	0	1	1	0	0	2	3	1	1	1	1	NaN	6	220
 2855439	Galanthus woronowii	Plantae	Liliopsida	0	0	1	1	0	0	2	2	1	1	1	1	NaN	6	196
 5359169	Trifolium michelianum	Plantae	Magnoliopsida	0	0	1	1	0	0	2	2	0	0	2	2	NaN	6	220
 5229134	Vanellus miles	Animalia	Aves	0	0	1	1	0	0	2	2	0	0	1	1	NaN	1	212
@@ -701,6 +703,8 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3015577	Crataegus pedicellata	Plantae	Magnoliopsida	0	0	1	1	0	0	1	1	0	0	3	3	NaN	6	220
 3665866	Oenothera rubricalyx	Plantae	Magnoliopsida	0	0	1	1	0	0	1	1	0	0	3	3	NaN	6	220
 5363627	Aronia melanocarpa	Plantae	Magnoliopsida	0	0	1	1	0	0	1	1	0	0	2	2	NaN	6	220
+1718308	Acheta domesticus	Animalia	Insecta	0	0	1	1	0	0	1	1	0	0	1	1	0.8735504101402564	1	216
+2362486	Hypophthalmichthys nobilis	Animalia	Actinopterygii	0	0	1	1	0	0	1	1	0	0	1	1	NaN	1	204
 2474029	Alectoris chukar	Animalia	Aves	0	0	1	1	0	0	1	1	0	0	1	1	NaN	1	212
 2492081	Paroaria coronata	Animalia	Aves	0	0	1	1	0	0	1	1	0	0	1	1	NaN	1	212
 2498114	Anas versicolor	Animalia	Aves	0	0	1	1	0	0	1	1	0	0	1	1	NaN	1	212
@@ -710,11 +714,7 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3131367	Helichrysum petiolare	Plantae	Magnoliopsida	0	0	1	1	0	0	1	1	0	0	1	1	NaN	6	220
 5410210	Campanula fenestrellata	Plantae	Magnoliopsida	0	0	1	1	0	0	1	1	0	0	1	1	NaN	6	220
 5220136	Dama dama	Animalia	Mammalia	0	0	0	3	0	0	0	3	0	0	0	3	1.066761484514828	1	359
-5182343	Haliclona xena	Animalia	Demospongiae	0	0	0	2	0	0	0	2	0	0	0	2	NaN	1	199
-2437394	Callosciurus erythraeus	Animalia	Mammalia	0	0	0	1	0	1	0	1	0	1	0	1	NaN	1	359
 9451184	Pavo cristatus	Animalia	Aves	0	0	0	1	0	0	0	1	0	0	0	1	0.9640962341848102	1	212
-1718308	Acheta domesticus	Animalia	Insecta	0	0	0	1	0	0	0	1	0	0	0	1	0.8735504101402564	1	216
-2362486	Hypophthalmichthys nobilis	Animalia	Actinopterygii	0	0	0	1	0	0	0	1	0	0	0	1	NaN	1	204
 2480102	Nandayus nenday	Animalia	Aves	0	0	0	0	1	1	1	1	1	1	1	1	NaN	1	212
 2480770	Geronticus eremita	Animalia	Aves	0	0	0	0	1	1	1	1	1	1	1	1	NaN	1	212
 2498084	Anas superciliosa	Animalia	Aves	0	0	0	0	1	1	1	1	1	1	1	1	NaN	1	212
@@ -822,73 +822,74 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 8014966	Falco biarmicus	Animalia	Aves	0	0	0	0	0	0	0	0	0	0	0	0	NaN	1	212
 9791464	Colinus virginianus	Animalia	Aves	0	0	0	0	0	0	0	0	0	0	0	0	NaN	1	212
 10173593	Geranium ibericum x platypetalum	Plantae	Magnoliopsida	0	0	0	0	0	0	0	0	0	0	0	0	NaN	6	220
+6096602	Lophocolea semiteres	Plantae	Jungermanniopsida		3	3	3		3	2	2		3	3	3	NaN	6	126
+4559541	Sinanodonta woodiana	Animalia	Bivalvia		3	3	3		1	1	1		2	3	2	NaN	1	137
+2115692	Balanus tintinnabulum	Animalia	Maxillopoda		3	3	3		0	0	0		0	0	0	NaN	1	203
+2437397	Callosciurus prevostii	Animalia	Mammalia		3	2	2		0	0	0		0	0	0	NaN	1	359
 2716838	Eleocharis engelmannii	Plantae	Liliopsida		3	1	1		1	1	1			1	1	NaN	6	196
-6096602	Lophocolea semiteres	Plantae	Jungermanniopsida		3		3		3		2		3		3	NaN	6	126
-4559541	Sinanodonta woodiana	Animalia	Bivalvia		3		3		1		1		2		2	NaN	1	137
-2115692	Balanus tintinnabulum	Animalia	Maxillopoda		3		3		0		0		0		0	NaN	1	203
-2437397	Callosciurus prevostii	Animalia	Mammalia		3		2		0		0		0		0	NaN	1	359
-2687885	Ginkgo biloba	Plantae	Ginkgoopsida		2		2		3		3		3		3	NaN	6	244
-4283395	Diadumene lineata	Animalia	Anthozoa		2		2		1		1		2		2	NaN	1	206
+4283395	Diadumene lineata	Animalia	Anthozoa		2	3	2		1	1	1		2	3	2	NaN	1	206
+2687885	Ginkgo biloba	Plantae	Ginkgoopsida		2	2	2		3	3	3		3	3	3	NaN	6	244
+2153287	Zoropsis spinimana	Animalia	Arachnida		1	3	3			3	3			3	2	NaN	1	367
 1421095	Ctenolepisma lineata	Animalia	Insecta		1	3	3			3	3			1	1	NaN	1	216
-2153287	Zoropsis spinimana	Animalia	Arachnida		1	1	3			1	3			3	2	NaN	1	367
+2537743	Lentinula edodes	Fungi	Agaricomycetes		1	2	2		3	3	3		0	0	0	NaN	5	186
+5892120	Girardia tigrina				1	2	2		2	1	1		2	2	2	NaN	1	
+4985072	Tricellaria inopinata	Animalia	Gymnolaemata		1	1	2		2	1	1		0	1	1	NaN	1	252
+1651430	Aedes albopictus	Animalia	Insecta		1	1	1		1	3	3			0	0	NaN	1	216
+9185677	Podarcis siculus	Animalia	Reptilia		1	1	1		1	3	2			1	1	NaN	1	358
+5219683	Sciurus niger	Animalia	Mammalia		1	1	1		1	3	1		1	1	1	NaN	1	359
 3012103	Sorbaria kirilowii	Plantae	Magnoliopsida		1	1	1		1	1	3			1	1	NaN	6	220
-4985072	Tricellaria inopinata	Animalia	Gymnolaemata		1	0	2		2	0	1		0	1	1	NaN	1	252
-1651430	Aedes albopictus	Animalia	Insecta		1	0	1		1	0	3			0	0	NaN	1	216
-2537743	Lentinula edodes	Fungi	Agaricomycetes		1		2		3		3		0		0	NaN	5	186
-5892120	Girardia tigrina				1		2		2		1		2		2	NaN	1	
-9185677	Podarcis siculus	Animalia	Reptilia		1		1		1		2				1	NaN	1	358
-5220170	Rupicapra rupicapra	Animalia	Mammalia		1		1		1		1		3		3	NaN	1	359
-2157949	Latrodectus mactans	Animalia	Arachnida		1		1		1		1		1		1	NaN	1	367
-2225646	Callinectes sapidus	Animalia	Malacostraca		1		1		1		1		1		1	NaN	1	229
-5219683	Sciurus niger	Animalia	Mammalia		1		1		1		1		1		1	NaN	1	359
-5274861	Salvinia auriculata	Plantae	Polypodiopsida		1		1		1		1		1		1	NaN	6	7228684
-5421389	Sarracenia purpurea	Plantae	Magnoliopsida		1		1		1		1		1		1	NaN	6	220
-5641274	Primula denticulata	Plantae	Magnoliopsida		1		1		1		1		1		1	NaN	6	220
-9350124	Natrix helvetica	Animalia	Reptilia		1		1		1		1		1		1	NaN	1	358
-9738098	Cipangopaludina chinensis	Animalia	Gastropoda		1		1		1		1		1		1	NaN	1	225
+5220170	Rupicapra rupicapra	Animalia	Mammalia		1	1	1		1	1	1		3	3	3	NaN	1	359
+2157949	Latrodectus mactans	Animalia	Arachnida		1	1	1		1	1	1		1	1	1	NaN	1	367
+2225646	Callinectes sapidus	Animalia	Malacostraca		1	1	1		1	1	1		1	1	1	NaN	1	229
+5274861	Salvinia auriculata	Plantae	Polypodiopsida		1	1	1		1	1	1		1	1	1	NaN	6	7228684
+5421389	Sarracenia purpurea	Plantae	Magnoliopsida		1	1	1		1	1	1		1	1	1	NaN	6	220
+5641274	Primula denticulata	Plantae	Magnoliopsida		1	1	1		1	1	1		1	1	1	NaN	6	220
+9350124	Natrix helvetica	Animalia	Reptilia		1	1	1		1	1	1		1	1	1	NaN	1	358
+9738098	Cipangopaludina chinensis	Animalia	Gastropoda		1	1	1		1	1	1		1	1	1	NaN	1	225
 5334527	Limnanthes douglasii	Plantae	Magnoliopsida		0	1	1		1	1	1		1	1	1	NaN	6	220
-2703346	Anthoxanthum nitens	Plantae	Liliopsida		0	1	1		0	3	2		0	3	3	NaN	6	196
+2703346	Anthoxanthum nitens	Plantae	Liliopsida		0	1	1		0	2	2		0	2	3	NaN	6	196
 2874569	Cucumis sativus	Plantae	Magnoliopsida		0	1	1		0	2	2		0	1	1	NaN	6	220
 5275404	Pteris cretica	Plantae	Polypodiopsida		0	1	1		0	2	2		0	1	1	NaN	6	7228684
 2651816	Adiantum capillus-veneris	Plantae	Polypodiopsida		0	1	1		0	1	1		0	1	2	NaN	6	7228684
 2330928	Aplidium glabrum	Animalia	Ascidiacea		0	1	1		0	1	1		0	1	1	0.8433213439410937	1	356
 3125933	Santolina chamaecyparissus	Plantae	Magnoliopsida		0	1	1		0	1	1		0	1	1	NaN	6	220
 5229044	Psittacula cyanocephala	Animalia	Aves		0	1	1		0	1	1		0	1	1	NaN	1	212
-7190901	Graptemys pseudogeographica pseudogeographica	Animalia	Reptilia		0	0	0		0	0	1		0	0	1	NaN	1	358
+7190901	Graptemys pseudogeographica pseudogeographica	Animalia	Reptilia		0	0	0		0	1	1		0	1	1	NaN	1	358
+1008955	Fenestrulina delicia	Animalia	Gymnolaemata		0	0	0		0	0	0		1	1	1	NaN	1	252
+2321010	Marenzelleria neglecta	Animalia	Polychaeta		0	0	0		0	0	0		1	1	1	NaN	1	256
+2439838	Castor canadensis	Animalia	Mammalia		0	0	0		0	0	0		1	1	1	NaN	1	359
+8044946	Epimedium pinnatum	Plantae	Magnoliopsida		0	0	0		0	0	0		1	1	1	NaN	6	220
 1702101	Anacridium aegyptium	Animalia	Insecta		0	0	0		0	0	0		0	0	0	NaN	1	216
-1008955	Fenestrulina delicia	Animalia	Gymnolaemata		0		0		0		0		1		1	NaN	1	252
-2321010	Marenzelleria neglecta	Animalia	Polychaeta		0		0		0		0		1		1	NaN	1	256
-2439838	Castor canadensis	Animalia	Mammalia		0		0		0		0		1		1	NaN	1	359
-8044946	Epimedium pinnatum	Plantae	Magnoliopsida		0		0		0		0		1		1	NaN	6	220
-1719204	Gryllomorpha dalmatina	Animalia	Insecta		0		0		0		0		0		0	NaN	1	216
-2149679	Holocnemus pluchei	Animalia	Arachnida		0		0		0		0		0		0	NaN	1	367
-2162537	Oecobius navus	Animalia	Arachnida		0		0		0		0		0		0	NaN	1	367
-2431821	Pachytriton labiatus	Animalia	Amphibia		0		0		0		0		0		0	NaN	1	131
-2437232	Cynomys ludovicianus	Animalia	Mammalia		0		0		0		0		0		0	NaN	1	359
-2514972	Puccinia komarovii	Fungi	Pucciniomycetes		0		0		0		0		0		0	NaN	5	270
-2687948	Equisetum scirpoides	Plantae	Polypodiopsida		0		0		0		0		0		0	NaN	6	7228684
-2703240	Dinebra retroflexa	Plantae	Liliopsida		0		0		0		0		0		0	NaN	6	196
-3645346	Philadelphus virginalis	Plantae	Magnoliopsida		0		0		0		0		0		0	NaN	6	220
-4285694	Oreochromis niloticus	Animalia	Actinopterygii		0		0		0		0		0		0	NaN	1	204
-4344674	Dendrocoelum romanodanubiale				0		0		0		0		0		0	NaN	1	
-5177825	Incisocalliope aestuarius	Animalia	Malacostraca		0		0		0		0		0		0	NaN	1	229
-5740285	Gyrodactylus proterorhini	Animalia	Monogenea		0		0		0		0		0		0	NaN	1	7774442
-5786666	Hydrochoerus hydrochaeris	Animalia	Mammalia		0		0		0		0		0		0	NaN	1	359
-6159273	Lacerta viridis	Animalia	Reptilia		0		0		0		0		0		0	NaN	1	358
+1719204	Gryllomorpha dalmatina	Animalia	Insecta		0	0	0		0	0	0		0	0	0	NaN	1	216
+2149679	Holocnemus pluchei	Animalia	Arachnida		0	0	0		0	0	0		0	0	0	NaN	1	367
+2162537	Oecobius navus	Animalia	Arachnida		0	0	0		0	0	0		0	0	0	NaN	1	367
+2431821	Pachytriton labiatus	Animalia	Amphibia		0	0	0		0	0	0		0	0	0	NaN	1	131
+2437232	Cynomys ludovicianus	Animalia	Mammalia		0	0	0		0	0	0		0	0	0	NaN	1	359
+2514972	Puccinia komarovii	Fungi	Pucciniomycetes		0	0	0		0	0	0		0	0	0	NaN	5	270
+2687948	Equisetum scirpoides	Plantae	Polypodiopsida		0	0	0		0	0	0		0	0	0	NaN	6	7228684
+2703240	Dinebra retroflexa	Plantae	Liliopsida		0	0	0		0	0	0		0	0	0	NaN	6	196
+3645346	Philadelphus virginalis	Plantae	Magnoliopsida		0	0	0		0	0	0		0	0	0	NaN	6	220
+4285694	Oreochromis niloticus	Animalia	Actinopterygii		0	0	0		0	0	0		0	0	0	NaN	1	204
+4344674	Dendrocoelum romanodanubiale				0	0	0		0	0	0		0	0	0	NaN	1	
+5177825	Incisocalliope aestuarius	Animalia	Malacostraca		0	0	0		0	0	0		0	0	0	NaN	1	229
+5740285	Gyrodactylus proterorhini	Animalia	Monogenea		0	0	0		0	0	0		0	0	0	NaN	1	7774442
+5786666	Hydrochoerus hydrochaeris	Animalia	Mammalia		0	0	0		0	0	0		0	0	0	NaN	1	359
+6159273	Lacerta viridis	Animalia	Reptilia		0	0	0		0	0	0		0	0	0	NaN	1	358
 2984532	Zelkova serrata	Plantae	Magnoliopsida			3	3			3	3			1	1	NaN	6	220
 5353590	Cercis siliquastrum	Plantae	Magnoliopsida			3	3			3	3			0	0	NaN	6	220
-1043717	Cryptolaemus montrouzieri	Animalia	Insecta			3	3			3	2			1	3	NaN	1	216
+1043717	Cryptolaemus montrouzieri	Animalia	Insecta			3	3			3	2			3	3	NaN	1	216
 5376326	Diplotaxis virgata	Plantae	Magnoliopsida			3	3			2	3			3	3	NaN	6	220
 5407810	Trachelium caeruleum	Plantae	Magnoliopsida			3	3			2	2			1	1	NaN	6	220
 1421105	Thermobia domestica	Animalia	Insecta			3	3			1	1			1	1	NaN	1	216
+2486132	Pycnonotus leucotis	Animalia	Aves			3	3			1	1			1	1	NaN	1	212
 2926042	Nonea lutea	Plantae	Magnoliopsida			3	3			1	1			1	1	NaN	6	220
 3032611	Darmera peltata	Plantae	Magnoliopsida			3	3			1	1			1	1	NaN	6	220
 3104314	Liatris spicata	Plantae	Magnoliopsida			3	3			1	1			1	1	NaN	6	220
 4201784	Petrosedum sediforme	Plantae	Magnoliopsida			3	3			1	1			1	1	NaN	6	220
 6376216	Clematis montana	Plantae	Magnoliopsida			3	3			1	1			1	1	NaN	6	220
 2493697	Amandava subflava	Animalia	Aves			3	3			0	0			0	0	NaN	1	212
+7415922	Rumex pulcher woodsii	Plantae	Magnoliopsida			3	3			0	0			0	0	NaN	6	220
 3138192	Eutrochium purpureum	Plantae	Magnoliopsida			3	2			3	3			1	1	NaN	6	220
-5229110	Cyanoramphus novaezelandiae	Animalia	Aves			3	1			3	1			1	1	NaN	1	212
 2480089	Psephotus haematonotus	Animalia	Aves			2	3			2	2			2	2	NaN	1	212
 3105768	Sonchus tenerrimus	Plantae	Magnoliopsida			2	2			3	3			1	1	NaN	6	220
 4990176	Rhyzobius forestieri	Animalia	Insecta			2	2			2	3			0	0	NaN	1	216
@@ -896,34 +897,34 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3025858	Cotoneaster ambiguus	Plantae	Magnoliopsida			2	2			0	0			1	1	NaN	6	220
 1932752	Cacyreus marshalli	Animalia	Insecta			2	2			0	0			0	0	NaN	1	216
 2957408	Senna obtusifolia	Plantae	Magnoliopsida			2	1			2	1			0	1	0.8456242341570379	6	220
-7415922	Rumex pulcher woodsii	Plantae	Magnoliopsida			1	3				0				0	NaN	6	220
+2455523	Orthriophis taeniurus	Animalia	Reptilia			1	3			1	1			3	3	NaN	1	358
 2856457	Allium triquetrum	Plantae	Liliopsida			1	2			3	3			1	1	NaN	6	196
-2928583	Ipomoea leucantha	Plantae	Magnoliopsida			1	1			3	3			3	2	NaN	6	220
 2868827	Zantedeschia aethiopica	Plantae	Liliopsida			1	1			3	3			1	1	NaN	6	196
 7902463	Lonicera maackii	Plantae	Magnoliopsida			1	1			3	3			1	1	NaN	6	220
 8323119	Bidens triplinervia macrantha	Plantae	Magnoliopsida			1	1			3	3			1	1	NaN	6	220
+3027138	Spiraea canescens	Plantae	Magnoliopsida			1	1			3	3			0	0	NaN	6	220
 7437751	Urtica membranacea	Plantae	Magnoliopsida			1	1			3	1			3	2	NaN	6	220
 2931104	Solanum pseudocapsicum	Plantae	Magnoliopsida			1	1			3	1			1	1	NaN	6	220
-2726539	Carex scoparia	Plantae	Liliopsida			1	1			2	3			1	1	NaN	6	196
+2928583	Ipomoea leucantha	Plantae	Magnoliopsida			1	1			2	3			2	2	NaN	6	220
 2927174	Mentha requienii	Plantae	Magnoliopsida			1	1			2	2			1	1	NaN	6	220
 3172294	Ligustrum sinense	Plantae	Magnoliopsida			1	1			2	2			1	1	NaN	6	220
 8969026	Physalis philadelphica	Plantae	Magnoliopsida			1	1			2	2			1	1	NaN	6	220
+2726539	Carex scoparia	Plantae	Liliopsida			1	1			1	3			1	1	NaN	6	196
 2985995	Hydrangea paniculata	Plantae	Magnoliopsida			1	1			1	3			1	1	NaN	6	220
-3027138	Spiraea canescens	Plantae	Magnoliopsida			1	1			1	3				0	NaN	6	220
 2930080	Solanum ptychanthum	Plantae	Magnoliopsida			1	1			1	1			3	3	NaN	6	220
 3011247	Rosa nitida	Plantae	Magnoliopsida			1	1			1	1			3	3	NaN	6	220
+5217334	Xenopus laevis	Animalia	Amphibia			1	1			1	1			3	3	NaN	1	131
 5341540	Gilia achilleifolia	Plantae	Magnoliopsida			1	1			1	1			3	3	NaN	6	220
 7455425	Phyla nodiflora minor	Plantae	Magnoliopsida			1	1			1	1			3	3	NaN	6	220
 7520678	Striosubulina striatella	Animalia	Gastropoda			1	1			1	1			3	3	NaN	1	225
 7881150	Polygonatum hybridum	Plantae	Liliopsida			1	1			1	1			3	3	NaN	6	196
 3065244	Euphorbia amygdaloides robbiae	Plantae	Magnoliopsida			1	1			1	1			3	2	NaN	6	220
 5660450	Pulmonaria rubra	Plantae	Magnoliopsida			1	1			1	1			3	2	NaN	6	220
-2928238	Phacelia campanularia	Plantae	Magnoliopsida			1	1			1	1			3	1	NaN	6	220
-5275415	Pteris multifida	Plantae	Polypodiopsida			1	1			1	1			2	1	NaN	6	7228684
+2209044	Nagurus cristatus	Animalia	Malacostraca			1	1			1	1			3	1	NaN	1	229
 2856456	Allium pendulinum	Plantae	Liliopsida			1	1			1	1			1	3	NaN	6	196
 2155867	Coleosoma floridanum	Animalia	Arachnida			1	1			1	1			1	1	NaN	1	367
 2202641	Reductoniscus costulatus	Animalia	Malacostraca			1	1			1	1			1	1	NaN	1	229
-2209044	Nagurus cristatus	Animalia	Malacostraca			1	1			1	1			1	1	NaN	1	229
+2441122	Ovis ammon	Animalia	Mammalia			1	1			1	1			1	1	NaN	1	359
 2484608	Bombycilla japonica	Animalia	Aves			1	1			1	1			1	1	NaN	1	212
 2489075	Lamprotornis superbus	Animalia	Aves			1	1			1	1			1	1	NaN	1	212
 2494088	Euplectes orix	Animalia	Aves			1	1			1	1			1	1	NaN	1	212
@@ -941,6 +942,7 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 2882803	Arbutus unedo	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 2888706	Kolkwitzia amabilis	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 2925532	Verbena bracteata	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
+2928238	Phacelia campanularia	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 2964167	Lupinus albus	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 2965434	Medicago monspeliaca	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 2975187	Vicia cuspidata	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
@@ -960,7 +962,10 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 4137839	Koeleria glauca	Plantae	Liliopsida			1	1			1	1			1	1	NaN	6	196
 4930155	Viburnum davidii	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 5108665	Callopistria floridensis	Animalia	Insecta			1	1			1	1			1	1	NaN	1	216
+5229110	Cyanoramphus novaezelandiae	Animalia	Aves			1	1			1	1			1	1	NaN	1	212
 5232469	Oxyura vittata	Animalia	Aves			1	1			1	1			1	1	NaN	1	212
+5275415	Pteris multifida	Plantae	Polypodiopsida			1	1			1	1			1	1	NaN	6	7228684
+5289746	Phalaris aquatica	Plantae	Liliopsida			1	1			1	1			1	1	NaN	6	196
 5296218	Sisyrinchium californicum	Plantae	Liliopsida			1	1			1	1			1	1	NaN	6	196
 5303891	Danae racemosa	Plantae	Liliopsida			1	1			1	1			1	1	NaN	6	196
 5305162	Kniphofia praecox	Plantae	Liliopsida			1	1			1	1			1	1	NaN	6	196
@@ -984,14 +989,13 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 8510990	Crambe hispanica abyssinica	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 9733080	Sidalcea oregana	Plantae	Magnoliopsida			1	1			1	1			1	1	NaN	6	220
 10269496	Epuraea imperialis	Animalia	Insecta			1	1			1	1			1	1	NaN	1	216
-2486132	Pycnonotus leucotis	Animalia	Aves			0	3			1	1			1	1	NaN	1	212
-5289746	Phalaris aquatica	Plantae	Liliopsida			0	1			0	1			0	1	NaN	6	196
 2493739	Neochmia ruficauda	Animalia	Aves			0	0			1	1			1	1	NaN	1	212
 2494086	Euplectes franciscanus	Animalia	Aves			0	0			1	1			1	1	NaN	1	212
 2855823	Allium nigrum	Plantae	Liliopsida			0	0			1	1			1	1	NaN	6	196
 3025907	Cotoneaster qungbixiensis	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 3042799	Brassica barrelieri	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 3113852	Gutenbergia rueppellii	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
+3134867	Catananche caerulea	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 3646556	Pterostyrax hispidus	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 5376139	Hornungia alpina	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 5415056	Forsythia suspensa	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
@@ -999,26 +1003,36 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 7323906	Convolvulus tricolor tricolor	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 8402586	Malva clementii	Plantae	Magnoliopsida			0	0			1	1			1	1	NaN	6	220
 8765358	Coccinella miranda	Animalia	Insecta			0	0			1	1			1	1	NaN	1	216
+2431875	Pleurodeles waltl	Animalia	Amphibia			0	0			0	0			1	1	NaN	1	131
+2482478	Corvus albicollis	Animalia	Aves			0	0			0	0			1	1	NaN	1	212
 2484155	Quiscalus quiscula	Animalia	Aves			0	0			0	0			1	1	NaN	1	212
 2749791	Gladiolus italicus	Plantae	Liliopsida			0	0			0	0			1	1	NaN	6	196
 3170266	Asclepias incarnata	Plantae	Magnoliopsida			0	0			0	0			1	1	NaN	6	220
 4063372	Trachystemon orientalis	Plantae	Magnoliopsida			0	0			0	0			1	1	NaN	6	220
 4423428	Yersinella raymondii	Animalia	Insecta			0	0			0	0			1	1	NaN	1	216
+5384950	Eclipta prostrata	Plantae	Magnoliopsida			0	0			0	0			1	1	NaN	6	220
 5621983	Echinopsis silvestrii	Plantae	Magnoliopsida			0	0			0	0			1	1	NaN	6	220
 7636833	Syringa josikaea	Plantae	Magnoliopsida			0	0			0	0			1	1	NaN	6	220
-2482478	Corvus albicollis	Animalia	Aves			0	0			0	0			0	1	NaN	1	212
-5384950	Eclipta prostrata	Plantae	Magnoliopsida			0	0			0	0			0	1	NaN	6	220
 1316805	Tapinoma melanocephalum	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
 1320777	Plagiolepis pygmaea	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
 1323402	Tetramorium bicarinatum	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
 1325561	Paratrechina longicornis	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
+2149761	Micropholcus fauroti	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
+2150043	Crossopriza lyoni	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
+2150089	Artema atlanta	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
+2161710	Heteropoda venatoria	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
+2172885	Evarcha jucunda	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
 2479612	Amazona ochrocephala	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2480445	Haliaeetus pelagicus	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2490789	Turdus dissimilis	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2492196	Melospiza melodia	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2493447	Garrulax leucolophus	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
+2494536	Pyrrhula erythaca	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2497798	Ninox connivens	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 2498288	Coscoroba coscoroba	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
+2516075	Cumminsiella mirabilissima	Fungi	Pucciniomycetes			0	0			0	0			0	0	NaN	5	270
+2516809	Melampsoridium betulinum	Fungi	Pucciniomycetes			0	0			0	0			0	0	NaN	5	270
+2650944	Rumohra adiantiformis	Plantae	Polypodiopsida			0	0			0	0			0	0	NaN	6	7228684
 2702544	Panicum clandestinum	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 2705587	Paspalum paniculatum	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 2705857	Brachiaria platyphylla	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
@@ -1047,14 +1061,19 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 3189939	Cardiospermum halicacabum	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 3602227	Papaver setigerum	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 3627235	Oxalis uittienii	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+3631129	Eryngium giganteum	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 3872463	Tarenaya hassleriana	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+4401285	Dorypteryx longipennis	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
 4410056	Psammoryctides moravicus	Animalia	Clitellata			0	0			0	0			0	0	NaN	1	255
+4550810	Cryptachaea veruculata	Animalia	Arachnida			0	0			0	0			0	0	NaN	1	367
+5188971	Rangia cuneata	Animalia	Bivalvia			0	0			0	0			0	0	NaN	1	137
 5200414	Diplosoma listerianum	Animalia	Ascidiacea			0	0			0	0			0	0	NaN	1	356
 5202793	Clarias gariepinus	Animalia	Actinopterygii			0	0			0	0			0	0	NaN	1	204
 5219721	Meriones unguiculatus	Animalia	Mammalia			0	0			0	0			0	0	NaN	1	359
 5229142	Vanellus spinosus	Animalia	Aves			0	0			0	0			0	0	NaN	1	212
 5289709	Setaria sphacelata	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 5289739	Cenchrus echinatus	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
+5289764	Gastridium ventricosum	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 5289995	Digitaria violascens	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 5295044	Smilax aspera	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
 5334275	Lonicera morrowii	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
@@ -1062,8 +1081,10 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 5358906	Trifolium constantinopolitanum	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5359475	Trifolium strictum	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5360429	Trigonella caelesyriaca	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+5360508	Trigonella maritima	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5361841	Pilea microphylla	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5384393	Amaranthus palmeri	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+5387098	Dahlia coccinea	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5402340	Dimorphotheca jucunda	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5402363	Dimorphotheca pluvialis	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5403743	Scolymus maculatus	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
@@ -1072,8 +1093,12 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 5709400	Tragopogon mirabilis	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 5779455	Arion lusitanicus	Animalia	Gastropoda			0	0			0	0			0	0	NaN	1	225
 6157050	Graptemys pseudogeographica kohnii	Animalia	Reptilia			0	0			0	0			0	0	NaN	1	358
+7161168	Lopezia racemosa	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 7278926	Malope malacoides	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 7294771	Heliotropium suaveolens	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+7307829	Lavandula dentata	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
+7461690	Phragmidium mexicanum	Fungi	Pucciniomycetes			0	0			0	0			0	0	NaN	5	270
+7504215	Knautia integrifolia	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 7519710	Orobanche amethystea	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 7572133	Anoplophora glabripennis	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
 7664179	Technomyrmex vitiensis	Animalia	Insecta			0	0			0	0			0	0	NaN	1	216
@@ -1082,28 +1107,3 @@ taxonKey	canonicalName	kingdom	class	year_2018_em_status_occupancy_pa	year_2018_
 7963687	Linaria chalepensis	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 8242651	Rumex erubescens	Plantae	Magnoliopsida			0	0			0	0			0	0	NaN	6	220
 8369366	Diplachne fusca uninervia	Plantae	Liliopsida			0	0			0	0			0	0	NaN	6	196
-2455523	Orthriophis taeniurus	Animalia	Reptilia				3				1				3	NaN	1	358
-5217334	Xenopus laevis	Animalia	Amphibia				1				1				3	NaN	1	131
-2441122	Ovis ammon	Animalia	Mammalia				1				1				1	NaN	1	359
-3134867	Catananche caerulea	Plantae	Magnoliopsida				0				1				1	NaN	6	220
-2431875	Pleurodeles waltl	Animalia	Amphibia				0				0				1	NaN	1	131
-2149761	Micropholcus fauroti	Animalia	Arachnida				0				0				0	NaN	1	367
-2150043	Crossopriza lyoni	Animalia	Arachnida				0				0				0	NaN	1	367
-2150089	Artema atlanta	Animalia	Arachnida				0				0				0	NaN	1	367
-2161710	Heteropoda venatoria	Animalia	Arachnida				0				0				0	NaN	1	367
-2172885	Evarcha jucunda	Animalia	Arachnida				0				0				0	NaN	1	367
-2494536	Pyrrhula erythaca	Animalia	Aves				0				0				0	NaN	1	212
-2516075	Cumminsiella mirabilissima	Fungi	Pucciniomycetes				0				0				0	NaN	5	270
-2516809	Melampsoridium betulinum	Fungi	Pucciniomycetes				0				0				0	NaN	5	270
-2650944	Rumohra adiantiformis	Plantae	Polypodiopsida				0				0				0	NaN	6	7228684
-3631129	Eryngium giganteum	Plantae	Magnoliopsida				0				0				0	NaN	6	220
-4401285	Dorypteryx longipennis	Animalia	Insecta				0				0				0	NaN	1	216
-4550810	Cryptachaea veruculata	Animalia	Arachnida				0				0				0	NaN	1	367
-5188971	Rangia cuneata	Animalia	Bivalvia				0				0				0	NaN	1	137
-5289764	Gastridium ventricosum	Plantae	Liliopsida				0				0				0	NaN	6	196
-5360508	Trigonella maritima	Plantae	Magnoliopsida				0				0				0	NaN	6	220
-5387098	Dahlia coccinea	Plantae	Magnoliopsida				0				0				0	NaN	6	220
-7161168	Lopezia racemosa	Plantae	Magnoliopsida				0				0				0	NaN	6	220
-7307829	Lavandula dentata	Plantae	Magnoliopsida				0				0				0	NaN	6	220
-7461690	Phragmidium mexicanum	Fungi	Pucciniomycetes				0				0				0	NaN	5	270
-7504215	Knautia integrifolia	Plantae	Magnoliopsida				0				0				0	NaN	6	220
