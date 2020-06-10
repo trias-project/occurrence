@@ -84,7 +84,7 @@ df_ts_compact <-
   summarise(
     obs = sum(obs),
     cobs = sum(cobs),
-    ncells = sum(pa_cobs),
+    ncells = sum(pa_obs),
     c_ncells = sum(pa_cobs)
   ) %>%
   ungroup()
