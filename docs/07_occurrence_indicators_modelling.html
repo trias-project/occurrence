@@ -13,7 +13,7 @@
 <meta name="author" content="Toon Van Daele" />
 <meta name="author" content="Tim Adriaens" />
 
-<meta name="date" content="2020-05-14" />
+<meta name="date" content="2020-06-10" />
 
 <title>Emerging status: modelling</title>
 
@@ -450,7 +450,7 @@ div.tocify {
 <h4 class="author">Damiano Oldoni</h4>
 <h4 class="author">Toon Van Daele</h4>
 <h4 class="author">Tim Adriaens</h4>
-<h4 class="date">2020-05-14</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -459,12 +459,22 @@ div.tocify {
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">1</span> Setup</h1>
 <p>Load libraries:</p>
-<pre class="r"><code>library(tidyverse) # To do data science
-library(tidyselect) # To help tidyverse functions
-library(tidylog) # To provide feedback on dplyr functions
-library(rgbif) # To get information from GBIF
-library(lubridate) # To work with dates
-library(here) # To find files
+<pre class="r"><code>library(tidyverse) # To do data science</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.6.3</code></pre>
+<pre class="r"><code>library(tidyselect) # To help tidyverse functions</code></pre>
+<pre><code>## Warning: package &#39;tidyselect&#39; was built under R version 3.6.3</code></pre>
+<pre class="r"><code>library(tidylog) # To provide feedback on dplyr functions</code></pre>
+<pre><code>## Warning: package &#39;tidylog&#39; was built under R version 3.6.2</code></pre>
+<pre class="r"><code>library(rgbif) # To get information from GBIF
+library(lubridate) # To work with dates</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 3.6.3</code></pre>
+<pre class="r"><code>library(here) # To find files
 library(trias)
 library(INBOtheme) # To load graphic INBO theme</code></pre>
 </div>
@@ -507,7 +517,7 @@ df_ts %&gt;%
   summarise(
     obs = sum(obs),
     cobs = sum(cobs),
-    ncells = sum(pa_cobs),
+    ncells = sum(pa_obs),
     c_ncells = sum(pa_cobs)
   ) %&gt;%
   ungroup()</code></pre>
@@ -644,7 +654,7 @@ spec_names &lt;-
 <pre class="r"><code>em_decision_rules_occupancy_BE %&gt;% head()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1043717","2":"2016","3":"1","4":"TRUE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1152186","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["taxonKey"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["em_status"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dr_1"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["dr_2"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["dr_3"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["dr_4"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"1008955","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031394","2":"2016","3":"2","4":"FALSE","5":"TRUE","6":"FALSE","7":"FALSE"},{"1":"1031400","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"},{"1":"1031684","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1031742","2":"2016","3":"1","4":"FALSE","5":"FALSE","6":"FALSE","7":"FALSE"},{"1":"1043717","2":"2016","3":"3","4":"FALSE","5":"TRUE","6":"FALSE","7":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
