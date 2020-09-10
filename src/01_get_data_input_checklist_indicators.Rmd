@@ -177,6 +177,24 @@ description <-
   ))
 ```
 
+### Add native content based on native range
+
+We use native range information to create a similar column containing native continent:
+
+```{r add_native_continent_column}
+description <-
+  description %>%
+  mutate(native_continent = case_when(
+    grepl(pattern = "Africa", native_range, ignore.case = TRUE) ~ "Africa",
+    grepl(pattern = "America", native_range, ignore.case = TRUE) ~ "America",
+    grepl(pattern = "Asia", native_range, ignore.case = TRUE) ~ "Asia",
+    grepl(pattern = "Australia", native_range, ignore.case = TRUE) ~ "Oceania",
+    grepl(pattern = "nesia", native_range, ignore.case = TRUE) ~ "Oceania",
+    grepl(pattern = "Europe", native_range, ignore.case = TRUE) ~ "Europe",
+    TRUE ~ as.character(NA))
+  )
+```
+
 ## Species profile
 
 Extract species profile
