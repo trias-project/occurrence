@@ -39,9 +39,10 @@ Get taxa from the published unified checklist, the [*Global Register of Introduc
 ```{r get_data_unified_checklist}
 taxa <- name_usage(
   datasetKey = "6d9e952f-948c-4483-9807-575348147c7e",
-  return = "data",
   limit = 10000
-) %>%
+)
+taxa <- 
+  taxa$data %>% 
   filter(origin == "SOURCE")
 ```
 
@@ -65,13 +66,15 @@ taxa <-
 Extract distribution information
 
 ```{r retrieve_distribution_information, cache=TRUE}
-distribution <- taxa %>%
+distribution <- 
+  taxa %>% 
   pull(key) %>%
-  map_dfr(~ name_usage(.,
-    return = "data",
-    data = "distribution"
-  )) %>%
-  select(-source)
+  map_dfr(., function(x) {
+    distribution_details <-name_usage(x, data = "distribution")
+    return(distribution_details$data)
+    }
+  )
+distribution <- distribution %>% select(-source)
 head(distribution)
 ```
 
@@ -82,11 +85,12 @@ Extract description information
 ```{r retrieve_description_information, cache=TRUE}
 description <- taxa %>%
   pull(key) %>%
-  map_dfr(~ name_usage(.,
-    return = "data",
-    data = "description"
-  )) %>%
-  select(-c(key, language, source))
+  map_dfr(., function(x) {
+    description_details <-name_usage(x, data = "description")
+    return(description_details$data)
+    }
+  )
+description <- description %>% select(-c(key, language, source))
 head(description, n = 10)
 ```
 
@@ -180,10 +184,11 @@ Extract species profile
 ```{r retrieve_species_profile_information, cache=TRUE}
 speciesProfiles <- taxa %>%
   pull(key) %>%
-  map_dfr(~ name_usage(.,
-    return = "data",
-    data = "speciesProfiles"
-  ))
+  map_dfr(., function(x) {
+    species_profiles_details <-name_usage(x, data = "speciesProfile")
+    return(species_profiles_details$data)
+    }
+  )
 head(speciesProfiles)
 ```
 
